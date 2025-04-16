@@ -1,0 +1,437 @@
+generator satriaClient {
+  provider = "prisma-client-js"
+  output   = "../prisma/generated/satria-client"
+}
+
+datasource satria {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL_SATRIA")
+}
+
+model User {
+  id                        BigInt       @id(map: "PK_users_id") @default(autoincrement())
+  name                      String       @satria.NVarChar(255)
+  email                     String       @unique(map: "users$users_email_unique") @satria.NVarChar(255)
+  email_verified_at         DateTime?    @satria.DateTime
+  password                  String       @satria.NVarChar(255)
+  accessed_app              Int?
+  role_id                   String?      @satria.NVarChar(64)
+  is_blocked                Int          @default(1, map: "DF__users__is_blocke__17036CC0") @satria.SmallInt
+  is_active                 Int          @default(1, map: "DF__users__is_active__17F790F9") @satria.SmallInt
+  token                     String?      @satria.NVarChar(Max)
+  phone                     String?      @satria.NVarChar(255)
+  email_sf                  String?      @satria.NVarChar(255)
+  superior                  String?      @satria.NVarChar(255)
+  section_code              String?      @satria.NVarChar(64)
+  section                   String?      @satria.NVarChar(255)
+  divid                     String?      @satria.NVarChar(64)
+  companyid                 String?      @satria.NVarChar(64)
+  dept                      Int
+  department                String?      @satria.NVarChar(255)
+  division                  String?      @satria.NVarChar(255)
+  title                     String?      @satria.NVarChar(255)
+  worklocation_code         String?      @satria.NVarChar(32)
+  worklocation_name         String?      @satria.NVarChar(255)
+  worklocation_lat_long     String?      @satria.NVarChar(255)
+  personal_number           String?      @satria.NVarChar(255)
+  csfield10                 String?      @satria.NVarChar(255)
+  company_name              String?      @satria.NVarChar(255)
+  photo                     String?      @satria.NVarChar(255)
+  grade                     Int          @default(0, map: "DF__users__grade__2B0A656D")
+  remember_token            String?      @satria.NVarChar(100)
+  latlon_distance           Int          @default(500, map: "DF__users__latlon_di__2CF2ADDF")
+  section_code_sap          String?      @satria.NVarChar(255)
+  section_sap               String?      @satria.NVarChar(255)
+  department_code_sap       String?      @satria.NVarChar(255)
+  department_sap            String?      @satria.NVarChar(255)
+  division_code_sap         String?      @satria.NVarChar(255)
+  division_sap              String?      @satria.NVarChar(255)
+  pos_code_sap              String?      @satria.NVarChar(255)
+  company_id_sap            String?      @satria.NVarChar(255)
+  company_name_sap          String?      @satria.NVarChar(255)
+  worklocation_code_sap     String?      @satria.NVarChar(255)
+  worklocation_name_sap     String?      @satria.NVarChar(255)
+  worklocation_lat_long_sap String?      @satria.NVarChar(255)
+  created_at                DateTime?    @satria.DateTime
+  updated_at                DateTime?    @satria.DateTime
+  dept_data                 mst_dept     @relation("UserToDept", fields: [dept], references: [id])
+  trx_leaves                trx_leaves[] @relation("UserToTrxLeaves")
+
+  @@map("users")
+}
+
+model ms_leave_types {
+  id         Int          @id(map: "PK_leave_types_id") @default(autoincrement())
+  title      String       @satria.NVarChar(191)
+  days       Int
+  created_by BigInt?
+  created_at DateTime?
+  updated_by BigInt?
+  updated_at DateTime?
+  is_deleted Int?         @default(0, map: "DF_leave_types_is_deleted") @satria.SmallInt
+  trx_leaves trx_leaves[] @relation("LeaveTypeToTrxLeaves")
+
+  @@map("ms_leave_types")
+}
+
+model trx_leaves {
+  id               BigInt         @id(map: "PK_leaves_id") @default(autoincrement())
+  user             BigInt
+  dept             BigInt
+  leave_type_id    Int
+  status_id        BigInt
+  start_date       DateTime
+  end_date         DateTime
+  total_leave_days BigInt
+  leave_reason     String         @satria.NVarChar(255)
+  accept_to        String?        @satria.NVarChar(255)
+  accepted         String?        @satria.NVarChar(255)
+  accepted_date    DateTime?      @satria.DateTime
+  accepted_remark  String?        @satria.NVarChar(255)
+  approve_to       String?        @satria.NVarChar(255)
+  approved         String?        @satria.NVarChar(255)
+  approved_date    DateTime?      @satria.DateTime
+  approved_remark  String?        @satria.NVarChar(255)
+  rejected         String?        @satria.NVarChar(255)
+  rejected_date    DateTime?      @satria.DateTime
+  rejected_remark  String?        @satria.NVarChar(255)
+  canceled         String?        @satria.NVarChar(255)
+  canceled_date    DateTime?      @satria.DateTime
+  canceled_remark  String?        @satria.NVarChar(255)
+  flag_leaves      Int            @default(0, map: "DF__leaves__flag_lea__571DF1D5") @satria.SmallInt
+  created_by       BigInt
+  created_at       DateTime
+  updated_by       BigInt
+  updated_at       DateTime
+  leave_type       ms_leave_types @relation("LeaveTypeToTrxLeaves", fields: [leave_type_id], references: [id])
+  user_data        User           @relation("UserToTrxLeaves", fields: [user], references: [id])
+
+  @@map("trx_leaves")
+}
+
+model ms_shift {
+  id            Int       @id(map: "PK_ms_shift_id") @default(autoincrement())
+  id_shift_sap  String?   @satria.NVarChar(255)
+  code          String    @satria.NVarChar(255)
+  name          String    @satria.NVarChar(255)
+  in_time       DateTime? @satria.Time
+  out_time      DateTime? @satria.Time
+  gt_before_in  Int       @default(240, map: "DF__ms_shift__gt_bef__5CD6CB2B")
+  gt_after_in   Int       @default(240, map: "DF__ms_shift__gt_aft__5DCAEF64")
+  gt_before_out Int       @default(240, map: "DF__ms_shift__gt_bef__5EBF139D")
+  gt_after_out  Int       @default(240, map: "DF__ms_shift__gt_aft__5FB337D6")
+  flag_shift    Int       @default(0, map: "DF__ms_shift__flag_s__60A75C0F") @satria.SmallInt
+  created_by    BigInt?
+  created_at    DateTime?
+  updated_by    BigInt?
+  updated_at    DateTime?
+  is_deleted    Int?      @default(0, map: "DF__ms_shift__is_del__656C112C") @satria.SmallInt
+
+  @@map("ms_shift")
+}
+
+model ms_shift_group {
+  id                 Int       @id(map: "PK_ms_shift_group_id") @default(autoincrement())
+  id_shift_group_sap Int       @default(0, map: "DF__ms_shift___id_sh__66603565")
+  code               String    @satria.NVarChar(255)
+  nama               String    @satria.NVarChar(255)
+  flag_shift         Int       @default(0, map: "DF__ms_shift___flag___6754599E") @satria.SmallInt
+  created_by         BigInt?
+  created_at         DateTime? @default(now(), map: "DF__ms_shift___creat__693CA210")
+  updated_by         BigInt?
+  updated_at         DateTime?
+  is_deleted         Int?      @default(0, map: "DF__ms_shift___is_de__6C190EBB") @satria.SmallInt
+
+  @@map("ms_shift_group")
+}
+
+model ms_detail_shift_group {
+  id             Int       @id(map: "PK_ms_detail_shift_group_id") @default(autoincrement())
+  index_day      String    @satria.NVarChar(255)
+  code           String    @satria.NVarChar(255)
+  id_shift_group String    @satria.NVarChar(255)
+  id_shift       String    @satria.NVarChar(255)
+  created_by     Int?
+  created_at     DateTime? @default(now(), map: "DF__ms_detail__creat__503BEA1C")
+  updated_by     Int?
+  updated_at     DateTime?
+
+  @@map("ms_detail_shift_group")
+}
+
+model mst_dept {
+  id             Int     @id(map: "PK_mst_dept_id")
+  nama           String  @satria.NVarChar(100)
+  depthead_nrp   String? @satria.NVarChar(255)
+  depthead_name  String? @satria.NVarChar(255)
+  depthead_email String? @satria.NVarChar(255)
+  div_code       String? @satria.NVarChar(50)
+  div_name       String? @satria.NVarChar(255)
+  divhead_nrp    String? @satria.NVarChar(255)
+  divhead_name   String? @satria.NVarChar(255)
+  divhead_email  String? @satria.NVarChar(255)
+  company_id     Int?
+  company_name   String? @satria.NVarChar(255)
+  mst_user       User[]  @relation("UserToDept")
+
+  @@map("mst_dept")
+}
+
+model mst_division {
+  id             Int       @id(map: "PK_mst_division_id") @default(autoincrement())
+  divid          String    @satria.NVarChar(255)
+  div_inv        String?   @satria.NVarChar(255)
+  nama           String    @satria.NVarChar(255)
+  divhead_nrp    String?   @satria.NVarChar(255)
+  divhead_name   String?   @satria.NVarChar(255)
+  divheaed_email String?   @satria.NVarChar(255)
+  company_id     String?   @satria.NVarChar(255)
+  company_name   String?   @satria.NVarChar(255)
+  position       String?   @satria.NVarChar(255)
+  created_by     Int
+  created_at     DateTime  @default(now(), map: "DF__mst_divis__creat__7D439ABD") @satria.DateTime
+  updated_at     DateTime? @default(now(), map: "DF__mst_divis__updat__7E37BEF6") @satria.DateTime
+  updated_by     Int?
+
+  @@map("mst_division")
+}
+
+model sysdiagrams {
+  name         String @satria.NVarChar(128)
+  principal_id Int
+  diagram_id   Int    @id(map: "PK__sysdiagr__C2B05B61C1864B05") @default(autoincrement())
+  version      Int?
+  definition   Bytes?
+
+  @@unique([principal_id, name], map: "UK_principal_name")
+}
+
+model trx_ovt {
+  id              BigInt    @id(map: "PK_trx_ovt_id") @default(autoincrement())
+  user            String    @satria.NVarChar(255)
+  dept            BigInt
+  shift           BigInt
+  status_id       BigInt
+  check_in_ovt    DateTime
+  check_out_ovt   DateTime
+  note_ovt        String    @satria.NVarChar(255)
+  accept_to       String    @satria.NVarChar(255)
+  accepted        String?   @satria.NVarChar(255)
+  accepted_date   DateTime? @satria.DateTime
+  accepted_remark String?   @satria.NVarChar(255)
+  approve_to      String    @satria.NVarChar(255)
+  approved        String?   @satria.NVarChar(255)
+  approved_date   DateTime? @satria.DateTime
+  approved_remark String?   @satria.NVarChar(255)
+  rejected        String?   @satria.NVarChar(255)
+  rejected_date   DateTime? @satria.DateTime
+  rejected_remark String?   @satria.NVarChar(255)
+  canceled        String?   @satria.NVarChar(255)
+  canceled_date   DateTime? @satria.DateTime
+  canceled_remark String?   @satria.NVarChar(255)
+  created_by      BigInt?
+  created_at      DateTime  @default(now(), map: "DF__trx_ovt__created__0C85DE4D") @satria.DateTime
+  updated_by      BigInt?
+  updated_at      DateTime  @default(now(), map: "DF__trx_ovt__updated__0E6E26BF") @satria.DateTime
+
+  @@map("trx_ovt")
+}
+
+model trx_shift_emp {
+  id             BigInt    @id(map: "PK_trx_shift_emp_id") @default(autoincrement())
+  code           String    @satria.NVarChar(255)
+  id_user        String    @satria.NVarChar(255)
+  id_shift_group String    @satria.NVarChar(255)
+  valid_from     DateTime  @satria.Date
+  valid_to       DateTime  @satria.Date
+  created_by     BigInt?
+  created_at     DateTime? @default(now(), map: "DF__trx_shift__creat__10566F31")
+  updated_by     BigInt?
+  updated_at     DateTime?
+  is_deleted     Int?      @default(0, map: "DF__trx_shift__is_de__1332DBDC") @satria.SmallInt
+
+  @@map("trx_shift_emp")
+}
+
+model trx_official_travel {
+  id               Int       @id(map: "PK_trx_official_travel") @default(autoincrement())
+  user             String    @satria.NVarChar(255)
+  effective_date   DateTime? @satria.Date
+  start_date       DateTime  @satria.Date
+  end_date         DateTime  @satria.Date
+  total_leave_days BigInt
+  purpose          String    @satria.NVarChar(255)
+  destination_city String    @satria.NVarChar(255)
+  status_id        BigInt
+  accept_to        String    @satria.NVarChar(255)
+  accepted         String?   @satria.NVarChar(255)
+  accepted_date    DateTime? @satria.DateTime
+  accepted_remark  String?   @satria.NVarChar(255)
+  approve_to       String    @satria.NVarChar(255)
+  approved         String?   @satria.NVarChar(255)
+  approved_date    DateTime? @satria.DateTime
+  approved_remark  String?   @satria.NVarChar(255)
+  rejected         String?   @satria.NVarChar(255)
+  rejected_date    DateTime? @satria.DateTime
+  rejected_remark  String?   @satria.NVarChar(255)
+  canceled         String?   @satria.NVarChar(255)
+  canceled_date    DateTime? @satria.DateTime
+  canceled_remark  String?   @satria.NVarChar(255)
+  created_by       BigInt?
+  created_at       DateTime
+  updated_by       BigInt?
+  updated_at       DateTime
+
+  @@map("trx_official_travel")
+}
+
+model trx_mutation {
+  id              Int       @id(map: "PK_trx_mutation") @default(autoincrement())
+  user            String    @satria.NVarChar(255)
+  effective_date  DateTime  @satria.Date
+  reason          String    @satria.NVarChar(255)
+  status_id       BigInt
+  accept_to       String    @satria.NVarChar(255)
+  accepted        String?   @satria.NVarChar(255)
+  accepted_date   DateTime? @satria.DateTime
+  accepted_remark String?   @satria.NVarChar(255)
+  approve_to      String    @satria.NVarChar(255)
+  approved        String?   @satria.NVarChar(255)
+  approved_date   DateTime? @satria.DateTime
+  approved_remark String?   @satria.NVarChar(255)
+  rejected        String?   @satria.NVarChar(255)
+  rejected_date   DateTime? @satria.DateTime
+  rejected_remark String?   @satria.NVarChar(255)
+  canceled        String?   @satria.NVarChar(255)
+  canceled_date   DateTime? @satria.DateTime
+  canceled_remark String?   @satria.NVarChar(255)
+  created_by      BigInt?
+  created_at      DateTime
+  updated_by      BigInt?
+  updated_at      DateTime
+
+  @@map("trx_mutation")
+}
+
+model trx_resign {
+  id              Int       @id(map: "PK_trx_resign") @default(autoincrement())
+  user            String    @satria.NVarChar(255)
+  effective_date  DateTime  @satria.Date
+  reason          String    @satria.NVarChar(255)
+  status_id       BigInt
+  accept_to       String    @satria.NVarChar(255)
+  accepted        String?   @satria.NVarChar(255)
+  accepted_date   DateTime? @satria.DateTime
+  accepted_remark String?   @satria.NVarChar(255)
+  approve_to      String    @satria.NVarChar(255)
+  approved        String?   @satria.NVarChar(255)
+  approved_date   DateTime? @satria.DateTime
+  approved_remark String?   @satria.NVarChar(255)
+  rejected        String?   @satria.NVarChar(255)
+  rejected_date   DateTime? @satria.DateTime
+  rejected_remark String?   @satria.NVarChar(255)
+  canceled        String?   @satria.NVarChar(255)
+  canceled_date   DateTime? @satria.DateTime
+  canceled_remark String?   @satria.NVarChar(255)
+  created_by      BigInt?
+  created_at      DateTime
+  updated_by      BigInt?
+  updated_at      DateTime
+
+  @@map("trx_resign")
+}
+
+model user_detail {
+  id                 BigInt    @id(map: "PK__user_det__3213E83F573A0F19") @default(autoincrement())
+  user_id            BigInt
+  nrp                String?   @unique @satria.VarChar(32)
+  name               String?   @satria.VarChar(255)
+  email              String    @satria.VarChar(255)
+  marital_status     Int
+  gender             String?   @satria.VarChar(32)
+  birth_date         DateTime  @satria.Date
+  address            String    @satria.Text
+  address_coordinate String?   @satria.Text
+  plant              String    @satria.VarChar(255)
+  join_date          DateTime  @satria.Date
+  end_date           DateTime  @satria.Date
+  status             Int
+  klasifikasi        Int
+  vendor             Int
+  created_by         BigInt?
+  created_at         DateTime? @default(dbgenerated("sysdatetime()"), map: "DF__user_deta__creat__7A3223E8")
+  updated_by         BigInt?
+  updated_at         DateTime? @default(dbgenerated("sysdatetime()"), map: "DF__user_deta__updat__7B264821")
+}
+
+model ms_worklocation {
+  worklocation_id       Int       @id(map: "PK__ms_workl__BFC1D7B486101CEE") @default(autoincrement())
+  worklocation_code     String    @unique(map: "UQ__ms_workl__B1F7D1DFDC10341F") @satria.VarChar(50)
+  worklocation_name     String    @satria.VarChar(100)
+  worklocation_lat_long String    @satria.VarChar(50)
+  created_at            DateTime? @satria.DateTime
+  updated_at            DateTime? @satria.DateTime
+  is_deleted            Int?
+}
+
+model ms_klasifikasi {
+  id         Int       @id(map: "PK__ms_klasi__3213E83F96491787")
+  name       String    @satria.NVarChar(255)
+  created_by BigInt?   @default(dbgenerated("NULL"), map: "DF__ms_klasif__creat__16CE6296")
+  created_at DateTime? @default(now(), map: "DF__ms_klasif__creat__17C286CF") @satria.DateTime
+  updated_by BigInt?   @default(dbgenerated("NULL"), map: "DF__ms_klasif__updat__18B6AB08")
+  updated_at DateTime? @default(now(), map: "DF__ms_klasif__updat__19AACF41") @satria.DateTime
+}
+
+model ms_subcont {
+  id         Int       @id(map: "PK__ms_subco__3213E83FA98E7C36")
+  code       String    @satria.NChar(12)
+  name       String    @satria.NVarChar(255)
+  created_by BigInt?   @default(dbgenerated("NULL"), map: "DF__ms_subcon__creat__1C873BEC")
+  created_at DateTime? @default(now(), map: "DF__ms_subcon__creat__1D7B6025") @satria.DateTime
+  updated_by BigInt?   @default(dbgenerated("NULL"), map: "DF__ms_subcon__updat__1E6F845E")
+  updated_at DateTime? @default(now(), map: "DF__ms_subcon__updat__1F63A897") @satria.DateTime
+}
+
+model mst_plant {
+  id                Int       @id(map: "PK__mst_plan__3213E83F1EFCDE17")
+  section_code      String?   @default("NULL", map: "DF__mst_plant__secti__078C1F06") @satria.NVarChar(32)
+  worklocation_code String?   @default("NULL", map: "DF__mst_plant__workl__0880433F") @satria.NVarChar(32)
+  dept              String?   @default("NULL", map: "DF__mst_plant__dept__09746778") @satria.NVarChar(32)
+  dept_level        Int?      @default(dbgenerated("NULL"), map: "DF__mst_plant__dept___0A688BB1")
+  company_code      String?   @default("NULL", map: "DF__mst_plant__compa__0B5CAFEA") @satria.NVarChar(12)
+  plant             String?   @default("NULL", map: "DF__mst_plant__plant__0C50D423") @satria.NVarChar(32)
+  plant_name        String?   @default("NULL", map: "DF__mst_plant__plant__0D44F85C") @satria.NVarChar(255)
+  postcode          String?   @default("NULL", map: "DF__mst_plant__postc__0E391C95") @satria.NVarChar(32)
+  city              String?   @default("NULL", map: "DF__mst_plant__city__0F2D40CE") @satria.NVarChar(255)
+  name              String?   @default("NULL", map: "DF__mst_plant__name__10216507") @satria.NVarChar(255)
+  created_by        BigInt?   @default(dbgenerated("NULL"), map: "DF__mst_plant__creat__11158940")
+  created_at        DateTime? @default(now(), map: "DF__mst_plant__creat__1209AD79") @satria.DateTime
+  updated_by        BigInt?   @default(dbgenerated("NULL"), map: "DF__mst_plant__updat__12FDD1B2")
+  updated_at        DateTime? @default(now(), map: "DF__mst_plant__updat__13F1F5EB") @satria.DateTime
+}
+
+model ms_marital_status {
+  id         Int       @id(map: "PK__ms_marit__3213E83F999330A7")
+  code       String    @satria.NChar(4)
+  ket        String    @satria.NVarChar(255)
+  created_by BigInt?   @default(dbgenerated("NULL"), map: "DF__ms_marita__creat__22401542")
+  created_at DateTime? @default(now(), map: "DF__ms_marita__creat__2334397B") @satria.DateTime
+  updated_by BigInt?   @default(dbgenerated("NULL"), map: "DF__ms_marita__updat__24285DB4")
+  updated_at DateTime? @default(now(), map: "DF__ms_marita__updat__251C81ED") @satria.DateTime
+}
+
+model trx_leave_quota {
+  id             Int       @id(map: "PK__trx_leav__3213E83F81F75646") @default(autoincrement())
+  id_user        String?   @satria.VarChar(255)
+  leaves_type_id Int?
+  valid_from     DateTime? @satria.Date
+  valid_to       DateTime? @satria.Date
+  leaves_quota   Int?
+  used_leave     Int?
+  leave_balance  Int?
+  is_active      Int?      @default(dbgenerated("(1)"), map: "DF__trx_leave__is_ac__2EA5EC27") @satria.SmallInt
+  is_deleted     Int?      @default(dbgenerated("(0)"), map: "DF__trx_leave__is_de__2F9A1060") @satria.SmallInt
+  created_at     DateTime? @satria.DateTime
+  updated_at     DateTime? @satria.DateTime
+}

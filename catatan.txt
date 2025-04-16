@@ -1,0 +1,60 @@
+1. Register (Mendaftarkan pengguna baru) :
+curl -X POST http://localhost:3000/auth/register \
+-H "Content-Type: application/json" \
+-d '{
+  "username": "user1@gmail.com",
+  "password": "password123"
+}'
+
+2. Login (Mendapatkan token JWT) :
+curl -X POST http://localhost:3000/auth/login \
+-H "Content-Type: application/json" \
+-d '{
+  "username": "user1@gmail.com",
+  "password": "password123"
+}'
+
+3. GET: Ambil semua makanan :
+curl -X GET http://localhost:3000/api/makanan \
+-H "Authorization: Bearer your-jwt-token"
+
+4. GET: Ambil detail makanan berdasarkan ID :
+curl -X GET http://localhost:3000/api/makanan/1 \
+-H "Authorization: Bearer your-jwt-token"
+
+5. POST: Tambah data makanan :
+curl -X POST http://localhost:3000/api/makanan \
+-H "Authorization: Bearer your-jwt-token" \
+-H "Content-Type: application/json" \
+-d '{
+  "nama": "Nasi Goreng",
+  "deskripsi": "Nasi goreng spesial",
+  "harga": 15000,
+  "stok": 10
+}'
+
+6. PUT: Update data makanan berdasarkan ID :
+curl -X PUT http://localhost:3000/api/makanan/1 \
+-H "Authorization: Bearer your-jwt-token" \
+-H "Content-Type: application/json" \
+-d '{
+  "nama": "Nasi Goreng Ayam",
+  "deskripsi": "Nasi goreng dengan ayam",
+  "harga": 18000,
+  "stok": 8
+}'
+
+7. DELETE: Hapus makanan berdasarkan ID :
+curl -X DELETE http://localhost:3000/api/makanan/1 \
+-H "Authorization: Bearer your-jwt-token"
+
+8. Untuk generate prisma :
+npx prisma generate --schema=prisma/satria.schema.prisma
+
+
+status overtime:
+1: pending
+2: accept
+3: approve
+4: reject accepted
+5: reject approved
