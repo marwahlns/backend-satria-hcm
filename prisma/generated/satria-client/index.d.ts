@@ -13025,6 +13025,7 @@ export namespace Prisma {
     created_by: number | null
     updated_by: number | null
     is_deleted: number | null
+    flag_shift: number | null
   }
 
   export type Trx_shift_empSumAggregateOutputType = {
@@ -13032,6 +13033,7 @@ export namespace Prisma {
     created_by: bigint | null
     updated_by: bigint | null
     is_deleted: number | null
+    flag_shift: number | null
   }
 
   export type Trx_shift_empMinAggregateOutputType = {
@@ -13046,6 +13048,7 @@ export namespace Prisma {
     updated_by: bigint | null
     updated_at: Date | null
     is_deleted: number | null
+    flag_shift: number | null
   }
 
   export type Trx_shift_empMaxAggregateOutputType = {
@@ -13060,6 +13063,7 @@ export namespace Prisma {
     updated_by: bigint | null
     updated_at: Date | null
     is_deleted: number | null
+    flag_shift: number | null
   }
 
   export type Trx_shift_empCountAggregateOutputType = {
@@ -13074,6 +13078,7 @@ export namespace Prisma {
     updated_by: number
     updated_at: number
     is_deleted: number
+    flag_shift: number
     _all: number
   }
 
@@ -13083,6 +13088,7 @@ export namespace Prisma {
     created_by?: true
     updated_by?: true
     is_deleted?: true
+    flag_shift?: true
   }
 
   export type Trx_shift_empSumAggregateInputType = {
@@ -13090,6 +13096,7 @@ export namespace Prisma {
     created_by?: true
     updated_by?: true
     is_deleted?: true
+    flag_shift?: true
   }
 
   export type Trx_shift_empMinAggregateInputType = {
@@ -13104,6 +13111,7 @@ export namespace Prisma {
     updated_by?: true
     updated_at?: true
     is_deleted?: true
+    flag_shift?: true
   }
 
   export type Trx_shift_empMaxAggregateInputType = {
@@ -13118,6 +13126,7 @@ export namespace Prisma {
     updated_by?: true
     updated_at?: true
     is_deleted?: true
+    flag_shift?: true
   }
 
   export type Trx_shift_empCountAggregateInputType = {
@@ -13132,6 +13141,7 @@ export namespace Prisma {
     updated_by?: true
     updated_at?: true
     is_deleted?: true
+    flag_shift?: true
     _all?: true
   }
 
@@ -13233,6 +13243,7 @@ export namespace Prisma {
     updated_by: bigint | null
     updated_at: Date | null
     is_deleted: number | null
+    flag_shift: number | null
     _count: Trx_shift_empCountAggregateOutputType | null
     _avg: Trx_shift_empAvgAggregateOutputType | null
     _sum: Trx_shift_empSumAggregateOutputType | null
@@ -13266,6 +13277,7 @@ export namespace Prisma {
     updated_by?: boolean
     updated_at?: boolean
     is_deleted?: boolean
+    flag_shift?: boolean
   }, ExtArgs["result"]["trx_shift_emp"]>
 
 
@@ -13281,6 +13293,7 @@ export namespace Prisma {
     updated_by?: boolean
     updated_at?: boolean
     is_deleted?: boolean
+    flag_shift?: boolean
   }
 
 
@@ -13299,6 +13312,7 @@ export namespace Prisma {
       updated_by: bigint | null
       updated_at: Date | null
       is_deleted: number | null
+      flag_shift: number | null
     }, ExtArgs["result"]["trx_shift_emp"]>
     composites: {}
   }
@@ -13679,6 +13693,7 @@ export namespace Prisma {
     readonly updated_by: FieldRef<"trx_shift_emp", 'BigInt'>
     readonly updated_at: FieldRef<"trx_shift_emp", 'DateTime'>
     readonly is_deleted: FieldRef<"trx_shift_emp", 'Int'>
+    readonly flag_shift: FieldRef<"trx_shift_emp", 'Int'>
   }
     
 
@@ -24059,7 +24074,8 @@ export namespace Prisma {
     created_at: 'created_at',
     updated_by: 'updated_by',
     updated_at: 'updated_at',
-    is_deleted: 'is_deleted'
+    is_deleted: 'is_deleted',
+    flag_shift: 'flag_shift'
   };
 
   export type Trx_shift_empScalarFieldEnum = (typeof Trx_shift_empScalarFieldEnum)[keyof typeof Trx_shift_empScalarFieldEnum]
@@ -25527,6 +25543,7 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"trx_shift_emp"> | bigint | number | null
     updated_at?: DateTimeNullableFilter<"trx_shift_emp"> | Date | string | null
     is_deleted?: IntNullableFilter<"trx_shift_emp"> | number | null
+    flag_shift?: IntNullableFilter<"trx_shift_emp"> | number | null
   }
 
   export type trx_shift_empOrderByWithRelationInput = {
@@ -25541,6 +25558,7 @@ export namespace Prisma {
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     is_deleted?: SortOrderInput | SortOrder
+    flag_shift?: SortOrderInput | SortOrder
   }
 
   export type trx_shift_empWhereUniqueInput = Prisma.AtLeast<{
@@ -25558,6 +25576,7 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"trx_shift_emp"> | bigint | number | null
     updated_at?: DateTimeNullableFilter<"trx_shift_emp"> | Date | string | null
     is_deleted?: IntNullableFilter<"trx_shift_emp"> | number | null
+    flag_shift?: IntNullableFilter<"trx_shift_emp"> | number | null
   }, "id">
 
   export type trx_shift_empOrderByWithAggregationInput = {
@@ -25572,6 +25591,7 @@ export namespace Prisma {
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     is_deleted?: SortOrderInput | SortOrder
+    flag_shift?: SortOrderInput | SortOrder
     _count?: trx_shift_empCountOrderByAggregateInput
     _avg?: trx_shift_empAvgOrderByAggregateInput
     _max?: trx_shift_empMaxOrderByAggregateInput
@@ -25594,6 +25614,7 @@ export namespace Prisma {
     updated_by?: BigIntNullableWithAggregatesFilter<"trx_shift_emp"> | bigint | number | null
     updated_at?: DateTimeNullableWithAggregatesFilter<"trx_shift_emp"> | Date | string | null
     is_deleted?: IntNullableWithAggregatesFilter<"trx_shift_emp"> | number | null
+    flag_shift?: IntNullableWithAggregatesFilter<"trx_shift_emp"> | number | null
   }
 
   export type trx_official_travelWhereInput = {
@@ -28036,6 +28057,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
     is_deleted?: number | null
+    flag_shift?: number | null
   }
 
   export type trx_shift_empUncheckedCreateInput = {
@@ -28050,6 +28072,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
     is_deleted?: number | null
+    flag_shift?: number | null
   }
 
   export type trx_shift_empUpdateInput = {
@@ -28064,6 +28087,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    flag_shift?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type trx_shift_empUncheckedUpdateInput = {
@@ -28078,6 +28102,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    flag_shift?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type trx_shift_empCreateManyInput = {
@@ -28091,6 +28116,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
     is_deleted?: number | null
+    flag_shift?: number | null
   }
 
   export type trx_shift_empUpdateManyMutationInput = {
@@ -28105,6 +28131,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    flag_shift?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type trx_shift_empUncheckedUpdateManyInput = {
@@ -28119,6 +28146,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    flag_shift?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type trx_official_travelCreateInput = {
@@ -30408,6 +30436,7 @@ export namespace Prisma {
     updated_by?: SortOrder
     updated_at?: SortOrder
     is_deleted?: SortOrder
+    flag_shift?: SortOrder
   }
 
   export type trx_shift_empAvgOrderByAggregateInput = {
@@ -30415,6 +30444,7 @@ export namespace Prisma {
     created_by?: SortOrder
     updated_by?: SortOrder
     is_deleted?: SortOrder
+    flag_shift?: SortOrder
   }
 
   export type trx_shift_empMaxOrderByAggregateInput = {
@@ -30429,6 +30459,7 @@ export namespace Prisma {
     updated_by?: SortOrder
     updated_at?: SortOrder
     is_deleted?: SortOrder
+    flag_shift?: SortOrder
   }
 
   export type trx_shift_empMinOrderByAggregateInput = {
@@ -30443,6 +30474,7 @@ export namespace Prisma {
     updated_by?: SortOrder
     updated_at?: SortOrder
     is_deleted?: SortOrder
+    flag_shift?: SortOrder
   }
 
   export type trx_shift_empSumOrderByAggregateInput = {
@@ -30450,6 +30482,7 @@ export namespace Prisma {
     created_by?: SortOrder
     updated_by?: SortOrder
     is_deleted?: SortOrder
+    flag_shift?: SortOrder
   }
 
   export type trx_official_travelCountOrderByAggregateInput = {

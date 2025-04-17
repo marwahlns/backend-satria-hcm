@@ -1,7 +1,7 @@
 import JSONbig from "json-bigint";
 import { Request, Response } from "express";
 import { TrxOvertime } from "../../models/Table/Satria/TrxOvertime";
-import { User } from "../../models/Table/Satria/User";
+import { User } from "../../models/Table/Satria/MsUser";
 import { getCurrentWIBDate, getCurrentWIBTime } from "../../helpers/timeHelper";
 
 export const getAllTrxOvertimes = async (req: Request, res: Response): Promise<void> => {

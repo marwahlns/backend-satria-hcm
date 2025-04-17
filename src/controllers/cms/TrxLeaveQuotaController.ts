@@ -1,8 +1,8 @@
 import JSONbig from "json-bigint";
 import { Request, Response } from "express";
 import { TrxLeaveQuota } from "../../models/Table/Satria/TrxLeaveQuota";
-import { User } from "../../models/Table/Satria/User";
-import { LeaveTypes } from "../../models/Table/Satria/LeaveTypes";
+import { User } from "../../models/Table/Satria/MsUser";
+import { LeaveTypes } from "../../models/Table/Satria/MsLeaveTypes";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 
 export const getAllTrxLeaveQuota = async (
@@ -33,20 +33,15 @@ export const getAllTrxLeaveQuota = async (
             : "id_user";
         const sortOrder = order === "desc" ? "desc" : "asc";
 
-        const leaveQuota = await TrxLeaveQuota.findMany({
-            where: {
-                is_deleted: 0,
-                OR: [{ id_user: { contains: search as string } }],
-            },
+        const rawLeaveQuota = await TrxLeaveQuota.findMany({
+            where: { is_deleted: 0 },
             orderBy: { [sortField]: sortOrder },
-            skip,
-            take: pageSize,
         });
 
         // Ambil id_user dari hasil query (hindari undefined/null)
         const userIds = [
             ...new Set(
-                leaveQuota
+                rawLeaveQuota
                     .map((se) => se.id_user)
                     .filter((id) => id !== undefined && id !== null)
             ),
@@ -60,13 +55,13 @@ export const getAllTrxLeaveQuota = async (
 
         const userMap = new Map(
             users
-              .filter((user) => user.personal_number !== null)
-              .map((user) => [user.personal_number!.toString(), user.name])
-          );
+                .filter((user) => user.personal_number !== null)
+                .map((user) => [user.personal_number!.toString(), user.name])
+        );
 
         const leaveQuotaIds: number[] = [
             ...new Set(
-                leaveQuota.map((se) => Number(se.leaves_type_id)).filter((id) => id)
+                rawLeaveQuota.map((se) => Number(se.leaves_type_id)).filter((id) => id)
             ),
         ];
 
@@ -80,7 +75,7 @@ export const getAllTrxLeaveQuota = async (
         );
 
         // Mapping leaveQuota dengan user_name dan leave_type
-        const leaveQuotaWithDetails = leaveQuota.map((se) => ({
+        const leaveQuotaWithDetails = rawLeaveQuota.map((se) => ({
             ...se,
             id: Number(se.id),
             user_name: userMap.get(se.id_user?.toString() || "") || "Unknown",
@@ -102,20 +97,27 @@ export const getAllTrxLeaveQuota = async (
                 : null,
         }));
 
-        const totalItems = await TrxLeaveQuota.count({
-            where: {
-                is_deleted: 0,
-                OR: [{ id_user: { contains: search as string } }],
-            },
+        const filteredQuota = leaveQuotaWithDetails.filter((item) => {
+            const q = (search as string).toLowerCase();
+            return (
+                item.id_user?.toLowerCase().includes(q) ||
+                item.user_name?.toLowerCase().includes(q) ||
+                item.leaves_type?.toLowerCase().includes(q) ||
+                item.valid_from?.toLowerCase().includes(q) ||
+                item.valid_to?.toLowerCase().includes(q)
+            );
         });
+
+        const totalItems = filteredQuota.length;
         const totalPages = Math.ceil(totalItems / pageSize);
+        const paginatedQuota = filteredQuota.slice(skip, skip + pageSize);
 
         res.status(200).send(
             JSONbig.stringify({
                 success: true,
                 message: "Successfully retrieved leave quota data",
                 data: {
-                    data: leaveQuotaWithDetails,
+                    data: paginatedQuota,
                     totalPages,
                     currentPage: pageNumber,
                     totalItems,
@@ -146,14 +148,14 @@ export const createLeaveQuota = async (
         }
 
         const leaveQuota = await Promise.all(
-            id_user.map(async (userId: any) => {
+            id_user.map(async (userId: any, index: number) => {
                 return TrxLeaveQuota.create({
                     data: {
                         leaves_type_id: Number(id_leave_type),
                         id_user: userId,
                         valid_from: new Date(valid_from),
                         valid_to: new Date(valid_to),
-                        leaves_quota: leave_quota,
+                        leaves_quota: leave_quota[index],
                         used_leave: 0,
                         leave_balance: 0,
                         is_active: 0,
@@ -194,7 +196,41 @@ export const updateLeaveQuota = async (
                 success: false,
                 message: "All fields must be provided and cannot be empty",
             });
+            return;
         }
+
+        const existingLeaveQuota = await TrxLeaveQuota.findUnique({
+            where: { id: Number(id) },
+        });
+
+        if (existingLeaveQuota === undefined|| existingLeaveQuota === null) {
+            res.status(404).json({
+                success: false,
+                message: "Leave quota record not found",
+            });
+            return;
+        }
+
+        const newQuota = Number(leave_quota);
+        const usedLeave = existingLeaveQuota.used_leave;
+
+        if (usedLeave === undefined || usedLeave === null) {
+            res.status(404).json({
+                success: false,
+                message: "Used leave quota record not found",
+            });
+            return;
+        }
+
+        if (newQuota < usedLeave) {
+            res.status(400).json({
+                success: false,
+                message: `Leave quota (${newQuota}) cannot be less than used leave (${usedLeave})`,
+            });
+            return;
+        }
+
+        const leaveBalance = newQuota - usedLeave;
 
         const updatedShiftEmployee = await TrxLeaveQuota.update({
             where: { id: Number(id) },
@@ -202,7 +238,8 @@ export const updateLeaveQuota = async (
                 leaves_type_id: Number(id_leave_type),
                 valid_from: new Date(valid_from),
                 valid_to: new Date(valid_to),
-                leaves_quota: Number(leave_quota),
+                leaves_quota: newQuota,
+                leave_balance: leaveBalance,
             },
         });
         res.status(201).send(JSONbig.stringify({

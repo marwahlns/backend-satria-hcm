@@ -1,7 +1,7 @@
 import JSONbig from "json-bigint";
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { User } from "../../models/Table/Satria/User";
+import { User } from "../../models/Table/Satria/MsUser";
 import bcrypt from "bcryptjs";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 import dotenv from "dotenv";

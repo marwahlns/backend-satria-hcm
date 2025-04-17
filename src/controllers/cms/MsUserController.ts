@@ -1,7 +1,7 @@
 import JSONbig from "json-bigint";
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
-import { User } from "../../models/Table/Satria/User";
+import { User } from "../../models/Table/Satria/MsUser";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 import { PrismaClient } from "../../../prisma/generated/satria-client";
 

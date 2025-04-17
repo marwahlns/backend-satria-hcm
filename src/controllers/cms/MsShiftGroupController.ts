@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { ShiftGroup } from "../../models/Table/Satria/ShiftGroup";
+import { ShiftGroup } from "../../models/Table/Satria/MsShiftGroup";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 import { PrismaClient as SatriaClient } from "../../../prisma/generated/satria-client";
 
 const prisma = new SatriaClient();
-// View all shift
+
 export const getAllShiftGroup = async (
   req: Request,
   res: Response
@@ -85,7 +85,6 @@ export const getAllShiftGroup = async (
       details: detailsWithShifts.filter(detail => detail.id_shift_group === group.code),
     }));
 
-console.log(JSON.stringify(shiftGroupWithDetails, null, 2));
     res.status(200).json({
       success: true,
       message: "Successfully retrieved shift group data",
@@ -104,60 +103,6 @@ console.log(JSON.stringify(shiftGroupWithDetails, null, 2));
   }
 };
 
-
-
-// View group shift by ID with related shifts
-export const getGroupShiftById = async (req: Request, res: Response): Promise<void> => {
-  const { id } = req.params;
-
-  try {
-    // Cari group shift berdasarkan ID
-    const group_shift = await prisma.ms_shift_group.findUnique({
-      where: { id: Number(id) },
-    });
-
-    if (!group_shift) {
-      res.status(404).json({ success: false, message: "Group Shift not found" });
-      return;
-    }
-
-    // Cari semua detail shift group yang berhubungan dengan group shift ini
-    const details = await prisma.ms_detail_shift_group.findMany({
-      where: { id_shift_group: group_shift.code },
-    });
-
-    if (!details.length) {
-      res.status(404).json({ success: false, message: "No shift details found" });
-      return;
-    }
-
-    // Ambil semua id_shift dari hasil details
-    const shiftIds = details.map(detail => detail.id_shift);
-
-    // Ambil semua shift berdasarkan daftar id_shift
-    const shifts = await prisma.ms_shift.findMany({
-      where: { code: { in: shiftIds } }, // Mengambil semua shift yang kodenya ada di dalam shiftIds
-    });
-
-    if (!shifts.length) {
-      res.status(404).json({ success: false, message: "No shift data found" });
-      return;
-    }
-
-    // Jika ada, kirimkan group shift beserta shift dan detailnya
-    res.status(200).json({
-      success: true,
-      message: "Successfully retrieved group shift data",
-      data: { group_shift, shifts, details },
-    });
-  } catch (err) {
-    console.error("Database Error:", err);
-    res.status(500).json({ success: false, message: "Error retrieving group shift data" });
-  }
-};
-
-
-// Create shift
 export const createShiftGroup = async (
     req: Request, 
     res: Response
@@ -205,9 +150,7 @@ export const createShiftGroup = async (
   }
 };
 
-
 export const updateShiftGroup = async (req: Request, res: Response): Promise<void> => {
-  console.log("Masuk ke updateShiftGroup");
   const { id } = req.params;
   const { code, nama, flag_shift, details } = req.body;
 
@@ -271,9 +214,6 @@ export const updateShiftGroup = async (req: Request, res: Response): Promise<voi
   }
 };
 
-
-
-// Delete shift
 export const deleteShiftGroup = async (
   req: Request,
   res: Response

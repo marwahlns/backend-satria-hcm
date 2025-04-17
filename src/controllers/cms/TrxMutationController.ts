@@ -1,7 +1,7 @@
 import JSONbig from "json-bigint";
 import { Request, Response } from "express";
 import { TrxMutation } from "../../models/Table/Satria/TrxMutation";
-import { User } from "../../models/Table/Satria/User";
+import { User } from "../../models/Table/Satria/MsUser";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 import { differenceInDays  } from "date-fns";
 

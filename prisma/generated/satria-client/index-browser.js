@@ -337,7 +337,8 @@ exports.Prisma.Trx_shift_empScalarFieldEnum = {
   created_at: 'created_at',
   updated_by: 'updated_by',
   updated_at: 'updated_at',
-  is_deleted: 'is_deleted'
+  is_deleted: 'is_deleted',
+  flag_shift: 'flag_shift'
 };
 
 exports.Prisma.Trx_official_travelScalarFieldEnum = {

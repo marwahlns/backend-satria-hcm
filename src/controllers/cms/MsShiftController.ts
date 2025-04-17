@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
-import { Shift } from "../../models/Table/Satria/Shift";
+import { Shift } from "../../models/Table/Satria/MsShift";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 import JSONbig from "json-bigint";
 
-// View all shift
 export const getAllShift = async (
   req: Request,
   res: Response
@@ -20,7 +19,7 @@ export const getAllShift = async (
     const pageNumber = parseInt(page as string, 10);
     const pageSize = parseInt(limit as string, 10);
     const skip = (pageNumber - 1) * pageSize;
-    const validSortFields = ["code", "name"];
+    const validSortFields = ["code", "name", "in_time", "out_time"];
     const sortField = validSortFields.includes(sort as string)
       ? (sort as string)
       : "name";
@@ -76,7 +75,6 @@ export const getAllShift = async (
   }
 };
 
-// View shift by ID
 export const getShiftById = async (
   req: Request,
   res: Response
@@ -104,19 +102,24 @@ export const getShiftById = async (
   }
 };
 
-// Create shift
-export const createShift = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
+export const createShift = async (req: Request, res: Response): Promise<void> => {
   const { code, nama, inTime, outTime, gtBeforeIn, gtAfterIn, gtBeforeOut, gtAfterOut } = req.body;
+
+  if (!code || !nama || !inTime || !outTime) {
+    res.status(400).json({
+      success: false,
+      message: "Field code, nama, inTime, and outTime is required.",
+    });
+    return;
+  }
+
   try {
     const newShift = await Shift.create({
       data: {
         code: code,
         name: nama,
-        in_time: inTime ? new Date(`1970-01-01T${inTime}:00.000Z`) : null,
-        out_time: outTime ? new Date(`1970-01-01T${outTime}:00.000Z`) : null,
+        in_time: new Date(`1970-01-01T${inTime}:00.000Z`),
+        out_time: new Date(`1970-01-01T${outTime}:00.000Z`),
         gt_before_in: gtBeforeIn,
         gt_after_in: gtAfterIn,
         gt_before_out: gtBeforeOut,
@@ -139,24 +142,29 @@ export const createShift = async (
     }));
   } catch (err) {
     console.error("Database Error:", err);
-    res
-      .status(500)
-      .json({ success: false, message: "Error adding shift data" });
+    res.status(500).json({ success: false, message: "Error adding shift data" });
   }
 };
 
-// Update shift
 export const updateShift = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   const { id } = req.params;
-  const { code, nama, inTime, outTime, gtBeforeIn, gtAfterIn, gtBeforeOut, gtAfterOut } = req.body;
+  const { nama, inTime, outTime, gtBeforeIn, gtAfterIn, gtBeforeOut, gtAfterOut } = req.body;
+
+  if (!nama || !inTime || !outTime) {
+    res.status(400).json({
+      success: false,
+      message: "Field code, nama, inTime, and outTime is required.",
+    });
+    return;
+  }
+
   try {
     const updatedShift = await Shift.update({
       where: { id: Number(id) },
       data: {
-        code: code,
         name: nama,
         in_time: inTime ? new Date(`1970-01-01T${inTime}:00.000Z`) : null,
         out_time: outTime ? new Date(`1970-01-01T${outTime}:00.000Z`) : null,
@@ -186,7 +194,6 @@ export const updateShift = async (
   }
 };
 
-// Delete shift
 export const deleteShift = async (
   req: Request,
   res: Response

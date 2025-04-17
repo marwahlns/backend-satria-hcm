@@ -1,9 +1,8 @@
 import JSONbig from "json-bigint";
 import { Request, Response } from "express";
-import { LeaveTypes } from "../../models/Table/Satria/LeaveTypes";
+import { LeaveTypes } from "../../models/Table/Satria/MsLeaveTypes";
 import { getCurrentWIBDate, getCurrentWIBTime } from "../../helpers/timeHelper";
 
-// View all shift
 export const getAllLeaveTypes = async (
   req: Request,
   res: Response
@@ -70,7 +69,6 @@ res.status(200).send(JSONbig.stringify({
   }
 };
 
-// View shift by ID
 export const getLeaveTypeById = async (
   req: Request,
   res: Response
@@ -98,7 +96,6 @@ export const getLeaveTypeById = async (
   }
 };
 
-// Create shift
 export const createLeaveType = async (
   req: Request,
   res: Response
@@ -125,14 +122,13 @@ export const createLeaveType = async (
       data: { newLeaveType },
     }));
   } catch (err) {
-    console.error("Database Error:", err); // Log error ke conso
+    console.error("Database Error:", err);
     res
       .status(500)
       .json({ success: false, message: "Error adding leave type data" });
   }
 };
 
-// Update shift
 export const updateLeveType = async (
   req: Request,
   res: Response
@@ -150,7 +146,6 @@ export const updateLeveType = async (
       where: { id: Number(id) },
       data: {
         title: title,
-        days: days,
         updated_at: getCurrentWIBDate(),
       },
     });
@@ -166,7 +161,6 @@ export const updateLeveType = async (
   }
 };
 
-// Delete shift
 export const deleteLeaveType = async (
   req: Request,
   res: Response

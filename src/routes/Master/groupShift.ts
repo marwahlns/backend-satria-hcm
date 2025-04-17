@@ -16,13 +16,6 @@ router.get(
     }
   );
   
-  router.get(
-    "/:id",
-    async (req: Request, res: Response) => {
-      await ShiftGroupController.getGroupShiftById(req, res);
-    }
-  );
-  
   router.put(
     "/:id",
     async (req: Request, res: Response) => {

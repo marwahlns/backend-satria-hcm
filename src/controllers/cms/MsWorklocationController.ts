@@ -1,6 +1,6 @@
 import JSONbig from "json-bigint";
 import { Request, Response } from "express";
-import { Worklocation } from "../../models/Table/Satria/Worklocation";
+import { Worklocation } from "../../models/Table/Satria/MsWorklocation";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 
 export const getAllWorklocation = async (
