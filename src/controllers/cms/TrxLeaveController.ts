@@ -144,6 +144,7 @@ export const getAllTrxLeaves = async (req: Request, res: Response): Promise<void
     console.log("ERROR DI BE:", err)
   }
 };
+
 export const createTrxLeave = async (req: Request, res: Response): Promise<void> => {
   try {
     const { user, leave_type_id, start_date, end_date, flag_leaves, leave_reason } = req.body;

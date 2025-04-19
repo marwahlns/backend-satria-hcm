@@ -21,13 +21,14 @@ export const getAllShiftGroup = async (
     const pageNumber = parseInt(page as string, 10);
     const pageSize = parseInt(limit as string, 10);
     const skip = (pageNumber - 1) * pageSize;
+
     const validSortFields = ["code", "nama"];
     const sortField = validSortFields.includes(sort as string)
       ? (sort as string)
       : "nama";
     const sortOrder = order === "desc" ? "desc" : "asc";
 
-    // Ambil semua shift group
+    // Ambil shift group dengan relasi detail dan shift
     const shiftGroups = await prisma.ms_shift_group.findMany({
       where: {
         is_deleted: 0,
@@ -41,9 +42,21 @@ export const getAllShiftGroup = async (
       },
       skip,
       take: pageSize,
+      include: {
+        details: {
+          include: {
+            MsShift: {
+              select: {
+                name: true,
+                in_time: true,
+                out_time: true,
+              },
+            },
+          },
+        },
+      },
     });
 
-    // Ambil total jumlah shift group untuk pagination
     const totalItems = await prisma.ms_shift_group.count({
       where: {
         is_deleted: 0,
@@ -56,40 +69,33 @@ export const getAllShiftGroup = async (
 
     const totalPages = Math.ceil(totalItems / pageSize);
 
-    const shiftGroupIds = shiftGroups.map(group => group.code);
-    const details = await prisma.ms_detail_shift_group.findMany({
-      where: { id_shift_group: { in: shiftGroupIds } },
-    });
-
-    const shiftIds = [...new Set(details.map(detail => detail.id_shift))];
-    const shifts = await prisma.ms_shift.findMany({
-      where: { code: { in: shiftIds } },
-    });
-
-    const shiftMap = new Map(shifts.map(shift => [shift.code, shift]));
-
-    const detailsWithShifts = details.map(detail => {
-      const shift = shiftMap.get(detail.id_shift); // Simpan hasil get() dalam variabel
-
-      return {
-        ...detail,
-        shift_name: shift?.name || "Unknown",
-        in_time: shift?.in_time ? new Date(shift.in_time).toISOString().slice(11, 16) : null,
-        out_time: shift?.out_time ? new Date(shift.out_time).toISOString().slice(11, 16) : null,
-      };
-    });
-
-
-    const shiftGroupWithDetails = shiftGroups.map(group => ({
+    const formatTime = (date?: Date | null) => {
+      if (!date) return null;
+      const hours = date.getUTCHours().toString().padStart(2, "0");
+      const minutes = date.getUTCMinutes().toString().padStart(2, "0");
+      return `${hours}:${minutes}`;
+    };
+    
+    // Format in_time dan out_time
+    const shiftGroupWithFormattedDetails = shiftGroups.map((group) => ({
       ...group,
-      details: detailsWithShifts.filter(detail => detail.id_shift_group === group.code),
-    }));
+      details: group.details.map((detail) => ({
+        ...detail,
+        MsShift: detail.MsShift
+          ? {
+              ...detail.MsShift,
+              in_time: formatTime(detail.MsShift.in_time),
+              out_time: formatTime(detail.MsShift.out_time),
+            }
+          : null,
+      })),
+    }));    
 
     res.status(200).json({
       success: true,
       message: "Successfully retrieved shift group data",
       data: {
-        data: shiftGroupWithDetails,
+        data: shiftGroupWithFormattedDetails,
         totalPages,
         currentPage: pageNumber,
         totalItems,
@@ -97,9 +103,10 @@ export const getAllShiftGroup = async (
     });
   } catch (err) {
     console.error("Database Error:", err);
-    res
-      .status(500)
-      .json({ success: false, message: "Error retrieving shift group data" });
+    res.status(500).json({
+      success: false,
+      message: "Error retrieving shift group data",
+    });
   }
 };
 

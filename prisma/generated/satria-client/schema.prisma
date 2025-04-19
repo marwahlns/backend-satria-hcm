@@ -112,7 +112,7 @@ model trx_leaves {
 model ms_shift {
   id            Int       @id(map: "PK_ms_shift_id") @default(autoincrement())
   id_shift_sap  String?   @satria.NVarChar(255)
-  code          String    @satria.NVarChar(255)
+  code          String    @unique @satria.NVarChar(255)
   name          String    @satria.NVarChar(255)
   in_time       DateTime? @satria.Time
   out_time      DateTime? @satria.Time
@@ -127,13 +127,15 @@ model ms_shift {
   updated_at    DateTime?
   is_deleted    Int?      @default(0, map: "DF__ms_shift__is_del__656C112C") @satria.SmallInt
 
+  details ms_detail_shift_group[] @relation("DetailsToMsShift")
+
   @@map("ms_shift")
 }
 
 model ms_shift_group {
   id                 Int       @id(map: "PK_ms_shift_group_id") @default(autoincrement())
   id_shift_group_sap Int       @default(0, map: "DF__ms_shift___id_sh__66603565")
-  code               String    @satria.NVarChar(255)
+  code               String    @unique @satria.NVarChar(255)
   nama               String    @satria.NVarChar(255)
   flag_shift         Int       @default(0, map: "DF__ms_shift___flag___6754599E") @satria.SmallInt
   created_by         BigInt?
@@ -141,6 +143,8 @@ model ms_shift_group {
   updated_by         BigInt?
   updated_at         DateTime?
   is_deleted         Int?      @default(0, map: "DF__ms_shift___is_de__6C190EBB") @satria.SmallInt
+
+  details ms_detail_shift_group[] @relation("DetailsToMsShiftGroup")
 
   @@map("ms_shift_group")
 }
@@ -155,6 +159,9 @@ model ms_detail_shift_group {
   created_at     DateTime? @default(now(), map: "DF__ms_detail__creat__503BEA1C")
   updated_by     Int?
   updated_at     DateTime?
+
+  MsShift      ms_shift       @relation(fields: [id_shift], references: [code], name: "DetailsToMsShift")
+  MsShiftGroup ms_shift_group @relation(fields: [id_shift_group], references: [code], name: "DetailsToMsShiftGroup")
 
   @@map("ms_detail_shift_group")
 }

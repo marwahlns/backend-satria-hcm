@@ -2537,6 +2537,68 @@ export namespace Prisma {
 
 
   /**
+   * Count Type Ms_shiftCountOutputType
+   */
+
+  export type Ms_shiftCountOutputType = {
+    details: number
+  }
+
+  export type Ms_shiftCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    details?: boolean | Ms_shiftCountOutputTypeCountDetailsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Ms_shiftCountOutputType without action
+   */
+  export type Ms_shiftCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ms_shiftCountOutputType
+     */
+    select?: Ms_shiftCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Ms_shiftCountOutputType without action
+   */
+  export type Ms_shiftCountOutputTypeCountDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ms_detail_shift_groupWhereInput
+  }
+
+
+  /**
+   * Count Type Ms_shift_groupCountOutputType
+   */
+
+  export type Ms_shift_groupCountOutputType = {
+    details: number
+  }
+
+  export type Ms_shift_groupCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    details?: boolean | Ms_shift_groupCountOutputTypeCountDetailsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Ms_shift_groupCountOutputType without action
+   */
+  export type Ms_shift_groupCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ms_shift_groupCountOutputType
+     */
+    select?: Ms_shift_groupCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Ms_shift_groupCountOutputType without action
+   */
+  export type Ms_shift_groupCountOutputTypeCountDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ms_detail_shift_groupWhereInput
+  }
+
+
+  /**
    * Count Type Mst_deptCountOutputType
    */
 
@@ -6475,6 +6537,8 @@ export namespace Prisma {
     updated_by?: boolean
     updated_at?: boolean
     is_deleted?: boolean
+    details?: boolean | ms_shift$detailsArgs<ExtArgs>
+    _count?: boolean | Ms_shiftCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ms_shift"]>
 
 
@@ -6497,10 +6561,16 @@ export namespace Prisma {
     is_deleted?: boolean
   }
 
+  export type ms_shiftInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    details?: boolean | ms_shift$detailsArgs<ExtArgs>
+    _count?: boolean | Ms_shiftCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
   export type $ms_shiftPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ms_shift"
-    objects: {}
+    objects: {
+      details: Prisma.$ms_detail_shift_groupPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       id_shift_sap: string | null
@@ -6858,6 +6928,7 @@ export namespace Prisma {
    */
   export interface Prisma__ms_shiftClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    details<T extends ms_shift$detailsArgs<ExtArgs> = {}>(args?: Subset<T, ms_shift$detailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ms_detail_shift_groupPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6916,6 +6987,10 @@ export namespace Prisma {
      */
     select?: ms_shiftSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shiftInclude<ExtArgs> | null
+    /**
      * Filter, which ms_shift to fetch.
      */
     where: ms_shiftWhereUniqueInput
@@ -6930,6 +7005,10 @@ export namespace Prisma {
      */
     select?: ms_shiftSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shiftInclude<ExtArgs> | null
+    /**
      * Filter, which ms_shift to fetch.
      */
     where: ms_shiftWhereUniqueInput
@@ -6943,6 +7022,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_shift
      */
     select?: ms_shiftSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shiftInclude<ExtArgs> | null
     /**
      * Filter, which ms_shift to fetch.
      */
@@ -6988,6 +7071,10 @@ export namespace Prisma {
      */
     select?: ms_shiftSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shiftInclude<ExtArgs> | null
+    /**
      * Filter, which ms_shift to fetch.
      */
     where?: ms_shiftWhereInput
@@ -7032,6 +7119,10 @@ export namespace Prisma {
      */
     select?: ms_shiftSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shiftInclude<ExtArgs> | null
+    /**
      * Filter, which ms_shifts to fetch.
      */
     where?: ms_shiftWhereInput
@@ -7071,6 +7162,10 @@ export namespace Prisma {
      */
     select?: ms_shiftSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shiftInclude<ExtArgs> | null
+    /**
      * The data needed to create a ms_shift.
      */
     data: XOR<ms_shiftCreateInput, ms_shiftUncheckedCreateInput>
@@ -7094,6 +7189,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_shift
      */
     select?: ms_shiftSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shiftInclude<ExtArgs> | null
     /**
      * The data needed to update a ms_shift.
      */
@@ -7127,6 +7226,10 @@ export namespace Prisma {
      */
     select?: ms_shiftSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shiftInclude<ExtArgs> | null
+    /**
      * The filter to search for the ms_shift to update in case it exists.
      */
     where: ms_shiftWhereUniqueInput
@@ -7149,6 +7252,10 @@ export namespace Prisma {
      */
     select?: ms_shiftSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shiftInclude<ExtArgs> | null
+    /**
      * Filter which ms_shift to delete.
      */
     where: ms_shiftWhereUniqueInput
@@ -7165,6 +7272,26 @@ export namespace Prisma {
   }
 
   /**
+   * ms_shift.details
+   */
+  export type ms_shift$detailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ms_detail_shift_group
+     */
+    select?: ms_detail_shift_groupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_detail_shift_groupInclude<ExtArgs> | null
+    where?: ms_detail_shift_groupWhereInput
+    orderBy?: ms_detail_shift_groupOrderByWithRelationInput | ms_detail_shift_groupOrderByWithRelationInput[]
+    cursor?: ms_detail_shift_groupWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Ms_detail_shift_groupScalarFieldEnum | Ms_detail_shift_groupScalarFieldEnum[]
+  }
+
+  /**
    * ms_shift without action
    */
   export type ms_shiftDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7172,6 +7299,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_shift
      */
     select?: ms_shiftSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shiftInclude<ExtArgs> | null
   }
 
 
@@ -7433,6 +7564,8 @@ export namespace Prisma {
     updated_by?: boolean
     updated_at?: boolean
     is_deleted?: boolean
+    details?: boolean | ms_shift_group$detailsArgs<ExtArgs>
+    _count?: boolean | Ms_shift_groupCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ms_shift_group"]>
 
 
@@ -7449,10 +7582,16 @@ export namespace Prisma {
     is_deleted?: boolean
   }
 
+  export type ms_shift_groupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    details?: boolean | ms_shift_group$detailsArgs<ExtArgs>
+    _count?: boolean | Ms_shift_groupCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
   export type $ms_shift_groupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ms_shift_group"
-    objects: {}
+    objects: {
+      details: Prisma.$ms_detail_shift_groupPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       id_shift_group_sap: number
@@ -7804,6 +7943,7 @@ export namespace Prisma {
    */
   export interface Prisma__ms_shift_groupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    details<T extends ms_shift_group$detailsArgs<ExtArgs> = {}>(args?: Subset<T, ms_shift_group$detailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ms_detail_shift_groupPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7856,6 +7996,10 @@ export namespace Prisma {
      */
     select?: ms_shift_groupSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shift_groupInclude<ExtArgs> | null
+    /**
      * Filter, which ms_shift_group to fetch.
      */
     where: ms_shift_groupWhereUniqueInput
@@ -7870,6 +8014,10 @@ export namespace Prisma {
      */
     select?: ms_shift_groupSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shift_groupInclude<ExtArgs> | null
+    /**
      * Filter, which ms_shift_group to fetch.
      */
     where: ms_shift_groupWhereUniqueInput
@@ -7883,6 +8031,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_shift_group
      */
     select?: ms_shift_groupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shift_groupInclude<ExtArgs> | null
     /**
      * Filter, which ms_shift_group to fetch.
      */
@@ -7928,6 +8080,10 @@ export namespace Prisma {
      */
     select?: ms_shift_groupSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shift_groupInclude<ExtArgs> | null
+    /**
      * Filter, which ms_shift_group to fetch.
      */
     where?: ms_shift_groupWhereInput
@@ -7972,6 +8128,10 @@ export namespace Prisma {
      */
     select?: ms_shift_groupSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shift_groupInclude<ExtArgs> | null
+    /**
      * Filter, which ms_shift_groups to fetch.
      */
     where?: ms_shift_groupWhereInput
@@ -8011,6 +8171,10 @@ export namespace Prisma {
      */
     select?: ms_shift_groupSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shift_groupInclude<ExtArgs> | null
+    /**
      * The data needed to create a ms_shift_group.
      */
     data: XOR<ms_shift_groupCreateInput, ms_shift_groupUncheckedCreateInput>
@@ -8034,6 +8198,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_shift_group
      */
     select?: ms_shift_groupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shift_groupInclude<ExtArgs> | null
     /**
      * The data needed to update a ms_shift_group.
      */
@@ -8067,6 +8235,10 @@ export namespace Prisma {
      */
     select?: ms_shift_groupSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shift_groupInclude<ExtArgs> | null
+    /**
      * The filter to search for the ms_shift_group to update in case it exists.
      */
     where: ms_shift_groupWhereUniqueInput
@@ -8089,6 +8261,10 @@ export namespace Prisma {
      */
     select?: ms_shift_groupSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shift_groupInclude<ExtArgs> | null
+    /**
      * Filter which ms_shift_group to delete.
      */
     where: ms_shift_groupWhereUniqueInput
@@ -8105,6 +8281,26 @@ export namespace Prisma {
   }
 
   /**
+   * ms_shift_group.details
+   */
+  export type ms_shift_group$detailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ms_detail_shift_group
+     */
+    select?: ms_detail_shift_groupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_detail_shift_groupInclude<ExtArgs> | null
+    where?: ms_detail_shift_groupWhereInput
+    orderBy?: ms_detail_shift_groupOrderByWithRelationInput | ms_detail_shift_groupOrderByWithRelationInput[]
+    cursor?: ms_detail_shift_groupWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Ms_detail_shift_groupScalarFieldEnum | Ms_detail_shift_groupScalarFieldEnum[]
+  }
+
+  /**
    * ms_shift_group without action
    */
   export type ms_shift_groupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8112,6 +8308,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_shift_group
      */
     select?: ms_shift_groupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shift_groupInclude<ExtArgs> | null
   }
 
 
@@ -8353,6 +8553,8 @@ export namespace Prisma {
     created_at?: boolean
     updated_by?: boolean
     updated_at?: boolean
+    MsShift?: boolean | ms_shiftDefaultArgs<ExtArgs>
+    MsShiftGroup?: boolean | ms_shift_groupDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ms_detail_shift_group"]>
 
 
@@ -8368,10 +8570,17 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
+  export type ms_detail_shift_groupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    MsShift?: boolean | ms_shiftDefaultArgs<ExtArgs>
+    MsShiftGroup?: boolean | ms_shift_groupDefaultArgs<ExtArgs>
+  }
 
   export type $ms_detail_shift_groupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ms_detail_shift_group"
-    objects: {}
+    objects: {
+      MsShift: Prisma.$ms_shiftPayload<ExtArgs>
+      MsShiftGroup: Prisma.$ms_shift_groupPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       index_day: string
@@ -8722,6 +8931,8 @@ export namespace Prisma {
    */
   export interface Prisma__ms_detail_shift_groupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    MsShift<T extends ms_shiftDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ms_shiftDefaultArgs<ExtArgs>>): Prisma__ms_shiftClient<$Result.GetResult<Prisma.$ms_shiftPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    MsShiftGroup<T extends ms_shift_groupDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ms_shift_groupDefaultArgs<ExtArgs>>): Prisma__ms_shift_groupClient<$Result.GetResult<Prisma.$ms_shift_groupPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8773,6 +8984,10 @@ export namespace Prisma {
      */
     select?: ms_detail_shift_groupSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_detail_shift_groupInclude<ExtArgs> | null
+    /**
      * Filter, which ms_detail_shift_group to fetch.
      */
     where: ms_detail_shift_groupWhereUniqueInput
@@ -8787,6 +9002,10 @@ export namespace Prisma {
      */
     select?: ms_detail_shift_groupSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_detail_shift_groupInclude<ExtArgs> | null
+    /**
      * Filter, which ms_detail_shift_group to fetch.
      */
     where: ms_detail_shift_groupWhereUniqueInput
@@ -8800,6 +9019,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_detail_shift_group
      */
     select?: ms_detail_shift_groupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_detail_shift_groupInclude<ExtArgs> | null
     /**
      * Filter, which ms_detail_shift_group to fetch.
      */
@@ -8845,6 +9068,10 @@ export namespace Prisma {
      */
     select?: ms_detail_shift_groupSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_detail_shift_groupInclude<ExtArgs> | null
+    /**
      * Filter, which ms_detail_shift_group to fetch.
      */
     where?: ms_detail_shift_groupWhereInput
@@ -8889,6 +9116,10 @@ export namespace Prisma {
      */
     select?: ms_detail_shift_groupSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_detail_shift_groupInclude<ExtArgs> | null
+    /**
      * Filter, which ms_detail_shift_groups to fetch.
      */
     where?: ms_detail_shift_groupWhereInput
@@ -8928,6 +9159,10 @@ export namespace Prisma {
      */
     select?: ms_detail_shift_groupSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_detail_shift_groupInclude<ExtArgs> | null
+    /**
      * The data needed to create a ms_detail_shift_group.
      */
     data: XOR<ms_detail_shift_groupCreateInput, ms_detail_shift_groupUncheckedCreateInput>
@@ -8951,6 +9186,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_detail_shift_group
      */
     select?: ms_detail_shift_groupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_detail_shift_groupInclude<ExtArgs> | null
     /**
      * The data needed to update a ms_detail_shift_group.
      */
@@ -8984,6 +9223,10 @@ export namespace Prisma {
      */
     select?: ms_detail_shift_groupSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_detail_shift_groupInclude<ExtArgs> | null
+    /**
      * The filter to search for the ms_detail_shift_group to update in case it exists.
      */
     where: ms_detail_shift_groupWhereUniqueInput
@@ -9005,6 +9248,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_detail_shift_group
      */
     select?: ms_detail_shift_groupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_detail_shift_groupInclude<ExtArgs> | null
     /**
      * Filter which ms_detail_shift_group to delete.
      */
@@ -9029,6 +9276,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_detail_shift_group
      */
     select?: ms_detail_shift_groupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_detail_shift_groupInclude<ExtArgs> | null
   }
 
 
@@ -24881,6 +25132,7 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"ms_shift"> | bigint | number | null
     updated_at?: DateTimeNullableFilter<"ms_shift"> | Date | string | null
     is_deleted?: IntNullableFilter<"ms_shift"> | number | null
+    details?: Ms_detail_shift_groupListRelationFilter
   }
 
   export type ms_shiftOrderByWithRelationInput = {
@@ -24900,15 +25152,16 @@ export namespace Prisma {
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     is_deleted?: SortOrderInput | SortOrder
+    details?: ms_detail_shift_groupOrderByRelationAggregateInput
   }
 
   export type ms_shiftWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    code?: string
     AND?: ms_shiftWhereInput | ms_shiftWhereInput[]
     OR?: ms_shiftWhereInput[]
     NOT?: ms_shiftWhereInput | ms_shiftWhereInput[]
     id_shift_sap?: StringNullableFilter<"ms_shift"> | string | null
-    code?: StringFilter<"ms_shift"> | string
     name?: StringFilter<"ms_shift"> | string
     in_time?: DateTimeNullableFilter<"ms_shift"> | Date | string | null
     out_time?: DateTimeNullableFilter<"ms_shift"> | Date | string | null
@@ -24922,7 +25175,8 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"ms_shift"> | bigint | number | null
     updated_at?: DateTimeNullableFilter<"ms_shift"> | Date | string | null
     is_deleted?: IntNullableFilter<"ms_shift"> | number | null
-  }, "id">
+    details?: Ms_detail_shift_groupListRelationFilter
+  }, "id" | "code">
 
   export type ms_shiftOrderByWithAggregationInput = {
     id?: SortOrder
@@ -24984,6 +25238,7 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"ms_shift_group"> | bigint | number | null
     updated_at?: DateTimeNullableFilter<"ms_shift_group"> | Date | string | null
     is_deleted?: IntNullableFilter<"ms_shift_group"> | number | null
+    details?: Ms_detail_shift_groupListRelationFilter
   }
 
   export type ms_shift_groupOrderByWithRelationInput = {
@@ -24997,15 +25252,16 @@ export namespace Prisma {
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     is_deleted?: SortOrderInput | SortOrder
+    details?: ms_detail_shift_groupOrderByRelationAggregateInput
   }
 
   export type ms_shift_groupWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    code?: string
     AND?: ms_shift_groupWhereInput | ms_shift_groupWhereInput[]
     OR?: ms_shift_groupWhereInput[]
     NOT?: ms_shift_groupWhereInput | ms_shift_groupWhereInput[]
     id_shift_group_sap?: IntFilter<"ms_shift_group"> | number
-    code?: StringFilter<"ms_shift_group"> | string
     nama?: StringFilter<"ms_shift_group"> | string
     flag_shift?: IntFilter<"ms_shift_group"> | number
     created_by?: BigIntNullableFilter<"ms_shift_group"> | bigint | number | null
@@ -25013,7 +25269,8 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"ms_shift_group"> | bigint | number | null
     updated_at?: DateTimeNullableFilter<"ms_shift_group"> | Date | string | null
     is_deleted?: IntNullableFilter<"ms_shift_group"> | number | null
-  }, "id">
+    details?: Ms_detail_shift_groupListRelationFilter
+  }, "id" | "code">
 
   export type ms_shift_groupOrderByWithAggregationInput = {
     id?: SortOrder
@@ -25062,6 +25319,8 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"ms_detail_shift_group"> | Date | string | null
     updated_by?: IntNullableFilter<"ms_detail_shift_group"> | number | null
     updated_at?: DateTimeNullableFilter<"ms_detail_shift_group"> | Date | string | null
+    MsShift?: XOR<Ms_shiftRelationFilter, ms_shiftWhereInput>
+    MsShiftGroup?: XOR<Ms_shift_groupRelationFilter, ms_shift_groupWhereInput>
   }
 
   export type ms_detail_shift_groupOrderByWithRelationInput = {
@@ -25074,6 +25333,8 @@ export namespace Prisma {
     created_at?: SortOrderInput | SortOrder
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
+    MsShift?: ms_shiftOrderByWithRelationInput
+    MsShiftGroup?: ms_shift_groupOrderByWithRelationInput
   }
 
   export type ms_detail_shift_groupWhereUniqueInput = Prisma.AtLeast<{
@@ -25089,6 +25350,8 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"ms_detail_shift_group"> | Date | string | null
     updated_by?: IntNullableFilter<"ms_detail_shift_group"> | number | null
     updated_at?: DateTimeNullableFilter<"ms_detail_shift_group"> | Date | string | null
+    MsShift?: XOR<Ms_shiftRelationFilter, ms_shiftWhereInput>
+    MsShiftGroup?: XOR<Ms_shift_groupRelationFilter, ms_shift_groupWhereInput>
   }, "id">
 
   export type ms_detail_shift_groupOrderByWithAggregationInput = {
@@ -27287,6 +27550,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
     is_deleted?: number | null
+    details?: ms_detail_shift_groupCreateNestedManyWithoutMsShiftInput
   }
 
   export type ms_shiftUncheckedCreateInput = {
@@ -27306,6 +27570,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
     is_deleted?: number | null
+    details?: ms_detail_shift_groupUncheckedCreateNestedManyWithoutMsShiftInput
   }
 
   export type ms_shiftUpdateInput = {
@@ -27324,6 +27589,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    details?: ms_detail_shift_groupUpdateManyWithoutMsShiftNestedInput
   }
 
   export type ms_shiftUncheckedUpdateInput = {
@@ -27343,6 +27609,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    details?: ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftNestedInput
   }
 
   export type ms_shiftCreateManyInput = {
@@ -27410,6 +27677,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
     is_deleted?: number | null
+    details?: ms_detail_shift_groupCreateNestedManyWithoutMsShiftGroupInput
   }
 
   export type ms_shift_groupUncheckedCreateInput = {
@@ -27423,6 +27691,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
     is_deleted?: number | null
+    details?: ms_detail_shift_groupUncheckedCreateNestedManyWithoutMsShiftGroupInput
   }
 
   export type ms_shift_groupUpdateInput = {
@@ -27435,6 +27704,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    details?: ms_detail_shift_groupUpdateManyWithoutMsShiftGroupNestedInput
   }
 
   export type ms_shift_groupUncheckedUpdateInput = {
@@ -27448,6 +27718,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    details?: ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftGroupNestedInput
   }
 
   export type ms_shift_groupCreateManyInput = {
@@ -27490,12 +27761,12 @@ export namespace Prisma {
   export type ms_detail_shift_groupCreateInput = {
     index_day: string
     code: string
-    id_shift_group: string
-    id_shift: string
     created_by?: number | null
     created_at?: Date | string | null
     updated_by?: number | null
     updated_at?: Date | string | null
+    MsShift: ms_shiftCreateNestedOneWithoutDetailsInput
+    MsShiftGroup: ms_shift_groupCreateNestedOneWithoutDetailsInput
   }
 
   export type ms_detail_shift_groupUncheckedCreateInput = {
@@ -27513,12 +27784,12 @@ export namespace Prisma {
   export type ms_detail_shift_groupUpdateInput = {
     index_day?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
-    id_shift_group?: StringFieldUpdateOperationsInput | string
-    id_shift?: StringFieldUpdateOperationsInput | string
     created_by?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableIntFieldUpdateOperationsInput | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    MsShift?: ms_shiftUpdateOneRequiredWithoutDetailsNestedInput
+    MsShiftGroup?: ms_shift_groupUpdateOneRequiredWithoutDetailsNestedInput
   }
 
   export type ms_detail_shift_groupUncheckedUpdateInput = {
@@ -27547,8 +27818,6 @@ export namespace Prisma {
   export type ms_detail_shift_groupUpdateManyMutationInput = {
     index_day?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
-    id_shift_group?: StringFieldUpdateOperationsInput | string
-    id_shift?: StringFieldUpdateOperationsInput | string
     created_by?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableIntFieldUpdateOperationsInput | number | null
@@ -29947,6 +30216,16 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type Ms_detail_shift_groupListRelationFilter = {
+    every?: ms_detail_shift_groupWhereInput
+    some?: ms_detail_shift_groupWhereInput
+    none?: ms_detail_shift_groupWhereInput
+  }
+
+  export type ms_detail_shift_groupOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type ms_shiftCountOrderByAggregateInput = {
     id?: SortOrder
     id_shift_sap?: SortOrder
@@ -30083,6 +30362,16 @@ export namespace Prisma {
     created_by?: SortOrder
     updated_by?: SortOrder
     is_deleted?: SortOrder
+  }
+
+  export type Ms_shiftRelationFilter = {
+    is?: ms_shiftWhereInput
+    isNot?: ms_shiftWhereInput
+  }
+
+  export type Ms_shift_groupRelationFilter = {
+    is?: ms_shift_groupWhereInput
+    isNot?: ms_shift_groupWhereInput
   }
 
   export type ms_detail_shift_groupCountOrderByAggregateInput = {
@@ -31336,6 +31625,118 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTrx_leavesInput, UserUpdateWithoutTrx_leavesInput>, UserUncheckedUpdateWithoutTrx_leavesInput>
   }
 
+  export type ms_detail_shift_groupCreateNestedManyWithoutMsShiftInput = {
+    create?: XOR<ms_detail_shift_groupCreateWithoutMsShiftInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput> | ms_detail_shift_groupCreateWithoutMsShiftInput[] | ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput[]
+    connectOrCreate?: ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput | ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput[]
+    createMany?: ms_detail_shift_groupCreateManyMsShiftInputEnvelope
+    connect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+  }
+
+  export type ms_detail_shift_groupUncheckedCreateNestedManyWithoutMsShiftInput = {
+    create?: XOR<ms_detail_shift_groupCreateWithoutMsShiftInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput> | ms_detail_shift_groupCreateWithoutMsShiftInput[] | ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput[]
+    connectOrCreate?: ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput | ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput[]
+    createMany?: ms_detail_shift_groupCreateManyMsShiftInputEnvelope
+    connect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+  }
+
+  export type ms_detail_shift_groupUpdateManyWithoutMsShiftNestedInput = {
+    create?: XOR<ms_detail_shift_groupCreateWithoutMsShiftInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput> | ms_detail_shift_groupCreateWithoutMsShiftInput[] | ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput[]
+    connectOrCreate?: ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput | ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput[]
+    upsert?: ms_detail_shift_groupUpsertWithWhereUniqueWithoutMsShiftInput | ms_detail_shift_groupUpsertWithWhereUniqueWithoutMsShiftInput[]
+    createMany?: ms_detail_shift_groupCreateManyMsShiftInputEnvelope
+    set?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    disconnect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    delete?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    connect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    update?: ms_detail_shift_groupUpdateWithWhereUniqueWithoutMsShiftInput | ms_detail_shift_groupUpdateWithWhereUniqueWithoutMsShiftInput[]
+    updateMany?: ms_detail_shift_groupUpdateManyWithWhereWithoutMsShiftInput | ms_detail_shift_groupUpdateManyWithWhereWithoutMsShiftInput[]
+    deleteMany?: ms_detail_shift_groupScalarWhereInput | ms_detail_shift_groupScalarWhereInput[]
+  }
+
+  export type ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftNestedInput = {
+    create?: XOR<ms_detail_shift_groupCreateWithoutMsShiftInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput> | ms_detail_shift_groupCreateWithoutMsShiftInput[] | ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput[]
+    connectOrCreate?: ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput | ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput[]
+    upsert?: ms_detail_shift_groupUpsertWithWhereUniqueWithoutMsShiftInput | ms_detail_shift_groupUpsertWithWhereUniqueWithoutMsShiftInput[]
+    createMany?: ms_detail_shift_groupCreateManyMsShiftInputEnvelope
+    set?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    disconnect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    delete?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    connect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    update?: ms_detail_shift_groupUpdateWithWhereUniqueWithoutMsShiftInput | ms_detail_shift_groupUpdateWithWhereUniqueWithoutMsShiftInput[]
+    updateMany?: ms_detail_shift_groupUpdateManyWithWhereWithoutMsShiftInput | ms_detail_shift_groupUpdateManyWithWhereWithoutMsShiftInput[]
+    deleteMany?: ms_detail_shift_groupScalarWhereInput | ms_detail_shift_groupScalarWhereInput[]
+  }
+
+  export type ms_detail_shift_groupCreateNestedManyWithoutMsShiftGroupInput = {
+    create?: XOR<ms_detail_shift_groupCreateWithoutMsShiftGroupInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput> | ms_detail_shift_groupCreateWithoutMsShiftGroupInput[] | ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput[]
+    connectOrCreate?: ms_detail_shift_groupCreateOrConnectWithoutMsShiftGroupInput | ms_detail_shift_groupCreateOrConnectWithoutMsShiftGroupInput[]
+    createMany?: ms_detail_shift_groupCreateManyMsShiftGroupInputEnvelope
+    connect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+  }
+
+  export type ms_detail_shift_groupUncheckedCreateNestedManyWithoutMsShiftGroupInput = {
+    create?: XOR<ms_detail_shift_groupCreateWithoutMsShiftGroupInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput> | ms_detail_shift_groupCreateWithoutMsShiftGroupInput[] | ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput[]
+    connectOrCreate?: ms_detail_shift_groupCreateOrConnectWithoutMsShiftGroupInput | ms_detail_shift_groupCreateOrConnectWithoutMsShiftGroupInput[]
+    createMany?: ms_detail_shift_groupCreateManyMsShiftGroupInputEnvelope
+    connect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+  }
+
+  export type ms_detail_shift_groupUpdateManyWithoutMsShiftGroupNestedInput = {
+    create?: XOR<ms_detail_shift_groupCreateWithoutMsShiftGroupInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput> | ms_detail_shift_groupCreateWithoutMsShiftGroupInput[] | ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput[]
+    connectOrCreate?: ms_detail_shift_groupCreateOrConnectWithoutMsShiftGroupInput | ms_detail_shift_groupCreateOrConnectWithoutMsShiftGroupInput[]
+    upsert?: ms_detail_shift_groupUpsertWithWhereUniqueWithoutMsShiftGroupInput | ms_detail_shift_groupUpsertWithWhereUniqueWithoutMsShiftGroupInput[]
+    createMany?: ms_detail_shift_groupCreateManyMsShiftGroupInputEnvelope
+    set?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    disconnect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    delete?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    connect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    update?: ms_detail_shift_groupUpdateWithWhereUniqueWithoutMsShiftGroupInput | ms_detail_shift_groupUpdateWithWhereUniqueWithoutMsShiftGroupInput[]
+    updateMany?: ms_detail_shift_groupUpdateManyWithWhereWithoutMsShiftGroupInput | ms_detail_shift_groupUpdateManyWithWhereWithoutMsShiftGroupInput[]
+    deleteMany?: ms_detail_shift_groupScalarWhereInput | ms_detail_shift_groupScalarWhereInput[]
+  }
+
+  export type ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftGroupNestedInput = {
+    create?: XOR<ms_detail_shift_groupCreateWithoutMsShiftGroupInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput> | ms_detail_shift_groupCreateWithoutMsShiftGroupInput[] | ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput[]
+    connectOrCreate?: ms_detail_shift_groupCreateOrConnectWithoutMsShiftGroupInput | ms_detail_shift_groupCreateOrConnectWithoutMsShiftGroupInput[]
+    upsert?: ms_detail_shift_groupUpsertWithWhereUniqueWithoutMsShiftGroupInput | ms_detail_shift_groupUpsertWithWhereUniqueWithoutMsShiftGroupInput[]
+    createMany?: ms_detail_shift_groupCreateManyMsShiftGroupInputEnvelope
+    set?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    disconnect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    delete?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    connect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+    update?: ms_detail_shift_groupUpdateWithWhereUniqueWithoutMsShiftGroupInput | ms_detail_shift_groupUpdateWithWhereUniqueWithoutMsShiftGroupInput[]
+    updateMany?: ms_detail_shift_groupUpdateManyWithWhereWithoutMsShiftGroupInput | ms_detail_shift_groupUpdateManyWithWhereWithoutMsShiftGroupInput[]
+    deleteMany?: ms_detail_shift_groupScalarWhereInput | ms_detail_shift_groupScalarWhereInput[]
+  }
+
+  export type ms_shiftCreateNestedOneWithoutDetailsInput = {
+    create?: XOR<ms_shiftCreateWithoutDetailsInput, ms_shiftUncheckedCreateWithoutDetailsInput>
+    connectOrCreate?: ms_shiftCreateOrConnectWithoutDetailsInput
+    connect?: ms_shiftWhereUniqueInput
+  }
+
+  export type ms_shift_groupCreateNestedOneWithoutDetailsInput = {
+    create?: XOR<ms_shift_groupCreateWithoutDetailsInput, ms_shift_groupUncheckedCreateWithoutDetailsInput>
+    connectOrCreate?: ms_shift_groupCreateOrConnectWithoutDetailsInput
+    connect?: ms_shift_groupWhereUniqueInput
+  }
+
+  export type ms_shiftUpdateOneRequiredWithoutDetailsNestedInput = {
+    create?: XOR<ms_shiftCreateWithoutDetailsInput, ms_shiftUncheckedCreateWithoutDetailsInput>
+    connectOrCreate?: ms_shiftCreateOrConnectWithoutDetailsInput
+    upsert?: ms_shiftUpsertWithoutDetailsInput
+    connect?: ms_shiftWhereUniqueInput
+    update?: XOR<XOR<ms_shiftUpdateToOneWithWhereWithoutDetailsInput, ms_shiftUpdateWithoutDetailsInput>, ms_shiftUncheckedUpdateWithoutDetailsInput>
+  }
+
+  export type ms_shift_groupUpdateOneRequiredWithoutDetailsNestedInput = {
+    create?: XOR<ms_shift_groupCreateWithoutDetailsInput, ms_shift_groupUncheckedCreateWithoutDetailsInput>
+    connectOrCreate?: ms_shift_groupCreateOrConnectWithoutDetailsInput
+    upsert?: ms_shift_groupUpsertWithoutDetailsInput
+    connect?: ms_shift_groupWhereUniqueInput
+    update?: XOR<XOR<ms_shift_groupUpdateToOneWithWhereWithoutDetailsInput, ms_shift_groupUpdateWithoutDetailsInput>, ms_shift_groupUncheckedUpdateWithoutDetailsInput>
+  }
+
   export type UserCreateNestedManyWithoutDept_dataInput = {
     create?: XOR<UserCreateWithoutDept_dataInput, UserUncheckedCreateWithoutDept_dataInput> | UserCreateWithoutDept_dataInput[] | UserUncheckedCreateWithoutDept_dataInput[]
     connectOrCreate?: UserCreateOrConnectWithoutDept_dataInput | UserCreateOrConnectWithoutDept_dataInput[]
@@ -32187,6 +32588,269 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type ms_detail_shift_groupCreateWithoutMsShiftInput = {
+    index_day: string
+    code: string
+    created_by?: number | null
+    created_at?: Date | string | null
+    updated_by?: number | null
+    updated_at?: Date | string | null
+    MsShiftGroup: ms_shift_groupCreateNestedOneWithoutDetailsInput
+  }
+
+  export type ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput = {
+    id?: number
+    index_day: string
+    code: string
+    id_shift_group: string
+    created_by?: number | null
+    created_at?: Date | string | null
+    updated_by?: number | null
+    updated_at?: Date | string | null
+  }
+
+  export type ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput = {
+    where: ms_detail_shift_groupWhereUniqueInput
+    create: XOR<ms_detail_shift_groupCreateWithoutMsShiftInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput>
+  }
+
+  export type ms_detail_shift_groupCreateManyMsShiftInputEnvelope = {
+    data: ms_detail_shift_groupCreateManyMsShiftInput | ms_detail_shift_groupCreateManyMsShiftInput[]
+  }
+
+  export type ms_detail_shift_groupUpsertWithWhereUniqueWithoutMsShiftInput = {
+    where: ms_detail_shift_groupWhereUniqueInput
+    update: XOR<ms_detail_shift_groupUpdateWithoutMsShiftInput, ms_detail_shift_groupUncheckedUpdateWithoutMsShiftInput>
+    create: XOR<ms_detail_shift_groupCreateWithoutMsShiftInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput>
+  }
+
+  export type ms_detail_shift_groupUpdateWithWhereUniqueWithoutMsShiftInput = {
+    where: ms_detail_shift_groupWhereUniqueInput
+    data: XOR<ms_detail_shift_groupUpdateWithoutMsShiftInput, ms_detail_shift_groupUncheckedUpdateWithoutMsShiftInput>
+  }
+
+  export type ms_detail_shift_groupUpdateManyWithWhereWithoutMsShiftInput = {
+    where: ms_detail_shift_groupScalarWhereInput
+    data: XOR<ms_detail_shift_groupUpdateManyMutationInput, ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftInput>
+  }
+
+  export type ms_detail_shift_groupScalarWhereInput = {
+    AND?: ms_detail_shift_groupScalarWhereInput | ms_detail_shift_groupScalarWhereInput[]
+    OR?: ms_detail_shift_groupScalarWhereInput[]
+    NOT?: ms_detail_shift_groupScalarWhereInput | ms_detail_shift_groupScalarWhereInput[]
+    id?: IntFilter<"ms_detail_shift_group"> | number
+    index_day?: StringFilter<"ms_detail_shift_group"> | string
+    code?: StringFilter<"ms_detail_shift_group"> | string
+    id_shift_group?: StringFilter<"ms_detail_shift_group"> | string
+    id_shift?: StringFilter<"ms_detail_shift_group"> | string
+    created_by?: IntNullableFilter<"ms_detail_shift_group"> | number | null
+    created_at?: DateTimeNullableFilter<"ms_detail_shift_group"> | Date | string | null
+    updated_by?: IntNullableFilter<"ms_detail_shift_group"> | number | null
+    updated_at?: DateTimeNullableFilter<"ms_detail_shift_group"> | Date | string | null
+  }
+
+  export type ms_detail_shift_groupCreateWithoutMsShiftGroupInput = {
+    index_day: string
+    code: string
+    created_by?: number | null
+    created_at?: Date | string | null
+    updated_by?: number | null
+    updated_at?: Date | string | null
+    MsShift: ms_shiftCreateNestedOneWithoutDetailsInput
+  }
+
+  export type ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput = {
+    id?: number
+    index_day: string
+    code: string
+    id_shift: string
+    created_by?: number | null
+    created_at?: Date | string | null
+    updated_by?: number | null
+    updated_at?: Date | string | null
+  }
+
+  export type ms_detail_shift_groupCreateOrConnectWithoutMsShiftGroupInput = {
+    where: ms_detail_shift_groupWhereUniqueInput
+    create: XOR<ms_detail_shift_groupCreateWithoutMsShiftGroupInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput>
+  }
+
+  export type ms_detail_shift_groupCreateManyMsShiftGroupInputEnvelope = {
+    data: ms_detail_shift_groupCreateManyMsShiftGroupInput | ms_detail_shift_groupCreateManyMsShiftGroupInput[]
+  }
+
+  export type ms_detail_shift_groupUpsertWithWhereUniqueWithoutMsShiftGroupInput = {
+    where: ms_detail_shift_groupWhereUniqueInput
+    update: XOR<ms_detail_shift_groupUpdateWithoutMsShiftGroupInput, ms_detail_shift_groupUncheckedUpdateWithoutMsShiftGroupInput>
+    create: XOR<ms_detail_shift_groupCreateWithoutMsShiftGroupInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput>
+  }
+
+  export type ms_detail_shift_groupUpdateWithWhereUniqueWithoutMsShiftGroupInput = {
+    where: ms_detail_shift_groupWhereUniqueInput
+    data: XOR<ms_detail_shift_groupUpdateWithoutMsShiftGroupInput, ms_detail_shift_groupUncheckedUpdateWithoutMsShiftGroupInput>
+  }
+
+  export type ms_detail_shift_groupUpdateManyWithWhereWithoutMsShiftGroupInput = {
+    where: ms_detail_shift_groupScalarWhereInput
+    data: XOR<ms_detail_shift_groupUpdateManyMutationInput, ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftGroupInput>
+  }
+
+  export type ms_shiftCreateWithoutDetailsInput = {
+    id_shift_sap?: string | null
+    code: string
+    name: string
+    in_time?: Date | string | null
+    out_time?: Date | string | null
+    gt_before_in?: number
+    gt_after_in?: number
+    gt_before_out?: number
+    gt_after_out?: number
+    flag_shift?: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+  }
+
+  export type ms_shiftUncheckedCreateWithoutDetailsInput = {
+    id?: number
+    id_shift_sap?: string | null
+    code: string
+    name: string
+    in_time?: Date | string | null
+    out_time?: Date | string | null
+    gt_before_in?: number
+    gt_after_in?: number
+    gt_before_out?: number
+    gt_after_out?: number
+    flag_shift?: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+  }
+
+  export type ms_shiftCreateOrConnectWithoutDetailsInput = {
+    where: ms_shiftWhereUniqueInput
+    create: XOR<ms_shiftCreateWithoutDetailsInput, ms_shiftUncheckedCreateWithoutDetailsInput>
+  }
+
+  export type ms_shift_groupCreateWithoutDetailsInput = {
+    id_shift_group_sap?: number
+    code: string
+    nama: string
+    flag_shift?: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+  }
+
+  export type ms_shift_groupUncheckedCreateWithoutDetailsInput = {
+    id?: number
+    id_shift_group_sap?: number
+    code: string
+    nama: string
+    flag_shift?: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+  }
+
+  export type ms_shift_groupCreateOrConnectWithoutDetailsInput = {
+    where: ms_shift_groupWhereUniqueInput
+    create: XOR<ms_shift_groupCreateWithoutDetailsInput, ms_shift_groupUncheckedCreateWithoutDetailsInput>
+  }
+
+  export type ms_shiftUpsertWithoutDetailsInput = {
+    update: XOR<ms_shiftUpdateWithoutDetailsInput, ms_shiftUncheckedUpdateWithoutDetailsInput>
+    create: XOR<ms_shiftCreateWithoutDetailsInput, ms_shiftUncheckedCreateWithoutDetailsInput>
+    where?: ms_shiftWhereInput
+  }
+
+  export type ms_shiftUpdateToOneWithWhereWithoutDetailsInput = {
+    where?: ms_shiftWhereInput
+    data: XOR<ms_shiftUpdateWithoutDetailsInput, ms_shiftUncheckedUpdateWithoutDetailsInput>
+  }
+
+  export type ms_shiftUpdateWithoutDetailsInput = {
+    id_shift_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gt_before_in?: IntFieldUpdateOperationsInput | number
+    gt_after_in?: IntFieldUpdateOperationsInput | number
+    gt_before_out?: IntFieldUpdateOperationsInput | number
+    gt_after_out?: IntFieldUpdateOperationsInput | number
+    flag_shift?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ms_shiftUncheckedUpdateWithoutDetailsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    id_shift_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gt_before_in?: IntFieldUpdateOperationsInput | number
+    gt_after_in?: IntFieldUpdateOperationsInput | number
+    gt_before_out?: IntFieldUpdateOperationsInput | number
+    gt_after_out?: IntFieldUpdateOperationsInput | number
+    flag_shift?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ms_shift_groupUpsertWithoutDetailsInput = {
+    update: XOR<ms_shift_groupUpdateWithoutDetailsInput, ms_shift_groupUncheckedUpdateWithoutDetailsInput>
+    create: XOR<ms_shift_groupCreateWithoutDetailsInput, ms_shift_groupUncheckedCreateWithoutDetailsInput>
+    where?: ms_shift_groupWhereInput
+  }
+
+  export type ms_shift_groupUpdateToOneWithWhereWithoutDetailsInput = {
+    where?: ms_shift_groupWhereInput
+    data: XOR<ms_shift_groupUpdateWithoutDetailsInput, ms_shift_groupUncheckedUpdateWithoutDetailsInput>
+  }
+
+  export type ms_shift_groupUpdateWithoutDetailsInput = {
+    id_shift_group_sap?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    flag_shift?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ms_shift_groupUncheckedUpdateWithoutDetailsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    id_shift_group_sap?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    flag_shift?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
   export type UserCreateWithoutDept_dataInput = {
     id?: bigint | number
     name: string
@@ -32597,6 +33261,90 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ms_detail_shift_groupCreateManyMsShiftInput = {
+    index_day: string
+    code: string
+    id_shift_group: string
+    created_by?: number | null
+    created_at?: Date | string | null
+    updated_by?: number | null
+    updated_at?: Date | string | null
+  }
+
+  export type ms_detail_shift_groupUpdateWithoutMsShiftInput = {
+    index_day?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    MsShiftGroup?: ms_shift_groupUpdateOneRequiredWithoutDetailsNestedInput
+  }
+
+  export type ms_detail_shift_groupUncheckedUpdateWithoutMsShiftInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    index_day?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    id_shift_group?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    index_day?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    id_shift_group?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ms_detail_shift_groupCreateManyMsShiftGroupInput = {
+    index_day: string
+    code: string
+    id_shift: string
+    created_by?: number | null
+    created_at?: Date | string | null
+    updated_by?: number | null
+    updated_at?: Date | string | null
+  }
+
+  export type ms_detail_shift_groupUpdateWithoutMsShiftGroupInput = {
+    index_day?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    MsShift?: ms_shiftUpdateOneRequiredWithoutDetailsNestedInput
+  }
+
+  export type ms_detail_shift_groupUncheckedUpdateWithoutMsShiftGroupInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    index_day?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    id_shift?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftGroupInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    index_day?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    id_shift?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type UserCreateManyDept_dataInput = {
     name: string
     email: string
@@ -32799,6 +33547,14 @@ export namespace Prisma {
      * @deprecated Use Ms_leave_typesCountOutputTypeDefaultArgs instead
      */
     export type Ms_leave_typesCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Ms_leave_typesCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use Ms_shiftCountOutputTypeDefaultArgs instead
+     */
+    export type Ms_shiftCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Ms_shiftCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use Ms_shift_groupCountOutputTypeDefaultArgs instead
+     */
+    export type Ms_shift_groupCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Ms_shift_groupCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use Mst_deptCountOutputTypeDefaultArgs instead
      */
