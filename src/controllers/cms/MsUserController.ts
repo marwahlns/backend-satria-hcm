@@ -79,6 +79,7 @@ export const getAllEmployee = async (req: Request, res: Response): Promise<void>
     // Query untuk mendapatkan total jumlah user sesuai pencarian
     const totalItems = await User.count({
       where: {
+        role_id: "10",
         OR: [
           { name: { contains: search as string } },
           { email: { contains: search as string } },
@@ -119,6 +120,7 @@ export const createEmployee = async (
       nrp,
       email,
       phone,
+      bdate,
       gender,
       marital_status,
       address,
@@ -126,16 +128,20 @@ export const createEmployee = async (
       join_date,
       end_date,
       plant,
-      klasifikasi,
-      superior,
       worklocation_code,
       worklocation_name,
       worklocation_lat_long,
+      klasifikasi,
+      superior,
+      section_code,
+      section,
       dept,
       department,
-      section,
+      divid,
       division,
-      bdate,
+      companyid,
+      company_name,
+      title,
     } = req.body;
 
     if (!name || !email || !nrp) {
@@ -155,15 +161,20 @@ export const createEmployee = async (
           email: email,
           password: hashedPassword,
           phone: phone,
-          dept: dept,
+          dept: Number(dept),
           department: department,
+          section_code: section_code,
           section: section,
+          divid: divid,
           division: division,
+          companyid: companyid,
+          company_name: company_name,
           personal_number: nrp,
           superior: superior,
           worklocation_code: worklocation_code,
           worklocation_name: worklocation_name,
           worklocation_lat_long: worklocation_lat_long,
+          title: title,
           role_id: "10",
           is_active: 0,
           is_blocked: 0,
@@ -309,7 +320,7 @@ export const deleteEmployee = async (
     const deletedEmployee = await User.update({
       where: { id: Number(id) },
       data: {
-        is_blocked: 1,
+        is_active: 1,
       }
     });
     if (!deletedEmployee) {
@@ -449,6 +460,18 @@ export const getAllSuperior = async (req: Request, res: Response): Promise<void>
           { name: { contains: search as string } },
         ],
       },
+      select: {
+        personal_number: true,
+        name: true,
+        section_code: true,
+        section: true,
+        divid: true,
+        companyid: true,
+        company_name: true,
+        dept: true,
+        department: true,
+        division: true,
+      }
     });
 
     res.status(200).send(

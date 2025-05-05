@@ -36,80 +36,59 @@ export const getAllTrxShiftEmployee = async (
     const shiftEmployees = await TrxShiftEmployee.findMany({
       where: {
         is_deleted: 0,
-        OR: [{ code: { contains: search as string } }],
+        OR: [
+          { code: { contains: search as string } },
+          { id_user: { contains: search as string } },
+          { id_shift_group: { contains: search as string } },
+        ],
       },
-      orderBy: { [sortField]: sortOrder },
+      include: {
+        MsUser: {
+          select: {
+            name: true,
+            personal_number: true,
+          },
+        },
+        MsShiftGroup: {
+          select: {
+            nama: true,
+            code: true,
+          },
+        },
+      },
+      orderBy: {
+        [sortField]: sortOrder,
+      },
       skip,
       take: pageSize,
     });
 
-    // Ambil id_user unik dari hasil query (hindari undefined/null)
-    const userIds = [
-      ...new Set(
-        shiftEmployees
-          .map((se) => se.id_user)
-          .filter((id) => id !== undefined && id !== null)
-      ),
-    ];
+    const formatDate = (date?: Date | null): string | null => {
+      if (!date) return null;
+      return date.toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      });
+    };
 
-    // Ambil nama user berdasarkan personal_number
-    const users = await User.findMany({
-      where: { personal_number: { in: userIds } },
-      select: { personal_number: true, name: true },
-    });
-
-    const userMap = new Map(
-      users
-        .filter((user) => user.personal_number !== null)
-        .map((user) => [user.personal_number!.toString(), user.name])
-    );
-
-    const shiftGroupIds = [
-      ...new Set(
-        shiftEmployees
-          .map((se) => se.id_shift_group)
-          .filter((id) => id !== undefined && id !== null)
-      ),
-    ];
-
-    const shiftGroups = await ShiftGroup.findMany({
-      where: { code: { in: shiftGroupIds } },
-      select: { code: true, nama: true },
-    });
-
-    const shiftGroupMap = new Map(
-      shiftGroups
-        .map((group) => [group.code.toString(), group.nama])
-    );
-
-    // Mapping shiftEmployees dengan user_name dan shift_group_name
-    const shiftEmployeeWithDetails = shiftEmployees.map((se) => ({
+    const formattedShiftEmployees = shiftEmployees.map((se) => ({
       ...se,
-      id: Number(se.id), // Konversi BigInt ke Number
-      user_name: userMap.get(se.id_user?.toString() || "") || "Unknown",
-      shift_group_name: shiftGroupMap.get(se.id_shift_group?.toString() || "") || "Unknown",
-      valid_from: se.valid_from
-        ? new Date(se.valid_from).toLocaleDateString("en-GB", {
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        })
-        : null,
-      valid_to: se.valid_to
-        ? new Date(se.valid_to).toLocaleDateString("en-GB", {
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        })
-        : null,
+      valid_from: formatDate(se.valid_from),
+      valid_to: formatDate(se.valid_to),
     }));
 
     const totalItems = await TrxShiftEmployee.count({
       where: {
         is_deleted: 0,
-        OR: [{ code: { contains: search as string } }],
+        OR: [
+          { code: { contains: search as string } },
+          { id_user: { contains: search as string } },
+          { id_shift_group: { contains: search as string } },
+        ],
       },
     });
+
     const totalPages = Math.ceil(totalItems / pageSize);
 
     res.status(200).send(
@@ -117,7 +96,7 @@ export const getAllTrxShiftEmployee = async (
         success: true,
         message: "Successfully retrieved Shift Employees data",
         data: {
-          data: shiftEmployeeWithDetails,
+          data: formattedShiftEmployees,
           totalPages,
           currentPage: pageNumber,
           totalItems,
@@ -148,6 +127,24 @@ export const createShiftEmployee = async (
       return;
     }
 
+    // Ambil user yang valid dari database
+    const validUsers = await User.findMany({
+      where: {
+        personal_number: { in: id_user },
+      },
+      select: { personal_number: true },
+    });
+
+    const validUserIds = validUsers.map(user => user.personal_number);
+
+    if (validUserIds.length === 0) {
+      res.status(400).json({
+        success: false,
+        message: "Tidak ada id_user yang valid ditemukan di tabel User",
+      });
+      return;
+    }
+
     const now = new Date();
     const yearMonth = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}`;
 
@@ -170,8 +167,7 @@ export const createShiftEmployee = async (
     }
 
     const shiftEmployees = await Promise.all(
-      id_user.map(async (userId: any, index: number) => {
-        // Cek transaksi terakhir untuk user ini
+      validUserIds.map(async (userId: any, index: number) => {
         const lastShiftByUser = await TrxShiftEmployee.findFirst({
           where: {
             id_user: userId,
@@ -204,7 +200,7 @@ export const createShiftEmployee = async (
     res.status(201).send(
       JSONbig.stringify({
         success: true,
-        message: "Shift Employees added successfully",
+        message: "Shift Employees added successfully (hanya user yang valid)",
         data: shiftEmployees,
       })
     );

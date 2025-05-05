@@ -2480,10 +2480,22 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     trx_leaves: number
+    trx_ovt: number
+    trx_officialTravel: number
+    trx_mutation: number
+    trx_resign: number
+    trx_shift_emp: number
+    trx_leave_quota: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     trx_leaves?: boolean | UserCountOutputTypeCountTrx_leavesArgs
+    trx_ovt?: boolean | UserCountOutputTypeCountTrx_ovtArgs
+    trx_officialTravel?: boolean | UserCountOutputTypeCountTrx_officialTravelArgs
+    trx_mutation?: boolean | UserCountOutputTypeCountTrx_mutationArgs
+    trx_resign?: boolean | UserCountOutputTypeCountTrx_resignArgs
+    trx_shift_emp?: boolean | UserCountOutputTypeCountTrx_shift_empArgs
+    trx_leave_quota?: boolean | UserCountOutputTypeCountTrx_leave_quotaArgs
   }
 
   // Custom InputTypes
@@ -2504,6 +2516,48 @@ export namespace Prisma {
     where?: trx_leavesWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTrx_ovtArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: trx_ovtWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTrx_officialTravelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: trx_official_travelWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTrx_mutationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: trx_mutationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTrx_resignArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: trx_resignWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTrx_shift_empArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: trx_shift_empWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTrx_leave_quotaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: trx_leave_quotaWhereInput
+  }
+
 
   /**
    * Count Type Ms_leave_typesCountOutputType
@@ -2511,10 +2565,12 @@ export namespace Prisma {
 
   export type Ms_leave_typesCountOutputType = {
     trx_leaves: number
+    trx_leave_quota: number
   }
 
   export type Ms_leave_typesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     trx_leaves?: boolean | Ms_leave_typesCountOutputTypeCountTrx_leavesArgs
+    trx_leave_quota?: boolean | Ms_leave_typesCountOutputTypeCountTrx_leave_quotaArgs
   }
 
   // Custom InputTypes
@@ -2535,6 +2591,13 @@ export namespace Prisma {
     where?: trx_leavesWhereInput
   }
 
+  /**
+   * Ms_leave_typesCountOutputType without action
+   */
+  export type Ms_leave_typesCountOutputTypeCountTrx_leave_quotaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: trx_leave_quotaWhereInput
+  }
+
 
   /**
    * Count Type Ms_shiftCountOutputType
@@ -2542,10 +2605,12 @@ export namespace Prisma {
 
   export type Ms_shiftCountOutputType = {
     details: number
+    trx_ovt: number
   }
 
   export type Ms_shiftCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     details?: boolean | Ms_shiftCountOutputTypeCountDetailsArgs
+    trx_ovt?: boolean | Ms_shiftCountOutputTypeCountTrx_ovtArgs
   }
 
   // Custom InputTypes
@@ -2566,6 +2631,13 @@ export namespace Prisma {
     where?: ms_detail_shift_groupWhereInput
   }
 
+  /**
+   * Ms_shiftCountOutputType without action
+   */
+  export type Ms_shiftCountOutputTypeCountTrx_ovtArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: trx_ovtWhereInput
+  }
+
 
   /**
    * Count Type Ms_shift_groupCountOutputType
@@ -2573,10 +2645,12 @@ export namespace Prisma {
 
   export type Ms_shift_groupCountOutputType = {
     details: number
+    trx_shift_emps: number
   }
 
   export type Ms_shift_groupCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     details?: boolean | Ms_shift_groupCountOutputTypeCountDetailsArgs
+    trx_shift_emps?: boolean | Ms_shift_groupCountOutputTypeCountTrx_shift_empsArgs
   }
 
   // Custom InputTypes
@@ -2595,6 +2669,13 @@ export namespace Prisma {
    */
   export type Ms_shift_groupCountOutputTypeCountDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ms_detail_shift_groupWhereInput
+  }
+
+  /**
+   * Ms_shift_groupCountOutputType without action
+   */
+  export type Ms_shift_groupCountOutputTypeCountTrx_shift_empsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: trx_shift_empWhereInput
   }
 
 
@@ -3177,6 +3258,12 @@ export namespace Prisma {
     updated_at?: boolean
     dept_data?: boolean | mst_deptDefaultArgs<ExtArgs>
     trx_leaves?: boolean | User$trx_leavesArgs<ExtArgs>
+    trx_ovt?: boolean | User$trx_ovtArgs<ExtArgs>
+    trx_officialTravel?: boolean | User$trx_officialTravelArgs<ExtArgs>
+    trx_mutation?: boolean | User$trx_mutationArgs<ExtArgs>
+    trx_resign?: boolean | User$trx_resignArgs<ExtArgs>
+    trx_shift_emp?: boolean | User$trx_shift_empArgs<ExtArgs>
+    trx_leave_quota?: boolean | User$trx_leave_quotaArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3232,6 +3319,12 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     dept_data?: boolean | mst_deptDefaultArgs<ExtArgs>
     trx_leaves?: boolean | User$trx_leavesArgs<ExtArgs>
+    trx_ovt?: boolean | User$trx_ovtArgs<ExtArgs>
+    trx_officialTravel?: boolean | User$trx_officialTravelArgs<ExtArgs>
+    trx_mutation?: boolean | User$trx_mutationArgs<ExtArgs>
+    trx_resign?: boolean | User$trx_resignArgs<ExtArgs>
+    trx_shift_emp?: boolean | User$trx_shift_empArgs<ExtArgs>
+    trx_leave_quota?: boolean | User$trx_leave_quotaArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3240,6 +3333,12 @@ export namespace Prisma {
     objects: {
       dept_data: Prisma.$mst_deptPayload<ExtArgs>
       trx_leaves: Prisma.$trx_leavesPayload<ExtArgs>[]
+      trx_ovt: Prisma.$trx_ovtPayload<ExtArgs>[]
+      trx_officialTravel: Prisma.$trx_official_travelPayload<ExtArgs>[]
+      trx_mutation: Prisma.$trx_mutationPayload<ExtArgs>[]
+      trx_resign: Prisma.$trx_resignPayload<ExtArgs>[]
+      trx_shift_emp: Prisma.$trx_shift_empPayload<ExtArgs>[]
+      trx_leave_quota: Prisma.$trx_leave_quotaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -3629,6 +3728,12 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     dept_data<T extends mst_deptDefaultArgs<ExtArgs> = {}>(args?: Subset<T, mst_deptDefaultArgs<ExtArgs>>): Prisma__mst_deptClient<$Result.GetResult<Prisma.$mst_deptPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     trx_leaves<T extends User$trx_leavesArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_leavesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_leavesPayload<ExtArgs>, T, "findMany"> | Null>
+    trx_ovt<T extends User$trx_ovtArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_ovtArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_ovtPayload<ExtArgs>, T, "findMany"> | Null>
+    trx_officialTravel<T extends User$trx_officialTravelArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_officialTravelArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_official_travelPayload<ExtArgs>, T, "findMany"> | Null>
+    trx_mutation<T extends User$trx_mutationArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_mutationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_mutationPayload<ExtArgs>, T, "findMany"> | Null>
+    trx_resign<T extends User$trx_resignArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_resignArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_resignPayload<ExtArgs>, T, "findMany"> | Null>
+    trx_shift_emp<T extends User$trx_shift_empArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_shift_empArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_shift_empPayload<ExtArgs>, T, "findMany"> | Null>
+    trx_leave_quota<T extends User$trx_leave_quotaArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_leave_quotaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_leave_quotaPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4021,6 +4126,126 @@ export namespace Prisma {
   }
 
   /**
+   * User.trx_ovt
+   */
+  export type User$trx_ovtArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_ovt
+     */
+    select?: trx_ovtSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_ovtInclude<ExtArgs> | null
+    where?: trx_ovtWhereInput
+    orderBy?: trx_ovtOrderByWithRelationInput | trx_ovtOrderByWithRelationInput[]
+    cursor?: trx_ovtWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Trx_ovtScalarFieldEnum | Trx_ovtScalarFieldEnum[]
+  }
+
+  /**
+   * User.trx_officialTravel
+   */
+  export type User$trx_officialTravelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_official_travel
+     */
+    select?: trx_official_travelSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_official_travelInclude<ExtArgs> | null
+    where?: trx_official_travelWhereInput
+    orderBy?: trx_official_travelOrderByWithRelationInput | trx_official_travelOrderByWithRelationInput[]
+    cursor?: trx_official_travelWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Trx_official_travelScalarFieldEnum | Trx_official_travelScalarFieldEnum[]
+  }
+
+  /**
+   * User.trx_mutation
+   */
+  export type User$trx_mutationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_mutation
+     */
+    select?: trx_mutationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_mutationInclude<ExtArgs> | null
+    where?: trx_mutationWhereInput
+    orderBy?: trx_mutationOrderByWithRelationInput | trx_mutationOrderByWithRelationInput[]
+    cursor?: trx_mutationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Trx_mutationScalarFieldEnum | Trx_mutationScalarFieldEnum[]
+  }
+
+  /**
+   * User.trx_resign
+   */
+  export type User$trx_resignArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_resign
+     */
+    select?: trx_resignSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_resignInclude<ExtArgs> | null
+    where?: trx_resignWhereInput
+    orderBy?: trx_resignOrderByWithRelationInput | trx_resignOrderByWithRelationInput[]
+    cursor?: trx_resignWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Trx_resignScalarFieldEnum | Trx_resignScalarFieldEnum[]
+  }
+
+  /**
+   * User.trx_shift_emp
+   */
+  export type User$trx_shift_empArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_shift_emp
+     */
+    select?: trx_shift_empSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_shift_empInclude<ExtArgs> | null
+    where?: trx_shift_empWhereInput
+    orderBy?: trx_shift_empOrderByWithRelationInput | trx_shift_empOrderByWithRelationInput[]
+    cursor?: trx_shift_empWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Trx_shift_empScalarFieldEnum | Trx_shift_empScalarFieldEnum[]
+  }
+
+  /**
+   * User.trx_leave_quota
+   */
+  export type User$trx_leave_quotaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_leave_quota
+     */
+    select?: trx_leave_quotaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_leave_quotaInclude<ExtArgs> | null
+    where?: trx_leave_quotaWhereInput
+    orderBy?: trx_leave_quotaOrderByWithRelationInput | trx_leave_quotaOrderByWithRelationInput[]
+    cursor?: trx_leave_quotaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Trx_leave_quotaScalarFieldEnum | Trx_leave_quotaScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4274,6 +4499,7 @@ export namespace Prisma {
     updated_at?: boolean
     is_deleted?: boolean
     trx_leaves?: boolean | ms_leave_types$trx_leavesArgs<ExtArgs>
+    trx_leave_quota?: boolean | ms_leave_types$trx_leave_quotaArgs<ExtArgs>
     _count?: boolean | Ms_leave_typesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ms_leave_types"]>
 
@@ -4291,6 +4517,7 @@ export namespace Prisma {
 
   export type ms_leave_typesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     trx_leaves?: boolean | ms_leave_types$trx_leavesArgs<ExtArgs>
+    trx_leave_quota?: boolean | ms_leave_types$trx_leave_quotaArgs<ExtArgs>
     _count?: boolean | Ms_leave_typesCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -4298,6 +4525,7 @@ export namespace Prisma {
     name: "ms_leave_types"
     objects: {
       trx_leaves: Prisma.$trx_leavesPayload<ExtArgs>[]
+      trx_leave_quota: Prisma.$trx_leave_quotaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4649,6 +4877,7 @@ export namespace Prisma {
   export interface Prisma__ms_leave_typesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     trx_leaves<T extends ms_leave_types$trx_leavesArgs<ExtArgs> = {}>(args?: Subset<T, ms_leave_types$trx_leavesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_leavesPayload<ExtArgs>, T, "findMany"> | Null>
+    trx_leave_quota<T extends ms_leave_types$trx_leave_quotaArgs<ExtArgs> = {}>(args?: Subset<T, ms_leave_types$trx_leave_quotaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_leave_quotaPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5004,6 +5233,26 @@ export namespace Prisma {
   }
 
   /**
+   * ms_leave_types.trx_leave_quota
+   */
+  export type ms_leave_types$trx_leave_quotaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_leave_quota
+     */
+    select?: trx_leave_quotaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_leave_quotaInclude<ExtArgs> | null
+    where?: trx_leave_quotaWhereInput
+    orderBy?: trx_leave_quotaOrderByWithRelationInput | trx_leave_quotaOrderByWithRelationInput[]
+    cursor?: trx_leave_quotaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Trx_leave_quotaScalarFieldEnum | Trx_leave_quotaScalarFieldEnum[]
+  }
+
+  /**
    * ms_leave_types without action
    */
   export type ms_leave_typesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5032,7 +5281,6 @@ export namespace Prisma {
 
   export type Trx_leavesAvgAggregateOutputType = {
     id: number | null
-    user: number | null
     dept: number | null
     leave_type_id: number | null
     status_id: number | null
@@ -5044,7 +5292,6 @@ export namespace Prisma {
 
   export type Trx_leavesSumAggregateOutputType = {
     id: bigint | null
-    user: bigint | null
     dept: bigint | null
     leave_type_id: number | null
     status_id: bigint | null
@@ -5056,7 +5303,7 @@ export namespace Prisma {
 
   export type Trx_leavesMinAggregateOutputType = {
     id: bigint | null
-    user: bigint | null
+    user: string | null
     dept: bigint | null
     leave_type_id: number | null
     status_id: bigint | null
@@ -5087,7 +5334,7 @@ export namespace Prisma {
 
   export type Trx_leavesMaxAggregateOutputType = {
     id: bigint | null
-    user: bigint | null
+    user: string | null
     dept: bigint | null
     leave_type_id: number | null
     status_id: bigint | null
@@ -5151,7 +5398,6 @@ export namespace Prisma {
 
   export type Trx_leavesAvgAggregateInputType = {
     id?: true
-    user?: true
     dept?: true
     leave_type_id?: true
     status_id?: true
@@ -5163,7 +5409,6 @@ export namespace Prisma {
 
   export type Trx_leavesSumAggregateInputType = {
     id?: true
-    user?: true
     dept?: true
     leave_type_id?: true
     status_id?: true
@@ -5355,7 +5600,7 @@ export namespace Prisma {
 
   export type Trx_leavesGroupByOutputType = {
     id: bigint
-    user: bigint
+    user: string
     dept: bigint
     leave_type_id: number
     status_id: bigint
@@ -5481,7 +5726,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
-      user: bigint
+      user: string
       dept: bigint
       leave_type_id: number
       status_id: bigint
@@ -5880,7 +6125,7 @@ export namespace Prisma {
    */ 
   interface trx_leavesFieldRefs {
     readonly id: FieldRef<"trx_leaves", 'BigInt'>
-    readonly user: FieldRef<"trx_leaves", 'BigInt'>
+    readonly user: FieldRef<"trx_leaves", 'String'>
     readonly dept: FieldRef<"trx_leaves", 'BigInt'>
     readonly leave_type_id: FieldRef<"trx_leaves", 'Int'>
     readonly status_id: FieldRef<"trx_leaves", 'BigInt'>
@@ -6538,6 +6783,7 @@ export namespace Prisma {
     updated_at?: boolean
     is_deleted?: boolean
     details?: boolean | ms_shift$detailsArgs<ExtArgs>
+    trx_ovt?: boolean | ms_shift$trx_ovtArgs<ExtArgs>
     _count?: boolean | Ms_shiftCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ms_shift"]>
 
@@ -6563,6 +6809,7 @@ export namespace Prisma {
 
   export type ms_shiftInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     details?: boolean | ms_shift$detailsArgs<ExtArgs>
+    trx_ovt?: boolean | ms_shift$trx_ovtArgs<ExtArgs>
     _count?: boolean | Ms_shiftCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -6570,6 +6817,7 @@ export namespace Prisma {
     name: "ms_shift"
     objects: {
       details: Prisma.$ms_detail_shift_groupPayload<ExtArgs>[]
+      trx_ovt: Prisma.$trx_ovtPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -6929,6 +7177,7 @@ export namespace Prisma {
   export interface Prisma__ms_shiftClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     details<T extends ms_shift$detailsArgs<ExtArgs> = {}>(args?: Subset<T, ms_shift$detailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ms_detail_shift_groupPayload<ExtArgs>, T, "findMany"> | Null>
+    trx_ovt<T extends ms_shift$trx_ovtArgs<ExtArgs> = {}>(args?: Subset<T, ms_shift$trx_ovtArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_ovtPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7292,6 +7541,26 @@ export namespace Prisma {
   }
 
   /**
+   * ms_shift.trx_ovt
+   */
+  export type ms_shift$trx_ovtArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_ovt
+     */
+    select?: trx_ovtSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_ovtInclude<ExtArgs> | null
+    where?: trx_ovtWhereInput
+    orderBy?: trx_ovtOrderByWithRelationInput | trx_ovtOrderByWithRelationInput[]
+    cursor?: trx_ovtWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Trx_ovtScalarFieldEnum | Trx_ovtScalarFieldEnum[]
+  }
+
+  /**
    * ms_shift without action
    */
   export type ms_shiftDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7565,6 +7834,7 @@ export namespace Prisma {
     updated_at?: boolean
     is_deleted?: boolean
     details?: boolean | ms_shift_group$detailsArgs<ExtArgs>
+    trx_shift_emps?: boolean | ms_shift_group$trx_shift_empsArgs<ExtArgs>
     _count?: boolean | Ms_shift_groupCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ms_shift_group"]>
 
@@ -7584,6 +7854,7 @@ export namespace Prisma {
 
   export type ms_shift_groupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     details?: boolean | ms_shift_group$detailsArgs<ExtArgs>
+    trx_shift_emps?: boolean | ms_shift_group$trx_shift_empsArgs<ExtArgs>
     _count?: boolean | Ms_shift_groupCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -7591,6 +7862,7 @@ export namespace Prisma {
     name: "ms_shift_group"
     objects: {
       details: Prisma.$ms_detail_shift_groupPayload<ExtArgs>[]
+      trx_shift_emps: Prisma.$trx_shift_empPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -7944,6 +8216,7 @@ export namespace Prisma {
   export interface Prisma__ms_shift_groupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     details<T extends ms_shift_group$detailsArgs<ExtArgs> = {}>(args?: Subset<T, ms_shift_group$detailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ms_detail_shift_groupPayload<ExtArgs>, T, "findMany"> | Null>
+    trx_shift_emps<T extends ms_shift_group$trx_shift_empsArgs<ExtArgs> = {}>(args?: Subset<T, ms_shift_group$trx_shift_empsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_shift_empPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8298,6 +8571,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Ms_detail_shift_groupScalarFieldEnum | Ms_detail_shift_groupScalarFieldEnum[]
+  }
+
+  /**
+   * ms_shift_group.trx_shift_emps
+   */
+  export type ms_shift_group$trx_shift_empsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_shift_emp
+     */
+    select?: trx_shift_empSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_shift_empInclude<ExtArgs> | null
+    where?: trx_shift_empWhereInput
+    orderBy?: trx_shift_empOrderByWithRelationInput | trx_shift_empOrderByWithRelationInput[]
+    cursor?: trx_shift_empWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Trx_shift_empScalarFieldEnum | Trx_shift_empScalarFieldEnum[]
   }
 
   /**
@@ -12167,7 +12460,7 @@ export namespace Prisma {
   export type Trx_ovtSumAggregateOutputType = {
     id: bigint | null
     dept: bigint | null
-    shift: bigint | null
+    shift: number | null
     status_id: bigint | null
     created_by: bigint | null
     updated_by: bigint | null
@@ -12177,7 +12470,7 @@ export namespace Prisma {
     id: bigint | null
     user: string | null
     dept: bigint | null
-    shift: bigint | null
+    shift: number | null
     status_id: bigint | null
     check_in_ovt: Date | null
     check_out_ovt: Date | null
@@ -12206,7 +12499,7 @@ export namespace Prisma {
     id: bigint | null
     user: string | null
     dept: bigint | null
-    shift: bigint | null
+    shift: number | null
     status_id: bigint | null
     check_in_ovt: Date | null
     check_out_ovt: Date | null
@@ -12458,7 +12751,7 @@ export namespace Prisma {
     id: bigint
     user: string
     dept: bigint
-    shift: bigint
+    shift: number
     status_id: bigint
     check_in_ovt: Date
     check_out_ovt: Date
@@ -12529,6 +12822,8 @@ export namespace Prisma {
     created_at?: boolean
     updated_by?: boolean
     updated_at?: boolean
+    user_data?: boolean | UserDefaultArgs<ExtArgs>
+    shift_data?: boolean | ms_shiftDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["trx_ovt"]>
 
 
@@ -12561,15 +12856,22 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
+  export type trx_ovtInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_data?: boolean | UserDefaultArgs<ExtArgs>
+    shift_data?: boolean | ms_shiftDefaultArgs<ExtArgs>
+  }
 
   export type $trx_ovtPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "trx_ovt"
-    objects: {}
+    objects: {
+      user_data: Prisma.$UserPayload<ExtArgs>
+      shift_data: Prisma.$ms_shiftPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
       user: string
       dept: bigint
-      shift: bigint
+      shift: number
       status_id: bigint
       check_in_ovt: Date
       check_out_ovt: Date
@@ -12932,6 +13234,8 @@ export namespace Prisma {
    */
   export interface Prisma__trx_ovtClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    user_data<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    shift_data<T extends ms_shiftDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ms_shiftDefaultArgs<ExtArgs>>): Prisma__ms_shiftClient<$Result.GetResult<Prisma.$ms_shiftPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12964,7 +13268,7 @@ export namespace Prisma {
     readonly id: FieldRef<"trx_ovt", 'BigInt'>
     readonly user: FieldRef<"trx_ovt", 'String'>
     readonly dept: FieldRef<"trx_ovt", 'BigInt'>
-    readonly shift: FieldRef<"trx_ovt", 'BigInt'>
+    readonly shift: FieldRef<"trx_ovt", 'Int'>
     readonly status_id: FieldRef<"trx_ovt", 'BigInt'>
     readonly check_in_ovt: FieldRef<"trx_ovt", 'DateTime'>
     readonly check_out_ovt: FieldRef<"trx_ovt", 'DateTime'>
@@ -13000,6 +13304,10 @@ export namespace Prisma {
      */
     select?: trx_ovtSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_ovtInclude<ExtArgs> | null
+    /**
      * Filter, which trx_ovt to fetch.
      */
     where: trx_ovtWhereUniqueInput
@@ -13014,6 +13322,10 @@ export namespace Prisma {
      */
     select?: trx_ovtSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_ovtInclude<ExtArgs> | null
+    /**
      * Filter, which trx_ovt to fetch.
      */
     where: trx_ovtWhereUniqueInput
@@ -13027,6 +13339,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_ovt
      */
     select?: trx_ovtSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_ovtInclude<ExtArgs> | null
     /**
      * Filter, which trx_ovt to fetch.
      */
@@ -13072,6 +13388,10 @@ export namespace Prisma {
      */
     select?: trx_ovtSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_ovtInclude<ExtArgs> | null
+    /**
      * Filter, which trx_ovt to fetch.
      */
     where?: trx_ovtWhereInput
@@ -13116,6 +13436,10 @@ export namespace Prisma {
      */
     select?: trx_ovtSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_ovtInclude<ExtArgs> | null
+    /**
      * Filter, which trx_ovts to fetch.
      */
     where?: trx_ovtWhereInput
@@ -13155,6 +13479,10 @@ export namespace Prisma {
      */
     select?: trx_ovtSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_ovtInclude<ExtArgs> | null
+    /**
      * The data needed to create a trx_ovt.
      */
     data: XOR<trx_ovtCreateInput, trx_ovtUncheckedCreateInput>
@@ -13178,6 +13506,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_ovt
      */
     select?: trx_ovtSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_ovtInclude<ExtArgs> | null
     /**
      * The data needed to update a trx_ovt.
      */
@@ -13211,6 +13543,10 @@ export namespace Prisma {
      */
     select?: trx_ovtSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_ovtInclude<ExtArgs> | null
+    /**
      * The filter to search for the trx_ovt to update in case it exists.
      */
     where: trx_ovtWhereUniqueInput
@@ -13232,6 +13568,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_ovt
      */
     select?: trx_ovtSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_ovtInclude<ExtArgs> | null
     /**
      * Filter which trx_ovt to delete.
      */
@@ -13256,6 +13596,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_ovt
      */
     select?: trx_ovtSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_ovtInclude<ExtArgs> | null
   }
 
 
@@ -13529,6 +13873,8 @@ export namespace Prisma {
     updated_at?: boolean
     is_deleted?: boolean
     flag_shift?: boolean
+    MsUser?: boolean | UserDefaultArgs<ExtArgs>
+    MsShiftGroup?: boolean | ms_shift_groupDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["trx_shift_emp"]>
 
 
@@ -13547,10 +13893,17 @@ export namespace Prisma {
     flag_shift?: boolean
   }
 
+  export type trx_shift_empInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    MsUser?: boolean | UserDefaultArgs<ExtArgs>
+    MsShiftGroup?: boolean | ms_shift_groupDefaultArgs<ExtArgs>
+  }
 
   export type $trx_shift_empPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "trx_shift_emp"
-    objects: {}
+    objects: {
+      MsUser: Prisma.$UserPayload<ExtArgs>
+      MsShiftGroup: Prisma.$ms_shift_groupPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
       code: string
@@ -13904,6 +14257,8 @@ export namespace Prisma {
    */
   export interface Prisma__trx_shift_empClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    MsUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    MsShiftGroup<T extends ms_shift_groupDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ms_shift_groupDefaultArgs<ExtArgs>>): Prisma__ms_shift_groupClient<$Result.GetResult<Prisma.$ms_shift_groupPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13958,6 +14313,10 @@ export namespace Prisma {
      */
     select?: trx_shift_empSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_shift_empInclude<ExtArgs> | null
+    /**
      * Filter, which trx_shift_emp to fetch.
      */
     where: trx_shift_empWhereUniqueInput
@@ -13972,6 +14331,10 @@ export namespace Prisma {
      */
     select?: trx_shift_empSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_shift_empInclude<ExtArgs> | null
+    /**
      * Filter, which trx_shift_emp to fetch.
      */
     where: trx_shift_empWhereUniqueInput
@@ -13985,6 +14348,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_shift_emp
      */
     select?: trx_shift_empSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_shift_empInclude<ExtArgs> | null
     /**
      * Filter, which trx_shift_emp to fetch.
      */
@@ -14030,6 +14397,10 @@ export namespace Prisma {
      */
     select?: trx_shift_empSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_shift_empInclude<ExtArgs> | null
+    /**
      * Filter, which trx_shift_emp to fetch.
      */
     where?: trx_shift_empWhereInput
@@ -14074,6 +14445,10 @@ export namespace Prisma {
      */
     select?: trx_shift_empSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_shift_empInclude<ExtArgs> | null
+    /**
      * Filter, which trx_shift_emps to fetch.
      */
     where?: trx_shift_empWhereInput
@@ -14113,6 +14488,10 @@ export namespace Prisma {
      */
     select?: trx_shift_empSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_shift_empInclude<ExtArgs> | null
+    /**
      * The data needed to create a trx_shift_emp.
      */
     data: XOR<trx_shift_empCreateInput, trx_shift_empUncheckedCreateInput>
@@ -14136,6 +14515,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_shift_emp
      */
     select?: trx_shift_empSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_shift_empInclude<ExtArgs> | null
     /**
      * The data needed to update a trx_shift_emp.
      */
@@ -14169,6 +14552,10 @@ export namespace Prisma {
      */
     select?: trx_shift_empSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_shift_empInclude<ExtArgs> | null
+    /**
      * The filter to search for the trx_shift_emp to update in case it exists.
      */
     where: trx_shift_empWhereUniqueInput
@@ -14190,6 +14577,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_shift_emp
      */
     select?: trx_shift_empSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_shift_empInclude<ExtArgs> | null
     /**
      * Filter which trx_shift_emp to delete.
      */
@@ -14214,6 +14605,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_shift_emp
      */
     select?: trx_shift_empSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_shift_empInclude<ExtArgs> | null
   }
 
 
@@ -14607,6 +15002,7 @@ export namespace Prisma {
     created_at?: boolean
     updated_by?: boolean
     updated_at?: boolean
+    user_data?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["trx_official_travel"]>
 
 
@@ -14640,10 +15036,15 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
+  export type trx_official_travelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_data?: boolean | UserDefaultArgs<ExtArgs>
+  }
 
   export type $trx_official_travelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "trx_official_travel"
-    objects: {}
+    objects: {
+      user_data: Prisma.$UserPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       user: string
@@ -15012,6 +15413,7 @@ export namespace Prisma {
    */
   export interface Prisma__trx_official_travelClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    user_data<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15081,6 +15483,10 @@ export namespace Prisma {
      */
     select?: trx_official_travelSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_official_travelInclude<ExtArgs> | null
+    /**
      * Filter, which trx_official_travel to fetch.
      */
     where: trx_official_travelWhereUniqueInput
@@ -15095,6 +15501,10 @@ export namespace Prisma {
      */
     select?: trx_official_travelSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_official_travelInclude<ExtArgs> | null
+    /**
      * Filter, which trx_official_travel to fetch.
      */
     where: trx_official_travelWhereUniqueInput
@@ -15108,6 +15518,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_official_travel
      */
     select?: trx_official_travelSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_official_travelInclude<ExtArgs> | null
     /**
      * Filter, which trx_official_travel to fetch.
      */
@@ -15153,6 +15567,10 @@ export namespace Prisma {
      */
     select?: trx_official_travelSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_official_travelInclude<ExtArgs> | null
+    /**
      * Filter, which trx_official_travel to fetch.
      */
     where?: trx_official_travelWhereInput
@@ -15197,6 +15615,10 @@ export namespace Prisma {
      */
     select?: trx_official_travelSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_official_travelInclude<ExtArgs> | null
+    /**
      * Filter, which trx_official_travels to fetch.
      */
     where?: trx_official_travelWhereInput
@@ -15236,6 +15658,10 @@ export namespace Prisma {
      */
     select?: trx_official_travelSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_official_travelInclude<ExtArgs> | null
+    /**
      * The data needed to create a trx_official_travel.
      */
     data: XOR<trx_official_travelCreateInput, trx_official_travelUncheckedCreateInput>
@@ -15259,6 +15685,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_official_travel
      */
     select?: trx_official_travelSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_official_travelInclude<ExtArgs> | null
     /**
      * The data needed to update a trx_official_travel.
      */
@@ -15292,6 +15722,10 @@ export namespace Prisma {
      */
     select?: trx_official_travelSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_official_travelInclude<ExtArgs> | null
+    /**
      * The filter to search for the trx_official_travel to update in case it exists.
      */
     where: trx_official_travelWhereUniqueInput
@@ -15313,6 +15747,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_official_travel
      */
     select?: trx_official_travelSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_official_travelInclude<ExtArgs> | null
     /**
      * Filter which trx_official_travel to delete.
      */
@@ -15337,6 +15775,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_official_travel
      */
     select?: trx_official_travelSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_official_travelInclude<ExtArgs> | null
   }
 
 
@@ -15694,6 +16136,7 @@ export namespace Prisma {
     created_at?: boolean
     updated_by?: boolean
     updated_at?: boolean
+    user_data?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["trx_mutation"]>
 
 
@@ -15723,10 +16166,15 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
+  export type trx_mutationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_data?: boolean | UserDefaultArgs<ExtArgs>
+  }
 
   export type $trx_mutationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "trx_mutation"
-    objects: {}
+    objects: {
+      user_data: Prisma.$UserPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       user: string
@@ -16091,6 +16539,7 @@ export namespace Prisma {
    */
   export interface Prisma__trx_mutationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    user_data<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16156,6 +16605,10 @@ export namespace Prisma {
      */
     select?: trx_mutationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_mutationInclude<ExtArgs> | null
+    /**
      * Filter, which trx_mutation to fetch.
      */
     where: trx_mutationWhereUniqueInput
@@ -16170,6 +16623,10 @@ export namespace Prisma {
      */
     select?: trx_mutationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_mutationInclude<ExtArgs> | null
+    /**
      * Filter, which trx_mutation to fetch.
      */
     where: trx_mutationWhereUniqueInput
@@ -16183,6 +16640,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_mutation
      */
     select?: trx_mutationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_mutationInclude<ExtArgs> | null
     /**
      * Filter, which trx_mutation to fetch.
      */
@@ -16228,6 +16689,10 @@ export namespace Prisma {
      */
     select?: trx_mutationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_mutationInclude<ExtArgs> | null
+    /**
      * Filter, which trx_mutation to fetch.
      */
     where?: trx_mutationWhereInput
@@ -16272,6 +16737,10 @@ export namespace Prisma {
      */
     select?: trx_mutationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_mutationInclude<ExtArgs> | null
+    /**
      * Filter, which trx_mutations to fetch.
      */
     where?: trx_mutationWhereInput
@@ -16311,6 +16780,10 @@ export namespace Prisma {
      */
     select?: trx_mutationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_mutationInclude<ExtArgs> | null
+    /**
      * The data needed to create a trx_mutation.
      */
     data: XOR<trx_mutationCreateInput, trx_mutationUncheckedCreateInput>
@@ -16334,6 +16807,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_mutation
      */
     select?: trx_mutationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_mutationInclude<ExtArgs> | null
     /**
      * The data needed to update a trx_mutation.
      */
@@ -16367,6 +16844,10 @@ export namespace Prisma {
      */
     select?: trx_mutationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_mutationInclude<ExtArgs> | null
+    /**
      * The filter to search for the trx_mutation to update in case it exists.
      */
     where: trx_mutationWhereUniqueInput
@@ -16388,6 +16869,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_mutation
      */
     select?: trx_mutationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_mutationInclude<ExtArgs> | null
     /**
      * Filter which trx_mutation to delete.
      */
@@ -16412,6 +16897,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_mutation
      */
     select?: trx_mutationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_mutationInclude<ExtArgs> | null
   }
 
 
@@ -16769,6 +17258,7 @@ export namespace Prisma {
     created_at?: boolean
     updated_by?: boolean
     updated_at?: boolean
+    user_data?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["trx_resign"]>
 
 
@@ -16798,10 +17288,15 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
+  export type trx_resignInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_data?: boolean | UserDefaultArgs<ExtArgs>
+  }
 
   export type $trx_resignPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "trx_resign"
-    objects: {}
+    objects: {
+      user_data: Prisma.$UserPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       user: string
@@ -17166,6 +17661,7 @@ export namespace Prisma {
    */
   export interface Prisma__trx_resignClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    user_data<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -17231,6 +17727,10 @@ export namespace Prisma {
      */
     select?: trx_resignSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_resignInclude<ExtArgs> | null
+    /**
      * Filter, which trx_resign to fetch.
      */
     where: trx_resignWhereUniqueInput
@@ -17245,6 +17745,10 @@ export namespace Prisma {
      */
     select?: trx_resignSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_resignInclude<ExtArgs> | null
+    /**
      * Filter, which trx_resign to fetch.
      */
     where: trx_resignWhereUniqueInput
@@ -17258,6 +17762,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_resign
      */
     select?: trx_resignSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_resignInclude<ExtArgs> | null
     /**
      * Filter, which trx_resign to fetch.
      */
@@ -17303,6 +17811,10 @@ export namespace Prisma {
      */
     select?: trx_resignSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_resignInclude<ExtArgs> | null
+    /**
      * Filter, which trx_resign to fetch.
      */
     where?: trx_resignWhereInput
@@ -17347,6 +17859,10 @@ export namespace Prisma {
      */
     select?: trx_resignSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_resignInclude<ExtArgs> | null
+    /**
      * Filter, which trx_resigns to fetch.
      */
     where?: trx_resignWhereInput
@@ -17386,6 +17902,10 @@ export namespace Prisma {
      */
     select?: trx_resignSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_resignInclude<ExtArgs> | null
+    /**
      * The data needed to create a trx_resign.
      */
     data: XOR<trx_resignCreateInput, trx_resignUncheckedCreateInput>
@@ -17409,6 +17929,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_resign
      */
     select?: trx_resignSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_resignInclude<ExtArgs> | null
     /**
      * The data needed to update a trx_resign.
      */
@@ -17442,6 +17966,10 @@ export namespace Prisma {
      */
     select?: trx_resignSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_resignInclude<ExtArgs> | null
+    /**
      * The filter to search for the trx_resign to update in case it exists.
      */
     where: trx_resignWhereUniqueInput
@@ -17463,6 +17991,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_resign
      */
     select?: trx_resignSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_resignInclude<ExtArgs> | null
     /**
      * Filter which trx_resign to delete.
      */
@@ -17487,6 +18019,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_resign
      */
     select?: trx_resignSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_resignInclude<ExtArgs> | null
   }
 
 
@@ -23333,8 +23869,8 @@ export namespace Prisma {
 
   export type Trx_leave_quotaGroupByOutputType = {
     id: number
-    id_user: string | null
-    leaves_type_id: number | null
+    id_user: string
+    leaves_type_id: number
     valid_from: Date | null
     valid_to: Date | null
     leaves_quota: number | null
@@ -23378,6 +23914,8 @@ export namespace Prisma {
     is_deleted?: boolean
     created_at?: boolean
     updated_at?: boolean
+    MsUser?: boolean | UserDefaultArgs<ExtArgs>
+    MsLeaveType?: boolean | ms_leave_typesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["trx_leave_quota"]>
 
 
@@ -23396,14 +23934,21 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
+  export type trx_leave_quotaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    MsUser?: boolean | UserDefaultArgs<ExtArgs>
+    MsLeaveType?: boolean | ms_leave_typesDefaultArgs<ExtArgs>
+  }
 
   export type $trx_leave_quotaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "trx_leave_quota"
-    objects: {}
+    objects: {
+      MsUser: Prisma.$UserPayload<ExtArgs>
+      MsLeaveType: Prisma.$ms_leave_typesPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      id_user: string | null
-      leaves_type_id: number | null
+      id_user: string
+      leaves_type_id: number
       valid_from: Date | null
       valid_to: Date | null
       leaves_quota: number | null
@@ -23753,6 +24298,8 @@ export namespace Prisma {
    */
   export interface Prisma__trx_leave_quotaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    MsUser<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    MsLeaveType<T extends ms_leave_typesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ms_leave_typesDefaultArgs<ExtArgs>>): Prisma__ms_leave_typesClient<$Result.GetResult<Prisma.$ms_leave_typesPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -23807,6 +24354,10 @@ export namespace Prisma {
      */
     select?: trx_leave_quotaSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_leave_quotaInclude<ExtArgs> | null
+    /**
      * Filter, which trx_leave_quota to fetch.
      */
     where: trx_leave_quotaWhereUniqueInput
@@ -23821,6 +24372,10 @@ export namespace Prisma {
      */
     select?: trx_leave_quotaSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_leave_quotaInclude<ExtArgs> | null
+    /**
      * Filter, which trx_leave_quota to fetch.
      */
     where: trx_leave_quotaWhereUniqueInput
@@ -23834,6 +24389,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_leave_quota
      */
     select?: trx_leave_quotaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_leave_quotaInclude<ExtArgs> | null
     /**
      * Filter, which trx_leave_quota to fetch.
      */
@@ -23879,6 +24438,10 @@ export namespace Prisma {
      */
     select?: trx_leave_quotaSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_leave_quotaInclude<ExtArgs> | null
+    /**
      * Filter, which trx_leave_quota to fetch.
      */
     where?: trx_leave_quotaWhereInput
@@ -23923,6 +24486,10 @@ export namespace Prisma {
      */
     select?: trx_leave_quotaSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_leave_quotaInclude<ExtArgs> | null
+    /**
      * Filter, which trx_leave_quotas to fetch.
      */
     where?: trx_leave_quotaWhereInput
@@ -23962,9 +24529,13 @@ export namespace Prisma {
      */
     select?: trx_leave_quotaSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_leave_quotaInclude<ExtArgs> | null
+    /**
      * The data needed to create a trx_leave_quota.
      */
-    data?: XOR<trx_leave_quotaCreateInput, trx_leave_quotaUncheckedCreateInput>
+    data: XOR<trx_leave_quotaCreateInput, trx_leave_quotaUncheckedCreateInput>
   }
 
   /**
@@ -23985,6 +24556,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_leave_quota
      */
     select?: trx_leave_quotaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_leave_quotaInclude<ExtArgs> | null
     /**
      * The data needed to update a trx_leave_quota.
      */
@@ -24018,6 +24593,10 @@ export namespace Prisma {
      */
     select?: trx_leave_quotaSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_leave_quotaInclude<ExtArgs> | null
+    /**
      * The filter to search for the trx_leave_quota to update in case it exists.
      */
     where: trx_leave_quotaWhereUniqueInput
@@ -24039,6 +24618,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_leave_quota
      */
     select?: trx_leave_quotaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_leave_quotaInclude<ExtArgs> | null
     /**
      * Filter which trx_leave_quota to delete.
      */
@@ -24063,6 +24646,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the trx_leave_quota
      */
     select?: trx_leave_quotaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_leave_quotaInclude<ExtArgs> | null
   }
 
 
@@ -24656,6 +25243,12 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"User"> | Date | string | null
     dept_data?: XOR<Mst_deptRelationFilter, mst_deptWhereInput>
     trx_leaves?: Trx_leavesListRelationFilter
+    trx_ovt?: Trx_ovtListRelationFilter
+    trx_officialTravel?: Trx_official_travelListRelationFilter
+    trx_mutation?: Trx_mutationListRelationFilter
+    trx_resign?: Trx_resignListRelationFilter
+    trx_shift_emp?: Trx_shift_empListRelationFilter
+    trx_leave_quota?: Trx_leave_quotaListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -24706,11 +25299,18 @@ export namespace Prisma {
     updated_at?: SortOrderInput | SortOrder
     dept_data?: mst_deptOrderByWithRelationInput
     trx_leaves?: trx_leavesOrderByRelationAggregateInput
+    trx_ovt?: trx_ovtOrderByRelationAggregateInput
+    trx_officialTravel?: trx_official_travelOrderByRelationAggregateInput
+    trx_mutation?: trx_mutationOrderByRelationAggregateInput
+    trx_resign?: trx_resignOrderByRelationAggregateInput
+    trx_shift_emp?: trx_shift_empOrderByRelationAggregateInput
+    trx_leave_quota?: trx_leave_quotaOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: bigint | number
     email?: string
+    personal_number?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
@@ -24736,7 +25336,6 @@ export namespace Prisma {
     worklocation_code?: StringNullableFilter<"User"> | string | null
     worklocation_name?: StringNullableFilter<"User"> | string | null
     worklocation_lat_long?: StringNullableFilter<"User"> | string | null
-    personal_number?: StringNullableFilter<"User"> | string | null
     csfield10?: StringNullableFilter<"User"> | string | null
     company_name?: StringNullableFilter<"User"> | string | null
     photo?: StringNullableFilter<"User"> | string | null
@@ -24759,7 +25358,13 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"User"> | Date | string | null
     dept_data?: XOR<Mst_deptRelationFilter, mst_deptWhereInput>
     trx_leaves?: Trx_leavesListRelationFilter
-  }, "id" | "email">
+    trx_ovt?: Trx_ovtListRelationFilter
+    trx_officialTravel?: Trx_official_travelListRelationFilter
+    trx_mutation?: Trx_mutationListRelationFilter
+    trx_resign?: Trx_resignListRelationFilter
+    trx_shift_emp?: Trx_shift_empListRelationFilter
+    trx_leave_quota?: Trx_leave_quotaListRelationFilter
+  }, "id" | "email" | "personal_number">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -24878,6 +25483,7 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"ms_leave_types"> | Date | string | null
     is_deleted?: IntNullableFilter<"ms_leave_types"> | number | null
     trx_leaves?: Trx_leavesListRelationFilter
+    trx_leave_quota?: Trx_leave_quotaListRelationFilter
   }
 
   export type ms_leave_typesOrderByWithRelationInput = {
@@ -24890,6 +25496,7 @@ export namespace Prisma {
     updated_at?: SortOrderInput | SortOrder
     is_deleted?: SortOrderInput | SortOrder
     trx_leaves?: trx_leavesOrderByRelationAggregateInput
+    trx_leave_quota?: trx_leave_quotaOrderByRelationAggregateInput
   }
 
   export type ms_leave_typesWhereUniqueInput = Prisma.AtLeast<{
@@ -24905,6 +25512,7 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"ms_leave_types"> | Date | string | null
     is_deleted?: IntNullableFilter<"ms_leave_types"> | number | null
     trx_leaves?: Trx_leavesListRelationFilter
+    trx_leave_quota?: Trx_leave_quotaListRelationFilter
   }, "id">
 
   export type ms_leave_typesOrderByWithAggregationInput = {
@@ -24942,7 +25550,7 @@ export namespace Prisma {
     OR?: trx_leavesWhereInput[]
     NOT?: trx_leavesWhereInput | trx_leavesWhereInput[]
     id?: BigIntFilter<"trx_leaves"> | bigint | number
-    user?: BigIntFilter<"trx_leaves"> | bigint | number
+    user?: StringFilter<"trx_leaves"> | string
     dept?: BigIntFilter<"trx_leaves"> | bigint | number
     leave_type_id?: IntFilter<"trx_leaves"> | number
     status_id?: BigIntFilter<"trx_leaves"> | bigint | number
@@ -25011,7 +25619,7 @@ export namespace Prisma {
     AND?: trx_leavesWhereInput | trx_leavesWhereInput[]
     OR?: trx_leavesWhereInput[]
     NOT?: trx_leavesWhereInput | trx_leavesWhereInput[]
-    user?: BigIntFilter<"trx_leaves"> | bigint | number
+    user?: StringFilter<"trx_leaves"> | string
     dept?: BigIntFilter<"trx_leaves"> | bigint | number
     leave_type_id?: IntFilter<"trx_leaves"> | number
     status_id?: BigIntFilter<"trx_leaves"> | bigint | number
@@ -25083,7 +25691,7 @@ export namespace Prisma {
     OR?: trx_leavesScalarWhereWithAggregatesInput[]
     NOT?: trx_leavesScalarWhereWithAggregatesInput | trx_leavesScalarWhereWithAggregatesInput[]
     id?: BigIntWithAggregatesFilter<"trx_leaves"> | bigint | number
-    user?: BigIntWithAggregatesFilter<"trx_leaves"> | bigint | number
+    user?: StringWithAggregatesFilter<"trx_leaves"> | string
     dept?: BigIntWithAggregatesFilter<"trx_leaves"> | bigint | number
     leave_type_id?: IntWithAggregatesFilter<"trx_leaves"> | number
     status_id?: BigIntWithAggregatesFilter<"trx_leaves"> | bigint | number
@@ -25133,6 +25741,7 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"ms_shift"> | Date | string | null
     is_deleted?: IntNullableFilter<"ms_shift"> | number | null
     details?: Ms_detail_shift_groupListRelationFilter
+    trx_ovt?: Trx_ovtListRelationFilter
   }
 
   export type ms_shiftOrderByWithRelationInput = {
@@ -25153,6 +25762,7 @@ export namespace Prisma {
     updated_at?: SortOrderInput | SortOrder
     is_deleted?: SortOrderInput | SortOrder
     details?: ms_detail_shift_groupOrderByRelationAggregateInput
+    trx_ovt?: trx_ovtOrderByRelationAggregateInput
   }
 
   export type ms_shiftWhereUniqueInput = Prisma.AtLeast<{
@@ -25176,6 +25786,7 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"ms_shift"> | Date | string | null
     is_deleted?: IntNullableFilter<"ms_shift"> | number | null
     details?: Ms_detail_shift_groupListRelationFilter
+    trx_ovt?: Trx_ovtListRelationFilter
   }, "id" | "code">
 
   export type ms_shiftOrderByWithAggregationInput = {
@@ -25239,6 +25850,7 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"ms_shift_group"> | Date | string | null
     is_deleted?: IntNullableFilter<"ms_shift_group"> | number | null
     details?: Ms_detail_shift_groupListRelationFilter
+    trx_shift_emps?: Trx_shift_empListRelationFilter
   }
 
   export type ms_shift_groupOrderByWithRelationInput = {
@@ -25253,6 +25865,7 @@ export namespace Prisma {
     updated_at?: SortOrderInput | SortOrder
     is_deleted?: SortOrderInput | SortOrder
     details?: ms_detail_shift_groupOrderByRelationAggregateInput
+    trx_shift_emps?: trx_shift_empOrderByRelationAggregateInput
   }
 
   export type ms_shift_groupWhereUniqueInput = Prisma.AtLeast<{
@@ -25270,6 +25883,7 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"ms_shift_group"> | Date | string | null
     is_deleted?: IntNullableFilter<"ms_shift_group"> | number | null
     details?: Ms_detail_shift_groupListRelationFilter
+    trx_shift_emps?: Trx_shift_empListRelationFilter
   }, "id" | "code">
 
   export type ms_shift_groupOrderByWithAggregationInput = {
@@ -25639,7 +26253,7 @@ export namespace Prisma {
     id?: BigIntFilter<"trx_ovt"> | bigint | number
     user?: StringFilter<"trx_ovt"> | string
     dept?: BigIntFilter<"trx_ovt"> | bigint | number
-    shift?: BigIntFilter<"trx_ovt"> | bigint | number
+    shift?: IntFilter<"trx_ovt"> | number
     status_id?: BigIntFilter<"trx_ovt"> | bigint | number
     check_in_ovt?: DateTimeFilter<"trx_ovt"> | Date | string
     check_out_ovt?: DateTimeFilter<"trx_ovt"> | Date | string
@@ -25662,6 +26276,8 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"trx_ovt"> | Date | string
     updated_by?: BigIntNullableFilter<"trx_ovt"> | bigint | number | null
     updated_at?: DateTimeFilter<"trx_ovt"> | Date | string
+    user_data?: XOR<UserRelationFilter, UserWhereInput>
+    shift_data?: XOR<Ms_shiftRelationFilter, ms_shiftWhereInput>
   }
 
   export type trx_ovtOrderByWithRelationInput = {
@@ -25691,6 +26307,8 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrder
+    user_data?: UserOrderByWithRelationInput
+    shift_data?: ms_shiftOrderByWithRelationInput
   }
 
   export type trx_ovtWhereUniqueInput = Prisma.AtLeast<{
@@ -25700,7 +26318,7 @@ export namespace Prisma {
     NOT?: trx_ovtWhereInput | trx_ovtWhereInput[]
     user?: StringFilter<"trx_ovt"> | string
     dept?: BigIntFilter<"trx_ovt"> | bigint | number
-    shift?: BigIntFilter<"trx_ovt"> | bigint | number
+    shift?: IntFilter<"trx_ovt"> | number
     status_id?: BigIntFilter<"trx_ovt"> | bigint | number
     check_in_ovt?: DateTimeFilter<"trx_ovt"> | Date | string
     check_out_ovt?: DateTimeFilter<"trx_ovt"> | Date | string
@@ -25723,6 +26341,8 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"trx_ovt"> | Date | string
     updated_by?: BigIntNullableFilter<"trx_ovt"> | bigint | number | null
     updated_at?: DateTimeFilter<"trx_ovt"> | Date | string
+    user_data?: XOR<UserRelationFilter, UserWhereInput>
+    shift_data?: XOR<Ms_shiftRelationFilter, ms_shiftWhereInput>
   }, "id">
 
   export type trx_ovtOrderByWithAggregationInput = {
@@ -25766,7 +26386,7 @@ export namespace Prisma {
     id?: BigIntWithAggregatesFilter<"trx_ovt"> | bigint | number
     user?: StringWithAggregatesFilter<"trx_ovt"> | string
     dept?: BigIntWithAggregatesFilter<"trx_ovt"> | bigint | number
-    shift?: BigIntWithAggregatesFilter<"trx_ovt"> | bigint | number
+    shift?: IntWithAggregatesFilter<"trx_ovt"> | number
     status_id?: BigIntWithAggregatesFilter<"trx_ovt"> | bigint | number
     check_in_ovt?: DateTimeWithAggregatesFilter<"trx_ovt"> | Date | string
     check_out_ovt?: DateTimeWithAggregatesFilter<"trx_ovt"> | Date | string
@@ -25807,6 +26427,8 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"trx_shift_emp"> | Date | string | null
     is_deleted?: IntNullableFilter<"trx_shift_emp"> | number | null
     flag_shift?: IntNullableFilter<"trx_shift_emp"> | number | null
+    MsUser?: XOR<UserRelationFilter, UserWhereInput>
+    MsShiftGroup?: XOR<Ms_shift_groupRelationFilter, ms_shift_groupWhereInput>
   }
 
   export type trx_shift_empOrderByWithRelationInput = {
@@ -25822,6 +26444,8 @@ export namespace Prisma {
     updated_at?: SortOrderInput | SortOrder
     is_deleted?: SortOrderInput | SortOrder
     flag_shift?: SortOrderInput | SortOrder
+    MsUser?: UserOrderByWithRelationInput
+    MsShiftGroup?: ms_shift_groupOrderByWithRelationInput
   }
 
   export type trx_shift_empWhereUniqueInput = Prisma.AtLeast<{
@@ -25840,6 +26464,8 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"trx_shift_emp"> | Date | string | null
     is_deleted?: IntNullableFilter<"trx_shift_emp"> | number | null
     flag_shift?: IntNullableFilter<"trx_shift_emp"> | number | null
+    MsUser?: XOR<UserRelationFilter, UserWhereInput>
+    MsShiftGroup?: XOR<Ms_shift_groupRelationFilter, ms_shift_groupWhereInput>
   }, "id">
 
   export type trx_shift_empOrderByWithAggregationInput = {
@@ -25911,6 +26537,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"trx_official_travel"> | Date | string
     updated_by?: BigIntNullableFilter<"trx_official_travel"> | bigint | number | null
     updated_at?: DateTimeFilter<"trx_official_travel"> | Date | string
+    user_data?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type trx_official_travelOrderByWithRelationInput = {
@@ -25941,6 +26568,7 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrder
+    user_data?: UserOrderByWithRelationInput
   }
 
   export type trx_official_travelWhereUniqueInput = Prisma.AtLeast<{
@@ -25974,6 +26602,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"trx_official_travel"> | Date | string
     updated_by?: BigIntNullableFilter<"trx_official_travel"> | bigint | number | null
     updated_at?: DateTimeFilter<"trx_official_travel"> | Date | string
+    user_data?: XOR<UserRelationFilter, UserWhereInput>
   }, "id">
 
   export type trx_official_travelOrderByWithAggregationInput = {
@@ -26071,6 +26700,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"trx_mutation"> | Date | string
     updated_by?: BigIntNullableFilter<"trx_mutation"> | bigint | number | null
     updated_at?: DateTimeFilter<"trx_mutation"> | Date | string
+    user_data?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type trx_mutationOrderByWithRelationInput = {
@@ -26097,6 +26727,7 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrder
+    user_data?: UserOrderByWithRelationInput
   }
 
   export type trx_mutationWhereUniqueInput = Prisma.AtLeast<{
@@ -26126,6 +26757,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"trx_mutation"> | Date | string
     updated_by?: BigIntNullableFilter<"trx_mutation"> | bigint | number | null
     updated_at?: DateTimeFilter<"trx_mutation"> | Date | string
+    user_data?: XOR<UserRelationFilter, UserWhereInput>
   }, "id">
 
   export type trx_mutationOrderByWithAggregationInput = {
@@ -26215,6 +26847,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"trx_resign"> | Date | string
     updated_by?: BigIntNullableFilter<"trx_resign"> | bigint | number | null
     updated_at?: DateTimeFilter<"trx_resign"> | Date | string
+    user_data?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type trx_resignOrderByWithRelationInput = {
@@ -26241,6 +26874,7 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrder
+    user_data?: UserOrderByWithRelationInput
   }
 
   export type trx_resignWhereUniqueInput = Prisma.AtLeast<{
@@ -26270,6 +26904,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"trx_resign"> | Date | string
     updated_by?: BigIntNullableFilter<"trx_resign"> | bigint | number | null
     updated_at?: DateTimeFilter<"trx_resign"> | Date | string
+    user_data?: XOR<UserRelationFilter, UserWhereInput>
   }, "id">
 
   export type trx_resignOrderByWithAggregationInput = {
@@ -26821,8 +27456,8 @@ export namespace Prisma {
     OR?: trx_leave_quotaWhereInput[]
     NOT?: trx_leave_quotaWhereInput | trx_leave_quotaWhereInput[]
     id?: IntFilter<"trx_leave_quota"> | number
-    id_user?: StringNullableFilter<"trx_leave_quota"> | string | null
-    leaves_type_id?: IntNullableFilter<"trx_leave_quota"> | number | null
+    id_user?: StringFilter<"trx_leave_quota"> | string
+    leaves_type_id?: IntFilter<"trx_leave_quota"> | number
     valid_from?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
     valid_to?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
     leaves_quota?: IntNullableFilter<"trx_leave_quota"> | number | null
@@ -26832,12 +27467,14 @@ export namespace Prisma {
     is_deleted?: IntNullableFilter<"trx_leave_quota"> | number | null
     created_at?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
+    MsUser?: XOR<UserRelationFilter, UserWhereInput>
+    MsLeaveType?: XOR<Ms_leave_typesRelationFilter, ms_leave_typesWhereInput>
   }
 
   export type trx_leave_quotaOrderByWithRelationInput = {
     id?: SortOrder
-    id_user?: SortOrderInput | SortOrder
-    leaves_type_id?: SortOrderInput | SortOrder
+    id_user?: SortOrder
+    leaves_type_id?: SortOrder
     valid_from?: SortOrderInput | SortOrder
     valid_to?: SortOrderInput | SortOrder
     leaves_quota?: SortOrderInput | SortOrder
@@ -26847,6 +27484,8 @@ export namespace Prisma {
     is_deleted?: SortOrderInput | SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
+    MsUser?: UserOrderByWithRelationInput
+    MsLeaveType?: ms_leave_typesOrderByWithRelationInput
   }
 
   export type trx_leave_quotaWhereUniqueInput = Prisma.AtLeast<{
@@ -26854,8 +27493,8 @@ export namespace Prisma {
     AND?: trx_leave_quotaWhereInput | trx_leave_quotaWhereInput[]
     OR?: trx_leave_quotaWhereInput[]
     NOT?: trx_leave_quotaWhereInput | trx_leave_quotaWhereInput[]
-    id_user?: StringNullableFilter<"trx_leave_quota"> | string | null
-    leaves_type_id?: IntNullableFilter<"trx_leave_quota"> | number | null
+    id_user?: StringFilter<"trx_leave_quota"> | string
+    leaves_type_id?: IntFilter<"trx_leave_quota"> | number
     valid_from?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
     valid_to?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
     leaves_quota?: IntNullableFilter<"trx_leave_quota"> | number | null
@@ -26865,12 +27504,14 @@ export namespace Prisma {
     is_deleted?: IntNullableFilter<"trx_leave_quota"> | number | null
     created_at?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
+    MsUser?: XOR<UserRelationFilter, UserWhereInput>
+    MsLeaveType?: XOR<Ms_leave_typesRelationFilter, ms_leave_typesWhereInput>
   }, "id">
 
   export type trx_leave_quotaOrderByWithAggregationInput = {
     id?: SortOrder
-    id_user?: SortOrderInput | SortOrder
-    leaves_type_id?: SortOrderInput | SortOrder
+    id_user?: SortOrder
+    leaves_type_id?: SortOrder
     valid_from?: SortOrderInput | SortOrder
     valid_to?: SortOrderInput | SortOrder
     leaves_quota?: SortOrderInput | SortOrder
@@ -26892,8 +27533,8 @@ export namespace Prisma {
     OR?: trx_leave_quotaScalarWhereWithAggregatesInput[]
     NOT?: trx_leave_quotaScalarWhereWithAggregatesInput | trx_leave_quotaScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"trx_leave_quota"> | number
-    id_user?: StringNullableWithAggregatesFilter<"trx_leave_quota"> | string | null
-    leaves_type_id?: IntNullableWithAggregatesFilter<"trx_leave_quota"> | number | null
+    id_user?: StringWithAggregatesFilter<"trx_leave_quota"> | string
+    leaves_type_id?: IntWithAggregatesFilter<"trx_leave_quota"> | number
     valid_from?: DateTimeNullableWithAggregatesFilter<"trx_leave_quota"> | Date | string | null
     valid_to?: DateTimeNullableWithAggregatesFilter<"trx_leave_quota"> | Date | string | null
     leaves_quota?: IntNullableWithAggregatesFilter<"trx_leave_quota"> | number | null
@@ -26952,6 +27593,12 @@ export namespace Prisma {
     updated_at?: Date | string | null
     dept_data: mst_deptCreateNestedOneWithoutMst_userInput
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -27001,6 +27648,12 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUpdateInput = {
@@ -27050,6 +27703,12 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -27099,6 +27758,12 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -27252,6 +27917,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     is_deleted?: number | null
     trx_leaves?: trx_leavesCreateNestedManyWithoutLeave_typeInput
+    trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsLeaveTypeInput
   }
 
   export type ms_leave_typesUncheckedCreateInput = {
@@ -27264,6 +27930,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     is_deleted?: number | null
     trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutLeave_typeInput
+    trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsLeaveTypeInput
   }
 
   export type ms_leave_typesUpdateInput = {
@@ -27275,6 +27942,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
     trx_leaves?: trx_leavesUpdateManyWithoutLeave_typeNestedInput
+    trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsLeaveTypeNestedInput
   }
 
   export type ms_leave_typesUncheckedUpdateInput = {
@@ -27287,6 +27955,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
     trx_leaves?: trx_leavesUncheckedUpdateManyWithoutLeave_typeNestedInput
+    trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsLeaveTypeNestedInput
   }
 
   export type ms_leave_typesCreateManyInput = {
@@ -27353,7 +28022,7 @@ export namespace Prisma {
 
   export type trx_leavesUncheckedCreateInput = {
     id?: bigint | number
-    user: bigint | number
+    user: string
     dept: bigint | number
     leave_type_id: number
     status_id: bigint | number
@@ -27415,7 +28084,7 @@ export namespace Prisma {
 
   export type trx_leavesUncheckedUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    user?: BigIntFieldUpdateOperationsInput | bigint | number
+    user?: StringFieldUpdateOperationsInput | string
     dept?: BigIntFieldUpdateOperationsInput | bigint | number
     leave_type_id?: IntFieldUpdateOperationsInput | number
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -27445,7 +28114,7 @@ export namespace Prisma {
   }
 
   export type trx_leavesCreateManyInput = {
-    user: bigint | number
+    user: string
     dept: bigint | number
     leave_type_id: number
     status_id: bigint | number
@@ -27505,7 +28174,7 @@ export namespace Prisma {
 
   export type trx_leavesUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    user?: BigIntFieldUpdateOperationsInput | bigint | number
+    user?: StringFieldUpdateOperationsInput | string
     dept?: BigIntFieldUpdateOperationsInput | bigint | number
     leave_type_id?: IntFieldUpdateOperationsInput | number
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -27551,6 +28220,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     is_deleted?: number | null
     details?: ms_detail_shift_groupCreateNestedManyWithoutMsShiftInput
+    trx_ovt?: trx_ovtCreateNestedManyWithoutShift_dataInput
   }
 
   export type ms_shiftUncheckedCreateInput = {
@@ -27571,6 +28241,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     is_deleted?: number | null
     details?: ms_detail_shift_groupUncheckedCreateNestedManyWithoutMsShiftInput
+    trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutShift_dataInput
   }
 
   export type ms_shiftUpdateInput = {
@@ -27590,6 +28261,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
     details?: ms_detail_shift_groupUpdateManyWithoutMsShiftNestedInput
+    trx_ovt?: trx_ovtUpdateManyWithoutShift_dataNestedInput
   }
 
   export type ms_shiftUncheckedUpdateInput = {
@@ -27610,6 +28282,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
     details?: ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftNestedInput
+    trx_ovt?: trx_ovtUncheckedUpdateManyWithoutShift_dataNestedInput
   }
 
   export type ms_shiftCreateManyInput = {
@@ -27678,6 +28351,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     is_deleted?: number | null
     details?: ms_detail_shift_groupCreateNestedManyWithoutMsShiftGroupInput
+    trx_shift_emps?: trx_shift_empCreateNestedManyWithoutMsShiftGroupInput
   }
 
   export type ms_shift_groupUncheckedCreateInput = {
@@ -27692,6 +28366,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     is_deleted?: number | null
     details?: ms_detail_shift_groupUncheckedCreateNestedManyWithoutMsShiftGroupInput
+    trx_shift_emps?: trx_shift_empUncheckedCreateNestedManyWithoutMsShiftGroupInput
   }
 
   export type ms_shift_groupUpdateInput = {
@@ -27705,6 +28380,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
     details?: ms_detail_shift_groupUpdateManyWithoutMsShiftGroupNestedInput
+    trx_shift_emps?: trx_shift_empUpdateManyWithoutMsShiftGroupNestedInput
   }
 
   export type ms_shift_groupUncheckedUpdateInput = {
@@ -27719,6 +28395,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
     details?: ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftGroupNestedInput
+    trx_shift_emps?: trx_shift_empUncheckedUpdateManyWithoutMsShiftGroupNestedInput
   }
 
   export type ms_shift_groupCreateManyInput = {
@@ -28114,9 +28791,7 @@ export namespace Prisma {
 
   export type trx_ovtCreateInput = {
     id?: bigint | number
-    user: string
     dept: bigint | number
-    shift: bigint | number
     status_id: bigint | number
     check_in_ovt: Date | string
     check_out_ovt: Date | string
@@ -28139,13 +28814,15 @@ export namespace Prisma {
     created_at?: Date | string
     updated_by?: bigint | number | null
     updated_at?: Date | string
+    user_data: UserCreateNestedOneWithoutTrx_ovtInput
+    shift_data: ms_shiftCreateNestedOneWithoutTrx_ovtInput
   }
 
   export type trx_ovtUncheckedCreateInput = {
     id?: bigint | number
     user: string
     dept: bigint | number
-    shift: bigint | number
+    shift: number
     status_id: bigint | number
     check_in_ovt: Date | string
     check_out_ovt: Date | string
@@ -28172,9 +28849,7 @@ export namespace Prisma {
 
   export type trx_ovtUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    user?: StringFieldUpdateOperationsInput | string
     dept?: BigIntFieldUpdateOperationsInput | bigint | number
-    shift?: BigIntFieldUpdateOperationsInput | bigint | number
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     check_in_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
     check_out_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28197,13 +28872,15 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user_data?: UserUpdateOneRequiredWithoutTrx_ovtNestedInput
+    shift_data?: ms_shiftUpdateOneRequiredWithoutTrx_ovtNestedInput
   }
 
   export type trx_ovtUncheckedUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     user?: StringFieldUpdateOperationsInput | string
     dept?: BigIntFieldUpdateOperationsInput | bigint | number
-    shift?: BigIntFieldUpdateOperationsInput | bigint | number
+    shift?: IntFieldUpdateOperationsInput | number
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     check_in_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
     check_out_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28231,7 +28908,7 @@ export namespace Prisma {
   export type trx_ovtCreateManyInput = {
     user: string
     dept: bigint | number
-    shift: bigint | number
+    shift: number
     status_id: bigint | number
     check_in_ovt: Date | string
     check_out_ovt: Date | string
@@ -28258,9 +28935,7 @@ export namespace Prisma {
 
   export type trx_ovtUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    user?: StringFieldUpdateOperationsInput | string
     dept?: BigIntFieldUpdateOperationsInput | bigint | number
-    shift?: BigIntFieldUpdateOperationsInput | bigint | number
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     check_in_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
     check_out_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28289,7 +28964,7 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     user?: StringFieldUpdateOperationsInput | string
     dept?: BigIntFieldUpdateOperationsInput | bigint | number
-    shift?: BigIntFieldUpdateOperationsInput | bigint | number
+    shift?: IntFieldUpdateOperationsInput | number
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     check_in_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
     check_out_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28317,8 +28992,6 @@ export namespace Prisma {
   export type trx_shift_empCreateInput = {
     id?: bigint | number
     code: string
-    id_user: string
-    id_shift_group: string
     valid_from: Date | string
     valid_to: Date | string
     created_by?: bigint | number | null
@@ -28327,6 +29000,8 @@ export namespace Prisma {
     updated_at?: Date | string | null
     is_deleted?: number | null
     flag_shift?: number | null
+    MsUser: UserCreateNestedOneWithoutTrx_shift_empInput
+    MsShiftGroup: ms_shift_groupCreateNestedOneWithoutTrx_shift_empsInput
   }
 
   export type trx_shift_empUncheckedCreateInput = {
@@ -28347,8 +29022,6 @@ export namespace Prisma {
   export type trx_shift_empUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     code?: StringFieldUpdateOperationsInput | string
-    id_user?: StringFieldUpdateOperationsInput | string
-    id_shift_group?: StringFieldUpdateOperationsInput | string
     valid_from?: DateTimeFieldUpdateOperationsInput | Date | string
     valid_to?: DateTimeFieldUpdateOperationsInput | Date | string
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -28357,6 +29030,8 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
     flag_shift?: NullableIntFieldUpdateOperationsInput | number | null
+    MsUser?: UserUpdateOneRequiredWithoutTrx_shift_empNestedInput
+    MsShiftGroup?: ms_shift_groupUpdateOneRequiredWithoutTrx_shift_empsNestedInput
   }
 
   export type trx_shift_empUncheckedUpdateInput = {
@@ -28391,8 +29066,6 @@ export namespace Prisma {
   export type trx_shift_empUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     code?: StringFieldUpdateOperationsInput | string
-    id_user?: StringFieldUpdateOperationsInput | string
-    id_shift_group?: StringFieldUpdateOperationsInput | string
     valid_from?: DateTimeFieldUpdateOperationsInput | Date | string
     valid_to?: DateTimeFieldUpdateOperationsInput | Date | string
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -28419,7 +29092,6 @@ export namespace Prisma {
   }
 
   export type trx_official_travelCreateInput = {
-    user: string
     effective_date?: Date | string | null
     start_date: Date | string
     end_date: Date | string
@@ -28445,6 +29117,7 @@ export namespace Prisma {
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
+    user_data: UserCreateNestedOneWithoutTrx_officialTravelInput
   }
 
   export type trx_official_travelUncheckedCreateInput = {
@@ -28478,7 +29151,6 @@ export namespace Prisma {
   }
 
   export type trx_official_travelUpdateInput = {
-    user?: StringFieldUpdateOperationsInput | string
     effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28504,6 +29176,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user_data?: UserUpdateOneRequiredWithoutTrx_officialTravelNestedInput
   }
 
   export type trx_official_travelUncheckedUpdateInput = {
@@ -28566,7 +29239,6 @@ export namespace Prisma {
   }
 
   export type trx_official_travelUpdateManyMutationInput = {
-    user?: StringFieldUpdateOperationsInput | string
     effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28625,7 +29297,6 @@ export namespace Prisma {
   }
 
   export type trx_mutationCreateInput = {
-    user: string
     effective_date: Date | string
     reason: string
     status_id: bigint | number
@@ -28647,6 +29318,7 @@ export namespace Prisma {
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
+    user_data: UserCreateNestedOneWithoutTrx_mutationInput
   }
 
   export type trx_mutationUncheckedCreateInput = {
@@ -28676,7 +29348,6 @@ export namespace Prisma {
   }
 
   export type trx_mutationUpdateInput = {
-    user?: StringFieldUpdateOperationsInput | string
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -28698,6 +29369,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user_data?: UserUpdateOneRequiredWithoutTrx_mutationNestedInput
   }
 
   export type trx_mutationUncheckedUpdateInput = {
@@ -28752,7 +29424,6 @@ export namespace Prisma {
   }
 
   export type trx_mutationUpdateManyMutationInput = {
-    user?: StringFieldUpdateOperationsInput | string
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -28803,7 +29474,6 @@ export namespace Prisma {
   }
 
   export type trx_resignCreateInput = {
-    user: string
     effective_date: Date | string
     reason: string
     status_id: bigint | number
@@ -28825,6 +29495,7 @@ export namespace Prisma {
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
+    user_data: UserCreateNestedOneWithoutTrx_resignInput
   }
 
   export type trx_resignUncheckedCreateInput = {
@@ -28854,7 +29525,6 @@ export namespace Prisma {
   }
 
   export type trx_resignUpdateInput = {
-    user?: StringFieldUpdateOperationsInput | string
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -28876,6 +29546,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user_data?: UserUpdateOneRequiredWithoutTrx_resignNestedInput
   }
 
   export type trx_resignUncheckedUpdateInput = {
@@ -28930,7 +29601,6 @@ export namespace Prisma {
   }
 
   export type trx_resignUpdateManyMutationInput = {
-    user?: StringFieldUpdateOperationsInput | string
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -29536,8 +30206,6 @@ export namespace Prisma {
   }
 
   export type trx_leave_quotaCreateInput = {
-    id_user?: string | null
-    leaves_type_id?: number | null
     valid_from?: Date | string | null
     valid_to?: Date | string | null
     leaves_quota?: number | null
@@ -29547,12 +30215,14 @@ export namespace Prisma {
     is_deleted?: number | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    MsUser: UserCreateNestedOneWithoutTrx_leave_quotaInput
+    MsLeaveType: ms_leave_typesCreateNestedOneWithoutTrx_leave_quotaInput
   }
 
   export type trx_leave_quotaUncheckedCreateInput = {
     id?: number
-    id_user?: string | null
-    leaves_type_id?: number | null
+    id_user: string
+    leaves_type_id: number
     valid_from?: Date | string | null
     valid_to?: Date | string | null
     leaves_quota?: number | null
@@ -29565,8 +30235,6 @@ export namespace Prisma {
   }
 
   export type trx_leave_quotaUpdateInput = {
-    id_user?: NullableStringFieldUpdateOperationsInput | string | null
-    leaves_type_id?: NullableIntFieldUpdateOperationsInput | number | null
     valid_from?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valid_to?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaves_quota?: NullableIntFieldUpdateOperationsInput | number | null
@@ -29576,12 +30244,14 @@ export namespace Prisma {
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    MsUser?: UserUpdateOneRequiredWithoutTrx_leave_quotaNestedInput
+    MsLeaveType?: ms_leave_typesUpdateOneRequiredWithoutTrx_leave_quotaNestedInput
   }
 
   export type trx_leave_quotaUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    id_user?: NullableStringFieldUpdateOperationsInput | string | null
-    leaves_type_id?: NullableIntFieldUpdateOperationsInput | number | null
+    id_user?: StringFieldUpdateOperationsInput | string
+    leaves_type_id?: IntFieldUpdateOperationsInput | number
     valid_from?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valid_to?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaves_quota?: NullableIntFieldUpdateOperationsInput | number | null
@@ -29594,8 +30264,8 @@ export namespace Prisma {
   }
 
   export type trx_leave_quotaCreateManyInput = {
-    id_user?: string | null
-    leaves_type_id?: number | null
+    id_user: string
+    leaves_type_id: number
     valid_from?: Date | string | null
     valid_to?: Date | string | null
     leaves_quota?: number | null
@@ -29608,8 +30278,6 @@ export namespace Prisma {
   }
 
   export type trx_leave_quotaUpdateManyMutationInput = {
-    id_user?: NullableStringFieldUpdateOperationsInput | string | null
-    leaves_type_id?: NullableIntFieldUpdateOperationsInput | number | null
     valid_from?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valid_to?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaves_quota?: NullableIntFieldUpdateOperationsInput | number | null
@@ -29623,8 +30291,8 @@ export namespace Prisma {
 
   export type trx_leave_quotaUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    id_user?: NullableStringFieldUpdateOperationsInput | string | null
-    leaves_type_id?: NullableIntFieldUpdateOperationsInput | number | null
+    id_user?: StringFieldUpdateOperationsInput | string
+    leaves_type_id?: IntFieldUpdateOperationsInput | number
     valid_from?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valid_to?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaves_quota?: NullableIntFieldUpdateOperationsInput | number | null
@@ -29719,12 +30387,72 @@ export namespace Prisma {
     none?: trx_leavesWhereInput
   }
 
+  export type Trx_ovtListRelationFilter = {
+    every?: trx_ovtWhereInput
+    some?: trx_ovtWhereInput
+    none?: trx_ovtWhereInput
+  }
+
+  export type Trx_official_travelListRelationFilter = {
+    every?: trx_official_travelWhereInput
+    some?: trx_official_travelWhereInput
+    none?: trx_official_travelWhereInput
+  }
+
+  export type Trx_mutationListRelationFilter = {
+    every?: trx_mutationWhereInput
+    some?: trx_mutationWhereInput
+    none?: trx_mutationWhereInput
+  }
+
+  export type Trx_resignListRelationFilter = {
+    every?: trx_resignWhereInput
+    some?: trx_resignWhereInput
+    none?: trx_resignWhereInput
+  }
+
+  export type Trx_shift_empListRelationFilter = {
+    every?: trx_shift_empWhereInput
+    some?: trx_shift_empWhereInput
+    none?: trx_shift_empWhereInput
+  }
+
+  export type Trx_leave_quotaListRelationFilter = {
+    every?: trx_leave_quotaWhereInput
+    some?: trx_leave_quotaWhereInput
+    none?: trx_leave_quotaWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type trx_leavesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type trx_ovtOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type trx_official_travelOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type trx_mutationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type trx_resignOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type trx_shift_empOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type trx_leave_quotaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -30118,7 +30846,6 @@ export namespace Prisma {
 
   export type trx_leavesAvgOrderByAggregateInput = {
     id?: SortOrder
-    user?: SortOrder
     dept?: SortOrder
     leave_type_id?: SortOrder
     status_id?: SortOrder
@@ -30192,7 +30919,6 @@ export namespace Prisma {
 
   export type trx_leavesSumOrderByAggregateInput = {
     id?: SortOrder
-    user?: SortOrder
     dept?: SortOrder
     leave_type_id?: SortOrder
     status_id?: SortOrder
@@ -31464,11 +32190,95 @@ export namespace Prisma {
     connect?: trx_leavesWhereUniqueInput | trx_leavesWhereUniqueInput[]
   }
 
+  export type trx_ovtCreateNestedManyWithoutUser_dataInput = {
+    create?: XOR<trx_ovtCreateWithoutUser_dataInput, trx_ovtUncheckedCreateWithoutUser_dataInput> | trx_ovtCreateWithoutUser_dataInput[] | trx_ovtUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_ovtCreateOrConnectWithoutUser_dataInput | trx_ovtCreateOrConnectWithoutUser_dataInput[]
+    createMany?: trx_ovtCreateManyUser_dataInputEnvelope
+    connect?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+  }
+
+  export type trx_official_travelCreateNestedManyWithoutUser_dataInput = {
+    create?: XOR<trx_official_travelCreateWithoutUser_dataInput, trx_official_travelUncheckedCreateWithoutUser_dataInput> | trx_official_travelCreateWithoutUser_dataInput[] | trx_official_travelUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_official_travelCreateOrConnectWithoutUser_dataInput | trx_official_travelCreateOrConnectWithoutUser_dataInput[]
+    createMany?: trx_official_travelCreateManyUser_dataInputEnvelope
+    connect?: trx_official_travelWhereUniqueInput | trx_official_travelWhereUniqueInput[]
+  }
+
+  export type trx_mutationCreateNestedManyWithoutUser_dataInput = {
+    create?: XOR<trx_mutationCreateWithoutUser_dataInput, trx_mutationUncheckedCreateWithoutUser_dataInput> | trx_mutationCreateWithoutUser_dataInput[] | trx_mutationUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_mutationCreateOrConnectWithoutUser_dataInput | trx_mutationCreateOrConnectWithoutUser_dataInput[]
+    createMany?: trx_mutationCreateManyUser_dataInputEnvelope
+    connect?: trx_mutationWhereUniqueInput | trx_mutationWhereUniqueInput[]
+  }
+
+  export type trx_resignCreateNestedManyWithoutUser_dataInput = {
+    create?: XOR<trx_resignCreateWithoutUser_dataInput, trx_resignUncheckedCreateWithoutUser_dataInput> | trx_resignCreateWithoutUser_dataInput[] | trx_resignUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_resignCreateOrConnectWithoutUser_dataInput | trx_resignCreateOrConnectWithoutUser_dataInput[]
+    createMany?: trx_resignCreateManyUser_dataInputEnvelope
+    connect?: trx_resignWhereUniqueInput | trx_resignWhereUniqueInput[]
+  }
+
+  export type trx_shift_empCreateNestedManyWithoutMsUserInput = {
+    create?: XOR<trx_shift_empCreateWithoutMsUserInput, trx_shift_empUncheckedCreateWithoutMsUserInput> | trx_shift_empCreateWithoutMsUserInput[] | trx_shift_empUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: trx_shift_empCreateOrConnectWithoutMsUserInput | trx_shift_empCreateOrConnectWithoutMsUserInput[]
+    createMany?: trx_shift_empCreateManyMsUserInputEnvelope
+    connect?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+  }
+
+  export type trx_leave_quotaCreateNestedManyWithoutMsUserInput = {
+    create?: XOR<trx_leave_quotaCreateWithoutMsUserInput, trx_leave_quotaUncheckedCreateWithoutMsUserInput> | trx_leave_quotaCreateWithoutMsUserInput[] | trx_leave_quotaUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: trx_leave_quotaCreateOrConnectWithoutMsUserInput | trx_leave_quotaCreateOrConnectWithoutMsUserInput[]
+    createMany?: trx_leave_quotaCreateManyMsUserInputEnvelope
+    connect?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+  }
+
   export type trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput = {
     create?: XOR<trx_leavesCreateWithoutUser_dataInput, trx_leavesUncheckedCreateWithoutUser_dataInput> | trx_leavesCreateWithoutUser_dataInput[] | trx_leavesUncheckedCreateWithoutUser_dataInput[]
     connectOrCreate?: trx_leavesCreateOrConnectWithoutUser_dataInput | trx_leavesCreateOrConnectWithoutUser_dataInput[]
     createMany?: trx_leavesCreateManyUser_dataInputEnvelope
     connect?: trx_leavesWhereUniqueInput | trx_leavesWhereUniqueInput[]
+  }
+
+  export type trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput = {
+    create?: XOR<trx_ovtCreateWithoutUser_dataInput, trx_ovtUncheckedCreateWithoutUser_dataInput> | trx_ovtCreateWithoutUser_dataInput[] | trx_ovtUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_ovtCreateOrConnectWithoutUser_dataInput | trx_ovtCreateOrConnectWithoutUser_dataInput[]
+    createMany?: trx_ovtCreateManyUser_dataInputEnvelope
+    connect?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+  }
+
+  export type trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput = {
+    create?: XOR<trx_official_travelCreateWithoutUser_dataInput, trx_official_travelUncheckedCreateWithoutUser_dataInput> | trx_official_travelCreateWithoutUser_dataInput[] | trx_official_travelUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_official_travelCreateOrConnectWithoutUser_dataInput | trx_official_travelCreateOrConnectWithoutUser_dataInput[]
+    createMany?: trx_official_travelCreateManyUser_dataInputEnvelope
+    connect?: trx_official_travelWhereUniqueInput | trx_official_travelWhereUniqueInput[]
+  }
+
+  export type trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput = {
+    create?: XOR<trx_mutationCreateWithoutUser_dataInput, trx_mutationUncheckedCreateWithoutUser_dataInput> | trx_mutationCreateWithoutUser_dataInput[] | trx_mutationUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_mutationCreateOrConnectWithoutUser_dataInput | trx_mutationCreateOrConnectWithoutUser_dataInput[]
+    createMany?: trx_mutationCreateManyUser_dataInputEnvelope
+    connect?: trx_mutationWhereUniqueInput | trx_mutationWhereUniqueInput[]
+  }
+
+  export type trx_resignUncheckedCreateNestedManyWithoutUser_dataInput = {
+    create?: XOR<trx_resignCreateWithoutUser_dataInput, trx_resignUncheckedCreateWithoutUser_dataInput> | trx_resignCreateWithoutUser_dataInput[] | trx_resignUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_resignCreateOrConnectWithoutUser_dataInput | trx_resignCreateOrConnectWithoutUser_dataInput[]
+    createMany?: trx_resignCreateManyUser_dataInputEnvelope
+    connect?: trx_resignWhereUniqueInput | trx_resignWhereUniqueInput[]
+  }
+
+  export type trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput = {
+    create?: XOR<trx_shift_empCreateWithoutMsUserInput, trx_shift_empUncheckedCreateWithoutMsUserInput> | trx_shift_empCreateWithoutMsUserInput[] | trx_shift_empUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: trx_shift_empCreateOrConnectWithoutMsUserInput | trx_shift_empCreateOrConnectWithoutMsUserInput[]
+    createMany?: trx_shift_empCreateManyMsUserInputEnvelope
+    connect?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+  }
+
+  export type trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput = {
+    create?: XOR<trx_leave_quotaCreateWithoutMsUserInput, trx_leave_quotaUncheckedCreateWithoutMsUserInput> | trx_leave_quotaCreateWithoutMsUserInput[] | trx_leave_quotaUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: trx_leave_quotaCreateOrConnectWithoutMsUserInput | trx_leave_quotaCreateOrConnectWithoutMsUserInput[]
+    createMany?: trx_leave_quotaCreateManyMsUserInputEnvelope
+    connect?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
   }
 
   export type BigIntFieldUpdateOperationsInput = {
@@ -31529,6 +32339,90 @@ export namespace Prisma {
     deleteMany?: trx_leavesScalarWhereInput | trx_leavesScalarWhereInput[]
   }
 
+  export type trx_ovtUpdateManyWithoutUser_dataNestedInput = {
+    create?: XOR<trx_ovtCreateWithoutUser_dataInput, trx_ovtUncheckedCreateWithoutUser_dataInput> | trx_ovtCreateWithoutUser_dataInput[] | trx_ovtUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_ovtCreateOrConnectWithoutUser_dataInput | trx_ovtCreateOrConnectWithoutUser_dataInput[]
+    upsert?: trx_ovtUpsertWithWhereUniqueWithoutUser_dataInput | trx_ovtUpsertWithWhereUniqueWithoutUser_dataInput[]
+    createMany?: trx_ovtCreateManyUser_dataInputEnvelope
+    set?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    disconnect?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    delete?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    connect?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    update?: trx_ovtUpdateWithWhereUniqueWithoutUser_dataInput | trx_ovtUpdateWithWhereUniqueWithoutUser_dataInput[]
+    updateMany?: trx_ovtUpdateManyWithWhereWithoutUser_dataInput | trx_ovtUpdateManyWithWhereWithoutUser_dataInput[]
+    deleteMany?: trx_ovtScalarWhereInput | trx_ovtScalarWhereInput[]
+  }
+
+  export type trx_official_travelUpdateManyWithoutUser_dataNestedInput = {
+    create?: XOR<trx_official_travelCreateWithoutUser_dataInput, trx_official_travelUncheckedCreateWithoutUser_dataInput> | trx_official_travelCreateWithoutUser_dataInput[] | trx_official_travelUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_official_travelCreateOrConnectWithoutUser_dataInput | trx_official_travelCreateOrConnectWithoutUser_dataInput[]
+    upsert?: trx_official_travelUpsertWithWhereUniqueWithoutUser_dataInput | trx_official_travelUpsertWithWhereUniqueWithoutUser_dataInput[]
+    createMany?: trx_official_travelCreateManyUser_dataInputEnvelope
+    set?: trx_official_travelWhereUniqueInput | trx_official_travelWhereUniqueInput[]
+    disconnect?: trx_official_travelWhereUniqueInput | trx_official_travelWhereUniqueInput[]
+    delete?: trx_official_travelWhereUniqueInput | trx_official_travelWhereUniqueInput[]
+    connect?: trx_official_travelWhereUniqueInput | trx_official_travelWhereUniqueInput[]
+    update?: trx_official_travelUpdateWithWhereUniqueWithoutUser_dataInput | trx_official_travelUpdateWithWhereUniqueWithoutUser_dataInput[]
+    updateMany?: trx_official_travelUpdateManyWithWhereWithoutUser_dataInput | trx_official_travelUpdateManyWithWhereWithoutUser_dataInput[]
+    deleteMany?: trx_official_travelScalarWhereInput | trx_official_travelScalarWhereInput[]
+  }
+
+  export type trx_mutationUpdateManyWithoutUser_dataNestedInput = {
+    create?: XOR<trx_mutationCreateWithoutUser_dataInput, trx_mutationUncheckedCreateWithoutUser_dataInput> | trx_mutationCreateWithoutUser_dataInput[] | trx_mutationUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_mutationCreateOrConnectWithoutUser_dataInput | trx_mutationCreateOrConnectWithoutUser_dataInput[]
+    upsert?: trx_mutationUpsertWithWhereUniqueWithoutUser_dataInput | trx_mutationUpsertWithWhereUniqueWithoutUser_dataInput[]
+    createMany?: trx_mutationCreateManyUser_dataInputEnvelope
+    set?: trx_mutationWhereUniqueInput | trx_mutationWhereUniqueInput[]
+    disconnect?: trx_mutationWhereUniqueInput | trx_mutationWhereUniqueInput[]
+    delete?: trx_mutationWhereUniqueInput | trx_mutationWhereUniqueInput[]
+    connect?: trx_mutationWhereUniqueInput | trx_mutationWhereUniqueInput[]
+    update?: trx_mutationUpdateWithWhereUniqueWithoutUser_dataInput | trx_mutationUpdateWithWhereUniqueWithoutUser_dataInput[]
+    updateMany?: trx_mutationUpdateManyWithWhereWithoutUser_dataInput | trx_mutationUpdateManyWithWhereWithoutUser_dataInput[]
+    deleteMany?: trx_mutationScalarWhereInput | trx_mutationScalarWhereInput[]
+  }
+
+  export type trx_resignUpdateManyWithoutUser_dataNestedInput = {
+    create?: XOR<trx_resignCreateWithoutUser_dataInput, trx_resignUncheckedCreateWithoutUser_dataInput> | trx_resignCreateWithoutUser_dataInput[] | trx_resignUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_resignCreateOrConnectWithoutUser_dataInput | trx_resignCreateOrConnectWithoutUser_dataInput[]
+    upsert?: trx_resignUpsertWithWhereUniqueWithoutUser_dataInput | trx_resignUpsertWithWhereUniqueWithoutUser_dataInput[]
+    createMany?: trx_resignCreateManyUser_dataInputEnvelope
+    set?: trx_resignWhereUniqueInput | trx_resignWhereUniqueInput[]
+    disconnect?: trx_resignWhereUniqueInput | trx_resignWhereUniqueInput[]
+    delete?: trx_resignWhereUniqueInput | trx_resignWhereUniqueInput[]
+    connect?: trx_resignWhereUniqueInput | trx_resignWhereUniqueInput[]
+    update?: trx_resignUpdateWithWhereUniqueWithoutUser_dataInput | trx_resignUpdateWithWhereUniqueWithoutUser_dataInput[]
+    updateMany?: trx_resignUpdateManyWithWhereWithoutUser_dataInput | trx_resignUpdateManyWithWhereWithoutUser_dataInput[]
+    deleteMany?: trx_resignScalarWhereInput | trx_resignScalarWhereInput[]
+  }
+
+  export type trx_shift_empUpdateManyWithoutMsUserNestedInput = {
+    create?: XOR<trx_shift_empCreateWithoutMsUserInput, trx_shift_empUncheckedCreateWithoutMsUserInput> | trx_shift_empCreateWithoutMsUserInput[] | trx_shift_empUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: trx_shift_empCreateOrConnectWithoutMsUserInput | trx_shift_empCreateOrConnectWithoutMsUserInput[]
+    upsert?: trx_shift_empUpsertWithWhereUniqueWithoutMsUserInput | trx_shift_empUpsertWithWhereUniqueWithoutMsUserInput[]
+    createMany?: trx_shift_empCreateManyMsUserInputEnvelope
+    set?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    disconnect?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    delete?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    connect?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    update?: trx_shift_empUpdateWithWhereUniqueWithoutMsUserInput | trx_shift_empUpdateWithWhereUniqueWithoutMsUserInput[]
+    updateMany?: trx_shift_empUpdateManyWithWhereWithoutMsUserInput | trx_shift_empUpdateManyWithWhereWithoutMsUserInput[]
+    deleteMany?: trx_shift_empScalarWhereInput | trx_shift_empScalarWhereInput[]
+  }
+
+  export type trx_leave_quotaUpdateManyWithoutMsUserNestedInput = {
+    create?: XOR<trx_leave_quotaCreateWithoutMsUserInput, trx_leave_quotaUncheckedCreateWithoutMsUserInput> | trx_leave_quotaCreateWithoutMsUserInput[] | trx_leave_quotaUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: trx_leave_quotaCreateOrConnectWithoutMsUserInput | trx_leave_quotaCreateOrConnectWithoutMsUserInput[]
+    upsert?: trx_leave_quotaUpsertWithWhereUniqueWithoutMsUserInput | trx_leave_quotaUpsertWithWhereUniqueWithoutMsUserInput[]
+    createMany?: trx_leave_quotaCreateManyMsUserInputEnvelope
+    set?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    disconnect?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    delete?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    connect?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    update?: trx_leave_quotaUpdateWithWhereUniqueWithoutMsUserInput | trx_leave_quotaUpdateWithWhereUniqueWithoutMsUserInput[]
+    updateMany?: trx_leave_quotaUpdateManyWithWhereWithoutMsUserInput | trx_leave_quotaUpdateManyWithWhereWithoutMsUserInput[]
+    deleteMany?: trx_leave_quotaScalarWhereInput | trx_leave_quotaScalarWhereInput[]
+  }
+
   export type trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput = {
     create?: XOR<trx_leavesCreateWithoutUser_dataInput, trx_leavesUncheckedCreateWithoutUser_dataInput> | trx_leavesCreateWithoutUser_dataInput[] | trx_leavesUncheckedCreateWithoutUser_dataInput[]
     connectOrCreate?: trx_leavesCreateOrConnectWithoutUser_dataInput | trx_leavesCreateOrConnectWithoutUser_dataInput[]
@@ -31543,6 +32437,90 @@ export namespace Prisma {
     deleteMany?: trx_leavesScalarWhereInput | trx_leavesScalarWhereInput[]
   }
 
+  export type trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput = {
+    create?: XOR<trx_ovtCreateWithoutUser_dataInput, trx_ovtUncheckedCreateWithoutUser_dataInput> | trx_ovtCreateWithoutUser_dataInput[] | trx_ovtUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_ovtCreateOrConnectWithoutUser_dataInput | trx_ovtCreateOrConnectWithoutUser_dataInput[]
+    upsert?: trx_ovtUpsertWithWhereUniqueWithoutUser_dataInput | trx_ovtUpsertWithWhereUniqueWithoutUser_dataInput[]
+    createMany?: trx_ovtCreateManyUser_dataInputEnvelope
+    set?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    disconnect?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    delete?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    connect?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    update?: trx_ovtUpdateWithWhereUniqueWithoutUser_dataInput | trx_ovtUpdateWithWhereUniqueWithoutUser_dataInput[]
+    updateMany?: trx_ovtUpdateManyWithWhereWithoutUser_dataInput | trx_ovtUpdateManyWithWhereWithoutUser_dataInput[]
+    deleteMany?: trx_ovtScalarWhereInput | trx_ovtScalarWhereInput[]
+  }
+
+  export type trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput = {
+    create?: XOR<trx_official_travelCreateWithoutUser_dataInput, trx_official_travelUncheckedCreateWithoutUser_dataInput> | trx_official_travelCreateWithoutUser_dataInput[] | trx_official_travelUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_official_travelCreateOrConnectWithoutUser_dataInput | trx_official_travelCreateOrConnectWithoutUser_dataInput[]
+    upsert?: trx_official_travelUpsertWithWhereUniqueWithoutUser_dataInput | trx_official_travelUpsertWithWhereUniqueWithoutUser_dataInput[]
+    createMany?: trx_official_travelCreateManyUser_dataInputEnvelope
+    set?: trx_official_travelWhereUniqueInput | trx_official_travelWhereUniqueInput[]
+    disconnect?: trx_official_travelWhereUniqueInput | trx_official_travelWhereUniqueInput[]
+    delete?: trx_official_travelWhereUniqueInput | trx_official_travelWhereUniqueInput[]
+    connect?: trx_official_travelWhereUniqueInput | trx_official_travelWhereUniqueInput[]
+    update?: trx_official_travelUpdateWithWhereUniqueWithoutUser_dataInput | trx_official_travelUpdateWithWhereUniqueWithoutUser_dataInput[]
+    updateMany?: trx_official_travelUpdateManyWithWhereWithoutUser_dataInput | trx_official_travelUpdateManyWithWhereWithoutUser_dataInput[]
+    deleteMany?: trx_official_travelScalarWhereInput | trx_official_travelScalarWhereInput[]
+  }
+
+  export type trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput = {
+    create?: XOR<trx_mutationCreateWithoutUser_dataInput, trx_mutationUncheckedCreateWithoutUser_dataInput> | trx_mutationCreateWithoutUser_dataInput[] | trx_mutationUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_mutationCreateOrConnectWithoutUser_dataInput | trx_mutationCreateOrConnectWithoutUser_dataInput[]
+    upsert?: trx_mutationUpsertWithWhereUniqueWithoutUser_dataInput | trx_mutationUpsertWithWhereUniqueWithoutUser_dataInput[]
+    createMany?: trx_mutationCreateManyUser_dataInputEnvelope
+    set?: trx_mutationWhereUniqueInput | trx_mutationWhereUniqueInput[]
+    disconnect?: trx_mutationWhereUniqueInput | trx_mutationWhereUniqueInput[]
+    delete?: trx_mutationWhereUniqueInput | trx_mutationWhereUniqueInput[]
+    connect?: trx_mutationWhereUniqueInput | trx_mutationWhereUniqueInput[]
+    update?: trx_mutationUpdateWithWhereUniqueWithoutUser_dataInput | trx_mutationUpdateWithWhereUniqueWithoutUser_dataInput[]
+    updateMany?: trx_mutationUpdateManyWithWhereWithoutUser_dataInput | trx_mutationUpdateManyWithWhereWithoutUser_dataInput[]
+    deleteMany?: trx_mutationScalarWhereInput | trx_mutationScalarWhereInput[]
+  }
+
+  export type trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput = {
+    create?: XOR<trx_resignCreateWithoutUser_dataInput, trx_resignUncheckedCreateWithoutUser_dataInput> | trx_resignCreateWithoutUser_dataInput[] | trx_resignUncheckedCreateWithoutUser_dataInput[]
+    connectOrCreate?: trx_resignCreateOrConnectWithoutUser_dataInput | trx_resignCreateOrConnectWithoutUser_dataInput[]
+    upsert?: trx_resignUpsertWithWhereUniqueWithoutUser_dataInput | trx_resignUpsertWithWhereUniqueWithoutUser_dataInput[]
+    createMany?: trx_resignCreateManyUser_dataInputEnvelope
+    set?: trx_resignWhereUniqueInput | trx_resignWhereUniqueInput[]
+    disconnect?: trx_resignWhereUniqueInput | trx_resignWhereUniqueInput[]
+    delete?: trx_resignWhereUniqueInput | trx_resignWhereUniqueInput[]
+    connect?: trx_resignWhereUniqueInput | trx_resignWhereUniqueInput[]
+    update?: trx_resignUpdateWithWhereUniqueWithoutUser_dataInput | trx_resignUpdateWithWhereUniqueWithoutUser_dataInput[]
+    updateMany?: trx_resignUpdateManyWithWhereWithoutUser_dataInput | trx_resignUpdateManyWithWhereWithoutUser_dataInput[]
+    deleteMany?: trx_resignScalarWhereInput | trx_resignScalarWhereInput[]
+  }
+
+  export type trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput = {
+    create?: XOR<trx_shift_empCreateWithoutMsUserInput, trx_shift_empUncheckedCreateWithoutMsUserInput> | trx_shift_empCreateWithoutMsUserInput[] | trx_shift_empUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: trx_shift_empCreateOrConnectWithoutMsUserInput | trx_shift_empCreateOrConnectWithoutMsUserInput[]
+    upsert?: trx_shift_empUpsertWithWhereUniqueWithoutMsUserInput | trx_shift_empUpsertWithWhereUniqueWithoutMsUserInput[]
+    createMany?: trx_shift_empCreateManyMsUserInputEnvelope
+    set?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    disconnect?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    delete?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    connect?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    update?: trx_shift_empUpdateWithWhereUniqueWithoutMsUserInput | trx_shift_empUpdateWithWhereUniqueWithoutMsUserInput[]
+    updateMany?: trx_shift_empUpdateManyWithWhereWithoutMsUserInput | trx_shift_empUpdateManyWithWhereWithoutMsUserInput[]
+    deleteMany?: trx_shift_empScalarWhereInput | trx_shift_empScalarWhereInput[]
+  }
+
+  export type trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput = {
+    create?: XOR<trx_leave_quotaCreateWithoutMsUserInput, trx_leave_quotaUncheckedCreateWithoutMsUserInput> | trx_leave_quotaCreateWithoutMsUserInput[] | trx_leave_quotaUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: trx_leave_quotaCreateOrConnectWithoutMsUserInput | trx_leave_quotaCreateOrConnectWithoutMsUserInput[]
+    upsert?: trx_leave_quotaUpsertWithWhereUniqueWithoutMsUserInput | trx_leave_quotaUpsertWithWhereUniqueWithoutMsUserInput[]
+    createMany?: trx_leave_quotaCreateManyMsUserInputEnvelope
+    set?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    disconnect?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    delete?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    connect?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    update?: trx_leave_quotaUpdateWithWhereUniqueWithoutMsUserInput | trx_leave_quotaUpdateWithWhereUniqueWithoutMsUserInput[]
+    updateMany?: trx_leave_quotaUpdateManyWithWhereWithoutMsUserInput | trx_leave_quotaUpdateManyWithWhereWithoutMsUserInput[]
+    deleteMany?: trx_leave_quotaScalarWhereInput | trx_leave_quotaScalarWhereInput[]
+  }
+
   export type trx_leavesCreateNestedManyWithoutLeave_typeInput = {
     create?: XOR<trx_leavesCreateWithoutLeave_typeInput, trx_leavesUncheckedCreateWithoutLeave_typeInput> | trx_leavesCreateWithoutLeave_typeInput[] | trx_leavesUncheckedCreateWithoutLeave_typeInput[]
     connectOrCreate?: trx_leavesCreateOrConnectWithoutLeave_typeInput | trx_leavesCreateOrConnectWithoutLeave_typeInput[]
@@ -31550,11 +32528,25 @@ export namespace Prisma {
     connect?: trx_leavesWhereUniqueInput | trx_leavesWhereUniqueInput[]
   }
 
+  export type trx_leave_quotaCreateNestedManyWithoutMsLeaveTypeInput = {
+    create?: XOR<trx_leave_quotaCreateWithoutMsLeaveTypeInput, trx_leave_quotaUncheckedCreateWithoutMsLeaveTypeInput> | trx_leave_quotaCreateWithoutMsLeaveTypeInput[] | trx_leave_quotaUncheckedCreateWithoutMsLeaveTypeInput[]
+    connectOrCreate?: trx_leave_quotaCreateOrConnectWithoutMsLeaveTypeInput | trx_leave_quotaCreateOrConnectWithoutMsLeaveTypeInput[]
+    createMany?: trx_leave_quotaCreateManyMsLeaveTypeInputEnvelope
+    connect?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+  }
+
   export type trx_leavesUncheckedCreateNestedManyWithoutLeave_typeInput = {
     create?: XOR<trx_leavesCreateWithoutLeave_typeInput, trx_leavesUncheckedCreateWithoutLeave_typeInput> | trx_leavesCreateWithoutLeave_typeInput[] | trx_leavesUncheckedCreateWithoutLeave_typeInput[]
     connectOrCreate?: trx_leavesCreateOrConnectWithoutLeave_typeInput | trx_leavesCreateOrConnectWithoutLeave_typeInput[]
     createMany?: trx_leavesCreateManyLeave_typeInputEnvelope
     connect?: trx_leavesWhereUniqueInput | trx_leavesWhereUniqueInput[]
+  }
+
+  export type trx_leave_quotaUncheckedCreateNestedManyWithoutMsLeaveTypeInput = {
+    create?: XOR<trx_leave_quotaCreateWithoutMsLeaveTypeInput, trx_leave_quotaUncheckedCreateWithoutMsLeaveTypeInput> | trx_leave_quotaCreateWithoutMsLeaveTypeInput[] | trx_leave_quotaUncheckedCreateWithoutMsLeaveTypeInput[]
+    connectOrCreate?: trx_leave_quotaCreateOrConnectWithoutMsLeaveTypeInput | trx_leave_quotaCreateOrConnectWithoutMsLeaveTypeInput[]
+    createMany?: trx_leave_quotaCreateManyMsLeaveTypeInputEnvelope
+    connect?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
   }
 
   export type NullableBigIntFieldUpdateOperationsInput = {
@@ -31579,6 +32571,20 @@ export namespace Prisma {
     deleteMany?: trx_leavesScalarWhereInput | trx_leavesScalarWhereInput[]
   }
 
+  export type trx_leave_quotaUpdateManyWithoutMsLeaveTypeNestedInput = {
+    create?: XOR<trx_leave_quotaCreateWithoutMsLeaveTypeInput, trx_leave_quotaUncheckedCreateWithoutMsLeaveTypeInput> | trx_leave_quotaCreateWithoutMsLeaveTypeInput[] | trx_leave_quotaUncheckedCreateWithoutMsLeaveTypeInput[]
+    connectOrCreate?: trx_leave_quotaCreateOrConnectWithoutMsLeaveTypeInput | trx_leave_quotaCreateOrConnectWithoutMsLeaveTypeInput[]
+    upsert?: trx_leave_quotaUpsertWithWhereUniqueWithoutMsLeaveTypeInput | trx_leave_quotaUpsertWithWhereUniqueWithoutMsLeaveTypeInput[]
+    createMany?: trx_leave_quotaCreateManyMsLeaveTypeInputEnvelope
+    set?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    disconnect?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    delete?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    connect?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    update?: trx_leave_quotaUpdateWithWhereUniqueWithoutMsLeaveTypeInput | trx_leave_quotaUpdateWithWhereUniqueWithoutMsLeaveTypeInput[]
+    updateMany?: trx_leave_quotaUpdateManyWithWhereWithoutMsLeaveTypeInput | trx_leave_quotaUpdateManyWithWhereWithoutMsLeaveTypeInput[]
+    deleteMany?: trx_leave_quotaScalarWhereInput | trx_leave_quotaScalarWhereInput[]
+  }
+
   export type trx_leavesUncheckedUpdateManyWithoutLeave_typeNestedInput = {
     create?: XOR<trx_leavesCreateWithoutLeave_typeInput, trx_leavesUncheckedCreateWithoutLeave_typeInput> | trx_leavesCreateWithoutLeave_typeInput[] | trx_leavesUncheckedCreateWithoutLeave_typeInput[]
     connectOrCreate?: trx_leavesCreateOrConnectWithoutLeave_typeInput | trx_leavesCreateOrConnectWithoutLeave_typeInput[]
@@ -31591,6 +32597,20 @@ export namespace Prisma {
     update?: trx_leavesUpdateWithWhereUniqueWithoutLeave_typeInput | trx_leavesUpdateWithWhereUniqueWithoutLeave_typeInput[]
     updateMany?: trx_leavesUpdateManyWithWhereWithoutLeave_typeInput | trx_leavesUpdateManyWithWhereWithoutLeave_typeInput[]
     deleteMany?: trx_leavesScalarWhereInput | trx_leavesScalarWhereInput[]
+  }
+
+  export type trx_leave_quotaUncheckedUpdateManyWithoutMsLeaveTypeNestedInput = {
+    create?: XOR<trx_leave_quotaCreateWithoutMsLeaveTypeInput, trx_leave_quotaUncheckedCreateWithoutMsLeaveTypeInput> | trx_leave_quotaCreateWithoutMsLeaveTypeInput[] | trx_leave_quotaUncheckedCreateWithoutMsLeaveTypeInput[]
+    connectOrCreate?: trx_leave_quotaCreateOrConnectWithoutMsLeaveTypeInput | trx_leave_quotaCreateOrConnectWithoutMsLeaveTypeInput[]
+    upsert?: trx_leave_quotaUpsertWithWhereUniqueWithoutMsLeaveTypeInput | trx_leave_quotaUpsertWithWhereUniqueWithoutMsLeaveTypeInput[]
+    createMany?: trx_leave_quotaCreateManyMsLeaveTypeInputEnvelope
+    set?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    disconnect?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    delete?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    connect?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
+    update?: trx_leave_quotaUpdateWithWhereUniqueWithoutMsLeaveTypeInput | trx_leave_quotaUpdateWithWhereUniqueWithoutMsLeaveTypeInput[]
+    updateMany?: trx_leave_quotaUpdateManyWithWhereWithoutMsLeaveTypeInput | trx_leave_quotaUpdateManyWithWhereWithoutMsLeaveTypeInput[]
+    deleteMany?: trx_leave_quotaScalarWhereInput | trx_leave_quotaScalarWhereInput[]
   }
 
   export type ms_leave_typesCreateNestedOneWithoutTrx_leavesInput = {
@@ -31632,11 +32652,25 @@ export namespace Prisma {
     connect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
   }
 
+  export type trx_ovtCreateNestedManyWithoutShift_dataInput = {
+    create?: XOR<trx_ovtCreateWithoutShift_dataInput, trx_ovtUncheckedCreateWithoutShift_dataInput> | trx_ovtCreateWithoutShift_dataInput[] | trx_ovtUncheckedCreateWithoutShift_dataInput[]
+    connectOrCreate?: trx_ovtCreateOrConnectWithoutShift_dataInput | trx_ovtCreateOrConnectWithoutShift_dataInput[]
+    createMany?: trx_ovtCreateManyShift_dataInputEnvelope
+    connect?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+  }
+
   export type ms_detail_shift_groupUncheckedCreateNestedManyWithoutMsShiftInput = {
     create?: XOR<ms_detail_shift_groupCreateWithoutMsShiftInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput> | ms_detail_shift_groupCreateWithoutMsShiftInput[] | ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput[]
     connectOrCreate?: ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput | ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput[]
     createMany?: ms_detail_shift_groupCreateManyMsShiftInputEnvelope
     connect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+  }
+
+  export type trx_ovtUncheckedCreateNestedManyWithoutShift_dataInput = {
+    create?: XOR<trx_ovtCreateWithoutShift_dataInput, trx_ovtUncheckedCreateWithoutShift_dataInput> | trx_ovtCreateWithoutShift_dataInput[] | trx_ovtUncheckedCreateWithoutShift_dataInput[]
+    connectOrCreate?: trx_ovtCreateOrConnectWithoutShift_dataInput | trx_ovtCreateOrConnectWithoutShift_dataInput[]
+    createMany?: trx_ovtCreateManyShift_dataInputEnvelope
+    connect?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
   }
 
   export type ms_detail_shift_groupUpdateManyWithoutMsShiftNestedInput = {
@@ -31653,6 +32687,20 @@ export namespace Prisma {
     deleteMany?: ms_detail_shift_groupScalarWhereInput | ms_detail_shift_groupScalarWhereInput[]
   }
 
+  export type trx_ovtUpdateManyWithoutShift_dataNestedInput = {
+    create?: XOR<trx_ovtCreateWithoutShift_dataInput, trx_ovtUncheckedCreateWithoutShift_dataInput> | trx_ovtCreateWithoutShift_dataInput[] | trx_ovtUncheckedCreateWithoutShift_dataInput[]
+    connectOrCreate?: trx_ovtCreateOrConnectWithoutShift_dataInput | trx_ovtCreateOrConnectWithoutShift_dataInput[]
+    upsert?: trx_ovtUpsertWithWhereUniqueWithoutShift_dataInput | trx_ovtUpsertWithWhereUniqueWithoutShift_dataInput[]
+    createMany?: trx_ovtCreateManyShift_dataInputEnvelope
+    set?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    disconnect?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    delete?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    connect?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    update?: trx_ovtUpdateWithWhereUniqueWithoutShift_dataInput | trx_ovtUpdateWithWhereUniqueWithoutShift_dataInput[]
+    updateMany?: trx_ovtUpdateManyWithWhereWithoutShift_dataInput | trx_ovtUpdateManyWithWhereWithoutShift_dataInput[]
+    deleteMany?: trx_ovtScalarWhereInput | trx_ovtScalarWhereInput[]
+  }
+
   export type ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftNestedInput = {
     create?: XOR<ms_detail_shift_groupCreateWithoutMsShiftInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput> | ms_detail_shift_groupCreateWithoutMsShiftInput[] | ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput[]
     connectOrCreate?: ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput | ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput[]
@@ -31667,6 +32715,20 @@ export namespace Prisma {
     deleteMany?: ms_detail_shift_groupScalarWhereInput | ms_detail_shift_groupScalarWhereInput[]
   }
 
+  export type trx_ovtUncheckedUpdateManyWithoutShift_dataNestedInput = {
+    create?: XOR<trx_ovtCreateWithoutShift_dataInput, trx_ovtUncheckedCreateWithoutShift_dataInput> | trx_ovtCreateWithoutShift_dataInput[] | trx_ovtUncheckedCreateWithoutShift_dataInput[]
+    connectOrCreate?: trx_ovtCreateOrConnectWithoutShift_dataInput | trx_ovtCreateOrConnectWithoutShift_dataInput[]
+    upsert?: trx_ovtUpsertWithWhereUniqueWithoutShift_dataInput | trx_ovtUpsertWithWhereUniqueWithoutShift_dataInput[]
+    createMany?: trx_ovtCreateManyShift_dataInputEnvelope
+    set?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    disconnect?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    delete?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    connect?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+    update?: trx_ovtUpdateWithWhereUniqueWithoutShift_dataInput | trx_ovtUpdateWithWhereUniqueWithoutShift_dataInput[]
+    updateMany?: trx_ovtUpdateManyWithWhereWithoutShift_dataInput | trx_ovtUpdateManyWithWhereWithoutShift_dataInput[]
+    deleteMany?: trx_ovtScalarWhereInput | trx_ovtScalarWhereInput[]
+  }
+
   export type ms_detail_shift_groupCreateNestedManyWithoutMsShiftGroupInput = {
     create?: XOR<ms_detail_shift_groupCreateWithoutMsShiftGroupInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput> | ms_detail_shift_groupCreateWithoutMsShiftGroupInput[] | ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput[]
     connectOrCreate?: ms_detail_shift_groupCreateOrConnectWithoutMsShiftGroupInput | ms_detail_shift_groupCreateOrConnectWithoutMsShiftGroupInput[]
@@ -31674,11 +32736,25 @@ export namespace Prisma {
     connect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
   }
 
+  export type trx_shift_empCreateNestedManyWithoutMsShiftGroupInput = {
+    create?: XOR<trx_shift_empCreateWithoutMsShiftGroupInput, trx_shift_empUncheckedCreateWithoutMsShiftGroupInput> | trx_shift_empCreateWithoutMsShiftGroupInput[] | trx_shift_empUncheckedCreateWithoutMsShiftGroupInput[]
+    connectOrCreate?: trx_shift_empCreateOrConnectWithoutMsShiftGroupInput | trx_shift_empCreateOrConnectWithoutMsShiftGroupInput[]
+    createMany?: trx_shift_empCreateManyMsShiftGroupInputEnvelope
+    connect?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+  }
+
   export type ms_detail_shift_groupUncheckedCreateNestedManyWithoutMsShiftGroupInput = {
     create?: XOR<ms_detail_shift_groupCreateWithoutMsShiftGroupInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput> | ms_detail_shift_groupCreateWithoutMsShiftGroupInput[] | ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput[]
     connectOrCreate?: ms_detail_shift_groupCreateOrConnectWithoutMsShiftGroupInput | ms_detail_shift_groupCreateOrConnectWithoutMsShiftGroupInput[]
     createMany?: ms_detail_shift_groupCreateManyMsShiftGroupInputEnvelope
     connect?: ms_detail_shift_groupWhereUniqueInput | ms_detail_shift_groupWhereUniqueInput[]
+  }
+
+  export type trx_shift_empUncheckedCreateNestedManyWithoutMsShiftGroupInput = {
+    create?: XOR<trx_shift_empCreateWithoutMsShiftGroupInput, trx_shift_empUncheckedCreateWithoutMsShiftGroupInput> | trx_shift_empCreateWithoutMsShiftGroupInput[] | trx_shift_empUncheckedCreateWithoutMsShiftGroupInput[]
+    connectOrCreate?: trx_shift_empCreateOrConnectWithoutMsShiftGroupInput | trx_shift_empCreateOrConnectWithoutMsShiftGroupInput[]
+    createMany?: trx_shift_empCreateManyMsShiftGroupInputEnvelope
+    connect?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
   }
 
   export type ms_detail_shift_groupUpdateManyWithoutMsShiftGroupNestedInput = {
@@ -31695,6 +32771,20 @@ export namespace Prisma {
     deleteMany?: ms_detail_shift_groupScalarWhereInput | ms_detail_shift_groupScalarWhereInput[]
   }
 
+  export type trx_shift_empUpdateManyWithoutMsShiftGroupNestedInput = {
+    create?: XOR<trx_shift_empCreateWithoutMsShiftGroupInput, trx_shift_empUncheckedCreateWithoutMsShiftGroupInput> | trx_shift_empCreateWithoutMsShiftGroupInput[] | trx_shift_empUncheckedCreateWithoutMsShiftGroupInput[]
+    connectOrCreate?: trx_shift_empCreateOrConnectWithoutMsShiftGroupInput | trx_shift_empCreateOrConnectWithoutMsShiftGroupInput[]
+    upsert?: trx_shift_empUpsertWithWhereUniqueWithoutMsShiftGroupInput | trx_shift_empUpsertWithWhereUniqueWithoutMsShiftGroupInput[]
+    createMany?: trx_shift_empCreateManyMsShiftGroupInputEnvelope
+    set?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    disconnect?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    delete?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    connect?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    update?: trx_shift_empUpdateWithWhereUniqueWithoutMsShiftGroupInput | trx_shift_empUpdateWithWhereUniqueWithoutMsShiftGroupInput[]
+    updateMany?: trx_shift_empUpdateManyWithWhereWithoutMsShiftGroupInput | trx_shift_empUpdateManyWithWhereWithoutMsShiftGroupInput[]
+    deleteMany?: trx_shift_empScalarWhereInput | trx_shift_empScalarWhereInput[]
+  }
+
   export type ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftGroupNestedInput = {
     create?: XOR<ms_detail_shift_groupCreateWithoutMsShiftGroupInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput> | ms_detail_shift_groupCreateWithoutMsShiftGroupInput[] | ms_detail_shift_groupUncheckedCreateWithoutMsShiftGroupInput[]
     connectOrCreate?: ms_detail_shift_groupCreateOrConnectWithoutMsShiftGroupInput | ms_detail_shift_groupCreateOrConnectWithoutMsShiftGroupInput[]
@@ -31707,6 +32797,20 @@ export namespace Prisma {
     update?: ms_detail_shift_groupUpdateWithWhereUniqueWithoutMsShiftGroupInput | ms_detail_shift_groupUpdateWithWhereUniqueWithoutMsShiftGroupInput[]
     updateMany?: ms_detail_shift_groupUpdateManyWithWhereWithoutMsShiftGroupInput | ms_detail_shift_groupUpdateManyWithWhereWithoutMsShiftGroupInput[]
     deleteMany?: ms_detail_shift_groupScalarWhereInput | ms_detail_shift_groupScalarWhereInput[]
+  }
+
+  export type trx_shift_empUncheckedUpdateManyWithoutMsShiftGroupNestedInput = {
+    create?: XOR<trx_shift_empCreateWithoutMsShiftGroupInput, trx_shift_empUncheckedCreateWithoutMsShiftGroupInput> | trx_shift_empCreateWithoutMsShiftGroupInput[] | trx_shift_empUncheckedCreateWithoutMsShiftGroupInput[]
+    connectOrCreate?: trx_shift_empCreateOrConnectWithoutMsShiftGroupInput | trx_shift_empCreateOrConnectWithoutMsShiftGroupInput[]
+    upsert?: trx_shift_empUpsertWithWhereUniqueWithoutMsShiftGroupInput | trx_shift_empUpsertWithWhereUniqueWithoutMsShiftGroupInput[]
+    createMany?: trx_shift_empCreateManyMsShiftGroupInputEnvelope
+    set?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    disconnect?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    delete?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    connect?: trx_shift_empWhereUniqueInput | trx_shift_empWhereUniqueInput[]
+    update?: trx_shift_empUpdateWithWhereUniqueWithoutMsShiftGroupInput | trx_shift_empUpdateWithWhereUniqueWithoutMsShiftGroupInput[]
+    updateMany?: trx_shift_empUpdateManyWithWhereWithoutMsShiftGroupInput | trx_shift_empUpdateManyWithWhereWithoutMsShiftGroupInput[]
+    deleteMany?: trx_shift_empScalarWhereInput | trx_shift_empScalarWhereInput[]
   }
 
   export type ms_shiftCreateNestedOneWithoutDetailsInput = {
@@ -31781,6 +32885,132 @@ export namespace Prisma {
 
   export type NullableBytesFieldUpdateOperationsInput = {
     set?: Buffer | null
+  }
+
+  export type UserCreateNestedOneWithoutTrx_ovtInput = {
+    create?: XOR<UserCreateWithoutTrx_ovtInput, UserUncheckedCreateWithoutTrx_ovtInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTrx_ovtInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ms_shiftCreateNestedOneWithoutTrx_ovtInput = {
+    create?: XOR<ms_shiftCreateWithoutTrx_ovtInput, ms_shiftUncheckedCreateWithoutTrx_ovtInput>
+    connectOrCreate?: ms_shiftCreateOrConnectWithoutTrx_ovtInput
+    connect?: ms_shiftWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutTrx_ovtNestedInput = {
+    create?: XOR<UserCreateWithoutTrx_ovtInput, UserUncheckedCreateWithoutTrx_ovtInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTrx_ovtInput
+    upsert?: UserUpsertWithoutTrx_ovtInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTrx_ovtInput, UserUpdateWithoutTrx_ovtInput>, UserUncheckedUpdateWithoutTrx_ovtInput>
+  }
+
+  export type ms_shiftUpdateOneRequiredWithoutTrx_ovtNestedInput = {
+    create?: XOR<ms_shiftCreateWithoutTrx_ovtInput, ms_shiftUncheckedCreateWithoutTrx_ovtInput>
+    connectOrCreate?: ms_shiftCreateOrConnectWithoutTrx_ovtInput
+    upsert?: ms_shiftUpsertWithoutTrx_ovtInput
+    connect?: ms_shiftWhereUniqueInput
+    update?: XOR<XOR<ms_shiftUpdateToOneWithWhereWithoutTrx_ovtInput, ms_shiftUpdateWithoutTrx_ovtInput>, ms_shiftUncheckedUpdateWithoutTrx_ovtInput>
+  }
+
+  export type UserCreateNestedOneWithoutTrx_shift_empInput = {
+    create?: XOR<UserCreateWithoutTrx_shift_empInput, UserUncheckedCreateWithoutTrx_shift_empInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTrx_shift_empInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ms_shift_groupCreateNestedOneWithoutTrx_shift_empsInput = {
+    create?: XOR<ms_shift_groupCreateWithoutTrx_shift_empsInput, ms_shift_groupUncheckedCreateWithoutTrx_shift_empsInput>
+    connectOrCreate?: ms_shift_groupCreateOrConnectWithoutTrx_shift_empsInput
+    connect?: ms_shift_groupWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutTrx_shift_empNestedInput = {
+    create?: XOR<UserCreateWithoutTrx_shift_empInput, UserUncheckedCreateWithoutTrx_shift_empInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTrx_shift_empInput
+    upsert?: UserUpsertWithoutTrx_shift_empInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTrx_shift_empInput, UserUpdateWithoutTrx_shift_empInput>, UserUncheckedUpdateWithoutTrx_shift_empInput>
+  }
+
+  export type ms_shift_groupUpdateOneRequiredWithoutTrx_shift_empsNestedInput = {
+    create?: XOR<ms_shift_groupCreateWithoutTrx_shift_empsInput, ms_shift_groupUncheckedCreateWithoutTrx_shift_empsInput>
+    connectOrCreate?: ms_shift_groupCreateOrConnectWithoutTrx_shift_empsInput
+    upsert?: ms_shift_groupUpsertWithoutTrx_shift_empsInput
+    connect?: ms_shift_groupWhereUniqueInput
+    update?: XOR<XOR<ms_shift_groupUpdateToOneWithWhereWithoutTrx_shift_empsInput, ms_shift_groupUpdateWithoutTrx_shift_empsInput>, ms_shift_groupUncheckedUpdateWithoutTrx_shift_empsInput>
+  }
+
+  export type UserCreateNestedOneWithoutTrx_officialTravelInput = {
+    create?: XOR<UserCreateWithoutTrx_officialTravelInput, UserUncheckedCreateWithoutTrx_officialTravelInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTrx_officialTravelInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutTrx_officialTravelNestedInput = {
+    create?: XOR<UserCreateWithoutTrx_officialTravelInput, UserUncheckedCreateWithoutTrx_officialTravelInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTrx_officialTravelInput
+    upsert?: UserUpsertWithoutTrx_officialTravelInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTrx_officialTravelInput, UserUpdateWithoutTrx_officialTravelInput>, UserUncheckedUpdateWithoutTrx_officialTravelInput>
+  }
+
+  export type UserCreateNestedOneWithoutTrx_mutationInput = {
+    create?: XOR<UserCreateWithoutTrx_mutationInput, UserUncheckedCreateWithoutTrx_mutationInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTrx_mutationInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutTrx_mutationNestedInput = {
+    create?: XOR<UserCreateWithoutTrx_mutationInput, UserUncheckedCreateWithoutTrx_mutationInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTrx_mutationInput
+    upsert?: UserUpsertWithoutTrx_mutationInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTrx_mutationInput, UserUpdateWithoutTrx_mutationInput>, UserUncheckedUpdateWithoutTrx_mutationInput>
+  }
+
+  export type UserCreateNestedOneWithoutTrx_resignInput = {
+    create?: XOR<UserCreateWithoutTrx_resignInput, UserUncheckedCreateWithoutTrx_resignInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTrx_resignInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutTrx_resignNestedInput = {
+    create?: XOR<UserCreateWithoutTrx_resignInput, UserUncheckedCreateWithoutTrx_resignInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTrx_resignInput
+    upsert?: UserUpsertWithoutTrx_resignInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTrx_resignInput, UserUpdateWithoutTrx_resignInput>, UserUncheckedUpdateWithoutTrx_resignInput>
+  }
+
+  export type UserCreateNestedOneWithoutTrx_leave_quotaInput = {
+    create?: XOR<UserCreateWithoutTrx_leave_quotaInput, UserUncheckedCreateWithoutTrx_leave_quotaInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTrx_leave_quotaInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ms_leave_typesCreateNestedOneWithoutTrx_leave_quotaInput = {
+    create?: XOR<ms_leave_typesCreateWithoutTrx_leave_quotaInput, ms_leave_typesUncheckedCreateWithoutTrx_leave_quotaInput>
+    connectOrCreate?: ms_leave_typesCreateOrConnectWithoutTrx_leave_quotaInput
+    connect?: ms_leave_typesWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutTrx_leave_quotaNestedInput = {
+    create?: XOR<UserCreateWithoutTrx_leave_quotaInput, UserUncheckedCreateWithoutTrx_leave_quotaInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTrx_leave_quotaInput
+    upsert?: UserUpsertWithoutTrx_leave_quotaInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTrx_leave_quotaInput, UserUpdateWithoutTrx_leave_quotaInput>, UserUncheckedUpdateWithoutTrx_leave_quotaInput>
+  }
+
+  export type ms_leave_typesUpdateOneRequiredWithoutTrx_leave_quotaNestedInput = {
+    create?: XOR<ms_leave_typesCreateWithoutTrx_leave_quotaInput, ms_leave_typesUncheckedCreateWithoutTrx_leave_quotaInput>
+    connectOrCreate?: ms_leave_typesCreateOrConnectWithoutTrx_leave_quotaInput
+    upsert?: ms_leave_typesUpsertWithoutTrx_leave_quotaInput
+    connect?: ms_leave_typesWhereUniqueInput
+    update?: XOR<XOR<ms_leave_typesUpdateToOneWithWhereWithoutTrx_leave_quotaInput, ms_leave_typesUpdateWithoutTrx_leave_quotaInput>, ms_leave_typesUncheckedUpdateWithoutTrx_leave_quotaInput>
   }
 
   export type NestedBigIntFilter<$PrismaModel = never> = {
@@ -32146,6 +33376,326 @@ export namespace Prisma {
     data: trx_leavesCreateManyUser_dataInput | trx_leavesCreateManyUser_dataInput[]
   }
 
+  export type trx_ovtCreateWithoutUser_dataInput = {
+    id?: bigint | number
+    dept: bigint | number
+    status_id: bigint | number
+    check_in_ovt: Date | string
+    check_out_ovt: Date | string
+    note_ovt: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_by?: bigint | number | null
+    updated_at?: Date | string
+    shift_data: ms_shiftCreateNestedOneWithoutTrx_ovtInput
+  }
+
+  export type trx_ovtUncheckedCreateWithoutUser_dataInput = {
+    id?: bigint | number
+    dept: bigint | number
+    shift: number
+    status_id: bigint | number
+    check_in_ovt: Date | string
+    check_out_ovt: Date | string
+    note_ovt: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_by?: bigint | number | null
+    updated_at?: Date | string
+  }
+
+  export type trx_ovtCreateOrConnectWithoutUser_dataInput = {
+    where: trx_ovtWhereUniqueInput
+    create: XOR<trx_ovtCreateWithoutUser_dataInput, trx_ovtUncheckedCreateWithoutUser_dataInput>
+  }
+
+  export type trx_ovtCreateManyUser_dataInputEnvelope = {
+    data: trx_ovtCreateManyUser_dataInput | trx_ovtCreateManyUser_dataInput[]
+  }
+
+  export type trx_official_travelCreateWithoutUser_dataInput = {
+    effective_date?: Date | string | null
+    start_date: Date | string
+    end_date: Date | string
+    total_leave_days: bigint | number
+    purpose: string
+    destination_city: string
+    status_id: bigint | number
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_official_travelUncheckedCreateWithoutUser_dataInput = {
+    id?: number
+    effective_date?: Date | string | null
+    start_date: Date | string
+    end_date: Date | string
+    total_leave_days: bigint | number
+    purpose: string
+    destination_city: string
+    status_id: bigint | number
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_official_travelCreateOrConnectWithoutUser_dataInput = {
+    where: trx_official_travelWhereUniqueInput
+    create: XOR<trx_official_travelCreateWithoutUser_dataInput, trx_official_travelUncheckedCreateWithoutUser_dataInput>
+  }
+
+  export type trx_official_travelCreateManyUser_dataInputEnvelope = {
+    data: trx_official_travelCreateManyUser_dataInput | trx_official_travelCreateManyUser_dataInput[]
+  }
+
+  export type trx_mutationCreateWithoutUser_dataInput = {
+    effective_date: Date | string
+    reason: string
+    status_id: bigint | number
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_mutationUncheckedCreateWithoutUser_dataInput = {
+    id?: number
+    effective_date: Date | string
+    reason: string
+    status_id: bigint | number
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_mutationCreateOrConnectWithoutUser_dataInput = {
+    where: trx_mutationWhereUniqueInput
+    create: XOR<trx_mutationCreateWithoutUser_dataInput, trx_mutationUncheckedCreateWithoutUser_dataInput>
+  }
+
+  export type trx_mutationCreateManyUser_dataInputEnvelope = {
+    data: trx_mutationCreateManyUser_dataInput | trx_mutationCreateManyUser_dataInput[]
+  }
+
+  export type trx_resignCreateWithoutUser_dataInput = {
+    effective_date: Date | string
+    reason: string
+    status_id: bigint | number
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_resignUncheckedCreateWithoutUser_dataInput = {
+    id?: number
+    effective_date: Date | string
+    reason: string
+    status_id: bigint | number
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_resignCreateOrConnectWithoutUser_dataInput = {
+    where: trx_resignWhereUniqueInput
+    create: XOR<trx_resignCreateWithoutUser_dataInput, trx_resignUncheckedCreateWithoutUser_dataInput>
+  }
+
+  export type trx_resignCreateManyUser_dataInputEnvelope = {
+    data: trx_resignCreateManyUser_dataInput | trx_resignCreateManyUser_dataInput[]
+  }
+
+  export type trx_shift_empCreateWithoutMsUserInput = {
+    id?: bigint | number
+    code: string
+    valid_from: Date | string
+    valid_to: Date | string
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+    flag_shift?: number | null
+    MsShiftGroup: ms_shift_groupCreateNestedOneWithoutTrx_shift_empsInput
+  }
+
+  export type trx_shift_empUncheckedCreateWithoutMsUserInput = {
+    id?: bigint | number
+    code: string
+    id_shift_group: string
+    valid_from: Date | string
+    valid_to: Date | string
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+    flag_shift?: number | null
+  }
+
+  export type trx_shift_empCreateOrConnectWithoutMsUserInput = {
+    where: trx_shift_empWhereUniqueInput
+    create: XOR<trx_shift_empCreateWithoutMsUserInput, trx_shift_empUncheckedCreateWithoutMsUserInput>
+  }
+
+  export type trx_shift_empCreateManyMsUserInputEnvelope = {
+    data: trx_shift_empCreateManyMsUserInput | trx_shift_empCreateManyMsUserInput[]
+  }
+
+  export type trx_leave_quotaCreateWithoutMsUserInput = {
+    valid_from?: Date | string | null
+    valid_to?: Date | string | null
+    leaves_quota?: number | null
+    used_leave?: number | null
+    leave_balance?: number | null
+    is_active?: number | null
+    is_deleted?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    MsLeaveType: ms_leave_typesCreateNestedOneWithoutTrx_leave_quotaInput
+  }
+
+  export type trx_leave_quotaUncheckedCreateWithoutMsUserInput = {
+    id?: number
+    leaves_type_id: number
+    valid_from?: Date | string | null
+    valid_to?: Date | string | null
+    leaves_quota?: number | null
+    used_leave?: number | null
+    leave_balance?: number | null
+    is_active?: number | null
+    is_deleted?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
+  export type trx_leave_quotaCreateOrConnectWithoutMsUserInput = {
+    where: trx_leave_quotaWhereUniqueInput
+    create: XOR<trx_leave_quotaCreateWithoutMsUserInput, trx_leave_quotaUncheckedCreateWithoutMsUserInput>
+  }
+
+  export type trx_leave_quotaCreateManyMsUserInputEnvelope = {
+    data: trx_leave_quotaCreateManyMsUserInput | trx_leave_quotaCreateManyMsUserInput[]
+  }
+
   export type mst_deptUpsertWithoutMst_userInput = {
     update: XOR<mst_deptUpdateWithoutMst_userInput, mst_deptUncheckedUpdateWithoutMst_userInput>
     create: XOR<mst_deptCreateWithoutMst_userInput, mst_deptUncheckedCreateWithoutMst_userInput>
@@ -32208,7 +33758,7 @@ export namespace Prisma {
     OR?: trx_leavesScalarWhereInput[]
     NOT?: trx_leavesScalarWhereInput | trx_leavesScalarWhereInput[]
     id?: BigIntFilter<"trx_leaves"> | bigint | number
-    user?: BigIntFilter<"trx_leaves"> | bigint | number
+    user?: StringFilter<"trx_leaves"> | string
     dept?: BigIntFilter<"trx_leaves"> | bigint | number
     leave_type_id?: IntFilter<"trx_leaves"> | number
     status_id?: BigIntFilter<"trx_leaves"> | bigint | number
@@ -32235,6 +33785,261 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"trx_leaves"> | Date | string
     updated_by?: BigIntFilter<"trx_leaves"> | bigint | number
     updated_at?: DateTimeFilter<"trx_leaves"> | Date | string
+  }
+
+  export type trx_ovtUpsertWithWhereUniqueWithoutUser_dataInput = {
+    where: trx_ovtWhereUniqueInput
+    update: XOR<trx_ovtUpdateWithoutUser_dataInput, trx_ovtUncheckedUpdateWithoutUser_dataInput>
+    create: XOR<trx_ovtCreateWithoutUser_dataInput, trx_ovtUncheckedCreateWithoutUser_dataInput>
+  }
+
+  export type trx_ovtUpdateWithWhereUniqueWithoutUser_dataInput = {
+    where: trx_ovtWhereUniqueInput
+    data: XOR<trx_ovtUpdateWithoutUser_dataInput, trx_ovtUncheckedUpdateWithoutUser_dataInput>
+  }
+
+  export type trx_ovtUpdateManyWithWhereWithoutUser_dataInput = {
+    where: trx_ovtScalarWhereInput
+    data: XOR<trx_ovtUpdateManyMutationInput, trx_ovtUncheckedUpdateManyWithoutUser_dataInput>
+  }
+
+  export type trx_ovtScalarWhereInput = {
+    AND?: trx_ovtScalarWhereInput | trx_ovtScalarWhereInput[]
+    OR?: trx_ovtScalarWhereInput[]
+    NOT?: trx_ovtScalarWhereInput | trx_ovtScalarWhereInput[]
+    id?: BigIntFilter<"trx_ovt"> | bigint | number
+    user?: StringFilter<"trx_ovt"> | string
+    dept?: BigIntFilter<"trx_ovt"> | bigint | number
+    shift?: IntFilter<"trx_ovt"> | number
+    status_id?: BigIntFilter<"trx_ovt"> | bigint | number
+    check_in_ovt?: DateTimeFilter<"trx_ovt"> | Date | string
+    check_out_ovt?: DateTimeFilter<"trx_ovt"> | Date | string
+    note_ovt?: StringFilter<"trx_ovt"> | string
+    accept_to?: StringFilter<"trx_ovt"> | string
+    accepted?: StringNullableFilter<"trx_ovt"> | string | null
+    accepted_date?: DateTimeNullableFilter<"trx_ovt"> | Date | string | null
+    accepted_remark?: StringNullableFilter<"trx_ovt"> | string | null
+    approve_to?: StringFilter<"trx_ovt"> | string
+    approved?: StringNullableFilter<"trx_ovt"> | string | null
+    approved_date?: DateTimeNullableFilter<"trx_ovt"> | Date | string | null
+    approved_remark?: StringNullableFilter<"trx_ovt"> | string | null
+    rejected?: StringNullableFilter<"trx_ovt"> | string | null
+    rejected_date?: DateTimeNullableFilter<"trx_ovt"> | Date | string | null
+    rejected_remark?: StringNullableFilter<"trx_ovt"> | string | null
+    canceled?: StringNullableFilter<"trx_ovt"> | string | null
+    canceled_date?: DateTimeNullableFilter<"trx_ovt"> | Date | string | null
+    canceled_remark?: StringNullableFilter<"trx_ovt"> | string | null
+    created_by?: BigIntNullableFilter<"trx_ovt"> | bigint | number | null
+    created_at?: DateTimeFilter<"trx_ovt"> | Date | string
+    updated_by?: BigIntNullableFilter<"trx_ovt"> | bigint | number | null
+    updated_at?: DateTimeFilter<"trx_ovt"> | Date | string
+  }
+
+  export type trx_official_travelUpsertWithWhereUniqueWithoutUser_dataInput = {
+    where: trx_official_travelWhereUniqueInput
+    update: XOR<trx_official_travelUpdateWithoutUser_dataInput, trx_official_travelUncheckedUpdateWithoutUser_dataInput>
+    create: XOR<trx_official_travelCreateWithoutUser_dataInput, trx_official_travelUncheckedCreateWithoutUser_dataInput>
+  }
+
+  export type trx_official_travelUpdateWithWhereUniqueWithoutUser_dataInput = {
+    where: trx_official_travelWhereUniqueInput
+    data: XOR<trx_official_travelUpdateWithoutUser_dataInput, trx_official_travelUncheckedUpdateWithoutUser_dataInput>
+  }
+
+  export type trx_official_travelUpdateManyWithWhereWithoutUser_dataInput = {
+    where: trx_official_travelScalarWhereInput
+    data: XOR<trx_official_travelUpdateManyMutationInput, trx_official_travelUncheckedUpdateManyWithoutUser_dataInput>
+  }
+
+  export type trx_official_travelScalarWhereInput = {
+    AND?: trx_official_travelScalarWhereInput | trx_official_travelScalarWhereInput[]
+    OR?: trx_official_travelScalarWhereInput[]
+    NOT?: trx_official_travelScalarWhereInput | trx_official_travelScalarWhereInput[]
+    id?: IntFilter<"trx_official_travel"> | number
+    user?: StringFilter<"trx_official_travel"> | string
+    effective_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    start_date?: DateTimeFilter<"trx_official_travel"> | Date | string
+    end_date?: DateTimeFilter<"trx_official_travel"> | Date | string
+    total_leave_days?: BigIntFilter<"trx_official_travel"> | bigint | number
+    purpose?: StringFilter<"trx_official_travel"> | string
+    destination_city?: StringFilter<"trx_official_travel"> | string
+    status_id?: BigIntFilter<"trx_official_travel"> | bigint | number
+    accept_to?: StringFilter<"trx_official_travel"> | string
+    accepted?: StringNullableFilter<"trx_official_travel"> | string | null
+    accepted_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    accepted_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to?: StringFilter<"trx_official_travel"> | string
+    approved?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    rejected?: StringNullableFilter<"trx_official_travel"> | string | null
+    rejected_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    rejected_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    canceled?: StringNullableFilter<"trx_official_travel"> | string | null
+    canceled_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    canceled_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    created_by?: BigIntNullableFilter<"trx_official_travel"> | bigint | number | null
+    created_at?: DateTimeFilter<"trx_official_travel"> | Date | string
+    updated_by?: BigIntNullableFilter<"trx_official_travel"> | bigint | number | null
+    updated_at?: DateTimeFilter<"trx_official_travel"> | Date | string
+  }
+
+  export type trx_mutationUpsertWithWhereUniqueWithoutUser_dataInput = {
+    where: trx_mutationWhereUniqueInput
+    update: XOR<trx_mutationUpdateWithoutUser_dataInput, trx_mutationUncheckedUpdateWithoutUser_dataInput>
+    create: XOR<trx_mutationCreateWithoutUser_dataInput, trx_mutationUncheckedCreateWithoutUser_dataInput>
+  }
+
+  export type trx_mutationUpdateWithWhereUniqueWithoutUser_dataInput = {
+    where: trx_mutationWhereUniqueInput
+    data: XOR<trx_mutationUpdateWithoutUser_dataInput, trx_mutationUncheckedUpdateWithoutUser_dataInput>
+  }
+
+  export type trx_mutationUpdateManyWithWhereWithoutUser_dataInput = {
+    where: trx_mutationScalarWhereInput
+    data: XOR<trx_mutationUpdateManyMutationInput, trx_mutationUncheckedUpdateManyWithoutUser_dataInput>
+  }
+
+  export type trx_mutationScalarWhereInput = {
+    AND?: trx_mutationScalarWhereInput | trx_mutationScalarWhereInput[]
+    OR?: trx_mutationScalarWhereInput[]
+    NOT?: trx_mutationScalarWhereInput | trx_mutationScalarWhereInput[]
+    id?: IntFilter<"trx_mutation"> | number
+    user?: StringFilter<"trx_mutation"> | string
+    effective_date?: DateTimeFilter<"trx_mutation"> | Date | string
+    reason?: StringFilter<"trx_mutation"> | string
+    status_id?: BigIntFilter<"trx_mutation"> | bigint | number
+    accept_to?: StringFilter<"trx_mutation"> | string
+    accepted?: StringNullableFilter<"trx_mutation"> | string | null
+    accepted_date?: DateTimeNullableFilter<"trx_mutation"> | Date | string | null
+    accepted_remark?: StringNullableFilter<"trx_mutation"> | string | null
+    approve_to?: StringFilter<"trx_mutation"> | string
+    approved?: StringNullableFilter<"trx_mutation"> | string | null
+    approved_date?: DateTimeNullableFilter<"trx_mutation"> | Date | string | null
+    approved_remark?: StringNullableFilter<"trx_mutation"> | string | null
+    rejected?: StringNullableFilter<"trx_mutation"> | string | null
+    rejected_date?: DateTimeNullableFilter<"trx_mutation"> | Date | string | null
+    rejected_remark?: StringNullableFilter<"trx_mutation"> | string | null
+    canceled?: StringNullableFilter<"trx_mutation"> | string | null
+    canceled_date?: DateTimeNullableFilter<"trx_mutation"> | Date | string | null
+    canceled_remark?: StringNullableFilter<"trx_mutation"> | string | null
+    created_by?: BigIntNullableFilter<"trx_mutation"> | bigint | number | null
+    created_at?: DateTimeFilter<"trx_mutation"> | Date | string
+    updated_by?: BigIntNullableFilter<"trx_mutation"> | bigint | number | null
+    updated_at?: DateTimeFilter<"trx_mutation"> | Date | string
+  }
+
+  export type trx_resignUpsertWithWhereUniqueWithoutUser_dataInput = {
+    where: trx_resignWhereUniqueInput
+    update: XOR<trx_resignUpdateWithoutUser_dataInput, trx_resignUncheckedUpdateWithoutUser_dataInput>
+    create: XOR<trx_resignCreateWithoutUser_dataInput, trx_resignUncheckedCreateWithoutUser_dataInput>
+  }
+
+  export type trx_resignUpdateWithWhereUniqueWithoutUser_dataInput = {
+    where: trx_resignWhereUniqueInput
+    data: XOR<trx_resignUpdateWithoutUser_dataInput, trx_resignUncheckedUpdateWithoutUser_dataInput>
+  }
+
+  export type trx_resignUpdateManyWithWhereWithoutUser_dataInput = {
+    where: trx_resignScalarWhereInput
+    data: XOR<trx_resignUpdateManyMutationInput, trx_resignUncheckedUpdateManyWithoutUser_dataInput>
+  }
+
+  export type trx_resignScalarWhereInput = {
+    AND?: trx_resignScalarWhereInput | trx_resignScalarWhereInput[]
+    OR?: trx_resignScalarWhereInput[]
+    NOT?: trx_resignScalarWhereInput | trx_resignScalarWhereInput[]
+    id?: IntFilter<"trx_resign"> | number
+    user?: StringFilter<"trx_resign"> | string
+    effective_date?: DateTimeFilter<"trx_resign"> | Date | string
+    reason?: StringFilter<"trx_resign"> | string
+    status_id?: BigIntFilter<"trx_resign"> | bigint | number
+    accept_to?: StringFilter<"trx_resign"> | string
+    accepted?: StringNullableFilter<"trx_resign"> | string | null
+    accepted_date?: DateTimeNullableFilter<"trx_resign"> | Date | string | null
+    accepted_remark?: StringNullableFilter<"trx_resign"> | string | null
+    approve_to?: StringFilter<"trx_resign"> | string
+    approved?: StringNullableFilter<"trx_resign"> | string | null
+    approved_date?: DateTimeNullableFilter<"trx_resign"> | Date | string | null
+    approved_remark?: StringNullableFilter<"trx_resign"> | string | null
+    rejected?: StringNullableFilter<"trx_resign"> | string | null
+    rejected_date?: DateTimeNullableFilter<"trx_resign"> | Date | string | null
+    rejected_remark?: StringNullableFilter<"trx_resign"> | string | null
+    canceled?: StringNullableFilter<"trx_resign"> | string | null
+    canceled_date?: DateTimeNullableFilter<"trx_resign"> | Date | string | null
+    canceled_remark?: StringNullableFilter<"trx_resign"> | string | null
+    created_by?: BigIntNullableFilter<"trx_resign"> | bigint | number | null
+    created_at?: DateTimeFilter<"trx_resign"> | Date | string
+    updated_by?: BigIntNullableFilter<"trx_resign"> | bigint | number | null
+    updated_at?: DateTimeFilter<"trx_resign"> | Date | string
+  }
+
+  export type trx_shift_empUpsertWithWhereUniqueWithoutMsUserInput = {
+    where: trx_shift_empWhereUniqueInput
+    update: XOR<trx_shift_empUpdateWithoutMsUserInput, trx_shift_empUncheckedUpdateWithoutMsUserInput>
+    create: XOR<trx_shift_empCreateWithoutMsUserInput, trx_shift_empUncheckedCreateWithoutMsUserInput>
+  }
+
+  export type trx_shift_empUpdateWithWhereUniqueWithoutMsUserInput = {
+    where: trx_shift_empWhereUniqueInput
+    data: XOR<trx_shift_empUpdateWithoutMsUserInput, trx_shift_empUncheckedUpdateWithoutMsUserInput>
+  }
+
+  export type trx_shift_empUpdateManyWithWhereWithoutMsUserInput = {
+    where: trx_shift_empScalarWhereInput
+    data: XOR<trx_shift_empUpdateManyMutationInput, trx_shift_empUncheckedUpdateManyWithoutMsUserInput>
+  }
+
+  export type trx_shift_empScalarWhereInput = {
+    AND?: trx_shift_empScalarWhereInput | trx_shift_empScalarWhereInput[]
+    OR?: trx_shift_empScalarWhereInput[]
+    NOT?: trx_shift_empScalarWhereInput | trx_shift_empScalarWhereInput[]
+    id?: BigIntFilter<"trx_shift_emp"> | bigint | number
+    code?: StringFilter<"trx_shift_emp"> | string
+    id_user?: StringFilter<"trx_shift_emp"> | string
+    id_shift_group?: StringFilter<"trx_shift_emp"> | string
+    valid_from?: DateTimeFilter<"trx_shift_emp"> | Date | string
+    valid_to?: DateTimeFilter<"trx_shift_emp"> | Date | string
+    created_by?: BigIntNullableFilter<"trx_shift_emp"> | bigint | number | null
+    created_at?: DateTimeNullableFilter<"trx_shift_emp"> | Date | string | null
+    updated_by?: BigIntNullableFilter<"trx_shift_emp"> | bigint | number | null
+    updated_at?: DateTimeNullableFilter<"trx_shift_emp"> | Date | string | null
+    is_deleted?: IntNullableFilter<"trx_shift_emp"> | number | null
+    flag_shift?: IntNullableFilter<"trx_shift_emp"> | number | null
+  }
+
+  export type trx_leave_quotaUpsertWithWhereUniqueWithoutMsUserInput = {
+    where: trx_leave_quotaWhereUniqueInput
+    update: XOR<trx_leave_quotaUpdateWithoutMsUserInput, trx_leave_quotaUncheckedUpdateWithoutMsUserInput>
+    create: XOR<trx_leave_quotaCreateWithoutMsUserInput, trx_leave_quotaUncheckedCreateWithoutMsUserInput>
+  }
+
+  export type trx_leave_quotaUpdateWithWhereUniqueWithoutMsUserInput = {
+    where: trx_leave_quotaWhereUniqueInput
+    data: XOR<trx_leave_quotaUpdateWithoutMsUserInput, trx_leave_quotaUncheckedUpdateWithoutMsUserInput>
+  }
+
+  export type trx_leave_quotaUpdateManyWithWhereWithoutMsUserInput = {
+    where: trx_leave_quotaScalarWhereInput
+    data: XOR<trx_leave_quotaUpdateManyMutationInput, trx_leave_quotaUncheckedUpdateManyWithoutMsUserInput>
+  }
+
+  export type trx_leave_quotaScalarWhereInput = {
+    AND?: trx_leave_quotaScalarWhereInput | trx_leave_quotaScalarWhereInput[]
+    OR?: trx_leave_quotaScalarWhereInput[]
+    NOT?: trx_leave_quotaScalarWhereInput | trx_leave_quotaScalarWhereInput[]
+    id?: IntFilter<"trx_leave_quota"> | number
+    id_user?: StringFilter<"trx_leave_quota"> | string
+    leaves_type_id?: IntFilter<"trx_leave_quota"> | number
+    valid_from?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
+    valid_to?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
+    leaves_quota?: IntNullableFilter<"trx_leave_quota"> | number | null
+    used_leave?: IntNullableFilter<"trx_leave_quota"> | number | null
+    leave_balance?: IntNullableFilter<"trx_leave_quota"> | number | null
+    is_active?: IntNullableFilter<"trx_leave_quota"> | number | null
+    is_deleted?: IntNullableFilter<"trx_leave_quota"> | number | null
+    created_at?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
   }
 
   export type trx_leavesCreateWithoutLeave_typeInput = {
@@ -32269,7 +34074,7 @@ export namespace Prisma {
 
   export type trx_leavesUncheckedCreateWithoutLeave_typeInput = {
     id?: bigint | number
-    user: bigint | number
+    user: string
     dept: bigint | number
     status_id: bigint | number
     start_date: Date | string
@@ -32306,6 +34111,42 @@ export namespace Prisma {
     data: trx_leavesCreateManyLeave_typeInput | trx_leavesCreateManyLeave_typeInput[]
   }
 
+  export type trx_leave_quotaCreateWithoutMsLeaveTypeInput = {
+    valid_from?: Date | string | null
+    valid_to?: Date | string | null
+    leaves_quota?: number | null
+    used_leave?: number | null
+    leave_balance?: number | null
+    is_active?: number | null
+    is_deleted?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    MsUser: UserCreateNestedOneWithoutTrx_leave_quotaInput
+  }
+
+  export type trx_leave_quotaUncheckedCreateWithoutMsLeaveTypeInput = {
+    id?: number
+    id_user: string
+    valid_from?: Date | string | null
+    valid_to?: Date | string | null
+    leaves_quota?: number | null
+    used_leave?: number | null
+    leave_balance?: number | null
+    is_active?: number | null
+    is_deleted?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
+  export type trx_leave_quotaCreateOrConnectWithoutMsLeaveTypeInput = {
+    where: trx_leave_quotaWhereUniqueInput
+    create: XOR<trx_leave_quotaCreateWithoutMsLeaveTypeInput, trx_leave_quotaUncheckedCreateWithoutMsLeaveTypeInput>
+  }
+
+  export type trx_leave_quotaCreateManyMsLeaveTypeInputEnvelope = {
+    data: trx_leave_quotaCreateManyMsLeaveTypeInput | trx_leave_quotaCreateManyMsLeaveTypeInput[]
+  }
+
   export type trx_leavesUpsertWithWhereUniqueWithoutLeave_typeInput = {
     where: trx_leavesWhereUniqueInput
     update: XOR<trx_leavesUpdateWithoutLeave_typeInput, trx_leavesUncheckedUpdateWithoutLeave_typeInput>
@@ -32322,6 +34163,22 @@ export namespace Prisma {
     data: XOR<trx_leavesUpdateManyMutationInput, trx_leavesUncheckedUpdateManyWithoutLeave_typeInput>
   }
 
+  export type trx_leave_quotaUpsertWithWhereUniqueWithoutMsLeaveTypeInput = {
+    where: trx_leave_quotaWhereUniqueInput
+    update: XOR<trx_leave_quotaUpdateWithoutMsLeaveTypeInput, trx_leave_quotaUncheckedUpdateWithoutMsLeaveTypeInput>
+    create: XOR<trx_leave_quotaCreateWithoutMsLeaveTypeInput, trx_leave_quotaUncheckedCreateWithoutMsLeaveTypeInput>
+  }
+
+  export type trx_leave_quotaUpdateWithWhereUniqueWithoutMsLeaveTypeInput = {
+    where: trx_leave_quotaWhereUniqueInput
+    data: XOR<trx_leave_quotaUpdateWithoutMsLeaveTypeInput, trx_leave_quotaUncheckedUpdateWithoutMsLeaveTypeInput>
+  }
+
+  export type trx_leave_quotaUpdateManyWithWhereWithoutMsLeaveTypeInput = {
+    where: trx_leave_quotaScalarWhereInput
+    data: XOR<trx_leave_quotaUpdateManyMutationInput, trx_leave_quotaUncheckedUpdateManyWithoutMsLeaveTypeInput>
+  }
+
   export type ms_leave_typesCreateWithoutTrx_leavesInput = {
     title: string
     days: number
@@ -32330,6 +34187,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
     is_deleted?: number | null
+    trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsLeaveTypeInput
   }
 
   export type ms_leave_typesUncheckedCreateWithoutTrx_leavesInput = {
@@ -32341,6 +34199,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
     is_deleted?: number | null
+    trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsLeaveTypeInput
   }
 
   export type ms_leave_typesCreateOrConnectWithoutTrx_leavesInput = {
@@ -32394,6 +34253,12 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     dept_data: mst_deptCreateNestedOneWithoutMst_userInput
+    trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutTrx_leavesInput = {
@@ -32442,6 +34307,12 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutTrx_leavesInput = {
@@ -32468,6 +34339,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsLeaveTypeNestedInput
   }
 
   export type ms_leave_typesUncheckedUpdateWithoutTrx_leavesInput = {
@@ -32479,6 +34351,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsLeaveTypeNestedInput
   }
 
   export type UserUpsertWithoutTrx_leavesInput = {
@@ -32538,6 +34411,12 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
+    trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTrx_leavesInput = {
@@ -32586,6 +34465,12 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type ms_detail_shift_groupCreateWithoutMsShiftInput = {
@@ -32616,6 +34501,71 @@ export namespace Prisma {
 
   export type ms_detail_shift_groupCreateManyMsShiftInputEnvelope = {
     data: ms_detail_shift_groupCreateManyMsShiftInput | ms_detail_shift_groupCreateManyMsShiftInput[]
+  }
+
+  export type trx_ovtCreateWithoutShift_dataInput = {
+    id?: bigint | number
+    dept: bigint | number
+    status_id: bigint | number
+    check_in_ovt: Date | string
+    check_out_ovt: Date | string
+    note_ovt: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_by?: bigint | number | null
+    updated_at?: Date | string
+    user_data: UserCreateNestedOneWithoutTrx_ovtInput
+  }
+
+  export type trx_ovtUncheckedCreateWithoutShift_dataInput = {
+    id?: bigint | number
+    user: string
+    dept: bigint | number
+    status_id: bigint | number
+    check_in_ovt: Date | string
+    check_out_ovt: Date | string
+    note_ovt: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_by?: bigint | number | null
+    updated_at?: Date | string
+  }
+
+  export type trx_ovtCreateOrConnectWithoutShift_dataInput = {
+    where: trx_ovtWhereUniqueInput
+    create: XOR<trx_ovtCreateWithoutShift_dataInput, trx_ovtUncheckedCreateWithoutShift_dataInput>
+  }
+
+  export type trx_ovtCreateManyShift_dataInputEnvelope = {
+    data: trx_ovtCreateManyShift_dataInput | trx_ovtCreateManyShift_dataInput[]
   }
 
   export type ms_detail_shift_groupUpsertWithWhereUniqueWithoutMsShiftInput = {
@@ -32649,6 +34599,22 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"ms_detail_shift_group"> | Date | string | null
   }
 
+  export type trx_ovtUpsertWithWhereUniqueWithoutShift_dataInput = {
+    where: trx_ovtWhereUniqueInput
+    update: XOR<trx_ovtUpdateWithoutShift_dataInput, trx_ovtUncheckedUpdateWithoutShift_dataInput>
+    create: XOR<trx_ovtCreateWithoutShift_dataInput, trx_ovtUncheckedCreateWithoutShift_dataInput>
+  }
+
+  export type trx_ovtUpdateWithWhereUniqueWithoutShift_dataInput = {
+    where: trx_ovtWhereUniqueInput
+    data: XOR<trx_ovtUpdateWithoutShift_dataInput, trx_ovtUncheckedUpdateWithoutShift_dataInput>
+  }
+
+  export type trx_ovtUpdateManyWithWhereWithoutShift_dataInput = {
+    where: trx_ovtScalarWhereInput
+    data: XOR<trx_ovtUpdateManyMutationInput, trx_ovtUncheckedUpdateManyWithoutShift_dataInput>
+  }
+
   export type ms_detail_shift_groupCreateWithoutMsShiftGroupInput = {
     index_day: string
     code: string
@@ -32679,6 +34645,43 @@ export namespace Prisma {
     data: ms_detail_shift_groupCreateManyMsShiftGroupInput | ms_detail_shift_groupCreateManyMsShiftGroupInput[]
   }
 
+  export type trx_shift_empCreateWithoutMsShiftGroupInput = {
+    id?: bigint | number
+    code: string
+    valid_from: Date | string
+    valid_to: Date | string
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+    flag_shift?: number | null
+    MsUser: UserCreateNestedOneWithoutTrx_shift_empInput
+  }
+
+  export type trx_shift_empUncheckedCreateWithoutMsShiftGroupInput = {
+    id?: bigint | number
+    code: string
+    id_user: string
+    valid_from: Date | string
+    valid_to: Date | string
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+    flag_shift?: number | null
+  }
+
+  export type trx_shift_empCreateOrConnectWithoutMsShiftGroupInput = {
+    where: trx_shift_empWhereUniqueInput
+    create: XOR<trx_shift_empCreateWithoutMsShiftGroupInput, trx_shift_empUncheckedCreateWithoutMsShiftGroupInput>
+  }
+
+  export type trx_shift_empCreateManyMsShiftGroupInputEnvelope = {
+    data: trx_shift_empCreateManyMsShiftGroupInput | trx_shift_empCreateManyMsShiftGroupInput[]
+  }
+
   export type ms_detail_shift_groupUpsertWithWhereUniqueWithoutMsShiftGroupInput = {
     where: ms_detail_shift_groupWhereUniqueInput
     update: XOR<ms_detail_shift_groupUpdateWithoutMsShiftGroupInput, ms_detail_shift_groupUncheckedUpdateWithoutMsShiftGroupInput>
@@ -32693,6 +34696,22 @@ export namespace Prisma {
   export type ms_detail_shift_groupUpdateManyWithWhereWithoutMsShiftGroupInput = {
     where: ms_detail_shift_groupScalarWhereInput
     data: XOR<ms_detail_shift_groupUpdateManyMutationInput, ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftGroupInput>
+  }
+
+  export type trx_shift_empUpsertWithWhereUniqueWithoutMsShiftGroupInput = {
+    where: trx_shift_empWhereUniqueInput
+    update: XOR<trx_shift_empUpdateWithoutMsShiftGroupInput, trx_shift_empUncheckedUpdateWithoutMsShiftGroupInput>
+    create: XOR<trx_shift_empCreateWithoutMsShiftGroupInput, trx_shift_empUncheckedCreateWithoutMsShiftGroupInput>
+  }
+
+  export type trx_shift_empUpdateWithWhereUniqueWithoutMsShiftGroupInput = {
+    where: trx_shift_empWhereUniqueInput
+    data: XOR<trx_shift_empUpdateWithoutMsShiftGroupInput, trx_shift_empUncheckedUpdateWithoutMsShiftGroupInput>
+  }
+
+  export type trx_shift_empUpdateManyWithWhereWithoutMsShiftGroupInput = {
+    where: trx_shift_empScalarWhereInput
+    data: XOR<trx_shift_empUpdateManyMutationInput, trx_shift_empUncheckedUpdateManyWithoutMsShiftGroupInput>
   }
 
   export type ms_shiftCreateWithoutDetailsInput = {
@@ -32711,6 +34730,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
     is_deleted?: number | null
+    trx_ovt?: trx_ovtCreateNestedManyWithoutShift_dataInput
   }
 
   export type ms_shiftUncheckedCreateWithoutDetailsInput = {
@@ -32730,6 +34750,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
     is_deleted?: number | null
+    trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutShift_dataInput
   }
 
   export type ms_shiftCreateOrConnectWithoutDetailsInput = {
@@ -32747,6 +34768,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
     is_deleted?: number | null
+    trx_shift_emps?: trx_shift_empCreateNestedManyWithoutMsShiftGroupInput
   }
 
   export type ms_shift_groupUncheckedCreateWithoutDetailsInput = {
@@ -32760,6 +34782,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
     is_deleted?: number | null
+    trx_shift_emps?: trx_shift_empUncheckedCreateNestedManyWithoutMsShiftGroupInput
   }
 
   export type ms_shift_groupCreateOrConnectWithoutDetailsInput = {
@@ -32794,6 +34817,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    trx_ovt?: trx_ovtUpdateManyWithoutShift_dataNestedInput
   }
 
   export type ms_shiftUncheckedUpdateWithoutDetailsInput = {
@@ -32813,6 +34837,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    trx_ovt?: trx_ovtUncheckedUpdateManyWithoutShift_dataNestedInput
   }
 
   export type ms_shift_groupUpsertWithoutDetailsInput = {
@@ -32836,6 +34861,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    trx_shift_emps?: trx_shift_empUpdateManyWithoutMsShiftGroupNestedInput
   }
 
   export type ms_shift_groupUncheckedUpdateWithoutDetailsInput = {
@@ -32849,6 +34875,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    trx_shift_emps?: trx_shift_empUncheckedUpdateManyWithoutMsShiftGroupNestedInput
   }
 
   export type UserCreateWithoutDept_dataInput = {
@@ -32897,6 +34924,12 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutDept_dataInput = {
@@ -32945,6 +34978,12 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutDept_dataInput = {
@@ -33023,6 +35062,1624 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"User"> | Date | string | null
   }
 
+  export type UserCreateWithoutTrx_ovtInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    dept_data: mst_deptCreateNestedOneWithoutMst_userInput
+    trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTrx_ovtInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    dept: number
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTrx_ovtInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTrx_ovtInput, UserUncheckedCreateWithoutTrx_ovtInput>
+  }
+
+  export type ms_shiftCreateWithoutTrx_ovtInput = {
+    id_shift_sap?: string | null
+    code: string
+    name: string
+    in_time?: Date | string | null
+    out_time?: Date | string | null
+    gt_before_in?: number
+    gt_after_in?: number
+    gt_before_out?: number
+    gt_after_out?: number
+    flag_shift?: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+    details?: ms_detail_shift_groupCreateNestedManyWithoutMsShiftInput
+  }
+
+  export type ms_shiftUncheckedCreateWithoutTrx_ovtInput = {
+    id?: number
+    id_shift_sap?: string | null
+    code: string
+    name: string
+    in_time?: Date | string | null
+    out_time?: Date | string | null
+    gt_before_in?: number
+    gt_after_in?: number
+    gt_before_out?: number
+    gt_after_out?: number
+    flag_shift?: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+    details?: ms_detail_shift_groupUncheckedCreateNestedManyWithoutMsShiftInput
+  }
+
+  export type ms_shiftCreateOrConnectWithoutTrx_ovtInput = {
+    where: ms_shiftWhereUniqueInput
+    create: XOR<ms_shiftCreateWithoutTrx_ovtInput, ms_shiftUncheckedCreateWithoutTrx_ovtInput>
+  }
+
+  export type UserUpsertWithoutTrx_ovtInput = {
+    update: XOR<UserUpdateWithoutTrx_ovtInput, UserUncheckedUpdateWithoutTrx_ovtInput>
+    create: XOR<UserCreateWithoutTrx_ovtInput, UserUncheckedCreateWithoutTrx_ovtInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTrx_ovtInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTrx_ovtInput, UserUncheckedUpdateWithoutTrx_ovtInput>
+  }
+
+  export type UserUpdateWithoutTrx_ovtInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
+    trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTrx_ovtInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    dept?: IntFieldUpdateOperationsInput | number
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type ms_shiftUpsertWithoutTrx_ovtInput = {
+    update: XOR<ms_shiftUpdateWithoutTrx_ovtInput, ms_shiftUncheckedUpdateWithoutTrx_ovtInput>
+    create: XOR<ms_shiftCreateWithoutTrx_ovtInput, ms_shiftUncheckedCreateWithoutTrx_ovtInput>
+    where?: ms_shiftWhereInput
+  }
+
+  export type ms_shiftUpdateToOneWithWhereWithoutTrx_ovtInput = {
+    where?: ms_shiftWhereInput
+    data: XOR<ms_shiftUpdateWithoutTrx_ovtInput, ms_shiftUncheckedUpdateWithoutTrx_ovtInput>
+  }
+
+  export type ms_shiftUpdateWithoutTrx_ovtInput = {
+    id_shift_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gt_before_in?: IntFieldUpdateOperationsInput | number
+    gt_after_in?: IntFieldUpdateOperationsInput | number
+    gt_before_out?: IntFieldUpdateOperationsInput | number
+    gt_after_out?: IntFieldUpdateOperationsInput | number
+    flag_shift?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    details?: ms_detail_shift_groupUpdateManyWithoutMsShiftNestedInput
+  }
+
+  export type ms_shiftUncheckedUpdateWithoutTrx_ovtInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    id_shift_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gt_before_in?: IntFieldUpdateOperationsInput | number
+    gt_after_in?: IntFieldUpdateOperationsInput | number
+    gt_before_out?: IntFieldUpdateOperationsInput | number
+    gt_after_out?: IntFieldUpdateOperationsInput | number
+    flag_shift?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    details?: ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftNestedInput
+  }
+
+  export type UserCreateWithoutTrx_shift_empInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    dept_data: mst_deptCreateNestedOneWithoutMst_userInput
+    trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
+    trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTrx_shift_empInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    dept: number
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTrx_shift_empInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTrx_shift_empInput, UserUncheckedCreateWithoutTrx_shift_empInput>
+  }
+
+  export type ms_shift_groupCreateWithoutTrx_shift_empsInput = {
+    id_shift_group_sap?: number
+    code: string
+    nama: string
+    flag_shift?: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+    details?: ms_detail_shift_groupCreateNestedManyWithoutMsShiftGroupInput
+  }
+
+  export type ms_shift_groupUncheckedCreateWithoutTrx_shift_empsInput = {
+    id?: number
+    id_shift_group_sap?: number
+    code: string
+    nama: string
+    flag_shift?: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+    details?: ms_detail_shift_groupUncheckedCreateNestedManyWithoutMsShiftGroupInput
+  }
+
+  export type ms_shift_groupCreateOrConnectWithoutTrx_shift_empsInput = {
+    where: ms_shift_groupWhereUniqueInput
+    create: XOR<ms_shift_groupCreateWithoutTrx_shift_empsInput, ms_shift_groupUncheckedCreateWithoutTrx_shift_empsInput>
+  }
+
+  export type UserUpsertWithoutTrx_shift_empInput = {
+    update: XOR<UserUpdateWithoutTrx_shift_empInput, UserUncheckedUpdateWithoutTrx_shift_empInput>
+    create: XOR<UserCreateWithoutTrx_shift_empInput, UserUncheckedCreateWithoutTrx_shift_empInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTrx_shift_empInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTrx_shift_empInput, UserUncheckedUpdateWithoutTrx_shift_empInput>
+  }
+
+  export type UserUpdateWithoutTrx_shift_empInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
+    trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
+    trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTrx_shift_empInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    dept?: IntFieldUpdateOperationsInput | number
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type ms_shift_groupUpsertWithoutTrx_shift_empsInput = {
+    update: XOR<ms_shift_groupUpdateWithoutTrx_shift_empsInput, ms_shift_groupUncheckedUpdateWithoutTrx_shift_empsInput>
+    create: XOR<ms_shift_groupCreateWithoutTrx_shift_empsInput, ms_shift_groupUncheckedCreateWithoutTrx_shift_empsInput>
+    where?: ms_shift_groupWhereInput
+  }
+
+  export type ms_shift_groupUpdateToOneWithWhereWithoutTrx_shift_empsInput = {
+    where?: ms_shift_groupWhereInput
+    data: XOR<ms_shift_groupUpdateWithoutTrx_shift_empsInput, ms_shift_groupUncheckedUpdateWithoutTrx_shift_empsInput>
+  }
+
+  export type ms_shift_groupUpdateWithoutTrx_shift_empsInput = {
+    id_shift_group_sap?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    flag_shift?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    details?: ms_detail_shift_groupUpdateManyWithoutMsShiftGroupNestedInput
+  }
+
+  export type ms_shift_groupUncheckedUpdateWithoutTrx_shift_empsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    id_shift_group_sap?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    flag_shift?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    details?: ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftGroupNestedInput
+  }
+
+  export type UserCreateWithoutTrx_officialTravelInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    dept_data: mst_deptCreateNestedOneWithoutMst_userInput
+    trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTrx_officialTravelInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    dept: number
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTrx_officialTravelInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTrx_officialTravelInput, UserUncheckedCreateWithoutTrx_officialTravelInput>
+  }
+
+  export type UserUpsertWithoutTrx_officialTravelInput = {
+    update: XOR<UserUpdateWithoutTrx_officialTravelInput, UserUncheckedUpdateWithoutTrx_officialTravelInput>
+    create: XOR<UserCreateWithoutTrx_officialTravelInput, UserUncheckedCreateWithoutTrx_officialTravelInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTrx_officialTravelInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTrx_officialTravelInput, UserUncheckedUpdateWithoutTrx_officialTravelInput>
+  }
+
+  export type UserUpdateWithoutTrx_officialTravelInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
+    trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTrx_officialTravelInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    dept?: IntFieldUpdateOperationsInput | number
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type UserCreateWithoutTrx_mutationInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    dept_data: mst_deptCreateNestedOneWithoutMst_userInput
+    trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTrx_mutationInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    dept: number
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTrx_mutationInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTrx_mutationInput, UserUncheckedCreateWithoutTrx_mutationInput>
+  }
+
+  export type UserUpsertWithoutTrx_mutationInput = {
+    update: XOR<UserUpdateWithoutTrx_mutationInput, UserUncheckedUpdateWithoutTrx_mutationInput>
+    create: XOR<UserCreateWithoutTrx_mutationInput, UserUncheckedCreateWithoutTrx_mutationInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTrx_mutationInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTrx_mutationInput, UserUncheckedUpdateWithoutTrx_mutationInput>
+  }
+
+  export type UserUpdateWithoutTrx_mutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
+    trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTrx_mutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    dept?: IntFieldUpdateOperationsInput | number
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type UserCreateWithoutTrx_resignInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    dept_data: mst_deptCreateNestedOneWithoutMst_userInput
+    trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTrx_resignInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    dept: number
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTrx_resignInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTrx_resignInput, UserUncheckedCreateWithoutTrx_resignInput>
+  }
+
+  export type UserUpsertWithoutTrx_resignInput = {
+    update: XOR<UserUpdateWithoutTrx_resignInput, UserUncheckedUpdateWithoutTrx_resignInput>
+    create: XOR<UserCreateWithoutTrx_resignInput, UserUncheckedCreateWithoutTrx_resignInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTrx_resignInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTrx_resignInput, UserUncheckedUpdateWithoutTrx_resignInput>
+  }
+
+  export type UserUpdateWithoutTrx_resignInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
+    trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTrx_resignInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    dept?: IntFieldUpdateOperationsInput | number
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type UserCreateWithoutTrx_leave_quotaInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    dept_data: mst_deptCreateNestedOneWithoutMst_userInput
+    trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTrx_leave_quotaInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    dept: number
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTrx_leave_quotaInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTrx_leave_quotaInput, UserUncheckedCreateWithoutTrx_leave_quotaInput>
+  }
+
+  export type ms_leave_typesCreateWithoutTrx_leave_quotaInput = {
+    title: string
+    days: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+    trx_leaves?: trx_leavesCreateNestedManyWithoutLeave_typeInput
+  }
+
+  export type ms_leave_typesUncheckedCreateWithoutTrx_leave_quotaInput = {
+    id?: number
+    title: string
+    days: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+    trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutLeave_typeInput
+  }
+
+  export type ms_leave_typesCreateOrConnectWithoutTrx_leave_quotaInput = {
+    where: ms_leave_typesWhereUniqueInput
+    create: XOR<ms_leave_typesCreateWithoutTrx_leave_quotaInput, ms_leave_typesUncheckedCreateWithoutTrx_leave_quotaInput>
+  }
+
+  export type UserUpsertWithoutTrx_leave_quotaInput = {
+    update: XOR<UserUpdateWithoutTrx_leave_quotaInput, UserUncheckedUpdateWithoutTrx_leave_quotaInput>
+    create: XOR<UserCreateWithoutTrx_leave_quotaInput, UserUncheckedCreateWithoutTrx_leave_quotaInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTrx_leave_quotaInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTrx_leave_quotaInput, UserUncheckedUpdateWithoutTrx_leave_quotaInput>
+  }
+
+  export type UserUpdateWithoutTrx_leave_quotaInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
+    trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTrx_leave_quotaInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    dept?: IntFieldUpdateOperationsInput | number
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type ms_leave_typesUpsertWithoutTrx_leave_quotaInput = {
+    update: XOR<ms_leave_typesUpdateWithoutTrx_leave_quotaInput, ms_leave_typesUncheckedUpdateWithoutTrx_leave_quotaInput>
+    create: XOR<ms_leave_typesCreateWithoutTrx_leave_quotaInput, ms_leave_typesUncheckedCreateWithoutTrx_leave_quotaInput>
+    where?: ms_leave_typesWhereInput
+  }
+
+  export type ms_leave_typesUpdateToOneWithWhereWithoutTrx_leave_quotaInput = {
+    where?: ms_leave_typesWhereInput
+    data: XOR<ms_leave_typesUpdateWithoutTrx_leave_quotaInput, ms_leave_typesUncheckedUpdateWithoutTrx_leave_quotaInput>
+  }
+
+  export type ms_leave_typesUpdateWithoutTrx_leave_quotaInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    days?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    trx_leaves?: trx_leavesUpdateManyWithoutLeave_typeNestedInput
+  }
+
+  export type ms_leave_typesUncheckedUpdateWithoutTrx_leave_quotaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    days?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    trx_leaves?: trx_leavesUncheckedUpdateManyWithoutLeave_typeNestedInput
+  }
+
   export type trx_leavesCreateManyUser_dataInput = {
     dept: bigint | number
     leave_type_id: number
@@ -33050,6 +36707,135 @@ export namespace Prisma {
     created_at: Date | string
     updated_by: bigint | number
     updated_at: Date | string
+  }
+
+  export type trx_ovtCreateManyUser_dataInput = {
+    dept: bigint | number
+    shift: number
+    status_id: bigint | number
+    check_in_ovt: Date | string
+    check_out_ovt: Date | string
+    note_ovt: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_by?: bigint | number | null
+    updated_at?: Date | string
+  }
+
+  export type trx_official_travelCreateManyUser_dataInput = {
+    effective_date?: Date | string | null
+    start_date: Date | string
+    end_date: Date | string
+    total_leave_days: bigint | number
+    purpose: string
+    destination_city: string
+    status_id: bigint | number
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_mutationCreateManyUser_dataInput = {
+    effective_date: Date | string
+    reason: string
+    status_id: bigint | number
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_resignCreateManyUser_dataInput = {
+    effective_date: Date | string
+    reason: string
+    status_id: bigint | number
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_shift_empCreateManyMsUserInput = {
+    code: string
+    id_shift_group: string
+    valid_from: Date | string
+    valid_to: Date | string
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+    flag_shift?: number | null
+  }
+
+  export type trx_leave_quotaCreateManyMsUserInput = {
+    leaves_type_id: number
+    valid_from?: Date | string | null
+    valid_to?: Date | string | null
+    leaves_quota?: number | null
+    used_leave?: number | null
+    leave_balance?: number | null
+    is_active?: number | null
+    is_deleted?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
   }
 
   export type trx_leavesUpdateWithoutUser_dataInput = {
@@ -33142,8 +36928,409 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type trx_ovtUpdateWithoutUser_dataInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    dept?: BigIntFieldUpdateOperationsInput | bigint | number
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    check_in_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_out_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
+    note_ovt?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    shift_data?: ms_shiftUpdateOneRequiredWithoutTrx_ovtNestedInput
+  }
+
+  export type trx_ovtUncheckedUpdateWithoutUser_dataInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    dept?: BigIntFieldUpdateOperationsInput | bigint | number
+    shift?: IntFieldUpdateOperationsInput | number
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    check_in_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_out_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
+    note_ovt?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_ovtUncheckedUpdateManyWithoutUser_dataInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    dept?: BigIntFieldUpdateOperationsInput | bigint | number
+    shift?: IntFieldUpdateOperationsInput | number
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    check_in_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_out_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
+    note_ovt?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_official_travelUpdateWithoutUser_dataInput = {
+    effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    purpose?: StringFieldUpdateOperationsInput | string
+    destination_city?: StringFieldUpdateOperationsInput | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_official_travelUncheckedUpdateWithoutUser_dataInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    purpose?: StringFieldUpdateOperationsInput | string
+    destination_city?: StringFieldUpdateOperationsInput | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_official_travelUncheckedUpdateManyWithoutUser_dataInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    purpose?: StringFieldUpdateOperationsInput | string
+    destination_city?: StringFieldUpdateOperationsInput | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_mutationUpdateWithoutUser_dataInput = {
+    effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: StringFieldUpdateOperationsInput | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_mutationUncheckedUpdateWithoutUser_dataInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: StringFieldUpdateOperationsInput | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_mutationUncheckedUpdateManyWithoutUser_dataInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: StringFieldUpdateOperationsInput | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_resignUpdateWithoutUser_dataInput = {
+    effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: StringFieldUpdateOperationsInput | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_resignUncheckedUpdateWithoutUser_dataInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: StringFieldUpdateOperationsInput | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_resignUncheckedUpdateManyWithoutUser_dataInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: StringFieldUpdateOperationsInput | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_shift_empUpdateWithoutMsUserInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    code?: StringFieldUpdateOperationsInput | string
+    valid_from?: DateTimeFieldUpdateOperationsInput | Date | string
+    valid_to?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    flag_shift?: NullableIntFieldUpdateOperationsInput | number | null
+    MsShiftGroup?: ms_shift_groupUpdateOneRequiredWithoutTrx_shift_empsNestedInput
+  }
+
+  export type trx_shift_empUncheckedUpdateWithoutMsUserInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    code?: StringFieldUpdateOperationsInput | string
+    id_shift_group?: StringFieldUpdateOperationsInput | string
+    valid_from?: DateTimeFieldUpdateOperationsInput | Date | string
+    valid_to?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    flag_shift?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type trx_shift_empUncheckedUpdateManyWithoutMsUserInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    code?: StringFieldUpdateOperationsInput | string
+    id_shift_group?: StringFieldUpdateOperationsInput | string
+    valid_from?: DateTimeFieldUpdateOperationsInput | Date | string
+    valid_to?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    flag_shift?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type trx_leave_quotaUpdateWithoutMsUserInput = {
+    valid_from?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valid_to?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaves_quota?: NullableIntFieldUpdateOperationsInput | number | null
+    used_leave?: NullableIntFieldUpdateOperationsInput | number | null
+    leave_balance?: NullableIntFieldUpdateOperationsInput | number | null
+    is_active?: NullableIntFieldUpdateOperationsInput | number | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    MsLeaveType?: ms_leave_typesUpdateOneRequiredWithoutTrx_leave_quotaNestedInput
+  }
+
+  export type trx_leave_quotaUncheckedUpdateWithoutMsUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    leaves_type_id?: IntFieldUpdateOperationsInput | number
+    valid_from?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valid_to?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaves_quota?: NullableIntFieldUpdateOperationsInput | number | null
+    used_leave?: NullableIntFieldUpdateOperationsInput | number | null
+    leave_balance?: NullableIntFieldUpdateOperationsInput | number | null
+    is_active?: NullableIntFieldUpdateOperationsInput | number | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type trx_leave_quotaUncheckedUpdateManyWithoutMsUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    leaves_type_id?: IntFieldUpdateOperationsInput | number
+    valid_from?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valid_to?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaves_quota?: NullableIntFieldUpdateOperationsInput | number | null
+    used_leave?: NullableIntFieldUpdateOperationsInput | number | null
+    leave_balance?: NullableIntFieldUpdateOperationsInput | number | null
+    is_active?: NullableIntFieldUpdateOperationsInput | number | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type trx_leavesCreateManyLeave_typeInput = {
-    user: bigint | number
+    user: string
     dept: bigint | number
     status_id: bigint | number
     start_date: Date | string
@@ -33169,6 +37356,19 @@ export namespace Prisma {
     created_at: Date | string
     updated_by: bigint | number
     updated_at: Date | string
+  }
+
+  export type trx_leave_quotaCreateManyMsLeaveTypeInput = {
+    id_user: string
+    valid_from?: Date | string | null
+    valid_to?: Date | string | null
+    leaves_quota?: number | null
+    used_leave?: number | null
+    leave_balance?: number | null
+    is_active?: number | null
+    is_deleted?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
   }
 
   export type trx_leavesUpdateWithoutLeave_typeInput = {
@@ -33203,7 +37403,7 @@ export namespace Prisma {
 
   export type trx_leavesUncheckedUpdateWithoutLeave_typeInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    user?: BigIntFieldUpdateOperationsInput | bigint | number
+    user?: StringFieldUpdateOperationsInput | string
     dept?: BigIntFieldUpdateOperationsInput | bigint | number
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33233,7 +37433,7 @@ export namespace Prisma {
 
   export type trx_leavesUncheckedUpdateManyWithoutLeave_typeInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    user?: BigIntFieldUpdateOperationsInput | bigint | number
+    user?: StringFieldUpdateOperationsInput | string
     dept?: BigIntFieldUpdateOperationsInput | bigint | number
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33261,6 +37461,47 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type trx_leave_quotaUpdateWithoutMsLeaveTypeInput = {
+    valid_from?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valid_to?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaves_quota?: NullableIntFieldUpdateOperationsInput | number | null
+    used_leave?: NullableIntFieldUpdateOperationsInput | number | null
+    leave_balance?: NullableIntFieldUpdateOperationsInput | number | null
+    is_active?: NullableIntFieldUpdateOperationsInput | number | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    MsUser?: UserUpdateOneRequiredWithoutTrx_leave_quotaNestedInput
+  }
+
+  export type trx_leave_quotaUncheckedUpdateWithoutMsLeaveTypeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    id_user?: StringFieldUpdateOperationsInput | string
+    valid_from?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valid_to?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaves_quota?: NullableIntFieldUpdateOperationsInput | number | null
+    used_leave?: NullableIntFieldUpdateOperationsInput | number | null
+    leave_balance?: NullableIntFieldUpdateOperationsInput | number | null
+    is_active?: NullableIntFieldUpdateOperationsInput | number | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type trx_leave_quotaUncheckedUpdateManyWithoutMsLeaveTypeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    id_user?: StringFieldUpdateOperationsInput | string
+    valid_from?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valid_to?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaves_quota?: NullableIntFieldUpdateOperationsInput | number | null
+    used_leave?: NullableIntFieldUpdateOperationsInput | number | null
+    leave_balance?: NullableIntFieldUpdateOperationsInput | number | null
+    is_active?: NullableIntFieldUpdateOperationsInput | number | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type ms_detail_shift_groupCreateManyMsShiftInput = {
     index_day: string
     code: string
@@ -33269,6 +37510,33 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_by?: number | null
     updated_at?: Date | string | null
+  }
+
+  export type trx_ovtCreateManyShift_dataInput = {
+    user: string
+    dept: bigint | number
+    status_id: bigint | number
+    check_in_ovt: Date | string
+    check_out_ovt: Date | string
+    note_ovt: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at?: Date | string
+    updated_by?: bigint | number | null
+    updated_at?: Date | string
   }
 
   export type ms_detail_shift_groupUpdateWithoutMsShiftInput = {
@@ -33303,6 +37571,90 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type trx_ovtUpdateWithoutShift_dataInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    dept?: BigIntFieldUpdateOperationsInput | bigint | number
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    check_in_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_out_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
+    note_ovt?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user_data?: UserUpdateOneRequiredWithoutTrx_ovtNestedInput
+  }
+
+  export type trx_ovtUncheckedUpdateWithoutShift_dataInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    user?: StringFieldUpdateOperationsInput | string
+    dept?: BigIntFieldUpdateOperationsInput | bigint | number
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    check_in_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_out_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
+    note_ovt?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_ovtUncheckedUpdateManyWithoutShift_dataInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    user?: StringFieldUpdateOperationsInput | string
+    dept?: BigIntFieldUpdateOperationsInput | bigint | number
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    check_in_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
+    check_out_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
+    note_ovt?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ms_detail_shift_groupCreateManyMsShiftGroupInput = {
     index_day: string
     code: string
@@ -33311,6 +37663,19 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_by?: number | null
     updated_at?: Date | string | null
+  }
+
+  export type trx_shift_empCreateManyMsShiftGroupInput = {
+    code: string
+    id_user: string
+    valid_from: Date | string
+    valid_to: Date | string
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+    flag_shift?: number | null
   }
 
   export type ms_detail_shift_groupUpdateWithoutMsShiftGroupInput = {
@@ -33343,6 +37708,48 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableIntFieldUpdateOperationsInput | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type trx_shift_empUpdateWithoutMsShiftGroupInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    code?: StringFieldUpdateOperationsInput | string
+    valid_from?: DateTimeFieldUpdateOperationsInput | Date | string
+    valid_to?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    flag_shift?: NullableIntFieldUpdateOperationsInput | number | null
+    MsUser?: UserUpdateOneRequiredWithoutTrx_shift_empNestedInput
+  }
+
+  export type trx_shift_empUncheckedUpdateWithoutMsShiftGroupInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    code?: StringFieldUpdateOperationsInput | string
+    id_user?: StringFieldUpdateOperationsInput | string
+    valid_from?: DateTimeFieldUpdateOperationsInput | Date | string
+    valid_to?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    flag_shift?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type trx_shift_empUncheckedUpdateManyWithoutMsShiftGroupInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    code?: StringFieldUpdateOperationsInput | string
+    id_user?: StringFieldUpdateOperationsInput | string
+    valid_from?: DateTimeFieldUpdateOperationsInput | Date | string
+    valid_to?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    flag_shift?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type UserCreateManyDept_dataInput = {
@@ -33437,6 +37844,12 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDept_dataInput = {
@@ -33485,6 +37898,12 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutDept_dataInput = {

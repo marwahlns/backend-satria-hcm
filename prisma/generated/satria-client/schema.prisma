@@ -9,74 +9,81 @@ datasource satria {
 }
 
 model User {
-  id                        BigInt       @id(map: "PK_users_id") @default(autoincrement())
-  name                      String       @satria.NVarChar(255)
-  email                     String       @unique(map: "users$users_email_unique") @satria.NVarChar(255)
-  email_verified_at         DateTime?    @satria.DateTime
-  password                  String       @satria.NVarChar(255)
+  id                        BigInt                @id(map: "PK_users_id") @default(autoincrement())
+  name                      String                @satria.NVarChar(255)
+  email                     String                @unique(map: "users$users_email_unique") @satria.NVarChar(255)
+  email_verified_at         DateTime?             @satria.DateTime
+  password                  String                @satria.NVarChar(255)
   accessed_app              Int?
-  role_id                   String?      @satria.NVarChar(64)
-  is_blocked                Int          @default(1, map: "DF__users__is_blocke__17036CC0") @satria.SmallInt
-  is_active                 Int          @default(1, map: "DF__users__is_active__17F790F9") @satria.SmallInt
-  token                     String?      @satria.NVarChar(Max)
-  phone                     String?      @satria.NVarChar(255)
-  email_sf                  String?      @satria.NVarChar(255)
-  superior                  String?      @satria.NVarChar(255)
-  section_code              String?      @satria.NVarChar(64)
-  section                   String?      @satria.NVarChar(255)
-  divid                     String?      @satria.NVarChar(64)
-  companyid                 String?      @satria.NVarChar(64)
+  role_id                   String?               @satria.NVarChar(64)
+  is_blocked                Int                   @default(1, map: "DF__users__is_blocke__17036CC0") @satria.SmallInt
+  is_active                 Int                   @default(1, map: "DF__users__is_active__17F790F9") @satria.SmallInt
+  token                     String?               @satria.NVarChar(Max)
+  phone                     String?               @satria.NVarChar(255)
+  email_sf                  String?               @satria.NVarChar(255)
+  superior                  String?               @satria.NVarChar(255)
+  section_code              String?               @satria.NVarChar(64)
+  section                   String?               @satria.NVarChar(255)
+  divid                     String?               @satria.NVarChar(64)
+  companyid                 String?               @satria.NVarChar(64)
   dept                      Int
-  department                String?      @satria.NVarChar(255)
-  division                  String?      @satria.NVarChar(255)
-  title                     String?      @satria.NVarChar(255)
-  worklocation_code         String?      @satria.NVarChar(32)
-  worklocation_name         String?      @satria.NVarChar(255)
-  worklocation_lat_long     String?      @satria.NVarChar(255)
-  personal_number           String?      @satria.NVarChar(255)
-  csfield10                 String?      @satria.NVarChar(255)
-  company_name              String?      @satria.NVarChar(255)
-  photo                     String?      @satria.NVarChar(255)
-  grade                     Int          @default(0, map: "DF__users__grade__2B0A656D")
-  remember_token            String?      @satria.NVarChar(100)
-  latlon_distance           Int          @default(500, map: "DF__users__latlon_di__2CF2ADDF")
-  section_code_sap          String?      @satria.NVarChar(255)
-  section_sap               String?      @satria.NVarChar(255)
-  department_code_sap       String?      @satria.NVarChar(255)
-  department_sap            String?      @satria.NVarChar(255)
-  division_code_sap         String?      @satria.NVarChar(255)
-  division_sap              String?      @satria.NVarChar(255)
-  pos_code_sap              String?      @satria.NVarChar(255)
-  company_id_sap            String?      @satria.NVarChar(255)
-  company_name_sap          String?      @satria.NVarChar(255)
-  worklocation_code_sap     String?      @satria.NVarChar(255)
-  worklocation_name_sap     String?      @satria.NVarChar(255)
-  worklocation_lat_long_sap String?      @satria.NVarChar(255)
-  created_at                DateTime?    @satria.DateTime
-  updated_at                DateTime?    @satria.DateTime
-  dept_data                 mst_dept     @relation("UserToDept", fields: [dept], references: [id])
-  trx_leaves                trx_leaves[] @relation("UserToTrxLeaves")
+  department                String?               @satria.NVarChar(255)
+  division                  String?               @satria.NVarChar(255)
+  title                     String?               @satria.NVarChar(255)
+  worklocation_code         String?               @satria.NVarChar(32)
+  worklocation_name         String?               @satria.NVarChar(255)
+  worklocation_lat_long     String?               @satria.NVarChar(255)
+  personal_number           String?               @unique @satria.NVarChar(255)
+  csfield10                 String?               @satria.NVarChar(255)
+  company_name              String?               @satria.NVarChar(255)
+  photo                     String?               @satria.NVarChar(255)
+  grade                     Int                   @default(0, map: "DF__users__grade__2B0A656D")
+  remember_token            String?               @satria.NVarChar(100)
+  latlon_distance           Int                   @default(500, map: "DF__users__latlon_di__2CF2ADDF")
+  section_code_sap          String?               @satria.NVarChar(255)
+  section_sap               String?               @satria.NVarChar(255)
+  department_code_sap       String?               @satria.NVarChar(255)
+  department_sap            String?               @satria.NVarChar(255)
+  division_code_sap         String?               @satria.NVarChar(255)
+  division_sap              String?               @satria.NVarChar(255)
+  pos_code_sap              String?               @satria.NVarChar(255)
+  company_id_sap            String?               @satria.NVarChar(255)
+  company_name_sap          String?               @satria.NVarChar(255)
+  worklocation_code_sap     String?               @satria.NVarChar(255)
+  worklocation_name_sap     String?               @satria.NVarChar(255)
+  worklocation_lat_long_sap String?               @satria.NVarChar(255)
+  created_at                DateTime?             @satria.DateTime
+  updated_at                DateTime?             @satria.DateTime
+  dept_data                 mst_dept              @relation("UserToDept", fields: [dept], references: [id])
+  trx_leaves                trx_leaves[]          @relation("UserToTrxLeaves")
+  trx_ovt                   trx_ovt[]             @relation("UserToTrxOvt")
+  trx_officialTravel        trx_official_travel[] @relation("UserToTrxOfficialTravel")
+  trx_mutation              trx_mutation[]        @relation("UserToTrxMutation")
+  trx_resign                trx_resign[]          @relation("UserToTrxResign")
+  trx_shift_emp             trx_shift_emp[]       @relation("TrxShiftToUser")
+  trx_leave_quota           trx_leave_quota[]     @relation("TrxLeaveQuotaToUser")
 
   @@map("users")
 }
 
 model ms_leave_types {
-  id         Int          @id(map: "PK_leave_types_id") @default(autoincrement())
-  title      String       @satria.NVarChar(191)
-  days       Int
-  created_by BigInt?
-  created_at DateTime?
-  updated_by BigInt?
-  updated_at DateTime?
-  is_deleted Int?         @default(0, map: "DF_leave_types_is_deleted") @satria.SmallInt
-  trx_leaves trx_leaves[] @relation("LeaveTypeToTrxLeaves")
+  id              Int               @id(map: "PK_leave_types_id") @default(autoincrement())
+  title           String            @satria.NVarChar(191)
+  days            Int
+  created_by      BigInt?
+  created_at      DateTime?
+  updated_by      BigInt?
+  updated_at      DateTime?
+  is_deleted      Int?              @default(0, map: "DF_leave_types_is_deleted") @satria.SmallInt
+  trx_leaves      trx_leaves[]      @relation("LeaveTypeToTrxLeaves")
+  trx_leave_quota trx_leave_quota[] @relation("TrxLeaveQuotaToMsLeaveType")
 
   @@map("ms_leave_types")
 }
 
 model trx_leaves {
   id               BigInt         @id(map: "PK_leaves_id") @default(autoincrement())
-  user             BigInt
+  user             String
   dept             BigInt
   leave_type_id    Int
   status_id        BigInt
@@ -104,7 +111,7 @@ model trx_leaves {
   updated_by       BigInt
   updated_at       DateTime
   leave_type       ms_leave_types @relation("LeaveTypeToTrxLeaves", fields: [leave_type_id], references: [id])
-  user_data        User           @relation("UserToTrxLeaves", fields: [user], references: [id])
+  user_data        User           @relation("UserToTrxLeaves", fields: [user], references: [personal_number])
 
   @@map("trx_leaves")
 }
@@ -128,6 +135,7 @@ model ms_shift {
   is_deleted    Int?      @default(0, map: "DF__ms_shift__is_del__656C112C") @satria.SmallInt
 
   details ms_detail_shift_group[] @relation("DetailsToMsShift")
+  trx_ovt trx_ovt[]               @relation("ShiftToTrxOvt")
 
   @@map("ms_shift")
 }
@@ -144,7 +152,8 @@ model ms_shift_group {
   updated_at         DateTime?
   is_deleted         Int?      @default(0, map: "DF__ms_shift___is_de__6C190EBB") @satria.SmallInt
 
-  details ms_detail_shift_group[] @relation("DetailsToMsShiftGroup")
+  details        ms_detail_shift_group[] @relation("DetailsToMsShiftGroup")
+  trx_shift_emps trx_shift_emp[]         @relation("TrxShiftToMsShiftGroup")
 
   @@map("ms_shift_group")
 }
@@ -217,7 +226,7 @@ model trx_ovt {
   id              BigInt    @id(map: "PK_trx_ovt_id") @default(autoincrement())
   user            String    @satria.NVarChar(255)
   dept            BigInt
-  shift           BigInt
+  shift           Int
   status_id       BigInt
   check_in_ovt    DateTime
   check_out_ovt   DateTime
@@ -240,6 +249,8 @@ model trx_ovt {
   created_at      DateTime  @default(now(), map: "DF__trx_ovt__created__0C85DE4D") @satria.DateTime
   updated_by      BigInt?
   updated_at      DateTime  @default(now(), map: "DF__trx_ovt__updated__0E6E26BF") @satria.DateTime
+  user_data       User      @relation("UserToTrxOvt", fields: [user], references: [personal_number])
+  shift_data      ms_shift  @relation("ShiftToTrxOvt", fields: [shift], references: [id])
 
   @@map("trx_ovt")
 }
@@ -257,6 +268,9 @@ model trx_shift_emp {
   updated_at     DateTime?
   is_deleted     Int?      @default(0, map: "DF__trx_shift__is_de__1332DBDC") @satria.SmallInt
   flag_shift     Int?      @satria.SmallInt
+
+  MsUser       User           @relation(fields: [id_user], references: [personal_number], name: "TrxShiftToUser")
+  MsShiftGroup ms_shift_group @relation(fields: [id_shift_group], references: [code], name: "TrxShiftToMsShiftGroup")
 
   @@map("trx_shift_emp")
 }
@@ -289,6 +303,7 @@ model trx_official_travel {
   created_at       DateTime
   updated_by       BigInt?
   updated_at       DateTime
+  user_data        User      @relation("UserToTrxOfficialTravel", fields: [user], references: [personal_number])
 
   @@map("trx_official_travel")
 }
@@ -317,6 +332,7 @@ model trx_mutation {
   created_at      DateTime
   updated_by      BigInt?
   updated_at      DateTime
+  user_data       User      @relation("UserToTrxMutation", fields: [user], references: [personal_number])
 
   @@map("trx_mutation")
 }
@@ -345,6 +361,7 @@ model trx_resign {
   created_at      DateTime
   updated_by      BigInt?
   updated_at      DateTime
+  user_data       User      @relation("UserToTrxResign", fields: [user], references: [personal_number])
 
   @@map("trx_resign")
 }
@@ -431,8 +448,8 @@ model ms_marital_status {
 
 model trx_leave_quota {
   id             Int       @id(map: "PK__trx_leav__3213E83F81F75646") @default(autoincrement())
-  id_user        String?   @satria.VarChar(255)
-  leaves_type_id Int?
+  id_user        String    @satria.VarChar(255)
+  leaves_type_id Int
   valid_from     DateTime? @satria.Date
   valid_to       DateTime? @satria.Date
   leaves_quota   Int?
@@ -442,4 +459,7 @@ model trx_leave_quota {
   is_deleted     Int?      @default(dbgenerated("(0)"), map: "DF__trx_leave__is_de__2F9A1060") @satria.SmallInt
   created_at     DateTime? @satria.DateTime
   updated_at     DateTime? @satria.DateTime
+
+  MsUser      User           @relation(fields: [id_user], references: [personal_number], name: "TrxLeaveQuotaToUser")
+  MsLeaveType ms_leave_types @relation(fields: [leaves_type_id], references: [id], name: "TrxLeaveQuotaToMsLeaveType")
 }

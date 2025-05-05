@@ -36,88 +36,54 @@ export const getAllTrxLeaveQuota = async (
         const rawLeaveQuota = await TrxLeaveQuota.findMany({
             where: { is_deleted: 0 },
             orderBy: { [sortField]: sortOrder },
+            include: {
+                MsUser: {
+                    select: {
+                        personal_number: true,
+                        name: true,
+                    },
+                },
+                MsLeaveType: {
+                    select: {
+                        id: true,
+                        title: true,
+                    },
+                },
+            },
         });
 
-        // Ambil id_user dari hasil query (hindari undefined/null)
-        const userIds = [
-            ...new Set(
-                rawLeaveQuota
-                    .map((se) => se.id_user)
-                    .filter((id) => id !== undefined && id !== null)
-            ),
-        ];
+        const formatDate = (date?: Date | null): string | null => {
+            if (!date) return null;
+            return date.toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+            });
+        };
 
-        // Ambil nama user berdasarkan id_user
-        const users = await User.findMany({
-            where: { personal_number: { in: userIds } },
-            select: { personal_number: true, name: true },
-        });
-
-        const userMap = new Map(
-            users
-                .filter((user) => user.personal_number !== null)
-                .map((user) => [user.personal_number!.toString(), user.name])
-        );
-
-        const leaveQuotaIds: number[] = [
-            ...new Set(
-                rawLeaveQuota.map((se) => Number(se.leaves_type_id)).filter((id) => id)
-            ),
-        ];
-
-        const leaveTypes = await LeaveTypes.findMany({
-            where: { id: { in: leaveQuotaIds } },
-            select: { id: true, title: true },
-        });
-
-        const leaveTypeIds = new Map(
-            leaveTypes.map((leave) => [leave.id.toString(), leave.title])
-        );
-
-        // Mapping leaveQuota dengan user_name dan leave_type
-        const leaveQuotaWithDetails = rawLeaveQuota.map((se) => ({
+        const formattedLeaveQuota = rawLeaveQuota.map((se) => ({
             ...se,
-            id: Number(se.id),
-            user_name: userMap.get(se.id_user?.toString() || "") || "Unknown",
-            leaves_type: leaveTypeIds.get(se.leaves_type_id?.toString() || "") || "Unknown",
-            leaves_quota: se.leaves_quota,
-            valid_from: se.valid_from
-                ? new Date(se.valid_from).toLocaleDateString("en-GB", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                })
-                : null,
-            valid_to: se.valid_to
-                ? new Date(se.valid_to).toLocaleDateString("en-GB", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                })
-                : null,
+            valid_from: formatDate(se.valid_from),
+            valid_to: formatDate(se.valid_to),
         }));
 
-        const filteredQuota = leaveQuotaWithDetails.filter((item) => {
-            const q = (search as string).toLowerCase();
-            return (
-                item.id_user?.toLowerCase().includes(q) ||
-                item.user_name?.toLowerCase().includes(q) ||
-                item.leaves_type?.toLowerCase().includes(q) ||
-                item.valid_from?.toLowerCase().includes(q) ||
-                item.valid_to?.toLowerCase().includes(q)
-            );
+        const totalItems = await TrxLeaveQuota.count({
+            where: {
+                is_deleted: 0,
+                OR: [
+                    { id_user: { contains: search as string } },
+                ],
+            },
         });
 
-        const totalItems = filteredQuota.length;
         const totalPages = Math.ceil(totalItems / pageSize);
-        const paginatedQuota = filteredQuota.slice(skip, skip + pageSize);
 
         res.status(200).send(
             JSONbig.stringify({
                 success: true,
                 message: "Successfully retrieved leave quota data",
                 data: {
-                    data: paginatedQuota,
+                    data: formattedLeaveQuota,
                     totalPages,
                     currentPage: pageNumber,
                     totalItems,
@@ -157,7 +123,7 @@ export const createLeaveQuota = async (
                         valid_to: new Date(valid_to),
                         leaves_quota: leave_quota[index],
                         used_leave: 0,
-                        leave_balance: 0,
+                        leave_balance: leave_quota[index],
                         is_active: 0,
                         is_deleted: 0,
                         created_at: getCurrentWIBDate(),
@@ -203,7 +169,7 @@ export const updateLeaveQuota = async (
             where: { id: Number(id) },
         });
 
-        if (existingLeaveQuota === undefined|| existingLeaveQuota === null) {
+        if (existingLeaveQuota === undefined || existingLeaveQuota === null) {
             res.status(404).json({
                 success: false,
                 message: "Leave quota record not found",

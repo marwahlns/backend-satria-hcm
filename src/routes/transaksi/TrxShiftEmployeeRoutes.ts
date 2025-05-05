@@ -1,6 +1,6 @@
 // src/routes/api.ts
 import express, { Request, Response } from "express";
-import * as UserController from "../../controllers/cms/MsUserController";
+import * as TrxShiftEmployeeController from "../../controllers/cms/TrxShiftEmployeeController";
 import { authenticateJWT } from "../../middleware/auth";
 
 const router = express.Router();
@@ -9,27 +9,27 @@ const router = express.Router();
 // router.use(authenticateJWT);
 
 router.get("/", async (req: Request, res: Response) => {
-  await UserController.getAllEmployee(req, res);
+  await TrxShiftEmployeeController.getAllTrxShiftEmployee(req, res);
 });
 
 router.post(
   "/",
   async (req: Request, res: Response) => {
-    await UserController.createEmployee(req, res);
+    await TrxShiftEmployeeController.createShiftEmployee(req, res);
   }
 );
 
 router.put(
   "/:id",
   async (req: Request, res: Response) => {
-    await UserController.updateEmployee(req, res);
+    await TrxShiftEmployeeController.updateShiftEmployee(req, res);
   }
 );
 
 router.delete(
   "/:id",
   async (req: Request, res: Response) => {
-    await UserController.deleteEmployee(req, res);
+    await TrxShiftEmployeeController.deleteShiftEmployee(req, res);
   }
 );
 
