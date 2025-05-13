@@ -16,5 +16,6 @@ export const TrxShiftEmployee = {
   count: prisma.trx_shift_emp.count,
   findFirst: prisma.trx_shift_emp.findFirst,
   upsert: prisma.trx_shift_emp.upsert,
-  detail: prisma.ms_detail_shift_group.findMany
+  detail: prisma.ms_detail_shift_group.findMany,
+  detailFindFirst: prisma.ms_detail_shift_group.findFirst
 };

@@ -375,6 +375,10 @@ exports.Prisma.Trx_mutationScalarFieldEnum = {
   id: 'id',
   user: 'user',
   effective_date: 'effective_date',
+  division_from: 'division_from',
+  dept_from: 'dept_from',
+  division_to: 'division_to',
+  dept_to: 'dept_to',
   reason: 'reason',
   status_id: 'status_id',
   accept_to: 'accept_to',
@@ -518,6 +522,40 @@ exports.Prisma.Trx_leave_quotaScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.AttendanceScalarFieldEnum = {
+  id: 'id',
+  remote_addr_in: 'remote_addr_in',
+  longitude_in: 'longitude_in',
+  latitude_in: 'latitude_in',
+  address_in: 'address_in',
+  subcont: 'subcont',
+  client: 'client',
+  shift_code: 'shift_code',
+  in_time: 'in_time',
+  out_time: 'out_time',
+  revice_in_time: 'revice_in_time',
+  revice_out_time: 'revice_out_time',
+  remote_addr_out: 'remote_addr_out',
+  longitude_out: 'longitude_out',
+  latitude_out: 'latitude_out',
+  address_out: 'address_out',
+  work_metode: 'work_metode',
+  foto_in: 'foto_in',
+  foto_out: 'foto_out',
+  note: 'note',
+  checked_by: 'checked_by',
+  checked_at: 'checked_at',
+  reject_reason: 'reject_reason',
+  is_ovt: 'is_ovt',
+  is_happy: 'is_happy',
+  flag: 'flag',
+  is_sent_sap: 'is_sent_sap',
+  created_by: 'created_by',
+  created_at: 'created_at',
+  updated_by: 'updated_by',
+  updated_at: 'updated_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -550,7 +588,8 @@ exports.Prisma.ModelName = {
   ms_subcont: 'ms_subcont',
   mst_plant: 'mst_plant',
   ms_marital_status: 'ms_marital_status',
-  trx_leave_quota: 'trx_leave_quota'
+  trx_leave_quota: 'trx_leave_quota',
+  attendance: 'attendance'
 };
 
 /**

@@ -1,6 +1,7 @@
 // src/routes/api.ts
 import express, { Request, Response } from "express";
 import * as UserController from "../../controllers/cms/MsUserController";
+import * as DivDeptController from "../../controllers/cms/DivDeptController";
 import { authenticateJWT } from "../../middleware/auth";
 
 const router = express.Router();
@@ -55,6 +56,10 @@ router.get("/getSuperior", async (req: Request, res: Response) => {
 
 router.get("/getDepartment", async (req: Request, res: Response) => {
   await UserController.getAllDepartment(req, res);
+});
+
+router.get("/getDivDept", async (req: Request, res: Response) => {
+  await DivDeptController.getAllDivDept(req, res);
 });
 
 export default router;

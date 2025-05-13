@@ -5,10 +5,7 @@ import { User } from "../../models/Table/Satria/MsUser";
 import { LeaveTypes } from "../../models/Table/Satria/MsLeaveTypes";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 
-export const getAllTrxLeaveQuota = async (
-    req: Request,
-    res: Response
-): Promise<void> => {
+export const getAllTrxLeaveQuota = async (req: Request & { user?: { nrp: string, id: number } }, res: Response): Promise<void> => {
     try {
         const {
             page = "1",
@@ -18,9 +15,11 @@ export const getAllTrxLeaveQuota = async (
             order = "asc",
         } = req.query;
 
+        const userNrp = req.user?.nrp;
         const pageNumber = Number(page) || 1;
         const pageSize = Number(limit) || 10;
         const skip = (pageNumber - 1) * pageSize;
+
         const validSortFields = [
             "valid_from",
             "valid_to",
@@ -33,8 +32,19 @@ export const getAllTrxLeaveQuota = async (
             : "id_user";
         const sortOrder = order === "desc" ? "desc" : "asc";
 
+        // Tentukan kondisi `where` berdasarkan apakah user adalah admin atau bukan
+        const isAdmin = userNrp === "P0120001";
+
+        const whereClause = {
+            is_deleted: 0,
+            ...(isAdmin ? {} : { id_user: userNrp }),
+            OR: [
+                { MsUser: { name: { contains: search as string } } },
+            ],
+        };
+
         const rawLeaveQuota = await TrxLeaveQuota.findMany({
-            where: { is_deleted: 0 },
+            where: whereClause,
             orderBy: { [sortField]: sortOrder },
             include: {
                 MsUser: {
@@ -50,6 +60,8 @@ export const getAllTrxLeaveQuota = async (
                     },
                 },
             },
+            skip,
+            take: pageSize,
         });
 
         const formatDate = (date?: Date | null): string | null => {
@@ -68,12 +80,7 @@ export const getAllTrxLeaveQuota = async (
         }));
 
         const totalItems = await TrxLeaveQuota.count({
-            where: {
-                is_deleted: 0,
-                OR: [
-                    { id_user: { contains: search as string } },
-                ],
-            },
+            where: whereClause,
         });
 
         const totalPages = Math.ceil(totalItems / pageSize);
@@ -99,6 +106,7 @@ export const getAllTrxLeaveQuota = async (
     }
 };
 
+
 export const createLeaveQuota = async (
     req: Request,
     res: Response
@@ -106,32 +114,92 @@ export const createLeaveQuota = async (
     try {
         const { id_user, id_leave_type, valid_from, valid_to, leave_quota } = req.body;
 
-        if (!id_leave_type || !Array.isArray(id_user) || id_user.length === 0 || !valid_from || !valid_to || !leave_quota) {
+        if (
+            !id_leave_type ||
+            !Array.isArray(id_user) ||
+            id_user.length === 0 ||
+            !valid_from ||
+            !valid_to ||
+            !leave_quota
+        ) {
             res.status(400).json({
                 success: false,
                 message: "All fields must be provided, and id_user must be an array",
             });
+            return;
         }
 
-        const leaveQuota = await Promise.all(
-            id_user.map(async (userId: any, index: number) => {
-                return TrxLeaveQuota.create({
-                    data: {
-                        leaves_type_id: Number(id_leave_type),
-                        id_user: userId,
-                        valid_from: new Date(valid_from),
-                        valid_to: new Date(valid_to),
-                        leaves_quota: leave_quota[index],
-                        used_leave: 0,
-                        leave_balance: leave_quota[index],
-                        is_active: 0,
-                        is_deleted: 0,
-                        created_at: getCurrentWIBDate(),
-                        updated_at: getCurrentWIBDate(),
-                    },
+        const startDate = new Date(valid_from);
+        const endDate = new Date(valid_to);
+
+        const validUsers = await User.findMany({
+            where: {
+                personal_number: { in: id_user },
+            },
+            select: { personal_number: true },
+        });
+
+        const validUserIds = validUsers.map(user => user.personal_number);
+
+        if (validUserIds.length === 0) {
+            res.status(400).json({
+                success: false,
+                message: "Tidak ada id_user yang valid ditemukan di tabel User",
+            });
+            return;
+        }
+
+        const leaveQuota = [];
+
+        for (let i = 0; i < id_user.length; i++) {
+            const userId = id_user[i];
+            const quota = leave_quota[i];
+
+            // Cek apakah ada data leave quota yang tanggalnya bentrok
+            const existingQuota = await TrxLeaveQuota.findFirst({
+                where: {
+                    id_user: userId,
+                    leaves_type_id: Number(id_leave_type),
+                    is_deleted: 0,
+                    OR: [
+                        {
+                            valid_from: {
+                                lte: endDate,
+                            },
+                            valid_to: {
+                                gte: startDate,
+                            },
+                        },
+                    ],
+                },
+            });
+
+            if (existingQuota) {
+                res.status(400).json({
+                    success: false,
+                    message: `User ID ${userId} already has a leave quota for this type that overlaps with the provided date range.`,
                 });
-            })
-        );
+                return;
+            }
+
+            const newQuota = await TrxLeaveQuota.create({
+                data: {
+                    leaves_type_id: Number(id_leave_type),
+                    id_user: userId,
+                    valid_from: startDate,
+                    valid_to: endDate,
+                    leaves_quota: quota,
+                    used_leave: 0,
+                    leave_balance: quota,
+                    is_active: 0,
+                    is_deleted: 0,
+                    created_at: getCurrentWIBDate(),
+                    updated_at: getCurrentWIBDate(),
+                },
+            });
+
+            leaveQuota.push(newQuota);
+        }
 
         res.status(201).send(
             JSONbig.stringify({
@@ -144,9 +212,9 @@ export const createLeaveQuota = async (
         console.error("Database Error:", err);
         res.status(500).json({
             success: false,
-            message: "Error adding leave qouta data",
-        });
-    }
+            message: "Error adding leave quota data",
+        });
+    }
 };
 
 export const updateLeaveQuota = async (
