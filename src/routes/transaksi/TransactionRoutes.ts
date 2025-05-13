@@ -25,5 +25,15 @@ router.post(
   }
 );
 
+router.get(
+  "/tren-attendance", async (req: Request, res: Response) => {
+    await TrxLeave.getTrendAttendance(req, res);
+  }
+);
 
+router.get(
+  "/tren-submission", async (req: Request, res: Response) => {
+    await TrxLeave.getTrendSubmission(req, res);
+  }
+);
 export default router;

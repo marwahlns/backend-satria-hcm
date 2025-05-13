@@ -6,7 +6,7 @@ import { authenticateJWT } from "../../middleware/auth";
 const router = express.Router();
 
 // Jika ingin menggunakan middleware untuk semua routes
-// router.use(authenticateJWT);
+router.use(authenticateJWT);
 
 router.get("/", async (req: Request, res: Response) => {
   await TrxLeaveQuotaController.getAllTrxLeaveQuota(req, res);

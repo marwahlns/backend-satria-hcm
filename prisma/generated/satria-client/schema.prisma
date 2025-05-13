@@ -176,38 +176,40 @@ model ms_detail_shift_group {
 }
 
 model mst_dept {
-  id             Int     @id(map: "PK_mst_dept_id")
-  nama           String  @satria.NVarChar(100)
-  depthead_nrp   String? @satria.NVarChar(255)
-  depthead_name  String? @satria.NVarChar(255)
-  depthead_email String? @satria.NVarChar(255)
-  div_code       String? @satria.NVarChar(50)
-  div_name       String? @satria.NVarChar(255)
-  divhead_nrp    String? @satria.NVarChar(255)
-  divhead_name   String? @satria.NVarChar(255)
-  divhead_email  String? @satria.NVarChar(255)
+  id             Int          @id(map: "PK_mst_dept_id")
+  nama           String       @satria.NVarChar(100)
+  depthead_nrp   String?      @satria.NVarChar(255)
+  depthead_name  String?      @satria.NVarChar(255)
+  depthead_email String?      @satria.NVarChar(255)
+  div_code       String       @satria.NVarChar(50)
+  div_name       String?      @satria.NVarChar(255)
+  divhead_nrp    String?      @satria.NVarChar(255)
+  divhead_name   String?      @satria.NVarChar(255)
+  divhead_email  String?      @satria.NVarChar(255)
   company_id     Int?
-  company_name   String? @satria.NVarChar(255)
-  mst_user       User[]  @relation("UserToDept")
+  company_name   String?      @satria.NVarChar(255)
+  mst_user       User[]       @relation("UserToDept")
+  ms_division    mst_division @relation("divisionToDept", fields: [div_code], references: [divid])
 
   @@map("mst_dept")
 }
 
 model mst_division {
-  id             Int       @id(map: "PK_mst_division_id") @default(autoincrement())
-  divid          String    @satria.NVarChar(255)
-  div_inv        String?   @satria.NVarChar(255)
-  nama           String    @satria.NVarChar(255)
-  divhead_nrp    String?   @satria.NVarChar(255)
-  divhead_name   String?   @satria.NVarChar(255)
-  divheaed_email String?   @satria.NVarChar(255)
-  company_id     String?   @satria.NVarChar(255)
-  company_name   String?   @satria.NVarChar(255)
-  position       String?   @satria.NVarChar(255)
+  id             Int        @id(map: "PK_mst_division_id") @default(autoincrement())
+  divid          String     @unique @satria.NVarChar(255)
+  div_inv        String?    @satria.NVarChar(255)
+  nama           String     @satria.NVarChar(255)
+  divhead_nrp    String?    @satria.NVarChar(255)
+  divhead_name   String?    @satria.NVarChar(255)
+  divheaed_email String?    @satria.NVarChar(255)
+  company_id     String?    @satria.NVarChar(255)
+  company_name   String?    @satria.NVarChar(255)
+  position       String?    @satria.NVarChar(255)
   created_by     Int
-  created_at     DateTime  @default(now(), map: "DF__mst_divis__creat__7D439ABD") @satria.DateTime
-  updated_at     DateTime? @default(now(), map: "DF__mst_divis__updat__7E37BEF6") @satria.DateTime
+  created_at     DateTime   @default(now(), map: "DF__mst_divis__creat__7D439ABD") @satria.DateTime
+  updated_at     DateTime?  @default(now(), map: "DF__mst_divis__updat__7E37BEF6") @satria.DateTime
   updated_by     Int?
+  ms_dept        mst_dept[] @relation("divisionToDept")
 
   @@map("mst_division")
 }
@@ -226,7 +228,7 @@ model trx_ovt {
   id              BigInt    @id(map: "PK_trx_ovt_id") @default(autoincrement())
   user            String    @satria.NVarChar(255)
   dept            BigInt
-  shift           Int
+  shift           String    @satria.NVarChar(255)
   status_id       BigInt
   check_in_ovt    DateTime
   check_out_ovt   DateTime
@@ -250,7 +252,7 @@ model trx_ovt {
   updated_by      BigInt?
   updated_at      DateTime  @default(now(), map: "DF__trx_ovt__updated__0E6E26BF") @satria.DateTime
   user_data       User      @relation("UserToTrxOvt", fields: [user], references: [personal_number])
-  shift_data      ms_shift  @relation("ShiftToTrxOvt", fields: [shift], references: [id])
+  shift_data      ms_shift  @relation("ShiftToTrxOvt", fields: [shift], references: [code])
 
   @@map("trx_ovt")
 }
@@ -312,6 +314,10 @@ model trx_mutation {
   id              Int       @id(map: "PK_trx_mutation") @default(autoincrement())
   user            String    @satria.NVarChar(255)
   effective_date  DateTime  @satria.Date
+  division_from   String    @satria.NVarChar(255)
+  dept_from       String    @satria.NVarChar(255)
+  division_to     String    @satria.NVarChar(255)
+  dept_to         String    @satria.NVarChar(255)
   reason          String    @satria.NVarChar(255)
   status_id       BigInt
   accept_to       String    @satria.NVarChar(255)
@@ -448,7 +454,7 @@ model ms_marital_status {
 
 model trx_leave_quota {
   id             Int       @id(map: "PK__trx_leav__3213E83F81F75646") @default(autoincrement())
-  id_user        String    @satria.VarChar(255)
+  id_user        String    @unique @satria.VarChar(255)
   leaves_type_id Int
   valid_from     DateTime? @satria.Date
   valid_to       DateTime? @satria.Date
@@ -462,4 +468,40 @@ model trx_leave_quota {
 
   MsUser      User           @relation(fields: [id_user], references: [personal_number], name: "TrxLeaveQuotaToUser")
   MsLeaveType ms_leave_types @relation(fields: [leaves_type_id], references: [id], name: "TrxLeaveQuotaToMsLeaveType")
+}
+
+model attendance {
+  id              BigInt    @id(map: "PK__attendan__3213E83F3BD79E4C") @default(autoincrement())
+  remote_addr_in  String?   @satria.NVarChar(255)
+  longitude_in    String?   @satria.NVarChar(255)
+  latitude_in     String?   @satria.NVarChar(255)
+  address_in      String?   @satria.NVarChar(255)
+  subcont         String?   @satria.NVarChar(255)
+  client          String?   @satria.NVarChar(255)
+  shift_code      String?   @satria.NVarChar(255)
+  in_time         DateTime? @satria.DateTime
+  out_time        DateTime? @satria.DateTime
+  revice_in_time  DateTime? @satria.DateTime
+  revice_out_time DateTime? @satria.DateTime
+  remote_addr_out String?   @satria.NVarChar(255)
+  longitude_out   String?   @satria.NVarChar(255)
+  latitude_out    String?   @satria.NVarChar(255)
+  address_out     String?   @satria.NVarChar(255)
+  work_metode     String?   @satria.NVarChar(255)
+  foto_in         String?   @satria.NVarChar(255)
+  foto_out        String?   @satria.NVarChar(255)
+  note            String?   @satria.NVarChar(255)
+  checked_by      String?   @satria.NVarChar(255)
+  checked_at      DateTime? @satria.DateTime
+  reject_reason   String?   @satria.NVarChar(255)
+  is_ovt          Int?
+  is_happy        Int?
+  flag            Int?
+  is_sent_sap     Int?
+  created_by      BigInt?
+  created_at      DateTime
+  updated_by      BigInt?
+  updated_at      DateTime
+
+  @@map("attendance")
 }
