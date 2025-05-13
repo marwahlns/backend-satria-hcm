@@ -200,7 +200,7 @@ export const createShiftEmployee = async (
     res.status(201).send(
       JSONbig.stringify({
         success: true,
-        message: "Shift Employees added successfully (hanya user yang valid)",
+        message: "Shift Employees added successfully",
         data: shiftEmployees,
       })
     );

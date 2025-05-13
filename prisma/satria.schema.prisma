@@ -281,7 +281,7 @@ model trx_official_travel {
   effective_date   DateTime? @satria.Date
   start_date       DateTime  @satria.Date
   end_date         DateTime  @satria.Date
-  total_leave_days BigInt
+  total_leave_days Int
   purpose          String    @satria.NVarChar(255)
   destination_city String    @satria.NVarChar(255)
   status_id        BigInt
@@ -462,4 +462,38 @@ model trx_leave_quota {
 
   MsUser         User @relation(fields: [id_user], references: [personal_number], name: "TrxLeaveQuotaToUser")
   MsLeaveType    ms_leave_types @relation(fields: [leaves_type_id], references: [id], name: "TrxLeaveQuotaToMsLeaveType")
+}
+
+model attendance {
+  id              BigInt    @id(map: "PK__attendan__3213E83FA7EF7F24") @default(autoincrement())
+  remote_addr_in  String?   @satria.NVarChar(255)
+  longitude_in    String?   @satria.NVarChar(255)
+  latitude_in     String?   @satria.NVarChar(255)
+  address_in      String?   @satria.NVarChar(Max)
+  subcont         String?   @satria.NVarChar(255)
+  client          String?   @satria.NVarChar(255)
+  shift_code      String?   @satria.NVarChar(255)
+  in_time         DateTime?
+  out_time        DateTime?
+  revice_in_time  DateTime?
+  revice_out_time DateTime?
+  remote_addr_out String?   @satria.NVarChar(255)
+  longitude_out   String?   @satria.NVarChar(255)
+  latitude_out    String?   @satria.NVarChar(255)
+  address_out     String?   @satria.NVarChar(Max)
+  work_metode     String?   @satria.NVarChar(255)
+  foto_in         String?   @satria.NVarChar(Max)
+  foto_out        String?   @satria.NVarChar(Max)
+  note            String?   @satria.NVarChar(Max)
+  checked_by      String?   @satria.NVarChar(255)
+  checked_at      DateTime?
+  reject_reason   String?   @satria.NVarChar(Max)
+  is_ovt          Int?
+  is_happy        Int       @default(1, map: "DF__attendanc__is_ha__625A9A57") @satria.SmallInt
+  flag            Int?
+  is_sent_sap     Int       @default(0, map: "DF__attendanc__is_se__634EBE90")
+  created_by      BigInt?
+  updated_by      BigInt?
+  created_at      DateTime? @default(now(), map: "DF__attendanc__creat__6442E2C9") @satria.DateTime
+  updated_at      DateTime? @default(now(), map: "DF__attendanc__updat__65370702") @satria.DateTime
 }

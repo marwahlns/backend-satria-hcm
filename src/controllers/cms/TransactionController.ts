@@ -6,17 +6,226 @@ import { TrxOfficialTravel } from "../../models/Table/Satria/TrxOfficialTravel";
 import { TrxMutation } from "../../models/Table/Satria/TrxMutation";
 import { TrxResign } from "../../models/Table/Satria/TrxResign";
 import { TrxLeaveQuota } from "../../models/Table/Satria/TrxLeaveQuota";
+import { Attendance } from "../../models/Table/Satria/TrxAttendance";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 import { getStatusName, getModalType } from "../../helpers/functionHelper";
 import { User } from "../../models/Table/Satria/MsUser";
-import { differenceInDays  } from "date-fns";
+import { differenceInDays } from "date-fns";
 
 const trxModelMap: { [key: string]: any } = {
   leave: TrxLeave,
   overtime: TrxOvertime,
-  officialTravel: TrxOfficialTravel,    
+  officialTravel: TrxOfficialTravel,
   mutation: TrxMutation,
   resign: TrxResign,
+};
+
+export const getTrendAttendance = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { month } = req.query;
+
+    if (!month || typeof month !== 'string') {
+      res.status(400).json({ message: 'Parameter "month" harus dalam format yyyy-mm' });
+      return;
+    }
+
+    const [year, monthNum] = month.split('-').map(Number);
+    if (!year || !monthNum || monthNum < 1 || monthNum > 12) {
+      res.status(400).json({ message: 'Format "month" tidak valid, gunakan yyyy-mm' });
+      return;
+    }
+
+    const startDate = new Date(year, monthNum - 1, 1);
+    const endDate = new Date(year, monthNum, 0, 23, 59, 59, 999);
+
+    const trendData = await Attendance.findMany({
+      where: {
+        in_time: {
+          gte: startDate,
+          lte: endDate,
+        },
+      },
+      orderBy: {
+        in_time: 'asc',
+      },
+    });
+
+    const trendMap: Record<string, number> = {};
+    trendData.forEach((item) => {
+      if (item.in_time) {
+        const dateStr = item.in_time.toISOString().split('T')[0];
+        trendMap[dateStr] = (trendMap[dateStr] || 0) + 1;
+      }
+    });
+
+    const totalDays = endDate.getDate();
+    const formattedData = Array.from({ length: totalDays }, (_, i) => {
+      const day = i + 1;
+      const dateStr = `${year}-${String(monthNum).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      return {
+        tanggal: dateStr,
+        jumlah_kehadiran: trendMap[dateStr] || 0,
+      };
+    });
+
+    res.status(200).json(formattedData);
+  } catch (err) {
+    console.error('Error fetching attendance trend:', err);
+    res.status(500).json({ message: 'Error fetching attendance trend', error: err });
+  }
+};
+
+export const getTrendSubmission = async (req: Request & { user?: { nrp: string } }, res: Response): Promise<void> => {
+  try {
+    const { type, year } = req.query;
+    const userNrp = req.user?.nrp;
+    const selectedYear = year ? parseInt(year as string) : new Date().getFullYear();
+    const startOfYear = new Date(`${selectedYear}-01-01`);
+    const endOfYear = new Date(`${selectedYear}-12-31`);
+
+    let transactions: { start_date: Date }[] = [];
+
+    switch (type) {
+      case 'leave':
+        transactions = await TrxLeave.findMany({
+          where: {
+            start_date: {
+              gte: startOfYear,
+              lte: endOfYear,
+            },
+            OR: [
+              { accept_to: userNrp },
+              {
+                AND: [
+                  { approve_to: userNrp },
+                  { accepted_date: { not: null } },
+                ],
+              },
+              { user: userNrp },
+            ],
+          },
+          select: {
+            start_date: true,
+          },
+        });
+        break;
+
+      case 'overtime':
+        const overtime = await TrxOvertime.findMany({
+          where: {
+            check_in_ovt: {
+              gte: startOfYear,
+              lte: endOfYear,
+            },
+            OR: [
+              { accept_to: userNrp },
+              {
+                AND: [
+                  { approve_to: userNrp },
+                  { accepted_date: { not: null } },
+                ],
+              },
+              { user: userNrp },
+            ],
+          },
+          select: {
+            check_in_ovt: true,
+          },
+        });
+        transactions = overtime.map(item => ({ start_date: item.check_in_ovt }));
+        break;
+
+      case 'officialTravel':
+        transactions = await TrxOfficialTravel.findMany({
+          where: {
+            start_date: {
+              gte: startOfYear,
+              lte: endOfYear,
+            },
+            OR: [
+              { accept_to: userNrp },
+              {
+                AND: [
+                  { approve_to: userNrp },
+                  { accepted_date: { not: null } },
+                ],
+              },
+              { user: userNrp },
+            ],
+          },
+          select: {
+            start_date: true,
+          },
+        });
+        break;
+
+      case 'mutation':
+        const mutation = await TrxMutation.findMany({
+          where: {
+            effective_date: {
+              gte: startOfYear,
+              lte: endOfYear,
+            },
+            OR: [
+              { accept_to: userNrp },
+              {
+                AND: [
+                  { approve_to: userNrp },
+                  { accepted_date: { not: null } },
+                ],
+              },
+              { user: userNrp },
+            ],
+          },
+          select: {
+            effective_date: true,
+          },
+        });
+        transactions = mutation.map(item => ({ start_date: item.effective_date }));
+        break;
+
+      case 'resign':
+        const resign = await TrxResign.findMany({
+          where: {
+            effective_date: {
+              gte: startOfYear,
+              lte: endOfYear,
+            },
+            OR: [
+              { accept_to: userNrp },
+              {
+                AND: [
+                  { approve_to: userNrp },
+                  { accepted_date: { not: null } },
+                ],
+              },
+              { user: userNrp },
+            ],
+          },
+          select: {
+            effective_date: true,
+          },
+        });
+        transactions = resign.map(item => ({ start_date: item.effective_date }));
+        break;
+
+      default:
+        res.status(400).json({ error: 'Invalid type. Must be leave, overtime, officialTravel, mutation, or resign.' });
+        return;
+    }
+
+    const monthlyCounts = Array(12).fill(0);
+
+    transactions.forEach((trx) => {
+      const monthIndex = trx.start_date.getMonth();
+      monthlyCounts[monthIndex]++;
+    });
+
+    res.status(200).json({ type, data: monthlyCounts });
+  } catch (error) {
+    console.error('[getAllSubmission]', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 };
 
 export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, res: Response): Promise<void> => {
@@ -48,10 +257,10 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
       //leave
       case "leave": {
         try {
-          const validSortFields = ["name", "department", "title", "start_date", "end_date","status_id", "leave_reason"];
+          const validSortFields = ["name", "department", "title", "start_date", "end_date", "status_id", "leave_reason"];
           const sortField = validSortFields.includes(sort as string) ? (sort as string) : "user";
-          
-          const dateFilter = month && year ?{
+
+          const dateFilter = month && year ? {
             OR: [
               {
                 start_date: {
@@ -67,7 +276,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
               },
             ],
           }
-          : undefined;
+            : undefined;
 
           const TrxLeaveData = await TrxLeave.findMany({
             where: {
@@ -114,36 +323,36 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
             skip,
             take: pageSize,
           });
-      
-          const mergeTrxLeaveData = TrxLeaveData.map((trx) => { 
-          
+
+          const mergeTrxLeaveData = TrxLeaveData.map((trx) => {
+
             return {
               ...trx,
               leave_type_name: trx.leave_type?.title || "Unknown",
               start_date: trx.start_date
                 ? new Date(trx.start_date).toLocaleDateString("id-ID", {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric",
-                  })
+                  day: "2-digit",
+                  month: "long",
+                  year: "numeric",
+                })
                 : null,
               end_date: trx.end_date
                 ? new Date(trx.end_date).toLocaleDateString("id-ID", {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric",
-                  })
+                  day: "2-digit",
+                  month: "long",
+                  year: "numeric",
+                })
                 : null,
               user_name: trx.user_data?.name,
               user_departement: trx.user_data?.dept_data?.nama,
               status_submittion: getStatusName(trx?.status_id),
-              actionType: 
-              ((trx.accept_to === userNrp && trx.approve_to === userNrp) || trx.approve_to === userNrp) 
-                ? "Approved"
-                : trx.accept_to === userNrp
-                ? "Accepted"
-                : null,
-                modalType: getModalType(trx, userNrp ?? ""),
+              actionType:
+                ((trx.accept_to === userNrp && trx.approve_to === userNrp) || trx.approve_to === userNrp)
+                  ? "Approved"
+                  : trx.accept_to === userNrp
+                    ? "Accepted"
+                    : null,
+              modalType: getModalType(trx, userNrp ?? ""),
             };
           });
 
@@ -174,9 +383,9 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
               ],
             },
           });
-      
+
           const totalPages = Math.ceil(totalItems / pageSize);
-      
+
           res.status(200).send(
             JSONbig.stringify({
               success: true,
@@ -198,13 +407,13 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
         }
         break;
       }
-      
+
       //overtime
       case "overtime": {
         try {
           const validSortFields = ["name", "department", "check_in_ovt", "check_out_ovt", "note_ovt"];
           const sortField = validSortFields.includes(sort as string) ? (sort as string) : "user";
-          const dateFilter = month && year ?{
+          const dateFilter = month && year ? {
             OR: [
               {
                 check_in_ovt: {
@@ -220,7 +429,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
               },
             ],
           }
-          : undefined;
+            : undefined;
           const trxOvertimeData = await TrxOvertime.findMany({
             where: {
               AND: [
@@ -268,25 +477,25 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
             skip,
             take: pageSize,
           });
-      
+
           const mergeTrxOvertimeData = trxOvertimeData.map((trx) => {
             const formatDateTime = (dateString: string | Date | null): string | null => {
               if (!dateString) return null;
-            
+
               const date = new Date(dateString);
               if (isNaN(date.getTime())) return null; // Validasi tanggal
-            
-              return date.toLocaleDateString("id-ID", {
+
+              return date.toLocaleDateString("en-US", {
                 day: "2-digit",
                 month: "long",
                 year: "numeric",
-              }) + ' pukul ' + date.toLocaleTimeString("id-ID", {
+              }) + ' at ' + date.toLocaleTimeString("en-US", {
                 hour: "2-digit",
                 minute: "2-digit",
                 hour12: false,
-              });              
-            };            
-      
+              });
+            };
+
             return {
               ...trx,
               user_name: trx.user_data?.name,
@@ -294,16 +503,16 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
               check_in: formatDateTime(trx.check_in_ovt),
               check_out: formatDateTime(trx.check_out_ovt),
               status_submittion: getStatusName(trx?.status_id),
-              actionType: 
-              ((trx.accept_to === userNrp && trx.approve_to === userNrp) || trx.approve_to === userNrp) 
-                ? "Approved"
-                : trx.accept_to === userNrp
-                ? "Accepted"
-                : null,
-                modalType: getModalType(trx, userNrp ?? ""),
-              };
+              actionType:
+                ((trx.accept_to === userNrp && trx.approve_to === userNrp) || trx.approve_to === userNrp)
+                  ? "Approved"
+                  : trx.accept_to === userNrp
+                    ? "Accepted"
+                    : null,
+              modalType: getModalType(trx, userNrp ?? ""),
+            };
           });
-      
+
           const totalItems = await TrxOvertime.count({
             where: {
               AND: [
@@ -330,9 +539,9 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
               ],
             },
           });
-      
+
           const totalPages = Math.ceil(totalItems / pageSize);
-      
+
           res.status(200).send(JSONbig.stringify({
             success: true,
             message: "Successfully retrieved overtime data",
@@ -349,14 +558,14 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
         }
         break;
       }
-      
+
       //officialTravel
       case "officialTravel": {
         try {
           const validSortFields = ["name", "departement", "start_date", "end_date", "purpose", "destination_city"];
           const sortField = validSortFields.includes(sort as string) ? (sort as string) : "user";
           const sortOrder = order === "desc" ? "desc" : "asc";
-          const dateFilter = month && year ?{
+          const dateFilter = month && year ? {
             OR: [
               {
                 start_date: {
@@ -372,7 +581,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
               },
             ],
           }
-          : undefined;
+            : undefined;
 
           const trxOfficialTravelData = await TrxOfficialTravel.findMany({
             where: {
@@ -408,40 +617,40 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
                 },
               },
             },
-            orderBy: ["name","departement"].includes(sortField)
+            orderBy: ["name", "departement"].includes(sortField)
               ? { user_data: { [sortField]: sortOrder } }
               : { [sortField]: sortOrder },
             skip,
             take: pageSize,
           });
-      
-      
+
+
           const mergeTrxOfficialTravelData = trxOfficialTravelData.map((trx) => {
             return {
               ...trx,
-                user_name: trx.user_data?.name,
-                user_departement: trx.user_data?.department,
-                start_date: trx?.start_date 
-                ? new Date(trx.start_date).toLocaleString("id-ID", { 
+              user_name: trx.user_data?.name,
+              user_departement: trx.user_data?.department,
+              start_date: trx?.start_date
+                ? new Date(trx.start_date).toLocaleString("id-ID", {
                   day: "2-digit", month: "long", year: "numeric"
-                    }) 
+                })
                 : null,
-                end_date: trx?.end_date 
-                ? new Date(trx.end_date).toLocaleString("id-ID", { 
+              end_date: trx?.end_date
+                ? new Date(trx.end_date).toLocaleString("id-ID", {
                   day: "2-digit", month: "long", year: "numeric"
-                    }) 
+                })
                 : null,
-                status_submittion: getStatusName(trx?.status_id),
-                actionType: 
-                ((trx.accept_to === userNrp && trx.approve_to === userNrp) || trx.approve_to === userNrp) 
+              status_submittion: getStatusName(trx?.status_id),
+              actionType:
+                ((trx.accept_to === userNrp && trx.approve_to === userNrp) || trx.approve_to === userNrp)
                   ? "Approved"
                   : trx.accept_to === userNrp
-                  ? "Accepted"
-                  : null,
-                  modalType: getModalType(trx, userNrp ?? ""),
+                    ? "Accepted"
+                    : null,
+              modalType: getModalType(trx, userNrp ?? ""),
             };
-            });
-      
+          });
+
           const totalItems = await TrxOfficialTravel.count({
             where: {
               AND: [
@@ -464,10 +673,10 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
                   ],
                 },
                 ...(statusFilter ? [statusFilter] : []),
-                ...(dateFilter ? [dateFilter] : []),              ],
+                ...(dateFilter ? [dateFilter] : []),],
             },
           });
-      
+
           const totalPages = Math.ceil(totalItems / pageSize);
           res.status(200).send(JSONbig.stringify({
             success: true,
@@ -484,12 +693,12 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
         }
         break
       }
-      case "mutation" : {
+      case "mutation": {
         try {
           const validSortFields = ["name", "departement", "effective_date", "reason"];
           const sortField = validSortFields.includes(sort as string) ? (sort as string) : "user";
           const sortOrder = order === "desc" ? "desc" : "asc";
-          const dateFilter = month && year ?{
+          const dateFilter = month && year ? {
             OR: [
               {
                 effective_date: {
@@ -499,8 +708,8 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
               },
             ],
           }
-          : undefined;
-         
+            : undefined;
+
           const trxMutationData = await TrxMutation.findMany({
             where: {
               AND: [
@@ -523,7 +732,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
                   ],
                 },
                 ...(statusFilter ? [statusFilter] : []),
-                ...(dateFilter ? [dateFilter] : []),              ],
+                ...(dateFilter ? [dateFilter] : []),],
             },
             include: {
               user_data: {
@@ -540,28 +749,28 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
             skip,
             take: pageSize,
           });
-      
-          
+
+
           const mergeTrxMutationData = trxMutationData.map((trx) => {
             return {
               ...trx,
               user_name: trx.user_data?.name,
               user_departement: trx.user_data?.department,
-                effective_date: trx?.effective_date 
-                ? new Date(trx.effective_date).toLocaleString("id-ID", { 
+              effective_date: trx?.effective_date
+                ? new Date(trx.effective_date).toLocaleString("id-ID", {
                   day: "2-digit", month: "long", year: "numeric"
-                    }) 
+                })
                 : null,
-                status_submittion: getStatusName(trx?.status_id),
-                actionType: 
-                ((trx.accept_to === userNrp && trx.approve_to === userNrp) || trx.approve_to === userNrp) 
+              status_submittion: getStatusName(trx?.status_id),
+              actionType:
+                ((trx.accept_to === userNrp && trx.approve_to === userNrp) || trx.approve_to === userNrp)
                   ? "Approved"
                   : trx.accept_to === userNrp
-                  ? "Accepted"
-                  : null,
-                  modalType: getModalType(trx, userNrp ?? ""),
+                    ? "Accepted"
+                    : null,
+              modalType: getModalType(trx, userNrp ?? ""),
             };
-            });
+          });
           const totalItems = await TrxMutation.count({
             where: {
               AND: [
@@ -584,10 +793,10 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
                   ],
                 },
                 ...(statusFilter ? [statusFilter] : []),
-                ...(dateFilter ? [dateFilter] : []),              ],
+                ...(dateFilter ? [dateFilter] : []),],
             },
           });
-      
+
           const totalPages = Math.ceil(totalItems / pageSize);
           res.status(200).send(JSONbig.stringify({
             success: true,
@@ -605,12 +814,12 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
         }
         break
       }
-      case "resign" : {
+      case "resign": {
         try {
           const validSortFields = ["name", "departement", "effective_date", "reason"];
           const sortField = validSortFields.includes(sort as string) ? (sort as string) : "user";
           const sortOrder = order === "desc" ? "desc" : "asc";
-          const dateFilter = month && year ?{
+          const dateFilter = month && year ? {
             OR: [
               {
                 effective_date: {
@@ -620,7 +829,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
               },
             ],
           }
-          : undefined;
+            : undefined;
           const trxResignData = await TrxResign.findMany({
             where: {
               AND: [
@@ -643,7 +852,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
                   ],
                 },
                 ...(statusFilter ? [statusFilter] : []),
-                ...(dateFilter ? [dateFilter] : []),              ],
+                ...(dateFilter ? [dateFilter] : []),],
             },
             include: {
               user_data: {
@@ -666,21 +875,21 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
               ...trx,
               user_name: trx.user_data?.name,
               user_departement: trx.user_data?.department,
-                effective_date: trx?.effective_date 
-                ? new Date(trx.effective_date).toLocaleString("id-ID", { 
+              effective_date: trx?.effective_date
+                ? new Date(trx.effective_date).toLocaleString("id-ID", {
                   day: "2-digit", month: "long", year: "numeric"
-                    }) 
+                })
                 : null,
-                status_submittion: getStatusName(trx?.status_id),
-                actionType: 
-                ((trx.accept_to === userNrp && trx.approve_to === userNrp) || trx.approve_to === userNrp) 
+              status_submittion: getStatusName(trx?.status_id),
+              actionType:
+                ((trx.accept_to === userNrp && trx.approve_to === userNrp) || trx.approve_to === userNrp)
                   ? "Approved"
                   : trx.accept_to === userNrp
-                  ? "Accepted"
-                  : null,
-                  modalType: getModalType(trx, userNrp ?? ""),
+                    ? "Accepted"
+                    : null,
+              modalType: getModalType(trx, userNrp ?? ""),
             };
-            });
+          });
           const totalItems = await TrxResign.count({
             where: {
               AND: [
@@ -703,10 +912,10 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
                   ],
                 },
                 ...(statusFilter ? [statusFilter] : []),
-                ...(dateFilter ? [dateFilter] : []),              ],
+                ...(dateFilter ? [dateFilter] : []),],
             },
           });
-      
+
           const totalPages = Math.ceil(totalItems / pageSize);
           res.status(200).send(JSONbig.stringify({
             success: true,
@@ -728,7 +937,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
         res.status(400).json({ success: false, message: "Invalid type parameter" });
         break;
       }
-      
+
     }
   } catch (err) {
     console.error("ERROR UTAMA:", err);
@@ -743,12 +952,12 @@ export const handleTrx = async (req: Request & { user?: { nrp: string } }, res: 
   const userNrp = req.user?.nrp;
 
   if (!remark) {
-      res.status(400).json({
+    res.status(400).json({
       success: false,
       message: "Remark must be provided and cannot be empty",
     });
   }
-  
+
   const now = getCurrentWIBDate();
   let updateData: any = { updated_at: now };
 
@@ -763,7 +972,7 @@ export const handleTrx = async (req: Request & { user?: { nrp: string } }, res: 
     });
 
     if (!trxData) {
-        res.status(404).json({
+      res.status(404).json({
         success: false,
         message: "Transaction not found",
       });
@@ -781,7 +990,7 @@ export const handleTrx = async (req: Request & { user?: { nrp: string } }, res: 
         rejected_remark: remark,
         rejected_date: now,
       };
-    
+
       if (trxType === "leave") {
         const trxDetail = await model.findUnique({
           where: { id: Number(id) },
@@ -791,21 +1000,25 @@ export const handleTrx = async (req: Request & { user?: { nrp: string } }, res: 
             leave_type_id: true,
           },
         });
-    
+
         if (trxDetail?.user && trxDetail?.leave_type_id && trxDetail?.total_leave_days) {
           const leaveQuota = await TrxLeaveQuota.findFirst({
             where: {
               id_user: trxDetail.user,
-              MsLeaveType: trxDetail.leave_type_id,
+              MsLeaveType: {
+                is: {
+                  id: trxDetail.leave_type_id,
+                },
+              },
             },
           });
-    
+
           if (leaveQuota) {
             await TrxLeaveQuota.update({
               where: { id: leaveQuota.id },
               data: {
                 leave_balance: {
-                  increment: trxDetail.total_leave_days,
+                  increment: Number(trxDetail.total_leave_days),
                 },
                 updated_at: now,
               },
@@ -818,11 +1031,11 @@ export const handleTrx = async (req: Request & { user?: { nrp: string } }, res: 
         }
       }
     }
-    
+
     else {
       if (!isAcc && !isApp) {
         console.log("")
-          res.status(403).json({
+        res.status(403).json({
           success: false,
           message: "You are not authorized to perform this action.",
         });
@@ -879,7 +1092,7 @@ export const handleTrx = async (req: Request & { user?: { nrp: string } }, res: 
 };
 
 
-export const createSubmittion = async (req: Request & { user?: { nrp: string, id : number } }, res: Response): Promise<void> => {
+export const createSubmittion = async (req: Request & { user?: { nrp: string, id: number } }, res: Response): Promise<void> => {
   try {
     const {
       type = "",
@@ -887,10 +1100,10 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
     const userNrp = req.user?.nrp ?? "";
     const userId = req.user?.id ?? 0;
 
-    switch(type){
+    switch (type) {
       case "leave": {
         const { leave_type_id, start_date, end_date, flag_leaves, leave_reason } = req.body;
-      
+
         if (!leave_type_id || !start_date || !end_date || !flag_leaves || !leave_reason) {
           res.status(400).json({
             success: false,
@@ -898,7 +1111,7 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
           });
           return;
         }
-      
+
         const userData = await User.findUnique({
           where: { personal_number: userNrp },
           include: {
@@ -910,13 +1123,13 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
             },
           },
         });
-      
+
         const acceptToValue = userData?.superior ?? "";
         const approveToValue = userData?.dept_data?.depthead_nrp ?? "";
         const deptValue = userData?.dept ?? 0;
-      
+
         const totalLeaveDays = differenceInDays(new Date(end_date), new Date(start_date)) + 1;
-      console.log("nrp", userNrp)
+        console.log("nrp", userNrp)
         // Ambil data kuota cuti aktif user
         const quotaData = await TrxLeaveQuota.findFirst({
           where: {
@@ -926,7 +1139,7 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
             is_deleted: 0,
           },
         });
-      
+
         if (!quotaData) {
           res.status(400).json({
             success: false,
@@ -934,12 +1147,12 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
           });
           return;
         }
-      
+
         const currentUsedLeave = quotaData.used_leave || 0;
         const currentBalance = quotaData.leave_balance || 0;
         const newUsedLeave = currentUsedLeave + totalLeaveDays;
         const newBalance = currentBalance - totalLeaveDays;
-      
+
         if (newBalance < 0) {
           res.status(400).json({
             success: false,
@@ -947,7 +1160,7 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
           });
           return;
         }
-      
+
         try {
           const newLeave = await TrxLeave.create({
             data: {
@@ -968,7 +1181,7 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
               updated_at: getCurrentWIBDate(),
             },
           });
-      
+
           await TrxLeaveQuota.update({
             where: { id: quotaData.id },
             data: {
@@ -977,7 +1190,7 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
               updated_at: getCurrentWIBDate(),
             },
           });
-      
+
           res.status(201).send(JSONbig.stringify({
             success: true,
             message: "Leave added successfully",
@@ -991,56 +1204,56 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
           });
         }
         break;
-      }      
+      }
       case "overtime": {
         const { shift, check_in_ovt, check_out_ovt, note_ovt } = req.body;
-                if ( !shift || !check_in_ovt || !check_out_ovt || !note_ovt ) {
-                    res.status(400).json({
-                    success: false,
-                    message: "All fields must be provided and cannot be empty",
-                });
-            }
-            const userData = await User.findUnique({
-              where: { personal_number: userNrp },
-              include: {
-                dept_data: {
-                  select: {
-                    id: true,
-                    depthead_nrp: true,
-                  },
-                },
-                
+        if (!shift || !check_in_ovt || !check_out_ovt || !note_ovt) {
+          res.status(400).json({
+            success: false,
+            message: "All fields must be provided and cannot be empty",
+          });
+        }
+        const userData = await User.findUnique({
+          where: { personal_number: userNrp },
+          include: {
+            dept_data: {
+              select: {
+                id: true,
+                depthead_nrp: true,
               },
-            });
-            const acceptToValue = userData?.superior ?? ""
-            const approveToValue = userData?.dept_data.depthead_nrp ?? ""
-            const deptValue = userData?.dept ?? 0;
-            const newOvertime = await TrxOvertime.create({
-              data: {
-                user: userNrp,
-                dept: deptValue,
-                shift: Number(shift),
-                status_id: 1,
-                check_in_ovt: check_in_ovt,
-                check_out_ovt: check_out_ovt,
-                note_ovt: note_ovt,
-                accept_to: acceptToValue,
-                approve_to: approveToValue,
-                created_by: userId,
-                created_at: getCurrentWIBDate(),
-                updated_at: getCurrentWIBDate(),
-              },
-            });
-            res.status(201).send(JSONbig.stringify({
-              success: true,
-              message: "Overtime added successfully",
-              data: { newOvertime },
-            }));
-      break;
+            },
+
+          },
+        });
+        const acceptToValue = userData?.superior ?? ""
+        const approveToValue = userData?.dept_data.depthead_nrp ?? ""
+        const deptValue = userData?.dept ?? 0;
+        const newOvertime = await TrxOvertime.create({
+          data: {
+            user: userNrp,
+            dept: deptValue,
+            shift: Number(shift),
+            status_id: 1,
+            check_in_ovt: check_in_ovt,
+            check_out_ovt: check_out_ovt,
+            note_ovt: note_ovt,
+            accept_to: acceptToValue,
+            approve_to: approveToValue,
+            created_by: userId,
+            created_at: getCurrentWIBDate(),
+            updated_at: getCurrentWIBDate(),
+          },
+        });
+        res.status(201).send(JSONbig.stringify({
+          success: true,
+          message: "Overtime added successfully",
+          data: { newOvertime },
+        }));
+        break;
       }
       case "officialTravel": {
         const { start_date, end_date, purpose, destination_city } = req.body;
-  
+
         if (!start_date || !end_date || !purpose || !destination_city) {
           res.status(400).json({
             success: false,
@@ -1056,7 +1269,7 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
                 depthead_nrp: true,
               },
             },
-            
+
           },
         });
         const totalTravelDays = differenceInDays(end_date, start_date) + 1;
@@ -1079,110 +1292,110 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
             updated_at: getCurrentWIBDate(),
           },
         });
-    
+
         res.status(201).send(JSONbig.stringify({
           success: true,
           message: "Official Travel added successfully",
           data: { newLeave },
         }));
-      break
+        break
       }
 
       case "mutation": {
         const { user, effective_date, reason } = req.body;
-  
-      if (!user || !effective_date || !reason ) {
-        res.status(400).json({
-          success: false,
-          message: "All fields must be provided and cannot be empty",
-        });
-      }
-      const userData = await User.findUnique({
-        where: { personal_number: userNrp },
-        include: {
-          dept_data: {
-            select: {
-              id: true,
-              depthead_nrp: true,
+
+        if (!user || !effective_date || !reason) {
+          res.status(400).json({
+            success: false,
+            message: "All fields must be provided and cannot be empty",
+          });
+        }
+        const userData = await User.findUnique({
+          where: { personal_number: userNrp },
+          include: {
+            dept_data: {
+              select: {
+                id: true,
+                depthead_nrp: true,
+              },
             },
+
           },
-          
-        },
-      });
-    
-      const acceptToValue = userData?.superior ?? ""
-      const approveToValue = userData?.dept_data.depthead_nrp ?? ""
-      const newMutation = await TrxMutation.create({
-        data: {
-          user,
-          status_id: 1,
-          effective_date,
-          reason,
-          accept_to: acceptToValue,
-          approve_to: approveToValue,
-          created_by: userId,
-          created_at: getCurrentWIBDate(),
-          updated_by: userId,
-          updated_at: getCurrentWIBDate(),
-        },
-      });
-  
-      res.status(201).send(JSONbig.stringify({
-        success: true,
-        message: "Mutation added successfully",
-        data: { newMutation },
-      }));
+        });
+
+        const acceptToValue = userData?.superior ?? ""
+        const approveToValue = userData?.dept_data.depthead_nrp ?? ""
+        const newMutation = await TrxMutation.create({
+          data: {
+            user,
+            status_id: 1,
+            effective_date,
+            reason,
+            accept_to: acceptToValue,
+            approve_to: approveToValue,
+            created_by: userId,
+            created_at: getCurrentWIBDate(),
+            updated_by: userId,
+            updated_at: getCurrentWIBDate(),
+          },
+        });
+
+        res.status(201).send(JSONbig.stringify({
+          success: true,
+          message: "Mutation added successfully",
+          data: { newMutation },
+        }));
         break
       }
 
       case "resign": {
-      const { effective_date, reason } = req.body;
-      if (!effective_date || !reason ) {
-        res.status(400).json({
-          success: false,
-          message: "All fields must be provided and cannot be empty",
-        });
-        return;
-      }
-      const userData = await User.findUnique({
-        where: { personal_number: userNrp },
-        include: {
-          dept_data: {
-            select: {
-              id: true,
-              depthead_nrp: true,
+        const { effective_date, reason } = req.body;
+        if (!effective_date || !reason) {
+          res.status(400).json({
+            success: false,
+            message: "All fields must be provided and cannot be empty",
+          });
+          return;
+        }
+        const userData = await User.findUnique({
+          where: { personal_number: userNrp },
+          include: {
+            dept_data: {
+              select: {
+                id: true,
+                depthead_nrp: true,
+              },
             },
-          },
-          
-        },
-      });
 
-      const acceptToValue = userData?.superior ?? ""
-      const approveToValue = userData?.dept_data.depthead_nrp ?? ""
-      const newresign = await TrxResign.create({
-        data: {
-          user: userNrp,
-          status_id: 1,
-          effective_date,
-          reason,
-          accept_to: acceptToValue,
-          approve_to: approveToValue,
-          created_by: userId,
-          created_at: getCurrentWIBDate(),
-          updated_by: userId,
-          updated_at: getCurrentWIBDate(),
-        },
-      });
-  
-      res.status(201).send(JSONbig.stringify({
-        success: true,
-        message: "resign added successfully",
-        data: { newresign },
-      }));
-      break
+          },
+        });
+
+        const acceptToValue = userData?.superior ?? ""
+        const approveToValue = userData?.dept_data.depthead_nrp ?? ""
+        const newresign = await TrxResign.create({
+          data: {
+            user: userNrp,
+            status_id: 1,
+            effective_date,
+            reason,
+            accept_to: acceptToValue,
+            approve_to: approveToValue,
+            created_by: userId,
+            created_at: getCurrentWIBDate(),
+            updated_by: userId,
+            updated_at: getCurrentWIBDate(),
+          },
+        });
+
+        res.status(201).send(JSONbig.stringify({
+          success: true,
+          message: "resign added successfully",
+          data: { newresign },
+        }));
+        break
       }
     }
-    
+
   } catch (error) {
     res.status(500).json({
       success: false,

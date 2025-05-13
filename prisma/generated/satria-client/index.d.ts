@@ -118,6 +118,11 @@ export type ms_marital_status = $Result.DefaultSelection<Prisma.$ms_marital_stat
  * 
  */
 export type trx_leave_quota = $Result.DefaultSelection<Prisma.$trx_leave_quotaPayload>
+/**
+ * Model attendance
+ * 
+ */
+export type attendance = $Result.DefaultSelection<Prisma.$attendancePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -451,6 +456,16 @@ export class PrismaClient<
     * ```
     */
   get trx_leave_quota(): Prisma.trx_leave_quotaDelegate<ExtArgs>;
+
+  /**
+   * `prisma.attendance`: Exposes CRUD operations for the **attendance** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Attendances
+    * const attendances = await prisma.attendance.findMany()
+    * ```
+    */
+  get attendance(): Prisma.attendanceDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -912,7 +927,8 @@ export namespace Prisma {
     ms_subcont: 'ms_subcont',
     mst_plant: 'mst_plant',
     ms_marital_status: 'ms_marital_status',
-    trx_leave_quota: 'trx_leave_quota'
+    trx_leave_quota: 'trx_leave_quota',
+    attendance: 'attendance'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -928,7 +944,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "ms_leave_types" | "trx_leaves" | "ms_shift" | "ms_shift_group" | "ms_detail_shift_group" | "mst_dept" | "mst_division" | "sysdiagrams" | "trx_ovt" | "trx_shift_emp" | "trx_official_travel" | "trx_mutation" | "trx_resign" | "user_detail" | "ms_worklocation" | "ms_klasifikasi" | "ms_subcont" | "mst_plant" | "ms_marital_status" | "trx_leave_quota"
+      modelProps: "user" | "ms_leave_types" | "trx_leaves" | "ms_shift" | "ms_shift_group" | "ms_detail_shift_group" | "mst_dept" | "mst_division" | "sysdiagrams" | "trx_ovt" | "trx_shift_emp" | "trx_official_travel" | "trx_mutation" | "trx_resign" | "user_detail" | "ms_worklocation" | "ms_klasifikasi" | "ms_subcont" | "mst_plant" | "ms_marital_status" | "trx_leave_quota" | "attendance"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2315,6 +2331,72 @@ export namespace Prisma {
           count: {
             args: Prisma.trx_leave_quotaCountArgs<ExtArgs>
             result: $Utils.Optional<Trx_leave_quotaCountAggregateOutputType> | number
+          }
+        }
+      }
+      attendance: {
+        payload: Prisma.$attendancePayload<ExtArgs>
+        fields: Prisma.attendanceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.attendanceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$attendancePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.attendanceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$attendancePayload>
+          }
+          findFirst: {
+            args: Prisma.attendanceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$attendancePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.attendanceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$attendancePayload>
+          }
+          findMany: {
+            args: Prisma.attendanceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$attendancePayload>[]
+          }
+          create: {
+            args: Prisma.attendanceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$attendancePayload>
+          }
+          createMany: {
+            args: Prisma.attendanceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.attendanceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$attendancePayload>
+          }
+          update: {
+            args: Prisma.attendanceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$attendancePayload>
+          }
+          deleteMany: {
+            args: Prisma.attendanceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.attendanceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.attendanceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$attendancePayload>
+          }
+          aggregate: {
+            args: Prisma.AttendanceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAttendance>
+          }
+          groupBy: {
+            args: Prisma.attendanceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AttendanceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.attendanceCountArgs<ExtArgs>
+            result: $Utils.Optional<AttendanceCountAggregateOutputType> | number
           }
         }
       }
@@ -14634,7 +14716,7 @@ export namespace Prisma {
 
   export type Trx_official_travelSumAggregateOutputType = {
     id: number | null
-    total_leave_days: bigint | null
+    total_leave_days: number | null
     status_id: bigint | null
     created_by: bigint | null
     updated_by: bigint | null
@@ -14646,7 +14728,7 @@ export namespace Prisma {
     effective_date: Date | null
     start_date: Date | null
     end_date: Date | null
-    total_leave_days: bigint | null
+    total_leave_days: number | null
     purpose: string | null
     destination_city: string | null
     status_id: bigint | null
@@ -14676,7 +14758,7 @@ export namespace Prisma {
     effective_date: Date | null
     start_date: Date | null
     end_date: Date | null
-    total_leave_days: bigint | null
+    total_leave_days: number | null
     purpose: string | null
     destination_city: string | null
     status_id: bigint | null
@@ -14931,7 +15013,7 @@ export namespace Prisma {
     effective_date: Date | null
     start_date: Date
     end_date: Date
-    total_leave_days: bigint
+    total_leave_days: number
     purpose: string
     destination_city: string
     status_id: bigint
@@ -15051,7 +15133,7 @@ export namespace Prisma {
       effective_date: Date | null
       start_date: Date
       end_date: Date
-      total_leave_days: bigint
+      total_leave_days: number
       purpose: string
       destination_city: string
       status_id: bigint
@@ -15448,7 +15530,7 @@ export namespace Prisma {
     readonly effective_date: FieldRef<"trx_official_travel", 'DateTime'>
     readonly start_date: FieldRef<"trx_official_travel", 'DateTime'>
     readonly end_date: FieldRef<"trx_official_travel", 'DateTime'>
-    readonly total_leave_days: FieldRef<"trx_official_travel", 'BigInt'>
+    readonly total_leave_days: FieldRef<"trx_official_travel", 'Int'>
     readonly purpose: FieldRef<"trx_official_travel", 'String'>
     readonly destination_city: FieldRef<"trx_official_travel", 'String'>
     readonly status_id: FieldRef<"trx_official_travel", 'BigInt'>
@@ -24654,6 +24736,1181 @@ export namespace Prisma {
 
 
   /**
+   * Model attendance
+   */
+
+  export type AggregateAttendance = {
+    _count: AttendanceCountAggregateOutputType | null
+    _avg: AttendanceAvgAggregateOutputType | null
+    _sum: AttendanceSumAggregateOutputType | null
+    _min: AttendanceMinAggregateOutputType | null
+    _max: AttendanceMaxAggregateOutputType | null
+  }
+
+  export type AttendanceAvgAggregateOutputType = {
+    id: number | null
+    is_ovt: number | null
+    is_happy: number | null
+    flag: number | null
+    is_sent_sap: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type AttendanceSumAggregateOutputType = {
+    id: bigint | null
+    is_ovt: number | null
+    is_happy: number | null
+    flag: number | null
+    is_sent_sap: number | null
+    created_by: bigint | null
+    updated_by: bigint | null
+  }
+
+  export type AttendanceMinAggregateOutputType = {
+    id: bigint | null
+    remote_addr_in: string | null
+    longitude_in: string | null
+    latitude_in: string | null
+    address_in: string | null
+    subcont: string | null
+    client: string | null
+    shift_code: string | null
+    in_time: Date | null
+    out_time: Date | null
+    revice_in_time: Date | null
+    revice_out_time: Date | null
+    remote_addr_out: string | null
+    longitude_out: string | null
+    latitude_out: string | null
+    address_out: string | null
+    work_metode: string | null
+    foto_in: string | null
+    foto_out: string | null
+    note: string | null
+    checked_by: string | null
+    checked_at: Date | null
+    reject_reason: string | null
+    is_ovt: number | null
+    is_happy: number | null
+    flag: number | null
+    is_sent_sap: number | null
+    created_by: bigint | null
+    updated_by: bigint | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type AttendanceMaxAggregateOutputType = {
+    id: bigint | null
+    remote_addr_in: string | null
+    longitude_in: string | null
+    latitude_in: string | null
+    address_in: string | null
+    subcont: string | null
+    client: string | null
+    shift_code: string | null
+    in_time: Date | null
+    out_time: Date | null
+    revice_in_time: Date | null
+    revice_out_time: Date | null
+    remote_addr_out: string | null
+    longitude_out: string | null
+    latitude_out: string | null
+    address_out: string | null
+    work_metode: string | null
+    foto_in: string | null
+    foto_out: string | null
+    note: string | null
+    checked_by: string | null
+    checked_at: Date | null
+    reject_reason: string | null
+    is_ovt: number | null
+    is_happy: number | null
+    flag: number | null
+    is_sent_sap: number | null
+    created_by: bigint | null
+    updated_by: bigint | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type AttendanceCountAggregateOutputType = {
+    id: number
+    remote_addr_in: number
+    longitude_in: number
+    latitude_in: number
+    address_in: number
+    subcont: number
+    client: number
+    shift_code: number
+    in_time: number
+    out_time: number
+    revice_in_time: number
+    revice_out_time: number
+    remote_addr_out: number
+    longitude_out: number
+    latitude_out: number
+    address_out: number
+    work_metode: number
+    foto_in: number
+    foto_out: number
+    note: number
+    checked_by: number
+    checked_at: number
+    reject_reason: number
+    is_ovt: number
+    is_happy: number
+    flag: number
+    is_sent_sap: number
+    created_by: number
+    updated_by: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type AttendanceAvgAggregateInputType = {
+    id?: true
+    is_ovt?: true
+    is_happy?: true
+    flag?: true
+    is_sent_sap?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type AttendanceSumAggregateInputType = {
+    id?: true
+    is_ovt?: true
+    is_happy?: true
+    flag?: true
+    is_sent_sap?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type AttendanceMinAggregateInputType = {
+    id?: true
+    remote_addr_in?: true
+    longitude_in?: true
+    latitude_in?: true
+    address_in?: true
+    subcont?: true
+    client?: true
+    shift_code?: true
+    in_time?: true
+    out_time?: true
+    revice_in_time?: true
+    revice_out_time?: true
+    remote_addr_out?: true
+    longitude_out?: true
+    latitude_out?: true
+    address_out?: true
+    work_metode?: true
+    foto_in?: true
+    foto_out?: true
+    note?: true
+    checked_by?: true
+    checked_at?: true
+    reject_reason?: true
+    is_ovt?: true
+    is_happy?: true
+    flag?: true
+    is_sent_sap?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type AttendanceMaxAggregateInputType = {
+    id?: true
+    remote_addr_in?: true
+    longitude_in?: true
+    latitude_in?: true
+    address_in?: true
+    subcont?: true
+    client?: true
+    shift_code?: true
+    in_time?: true
+    out_time?: true
+    revice_in_time?: true
+    revice_out_time?: true
+    remote_addr_out?: true
+    longitude_out?: true
+    latitude_out?: true
+    address_out?: true
+    work_metode?: true
+    foto_in?: true
+    foto_out?: true
+    note?: true
+    checked_by?: true
+    checked_at?: true
+    reject_reason?: true
+    is_ovt?: true
+    is_happy?: true
+    flag?: true
+    is_sent_sap?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type AttendanceCountAggregateInputType = {
+    id?: true
+    remote_addr_in?: true
+    longitude_in?: true
+    latitude_in?: true
+    address_in?: true
+    subcont?: true
+    client?: true
+    shift_code?: true
+    in_time?: true
+    out_time?: true
+    revice_in_time?: true
+    revice_out_time?: true
+    remote_addr_out?: true
+    longitude_out?: true
+    latitude_out?: true
+    address_out?: true
+    work_metode?: true
+    foto_in?: true
+    foto_out?: true
+    note?: true
+    checked_by?: true
+    checked_at?: true
+    reject_reason?: true
+    is_ovt?: true
+    is_happy?: true
+    flag?: true
+    is_sent_sap?: true
+    created_by?: true
+    updated_by?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type AttendanceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which attendance to aggregate.
+     */
+    where?: attendanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of attendances to fetch.
+     */
+    orderBy?: attendanceOrderByWithRelationInput | attendanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: attendanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` attendances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` attendances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned attendances
+    **/
+    _count?: true | AttendanceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AttendanceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AttendanceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AttendanceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AttendanceMaxAggregateInputType
+  }
+
+  export type GetAttendanceAggregateType<T extends AttendanceAggregateArgs> = {
+        [P in keyof T & keyof AggregateAttendance]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAttendance[P]>
+      : GetScalarType<T[P], AggregateAttendance[P]>
+  }
+
+
+
+
+  export type attendanceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: attendanceWhereInput
+    orderBy?: attendanceOrderByWithAggregationInput | attendanceOrderByWithAggregationInput[]
+    by: AttendanceScalarFieldEnum[] | AttendanceScalarFieldEnum
+    having?: attendanceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AttendanceCountAggregateInputType | true
+    _avg?: AttendanceAvgAggregateInputType
+    _sum?: AttendanceSumAggregateInputType
+    _min?: AttendanceMinAggregateInputType
+    _max?: AttendanceMaxAggregateInputType
+  }
+
+  export type AttendanceGroupByOutputType = {
+    id: bigint
+    remote_addr_in: string | null
+    longitude_in: string | null
+    latitude_in: string | null
+    address_in: string | null
+    subcont: string | null
+    client: string | null
+    shift_code: string | null
+    in_time: Date | null
+    out_time: Date | null
+    revice_in_time: Date | null
+    revice_out_time: Date | null
+    remote_addr_out: string | null
+    longitude_out: string | null
+    latitude_out: string | null
+    address_out: string | null
+    work_metode: string | null
+    foto_in: string | null
+    foto_out: string | null
+    note: string | null
+    checked_by: string | null
+    checked_at: Date | null
+    reject_reason: string | null
+    is_ovt: number | null
+    is_happy: number
+    flag: number | null
+    is_sent_sap: number
+    created_by: bigint | null
+    updated_by: bigint | null
+    created_at: Date | null
+    updated_at: Date | null
+    _count: AttendanceCountAggregateOutputType | null
+    _avg: AttendanceAvgAggregateOutputType | null
+    _sum: AttendanceSumAggregateOutputType | null
+    _min: AttendanceMinAggregateOutputType | null
+    _max: AttendanceMaxAggregateOutputType | null
+  }
+
+  type GetAttendanceGroupByPayload<T extends attendanceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AttendanceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AttendanceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AttendanceGroupByOutputType[P]>
+            : GetScalarType<T[P], AttendanceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type attendanceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    remote_addr_in?: boolean
+    longitude_in?: boolean
+    latitude_in?: boolean
+    address_in?: boolean
+    subcont?: boolean
+    client?: boolean
+    shift_code?: boolean
+    in_time?: boolean
+    out_time?: boolean
+    revice_in_time?: boolean
+    revice_out_time?: boolean
+    remote_addr_out?: boolean
+    longitude_out?: boolean
+    latitude_out?: boolean
+    address_out?: boolean
+    work_metode?: boolean
+    foto_in?: boolean
+    foto_out?: boolean
+    note?: boolean
+    checked_by?: boolean
+    checked_at?: boolean
+    reject_reason?: boolean
+    is_ovt?: boolean
+    is_happy?: boolean
+    flag?: boolean
+    is_sent_sap?: boolean
+    created_by?: boolean
+    updated_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["attendance"]>
+
+
+  export type attendanceSelectScalar = {
+    id?: boolean
+    remote_addr_in?: boolean
+    longitude_in?: boolean
+    latitude_in?: boolean
+    address_in?: boolean
+    subcont?: boolean
+    client?: boolean
+    shift_code?: boolean
+    in_time?: boolean
+    out_time?: boolean
+    revice_in_time?: boolean
+    revice_out_time?: boolean
+    remote_addr_out?: boolean
+    longitude_out?: boolean
+    latitude_out?: boolean
+    address_out?: boolean
+    work_metode?: boolean
+    foto_in?: boolean
+    foto_out?: boolean
+    note?: boolean
+    checked_by?: boolean
+    checked_at?: boolean
+    reject_reason?: boolean
+    is_ovt?: boolean
+    is_happy?: boolean
+    flag?: boolean
+    is_sent_sap?: boolean
+    created_by?: boolean
+    updated_by?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+
+  export type $attendancePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "attendance"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: bigint
+      remote_addr_in: string | null
+      longitude_in: string | null
+      latitude_in: string | null
+      address_in: string | null
+      subcont: string | null
+      client: string | null
+      shift_code: string | null
+      in_time: Date | null
+      out_time: Date | null
+      revice_in_time: Date | null
+      revice_out_time: Date | null
+      remote_addr_out: string | null
+      longitude_out: string | null
+      latitude_out: string | null
+      address_out: string | null
+      work_metode: string | null
+      foto_in: string | null
+      foto_out: string | null
+      note: string | null
+      checked_by: string | null
+      checked_at: Date | null
+      reject_reason: string | null
+      is_ovt: number | null
+      is_happy: number
+      flag: number | null
+      is_sent_sap: number
+      created_by: bigint | null
+      updated_by: bigint | null
+      created_at: Date | null
+      updated_at: Date | null
+    }, ExtArgs["result"]["attendance"]>
+    composites: {}
+  }
+
+  type attendanceGetPayload<S extends boolean | null | undefined | attendanceDefaultArgs> = $Result.GetResult<Prisma.$attendancePayload, S>
+
+  type attendanceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<attendanceFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: AttendanceCountAggregateInputType | true
+    }
+
+  export interface attendanceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['attendance'], meta: { name: 'attendance' } }
+    /**
+     * Find zero or one Attendance that matches the filter.
+     * @param {attendanceFindUniqueArgs} args - Arguments to find a Attendance
+     * @example
+     * // Get one Attendance
+     * const attendance = await prisma.attendance.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends attendanceFindUniqueArgs>(args: SelectSubset<T, attendanceFindUniqueArgs<ExtArgs>>): Prisma__attendanceClient<$Result.GetResult<Prisma.$attendancePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Attendance that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {attendanceFindUniqueOrThrowArgs} args - Arguments to find a Attendance
+     * @example
+     * // Get one Attendance
+     * const attendance = await prisma.attendance.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends attendanceFindUniqueOrThrowArgs>(args: SelectSubset<T, attendanceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__attendanceClient<$Result.GetResult<Prisma.$attendancePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Attendance that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {attendanceFindFirstArgs} args - Arguments to find a Attendance
+     * @example
+     * // Get one Attendance
+     * const attendance = await prisma.attendance.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends attendanceFindFirstArgs>(args?: SelectSubset<T, attendanceFindFirstArgs<ExtArgs>>): Prisma__attendanceClient<$Result.GetResult<Prisma.$attendancePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Attendance that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {attendanceFindFirstOrThrowArgs} args - Arguments to find a Attendance
+     * @example
+     * // Get one Attendance
+     * const attendance = await prisma.attendance.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends attendanceFindFirstOrThrowArgs>(args?: SelectSubset<T, attendanceFindFirstOrThrowArgs<ExtArgs>>): Prisma__attendanceClient<$Result.GetResult<Prisma.$attendancePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Attendances that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {attendanceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Attendances
+     * const attendances = await prisma.attendance.findMany()
+     * 
+     * // Get first 10 Attendances
+     * const attendances = await prisma.attendance.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const attendanceWithIdOnly = await prisma.attendance.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends attendanceFindManyArgs>(args?: SelectSubset<T, attendanceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$attendancePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Attendance.
+     * @param {attendanceCreateArgs} args - Arguments to create a Attendance.
+     * @example
+     * // Create one Attendance
+     * const Attendance = await prisma.attendance.create({
+     *   data: {
+     *     // ... data to create a Attendance
+     *   }
+     * })
+     * 
+     */
+    create<T extends attendanceCreateArgs>(args: SelectSubset<T, attendanceCreateArgs<ExtArgs>>): Prisma__attendanceClient<$Result.GetResult<Prisma.$attendancePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Attendances.
+     * @param {attendanceCreateManyArgs} args - Arguments to create many Attendances.
+     * @example
+     * // Create many Attendances
+     * const attendance = await prisma.attendance.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends attendanceCreateManyArgs>(args?: SelectSubset<T, attendanceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Attendance.
+     * @param {attendanceDeleteArgs} args - Arguments to delete one Attendance.
+     * @example
+     * // Delete one Attendance
+     * const Attendance = await prisma.attendance.delete({
+     *   where: {
+     *     // ... filter to delete one Attendance
+     *   }
+     * })
+     * 
+     */
+    delete<T extends attendanceDeleteArgs>(args: SelectSubset<T, attendanceDeleteArgs<ExtArgs>>): Prisma__attendanceClient<$Result.GetResult<Prisma.$attendancePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Attendance.
+     * @param {attendanceUpdateArgs} args - Arguments to update one Attendance.
+     * @example
+     * // Update one Attendance
+     * const attendance = await prisma.attendance.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends attendanceUpdateArgs>(args: SelectSubset<T, attendanceUpdateArgs<ExtArgs>>): Prisma__attendanceClient<$Result.GetResult<Prisma.$attendancePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Attendances.
+     * @param {attendanceDeleteManyArgs} args - Arguments to filter Attendances to delete.
+     * @example
+     * // Delete a few Attendances
+     * const { count } = await prisma.attendance.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends attendanceDeleteManyArgs>(args?: SelectSubset<T, attendanceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Attendances.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {attendanceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Attendances
+     * const attendance = await prisma.attendance.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends attendanceUpdateManyArgs>(args: SelectSubset<T, attendanceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Attendance.
+     * @param {attendanceUpsertArgs} args - Arguments to update or create a Attendance.
+     * @example
+     * // Update or create a Attendance
+     * const attendance = await prisma.attendance.upsert({
+     *   create: {
+     *     // ... data to create a Attendance
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Attendance we want to update
+     *   }
+     * })
+     */
+    upsert<T extends attendanceUpsertArgs>(args: SelectSubset<T, attendanceUpsertArgs<ExtArgs>>): Prisma__attendanceClient<$Result.GetResult<Prisma.$attendancePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Attendances.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {attendanceCountArgs} args - Arguments to filter Attendances to count.
+     * @example
+     * // Count the number of Attendances
+     * const count = await prisma.attendance.count({
+     *   where: {
+     *     // ... the filter for the Attendances we want to count
+     *   }
+     * })
+    **/
+    count<T extends attendanceCountArgs>(
+      args?: Subset<T, attendanceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AttendanceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Attendance.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AttendanceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AttendanceAggregateArgs>(args: Subset<T, AttendanceAggregateArgs>): Prisma.PrismaPromise<GetAttendanceAggregateType<T>>
+
+    /**
+     * Group by Attendance.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {attendanceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends attendanceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: attendanceGroupByArgs['orderBy'] }
+        : { orderBy?: attendanceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, attendanceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAttendanceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the attendance model
+   */
+  readonly fields: attendanceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for attendance.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__attendanceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the attendance model
+   */ 
+  interface attendanceFieldRefs {
+    readonly id: FieldRef<"attendance", 'BigInt'>
+    readonly remote_addr_in: FieldRef<"attendance", 'String'>
+    readonly longitude_in: FieldRef<"attendance", 'String'>
+    readonly latitude_in: FieldRef<"attendance", 'String'>
+    readonly address_in: FieldRef<"attendance", 'String'>
+    readonly subcont: FieldRef<"attendance", 'String'>
+    readonly client: FieldRef<"attendance", 'String'>
+    readonly shift_code: FieldRef<"attendance", 'String'>
+    readonly in_time: FieldRef<"attendance", 'DateTime'>
+    readonly out_time: FieldRef<"attendance", 'DateTime'>
+    readonly revice_in_time: FieldRef<"attendance", 'DateTime'>
+    readonly revice_out_time: FieldRef<"attendance", 'DateTime'>
+    readonly remote_addr_out: FieldRef<"attendance", 'String'>
+    readonly longitude_out: FieldRef<"attendance", 'String'>
+    readonly latitude_out: FieldRef<"attendance", 'String'>
+    readonly address_out: FieldRef<"attendance", 'String'>
+    readonly work_metode: FieldRef<"attendance", 'String'>
+    readonly foto_in: FieldRef<"attendance", 'String'>
+    readonly foto_out: FieldRef<"attendance", 'String'>
+    readonly note: FieldRef<"attendance", 'String'>
+    readonly checked_by: FieldRef<"attendance", 'String'>
+    readonly checked_at: FieldRef<"attendance", 'DateTime'>
+    readonly reject_reason: FieldRef<"attendance", 'String'>
+    readonly is_ovt: FieldRef<"attendance", 'Int'>
+    readonly is_happy: FieldRef<"attendance", 'Int'>
+    readonly flag: FieldRef<"attendance", 'Int'>
+    readonly is_sent_sap: FieldRef<"attendance", 'Int'>
+    readonly created_by: FieldRef<"attendance", 'BigInt'>
+    readonly updated_by: FieldRef<"attendance", 'BigInt'>
+    readonly created_at: FieldRef<"attendance", 'DateTime'>
+    readonly updated_at: FieldRef<"attendance", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * attendance findUnique
+   */
+  export type attendanceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the attendance
+     */
+    select?: attendanceSelect<ExtArgs> | null
+    /**
+     * Filter, which attendance to fetch.
+     */
+    where: attendanceWhereUniqueInput
+  }
+
+  /**
+   * attendance findUniqueOrThrow
+   */
+  export type attendanceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the attendance
+     */
+    select?: attendanceSelect<ExtArgs> | null
+    /**
+     * Filter, which attendance to fetch.
+     */
+    where: attendanceWhereUniqueInput
+  }
+
+  /**
+   * attendance findFirst
+   */
+  export type attendanceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the attendance
+     */
+    select?: attendanceSelect<ExtArgs> | null
+    /**
+     * Filter, which attendance to fetch.
+     */
+    where?: attendanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of attendances to fetch.
+     */
+    orderBy?: attendanceOrderByWithRelationInput | attendanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for attendances.
+     */
+    cursor?: attendanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` attendances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` attendances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of attendances.
+     */
+    distinct?: AttendanceScalarFieldEnum | AttendanceScalarFieldEnum[]
+  }
+
+  /**
+   * attendance findFirstOrThrow
+   */
+  export type attendanceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the attendance
+     */
+    select?: attendanceSelect<ExtArgs> | null
+    /**
+     * Filter, which attendance to fetch.
+     */
+    where?: attendanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of attendances to fetch.
+     */
+    orderBy?: attendanceOrderByWithRelationInput | attendanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for attendances.
+     */
+    cursor?: attendanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` attendances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` attendances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of attendances.
+     */
+    distinct?: AttendanceScalarFieldEnum | AttendanceScalarFieldEnum[]
+  }
+
+  /**
+   * attendance findMany
+   */
+  export type attendanceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the attendance
+     */
+    select?: attendanceSelect<ExtArgs> | null
+    /**
+     * Filter, which attendances to fetch.
+     */
+    where?: attendanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of attendances to fetch.
+     */
+    orderBy?: attendanceOrderByWithRelationInput | attendanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing attendances.
+     */
+    cursor?: attendanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` attendances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` attendances.
+     */
+    skip?: number
+    distinct?: AttendanceScalarFieldEnum | AttendanceScalarFieldEnum[]
+  }
+
+  /**
+   * attendance create
+   */
+  export type attendanceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the attendance
+     */
+    select?: attendanceSelect<ExtArgs> | null
+    /**
+     * The data needed to create a attendance.
+     */
+    data?: XOR<attendanceCreateInput, attendanceUncheckedCreateInput>
+  }
+
+  /**
+   * attendance createMany
+   */
+  export type attendanceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many attendances.
+     */
+    data: attendanceCreateManyInput | attendanceCreateManyInput[]
+  }
+
+  /**
+   * attendance update
+   */
+  export type attendanceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the attendance
+     */
+    select?: attendanceSelect<ExtArgs> | null
+    /**
+     * The data needed to update a attendance.
+     */
+    data: XOR<attendanceUpdateInput, attendanceUncheckedUpdateInput>
+    /**
+     * Choose, which attendance to update.
+     */
+    where: attendanceWhereUniqueInput
+  }
+
+  /**
+   * attendance updateMany
+   */
+  export type attendanceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update attendances.
+     */
+    data: XOR<attendanceUpdateManyMutationInput, attendanceUncheckedUpdateManyInput>
+    /**
+     * Filter which attendances to update
+     */
+    where?: attendanceWhereInput
+  }
+
+  /**
+   * attendance upsert
+   */
+  export type attendanceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the attendance
+     */
+    select?: attendanceSelect<ExtArgs> | null
+    /**
+     * The filter to search for the attendance to update in case it exists.
+     */
+    where: attendanceWhereUniqueInput
+    /**
+     * In case the attendance found by the `where` argument doesn't exist, create a new attendance with this data.
+     */
+    create: XOR<attendanceCreateInput, attendanceUncheckedCreateInput>
+    /**
+     * In case the attendance was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<attendanceUpdateInput, attendanceUncheckedUpdateInput>
+  }
+
+  /**
+   * attendance delete
+   */
+  export type attendanceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the attendance
+     */
+    select?: attendanceSelect<ExtArgs> | null
+    /**
+     * Filter which attendance to delete.
+     */
+    where: attendanceWhereUniqueInput
+  }
+
+  /**
+   * attendance deleteMany
+   */
+  export type attendanceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which attendances to delete
+     */
+    where?: attendanceWhereInput
+  }
+
+  /**
+   * attendance without action
+   */
+  export type attendanceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the attendance
+     */
+    select?: attendanceSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -25124,6 +26381,43 @@ export namespace Prisma {
   };
 
   export type Trx_leave_quotaScalarFieldEnum = (typeof Trx_leave_quotaScalarFieldEnum)[keyof typeof Trx_leave_quotaScalarFieldEnum]
+
+
+  export const AttendanceScalarFieldEnum: {
+    id: 'id',
+    remote_addr_in: 'remote_addr_in',
+    longitude_in: 'longitude_in',
+    latitude_in: 'latitude_in',
+    address_in: 'address_in',
+    subcont: 'subcont',
+    client: 'client',
+    shift_code: 'shift_code',
+    in_time: 'in_time',
+    out_time: 'out_time',
+    revice_in_time: 'revice_in_time',
+    revice_out_time: 'revice_out_time',
+    remote_addr_out: 'remote_addr_out',
+    longitude_out: 'longitude_out',
+    latitude_out: 'latitude_out',
+    address_out: 'address_out',
+    work_metode: 'work_metode',
+    foto_in: 'foto_in',
+    foto_out: 'foto_out',
+    note: 'note',
+    checked_by: 'checked_by',
+    checked_at: 'checked_at',
+    reject_reason: 'reject_reason',
+    is_ovt: 'is_ovt',
+    is_happy: 'is_happy',
+    flag: 'flag',
+    is_sent_sap: 'is_sent_sap',
+    created_by: 'created_by',
+    updated_by: 'updated_by',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -26515,7 +27809,7 @@ export namespace Prisma {
     effective_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
     start_date?: DateTimeFilter<"trx_official_travel"> | Date | string
     end_date?: DateTimeFilter<"trx_official_travel"> | Date | string
-    total_leave_days?: BigIntFilter<"trx_official_travel"> | bigint | number
+    total_leave_days?: IntFilter<"trx_official_travel"> | number
     purpose?: StringFilter<"trx_official_travel"> | string
     destination_city?: StringFilter<"trx_official_travel"> | string
     status_id?: BigIntFilter<"trx_official_travel"> | bigint | number
@@ -26580,7 +27874,7 @@ export namespace Prisma {
     effective_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
     start_date?: DateTimeFilter<"trx_official_travel"> | Date | string
     end_date?: DateTimeFilter<"trx_official_travel"> | Date | string
-    total_leave_days?: BigIntFilter<"trx_official_travel"> | bigint | number
+    total_leave_days?: IntFilter<"trx_official_travel"> | number
     purpose?: StringFilter<"trx_official_travel"> | string
     destination_city?: StringFilter<"trx_official_travel"> | string
     status_id?: BigIntFilter<"trx_official_travel"> | bigint | number
@@ -26649,7 +27943,7 @@ export namespace Prisma {
     effective_date?: DateTimeNullableWithAggregatesFilter<"trx_official_travel"> | Date | string | null
     start_date?: DateTimeWithAggregatesFilter<"trx_official_travel"> | Date | string
     end_date?: DateTimeWithAggregatesFilter<"trx_official_travel"> | Date | string
-    total_leave_days?: BigIntWithAggregatesFilter<"trx_official_travel"> | bigint | number
+    total_leave_days?: IntWithAggregatesFilter<"trx_official_travel"> | number
     purpose?: StringWithAggregatesFilter<"trx_official_travel"> | string
     destination_city?: StringWithAggregatesFilter<"trx_official_travel"> | string
     status_id?: BigIntWithAggregatesFilter<"trx_official_travel"> | bigint | number
@@ -27544,6 +28838,190 @@ export namespace Prisma {
     is_deleted?: IntNullableWithAggregatesFilter<"trx_leave_quota"> | number | null
     created_at?: DateTimeNullableWithAggregatesFilter<"trx_leave_quota"> | Date | string | null
     updated_at?: DateTimeNullableWithAggregatesFilter<"trx_leave_quota"> | Date | string | null
+  }
+
+  export type attendanceWhereInput = {
+    AND?: attendanceWhereInput | attendanceWhereInput[]
+    OR?: attendanceWhereInput[]
+    NOT?: attendanceWhereInput | attendanceWhereInput[]
+    id?: BigIntFilter<"attendance"> | bigint | number
+    remote_addr_in?: StringNullableFilter<"attendance"> | string | null
+    longitude_in?: StringNullableFilter<"attendance"> | string | null
+    latitude_in?: StringNullableFilter<"attendance"> | string | null
+    address_in?: StringNullableFilter<"attendance"> | string | null
+    subcont?: StringNullableFilter<"attendance"> | string | null
+    client?: StringNullableFilter<"attendance"> | string | null
+    shift_code?: StringNullableFilter<"attendance"> | string | null
+    in_time?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    out_time?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    revice_in_time?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    revice_out_time?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    remote_addr_out?: StringNullableFilter<"attendance"> | string | null
+    longitude_out?: StringNullableFilter<"attendance"> | string | null
+    latitude_out?: StringNullableFilter<"attendance"> | string | null
+    address_out?: StringNullableFilter<"attendance"> | string | null
+    work_metode?: StringNullableFilter<"attendance"> | string | null
+    foto_in?: StringNullableFilter<"attendance"> | string | null
+    foto_out?: StringNullableFilter<"attendance"> | string | null
+    note?: StringNullableFilter<"attendance"> | string | null
+    checked_by?: StringNullableFilter<"attendance"> | string | null
+    checked_at?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    reject_reason?: StringNullableFilter<"attendance"> | string | null
+    is_ovt?: IntNullableFilter<"attendance"> | number | null
+    is_happy?: IntFilter<"attendance"> | number
+    flag?: IntNullableFilter<"attendance"> | number | null
+    is_sent_sap?: IntFilter<"attendance"> | number
+    created_by?: BigIntNullableFilter<"attendance"> | bigint | number | null
+    updated_by?: BigIntNullableFilter<"attendance"> | bigint | number | null
+    created_at?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"attendance"> | Date | string | null
+  }
+
+  export type attendanceOrderByWithRelationInput = {
+    id?: SortOrder
+    remote_addr_in?: SortOrderInput | SortOrder
+    longitude_in?: SortOrderInput | SortOrder
+    latitude_in?: SortOrderInput | SortOrder
+    address_in?: SortOrderInput | SortOrder
+    subcont?: SortOrderInput | SortOrder
+    client?: SortOrderInput | SortOrder
+    shift_code?: SortOrderInput | SortOrder
+    in_time?: SortOrderInput | SortOrder
+    out_time?: SortOrderInput | SortOrder
+    revice_in_time?: SortOrderInput | SortOrder
+    revice_out_time?: SortOrderInput | SortOrder
+    remote_addr_out?: SortOrderInput | SortOrder
+    longitude_out?: SortOrderInput | SortOrder
+    latitude_out?: SortOrderInput | SortOrder
+    address_out?: SortOrderInput | SortOrder
+    work_metode?: SortOrderInput | SortOrder
+    foto_in?: SortOrderInput | SortOrder
+    foto_out?: SortOrderInput | SortOrder
+    note?: SortOrderInput | SortOrder
+    checked_by?: SortOrderInput | SortOrder
+    checked_at?: SortOrderInput | SortOrder
+    reject_reason?: SortOrderInput | SortOrder
+    is_ovt?: SortOrderInput | SortOrder
+    is_happy?: SortOrder
+    flag?: SortOrderInput | SortOrder
+    is_sent_sap?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    updated_by?: SortOrderInput | SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+  }
+
+  export type attendanceWhereUniqueInput = Prisma.AtLeast<{
+    id?: bigint | number
+    AND?: attendanceWhereInput | attendanceWhereInput[]
+    OR?: attendanceWhereInput[]
+    NOT?: attendanceWhereInput | attendanceWhereInput[]
+    remote_addr_in?: StringNullableFilter<"attendance"> | string | null
+    longitude_in?: StringNullableFilter<"attendance"> | string | null
+    latitude_in?: StringNullableFilter<"attendance"> | string | null
+    address_in?: StringNullableFilter<"attendance"> | string | null
+    subcont?: StringNullableFilter<"attendance"> | string | null
+    client?: StringNullableFilter<"attendance"> | string | null
+    shift_code?: StringNullableFilter<"attendance"> | string | null
+    in_time?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    out_time?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    revice_in_time?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    revice_out_time?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    remote_addr_out?: StringNullableFilter<"attendance"> | string | null
+    longitude_out?: StringNullableFilter<"attendance"> | string | null
+    latitude_out?: StringNullableFilter<"attendance"> | string | null
+    address_out?: StringNullableFilter<"attendance"> | string | null
+    work_metode?: StringNullableFilter<"attendance"> | string | null
+    foto_in?: StringNullableFilter<"attendance"> | string | null
+    foto_out?: StringNullableFilter<"attendance"> | string | null
+    note?: StringNullableFilter<"attendance"> | string | null
+    checked_by?: StringNullableFilter<"attendance"> | string | null
+    checked_at?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    reject_reason?: StringNullableFilter<"attendance"> | string | null
+    is_ovt?: IntNullableFilter<"attendance"> | number | null
+    is_happy?: IntFilter<"attendance"> | number
+    flag?: IntNullableFilter<"attendance"> | number | null
+    is_sent_sap?: IntFilter<"attendance"> | number
+    created_by?: BigIntNullableFilter<"attendance"> | bigint | number | null
+    updated_by?: BigIntNullableFilter<"attendance"> | bigint | number | null
+    created_at?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"attendance"> | Date | string | null
+  }, "id">
+
+  export type attendanceOrderByWithAggregationInput = {
+    id?: SortOrder
+    remote_addr_in?: SortOrderInput | SortOrder
+    longitude_in?: SortOrderInput | SortOrder
+    latitude_in?: SortOrderInput | SortOrder
+    address_in?: SortOrderInput | SortOrder
+    subcont?: SortOrderInput | SortOrder
+    client?: SortOrderInput | SortOrder
+    shift_code?: SortOrderInput | SortOrder
+    in_time?: SortOrderInput | SortOrder
+    out_time?: SortOrderInput | SortOrder
+    revice_in_time?: SortOrderInput | SortOrder
+    revice_out_time?: SortOrderInput | SortOrder
+    remote_addr_out?: SortOrderInput | SortOrder
+    longitude_out?: SortOrderInput | SortOrder
+    latitude_out?: SortOrderInput | SortOrder
+    address_out?: SortOrderInput | SortOrder
+    work_metode?: SortOrderInput | SortOrder
+    foto_in?: SortOrderInput | SortOrder
+    foto_out?: SortOrderInput | SortOrder
+    note?: SortOrderInput | SortOrder
+    checked_by?: SortOrderInput | SortOrder
+    checked_at?: SortOrderInput | SortOrder
+    reject_reason?: SortOrderInput | SortOrder
+    is_ovt?: SortOrderInput | SortOrder
+    is_happy?: SortOrder
+    flag?: SortOrderInput | SortOrder
+    is_sent_sap?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    updated_by?: SortOrderInput | SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    _count?: attendanceCountOrderByAggregateInput
+    _avg?: attendanceAvgOrderByAggregateInput
+    _max?: attendanceMaxOrderByAggregateInput
+    _min?: attendanceMinOrderByAggregateInput
+    _sum?: attendanceSumOrderByAggregateInput
+  }
+
+  export type attendanceScalarWhereWithAggregatesInput = {
+    AND?: attendanceScalarWhereWithAggregatesInput | attendanceScalarWhereWithAggregatesInput[]
+    OR?: attendanceScalarWhereWithAggregatesInput[]
+    NOT?: attendanceScalarWhereWithAggregatesInput | attendanceScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"attendance"> | bigint | number
+    remote_addr_in?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    longitude_in?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    latitude_in?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    address_in?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    subcont?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    client?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    shift_code?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    in_time?: DateTimeNullableWithAggregatesFilter<"attendance"> | Date | string | null
+    out_time?: DateTimeNullableWithAggregatesFilter<"attendance"> | Date | string | null
+    revice_in_time?: DateTimeNullableWithAggregatesFilter<"attendance"> | Date | string | null
+    revice_out_time?: DateTimeNullableWithAggregatesFilter<"attendance"> | Date | string | null
+    remote_addr_out?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    longitude_out?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    latitude_out?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    address_out?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    work_metode?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    foto_in?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    foto_out?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    note?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    checked_by?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    checked_at?: DateTimeNullableWithAggregatesFilter<"attendance"> | Date | string | null
+    reject_reason?: StringNullableWithAggregatesFilter<"attendance"> | string | null
+    is_ovt?: IntNullableWithAggregatesFilter<"attendance"> | number | null
+    is_happy?: IntWithAggregatesFilter<"attendance"> | number
+    flag?: IntNullableWithAggregatesFilter<"attendance"> | number | null
+    is_sent_sap?: IntWithAggregatesFilter<"attendance"> | number
+    created_by?: BigIntNullableWithAggregatesFilter<"attendance"> | bigint | number | null
+    updated_by?: BigIntNullableWithAggregatesFilter<"attendance"> | bigint | number | null
+    created_at?: DateTimeNullableWithAggregatesFilter<"attendance"> | Date | string | null
+    updated_at?: DateTimeNullableWithAggregatesFilter<"attendance"> | Date | string | null
   }
 
   export type UserCreateInput = {
@@ -29095,7 +30573,7 @@ export namespace Prisma {
     effective_date?: Date | string | null
     start_date: Date | string
     end_date: Date | string
-    total_leave_days: bigint | number
+    total_leave_days: number
     purpose: string
     destination_city: string
     status_id: bigint | number
@@ -29126,7 +30604,7 @@ export namespace Prisma {
     effective_date?: Date | string | null
     start_date: Date | string
     end_date: Date | string
-    total_leave_days: bigint | number
+    total_leave_days: number
     purpose: string
     destination_city: string
     status_id: bigint | number
@@ -29154,7 +30632,7 @@ export namespace Prisma {
     effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    total_leave_days?: IntFieldUpdateOperationsInput | number
     purpose?: StringFieldUpdateOperationsInput | string
     destination_city?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -29185,7 +30663,7 @@ export namespace Prisma {
     effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    total_leave_days?: IntFieldUpdateOperationsInput | number
     purpose?: StringFieldUpdateOperationsInput | string
     destination_city?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -29214,7 +30692,7 @@ export namespace Prisma {
     effective_date?: Date | string | null
     start_date: Date | string
     end_date: Date | string
-    total_leave_days: bigint | number
+    total_leave_days: number
     purpose: string
     destination_city: string
     status_id: bigint | number
@@ -29242,7 +30720,7 @@ export namespace Prisma {
     effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    total_leave_days?: IntFieldUpdateOperationsInput | number
     purpose?: StringFieldUpdateOperationsInput | string
     destination_city?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -29272,7 +30750,7 @@ export namespace Prisma {
     effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    total_leave_days?: IntFieldUpdateOperationsInput | number
     purpose?: StringFieldUpdateOperationsInput | string
     destination_city?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -30300,6 +31778,243 @@ export namespace Prisma {
     leave_balance?: NullableIntFieldUpdateOperationsInput | number | null
     is_active?: NullableIntFieldUpdateOperationsInput | number | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type attendanceCreateInput = {
+    id?: bigint | number
+    remote_addr_in?: string | null
+    longitude_in?: string | null
+    latitude_in?: string | null
+    address_in?: string | null
+    subcont?: string | null
+    client?: string | null
+    shift_code?: string | null
+    in_time?: Date | string | null
+    out_time?: Date | string | null
+    revice_in_time?: Date | string | null
+    revice_out_time?: Date | string | null
+    remote_addr_out?: string | null
+    longitude_out?: string | null
+    latitude_out?: string | null
+    address_out?: string | null
+    work_metode?: string | null
+    foto_in?: string | null
+    foto_out?: string | null
+    note?: string | null
+    checked_by?: string | null
+    checked_at?: Date | string | null
+    reject_reason?: string | null
+    is_ovt?: number | null
+    is_happy?: number
+    flag?: number | null
+    is_sent_sap?: number
+    created_by?: bigint | number | null
+    updated_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
+  export type attendanceUncheckedCreateInput = {
+    id?: bigint | number
+    remote_addr_in?: string | null
+    longitude_in?: string | null
+    latitude_in?: string | null
+    address_in?: string | null
+    subcont?: string | null
+    client?: string | null
+    shift_code?: string | null
+    in_time?: Date | string | null
+    out_time?: Date | string | null
+    revice_in_time?: Date | string | null
+    revice_out_time?: Date | string | null
+    remote_addr_out?: string | null
+    longitude_out?: string | null
+    latitude_out?: string | null
+    address_out?: string | null
+    work_metode?: string | null
+    foto_in?: string | null
+    foto_out?: string | null
+    note?: string | null
+    checked_by?: string | null
+    checked_at?: Date | string | null
+    reject_reason?: string | null
+    is_ovt?: number | null
+    is_happy?: number
+    flag?: number | null
+    is_sent_sap?: number
+    created_by?: bigint | number | null
+    updated_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
+  export type attendanceUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    remote_addr_in?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    address_in?: NullableStringFieldUpdateOperationsInput | string | null
+    subcont?: NullableStringFieldUpdateOperationsInput | string | null
+    client?: NullableStringFieldUpdateOperationsInput | string | null
+    shift_code?: NullableStringFieldUpdateOperationsInput | string | null
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    remote_addr_out?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    address_out?: NullableStringFieldUpdateOperationsInput | string | null
+    work_metode?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_in?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_out?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_by?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reject_reason?: NullableStringFieldUpdateOperationsInput | string | null
+    is_ovt?: NullableIntFieldUpdateOperationsInput | number | null
+    is_happy?: IntFieldUpdateOperationsInput | number
+    flag?: NullableIntFieldUpdateOperationsInput | number | null
+    is_sent_sap?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type attendanceUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    remote_addr_in?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    address_in?: NullableStringFieldUpdateOperationsInput | string | null
+    subcont?: NullableStringFieldUpdateOperationsInput | string | null
+    client?: NullableStringFieldUpdateOperationsInput | string | null
+    shift_code?: NullableStringFieldUpdateOperationsInput | string | null
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    remote_addr_out?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    address_out?: NullableStringFieldUpdateOperationsInput | string | null
+    work_metode?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_in?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_out?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_by?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reject_reason?: NullableStringFieldUpdateOperationsInput | string | null
+    is_ovt?: NullableIntFieldUpdateOperationsInput | number | null
+    is_happy?: IntFieldUpdateOperationsInput | number
+    flag?: NullableIntFieldUpdateOperationsInput | number | null
+    is_sent_sap?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type attendanceCreateManyInput = {
+    remote_addr_in?: string | null
+    longitude_in?: string | null
+    latitude_in?: string | null
+    address_in?: string | null
+    subcont?: string | null
+    client?: string | null
+    shift_code?: string | null
+    in_time?: Date | string | null
+    out_time?: Date | string | null
+    revice_in_time?: Date | string | null
+    revice_out_time?: Date | string | null
+    remote_addr_out?: string | null
+    longitude_out?: string | null
+    latitude_out?: string | null
+    address_out?: string | null
+    work_metode?: string | null
+    foto_in?: string | null
+    foto_out?: string | null
+    note?: string | null
+    checked_by?: string | null
+    checked_at?: Date | string | null
+    reject_reason?: string | null
+    is_ovt?: number | null
+    is_happy?: number
+    flag?: number | null
+    is_sent_sap?: number
+    created_by?: bigint | number | null
+    updated_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
+  export type attendanceUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    remote_addr_in?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    address_in?: NullableStringFieldUpdateOperationsInput | string | null
+    subcont?: NullableStringFieldUpdateOperationsInput | string | null
+    client?: NullableStringFieldUpdateOperationsInput | string | null
+    shift_code?: NullableStringFieldUpdateOperationsInput | string | null
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    remote_addr_out?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    address_out?: NullableStringFieldUpdateOperationsInput | string | null
+    work_metode?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_in?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_out?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_by?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reject_reason?: NullableStringFieldUpdateOperationsInput | string | null
+    is_ovt?: NullableIntFieldUpdateOperationsInput | number | null
+    is_happy?: IntFieldUpdateOperationsInput | number
+    flag?: NullableIntFieldUpdateOperationsInput | number | null
+    is_sent_sap?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type attendanceUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    remote_addr_in?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    address_in?: NullableStringFieldUpdateOperationsInput | string | null
+    subcont?: NullableStringFieldUpdateOperationsInput | string | null
+    client?: NullableStringFieldUpdateOperationsInput | string | null
+    shift_code?: NullableStringFieldUpdateOperationsInput | string | null
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    remote_addr_out?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    address_out?: NullableStringFieldUpdateOperationsInput | string | null
+    work_metode?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_in?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_out?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_by?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reject_reason?: NullableStringFieldUpdateOperationsInput | string | null
+    is_ovt?: NullableIntFieldUpdateOperationsInput | number | null
+    is_happy?: IntFieldUpdateOperationsInput | number
+    flag?: NullableIntFieldUpdateOperationsInput | number | null
+    is_sent_sap?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -32177,6 +33892,128 @@ export namespace Prisma {
     is_deleted?: SortOrder
   }
 
+  export type attendanceCountOrderByAggregateInput = {
+    id?: SortOrder
+    remote_addr_in?: SortOrder
+    longitude_in?: SortOrder
+    latitude_in?: SortOrder
+    address_in?: SortOrder
+    subcont?: SortOrder
+    client?: SortOrder
+    shift_code?: SortOrder
+    in_time?: SortOrder
+    out_time?: SortOrder
+    revice_in_time?: SortOrder
+    revice_out_time?: SortOrder
+    remote_addr_out?: SortOrder
+    longitude_out?: SortOrder
+    latitude_out?: SortOrder
+    address_out?: SortOrder
+    work_metode?: SortOrder
+    foto_in?: SortOrder
+    foto_out?: SortOrder
+    note?: SortOrder
+    checked_by?: SortOrder
+    checked_at?: SortOrder
+    reject_reason?: SortOrder
+    is_ovt?: SortOrder
+    is_happy?: SortOrder
+    flag?: SortOrder
+    is_sent_sap?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type attendanceAvgOrderByAggregateInput = {
+    id?: SortOrder
+    is_ovt?: SortOrder
+    is_happy?: SortOrder
+    flag?: SortOrder
+    is_sent_sap?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type attendanceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    remote_addr_in?: SortOrder
+    longitude_in?: SortOrder
+    latitude_in?: SortOrder
+    address_in?: SortOrder
+    subcont?: SortOrder
+    client?: SortOrder
+    shift_code?: SortOrder
+    in_time?: SortOrder
+    out_time?: SortOrder
+    revice_in_time?: SortOrder
+    revice_out_time?: SortOrder
+    remote_addr_out?: SortOrder
+    longitude_out?: SortOrder
+    latitude_out?: SortOrder
+    address_out?: SortOrder
+    work_metode?: SortOrder
+    foto_in?: SortOrder
+    foto_out?: SortOrder
+    note?: SortOrder
+    checked_by?: SortOrder
+    checked_at?: SortOrder
+    reject_reason?: SortOrder
+    is_ovt?: SortOrder
+    is_happy?: SortOrder
+    flag?: SortOrder
+    is_sent_sap?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type attendanceMinOrderByAggregateInput = {
+    id?: SortOrder
+    remote_addr_in?: SortOrder
+    longitude_in?: SortOrder
+    latitude_in?: SortOrder
+    address_in?: SortOrder
+    subcont?: SortOrder
+    client?: SortOrder
+    shift_code?: SortOrder
+    in_time?: SortOrder
+    out_time?: SortOrder
+    revice_in_time?: SortOrder
+    revice_out_time?: SortOrder
+    remote_addr_out?: SortOrder
+    longitude_out?: SortOrder
+    latitude_out?: SortOrder
+    address_out?: SortOrder
+    work_metode?: SortOrder
+    foto_in?: SortOrder
+    foto_out?: SortOrder
+    note?: SortOrder
+    checked_by?: SortOrder
+    checked_at?: SortOrder
+    reject_reason?: SortOrder
+    is_ovt?: SortOrder
+    is_happy?: SortOrder
+    flag?: SortOrder
+    is_sent_sap?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type attendanceSumOrderByAggregateInput = {
+    id?: SortOrder
+    is_ovt?: SortOrder
+    is_happy?: SortOrder
+    flag?: SortOrder
+    is_sent_sap?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
   export type mst_deptCreateNestedOneWithoutMst_userInput = {
     create?: XOR<mst_deptCreateWithoutMst_userInput, mst_deptUncheckedCreateWithoutMst_userInput>
     connectOrCreate?: mst_deptCreateOrConnectWithoutMst_userInput
@@ -33445,7 +35282,7 @@ export namespace Prisma {
     effective_date?: Date | string | null
     start_date: Date | string
     end_date: Date | string
-    total_leave_days: bigint | number
+    total_leave_days: number
     purpose: string
     destination_city: string
     status_id: bigint | number
@@ -33474,7 +35311,7 @@ export namespace Prisma {
     effective_date?: Date | string | null
     start_date: Date | string
     end_date: Date | string
-    total_leave_days: bigint | number
+    total_leave_days: number
     purpose: string
     destination_city: string
     status_id: bigint | number
@@ -33860,7 +35697,7 @@ export namespace Prisma {
     effective_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
     start_date?: DateTimeFilter<"trx_official_travel"> | Date | string
     end_date?: DateTimeFilter<"trx_official_travel"> | Date | string
-    total_leave_days?: BigIntFilter<"trx_official_travel"> | bigint | number
+    total_leave_days?: IntFilter<"trx_official_travel"> | number
     purpose?: StringFilter<"trx_official_travel"> | string
     destination_city?: StringFilter<"trx_official_travel"> | string
     status_id?: BigIntFilter<"trx_official_travel"> | bigint | number
@@ -36740,7 +38577,7 @@ export namespace Prisma {
     effective_date?: Date | string | null
     start_date: Date | string
     end_date: Date | string
-    total_leave_days: bigint | number
+    total_leave_days: number
     purpose: string
     destination_city: string
     status_id: bigint | number
@@ -37016,7 +38853,7 @@ export namespace Prisma {
     effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    total_leave_days?: IntFieldUpdateOperationsInput | number
     purpose?: StringFieldUpdateOperationsInput | string
     destination_city?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -37045,7 +38882,7 @@ export namespace Prisma {
     effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    total_leave_days?: IntFieldUpdateOperationsInput | number
     purpose?: StringFieldUpdateOperationsInput | string
     destination_city?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -37074,7 +38911,7 @@ export namespace Prisma {
     effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    total_leave_days?: IntFieldUpdateOperationsInput | number
     purpose?: StringFieldUpdateOperationsInput | string
     destination_city?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -38062,6 +39899,10 @@ export namespace Prisma {
      * @deprecated Use trx_leave_quotaDefaultArgs instead
      */
     export type trx_leave_quotaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = trx_leave_quotaDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use attendanceDefaultArgs instead
+     */
+    export type attendanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = attendanceDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

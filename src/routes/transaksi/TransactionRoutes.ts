@@ -6,6 +6,18 @@ const router = express.Router();
 router.use(authenticateJWT);
 
 router.get(
+  "/tren-attendance", async (req: Request, res: Response) => {
+    await TrxLeave.getTrendAttendance(req, res);
+  }
+);
+
+router.get(
+  "/tren-submission", async (req: Request, res: Response) => {
+    await TrxLeave.getTrendSubmission(req, res);
+  }
+);
+
+router.get(
   "/", async (req: Request, res: Response) => {
     await TrxLeave.getAllTrxData(req, res);
   }
