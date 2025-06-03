@@ -29595,6 +29595,62 @@ export namespace Prisma {
     created_by: 'created_by',
     created_at: 'created_at',
     updated_by: 'updated_by',
+    updated_at: 'updated_at',
+    is_late: 'is_late'
+  };
+
+  export type Trx_declarationScalarFieldEnum = (typeof Trx_declarationScalarFieldEnum)[keyof typeof Trx_declarationScalarFieldEnum]
+
+
+  export const Trx_detail_declarationScalarFieldEnum: {
+    id: 'id',
+    declaration_code: 'declaration_code',
+    date_activity: 'date_activity',
+    location_activity: 'location_activity',
+    hotel_cost: 'hotel_cost',
+    taxi_cost: 'taxi_cost',
+    upd_cost: 'upd_cost',
+    consume_cost: 'consume_cost',
+    ticket_cost: 'ticket_cost',
+    other_cost: 'other_cost',
+    total_cost: 'total_cost',
+    explanation: 'explanation',
+    created_by: 'created_by',
+    created_at: 'created_at',
+    updated_by: 'updated_by',
+    updated_at: 'updated_at'
+  };
+
+  export type Trx_detail_declarationScalarFieldEnum = (typeof Trx_detail_declarationScalarFieldEnum)[keyof typeof Trx_detail_declarationScalarFieldEnum]
+
+
+  export const Trx_declarationScalarFieldEnum: {
+    id: 'id',
+    code: 'code',
+    user: 'user',
+    code_trx: 'code_trx',
+    start_date_actual: 'start_date_actual',
+    end_date_actual: 'end_date_actual',
+    evidence_file: 'evidence_file',
+    accept_to: 'accept_to',
+    accepted: 'accepted',
+    accepted_date: 'accepted_date',
+    accepted_remark: 'accepted_remark',
+    approve_to: 'approve_to',
+    approved: 'approved',
+    approved_date: 'approved_date',
+    approved_remark: 'approved_remark',
+    rejected: 'rejected',
+    rejected_date: 'rejected_date',
+    rejected_remark: 'rejected_remark',
+    canceled: 'canceled',
+    canceled_date: 'canceled_date',
+    canceled_remark: 'canceled_remark',
+    total_money_change: 'total_money_change',
+    status_id: 'status_id',
+    created_by: 'created_by',
+    created_at: 'created_at',
+    updated_by: 'updated_by',
     updated_at: 'updated_at'
   };
 
@@ -36053,6 +36109,344 @@ export namespace Prisma {
     flag?: NullableIntFieldUpdateOperationsInput | number | null
     is_sent_sap?: IntFieldUpdateOperationsInput | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_late?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type trx_declarationCreateInput = {
+    code: string
+    user: string
+    start_date_actual: Date | string
+    end_date_actual: Date | string
+    evidence_file: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    total_money_change: Decimal | DecimalJsLike | number | string
+    status_id: bigint | number
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    officialTravel_data: trx_official_travelCreateNestedOneWithoutTrx_declarationInput
+    trx_detail_declaration?: trx_detail_declarationCreateNestedManyWithoutDeclaration_dataInput
+  }
+
+  export type trx_declarationUncheckedCreateInput = {
+    id?: number
+    code: string
+    user: string
+    code_trx: string
+    start_date_actual: Date | string
+    end_date_actual: Date | string
+    evidence_file: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    total_money_change: Decimal | DecimalJsLike | number | string
+    status_id: bigint | number
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    trx_detail_declaration?: trx_detail_declarationUncheckedCreateNestedManyWithoutDeclaration_dataInput
+  }
+
+  export type trx_declarationUpdateInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    user?: StringFieldUpdateOperationsInput | string
+    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidence_file?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    officialTravel_data?: trx_official_travelUpdateOneRequiredWithoutTrx_declarationNestedInput
+    trx_detail_declaration?: trx_detail_declarationUpdateManyWithoutDeclaration_dataNestedInput
+  }
+
+  export type trx_declarationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    user?: StringFieldUpdateOperationsInput | string
+    code_trx?: StringFieldUpdateOperationsInput | string
+    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidence_file?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    trx_detail_declaration?: trx_detail_declarationUncheckedUpdateManyWithoutDeclaration_dataNestedInput
+  }
+
+  export type trx_declarationCreateManyInput = {
+    code: string
+    user: string
+    code_trx: string
+    start_date_actual: Date | string
+    end_date_actual: Date | string
+    evidence_file: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    total_money_change: Decimal | DecimalJsLike | number | string
+    status_id: bigint | number
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_declarationUpdateManyMutationInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    user?: StringFieldUpdateOperationsInput | string
+    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidence_file?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_declarationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    user?: StringFieldUpdateOperationsInput | string
+    code_trx?: StringFieldUpdateOperationsInput | string
+    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidence_file?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_detail_declarationCreateInput = {
+    date_activity: Date | string
+    location_activity: string
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    consume_cost?: Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost: Decimal | DecimalJsLike | number | string
+    explanation: string
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    declaration_data: trx_declarationCreateNestedOneWithoutTrx_detail_declarationInput
+  }
+
+  export type trx_detail_declarationUncheckedCreateInput = {
+    id?: number
+    declaration_code: string
+    date_activity: Date | string
+    location_activity: string
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    consume_cost?: Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost: Decimal | DecimalJsLike | number | string
+    explanation: string
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_detail_declarationUpdateInput = {
+    date_activity?: DateTimeFieldUpdateOperationsInput | Date | string
+    location_activity?: StringFieldUpdateOperationsInput | string
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    consume_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    declaration_data?: trx_declarationUpdateOneRequiredWithoutTrx_detail_declarationNestedInput
+  }
+
+  export type trx_detail_declarationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    declaration_code?: StringFieldUpdateOperationsInput | string
+    date_activity?: DateTimeFieldUpdateOperationsInput | Date | string
+    location_activity?: StringFieldUpdateOperationsInput | string
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    consume_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_detail_declarationCreateManyInput = {
+    declaration_code: string
+    date_activity: Date | string
+    location_activity: string
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    consume_cost?: Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost: Decimal | DecimalJsLike | number | string
+    explanation: string
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_detail_declarationUpdateManyMutationInput = {
+    date_activity?: DateTimeFieldUpdateOperationsInput | Date | string
+    location_activity?: StringFieldUpdateOperationsInput | string
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    consume_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_detail_declarationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    declaration_code?: StringFieldUpdateOperationsInput | string
+    date_activity?: DateTimeFieldUpdateOperationsInput | Date | string
+    location_activity?: StringFieldUpdateOperationsInput | string
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    consume_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     is_late?: NullableIntFieldUpdateOperationsInput | number | null

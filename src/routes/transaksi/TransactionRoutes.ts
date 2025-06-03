@@ -37,18 +37,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get(
-  "/tren-attendance", async (req: Request, res: Response) => {
-    await TrxLeave.getTrendAttendance(req, res);
-  }
-);
-
-router.get(
-  "/tren-submission", async (req: Request, res: Response) => {
-    await TrxLeave.getTrendSubmission(req, res);
-  }
-);
-
-router.get(
   "/", async (req: Request, res: Response) => {
     await TrxLeave.getAllTrxData(req, res);
   }
@@ -69,5 +57,15 @@ router.post(
   }
 );
 
+router.get(
+  "/tren-attendance", async (req: Request, res: Response) => {
+    await TrxLeave.getTrendAttendance(req, res);
+  }
+);
 
+router.get(
+  "/tren-submission", async (req: Request, res: Response) => {
+    await TrxLeave.getTrendSubmission(req, res);
+  }
+);
 export default router;
