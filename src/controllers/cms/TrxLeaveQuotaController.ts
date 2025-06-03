@@ -23,7 +23,7 @@ export const getAllTrxLeaveQuota = async (
         const validSortFields = [
             "valid_from",
             "valid_to",
-            "leave_type_id",
+            "leaves_type_id",
             "leaves_quota",
             "id_user",
         ];
@@ -31,6 +31,34 @@ export const getAllTrxLeaveQuota = async (
             ? (sort as string)
             : "id_user";
         const sortOrder = order === "desc" ? "desc" : "asc";
+
+        // Tentukan kondisi `where` berdasarkan apakah user adalah admin atau bukan
+        const isAdmin = userNrp === "P0120001";
+
+        const whereClause = {
+            is_deleted: 0,
+            ...(isAdmin ? {} : { id_user: userNrp }),
+            ...(search
+                ? {
+                    OR: [
+                        {
+                            MsUser: {
+                                name: {
+                                    contains: search as string,
+                                },
+                            },
+                        },
+                        {
+                            MsLeaveType: {
+                                title: {
+                                    contains: search as string,
+                                },
+                            },
+                        }
+                    ]
+                }
+                : {}),
+        };
 
         const rawLeaveQuota = await TrxLeaveQuota.findMany({
             where: { is_deleted: 0 },

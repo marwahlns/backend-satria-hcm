@@ -12,9 +12,15 @@ import trxLeaveQuotaRoutes from "./routes/transaksi/TrxLeaveQuotaRoutes";
 import transactionRoute from "./routes/transaksi/TransactionRoutes";
 import authRoutes from "./routes/auth";
 import cors from "cors";
+import path from 'path';
+import cookieParser from 'cookie-parser';
+
 
 const app = express();
 app.use(bodyParser.json());
+
+const uploadsPath = path.join(process.cwd(), 'uploads');
+app.use('/uploads', express.static(uploadsPath));
 
 // Konfigurasi CORS
 const corsOptions = {

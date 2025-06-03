@@ -43,11 +43,17 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    // Generate JWT token
     const token = jwt.sign(
-      { id: user.id.toString(), role_id: user.role_id, email: user.email, nrp: user.personal_number, name: user.name, departement : user.department },
+      {
+        id: user.id.toString(),
+        role_id: user.role_id,
+        email: user.email,
+        nrp: user.personal_number,
+        name: user.name,
+        departement: user.department,
+      },
       JWT_SECRET,
-      { expiresIn: "24h" } // Set token expire time
+      { expiresIn: "24h" }
     );
 
     res.send(
