@@ -2,12 +2,16 @@ import JSONbig from "json-bigint";
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import { User } from "../../models/Table/Satria/MsUser";
+import { TrxMutation } from "../../models/Table/Satria/TrxMutation";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 import { PrismaClient } from "../../../prisma/generated/satria-client";
 
 const prisma = new PrismaClient();
 
-export const getAllEmployee = async (req: Request, res: Response): Promise<void> => {
+export const getAllEmployee = async (
+  req: Request & { user?: { nrp: string } },
+  res: Response
+): Promise<void> => {
   try {
     const {
       page = "1",
@@ -17,6 +21,8 @@ export const getAllEmployee = async (req: Request, res: Response): Promise<void>
       order = "asc",
     } = req.query;
 
+    const userNrp = req.user?.nrp ?? "";
+    const isAdmin = userNrp === "P0120001";
     const pageNumber = parseInt(page as string, 10);
     const pageSize = parseInt(limit as string, 10);
     const skip = (pageNumber - 1) * pageSize;
@@ -24,10 +30,26 @@ export const getAllEmployee = async (req: Request, res: Response): Promise<void>
     const sortField = validSortFields.includes(sort as string) ? (sort as string) : "name";
     const sortOrder = order === "desc" ? "desc" : "asc";
 
-    // Query untuk mendapatkan user dari tabel User
+    const currentUser = await User.findFirst({
+      where: { personal_number: userNrp },
+      select: { divid: true },
+    });
+
+    if (!currentUser || !currentUser.divid) {
+      res.status(404).json({
+        success: false,
+        message: "User login tidak ditemukan atau tidak memiliki department",
+      });
+      return;
+    }
+
+    const userDivision = currentUser.divid;
+
+    // Ambil list employee
     const employees = await User.findMany({
       where: {
         role_id: "10",
+        ...(isAdmin ? {} : { divid: userDivision }),
         OR: [
           { name: { contains: search as string } },
           { email: { contains: search as string } },
@@ -43,7 +65,7 @@ export const getAllEmployee = async (req: Request, res: Response): Promise<void>
 
     const userIds: bigint[] = employees.map((user) => BigInt(user.id.toString()));
 
-    // Query untuk mendapatkan user_detail berdasarkan user_id yang ditemukan
+    // Ambil detail user
     const userDetails = await User.findManyUserDetail({
       where: {
         user_id: { in: userIds },
@@ -66,20 +88,29 @@ export const getAllEmployee = async (req: Request, res: Response): Promise<void>
         vendor: true,
       },
     });
+    const mutations = await TrxMutation.findMany({
+      select: { user: true, status_id: true },
+    });
 
-    // Gabungkan data employee dan user_detail secara manual
+    const mutationMap = new Map(mutations.map((m) => [m.user.toString(), m.status_id])); 
     const mergedData = employees.map((employee) => {
-      const detail = userDetails.find((detail) => Number(detail.user_id) === Number(employee.id)) || {};
+      const detail = userDetails.find((d) => Number(d.user_id) === Number(employee.id)) || {};
+      const status_id = mutationMap.get(employee.personal_number ?? "");
+      const statusIdIsValid = status_id !== undefined && (status_id !== BigInt(6) && status_id !== BigInt(7));
+
+      const isDisabled = mutationMap.has(employee.personal_number ?? "") && statusIdIsValid;
+
       return {
         ...employee,
-        user_detail: detail, // Tambahkan detail jika ada
+        user_detail: detail,
+        isDisable: isDisabled,
       };
     });
 
-    // Query untuk mendapatkan total jumlah user sesuai pencarian
     const totalItems = await User.count({
       where: {
         role_id: "10",
+        ...(isAdmin ? {} : { divid: userDivision }),
         OR: [
           { name: { contains: search as string } },
           { email: { contains: search as string } },
@@ -94,7 +125,7 @@ export const getAllEmployee = async (req: Request, res: Response): Promise<void>
         success: true,
         message: "Successfully retrieved Employee data",
         data: {
-          data: mergedData, // Data karyawan yang sudah digabung dengan detailnya
+          data: mergedData,
           totalPages,
           currentPage: pageNumber,
           totalItems,
@@ -109,6 +140,8 @@ export const getAllEmployee = async (req: Request, res: Response): Promise<void>
     });
   }
 };
+
+
 
 export const createEmployee = async (
   req: Request,

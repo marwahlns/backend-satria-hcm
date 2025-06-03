@@ -49,7 +49,7 @@ curl -X DELETE http://localhost:3000/api/makanan/1 \
 -H "Authorization: Bearer your-jwt-token"
 
 8. Untuk generate prisma :
-npx prisma generate --schema=prisma/satria.schema.prisma
+  npx prisma generate --schema=prisma/satria.schema.prisma
 
 
 status overtime:
