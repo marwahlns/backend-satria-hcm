@@ -2,12 +2,10 @@ import JSONbig from "json-bigint";
 import { Request, Response } from "express";
 import { TrxLeaveQuota } from "../../models/Table/Satria/TrxLeaveQuota";
 import { User } from "../../models/Table/Satria/MsUser";
+import { LeaveTypes } from "../../models/Table/Satria/MsLeaveTypes";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 
-export const getAllTrxLeaveQuota = async (
-    req: Request,
-    res: Response
-): Promise<void> => {
+export const getAllTrxLeaveQuota = async (req: Request & { user?: { nrp: string, id: number } }, res: Response): Promise<void> => {
     try {
         const {
             page = "1",
@@ -17,9 +15,11 @@ export const getAllTrxLeaveQuota = async (
             order = "asc",
         } = req.query;
 
+        const userNrp = req.user?.nrp;
         const pageNumber = Number(page) || 1;
         const pageSize = Number(limit) || 10;
         const skip = (pageNumber - 1) * pageSize;
+
         const validSortFields = [
             "valid_from",
             "valid_to",
@@ -61,7 +61,7 @@ export const getAllTrxLeaveQuota = async (
         };
 
         const rawLeaveQuota = await TrxLeaveQuota.findMany({
-            where: { is_deleted: 0 },
+            where: whereClause,
             orderBy: { [sortField]: sortOrder },
             include: {
                 MsUser: {
@@ -77,6 +77,8 @@ export const getAllTrxLeaveQuota = async (
                     },
                 },
             },
+            skip,
+            take: pageSize,
         });
 
         const formatDate = (date?: Date | null): string | null => {
@@ -95,12 +97,7 @@ export const getAllTrxLeaveQuota = async (
         }));
 
         const totalItems = await TrxLeaveQuota.count({
-            where: {
-                is_deleted: 0,
-                OR: [
-                    { id_user: { contains: search as string } },
-                ],
-            },
+            where: whereClause,
         });
 
         const totalPages = Math.ceil(totalItems / pageSize);

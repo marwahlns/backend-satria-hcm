@@ -10158,7 +10158,7 @@ export namespace Prisma {
     depthead_nrp: string | null
     depthead_name: string | null
     depthead_email: string | null
-    div_code: string | null
+    div_code: string
     div_name: string | null
     divhead_nrp: string | null
     divhead_name: string | null
@@ -10200,6 +10200,7 @@ export namespace Prisma {
     company_id?: boolean
     company_name?: boolean
     mst_user?: boolean | mst_dept$mst_userArgs<ExtArgs>
+    ms_division?: boolean | mst_divisionDefaultArgs<ExtArgs>
     _count?: boolean | Mst_deptCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["mst_dept"]>
 
@@ -10221,6 +10222,7 @@ export namespace Prisma {
 
   export type mst_deptInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mst_user?: boolean | mst_dept$mst_userArgs<ExtArgs>
+    ms_division?: boolean | mst_divisionDefaultArgs<ExtArgs>
     _count?: boolean | Mst_deptCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -10228,6 +10230,7 @@ export namespace Prisma {
     name: "mst_dept"
     objects: {
       mst_user: Prisma.$UserPayload<ExtArgs>[]
+      ms_division: Prisma.$mst_divisionPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -10235,7 +10238,7 @@ export namespace Prisma {
       depthead_nrp: string | null
       depthead_name: string | null
       depthead_email: string | null
-      div_code: string | null
+      div_code: string
       div_name: string | null
       divhead_nrp: string | null
       divhead_name: string | null
@@ -10583,6 +10586,7 @@ export namespace Prisma {
   export interface Prisma__mst_deptClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     mst_user<T extends mst_dept$mst_userArgs<ExtArgs> = {}>(args?: Subset<T, mst_dept$mst_userArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany"> | Null>
+    ms_division<T extends mst_divisionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, mst_divisionDefaultArgs<ExtArgs>>): Prisma__mst_divisionClient<$Result.GetResult<Prisma.$mst_divisionPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11234,6 +11238,8 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     updated_by?: boolean
+    ms_dept?: boolean | mst_division$ms_deptArgs<ExtArgs>
+    _count?: boolean | Mst_divisionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["mst_division"]>
 
 
@@ -11254,10 +11260,16 @@ export namespace Prisma {
     updated_by?: boolean
   }
 
+  export type mst_divisionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ms_dept?: boolean | mst_division$ms_deptArgs<ExtArgs>
+    _count?: boolean | Mst_divisionCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
   export type $mst_divisionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "mst_division"
-    objects: {}
+    objects: {
+      ms_dept: Prisma.$mst_deptPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       divid: string
@@ -11613,6 +11625,7 @@ export namespace Prisma {
    */
   export interface Prisma__mst_divisionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    ms_dept<T extends mst_division$ms_deptArgs<ExtArgs> = {}>(args?: Subset<T, mst_division$ms_deptArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$mst_deptPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11669,6 +11682,10 @@ export namespace Prisma {
      */
     select?: mst_divisionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mst_divisionInclude<ExtArgs> | null
+    /**
      * Filter, which mst_division to fetch.
      */
     where: mst_divisionWhereUniqueInput
@@ -11683,6 +11700,10 @@ export namespace Prisma {
      */
     select?: mst_divisionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mst_divisionInclude<ExtArgs> | null
+    /**
      * Filter, which mst_division to fetch.
      */
     where: mst_divisionWhereUniqueInput
@@ -11696,6 +11717,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the mst_division
      */
     select?: mst_divisionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mst_divisionInclude<ExtArgs> | null
     /**
      * Filter, which mst_division to fetch.
      */
@@ -11741,6 +11766,10 @@ export namespace Prisma {
      */
     select?: mst_divisionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mst_divisionInclude<ExtArgs> | null
+    /**
      * Filter, which mst_division to fetch.
      */
     where?: mst_divisionWhereInput
@@ -11785,6 +11814,10 @@ export namespace Prisma {
      */
     select?: mst_divisionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mst_divisionInclude<ExtArgs> | null
+    /**
      * Filter, which mst_divisions to fetch.
      */
     where?: mst_divisionWhereInput
@@ -11824,6 +11857,10 @@ export namespace Prisma {
      */
     select?: mst_divisionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mst_divisionInclude<ExtArgs> | null
+    /**
      * The data needed to create a mst_division.
      */
     data: XOR<mst_divisionCreateInput, mst_divisionUncheckedCreateInput>
@@ -11847,6 +11884,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the mst_division
      */
     select?: mst_divisionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mst_divisionInclude<ExtArgs> | null
     /**
      * The data needed to update a mst_division.
      */
@@ -11880,6 +11921,10 @@ export namespace Prisma {
      */
     select?: mst_divisionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mst_divisionInclude<ExtArgs> | null
+    /**
      * The filter to search for the mst_division to update in case it exists.
      */
     where: mst_divisionWhereUniqueInput
@@ -11902,6 +11947,10 @@ export namespace Prisma {
      */
     select?: mst_divisionSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mst_divisionInclude<ExtArgs> | null
+    /**
      * Filter which mst_division to delete.
      */
     where: mst_divisionWhereUniqueInput
@@ -11918,6 +11967,26 @@ export namespace Prisma {
   }
 
   /**
+   * mst_division.ms_dept
+   */
+  export type mst_division$ms_deptArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mst_dept
+     */
+    select?: mst_deptSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mst_deptInclude<ExtArgs> | null
+    where?: mst_deptWhereInput
+    orderBy?: mst_deptOrderByWithRelationInput | mst_deptOrderByWithRelationInput[]
+    cursor?: mst_deptWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Mst_deptScalarFieldEnum | Mst_deptScalarFieldEnum[]
+  }
+
+  /**
    * mst_division without action
    */
   export type mst_divisionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11925,6 +11994,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the mst_division
      */
     select?: mst_divisionSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mst_divisionInclude<ExtArgs> | null
   }
 
 
@@ -12816,7 +12889,6 @@ export namespace Prisma {
   export type Trx_ovtAvgAggregateOutputType = {
     id: number | null
     dept: number | null
-    shift: number | null
     status_id: number | null
     created_by: number | null
     updated_by: number | null
@@ -12825,7 +12897,6 @@ export namespace Prisma {
   export type Trx_ovtSumAggregateOutputType = {
     id: bigint | null
     dept: bigint | null
-    shift: number | null
     status_id: bigint | null
     created_by: bigint | null
     updated_by: bigint | null
@@ -12835,7 +12906,7 @@ export namespace Prisma {
     id: bigint | null
     user: string | null
     dept: bigint | null
-    shift: number | null
+    shift: string | null
     status_id: bigint | null
     check_in_ovt: Date | null
     check_out_ovt: Date | null
@@ -12864,7 +12935,7 @@ export namespace Prisma {
     id: bigint | null
     user: string | null
     dept: bigint | null
-    shift: number | null
+    shift: string | null
     status_id: bigint | null
     check_in_ovt: Date | null
     check_out_ovt: Date | null
@@ -12923,7 +12994,6 @@ export namespace Prisma {
   export type Trx_ovtAvgAggregateInputType = {
     id?: true
     dept?: true
-    shift?: true
     status_id?: true
     created_by?: true
     updated_by?: true
@@ -12932,7 +13002,6 @@ export namespace Prisma {
   export type Trx_ovtSumAggregateInputType = {
     id?: true
     dept?: true
-    shift?: true
     status_id?: true
     created_by?: true
     updated_by?: true
@@ -13116,7 +13185,7 @@ export namespace Prisma {
     id: bigint
     user: string
     dept: bigint
-    shift: number
+    shift: string
     status_id: bigint
     check_in_ovt: Date
     check_out_ovt: Date
@@ -13236,7 +13305,7 @@ export namespace Prisma {
       id: bigint
       user: string
       dept: bigint
-      shift: number
+      shift: string
       status_id: bigint
       check_in_ovt: Date
       check_out_ovt: Date
@@ -13633,7 +13702,7 @@ export namespace Prisma {
     readonly id: FieldRef<"trx_ovt", 'BigInt'>
     readonly user: FieldRef<"trx_ovt", 'String'>
     readonly dept: FieldRef<"trx_ovt", 'BigInt'>
-    readonly shift: FieldRef<"trx_ovt", 'Int'>
+    readonly shift: FieldRef<"trx_ovt", 'String'>
     readonly status_id: FieldRef<"trx_ovt", 'BigInt'>
     readonly check_in_ovt: FieldRef<"trx_ovt", 'DateTime'>
     readonly check_out_ovt: FieldRef<"trx_ovt", 'DateTime'>
@@ -25623,8 +25692,8 @@ export namespace Prisma {
     flag: number | null
     is_sent_sap: number | null
     created_by: bigint | null
-    updated_by: bigint | null
     created_at: Date | null
+    updated_by: bigint | null
     updated_at: Date | null
     is_late: number | null
   }
@@ -25658,8 +25727,8 @@ export namespace Prisma {
     flag: number | null
     is_sent_sap: number | null
     created_by: bigint | null
-    updated_by: bigint | null
     created_at: Date | null
+    updated_by: bigint | null
     updated_at: Date | null
     is_late: number | null
   }
@@ -25693,8 +25762,8 @@ export namespace Prisma {
     flag: number
     is_sent_sap: number
     created_by: number
-    updated_by: number
     created_at: number
+    updated_by: number
     updated_at: number
     is_late: number
     _all: number
@@ -25752,8 +25821,8 @@ export namespace Prisma {
     flag?: true
     is_sent_sap?: true
     created_by?: true
-    updated_by?: true
     created_at?: true
+    updated_by?: true
     updated_at?: true
     is_late?: true
   }
@@ -25787,8 +25856,8 @@ export namespace Prisma {
     flag?: true
     is_sent_sap?: true
     created_by?: true
-    updated_by?: true
     created_at?: true
+    updated_by?: true
     updated_at?: true
     is_late?: true
   }
@@ -25822,8 +25891,8 @@ export namespace Prisma {
     flag?: true
     is_sent_sap?: true
     created_by?: true
-    updated_by?: true
     created_at?: true
+    updated_by?: true
     updated_at?: true
     is_late?: true
     _all?: true
@@ -25940,10 +26009,11 @@ export namespace Prisma {
     checked_at: Date | null
     reject_reason: string | null
     is_ovt: number | null
-    is_happy: number
+    is_happy: number | null
     flag: number | null
-    is_sent_sap: number
+    is_sent_sap: number | null
     created_by: bigint | null
+    created_at: Date
     updated_by: bigint | null
     updated_at: Date
     is_late: number | null
@@ -25997,8 +26067,8 @@ export namespace Prisma {
     flag?: boolean
     is_sent_sap?: boolean
     created_by?: boolean
-    updated_by?: boolean
     created_at?: boolean
+    updated_by?: boolean
     updated_at?: boolean
     is_late?: boolean
   }, ExtArgs["result"]["attendance"]>
@@ -26033,8 +26103,8 @@ export namespace Prisma {
     flag?: boolean
     is_sent_sap?: boolean
     created_by?: boolean
-    updated_by?: boolean
     created_at?: boolean
+    updated_by?: boolean
     updated_at?: boolean
     is_late?: boolean
   }
@@ -26068,10 +26138,11 @@ export namespace Prisma {
       checked_at: Date | null
       reject_reason: string | null
       is_ovt: number | null
-      is_happy: number
+      is_happy: number | null
       flag: number | null
-      is_sent_sap: number
+      is_sent_sap: number | null
       created_by: bigint | null
+      created_at: Date
       updated_by: bigint | null
       updated_at: Date
       is_late: number | null
@@ -26472,8 +26543,8 @@ export namespace Prisma {
     readonly flag: FieldRef<"attendance", 'Int'>
     readonly is_sent_sap: FieldRef<"attendance", 'Int'>
     readonly created_by: FieldRef<"attendance", 'BigInt'>
-    readonly updated_by: FieldRef<"attendance", 'BigInt'>
     readonly created_at: FieldRef<"attendance", 'DateTime'>
+    readonly updated_by: FieldRef<"attendance", 'BigInt'>
     readonly updated_at: FieldRef<"attendance", 'DateTime'>
     readonly is_late: FieldRef<"attendance", 'Int'>
   }
@@ -26646,7 +26717,7 @@ export namespace Prisma {
     /**
      * The data needed to create a attendance.
      */
-    data?: XOR<attendanceCreateInput, attendanceUncheckedCreateInput>
+    data: XOR<attendanceCreateInput, attendanceUncheckedCreateInput>
   }
 
   /**
@@ -29560,68 +29631,13 @@ export namespace Prisma {
     flag: 'flag',
     is_sent_sap: 'is_sent_sap',
     created_by: 'created_by',
+    created_at: 'created_at',
     updated_by: 'updated_by',
     updated_at: 'updated_at',
     is_late: 'is_late'
   };
 
   export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
-
-
-  export const Trx_declarationScalarFieldEnum: {
-    id: 'id',
-    code: 'code',
-    user: 'user',
-    code_trx: 'code_trx',
-    start_date_actual: 'start_date_actual',
-    end_date_actual: 'end_date_actual',
-    evidence_file: 'evidence_file',
-    accept_to: 'accept_to',
-    accepted: 'accepted',
-    accepted_date: 'accepted_date',
-    accepted_remark: 'accepted_remark',
-    approve_to: 'approve_to',
-    approved: 'approved',
-    approved_date: 'approved_date',
-    approved_remark: 'approved_remark',
-    rejected: 'rejected',
-    rejected_date: 'rejected_date',
-    rejected_remark: 'rejected_remark',
-    canceled: 'canceled',
-    canceled_date: 'canceled_date',
-    canceled_remark: 'canceled_remark',
-    total_money_change: 'total_money_change',
-    status_id: 'status_id',
-    created_by: 'created_by',
-    created_at: 'created_at',
-    updated_by: 'updated_by',
-    updated_at: 'updated_at',
-    is_late: 'is_late'
-  };
-
-  export type Trx_declarationScalarFieldEnum = (typeof Trx_declarationScalarFieldEnum)[keyof typeof Trx_declarationScalarFieldEnum]
-
-
-  export const Trx_detail_declarationScalarFieldEnum: {
-    id: 'id',
-    declaration_code: 'declaration_code',
-    date_activity: 'date_activity',
-    location_activity: 'location_activity',
-    hotel_cost: 'hotel_cost',
-    taxi_cost: 'taxi_cost',
-    upd_cost: 'upd_cost',
-    consume_cost: 'consume_cost',
-    ticket_cost: 'ticket_cost',
-    other_cost: 'other_cost',
-    total_cost: 'total_cost',
-    explanation: 'explanation',
-    created_by: 'created_by',
-    created_at: 'created_at',
-    updated_by: 'updated_by',
-    updated_at: 'updated_at'
-  };
-
-  export type Trx_detail_declarationScalarFieldEnum = (typeof Trx_detail_declarationScalarFieldEnum)[keyof typeof Trx_detail_declarationScalarFieldEnum]
 
 
   export const Trx_declarationScalarFieldEnum: {
@@ -30574,7 +30590,7 @@ export namespace Prisma {
     depthead_nrp?: StringNullableFilter<"mst_dept"> | string | null
     depthead_name?: StringNullableFilter<"mst_dept"> | string | null
     depthead_email?: StringNullableFilter<"mst_dept"> | string | null
-    div_code?: StringNullableFilter<"mst_dept"> | string | null
+    div_code?: StringFilter<"mst_dept"> | string
     div_name?: StringNullableFilter<"mst_dept"> | string | null
     divhead_nrp?: StringNullableFilter<"mst_dept"> | string | null
     divhead_name?: StringNullableFilter<"mst_dept"> | string | null
@@ -30582,6 +30598,7 @@ export namespace Prisma {
     company_id?: IntNullableFilter<"mst_dept"> | number | null
     company_name?: StringNullableFilter<"mst_dept"> | string | null
     mst_user?: UserListRelationFilter
+    ms_division?: XOR<Mst_divisionRelationFilter, mst_divisionWhereInput>
   }
 
   export type mst_deptOrderByWithRelationInput = {
@@ -30590,7 +30607,7 @@ export namespace Prisma {
     depthead_nrp?: SortOrderInput | SortOrder
     depthead_name?: SortOrderInput | SortOrder
     depthead_email?: SortOrderInput | SortOrder
-    div_code?: SortOrderInput | SortOrder
+    div_code?: SortOrder
     div_name?: SortOrderInput | SortOrder
     divhead_nrp?: SortOrderInput | SortOrder
     divhead_name?: SortOrderInput | SortOrder
@@ -30598,6 +30615,7 @@ export namespace Prisma {
     company_id?: SortOrderInput | SortOrder
     company_name?: SortOrderInput | SortOrder
     mst_user?: UserOrderByRelationAggregateInput
+    ms_division?: mst_divisionOrderByWithRelationInput
   }
 
   export type mst_deptWhereUniqueInput = Prisma.AtLeast<{
@@ -30609,7 +30627,7 @@ export namespace Prisma {
     depthead_nrp?: StringNullableFilter<"mst_dept"> | string | null
     depthead_name?: StringNullableFilter<"mst_dept"> | string | null
     depthead_email?: StringNullableFilter<"mst_dept"> | string | null
-    div_code?: StringNullableFilter<"mst_dept"> | string | null
+    div_code?: StringFilter<"mst_dept"> | string
     div_name?: StringNullableFilter<"mst_dept"> | string | null
     divhead_nrp?: StringNullableFilter<"mst_dept"> | string | null
     divhead_name?: StringNullableFilter<"mst_dept"> | string | null
@@ -30617,6 +30635,7 @@ export namespace Prisma {
     company_id?: IntNullableFilter<"mst_dept"> | number | null
     company_name?: StringNullableFilter<"mst_dept"> | string | null
     mst_user?: UserListRelationFilter
+    ms_division?: XOR<Mst_divisionRelationFilter, mst_divisionWhereInput>
   }, "id">
 
   export type mst_deptOrderByWithAggregationInput = {
@@ -30625,7 +30644,7 @@ export namespace Prisma {
     depthead_nrp?: SortOrderInput | SortOrder
     depthead_name?: SortOrderInput | SortOrder
     depthead_email?: SortOrderInput | SortOrder
-    div_code?: SortOrderInput | SortOrder
+    div_code?: SortOrder
     div_name?: SortOrderInput | SortOrder
     divhead_nrp?: SortOrderInput | SortOrder
     divhead_name?: SortOrderInput | SortOrder
@@ -30648,7 +30667,7 @@ export namespace Prisma {
     depthead_nrp?: StringNullableWithAggregatesFilter<"mst_dept"> | string | null
     depthead_name?: StringNullableWithAggregatesFilter<"mst_dept"> | string | null
     depthead_email?: StringNullableWithAggregatesFilter<"mst_dept"> | string | null
-    div_code?: StringNullableWithAggregatesFilter<"mst_dept"> | string | null
+    div_code?: StringWithAggregatesFilter<"mst_dept"> | string
     div_name?: StringNullableWithAggregatesFilter<"mst_dept"> | string | null
     divhead_nrp?: StringNullableWithAggregatesFilter<"mst_dept"> | string | null
     divhead_name?: StringNullableWithAggregatesFilter<"mst_dept"> | string | null
@@ -30675,6 +30694,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"mst_division"> | Date | string
     updated_at?: DateTimeNullableFilter<"mst_division"> | Date | string | null
     updated_by?: IntNullableFilter<"mst_division"> | number | null
+    ms_dept?: Mst_deptListRelationFilter
   }
 
   export type mst_divisionOrderByWithRelationInput = {
@@ -30692,14 +30712,15 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_at?: SortOrderInput | SortOrder
     updated_by?: SortOrderInput | SortOrder
+    ms_dept?: mst_deptOrderByRelationAggregateInput
   }
 
   export type mst_divisionWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    divid?: string
     AND?: mst_divisionWhereInput | mst_divisionWhereInput[]
     OR?: mst_divisionWhereInput[]
     NOT?: mst_divisionWhereInput | mst_divisionWhereInput[]
-    divid?: StringFilter<"mst_division"> | string
     div_inv?: StringNullableFilter<"mst_division"> | string | null
     nama?: StringFilter<"mst_division"> | string
     divhead_nrp?: StringNullableFilter<"mst_division"> | string | null
@@ -30712,7 +30733,8 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"mst_division"> | Date | string
     updated_at?: DateTimeNullableFilter<"mst_division"> | Date | string | null
     updated_by?: IntNullableFilter<"mst_division"> | number | null
-  }, "id">
+    ms_dept?: Mst_deptListRelationFilter
+  }, "id" | "divid">
 
   export type mst_divisionOrderByWithAggregationInput = {
     id?: SortOrder
@@ -30818,7 +30840,7 @@ export namespace Prisma {
     id?: BigIntFilter<"trx_ovt"> | bigint | number
     user?: StringFilter<"trx_ovt"> | string
     dept?: BigIntFilter<"trx_ovt"> | bigint | number
-    shift?: IntFilter<"trx_ovt"> | number
+    shift?: StringFilter<"trx_ovt"> | string
     status_id?: BigIntFilter<"trx_ovt"> | bigint | number
     check_in_ovt?: DateTimeFilter<"trx_ovt"> | Date | string
     check_out_ovt?: DateTimeFilter<"trx_ovt"> | Date | string
@@ -30883,7 +30905,7 @@ export namespace Prisma {
     NOT?: trx_ovtWhereInput | trx_ovtWhereInput[]
     user?: StringFilter<"trx_ovt"> | string
     dept?: BigIntFilter<"trx_ovt"> | bigint | number
-    shift?: IntFilter<"trx_ovt"> | number
+    shift?: StringFilter<"trx_ovt"> | string
     status_id?: BigIntFilter<"trx_ovt"> | bigint | number
     check_in_ovt?: DateTimeFilter<"trx_ovt"> | Date | string
     check_out_ovt?: DateTimeFilter<"trx_ovt"> | Date | string
@@ -30951,7 +30973,7 @@ export namespace Prisma {
     id?: BigIntWithAggregatesFilter<"trx_ovt"> | bigint | number
     user?: StringWithAggregatesFilter<"trx_ovt"> | string
     dept?: BigIntWithAggregatesFilter<"trx_ovt"> | bigint | number
-    shift?: IntWithAggregatesFilter<"trx_ovt"> | number
+    shift?: StringWithAggregatesFilter<"trx_ovt"> | string
     status_id?: BigIntWithAggregatesFilter<"trx_ovt"> | bigint | number
     check_in_ovt?: DateTimeWithAggregatesFilter<"trx_ovt"> | Date | string
     check_out_ovt?: DateTimeWithAggregatesFilter<"trx_ovt"> | Date | string
@@ -32278,10 +32300,10 @@ export namespace Prisma {
 
   export type trx_leave_quotaWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    id_user?: string
     AND?: trx_leave_quotaWhereInput | trx_leave_quotaWhereInput[]
     OR?: trx_leave_quotaWhereInput[]
     NOT?: trx_leave_quotaWhereInput | trx_leave_quotaWhereInput[]
-    id_user?: StringFilter<"trx_leave_quota"> | string
     leaves_type_id?: IntFilter<"trx_leave_quota"> | number
     valid_from?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
     valid_to?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
@@ -32294,7 +32316,7 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
     MsUser?: XOR<UserRelationFilter, UserWhereInput>
     MsLeaveType?: XOR<Ms_leave_typesRelationFilter, ms_leave_typesWhereInput>
-  }, "id">
+  }, "id" | "id_user">
 
   export type trx_leave_quotaOrderByWithAggregationInput = {
     id?: SortOrder
@@ -32362,10 +32384,11 @@ export namespace Prisma {
     checked_at?: DateTimeNullableFilter<"attendance"> | Date | string | null
     reject_reason?: StringNullableFilter<"attendance"> | string | null
     is_ovt?: IntNullableFilter<"attendance"> | number | null
-    is_happy?: IntFilter<"attendance"> | number
+    is_happy?: IntNullableFilter<"attendance"> | number | null
     flag?: IntNullableFilter<"attendance"> | number | null
-    is_sent_sap?: IntFilter<"attendance"> | number
+    is_sent_sap?: IntNullableFilter<"attendance"> | number | null
     created_by?: BigIntNullableFilter<"attendance"> | bigint | number | null
+    created_at?: DateTimeFilter<"attendance"> | Date | string
     updated_by?: BigIntNullableFilter<"attendance"> | bigint | number | null
     updated_at?: DateTimeFilter<"attendance"> | Date | string
     is_late?: IntNullableFilter<"attendance"> | number | null
@@ -32396,10 +32419,11 @@ export namespace Prisma {
     checked_at?: SortOrderInput | SortOrder
     reject_reason?: SortOrderInput | SortOrder
     is_ovt?: SortOrderInput | SortOrder
-    is_happy?: SortOrder
+    is_happy?: SortOrderInput | SortOrder
     flag?: SortOrderInput | SortOrder
-    is_sent_sap?: SortOrder
+    is_sent_sap?: SortOrderInput | SortOrder
     created_by?: SortOrderInput | SortOrder
+    created_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrder
     is_late?: SortOrderInput | SortOrder
@@ -32433,10 +32457,11 @@ export namespace Prisma {
     checked_at?: DateTimeNullableFilter<"attendance"> | Date | string | null
     reject_reason?: StringNullableFilter<"attendance"> | string | null
     is_ovt?: IntNullableFilter<"attendance"> | number | null
-    is_happy?: IntFilter<"attendance"> | number
+    is_happy?: IntNullableFilter<"attendance"> | number | null
     flag?: IntNullableFilter<"attendance"> | number | null
-    is_sent_sap?: IntFilter<"attendance"> | number
+    is_sent_sap?: IntNullableFilter<"attendance"> | number | null
     created_by?: BigIntNullableFilter<"attendance"> | bigint | number | null
+    created_at?: DateTimeFilter<"attendance"> | Date | string
     updated_by?: BigIntNullableFilter<"attendance"> | bigint | number | null
     updated_at?: DateTimeFilter<"attendance"> | Date | string
     is_late?: IntNullableFilter<"attendance"> | number | null
@@ -32467,10 +32492,11 @@ export namespace Prisma {
     checked_at?: SortOrderInput | SortOrder
     reject_reason?: SortOrderInput | SortOrder
     is_ovt?: SortOrderInput | SortOrder
-    is_happy?: SortOrder
+    is_happy?: SortOrderInput | SortOrder
     flag?: SortOrderInput | SortOrder
-    is_sent_sap?: SortOrder
+    is_sent_sap?: SortOrderInput | SortOrder
     created_by?: SortOrderInput | SortOrder
+    created_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrder
     is_late?: SortOrderInput | SortOrder
@@ -32509,10 +32535,11 @@ export namespace Prisma {
     checked_at?: DateTimeNullableWithAggregatesFilter<"attendance"> | Date | string | null
     reject_reason?: StringNullableWithAggregatesFilter<"attendance"> | string | null
     is_ovt?: IntNullableWithAggregatesFilter<"attendance"> | number | null
-    is_happy?: IntWithAggregatesFilter<"attendance"> | number
+    is_happy?: IntNullableWithAggregatesFilter<"attendance"> | number | null
     flag?: IntNullableWithAggregatesFilter<"attendance"> | number | null
-    is_sent_sap?: IntWithAggregatesFilter<"attendance"> | number
+    is_sent_sap?: IntNullableWithAggregatesFilter<"attendance"> | number | null
     created_by?: BigIntNullableWithAggregatesFilter<"attendance"> | bigint | number | null
+    created_at?: DateTimeWithAggregatesFilter<"attendance"> | Date | string
     updated_by?: BigIntNullableWithAggregatesFilter<"attendance"> | bigint | number | null
     updated_at?: DateTimeWithAggregatesFilter<"attendance"> | Date | string
     is_late?: IntNullableWithAggregatesFilter<"attendance"> | number | null
@@ -33780,7 +33807,6 @@ export namespace Prisma {
     depthead_nrp?: string | null
     depthead_name?: string | null
     depthead_email?: string | null
-    div_code?: string | null
     div_name?: string | null
     divhead_nrp?: string | null
     divhead_name?: string | null
@@ -33788,6 +33814,7 @@ export namespace Prisma {
     company_id?: number | null
     company_name?: string | null
     mst_user?: UserCreateNestedManyWithoutDept_dataInput
+    ms_division: mst_divisionCreateNestedOneWithoutMs_deptInput
   }
 
   export type mst_deptUncheckedCreateInput = {
@@ -33796,7 +33823,7 @@ export namespace Prisma {
     depthead_nrp?: string | null
     depthead_name?: string | null
     depthead_email?: string | null
-    div_code?: string | null
+    div_code: string
     div_name?: string | null
     divhead_nrp?: string | null
     divhead_name?: string | null
@@ -33812,7 +33839,6 @@ export namespace Prisma {
     depthead_nrp?: NullableStringFieldUpdateOperationsInput | string | null
     depthead_name?: NullableStringFieldUpdateOperationsInput | string | null
     depthead_email?: NullableStringFieldUpdateOperationsInput | string | null
-    div_code?: NullableStringFieldUpdateOperationsInput | string | null
     div_name?: NullableStringFieldUpdateOperationsInput | string | null
     divhead_nrp?: NullableStringFieldUpdateOperationsInput | string | null
     divhead_name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -33820,6 +33846,7 @@ export namespace Prisma {
     company_id?: NullableIntFieldUpdateOperationsInput | number | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     mst_user?: UserUpdateManyWithoutDept_dataNestedInput
+    ms_division?: mst_divisionUpdateOneRequiredWithoutMs_deptNestedInput
   }
 
   export type mst_deptUncheckedUpdateInput = {
@@ -33828,7 +33855,7 @@ export namespace Prisma {
     depthead_nrp?: NullableStringFieldUpdateOperationsInput | string | null
     depthead_name?: NullableStringFieldUpdateOperationsInput | string | null
     depthead_email?: NullableStringFieldUpdateOperationsInput | string | null
-    div_code?: NullableStringFieldUpdateOperationsInput | string | null
+    div_code?: StringFieldUpdateOperationsInput | string
     div_name?: NullableStringFieldUpdateOperationsInput | string | null
     divhead_nrp?: NullableStringFieldUpdateOperationsInput | string | null
     divhead_name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -33844,7 +33871,7 @@ export namespace Prisma {
     depthead_nrp?: string | null
     depthead_name?: string | null
     depthead_email?: string | null
-    div_code?: string | null
+    div_code: string
     div_name?: string | null
     divhead_nrp?: string | null
     divhead_name?: string | null
@@ -33859,7 +33886,6 @@ export namespace Prisma {
     depthead_nrp?: NullableStringFieldUpdateOperationsInput | string | null
     depthead_name?: NullableStringFieldUpdateOperationsInput | string | null
     depthead_email?: NullableStringFieldUpdateOperationsInput | string | null
-    div_code?: NullableStringFieldUpdateOperationsInput | string | null
     div_name?: NullableStringFieldUpdateOperationsInput | string | null
     divhead_nrp?: NullableStringFieldUpdateOperationsInput | string | null
     divhead_name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -33874,7 +33900,7 @@ export namespace Prisma {
     depthead_nrp?: NullableStringFieldUpdateOperationsInput | string | null
     depthead_name?: NullableStringFieldUpdateOperationsInput | string | null
     depthead_email?: NullableStringFieldUpdateOperationsInput | string | null
-    div_code?: NullableStringFieldUpdateOperationsInput | string | null
+    div_code?: StringFieldUpdateOperationsInput | string
     div_name?: NullableStringFieldUpdateOperationsInput | string | null
     divhead_nrp?: NullableStringFieldUpdateOperationsInput | string | null
     divhead_name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -33897,6 +33923,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string | null
     updated_by?: number | null
+    ms_dept?: mst_deptCreateNestedManyWithoutMs_divisionInput
   }
 
   export type mst_divisionUncheckedCreateInput = {
@@ -33914,6 +33941,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string | null
     updated_by?: number | null
+    ms_dept?: mst_deptUncheckedCreateNestedManyWithoutMs_divisionInput
   }
 
   export type mst_divisionUpdateInput = {
@@ -33930,6 +33958,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+    ms_dept?: mst_deptUpdateManyWithoutMs_divisionNestedInput
   }
 
   export type mst_divisionUncheckedUpdateInput = {
@@ -33947,6 +33976,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+    ms_dept?: mst_deptUncheckedUpdateManyWithoutMs_divisionNestedInput
   }
 
   export type mst_divisionCreateManyInput = {
@@ -34083,7 +34113,7 @@ export namespace Prisma {
     id?: bigint | number
     user: string
     dept: bigint | number
-    shift: number
+    shift: string
     status_id: bigint | number
     check_in_ovt: Date | string
     check_out_ovt: Date | string
@@ -34141,7 +34171,7 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     user?: StringFieldUpdateOperationsInput | string
     dept?: BigIntFieldUpdateOperationsInput | bigint | number
-    shift?: IntFieldUpdateOperationsInput | number
+    shift?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     check_in_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
     check_out_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34169,7 +34199,7 @@ export namespace Prisma {
   export type trx_ovtCreateManyInput = {
     user: string
     dept: bigint | number
-    shift: number
+    shift: string
     status_id: bigint | number
     check_in_ovt: Date | string
     check_out_ovt: Date | string
@@ -34225,7 +34255,7 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     user?: StringFieldUpdateOperationsInput | string
     dept?: BigIntFieldUpdateOperationsInput | bigint | number
-    shift?: IntFieldUpdateOperationsInput | number
+    shift?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     check_in_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
     check_out_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35902,10 +35932,11 @@ export namespace Prisma {
     checked_at?: Date | string | null
     reject_reason?: string | null
     is_ovt?: number | null
-    is_happy?: number
+    is_happy?: number | null
     flag?: number | null
-    is_sent_sap?: number
+    is_sent_sap?: number | null
     created_by?: bigint | number | null
+    created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
     is_late?: number | null
@@ -35936,10 +35967,11 @@ export namespace Prisma {
     checked_at?: Date | string | null
     reject_reason?: string | null
     is_ovt?: number | null
-    is_happy?: number
+    is_happy?: number | null
     flag?: number | null
-    is_sent_sap?: number
+    is_sent_sap?: number | null
     created_by?: bigint | number | null
+    created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
     is_late?: number | null
@@ -35970,10 +36002,11 @@ export namespace Prisma {
     checked_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reject_reason?: NullableStringFieldUpdateOperationsInput | string | null
     is_ovt?: NullableIntFieldUpdateOperationsInput | number | null
-    is_happy?: IntFieldUpdateOperationsInput | number
+    is_happy?: NullableIntFieldUpdateOperationsInput | number | null
     flag?: NullableIntFieldUpdateOperationsInput | number | null
-    is_sent_sap?: IntFieldUpdateOperationsInput | number
+    is_sent_sap?: NullableIntFieldUpdateOperationsInput | number | null
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     is_late?: NullableIntFieldUpdateOperationsInput | number | null
@@ -36004,10 +36037,11 @@ export namespace Prisma {
     checked_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reject_reason?: NullableStringFieldUpdateOperationsInput | string | null
     is_ovt?: NullableIntFieldUpdateOperationsInput | number | null
-    is_happy?: IntFieldUpdateOperationsInput | number
+    is_happy?: NullableIntFieldUpdateOperationsInput | number | null
     flag?: NullableIntFieldUpdateOperationsInput | number | null
-    is_sent_sap?: IntFieldUpdateOperationsInput | number
+    is_sent_sap?: NullableIntFieldUpdateOperationsInput | number | null
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     is_late?: NullableIntFieldUpdateOperationsInput | number | null
@@ -36037,10 +36071,11 @@ export namespace Prisma {
     checked_at?: Date | string | null
     reject_reason?: string | null
     is_ovt?: number | null
-    is_happy?: number
+    is_happy?: number | null
     flag?: number | null
-    is_sent_sap?: number
+    is_sent_sap?: number | null
     created_by?: bigint | number | null
+    created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
     is_late?: number | null
@@ -36071,10 +36106,11 @@ export namespace Prisma {
     checked_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reject_reason?: NullableStringFieldUpdateOperationsInput | string | null
     is_ovt?: NullableIntFieldUpdateOperationsInput | number | null
-    is_happy?: IntFieldUpdateOperationsInput | number
+    is_happy?: NullableIntFieldUpdateOperationsInput | number | null
     flag?: NullableIntFieldUpdateOperationsInput | number | null
-    is_sent_sap?: IntFieldUpdateOperationsInput | number
+    is_sent_sap?: NullableIntFieldUpdateOperationsInput | number | null
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     is_late?: NullableIntFieldUpdateOperationsInput | number | null
@@ -36105,346 +36141,9 @@ export namespace Prisma {
     checked_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reject_reason?: NullableStringFieldUpdateOperationsInput | string | null
     is_ovt?: NullableIntFieldUpdateOperationsInput | number | null
-    is_happy?: IntFieldUpdateOperationsInput | number
+    is_happy?: NullableIntFieldUpdateOperationsInput | number | null
     flag?: NullableIntFieldUpdateOperationsInput | number | null
-    is_sent_sap?: IntFieldUpdateOperationsInput | number
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_late?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type trx_declarationCreateInput = {
-    code: string
-    user: string
-    start_date_actual: Date | string
-    end_date_actual: Date | string
-    evidence_file: string
-    accept_to: string
-    accepted?: string | null
-    accepted_date?: Date | string | null
-    accepted_remark?: string | null
-    approve_to: string
-    approved?: string | null
-    approved_date?: Date | string | null
-    approved_remark?: string | null
-    rejected?: string | null
-    rejected_date?: Date | string | null
-    rejected_remark?: string | null
-    canceled?: string | null
-    canceled_date?: Date | string | null
-    canceled_remark?: string | null
-    total_money_change: Decimal | DecimalJsLike | number | string
-    status_id: bigint | number
-    created_by?: bigint | number | null
-    created_at: Date | string
-    updated_by?: bigint | number | null
-    updated_at: Date | string
-    officialTravel_data: trx_official_travelCreateNestedOneWithoutTrx_declarationInput
-    trx_detail_declaration?: trx_detail_declarationCreateNestedManyWithoutDeclaration_dataInput
-  }
-
-  export type trx_declarationUncheckedCreateInput = {
-    id?: number
-    code: string
-    user: string
-    code_trx: string
-    start_date_actual: Date | string
-    end_date_actual: Date | string
-    evidence_file: string
-    accept_to: string
-    accepted?: string | null
-    accepted_date?: Date | string | null
-    accepted_remark?: string | null
-    approve_to: string
-    approved?: string | null
-    approved_date?: Date | string | null
-    approved_remark?: string | null
-    rejected?: string | null
-    rejected_date?: Date | string | null
-    rejected_remark?: string | null
-    canceled?: string | null
-    canceled_date?: Date | string | null
-    canceled_remark?: string | null
-    total_money_change: Decimal | DecimalJsLike | number | string
-    status_id: bigint | number
-    created_by?: bigint | number | null
-    created_at: Date | string
-    updated_by?: bigint | number | null
-    updated_at: Date | string
-    trx_detail_declaration?: trx_detail_declarationUncheckedCreateNestedManyWithoutDeclaration_dataInput
-  }
-
-  export type trx_declarationUpdateInput = {
-    code?: StringFieldUpdateOperationsInput | string
-    user?: StringFieldUpdateOperationsInput | string
-    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
-    evidence_file?: StringFieldUpdateOperationsInput | string
-    accept_to?: StringFieldUpdateOperationsInput | string
-    accepted?: NullableStringFieldUpdateOperationsInput | string | null
-    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    approve_to?: StringFieldUpdateOperationsInput | string
-    approved?: NullableStringFieldUpdateOperationsInput | string | null
-    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    rejected?: NullableStringFieldUpdateOperationsInput | string | null
-    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    canceled?: NullableStringFieldUpdateOperationsInput | string | null
-    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    officialTravel_data?: trx_official_travelUpdateOneRequiredWithoutTrx_declarationNestedInput
-    trx_detail_declaration?: trx_detail_declarationUpdateManyWithoutDeclaration_dataNestedInput
-  }
-
-  export type trx_declarationUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    code?: StringFieldUpdateOperationsInput | string
-    user?: StringFieldUpdateOperationsInput | string
-    code_trx?: StringFieldUpdateOperationsInput | string
-    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
-    evidence_file?: StringFieldUpdateOperationsInput | string
-    accept_to?: StringFieldUpdateOperationsInput | string
-    accepted?: NullableStringFieldUpdateOperationsInput | string | null
-    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    approve_to?: StringFieldUpdateOperationsInput | string
-    approved?: NullableStringFieldUpdateOperationsInput | string | null
-    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    rejected?: NullableStringFieldUpdateOperationsInput | string | null
-    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    canceled?: NullableStringFieldUpdateOperationsInput | string | null
-    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    trx_detail_declaration?: trx_detail_declarationUncheckedUpdateManyWithoutDeclaration_dataNestedInput
-  }
-
-  export type trx_declarationCreateManyInput = {
-    code: string
-    user: string
-    code_trx: string
-    start_date_actual: Date | string
-    end_date_actual: Date | string
-    evidence_file: string
-    accept_to: string
-    accepted?: string | null
-    accepted_date?: Date | string | null
-    accepted_remark?: string | null
-    approve_to: string
-    approved?: string | null
-    approved_date?: Date | string | null
-    approved_remark?: string | null
-    rejected?: string | null
-    rejected_date?: Date | string | null
-    rejected_remark?: string | null
-    canceled?: string | null
-    canceled_date?: Date | string | null
-    canceled_remark?: string | null
-    total_money_change: Decimal | DecimalJsLike | number | string
-    status_id: bigint | number
-    created_by?: bigint | number | null
-    created_at: Date | string
-    updated_by?: bigint | number | null
-    updated_at: Date | string
-  }
-
-  export type trx_declarationUpdateManyMutationInput = {
-    code?: StringFieldUpdateOperationsInput | string
-    user?: StringFieldUpdateOperationsInput | string
-    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
-    evidence_file?: StringFieldUpdateOperationsInput | string
-    accept_to?: StringFieldUpdateOperationsInput | string
-    accepted?: NullableStringFieldUpdateOperationsInput | string | null
-    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    approve_to?: StringFieldUpdateOperationsInput | string
-    approved?: NullableStringFieldUpdateOperationsInput | string | null
-    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    rejected?: NullableStringFieldUpdateOperationsInput | string | null
-    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    canceled?: NullableStringFieldUpdateOperationsInput | string | null
-    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type trx_declarationUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    code?: StringFieldUpdateOperationsInput | string
-    user?: StringFieldUpdateOperationsInput | string
-    code_trx?: StringFieldUpdateOperationsInput | string
-    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
-    evidence_file?: StringFieldUpdateOperationsInput | string
-    accept_to?: StringFieldUpdateOperationsInput | string
-    accepted?: NullableStringFieldUpdateOperationsInput | string | null
-    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    approve_to?: StringFieldUpdateOperationsInput | string
-    approved?: NullableStringFieldUpdateOperationsInput | string | null
-    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    rejected?: NullableStringFieldUpdateOperationsInput | string | null
-    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    canceled?: NullableStringFieldUpdateOperationsInput | string | null
-    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type trx_detail_declarationCreateInput = {
-    date_activity: Date | string
-    location_activity: string
-    hotel_cost?: Decimal | DecimalJsLike | number | string | null
-    taxi_cost?: Decimal | DecimalJsLike | number | string | null
-    upd_cost?: Decimal | DecimalJsLike | number | string | null
-    consume_cost?: Decimal | DecimalJsLike | number | string | null
-    ticket_cost?: Decimal | DecimalJsLike | number | string | null
-    other_cost?: Decimal | DecimalJsLike | number | string | null
-    total_cost: Decimal | DecimalJsLike | number | string
-    explanation: string
-    created_by?: bigint | number | null
-    created_at: Date | string
-    updated_by?: bigint | number | null
-    updated_at: Date | string
-    declaration_data: trx_declarationCreateNestedOneWithoutTrx_detail_declarationInput
-  }
-
-  export type trx_detail_declarationUncheckedCreateInput = {
-    id?: number
-    declaration_code: string
-    date_activity: Date | string
-    location_activity: string
-    hotel_cost?: Decimal | DecimalJsLike | number | string | null
-    taxi_cost?: Decimal | DecimalJsLike | number | string | null
-    upd_cost?: Decimal | DecimalJsLike | number | string | null
-    consume_cost?: Decimal | DecimalJsLike | number | string | null
-    ticket_cost?: Decimal | DecimalJsLike | number | string | null
-    other_cost?: Decimal | DecimalJsLike | number | string | null
-    total_cost: Decimal | DecimalJsLike | number | string
-    explanation: string
-    created_by?: bigint | number | null
-    created_at: Date | string
-    updated_by?: bigint | number | null
-    updated_at: Date | string
-  }
-
-  export type trx_detail_declarationUpdateInput = {
-    date_activity?: DateTimeFieldUpdateOperationsInput | Date | string
-    location_activity?: StringFieldUpdateOperationsInput | string
-    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    consume_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    ticket_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    total_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    explanation?: StringFieldUpdateOperationsInput | string
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    declaration_data?: trx_declarationUpdateOneRequiredWithoutTrx_detail_declarationNestedInput
-  }
-
-  export type trx_detail_declarationUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    declaration_code?: StringFieldUpdateOperationsInput | string
-    date_activity?: DateTimeFieldUpdateOperationsInput | Date | string
-    location_activity?: StringFieldUpdateOperationsInput | string
-    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    consume_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    ticket_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    total_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    explanation?: StringFieldUpdateOperationsInput | string
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type trx_detail_declarationCreateManyInput = {
-    declaration_code: string
-    date_activity: Date | string
-    location_activity: string
-    hotel_cost?: Decimal | DecimalJsLike | number | string | null
-    taxi_cost?: Decimal | DecimalJsLike | number | string | null
-    upd_cost?: Decimal | DecimalJsLike | number | string | null
-    consume_cost?: Decimal | DecimalJsLike | number | string | null
-    ticket_cost?: Decimal | DecimalJsLike | number | string | null
-    other_cost?: Decimal | DecimalJsLike | number | string | null
-    total_cost: Decimal | DecimalJsLike | number | string
-    explanation: string
-    created_by?: bigint | number | null
-    created_at: Date | string
-    updated_by?: bigint | number | null
-    updated_at: Date | string
-  }
-
-  export type trx_detail_declarationUpdateManyMutationInput = {
-    date_activity?: DateTimeFieldUpdateOperationsInput | Date | string
-    location_activity?: StringFieldUpdateOperationsInput | string
-    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    consume_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    ticket_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    total_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    explanation?: StringFieldUpdateOperationsInput | string
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type trx_detail_declarationUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    declaration_code?: StringFieldUpdateOperationsInput | string
-    date_activity?: DateTimeFieldUpdateOperationsInput | Date | string
-    location_activity?: StringFieldUpdateOperationsInput | string
-    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    consume_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    ticket_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    total_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    explanation?: StringFieldUpdateOperationsInput | string
+    is_sent_sap?: NullableIntFieldUpdateOperationsInput | number | null
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -37642,6 +37341,11 @@ export namespace Prisma {
     none?: UserWhereInput
   }
 
+  export type Mst_divisionRelationFilter = {
+    is?: mst_divisionWhereInput
+    isNot?: mst_divisionWhereInput
+  }
+
   export type UserOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -37699,6 +37403,16 @@ export namespace Prisma {
   export type mst_deptSumOrderByAggregateInput = {
     id?: SortOrder
     company_id?: SortOrder
+  }
+
+  export type Mst_deptListRelationFilter = {
+    every?: mst_deptWhereInput
+    some?: mst_deptWhereInput
+    none?: mst_deptWhereInput
+  }
+
+  export type mst_deptOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type mst_divisionCountOrderByAggregateInput = {
@@ -37854,7 +37568,6 @@ export namespace Prisma {
   export type trx_ovtAvgOrderByAggregateInput = {
     id?: SortOrder
     dept?: SortOrder
-    shift?: SortOrder
     status_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -37921,7 +37634,6 @@ export namespace Prisma {
   export type trx_ovtSumOrderByAggregateInput = {
     id?: SortOrder
     dept?: SortOrder
-    shift?: SortOrder
     status_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -38879,8 +38591,8 @@ export namespace Prisma {
     flag?: SortOrder
     is_sent_sap?: SortOrder
     created_by?: SortOrder
-    updated_by?: SortOrder
     created_at?: SortOrder
+    updated_by?: SortOrder
     updated_at?: SortOrder
     is_late?: SortOrder
   }
@@ -38925,8 +38637,8 @@ export namespace Prisma {
     flag?: SortOrder
     is_sent_sap?: SortOrder
     created_by?: SortOrder
-    updated_by?: SortOrder
     created_at?: SortOrder
+    updated_by?: SortOrder
     updated_at?: SortOrder
     is_late?: SortOrder
   }
@@ -38960,8 +38672,8 @@ export namespace Prisma {
     flag?: SortOrder
     is_sent_sap?: SortOrder
     created_by?: SortOrder
-    updated_by?: SortOrder
     created_at?: SortOrder
+    updated_by?: SortOrder
     updated_at?: SortOrder
     is_late?: SortOrder
   }
@@ -39886,6 +39598,12 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
+  export type mst_divisionCreateNestedOneWithoutMs_deptInput = {
+    create?: XOR<mst_divisionCreateWithoutMs_deptInput, mst_divisionUncheckedCreateWithoutMs_deptInput>
+    connectOrCreate?: mst_divisionCreateOrConnectWithoutMs_deptInput
+    connect?: mst_divisionWhereUniqueInput
+  }
+
   export type UserUncheckedCreateNestedManyWithoutDept_dataInput = {
     create?: XOR<UserCreateWithoutDept_dataInput, UserUncheckedCreateWithoutDept_dataInput> | UserCreateWithoutDept_dataInput[] | UserUncheckedCreateWithoutDept_dataInput[]
     connectOrCreate?: UserCreateOrConnectWithoutDept_dataInput | UserCreateOrConnectWithoutDept_dataInput[]
@@ -39907,6 +39625,14 @@ export namespace Prisma {
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
+  export type mst_divisionUpdateOneRequiredWithoutMs_deptNestedInput = {
+    create?: XOR<mst_divisionCreateWithoutMs_deptInput, mst_divisionUncheckedCreateWithoutMs_deptInput>
+    connectOrCreate?: mst_divisionCreateOrConnectWithoutMs_deptInput
+    upsert?: mst_divisionUpsertWithoutMs_deptInput
+    connect?: mst_divisionWhereUniqueInput
+    update?: XOR<XOR<mst_divisionUpdateToOneWithWhereWithoutMs_deptInput, mst_divisionUpdateWithoutMs_deptInput>, mst_divisionUncheckedUpdateWithoutMs_deptInput>
+  }
+
   export type UserUncheckedUpdateManyWithoutDept_dataNestedInput = {
     create?: XOR<UserCreateWithoutDept_dataInput, UserUncheckedCreateWithoutDept_dataInput> | UserCreateWithoutDept_dataInput[] | UserUncheckedCreateWithoutDept_dataInput[]
     connectOrCreate?: UserCreateOrConnectWithoutDept_dataInput | UserCreateOrConnectWithoutDept_dataInput[]
@@ -39919,6 +39645,48 @@ export namespace Prisma {
     update?: UserUpdateWithWhereUniqueWithoutDept_dataInput | UserUpdateWithWhereUniqueWithoutDept_dataInput[]
     updateMany?: UserUpdateManyWithWhereWithoutDept_dataInput | UserUpdateManyWithWhereWithoutDept_dataInput[]
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type mst_deptCreateNestedManyWithoutMs_divisionInput = {
+    create?: XOR<mst_deptCreateWithoutMs_divisionInput, mst_deptUncheckedCreateWithoutMs_divisionInput> | mst_deptCreateWithoutMs_divisionInput[] | mst_deptUncheckedCreateWithoutMs_divisionInput[]
+    connectOrCreate?: mst_deptCreateOrConnectWithoutMs_divisionInput | mst_deptCreateOrConnectWithoutMs_divisionInput[]
+    createMany?: mst_deptCreateManyMs_divisionInputEnvelope
+    connect?: mst_deptWhereUniqueInput | mst_deptWhereUniqueInput[]
+  }
+
+  export type mst_deptUncheckedCreateNestedManyWithoutMs_divisionInput = {
+    create?: XOR<mst_deptCreateWithoutMs_divisionInput, mst_deptUncheckedCreateWithoutMs_divisionInput> | mst_deptCreateWithoutMs_divisionInput[] | mst_deptUncheckedCreateWithoutMs_divisionInput[]
+    connectOrCreate?: mst_deptCreateOrConnectWithoutMs_divisionInput | mst_deptCreateOrConnectWithoutMs_divisionInput[]
+    createMany?: mst_deptCreateManyMs_divisionInputEnvelope
+    connect?: mst_deptWhereUniqueInput | mst_deptWhereUniqueInput[]
+  }
+
+  export type mst_deptUpdateManyWithoutMs_divisionNestedInput = {
+    create?: XOR<mst_deptCreateWithoutMs_divisionInput, mst_deptUncheckedCreateWithoutMs_divisionInput> | mst_deptCreateWithoutMs_divisionInput[] | mst_deptUncheckedCreateWithoutMs_divisionInput[]
+    connectOrCreate?: mst_deptCreateOrConnectWithoutMs_divisionInput | mst_deptCreateOrConnectWithoutMs_divisionInput[]
+    upsert?: mst_deptUpsertWithWhereUniqueWithoutMs_divisionInput | mst_deptUpsertWithWhereUniqueWithoutMs_divisionInput[]
+    createMany?: mst_deptCreateManyMs_divisionInputEnvelope
+    set?: mst_deptWhereUniqueInput | mst_deptWhereUniqueInput[]
+    disconnect?: mst_deptWhereUniqueInput | mst_deptWhereUniqueInput[]
+    delete?: mst_deptWhereUniqueInput | mst_deptWhereUniqueInput[]
+    connect?: mst_deptWhereUniqueInput | mst_deptWhereUniqueInput[]
+    update?: mst_deptUpdateWithWhereUniqueWithoutMs_divisionInput | mst_deptUpdateWithWhereUniqueWithoutMs_divisionInput[]
+    updateMany?: mst_deptUpdateManyWithWhereWithoutMs_divisionInput | mst_deptUpdateManyWithWhereWithoutMs_divisionInput[]
+    deleteMany?: mst_deptScalarWhereInput | mst_deptScalarWhereInput[]
+  }
+
+  export type mst_deptUncheckedUpdateManyWithoutMs_divisionNestedInput = {
+    create?: XOR<mst_deptCreateWithoutMs_divisionInput, mst_deptUncheckedCreateWithoutMs_divisionInput> | mst_deptCreateWithoutMs_divisionInput[] | mst_deptUncheckedCreateWithoutMs_divisionInput[]
+    connectOrCreate?: mst_deptCreateOrConnectWithoutMs_divisionInput | mst_deptCreateOrConnectWithoutMs_divisionInput[]
+    upsert?: mst_deptUpsertWithWhereUniqueWithoutMs_divisionInput | mst_deptUpsertWithWhereUniqueWithoutMs_divisionInput[]
+    createMany?: mst_deptCreateManyMs_divisionInputEnvelope
+    set?: mst_deptWhereUniqueInput | mst_deptWhereUniqueInput[]
+    disconnect?: mst_deptWhereUniqueInput | mst_deptWhereUniqueInput[]
+    delete?: mst_deptWhereUniqueInput | mst_deptWhereUniqueInput[]
+    connect?: mst_deptWhereUniqueInput | mst_deptWhereUniqueInput[]
+    update?: mst_deptUpdateWithWhereUniqueWithoutMs_divisionInput | mst_deptUpdateWithWhereUniqueWithoutMs_divisionInput[]
+    updateMany?: mst_deptUpdateManyWithWhereWithoutMs_divisionInput | mst_deptUpdateManyWithWhereWithoutMs_divisionInput[]
+    deleteMany?: mst_deptScalarWhereInput | mst_deptScalarWhereInput[]
   }
 
   export type NullableBytesFieldUpdateOperationsInput = {
@@ -40498,13 +40266,13 @@ export namespace Prisma {
     depthead_nrp?: string | null
     depthead_name?: string | null
     depthead_email?: string | null
-    div_code?: string | null
     div_name?: string | null
     divhead_nrp?: string | null
     divhead_name?: string | null
     divhead_email?: string | null
     company_id?: number | null
     company_name?: string | null
+    ms_division: mst_divisionCreateNestedOneWithoutMs_deptInput
   }
 
   export type mst_deptUncheckedCreateWithoutMst_userInput = {
@@ -40513,7 +40281,7 @@ export namespace Prisma {
     depthead_nrp?: string | null
     depthead_name?: string | null
     depthead_email?: string | null
-    div_code?: string | null
+    div_code: string
     div_name?: string | null
     divhead_nrp?: string | null
     divhead_name?: string | null
@@ -40629,7 +40397,7 @@ export namespace Prisma {
   export type trx_ovtUncheckedCreateWithoutUser_dataInput = {
     id?: bigint | number
     dept: bigint | number
-    shift: number
+    shift: string
     status_id: bigint | number
     check_in_ovt: Date | string
     check_out_ovt: Date | string
@@ -41025,13 +40793,13 @@ export namespace Prisma {
     depthead_nrp?: NullableStringFieldUpdateOperationsInput | string | null
     depthead_name?: NullableStringFieldUpdateOperationsInput | string | null
     depthead_email?: NullableStringFieldUpdateOperationsInput | string | null
-    div_code?: NullableStringFieldUpdateOperationsInput | string | null
     div_name?: NullableStringFieldUpdateOperationsInput | string | null
     divhead_nrp?: NullableStringFieldUpdateOperationsInput | string | null
     divhead_name?: NullableStringFieldUpdateOperationsInput | string | null
     divhead_email?: NullableStringFieldUpdateOperationsInput | string | null
     company_id?: NullableIntFieldUpdateOperationsInput | number | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    ms_division?: mst_divisionUpdateOneRequiredWithoutMs_deptNestedInput
   }
 
   export type mst_deptUncheckedUpdateWithoutMst_userInput = {
@@ -41040,7 +40808,7 @@ export namespace Prisma {
     depthead_nrp?: NullableStringFieldUpdateOperationsInput | string | null
     depthead_name?: NullableStringFieldUpdateOperationsInput | string | null
     depthead_email?: NullableStringFieldUpdateOperationsInput | string | null
-    div_code?: NullableStringFieldUpdateOperationsInput | string | null
+    div_code?: StringFieldUpdateOperationsInput | string
     div_name?: NullableStringFieldUpdateOperationsInput | string | null
     divhead_nrp?: NullableStringFieldUpdateOperationsInput | string | null
     divhead_name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -41123,7 +40891,7 @@ export namespace Prisma {
     id?: BigIntFilter<"trx_ovt"> | bigint | number
     user?: StringFilter<"trx_ovt"> | string
     dept?: BigIntFilter<"trx_ovt"> | bigint | number
-    shift?: IntFilter<"trx_ovt"> | number
+    shift?: StringFilter<"trx_ovt"> | string
     status_id?: BigIntFilter<"trx_ovt"> | bigint | number
     check_in_ovt?: DateTimeFilter<"trx_ovt"> | Date | string
     check_out_ovt?: DateTimeFilter<"trx_ovt"> | Date | string
@@ -42354,6 +42122,44 @@ export namespace Prisma {
     data: UserCreateManyDept_dataInput | UserCreateManyDept_dataInput[]
   }
 
+  export type mst_divisionCreateWithoutMs_deptInput = {
+    divid: string
+    div_inv?: string | null
+    nama: string
+    divhead_nrp?: string | null
+    divhead_name?: string | null
+    divheaed_email?: string | null
+    company_id?: string | null
+    company_name?: string | null
+    position?: string | null
+    created_by: number
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    updated_by?: number | null
+  }
+
+  export type mst_divisionUncheckedCreateWithoutMs_deptInput = {
+    id?: number
+    divid: string
+    div_inv?: string | null
+    nama: string
+    divhead_nrp?: string | null
+    divhead_name?: string | null
+    divheaed_email?: string | null
+    company_id?: string | null
+    company_name?: string | null
+    position?: string | null
+    created_by: number
+    created_at?: Date | string
+    updated_at?: Date | string | null
+    updated_by?: number | null
+  }
+
+  export type mst_divisionCreateOrConnectWithoutMs_deptInput = {
+    where: mst_divisionWhereUniqueInput
+    create: XOR<mst_divisionCreateWithoutMs_deptInput, mst_divisionUncheckedCreateWithoutMs_deptInput>
+  }
+
   export type UserUpsertWithWhereUniqueWithoutDept_dataInput = {
     where: UserWhereUniqueInput
     update: XOR<UserUpdateWithoutDept_dataInput, UserUncheckedUpdateWithoutDept_dataInput>
@@ -42419,6 +42225,123 @@ export namespace Prisma {
     worklocation_lat_long_sap?: StringNullableFilter<"User"> | string | null
     created_at?: DateTimeNullableFilter<"User"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"User"> | Date | string | null
+  }
+
+  export type mst_divisionUpsertWithoutMs_deptInput = {
+    update: XOR<mst_divisionUpdateWithoutMs_deptInput, mst_divisionUncheckedUpdateWithoutMs_deptInput>
+    create: XOR<mst_divisionCreateWithoutMs_deptInput, mst_divisionUncheckedCreateWithoutMs_deptInput>
+    where?: mst_divisionWhereInput
+  }
+
+  export type mst_divisionUpdateToOneWithWhereWithoutMs_deptInput = {
+    where?: mst_divisionWhereInput
+    data: XOR<mst_divisionUpdateWithoutMs_deptInput, mst_divisionUncheckedUpdateWithoutMs_deptInput>
+  }
+
+  export type mst_divisionUpdateWithoutMs_deptInput = {
+    divid?: StringFieldUpdateOperationsInput | string
+    div_inv?: NullableStringFieldUpdateOperationsInput | string | null
+    nama?: StringFieldUpdateOperationsInput | string
+    divhead_nrp?: NullableStringFieldUpdateOperationsInput | string | null
+    divhead_name?: NullableStringFieldUpdateOperationsInput | string | null
+    divheaed_email?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type mst_divisionUncheckedUpdateWithoutMs_deptInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    divid?: StringFieldUpdateOperationsInput | string
+    div_inv?: NullableStringFieldUpdateOperationsInput | string | null
+    nama?: StringFieldUpdateOperationsInput | string
+    divhead_nrp?: NullableStringFieldUpdateOperationsInput | string | null
+    divhead_name?: NullableStringFieldUpdateOperationsInput | string | null
+    divheaed_email?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type mst_deptCreateWithoutMs_divisionInput = {
+    id: number
+    nama: string
+    depthead_nrp?: string | null
+    depthead_name?: string | null
+    depthead_email?: string | null
+    div_name?: string | null
+    divhead_nrp?: string | null
+    divhead_name?: string | null
+    divhead_email?: string | null
+    company_id?: number | null
+    company_name?: string | null
+    mst_user?: UserCreateNestedManyWithoutDept_dataInput
+  }
+
+  export type mst_deptUncheckedCreateWithoutMs_divisionInput = {
+    id: number
+    nama: string
+    depthead_nrp?: string | null
+    depthead_name?: string | null
+    depthead_email?: string | null
+    div_name?: string | null
+    divhead_nrp?: string | null
+    divhead_name?: string | null
+    divhead_email?: string | null
+    company_id?: number | null
+    company_name?: string | null
+    mst_user?: UserUncheckedCreateNestedManyWithoutDept_dataInput
+  }
+
+  export type mst_deptCreateOrConnectWithoutMs_divisionInput = {
+    where: mst_deptWhereUniqueInput
+    create: XOR<mst_deptCreateWithoutMs_divisionInput, mst_deptUncheckedCreateWithoutMs_divisionInput>
+  }
+
+  export type mst_deptCreateManyMs_divisionInputEnvelope = {
+    data: mst_deptCreateManyMs_divisionInput | mst_deptCreateManyMs_divisionInput[]
+  }
+
+  export type mst_deptUpsertWithWhereUniqueWithoutMs_divisionInput = {
+    where: mst_deptWhereUniqueInput
+    update: XOR<mst_deptUpdateWithoutMs_divisionInput, mst_deptUncheckedUpdateWithoutMs_divisionInput>
+    create: XOR<mst_deptCreateWithoutMs_divisionInput, mst_deptUncheckedCreateWithoutMs_divisionInput>
+  }
+
+  export type mst_deptUpdateWithWhereUniqueWithoutMs_divisionInput = {
+    where: mst_deptWhereUniqueInput
+    data: XOR<mst_deptUpdateWithoutMs_divisionInput, mst_deptUncheckedUpdateWithoutMs_divisionInput>
+  }
+
+  export type mst_deptUpdateManyWithWhereWithoutMs_divisionInput = {
+    where: mst_deptScalarWhereInput
+    data: XOR<mst_deptUpdateManyMutationInput, mst_deptUncheckedUpdateManyWithoutMs_divisionInput>
+  }
+
+  export type mst_deptScalarWhereInput = {
+    AND?: mst_deptScalarWhereInput | mst_deptScalarWhereInput[]
+    OR?: mst_deptScalarWhereInput[]
+    NOT?: mst_deptScalarWhereInput | mst_deptScalarWhereInput[]
+    id?: IntFilter<"mst_dept"> | number
+    nama?: StringFilter<"mst_dept"> | string
+    depthead_nrp?: StringNullableFilter<"mst_dept"> | string | null
+    depthead_name?: StringNullableFilter<"mst_dept"> | string | null
+    depthead_email?: StringNullableFilter<"mst_dept"> | string | null
+    div_code?: StringFilter<"mst_dept"> | string
+    div_name?: StringNullableFilter<"mst_dept"> | string | null
+    divhead_nrp?: StringNullableFilter<"mst_dept"> | string | null
+    divhead_name?: StringNullableFilter<"mst_dept"> | string | null
+    divhead_email?: StringNullableFilter<"mst_dept"> | string | null
+    company_id?: IntNullableFilter<"mst_dept"> | number | null
+    company_name?: StringNullableFilter<"mst_dept"> | string | null
   }
 
   export type UserCreateWithoutTrx_ovtInput = {
@@ -44686,7 +44609,7 @@ export namespace Prisma {
 
   export type trx_ovtCreateManyUser_dataInput = {
     dept: bigint | number
-    shift: number
+    shift: string
     status_id: bigint | number
     check_in_ovt: Date | string
     check_out_ovt: Date | string
@@ -44981,7 +44904,7 @@ export namespace Prisma {
   export type trx_ovtUncheckedUpdateWithoutUser_dataInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     dept?: BigIntFieldUpdateOperationsInput | bigint | number
-    shift?: IntFieldUpdateOperationsInput | number
+    shift?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     check_in_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
     check_out_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -45009,7 +44932,7 @@ export namespace Prisma {
   export type trx_ovtUncheckedUpdateManyWithoutUser_dataInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     dept?: BigIntFieldUpdateOperationsInput | bigint | number
-    shift?: IntFieldUpdateOperationsInput | number
+    shift?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     check_in_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
     check_out_ovt?: DateTimeFieldUpdateOperationsInput | Date | string
