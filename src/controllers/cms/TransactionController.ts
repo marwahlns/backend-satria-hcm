@@ -7,7 +7,7 @@ import { TrxMutation } from "../../models/Table/Satria/TrxMutation";
 import { TrxResign } from "../../models/Table/Satria/TrxResign";
 import { TrxLeaveQuota } from "../../models/Table/Satria/TrxLeaveQuota";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
-import { getStatusName, getModalType, generateExcelResponse } from "../../helpers/functionHelper";
+import { getStatusName, getModalType, generateExcelResponse, isUserDeptHead, isUserDivHead, getSelect, formatRupiah } from "../../helpers/functionHelper";
 import { User } from "../../models/Table/Satria/MsUser";
 import { differenceInDays  } from "date-fns";
 import ExcelJS from "exceljs";
@@ -15,6 +15,8 @@ import { TrxShiftEmployee } from "../../models/Table/Satria/TrxShiftEmployee";
 import { ShiftGroup } from "../../models/Table/Satria/MsShiftGroup";
 import { Shift } from "../../models/Table/Satria/MsShift";
 import { Attendance } from "../../models/Table/Satria/TrxAttendance";
+import { TrxDeclaration } from "../../models/Table/Satria/TrxDeclaration";
+import { MsDivision } from "../../models/Table/Satria/MsDivision";
 
 
 const trxModelMap: { [key: string]: any } = {
@@ -23,6 +25,7 @@ const trxModelMap: { [key: string]: any } = {
   officialTravel: TrxOfficialTravel,    
   mutation: TrxMutation,
   resign: TrxResign,
+  declaration: TrxDeclaration,
 };
 
 
@@ -42,8 +45,7 @@ function formatDateTime(dateString: string | Date | null): string | null {
   });
 }
 
-//coba
-export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, res: Response): Promise<void> => {
+export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_head: number } }, res: Response): Promise<void> => {
   try {
     const {
       type = "",
@@ -59,6 +61,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
     } = req.query;
 
     const userNrp = req.user?.nrp;
+    const isDeptHead = await isUserDeptHead(userNrp ?? "");
     const pageNumber = parseInt(page as string, 10);
     const pageSize = parseInt(limit as string, 10);
     const skip = (pageNumber - 1) * pageSize;
@@ -372,75 +375,127 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
       }      
       case "officialTravel": {
         try {
+            const userNrp = req.user?.nrp ?? "";
+            const isDeptHead = await isUserDeptHead(userNrp);
+            const isDivHead = await isUserDivHead(userNrp);
+            const isDicDiv = userNrp === "P0120008";
+            const isDeptHeadHc = userNrp === "P0120010";
+            const isDivHeadHc = userNrp === "P0120014";
+            const isDicHc = userNrp === "P0120009";
+            const isPresdir = userNrp === "P0120011";
             const isAdmin = userNrp === "P0120001";
+
+            let roleFilter: Record<string, any> = { user: userNrp };
+
+            if (isDeptHead) roleFilter = { accept_to_depthead: userNrp };
+            if (isDivHead) roleFilter = { approve_to_divhead: userNrp };
+            if (isDicDiv) roleFilter = { approve_to_dicdiv: userNrp };
+            if (isDeptHeadHc) roleFilter = { approve_to_depthead_hc: userNrp };
+            if (isDivHeadHc) roleFilter = { approve_to_divhead_hc: userNrp };
+            if (isDicHc) roleFilter = { approve_to_dichc: userNrp };
+            if (isPresdir) roleFilter = { approve_to_presdir: userNrp };
+            if (isAdmin) roleFilter = {};
+
             const validSortFields = ["name", "department", "start_date", "end_date", "purpose", "destination_city", "total_leave_days"];
             const sortField = validSortFields.includes(sort as string) ? (sort as string) : "user";
             const sortOrder = order === "desc" ? "desc" : "asc";
-      
+
             const dateFilter = month && year ? {
               OR: [
                 { start_date: { gte: startOfMonth, lt: endOfMonth } },
                 { end_date: { gte: startOfMonth, lt: endOfMonth } },
               ],
             } : undefined;
-      
+
+            const searchFilter = {
+              OR: [
+                { user_data: { name: { contains: search as string } } },
+                { user_data: { department: { contains: search as string } } },
+                { purpose: { contains: search as string } },
+                { destination_city: { contains: search as string } },
+                ...(Number(search) ? [{ total_leave_days: Number(search) }] : []),
+              ],
+            };
             const buildWhereClause = () => ({
-              AND: [
-                ...(!isAdmin
+            AND: [
+              ...(isAdmin ? [] : [roleFilter]),
+              searchFilter,
+              ...(statusFilter ? [statusFilter] : []),
+              ...(dateFilter ? [dateFilter] : []),
+              ...(isDivHead ? [{ accepted_depthead: { not: null } }] : []),
+              ...(isDicDiv ? [{ approved_divhead: { not: null } }] : []),
+              ...(isDeptHeadHc
                   ? [
                       {
                         OR: [
-                          { accept_to: userNrp },
+                          { code: { startsWith: "TRF2" } }, 
                           {
                             AND: [
-                              { approve_to: userNrp },
-                              { accepted_date: { not: null } },
+                              { code: { not: { startsWith: "TRF2" } } }, 
+                              { approved_dicdiv: { not: null } },
                             ],
                           },
-                          { user: userNrp },
                         ],
                       },
                     ]
-                  : []),  
-                {
-                  OR: [
-                    { user_data: { name: { contains: search as string } } },
-                    { user_data: { department: { contains: search as string } } },
-                    { purpose: { contains: search as string } },
-                    { destination_city: { contains: search as string } },
-                  ],
-                  ...(Number(search) ? [
-                    { total_leave_days: Number(search) },
-                  ] : []),
-                },
-                ...(statusFilter ? [statusFilter] : []),
-                ...(dateFilter ? [dateFilter] : []),
-              ],
-            });
-  
+                  : []),              
+              ...(isDivHeadHc ? [{ approved_depthead_hc: { not: null } }] : []),
+              ...(isDicHc ? [{ approved_divhead_hc: { not: null } }] : []),
+              ...(isPresdir ? [{ approved_dicdiv: { not: null } }] : []),
+            ],
+          });
+
             const getOfficialTravelData = async () => {
-            const trxOfficialTravelData = await TrxOfficialTravel.findMany({
-              where: buildWhereClause(),
-              include: {
-                user_data: {
-                  select: {
-                    name: true,
-                    department: true,
-                    superior: true,
+              const trxOfficialTravelData = await TrxOfficialTravel.findMany({
+                where: buildWhereClause(),
+                include: {
+                  user_data: {
+                    select: {
+                      name: true,
+                      department: true,
+                      superior: true,
+                      division: true,
+                      worklocation_name: true,
+                      title: true,
+                    },
                   },
                 },
+                orderBy: ["name", "department"].includes(sortField)
+                  ? { user_data: { [sortField]: sortOrder } }
+                  : { [sortField]: sortOrder },
+                skip,
+                take: pageSize,
+              });
+
+            const declarationTrx = await TrxDeclaration.findMany({
+              where: {
+                code_trx: {
+                  in: trxOfficialTravelData.map((trx) => trx.code),
+                },
               },
-              orderBy: ["name", "department"].includes(sortField)
-                ? { user_data: { [sortField]: sortOrder } }
-                : { [sortField]: sortOrder },
-              skip,
-              take: pageSize,
+              select: { code_trx: true },
             });
-      
+
+            const divHeadData = await MsDivision.findFirst({
+              where: {
+                divhead_nrp: userNrp
+              }
+            });
+
+            const isDivHead = !!divHeadData;
+
+            const declarationTrxSet = new Set(declarationTrx.map((d:any) => d.code_trx));
             return trxOfficialTravelData.map((trx) => ({
               ...trx,
+              code_trx: trx.code,
               user_name: trx.user_data?.name,
               user_departement: trx.user_data?.department,
+              user_division: trx.user_data?.division,
+              user_position: trx.user_data?.title,
+              worklocation_name: trx.user_data?.worklocation_name,
+              down_payment: trx.down_payment
+                    ? formatRupiah(trx.down_payment)
+                    : null,
               start_date: trx?.start_date
                 ? new Date(trx.start_date).toLocaleDateString("id-ID", {
                     day: "2-digit", month: "long", year: "numeric"
@@ -452,13 +507,34 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
                   })
                 : null,
               status_submittion: getStatusName(trx?.status_id),
-              actionType:
-                ((trx.accept_to === userNrp && trx.approve_to === userNrp) || trx.approve_to === userNrp)
-                  ? "Approved"
-                  : trx.accept_to === userNrp
-                  ? "Accepted"
-                  : null,
+              actionType :
+              [
+                trx?.accept_to_depthead,
+              ].includes(userNrp)
+                ? "Accepted"
+                : [
+                    trx?.approve_to_divhead,
+                    trx?.approve_to_dicdiv,
+                    trx?.approve_to_depthead_hc,
+                    trx?.approve_to_divhead_hc,
+                    trx?.approve_to_dichc,
+                    trx?.approve_to_presdir,
+                  ].includes(userNrp)
+                ? "Approved"
+                : null,
               modalType: getModalType(trx, userNrp ?? ""),
+              isDeclaration: declarationTrxSet.has(trx.code),
+              is_downPayment: isDivHead,
+              statusUser:
+              isAdmin ? "Admin" :
+              isPresdir ? "Presdir" :
+              isDicHc ? "DicHC" :
+              isDivHeadHc ? "DivHeadHC" :
+              isDeptHeadHc ? "DeptHeadHC" :
+              isDicDiv ? "DicDiv" :
+              isDivHead ? "DivHead" :
+              isDeptHead ? "DeptHead" :
+              "User",
             }));
           };
 
@@ -542,37 +618,55 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
               ],
             } : undefined;
     
-            const buildWhereClause = () => ({
-              AND: [
-                ...(!isAdmin
-                  ? [
-                      {
-                        OR: [
-                          { accept_to: userNrp },
-                          {
-                            AND: [
-                              { approve_to: userNrp },
-                              { accepted_date: { not: null } },
-                            ],
-                          },
-                          { user: userNrp },
-                        ],
-                      },
-                    ]
-                  : []),  
-                {
+            const buildWhereClause = () => {
+              const andConditions: any[] = [];
+              if (!isAdmin && !isDeptHead) {
+                andConditions.push({
+                  OR: [
+                    { accept_to: userNrp },
+                    {
+                      AND: [
+                        { approve_to: userNrp },
+                        { accepted_date: { not: null } },
+                      ],
+                    },
+                    { user: userNrp },
+                  ],
+                });
+              }
+
+              if (isDeptHead) {
+                andConditions.push({
+                  created_by: userNrp,
+                });
+              }
+
+              if (search) {
+                andConditions.push({
                   OR: [
                     { user_data: { name: { contains: search as string } } },
                     { user_data: { department: { contains: search as string } } },
                   ],
-                  ...(Number(search) ? [
-                    { effective_date: Number(search) },
-                  ] : []),
-                },
-                ...(statusFilter ? [statusFilter] : []),
-                ...(dateFilter ? [dateFilter] : []),
-              ],
-            });
+                });
+
+                if (!isNaN(Number(search))) {
+                  andConditions.push({
+                    effective_date: Number(search),
+                  });
+                }
+              }
+              if (statusFilter) {
+                andConditions.push(statusFilter);
+              }
+
+              if (dateFilter) {
+                andConditions.push(dateFilter);
+              }
+
+              return {
+                AND: andConditions,
+              };
+            };
 
             const getMutationData = async () => {
             const trxMutationData = await TrxMutation.findMany({
@@ -583,6 +677,8 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
                     name: true,
                     department: true,
                     superior: true,
+                    worklocation_name: true,
+                    title: true,
                   },
                 },
               },
@@ -692,18 +788,22 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
             } : undefined;
             const buildWhereClause = () => ({
               AND: [
-                {
-                  OR: [
-                    { accept_to: userNrp },
-                    {
-                      AND: [
-                        { approve_to: userNrp },
-                        { accepted_date: { not: null } },
-                      ],
-                    },
-                    { user: userNrp },
-                  ],
-                },
+                ...(!isAdmin
+                  ? [
+                      {
+                        OR: [
+                          { accept_to: userNrp },
+                          {
+                            AND: [
+                              { approve_to: userNrp },
+                              { accepted_date: { not: null } },
+                            ],
+                          },
+                          { user: userNrp },
+                        ],
+                      },
+                    ]
+                  : []),  
                 {
                   OR: [
                     { user_data: { name: { contains: search as string } } },
@@ -753,6 +853,8 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
                   ? "Accepted"
                   : null,
               modalType: getModalType(trx, userNrp ?? ""),
+              file_url: trx.file_upload ? `/uploads/file_resign/${trx.file_upload}` : null,
+              
             }));
           };
       
@@ -792,7 +894,8 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
             });
       
             const totalPages = Math.ceil(totalItems / pageSize);
-      
+            const alreadyResign = data.some(trx => trx.user === userNrp);
+
             res.status(200).send(
               JSONbig.stringify({
                 success: true,
@@ -802,6 +905,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
                   totalPages,
                   currentPage: pageNumber,
                   totalItems,
+                  alreadyResign,
                 },
               })
             );
@@ -815,7 +919,164 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
         }
         break;
       }
-      
+      case "declaration": {
+        try {
+        const isAdmin = userNrp === "P0120001";
+        const validSortFields = ["code", "user", "code_trx", "start_date_actual", "end_date_actual" ];
+        const sortField = validSortFields.includes(sort as string) ? (sort as string) : "code";
+        const sortOrder = order === "desc" ? "desc" : "asc";
+
+        const buildWhereClause = () => ({
+          AND: [
+            ...(!isAdmin
+              ? [
+                  {
+                    OR: [
+                      { accept_to: userNrp },
+                      {
+                        AND: [
+                          { approve_to: userNrp },
+                          { accepted_date: { not: null } },
+                        ],
+                      },
+                      { user: userNrp },
+                    ],
+                  },
+                ]
+              : []),
+            {
+              OR: [
+                { code_trx: { contains: search as string } },
+              ],
+            },
+            ...(statusFilter ? [statusFilter] : []),
+          ],
+        });
+        const declarationData = await TrxDeclaration.findMany({
+        where: buildWhereClause(),
+        include: {
+          officialTravel_data: {
+            include: {
+              user_data: true, 
+            },
+          },
+          trx_detail_declaration: true,
+        },
+        orderBy: {
+          [sortField]: sortOrder,
+        },
+        skip,
+        take: pageSize,
+      });
+      const formattedData = declarationData.map((declaration) => ({
+        ...declaration,
+        user_name: declaration.officialTravel_data?.user_data?.name || null,
+        user_department: declaration.officialTravel_data?.user_data?.department || null,
+        user_division: declaration.officialTravel_data?.user_data?.division || null,
+        user_position: declaration.officialTravel_data?.user_data?.title || null,
+        total_cost: declaration.officialTravel_data?.total_cost || null,
+        currency: declaration.officialTravel_data?.currency || null,
+        symbol_currency: declaration.officialTravel_data?.symbol_currency || null,
+        lodging: declaration.officialTravel_data?.lodging || null,
+        destination_city: declaration.officialTravel_data?.destination_city || null,
+        worklocation_name: declaration.officialTravel_data?.user_data?.worklocation_name || null,
+        work_status: declaration.officialTravel_data?.work_status || null,
+        down_payment: declaration.officialTravel_data?.down_payment
+          ? formatRupiah(declaration.officialTravel_data.down_payment)
+          : null,    
+        total_cost_detail: declaration.trx_detail_declaration?.[0]?.total_cost
+          ? formatRupiah(declaration.trx_detail_declaration[0].total_cost)
+          : null,
+        total_money_change: declaration.total_money_change
+          ? formatRupiah(declaration.total_money_change)
+          : null,
+        start_date: declaration.officialTravel_data?.start_date
+          ? new Date(declaration.officialTravel_data?.start_date).toLocaleDateString("id-ID", {
+              day: "2-digit",
+              month: "long",
+              year: "numeric",
+            })
+          : null,
+
+        end_date: declaration.officialTravel_data?.end_date
+          ? new Date(declaration.officialTravel_data?.end_date).toLocaleDateString("id-ID", {
+              day: "2-digit",
+              month: "long",
+              year: "numeric",
+            })
+          : null,
+
+          start_date_actual: declaration?.start_date_actual
+          ? new Date(declaration.officialTravel_data?.start_date).toLocaleDateString("id-ID", {
+              day: "2-digit",
+              month: "long",
+              year: "numeric",
+            })
+          : null,
+
+        end_date_actual: declaration?.end_date_actual
+          ? new Date(declaration.officialTravel_data?.end_date).toLocaleDateString("id-ID", {
+              day: "2-digit",
+              month: "long",
+              year: "numeric",
+            })
+          : null,
+        actionType:
+          ((declaration.accept_to === userNrp && declaration.approve_to === userNrp) || declaration.approve_to === userNrp)
+          ? "Approved"
+          : declaration.accept_to === userNrp
+          ? "Accepted"
+          : null,
+        file_url: declaration.evidence_file ? `/uploads/file_declaration/${declaration.evidence_file}` : null,
+        status_submittion: getStatusName(declaration?.status_id),
+        modalType: getModalType(declaration, userNrp ?? ""),
+        details: (declaration.trx_detail_declaration || []).map((detail:any) => ({
+          date_activity: detail.date_activity
+            ? new Date(detail.date_activity).toLocaleDateString("id-ID", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+              })
+            : null,
+          location_activity: detail.location_activity || null,
+          hotel_cost: detail.hotel_cost || 0,
+          taxi_cost: detail.taxi_cost || 0,
+          upd_cost: detail.upd_cost || 0,
+          consume_cost: detail.consume_cost || 0,
+          ticket_cost: detail.ticket_cost || 0,
+          other_cost: detail.other_cost || 0,
+          total_cost: detail.total_cost || 0,
+          explanation: detail.explanation || "",
+        })),
+      }));
+        const totalItems = await TrxDeclaration.count({
+          where: buildWhereClause(),
+        });
+
+        const totalPages = Math.ceil(totalItems / pageSize);
+
+        res.status(200).send(
+          JSONbig.stringify({
+            success: true,
+            message: "Successfully retrieved Declaration data",
+            data: {
+              data: formattedData,
+              totalPages,
+              currentPage: pageNumber,
+              totalItems,
+            },
+          })
+        );
+      }catch (err) {
+        console.error("Error fetching Declaration:", err);
+        res.status(500).json({
+          success: false,
+          message: "Error retrieving Declaration data",
+        });
+      }
+        break;
+    }
+
       default:
         res.status(400).json({ success: false, message: "Invalid type" });
     }
@@ -826,16 +1087,20 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string } }, r
 };
 
 
-export const handleTrx = async (req: Request & { user?: { nrp: string } }, res: Response): Promise<void> => {
+export const handleTrx = async (
+  req: Request & { user?: { nrp: string } },
+  res: Response
+): Promise<void> => {
   const { id } = req.params;
-  const { remark, trxType, actionType } = req.body;
+  const { remark, trxType, actionType, down_payment } = req.body;
   const userNrp = req.user?.nrp;
 
   if (!remark) {
-     res.status(400).json({
+    res.status(400).json({
       success: false,
       message: "Remark must be provided and cannot be empty",
     });
+    return;
   }
 
   const now = getCurrentWIBDate();
@@ -843,23 +1108,31 @@ export const handleTrx = async (req: Request & { user?: { nrp: string } }, res: 
 
   try {
     const model = trxModelMap[trxType];
+    if (!model) {
+      res.status(400).json({ success: false, message: "Invalid transaction type" });
+      return;
+    }
+
+    const selectFields = getSelect(trxType);
     const trxData = await model.findUnique({
       where: { id: Number(id) },
-      select: {
-        accept_to: true,
-        approve_to: true,
-      },
+      select: selectFields,
     });
 
     if (!trxData) {
-       res.status(404).json({
-        success: false,
-        message: "Transaction not found",
-      });
+      res.status(404).json({ success: false, message: "Transaction not found" });
+      return;
     }
 
     const isAcc = userNrp === trxData.accept_to;
     const isApp = userNrp === trxData.approve_to;
+    const isAppDeptHead = userNrp === trxData.accept_to_depthead;
+    const isAppDivhead = userNrp === trxData.approve_to_divhead;
+    const isAppDicDiv = userNrp === trxData.approve_to_dicdiv;
+    const isAppDeptHeadHc = userNrp === trxData.approve_to_depthead_hc;
+    const isAppDivHeadHc = userNrp === trxData.approve_to_divhead_hc;
+    const isAppDicHc = userNrp === trxData.approve_to_dichc;
+    const isAppPresdir = userNrp === trxData.approve_to_presdir;
 
     if (actionType === "Rejected") {
       updateData = {
@@ -888,23 +1161,18 @@ export const handleTrx = async (req: Request & { user?: { nrp: string } }, res: 
             },
           });
 
-          if (leaveQuota && leaveQuota.id_user === trxDetail.user) {
+          if (leaveQuota) {
             await TrxLeaveQuota.update({
               where: { id: leaveQuota.id },
               data: {
-                leave_balance: {
-                  increment: Number(trxDetail.total_leave_days),
-                },
-                used_leave: {
-                  decrement: Number(trxDetail.total_leave_days),
-                },
+                leave_balance: { increment: Number(trxDetail.total_leave_days) },
+                used_leave: { decrement: Number(trxDetail.total_leave_days) },
                 updated_at: now,
               },
             });
-          }          
+          }
         }
       }
-
     } else if (actionType === "Canceled") {
       updateData = {
         ...updateData,
@@ -932,32 +1200,19 @@ export const handleTrx = async (req: Request & { user?: { nrp: string } }, res: 
             },
           });
 
-          if (leaveQuota && leaveQuota.id_user === userNrp) {
+          if (leaveQuota) {
             await TrxLeaveQuota.update({
               where: { id: leaveQuota.id },
               data: {
-                leave_balance: {
-                  increment: Number(trxDetail.total_leave_days),
-                },
-                used_leave: {
-                  decrement: Number(trxDetail.total_leave_days),
-                },
+                leave_balance: { increment: Number(trxDetail.total_leave_days) },
+                used_leave: { decrement: Number(trxDetail.total_leave_days) },
                 updated_at: now,
               },
             });
           }
         }
       }
-
     } else {
-      if (!isAcc && !isApp) {
-         res.status(403).json({
-          success: false,
-          message: "You are not authorized to perform this action.",
-        });
-      }
-
-      // Approval flow
       if (isAcc && isApp) {
         updateData = {
           ...updateData,
@@ -985,6 +1240,113 @@ export const handleTrx = async (req: Request & { user?: { nrp: string } }, res: 
           approved_remark: remark,
           approved_date: now,
         };
+      } else if (isAppDeptHead) {
+        updateData = {
+          ...updateData,
+          status_id: 8,
+          accepted_depthead: userNrp,
+          accepted_depthead_remark: remark,
+          accepted_depthead_date: now,
+        };
+      } else if (isAppDivhead) {
+        updateData = {
+          ...updateData,
+          status_id: 9,
+          down_payment: down_payment,
+          approved_divhead: userNrp,
+          approved_divhead_remark: remark,
+          approved_divhead_date: now,
+        };
+      } else if (isAppDicDiv) {
+        updateData = {
+          ...updateData,
+          status_id: 10,
+          approved_dicdiv: userNrp,
+          approved_dicdiv_remark: remark,
+          approved_dicdiv_date: now,
+        };
+      } else if (isAppDeptHeadHc) {
+          updateData = {
+            ...updateData,
+            status_id: 11,
+            approved_depthead_hc: userNrp,
+            approved_depthead_hc_remark: remark,
+            approved_depthead_hc_date: now,
+          };
+        } else if (isAppDivHeadHc) {
+          updateData = {
+            ...updateData,
+            status_id: 12,
+            approved_divhead_hc: userNrp,
+            approved_divhead_hc_remark: remark,
+            approved_divhead_hc_date: now,
+          };
+        } else if (isAppDicHc) {
+          updateData = {
+            ...updateData,
+            status_id: 13,
+            approved_dichc: userNrp,
+            approved_dichc_remark: remark,
+            approved_dichc_date: now,
+          };
+        } else if (isAppPresdir) {
+          updateData = {
+            ...updateData,
+            status_id: 14,
+            approved_presdir: userNrp,
+            approved_presdir_remark: remark,
+            approved_presdir_date: now,
+          };
+        }
+      else if (isApp) {
+        updateData = {
+          ...updateData,
+          status_id: 3,
+          approved: userNrp,
+          approved_remark: remark,
+          approved_date: now,
+        };
+      }
+    }
+
+    if (actionType === "Approved") {
+      if (trxType === "mutation") {
+        const trxDetail = await model.findUnique({
+          where: { id: Number(id) },
+          select: {
+            user: true,
+            superior_to: true,
+            division_to: true,
+            department_to: true,
+          },
+        });
+
+        if (trxDetail?.user && trxDetail.superior_to) {
+          await User.update({
+            where: { personal_number: trxDetail.user },
+            data: {
+              superior: trxDetail.superior_to,
+              dept: trxDetail.department_to,
+              divid: trxDetail.division_to,
+              updated_at: now,
+            },
+          });
+        }
+      } else if (trxType === "resign") {
+        const trxDetail = await model.findUnique({
+          where: { id: Number(id) },
+          select: { user: true },
+        });
+
+        if (trxDetail?.user) {
+          await User.update({
+            where: { personal_number: trxDetail.user },
+            data: {
+              is_active: 1,
+              updated_at: now,
+            },
+          });
+        }
       }
     }
 
@@ -993,11 +1355,13 @@ export const handleTrx = async (req: Request & { user?: { nrp: string } }, res: 
       data: updateData,
     });
 
-    res.status(200).send(JSONbig.stringify({
-      success: true,
-      message: `Transaction updated successfully`,
-      data: result,
-    }));
+    res.status(200).send(
+      JSONbig.stringify({
+        success: true,
+        message: "Transaction updated successfully",
+        data: result,
+      })
+    );
   } catch (err) {
     console.error("Error in handleTrx:", err);
     res.status(500).json({
@@ -1019,8 +1383,10 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
 
     switch(type){
       case "leave": {
-        const { leave_type_id, start_date, end_date, leave_reason } = req.body;
-      
+        const { leave_type_id, start_date, end_date, leave_reason, } = req.body;
+        const file = req.file;
+        const typeInt = parseInt(req.body.leave_type_id, 10);
+
         if (!leave_type_id || !start_date || !end_date || !leave_reason) {
           res.status(400).json({
             success: false,
@@ -1049,7 +1415,7 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
         const quotaData = await TrxLeaveQuota.findFirst({
           where: {
             id_user: userNrp,
-            leaves_type_id: leave_type_id,
+            leaves_type_id: typeInt,
             is_active: 0,
             is_deleted: 0,
           },
@@ -1082,12 +1448,13 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
               user: userNrp,
               dept: deptValue,
               status_id: 1,
-              leave_type_id,
+              leave_type_id: typeInt,
               start_date: new Date(start_date),
               end_date: new Date(end_date),
               flag_leaves: 1,
               total_leave_days: totalLeaveDays,
               leave_reason,
+              support_document: file?.filename ?? "",
               accept_to: acceptToValue,
               approve_to: approveToValue,
               created_by: userId,
@@ -1142,7 +1509,7 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
         });
     
         const acceptToValue = userData?.superior ?? "";
-        const approveToValue = userData?.dept_data.depthead_nrp ?? "";
+        const approveToValue = userData?.dept_data?.depthead_nrp ?? "";
         const deptValue = userData?.dept ?? 0;
         console.log("nrp ovt", userNrp);
 
@@ -1171,15 +1538,12 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
         
         // Map the indexDay to the corresponding day name (e.g., 0 -> "Sunday", 1 -> "Monday")
         const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        const dayName = dayNames[indexDay]; // Get the day name corresponding to indexDay
-        
-        console.log("Day Name: ", dayName); // Log the day name to see it
-        
-        // Fetch shift group data based on the shift code and day name
+        const dayName = dayNames[indexDay]; 
+        console.log("Day Name: ", dayName);
         const shiftGroupData = await ShiftGroup.findFirstDetail({
             where: {
                 code: shiftData?.id_shift_group,
-                index_day: dayName, // Use the day name (e.g., "Monday") instead of the indexDay number
+                index_day: dayName, 
             },
         });
     
@@ -1241,7 +1605,7 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
         break;
     }    
       case "officialTravel": {
-        const { start_date, end_date, purpose, destination_city } = req.body;
+        const { start_date, end_date, type, destination_place, transportation, lodging, work_status, office_activities, symbol_currency, currency, taxi_cost, hotel_cost, rent_cost, upd_cost, fiskal_cost, other_cost, total_cost, activity_agenda, purpose, destination_city } = req.body;
   
         if (!start_date || !end_date || !purpose || !destination_city) {
           res.status(400).json({
@@ -1249,6 +1613,36 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
             message: "All fields must be provided and cannot be empty",
           });
         }
+
+          const currencyFlag = currency ? "1" : "2";
+          const now = new Date();
+          const year = now.getFullYear();
+          const month = String(now.getMonth() + 1).padStart(2, "0");
+          const prefix = `TRF${currencyFlag}-${year}${month}`;
+
+          const lastTravel = await TrxOfficialTravel.findFirst({
+            where: {
+              currency: currency,
+            },
+            orderBy: {
+              created_at: 'desc',
+            },
+          });
+
+          let newCodeNumber = 1;
+
+          if (lastTravel && lastTravel.code.startsWith(prefix)) {
+            const numberPart = lastTravel.code.slice(prefix.length);
+            const lastNumber = parseInt(numberPart, 10);
+            if (!isNaN(lastNumber)) {
+              newCodeNumber = lastNumber + 1;
+            }
+          }
+
+          const paddedCodeNumber = String(newCodeNumber).padStart(5, "0");
+          const code = `${prefix}${paddedCodeNumber}`;
+
+
         const userData = await User.findUnique({
           where: { personal_number: userNrp },
           include: {
@@ -1256,31 +1650,63 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
               select: {
                 id: true,
                 depthead_nrp: true,
+                divhead_nrp: true,
               },
             },
             
           },
         });
         const totalTravelDays = differenceInDays(end_date, start_date) + 1;
-        const acceptToValue = userData?.superior ?? ""
-        const approveToValue = userData?.dept_data.depthead_nrp ?? ""
+
+        const approvalData = {
+          accept_to_depthead: userData?.dept_data?.depthead_nrp ?? "",
+          approve_to_divhead: userData?.dept_data?.divhead_nrp ?? "",
+          approve_to_depthead_hc: "P0120010",
+        };
+
+        if (currencyFlag === "1") {
+          Object.assign(approvalData, {
+            approve_to_dicdiv: "P0120008",
+            approve_to_divhead_hc: "P0120014",
+            approve_to_dichc: "P0120009",
+            approve_to_presdir: "P0120011",
+          });
+        }
+
         const newLeave = await TrxOfficialTravel.create({
           data: {
+            code,
             user: userNrp,
             status_id: 1,
             start_date: new Date(start_date),
             end_date: new Date(end_date),
             total_leave_days: totalTravelDays,
+            type,
+            destination_place,
+            transportation,
+            lodging,
+            work_status,
+            office_activities,
             purpose,
+            symbol_currency,
+            currency,
+            taxi_cost,
+            hotel_cost,
+            rent_cost,
+            upd_cost,
+            fiskal_cost,
+            other_cost,
+            total_cost,
             destination_city,
-            accept_to: acceptToValue,
-            approve_to: approveToValue,
+            activity_agenda,
             created_by: userId,
             created_at: getCurrentWIBDate(),
             updated_by: userId,
             updated_at: getCurrentWIBDate(),
+            ...approvalData,
           },
         });
+
     
         res.status(201).send(JSONbig.stringify({
           success: true,
@@ -1291,9 +1717,9 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
       }
 
       case "mutation": {
-        const { division_to, department_to, division_from, department_from, effective_date, reason } = req.body;
+        const { user, superior_to, division_to, department_to, superior_from, division_from, department_from, effective_date, reason } = req.body;
   
-      if ( !division_to || !department_to || !division_from || !department_from|| !effective_date || !reason ) {
+      if ( !user || !superior_to || !division_to || !department_to || !superior_from || !division_from || !department_from|| !effective_date || !reason ) {
         res.status(400).json({
           success: false,
           message: "All fields must be provided and cannot be empty",
@@ -1306,20 +1732,23 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
             select: {
               id: true,
               depthead_nrp: true,
+              divhead_nrp: true,
             },
           },
           
         },
       });
     
-      const acceptToValue = userData?.superior ?? ""
-      const approveToValue = userData?.dept_data.depthead_nrp ?? ""
+      const acceptToValue = userData?.dept_data?.divhead_nrp ?? ""
+      const approveToValue = "P0120010"
       const newMutation = await TrxMutation.create({
         data: {
-          user: userNrp,
+          user: user,
           status_id: 1,
           effective_date: new Date(effective_date),
+          superior_from: superior_from,
           division_from: division_from,
+          superior_to: superior_to,
           dept_from: department_from,
           division_to: division_to,
           dept_to: department_to,
@@ -1339,54 +1768,200 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
         data: { newMutation },
       }));
         break
-      }
+    }
 
       case "resign": {
-      const { effective_date, reason } = req.body;
-      if (!effective_date || !reason ) {
-        res.status(400).json({
-          success: false,
-          message: "All fields must be provided and cannot be empty",
-        });
-        return;
-      }
-      const userData = await User.findUnique({
-        where: { personal_number: userNrp },
-        include: {
-          dept_data: {
-            select: {
-              id: true,
-              depthead_nrp: true,
+        const { effective_date, reason } = req.body;
+        const file = req.file;
+
+        if (!effective_date || !reason) {
+          res.status(400).json({
+            success: false,
+            message: "All fields must be provided and cannot be empty",
+          });
+        }
+
+        const userData = await User.findUnique({
+          where: { personal_number: userNrp },
+          include: {
+            dept_data: {
+              select: {
+                id: true,
+                depthead_nrp: true,
+              },
             },
           },
-          
-        },
-      });
+        });
 
-      const acceptToValue = userData?.superior ?? ""
-      const approveToValue = userData?.dept_data.depthead_nrp ?? ""
-      const newresign = await TrxResign.create({
-        data: {
-          user: userNrp,
-          status_id: 1,
-          effective_date: new Date(effective_date),
-          reason,
-          accept_to: acceptToValue,
-          approve_to: approveToValue,
-          created_by: userId,
-          created_at: getCurrentWIBDate(),
-          updated_by: userId,
-          updated_at: getCurrentWIBDate(),
-        },
-      });
-  
-      res.status(201).send(JSONbig.stringify({
-        success: true,
-        message: "resign added successfully",
-        data: { newresign },
-      }));
-      break
+        if (!userData) {
+          res.status(404).json({
+            success: false,
+            message: "User data not found",
+          });
+        }
+
+        const acceptToValue = userData?.superior ?? "";
+        const approveToValue = userData?.dept_data?.depthead_nrp ?? "";
+
+        try {
+          const newresign = await TrxResign.create({
+            data: {
+              user: userNrp,
+              status_id: 1,
+              effective_date: new Date(effective_date),
+              reason,
+              file_upload: file?.filename ?? "",
+              accept_to: acceptToValue,
+              approve_to: approveToValue,
+              created_by: userId,
+              created_at: getCurrentWIBDate(),
+              updated_by: userId,
+              updated_at: getCurrentWIBDate(),
+            },
+          });
+
+          res.status(201).send(JSONbig.stringify({
+          success: true,
+          message: "Resign added successfully",
+          data: { newresign },
+        }));
+
+        } catch (error) {
+          console.error("Error while inserting resign:", error);
+          res.status(500).json({
+            success: false,
+            message: "Internal server error",
+          });
+        }
+        break;
       }
+      case "declaration" : {
+  try {
+    const {
+      code_trx,
+      user,
+      start_date_actual,
+      end_date_actual,
+      total_money_change,
+      details = "[]"
+    } = req.body;
+
+    const file = req.file;
+    const parsedDetails = JSON.parse(details);
+
+    if (
+      !code_trx?.trim() ||
+      !user?.trim() ||
+      !start_date_actual ||
+      !end_date_actual ||
+      !Array.isArray(parsedDetails) ||
+      parsedDetails.length === 0
+    ) {
+      res.status(400).json({
+        success: false,
+        message: "Missing or invalid required fields",
+      });
+      return;
+    }
+          const startDate = new Date(start_date_actual);
+          const endDate = new Date(end_date_actual);
+            if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+              res.status(400).json({
+                success: false,
+                message: "Invalid date format for start_date_actual or end_date_actual",
+              });
+              return;
+          }
+          
+          const now = new Date();
+          const year = now.getFullYear();
+          const month = String(now.getMonth() + 1).padStart(2, "0");
+          const prefix = `DEC-${year}${month}`;
+          
+            const lastDeclaration = await TrxDeclaration.findFirst({
+              where: {
+                code: {
+                startsWith: prefix,
+                  },
+                },
+                orderBy: {
+                created_at: 'desc',
+                },
+            });
+          
+          let newCodeNumber = 1;
+            if (lastDeclaration) {
+              let lastNumber = parseInt(lastDeclaration.code.replace(prefix, ""), 10);
+            if (isNaN(lastNumber)) lastNumber = 0;
+              newCodeNumber = lastNumber + 1;
+            }
+          
+        const newCode = `${prefix}${newCodeNumber.toString().padStart(5, "0")}`;
+        const userData = await User.findUnique({
+            where: { personal_number: userNrp },
+              include: {
+              dept_data: {
+                        select: {
+                          id: true,
+                          depthead_nrp: true,
+                        },
+                      },
+                    },
+                  });
+              const acceptToValue = userData?.dept_data?.depthead_nrp ?? "";
+              const approveToValue = "P0120010"
+              const newDeclaration = await TrxDeclaration.create({
+              data: {
+                code: newCode,
+                code_trx,
+                user,
+                start_date_actual: startDate,
+                end_date_actual: endDate,
+                total_money_change,
+                evidence_file: file?.filename ?? "",
+                status_id: 1,
+                accept_to: acceptToValue,
+                approve_to: approveToValue,
+                created_by: 90,
+                created_at: getCurrentWIBDate(),
+                updated_at: getCurrentWIBDate(),
+                trx_detail_declaration: {
+                  create: parsedDetails.map((item) => ({
+                    date_activity: new Date(item.date_activity),
+                    location_activity: item.location_activity?.trim() || "",
+                    hotel_cost: Number(item.hotel_cost) || 0,
+                    taxi_cost: Number(item.taxi_cost) || 0,
+                    upd_cost: Number(item.upd_cost) || 0,
+                    consume_cost: Number(item.consume_cost) || 0,
+                    ticket_cost: Number(item.ticket_cost) || 0,
+                    other_cost: Number(item.other_cost) || 0,
+                    total_cost: Number(item.total_cost) || 0,
+                    explanation: item.explanation?.trim() || "",
+                    created_by: 90,
+                    created_at: getCurrentWIBDate(),
+                    updated_at: getCurrentWIBDate(),
+                  })),
+                },
+              },
+            });
+                res.status(201).send(JSONbig.stringify({
+                success: true,
+                message: "Declaration created successfully",
+                data: newDeclaration,
+              }));
+        } catch (err) {
+        console.error("Error creating Declaration:", err);
+        res.status(500).json({
+          success: false,
+          message: "Error creating Declaration",
+        });
+      }
+        break;
+    }
+
+      default:
+        res.status(400).json({ success: false, message: "Invalid type" });
+
     }
     
   } catch (error) {
@@ -1521,11 +2096,11 @@ export const getTrendSubmission = async (req: Request & { user?: { nrp: string }
               lte: endOfYear,
             },
             OR: [
-              { accept_to: userNrp },
+              { accept_to_depthead: userNrp },
               {
                 AND: [
-                  { approve_to: userNrp },
-                  { accepted_date: { not: null } },
+                  { approve_to_divhead: userNrp },
+                  { accepted_depthead_date: { not: null } },
                 ],
               },
               { user: userNrp },

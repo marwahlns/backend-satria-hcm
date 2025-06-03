@@ -41,35 +41,6 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    let shiftId: string | null = null;
-
-    // Cek apakah user memiliki shift
-    const shiftEmp = await TrxShiftEmployee.findFirst({
-      where: {
-        id_user: {
-          equals: user.personal_number || "",
-        },
-      },
-    });
-
-    if (shiftEmp) {
-      const shiftGroupId = shiftEmp.id_shift_group;
-      const daysOfWeek = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-      const todayIndex = new Date().getDay();
-      const todayDayName = daysOfWeek[todayIndex];
-
-      const shiftDetail = await TrxShiftEmployee.detailFindFirst({
-        where: {
-          id_shift_group: shiftGroupId,
-          index_day: todayDayName,
-        },
-      });
-
-      if (shiftDetail) {
-        shiftId = shiftDetail.id_shift;
-      }
-    }
-
     const token = jwt.sign(
       {
         id: user.id.toString(),
@@ -78,10 +49,9 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         nrp: user.personal_number,
         name: user.name,
         departement: user.department,
-        shift_id: shiftId, // Bisa null jika tidak ada shift
       },
       JWT_SECRET,
-      { expiresIn: "10m" }
+      { expiresIn: "24h" }
     );
 
     res.send(

@@ -2,7 +2,6 @@ import JSONbig from "json-bigint";
 import { Request, Response } from "express";
 import { TrxShiftEmployee } from "../../models/Table/Satria/TrxShiftEmployee";
 import { User } from "../../models/Table/Satria/MsUser";
-import { ShiftGroup } from "../../models/Table/Satria/MsShiftGroup";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 
 export const getAllTrxShiftEmployee = async (

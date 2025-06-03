@@ -123,6 +123,16 @@ export type trx_leave_quota = $Result.DefaultSelection<Prisma.$trx_leave_quotaPa
  * 
  */
 export type attendance = $Result.DefaultSelection<Prisma.$attendancePayload>
+/**
+ * Model trx_declaration
+ * 
+ */
+export type trx_declaration = $Result.DefaultSelection<Prisma.$trx_declarationPayload>
+/**
+ * Model trx_detail_declaration
+ * 
+ */
+export type trx_detail_declaration = $Result.DefaultSelection<Prisma.$trx_detail_declarationPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -466,6 +476,26 @@ export class PrismaClient<
     * ```
     */
   get attendance(): Prisma.attendanceDelegate<ExtArgs>;
+
+  /**
+   * `prisma.trx_declaration`: Exposes CRUD operations for the **trx_declaration** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Trx_declarations
+    * const trx_declarations = await prisma.trx_declaration.findMany()
+    * ```
+    */
+  get trx_declaration(): Prisma.trx_declarationDelegate<ExtArgs>;
+
+  /**
+   * `prisma.trx_detail_declaration`: Exposes CRUD operations for the **trx_detail_declaration** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Trx_detail_declarations
+    * const trx_detail_declarations = await prisma.trx_detail_declaration.findMany()
+    * ```
+    */
+  get trx_detail_declaration(): Prisma.trx_detail_declarationDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -928,7 +958,9 @@ export namespace Prisma {
     mst_plant: 'mst_plant',
     ms_marital_status: 'ms_marital_status',
     trx_leave_quota: 'trx_leave_quota',
-    attendance: 'attendance'
+    attendance: 'attendance',
+    trx_declaration: 'trx_declaration',
+    trx_detail_declaration: 'trx_detail_declaration'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -944,7 +976,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "ms_leave_types" | "trx_leaves" | "ms_shift" | "ms_shift_group" | "ms_detail_shift_group" | "mst_dept" | "mst_division" | "sysdiagrams" | "trx_ovt" | "trx_shift_emp" | "trx_official_travel" | "trx_mutation" | "trx_resign" | "user_detail" | "ms_worklocation" | "ms_klasifikasi" | "ms_subcont" | "mst_plant" | "ms_marital_status" | "trx_leave_quota" | "attendance"
+      modelProps: "user" | "ms_leave_types" | "trx_leaves" | "ms_shift" | "ms_shift_group" | "ms_detail_shift_group" | "mst_dept" | "mst_division" | "sysdiagrams" | "trx_ovt" | "trx_shift_emp" | "trx_official_travel" | "trx_mutation" | "trx_resign" | "user_detail" | "ms_worklocation" | "ms_klasifikasi" | "ms_subcont" | "mst_plant" | "ms_marital_status" | "trx_leave_quota" | "attendance" | "trx_declaration" | "trx_detail_declaration"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2400,6 +2432,138 @@ export namespace Prisma {
           }
         }
       }
+      trx_declaration: {
+        payload: Prisma.$trx_declarationPayload<ExtArgs>
+        fields: Prisma.trx_declarationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.trx_declarationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_declarationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.trx_declarationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_declarationPayload>
+          }
+          findFirst: {
+            args: Prisma.trx_declarationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_declarationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.trx_declarationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_declarationPayload>
+          }
+          findMany: {
+            args: Prisma.trx_declarationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_declarationPayload>[]
+          }
+          create: {
+            args: Prisma.trx_declarationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_declarationPayload>
+          }
+          createMany: {
+            args: Prisma.trx_declarationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.trx_declarationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_declarationPayload>
+          }
+          update: {
+            args: Prisma.trx_declarationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_declarationPayload>
+          }
+          deleteMany: {
+            args: Prisma.trx_declarationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.trx_declarationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.trx_declarationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_declarationPayload>
+          }
+          aggregate: {
+            args: Prisma.Trx_declarationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTrx_declaration>
+          }
+          groupBy: {
+            args: Prisma.trx_declarationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Trx_declarationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.trx_declarationCountArgs<ExtArgs>
+            result: $Utils.Optional<Trx_declarationCountAggregateOutputType> | number
+          }
+        }
+      }
+      trx_detail_declaration: {
+        payload: Prisma.$trx_detail_declarationPayload<ExtArgs>
+        fields: Prisma.trx_detail_declarationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.trx_detail_declarationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_detail_declarationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.trx_detail_declarationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_detail_declarationPayload>
+          }
+          findFirst: {
+            args: Prisma.trx_detail_declarationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_detail_declarationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.trx_detail_declarationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_detail_declarationPayload>
+          }
+          findMany: {
+            args: Prisma.trx_detail_declarationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_detail_declarationPayload>[]
+          }
+          create: {
+            args: Prisma.trx_detail_declarationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_detail_declarationPayload>
+          }
+          createMany: {
+            args: Prisma.trx_detail_declarationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.trx_detail_declarationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_detail_declarationPayload>
+          }
+          update: {
+            args: Prisma.trx_detail_declarationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_detail_declarationPayload>
+          }
+          deleteMany: {
+            args: Prisma.trx_detail_declarationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.trx_detail_declarationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.trx_detail_declarationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$trx_detail_declarationPayload>
+          }
+          aggregate: {
+            args: Prisma.Trx_detail_declarationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTrx_detail_declaration>
+          }
+          groupBy: {
+            args: Prisma.trx_detail_declarationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Trx_detail_declarationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.trx_detail_declarationCountArgs<ExtArgs>
+            result: $Utils.Optional<Trx_detail_declarationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2820,6 +2984,68 @@ export namespace Prisma {
    */
   export type Mst_divisionCountOutputTypeCountMs_deptArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: mst_deptWhereInput
+  }
+
+
+  /**
+   * Count Type Trx_official_travelCountOutputType
+   */
+
+  export type Trx_official_travelCountOutputType = {
+    trx_declaration: number
+  }
+
+  export type Trx_official_travelCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    trx_declaration?: boolean | Trx_official_travelCountOutputTypeCountTrx_declarationArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Trx_official_travelCountOutputType without action
+   */
+  export type Trx_official_travelCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Trx_official_travelCountOutputType
+     */
+    select?: Trx_official_travelCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Trx_official_travelCountOutputType without action
+   */
+  export type Trx_official_travelCountOutputTypeCountTrx_declarationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: trx_declarationWhereInput
+  }
+
+
+  /**
+   * Count Type Trx_declarationCountOutputType
+   */
+
+  export type Trx_declarationCountOutputType = {
+    trx_detail_declaration: number
+  }
+
+  export type Trx_declarationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    trx_detail_declaration?: boolean | Trx_declarationCountOutputTypeCountTrx_detail_declarationArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Trx_declarationCountOutputType without action
+   */
+  export type Trx_declarationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Trx_declarationCountOutputType
+     */
+    select?: Trx_declarationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Trx_declarationCountOutputType without action
+   */
+  export type Trx_declarationCountOutputTypeCountTrx_detail_declarationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: trx_detail_declarationWhereInput
   }
 
 
@@ -3274,7 +3500,7 @@ export namespace Prisma {
     section: string | null
     divid: string | null
     companyid: string | null
-    dept: number
+    dept: number | null
     department: string | null
     division: string | null
     title: string | null
@@ -3369,7 +3595,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: boolean
     created_at?: boolean
     updated_at?: boolean
-    dept_data?: boolean | mst_deptDefaultArgs<ExtArgs>
+    dept_data?: boolean | User$dept_dataArgs<ExtArgs>
     trx_leaves?: boolean | User$trx_leavesArgs<ExtArgs>
     trx_ovt?: boolean | User$trx_ovtArgs<ExtArgs>
     trx_officialTravel?: boolean | User$trx_officialTravelArgs<ExtArgs>
@@ -3430,7 +3656,7 @@ export namespace Prisma {
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    dept_data?: boolean | mst_deptDefaultArgs<ExtArgs>
+    dept_data?: boolean | User$dept_dataArgs<ExtArgs>
     trx_leaves?: boolean | User$trx_leavesArgs<ExtArgs>
     trx_ovt?: boolean | User$trx_ovtArgs<ExtArgs>
     trx_officialTravel?: boolean | User$trx_officialTravelArgs<ExtArgs>
@@ -3444,7 +3670,7 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      dept_data: Prisma.$mst_deptPayload<ExtArgs>
+      dept_data: Prisma.$mst_deptPayload<ExtArgs> | null
       trx_leaves: Prisma.$trx_leavesPayload<ExtArgs>[]
       trx_ovt: Prisma.$trx_ovtPayload<ExtArgs>[]
       trx_officialTravel: Prisma.$trx_official_travelPayload<ExtArgs>[]
@@ -3471,7 +3697,7 @@ export namespace Prisma {
       section: string | null
       divid: string | null
       companyid: string | null
-      dept: number
+      dept: number | null
       department: string | null
       division: string | null
       title: string | null
@@ -3839,7 +4065,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    dept_data<T extends mst_deptDefaultArgs<ExtArgs> = {}>(args?: Subset<T, mst_deptDefaultArgs<ExtArgs>>): Prisma__mst_deptClient<$Result.GetResult<Prisma.$mst_deptPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    dept_data<T extends User$dept_dataArgs<ExtArgs> = {}>(args?: Subset<T, User$dept_dataArgs<ExtArgs>>): Prisma__mst_deptClient<$Result.GetResult<Prisma.$mst_deptPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     trx_leaves<T extends User$trx_leavesArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_leavesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_leavesPayload<ExtArgs>, T, "findMany"> | Null>
     trx_ovt<T extends User$trx_ovtArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_ovtArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_ovtPayload<ExtArgs>, T, "findMany"> | Null>
     trx_officialTravel<T extends User$trx_officialTravelArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_officialTravelArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_official_travelPayload<ExtArgs>, T, "findMany"> | Null>
@@ -4216,6 +4442,21 @@ export namespace Prisma {
      * Filter which Users to delete
      */
     where?: UserWhereInput
+  }
+
+  /**
+   * User.dept_data
+   */
+  export type User$dept_dataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mst_dept
+     */
+    select?: mst_deptSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mst_deptInclude<ExtArgs> | null
+    where?: mst_deptWhereInput
   }
 
   /**
@@ -5424,6 +5665,7 @@ export namespace Prisma {
     end_date: Date | null
     total_leave_days: bigint | null
     leave_reason: string | null
+    support_document: string | null
     accept_to: string | null
     accepted: string | null
     accepted_date: Date | null
@@ -5455,6 +5697,7 @@ export namespace Prisma {
     end_date: Date | null
     total_leave_days: bigint | null
     leave_reason: string | null
+    support_document: string | null
     accept_to: string | null
     accepted: string | null
     accepted_date: Date | null
@@ -5486,6 +5729,7 @@ export namespace Prisma {
     end_date: number
     total_leave_days: number
     leave_reason: number
+    support_document: number
     accept_to: number
     accepted: number
     accepted_date: number
@@ -5541,6 +5785,7 @@ export namespace Prisma {
     end_date?: true
     total_leave_days?: true
     leave_reason?: true
+    support_document?: true
     accept_to?: true
     accepted?: true
     accepted_date?: true
@@ -5572,6 +5817,7 @@ export namespace Prisma {
     end_date?: true
     total_leave_days?: true
     leave_reason?: true
+    support_document?: true
     accept_to?: true
     accepted?: true
     accepted_date?: true
@@ -5603,6 +5849,7 @@ export namespace Prisma {
     end_date?: true
     total_leave_days?: true
     leave_reason?: true
+    support_document?: true
     accept_to?: true
     accepted?: true
     accepted_date?: true
@@ -5721,6 +5968,7 @@ export namespace Prisma {
     end_date: Date
     total_leave_days: bigint
     leave_reason: string
+    support_document: string | null
     accept_to: string | null
     accepted: string | null
     accepted_date: Date | null
@@ -5771,6 +6019,7 @@ export namespace Prisma {
     end_date?: boolean
     total_leave_days?: boolean
     leave_reason?: boolean
+    support_document?: boolean
     accept_to?: boolean
     accepted?: boolean
     accepted_date?: boolean
@@ -5805,6 +6054,7 @@ export namespace Prisma {
     end_date?: boolean
     total_leave_days?: boolean
     leave_reason?: boolean
+    support_document?: boolean
     accept_to?: boolean
     accepted?: boolean
     accepted_date?: boolean
@@ -5847,6 +6097,7 @@ export namespace Prisma {
       end_date: Date
       total_leave_days: bigint
       leave_reason: string
+      support_document: string | null
       accept_to: string | null
       accepted: string | null
       accepted_date: Date | null
@@ -6246,6 +6497,7 @@ export namespace Prisma {
     readonly end_date: FieldRef<"trx_leaves", 'DateTime'>
     readonly total_leave_days: FieldRef<"trx_leaves", 'BigInt'>
     readonly leave_reason: FieldRef<"trx_leaves", 'String'>
+    readonly support_document: FieldRef<"trx_leaves", 'String'>
     readonly accept_to: FieldRef<"trx_leaves", 'String'>
     readonly accepted: FieldRef<"trx_leaves", 'String'>
     readonly accepted_date: FieldRef<"trx_leaves", 'DateTime'>
@@ -14809,6 +15061,14 @@ export namespace Prisma {
   export type Trx_official_travelAvgAggregateOutputType = {
     id: number | null
     total_leave_days: number | null
+    taxi_cost: Decimal | null
+    hotel_cost: Decimal | null
+    rent_cost: Decimal | null
+    upd_cost: Decimal | null
+    fiskal_cost: Decimal | null
+    other_cost: Decimal | null
+    total_cost: Decimal | null
+    down_payment: Decimal | null
     status_id: number | null
     created_by: number | null
     updated_by: number | null
@@ -14817,6 +15077,14 @@ export namespace Prisma {
   export type Trx_official_travelSumAggregateOutputType = {
     id: number | null
     total_leave_days: bigint | null
+    taxi_cost: Decimal | null
+    hotel_cost: Decimal | null
+    rent_cost: Decimal | null
+    upd_cost: Decimal | null
+    fiskal_cost: Decimal | null
+    other_cost: Decimal | null
+    total_cost: Decimal | null
+    down_payment: Decimal | null
     status_id: bigint | null
     created_by: bigint | null
     updated_by: bigint | null
@@ -14824,22 +15092,59 @@ export namespace Prisma {
 
   export type Trx_official_travelMinAggregateOutputType = {
     id: number | null
+    code: string | null
     user: string | null
-    effective_date: Date | null
     start_date: Date | null
     end_date: Date | null
     total_leave_days: bigint | null
+    type: string | null
+    destination_place: string | null
+    transportation: string | null
+    lodging: string | null
+    work_status: string | null
+    office_activities: string | null
     purpose: string | null
+    taxi_cost: Decimal | null
+    hotel_cost: Decimal | null
+    rent_cost: Decimal | null
+    upd_cost: Decimal | null
+    fiskal_cost: Decimal | null
+    other_cost: Decimal | null
+    total_cost: Decimal | null
     destination_city: string | null
+    activity_agenda: string | null
+    symbol_currency: string | null
+    currency: string | null
+    down_payment: Decimal | null
     status_id: bigint | null
-    accept_to: string | null
-    accepted: string | null
-    accepted_date: Date | null
-    accepted_remark: string | null
-    approve_to: string | null
-    approved: string | null
-    approved_date: Date | null
-    approved_remark: string | null
+    accept_to_depthead: string | null
+    accepted_depthead: string | null
+    accepted_depthead_date: Date | null
+    accepted_depthead_remark: string | null
+    approve_to_divhead: string | null
+    approved_divhead: string | null
+    approved_divhead_date: Date | null
+    approved_divhead_remark: string | null
+    approve_to_dicdiv: string | null
+    approved_dicdiv: string | null
+    approved_dicdiv_date: Date | null
+    approved_dicdiv_remark: string | null
+    approve_to_depthead_hc: string | null
+    approved_depthead_hc: string | null
+    approved_depthead_hc_date: Date | null
+    approved_depthead_hc_remark: string | null
+    approve_to_divhead_hc: string | null
+    approved_divhead_hc: string | null
+    approved_divhead_hc_date: Date | null
+    approved_divhead_hc_remark: string | null
+    approve_to_dichc: string | null
+    approved_dichc: string | null
+    approved_dichc_date: Date | null
+    approved_dichc_remark: string | null
+    approve_to_presdir: string | null
+    approved_presdir: string | null
+    approved_presdir_date: Date | null
+    approved_presdir_remark: string | null
     rejected: string | null
     rejected_date: Date | null
     rejected_remark: string | null
@@ -14854,22 +15159,59 @@ export namespace Prisma {
 
   export type Trx_official_travelMaxAggregateOutputType = {
     id: number | null
+    code: string | null
     user: string | null
-    effective_date: Date | null
     start_date: Date | null
     end_date: Date | null
     total_leave_days: bigint | null
+    type: string | null
+    destination_place: string | null
+    transportation: string | null
+    lodging: string | null
+    work_status: string | null
+    office_activities: string | null
     purpose: string | null
+    taxi_cost: Decimal | null
+    hotel_cost: Decimal | null
+    rent_cost: Decimal | null
+    upd_cost: Decimal | null
+    fiskal_cost: Decimal | null
+    other_cost: Decimal | null
+    total_cost: Decimal | null
     destination_city: string | null
+    activity_agenda: string | null
+    symbol_currency: string | null
+    currency: string | null
+    down_payment: Decimal | null
     status_id: bigint | null
-    accept_to: string | null
-    accepted: string | null
-    accepted_date: Date | null
-    accepted_remark: string | null
-    approve_to: string | null
-    approved: string | null
-    approved_date: Date | null
-    approved_remark: string | null
+    accept_to_depthead: string | null
+    accepted_depthead: string | null
+    accepted_depthead_date: Date | null
+    accepted_depthead_remark: string | null
+    approve_to_divhead: string | null
+    approved_divhead: string | null
+    approved_divhead_date: Date | null
+    approved_divhead_remark: string | null
+    approve_to_dicdiv: string | null
+    approved_dicdiv: string | null
+    approved_dicdiv_date: Date | null
+    approved_dicdiv_remark: string | null
+    approve_to_depthead_hc: string | null
+    approved_depthead_hc: string | null
+    approved_depthead_hc_date: Date | null
+    approved_depthead_hc_remark: string | null
+    approve_to_divhead_hc: string | null
+    approved_divhead_hc: string | null
+    approved_divhead_hc_date: Date | null
+    approved_divhead_hc_remark: string | null
+    approve_to_dichc: string | null
+    approved_dichc: string | null
+    approved_dichc_date: Date | null
+    approved_dichc_remark: string | null
+    approve_to_presdir: string | null
+    approved_presdir: string | null
+    approved_presdir_date: Date | null
+    approved_presdir_remark: string | null
     rejected: string | null
     rejected_date: Date | null
     rejected_remark: string | null
@@ -14884,22 +15226,59 @@ export namespace Prisma {
 
   export type Trx_official_travelCountAggregateOutputType = {
     id: number
+    code: number
     user: number
-    effective_date: number
     start_date: number
     end_date: number
     total_leave_days: number
+    type: number
+    destination_place: number
+    transportation: number
+    lodging: number
+    work_status: number
+    office_activities: number
     purpose: number
+    taxi_cost: number
+    hotel_cost: number
+    rent_cost: number
+    upd_cost: number
+    fiskal_cost: number
+    other_cost: number
+    total_cost: number
     destination_city: number
+    activity_agenda: number
+    symbol_currency: number
+    currency: number
+    down_payment: number
     status_id: number
-    accept_to: number
-    accepted: number
-    accepted_date: number
-    accepted_remark: number
-    approve_to: number
-    approved: number
-    approved_date: number
-    approved_remark: number
+    accept_to_depthead: number
+    accepted_depthead: number
+    accepted_depthead_date: number
+    accepted_depthead_remark: number
+    approve_to_divhead: number
+    approved_divhead: number
+    approved_divhead_date: number
+    approved_divhead_remark: number
+    approve_to_dicdiv: number
+    approved_dicdiv: number
+    approved_dicdiv_date: number
+    approved_dicdiv_remark: number
+    approve_to_depthead_hc: number
+    approved_depthead_hc: number
+    approved_depthead_hc_date: number
+    approved_depthead_hc_remark: number
+    approve_to_divhead_hc: number
+    approved_divhead_hc: number
+    approved_divhead_hc_date: number
+    approved_divhead_hc_remark: number
+    approve_to_dichc: number
+    approved_dichc: number
+    approved_dichc_date: number
+    approved_dichc_remark: number
+    approve_to_presdir: number
+    approved_presdir: number
+    approved_presdir_date: number
+    approved_presdir_remark: number
     rejected: number
     rejected_date: number
     rejected_remark: number
@@ -14917,6 +15296,14 @@ export namespace Prisma {
   export type Trx_official_travelAvgAggregateInputType = {
     id?: true
     total_leave_days?: true
+    taxi_cost?: true
+    hotel_cost?: true
+    rent_cost?: true
+    upd_cost?: true
+    fiskal_cost?: true
+    other_cost?: true
+    total_cost?: true
+    down_payment?: true
     status_id?: true
     created_by?: true
     updated_by?: true
@@ -14925,6 +15312,14 @@ export namespace Prisma {
   export type Trx_official_travelSumAggregateInputType = {
     id?: true
     total_leave_days?: true
+    taxi_cost?: true
+    hotel_cost?: true
+    rent_cost?: true
+    upd_cost?: true
+    fiskal_cost?: true
+    other_cost?: true
+    total_cost?: true
+    down_payment?: true
     status_id?: true
     created_by?: true
     updated_by?: true
@@ -14932,22 +15327,59 @@ export namespace Prisma {
 
   export type Trx_official_travelMinAggregateInputType = {
     id?: true
+    code?: true
     user?: true
-    effective_date?: true
     start_date?: true
     end_date?: true
     total_leave_days?: true
+    type?: true
+    destination_place?: true
+    transportation?: true
+    lodging?: true
+    work_status?: true
+    office_activities?: true
     purpose?: true
+    taxi_cost?: true
+    hotel_cost?: true
+    rent_cost?: true
+    upd_cost?: true
+    fiskal_cost?: true
+    other_cost?: true
+    total_cost?: true
     destination_city?: true
+    activity_agenda?: true
+    symbol_currency?: true
+    currency?: true
+    down_payment?: true
     status_id?: true
-    accept_to?: true
-    accepted?: true
-    accepted_date?: true
-    accepted_remark?: true
-    approve_to?: true
-    approved?: true
-    approved_date?: true
-    approved_remark?: true
+    accept_to_depthead?: true
+    accepted_depthead?: true
+    accepted_depthead_date?: true
+    accepted_depthead_remark?: true
+    approve_to_divhead?: true
+    approved_divhead?: true
+    approved_divhead_date?: true
+    approved_divhead_remark?: true
+    approve_to_dicdiv?: true
+    approved_dicdiv?: true
+    approved_dicdiv_date?: true
+    approved_dicdiv_remark?: true
+    approve_to_depthead_hc?: true
+    approved_depthead_hc?: true
+    approved_depthead_hc_date?: true
+    approved_depthead_hc_remark?: true
+    approve_to_divhead_hc?: true
+    approved_divhead_hc?: true
+    approved_divhead_hc_date?: true
+    approved_divhead_hc_remark?: true
+    approve_to_dichc?: true
+    approved_dichc?: true
+    approved_dichc_date?: true
+    approved_dichc_remark?: true
+    approve_to_presdir?: true
+    approved_presdir?: true
+    approved_presdir_date?: true
+    approved_presdir_remark?: true
     rejected?: true
     rejected_date?: true
     rejected_remark?: true
@@ -14962,22 +15394,59 @@ export namespace Prisma {
 
   export type Trx_official_travelMaxAggregateInputType = {
     id?: true
+    code?: true
     user?: true
-    effective_date?: true
     start_date?: true
     end_date?: true
     total_leave_days?: true
+    type?: true
+    destination_place?: true
+    transportation?: true
+    lodging?: true
+    work_status?: true
+    office_activities?: true
     purpose?: true
+    taxi_cost?: true
+    hotel_cost?: true
+    rent_cost?: true
+    upd_cost?: true
+    fiskal_cost?: true
+    other_cost?: true
+    total_cost?: true
     destination_city?: true
+    activity_agenda?: true
+    symbol_currency?: true
+    currency?: true
+    down_payment?: true
     status_id?: true
-    accept_to?: true
-    accepted?: true
-    accepted_date?: true
-    accepted_remark?: true
-    approve_to?: true
-    approved?: true
-    approved_date?: true
-    approved_remark?: true
+    accept_to_depthead?: true
+    accepted_depthead?: true
+    accepted_depthead_date?: true
+    accepted_depthead_remark?: true
+    approve_to_divhead?: true
+    approved_divhead?: true
+    approved_divhead_date?: true
+    approved_divhead_remark?: true
+    approve_to_dicdiv?: true
+    approved_dicdiv?: true
+    approved_dicdiv_date?: true
+    approved_dicdiv_remark?: true
+    approve_to_depthead_hc?: true
+    approved_depthead_hc?: true
+    approved_depthead_hc_date?: true
+    approved_depthead_hc_remark?: true
+    approve_to_divhead_hc?: true
+    approved_divhead_hc?: true
+    approved_divhead_hc_date?: true
+    approved_divhead_hc_remark?: true
+    approve_to_dichc?: true
+    approved_dichc?: true
+    approved_dichc_date?: true
+    approved_dichc_remark?: true
+    approve_to_presdir?: true
+    approved_presdir?: true
+    approved_presdir_date?: true
+    approved_presdir_remark?: true
     rejected?: true
     rejected_date?: true
     rejected_remark?: true
@@ -14992,22 +15461,59 @@ export namespace Prisma {
 
   export type Trx_official_travelCountAggregateInputType = {
     id?: true
+    code?: true
     user?: true
-    effective_date?: true
     start_date?: true
     end_date?: true
     total_leave_days?: true
+    type?: true
+    destination_place?: true
+    transportation?: true
+    lodging?: true
+    work_status?: true
+    office_activities?: true
     purpose?: true
+    taxi_cost?: true
+    hotel_cost?: true
+    rent_cost?: true
+    upd_cost?: true
+    fiskal_cost?: true
+    other_cost?: true
+    total_cost?: true
     destination_city?: true
+    activity_agenda?: true
+    symbol_currency?: true
+    currency?: true
+    down_payment?: true
     status_id?: true
-    accept_to?: true
-    accepted?: true
-    accepted_date?: true
-    accepted_remark?: true
-    approve_to?: true
-    approved?: true
-    approved_date?: true
-    approved_remark?: true
+    accept_to_depthead?: true
+    accepted_depthead?: true
+    accepted_depthead_date?: true
+    accepted_depthead_remark?: true
+    approve_to_divhead?: true
+    approved_divhead?: true
+    approved_divhead_date?: true
+    approved_divhead_remark?: true
+    approve_to_dicdiv?: true
+    approved_dicdiv?: true
+    approved_dicdiv_date?: true
+    approved_dicdiv_remark?: true
+    approve_to_depthead_hc?: true
+    approved_depthead_hc?: true
+    approved_depthead_hc_date?: true
+    approved_depthead_hc_remark?: true
+    approve_to_divhead_hc?: true
+    approved_divhead_hc?: true
+    approved_divhead_hc_date?: true
+    approved_divhead_hc_remark?: true
+    approve_to_dichc?: true
+    approved_dichc?: true
+    approved_dichc_date?: true
+    approved_dichc_remark?: true
+    approve_to_presdir?: true
+    approved_presdir?: true
+    approved_presdir_date?: true
+    approved_presdir_remark?: true
     rejected?: true
     rejected_date?: true
     rejected_remark?: true
@@ -15109,22 +15615,59 @@ export namespace Prisma {
 
   export type Trx_official_travelGroupByOutputType = {
     id: number
+    code: string
     user: string
-    effective_date: Date | null
     start_date: Date
     end_date: Date
     total_leave_days: bigint
+    type: string
+    destination_place: string
+    transportation: string
+    lodging: string
+    work_status: string
+    office_activities: string
     purpose: string
+    taxi_cost: Decimal | null
+    hotel_cost: Decimal | null
+    rent_cost: Decimal | null
+    upd_cost: Decimal | null
+    fiskal_cost: Decimal | null
+    other_cost: Decimal | null
+    total_cost: Decimal | null
     destination_city: string
+    activity_agenda: string
+    symbol_currency: string | null
+    currency: string | null
+    down_payment: Decimal | null
     status_id: bigint
-    accept_to: string
-    accepted: string | null
-    accepted_date: Date | null
-    accepted_remark: string | null
-    approve_to: string
-    approved: string | null
-    approved_date: Date | null
-    approved_remark: string | null
+    accept_to_depthead: string
+    accepted_depthead: string | null
+    accepted_depthead_date: Date | null
+    accepted_depthead_remark: string | null
+    approve_to_divhead: string
+    approved_divhead: string | null
+    approved_divhead_date: Date | null
+    approved_divhead_remark: string | null
+    approve_to_dicdiv: string | null
+    approved_dicdiv: string | null
+    approved_dicdiv_date: Date | null
+    approved_dicdiv_remark: string | null
+    approve_to_depthead_hc: string
+    approved_depthead_hc: string | null
+    approved_depthead_hc_date: Date | null
+    approved_depthead_hc_remark: string | null
+    approve_to_divhead_hc: string | null
+    approved_divhead_hc: string | null
+    approved_divhead_hc_date: Date | null
+    approved_divhead_hc_remark: string | null
+    approve_to_dichc: string | null
+    approved_dichc: string | null
+    approved_dichc_date: Date | null
+    approved_dichc_remark: string | null
+    approve_to_presdir: string | null
+    approved_presdir: string | null
+    approved_presdir_date: Date | null
+    approved_presdir_remark: string | null
     rejected: string | null
     rejected_date: Date | null
     rejected_remark: string | null
@@ -15158,22 +15701,59 @@ export namespace Prisma {
 
   export type trx_official_travelSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    code?: boolean
     user?: boolean
-    effective_date?: boolean
     start_date?: boolean
     end_date?: boolean
     total_leave_days?: boolean
+    type?: boolean
+    destination_place?: boolean
+    transportation?: boolean
+    lodging?: boolean
+    work_status?: boolean
+    office_activities?: boolean
     purpose?: boolean
+    taxi_cost?: boolean
+    hotel_cost?: boolean
+    rent_cost?: boolean
+    upd_cost?: boolean
+    fiskal_cost?: boolean
+    other_cost?: boolean
+    total_cost?: boolean
     destination_city?: boolean
+    activity_agenda?: boolean
+    symbol_currency?: boolean
+    currency?: boolean
+    down_payment?: boolean
     status_id?: boolean
-    accept_to?: boolean
-    accepted?: boolean
-    accepted_date?: boolean
-    accepted_remark?: boolean
-    approve_to?: boolean
-    approved?: boolean
-    approved_date?: boolean
-    approved_remark?: boolean
+    accept_to_depthead?: boolean
+    accepted_depthead?: boolean
+    accepted_depthead_date?: boolean
+    accepted_depthead_remark?: boolean
+    approve_to_divhead?: boolean
+    approved_divhead?: boolean
+    approved_divhead_date?: boolean
+    approved_divhead_remark?: boolean
+    approve_to_dicdiv?: boolean
+    approved_dicdiv?: boolean
+    approved_dicdiv_date?: boolean
+    approved_dicdiv_remark?: boolean
+    approve_to_depthead_hc?: boolean
+    approved_depthead_hc?: boolean
+    approved_depthead_hc_date?: boolean
+    approved_depthead_hc_remark?: boolean
+    approve_to_divhead_hc?: boolean
+    approved_divhead_hc?: boolean
+    approved_divhead_hc_date?: boolean
+    approved_divhead_hc_remark?: boolean
+    approve_to_dichc?: boolean
+    approved_dichc?: boolean
+    approved_dichc_date?: boolean
+    approved_dichc_remark?: boolean
+    approve_to_presdir?: boolean
+    approved_presdir?: boolean
+    approved_presdir_date?: boolean
+    approved_presdir_remark?: boolean
     rejected?: boolean
     rejected_date?: boolean
     rejected_remark?: boolean
@@ -15185,27 +15765,66 @@ export namespace Prisma {
     updated_by?: boolean
     updated_at?: boolean
     user_data?: boolean | UserDefaultArgs<ExtArgs>
+    trx_declaration?: boolean | trx_official_travel$trx_declarationArgs<ExtArgs>
+    _count?: boolean | Trx_official_travelCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["trx_official_travel"]>
 
 
   export type trx_official_travelSelectScalar = {
     id?: boolean
+    code?: boolean
     user?: boolean
-    effective_date?: boolean
     start_date?: boolean
     end_date?: boolean
     total_leave_days?: boolean
+    type?: boolean
+    destination_place?: boolean
+    transportation?: boolean
+    lodging?: boolean
+    work_status?: boolean
+    office_activities?: boolean
     purpose?: boolean
+    taxi_cost?: boolean
+    hotel_cost?: boolean
+    rent_cost?: boolean
+    upd_cost?: boolean
+    fiskal_cost?: boolean
+    other_cost?: boolean
+    total_cost?: boolean
     destination_city?: boolean
+    activity_agenda?: boolean
+    symbol_currency?: boolean
+    currency?: boolean
+    down_payment?: boolean
     status_id?: boolean
-    accept_to?: boolean
-    accepted?: boolean
-    accepted_date?: boolean
-    accepted_remark?: boolean
-    approve_to?: boolean
-    approved?: boolean
-    approved_date?: boolean
-    approved_remark?: boolean
+    accept_to_depthead?: boolean
+    accepted_depthead?: boolean
+    accepted_depthead_date?: boolean
+    accepted_depthead_remark?: boolean
+    approve_to_divhead?: boolean
+    approved_divhead?: boolean
+    approved_divhead_date?: boolean
+    approved_divhead_remark?: boolean
+    approve_to_dicdiv?: boolean
+    approved_dicdiv?: boolean
+    approved_dicdiv_date?: boolean
+    approved_dicdiv_remark?: boolean
+    approve_to_depthead_hc?: boolean
+    approved_depthead_hc?: boolean
+    approved_depthead_hc_date?: boolean
+    approved_depthead_hc_remark?: boolean
+    approve_to_divhead_hc?: boolean
+    approved_divhead_hc?: boolean
+    approved_divhead_hc_date?: boolean
+    approved_divhead_hc_remark?: boolean
+    approve_to_dichc?: boolean
+    approved_dichc?: boolean
+    approved_dichc_date?: boolean
+    approved_dichc_remark?: boolean
+    approve_to_presdir?: boolean
+    approved_presdir?: boolean
+    approved_presdir_date?: boolean
+    approved_presdir_remark?: boolean
     rejected?: boolean
     rejected_date?: boolean
     rejected_remark?: boolean
@@ -15220,31 +15839,71 @@ export namespace Prisma {
 
   export type trx_official_travelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user_data?: boolean | UserDefaultArgs<ExtArgs>
+    trx_declaration?: boolean | trx_official_travel$trx_declarationArgs<ExtArgs>
+    _count?: boolean | Trx_official_travelCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $trx_official_travelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "trx_official_travel"
     objects: {
       user_data: Prisma.$UserPayload<ExtArgs>
+      trx_declaration: Prisma.$trx_declarationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      code: string
       user: string
-      effective_date: Date | null
       start_date: Date
       end_date: Date
       total_leave_days: bigint
+      type: string
+      destination_place: string
+      transportation: string
+      lodging: string
+      work_status: string
+      office_activities: string
       purpose: string
+      taxi_cost: Prisma.Decimal | null
+      hotel_cost: Prisma.Decimal | null
+      rent_cost: Prisma.Decimal | null
+      upd_cost: Prisma.Decimal | null
+      fiskal_cost: Prisma.Decimal | null
+      other_cost: Prisma.Decimal | null
+      total_cost: Prisma.Decimal | null
       destination_city: string
+      activity_agenda: string
+      symbol_currency: string | null
+      currency: string | null
+      down_payment: Prisma.Decimal | null
       status_id: bigint
-      accept_to: string
-      accepted: string | null
-      accepted_date: Date | null
-      accepted_remark: string | null
-      approve_to: string
-      approved: string | null
-      approved_date: Date | null
-      approved_remark: string | null
+      accept_to_depthead: string
+      accepted_depthead: string | null
+      accepted_depthead_date: Date | null
+      accepted_depthead_remark: string | null
+      approve_to_divhead: string
+      approved_divhead: string | null
+      approved_divhead_date: Date | null
+      approved_divhead_remark: string | null
+      approve_to_dicdiv: string | null
+      approved_dicdiv: string | null
+      approved_dicdiv_date: Date | null
+      approved_dicdiv_remark: string | null
+      approve_to_depthead_hc: string
+      approved_depthead_hc: string | null
+      approved_depthead_hc_date: Date | null
+      approved_depthead_hc_remark: string | null
+      approve_to_divhead_hc: string | null
+      approved_divhead_hc: string | null
+      approved_divhead_hc_date: Date | null
+      approved_divhead_hc_remark: string | null
+      approve_to_dichc: string | null
+      approved_dichc: string | null
+      approved_dichc_date: Date | null
+      approved_dichc_remark: string | null
+      approve_to_presdir: string | null
+      approved_presdir: string | null
+      approved_presdir_date: Date | null
+      approved_presdir_remark: string | null
       rejected: string | null
       rejected_date: Date | null
       rejected_remark: string | null
@@ -15596,6 +16255,7 @@ export namespace Prisma {
   export interface Prisma__trx_official_travelClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user_data<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    trx_declaration<T extends trx_official_travel$trx_declarationArgs<ExtArgs> = {}>(args?: Subset<T, trx_official_travel$trx_declarationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_declarationPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15626,22 +16286,59 @@ export namespace Prisma {
    */ 
   interface trx_official_travelFieldRefs {
     readonly id: FieldRef<"trx_official_travel", 'Int'>
+    readonly code: FieldRef<"trx_official_travel", 'String'>
     readonly user: FieldRef<"trx_official_travel", 'String'>
-    readonly effective_date: FieldRef<"trx_official_travel", 'DateTime'>
     readonly start_date: FieldRef<"trx_official_travel", 'DateTime'>
     readonly end_date: FieldRef<"trx_official_travel", 'DateTime'>
     readonly total_leave_days: FieldRef<"trx_official_travel", 'BigInt'>
+    readonly type: FieldRef<"trx_official_travel", 'String'>
+    readonly destination_place: FieldRef<"trx_official_travel", 'String'>
+    readonly transportation: FieldRef<"trx_official_travel", 'String'>
+    readonly lodging: FieldRef<"trx_official_travel", 'String'>
+    readonly work_status: FieldRef<"trx_official_travel", 'String'>
+    readonly office_activities: FieldRef<"trx_official_travel", 'String'>
     readonly purpose: FieldRef<"trx_official_travel", 'String'>
+    readonly taxi_cost: FieldRef<"trx_official_travel", 'Decimal'>
+    readonly hotel_cost: FieldRef<"trx_official_travel", 'Decimal'>
+    readonly rent_cost: FieldRef<"trx_official_travel", 'Decimal'>
+    readonly upd_cost: FieldRef<"trx_official_travel", 'Decimal'>
+    readonly fiskal_cost: FieldRef<"trx_official_travel", 'Decimal'>
+    readonly other_cost: FieldRef<"trx_official_travel", 'Decimal'>
+    readonly total_cost: FieldRef<"trx_official_travel", 'Decimal'>
     readonly destination_city: FieldRef<"trx_official_travel", 'String'>
+    readonly activity_agenda: FieldRef<"trx_official_travel", 'String'>
+    readonly symbol_currency: FieldRef<"trx_official_travel", 'String'>
+    readonly currency: FieldRef<"trx_official_travel", 'String'>
+    readonly down_payment: FieldRef<"trx_official_travel", 'Decimal'>
     readonly status_id: FieldRef<"trx_official_travel", 'BigInt'>
-    readonly accept_to: FieldRef<"trx_official_travel", 'String'>
-    readonly accepted: FieldRef<"trx_official_travel", 'String'>
-    readonly accepted_date: FieldRef<"trx_official_travel", 'DateTime'>
-    readonly accepted_remark: FieldRef<"trx_official_travel", 'String'>
-    readonly approve_to: FieldRef<"trx_official_travel", 'String'>
-    readonly approved: FieldRef<"trx_official_travel", 'String'>
-    readonly approved_date: FieldRef<"trx_official_travel", 'DateTime'>
-    readonly approved_remark: FieldRef<"trx_official_travel", 'String'>
+    readonly accept_to_depthead: FieldRef<"trx_official_travel", 'String'>
+    readonly accepted_depthead: FieldRef<"trx_official_travel", 'String'>
+    readonly accepted_depthead_date: FieldRef<"trx_official_travel", 'DateTime'>
+    readonly accepted_depthead_remark: FieldRef<"trx_official_travel", 'String'>
+    readonly approve_to_divhead: FieldRef<"trx_official_travel", 'String'>
+    readonly approved_divhead: FieldRef<"trx_official_travel", 'String'>
+    readonly approved_divhead_date: FieldRef<"trx_official_travel", 'DateTime'>
+    readonly approved_divhead_remark: FieldRef<"trx_official_travel", 'String'>
+    readonly approve_to_dicdiv: FieldRef<"trx_official_travel", 'String'>
+    readonly approved_dicdiv: FieldRef<"trx_official_travel", 'String'>
+    readonly approved_dicdiv_date: FieldRef<"trx_official_travel", 'DateTime'>
+    readonly approved_dicdiv_remark: FieldRef<"trx_official_travel", 'String'>
+    readonly approve_to_depthead_hc: FieldRef<"trx_official_travel", 'String'>
+    readonly approved_depthead_hc: FieldRef<"trx_official_travel", 'String'>
+    readonly approved_depthead_hc_date: FieldRef<"trx_official_travel", 'DateTime'>
+    readonly approved_depthead_hc_remark: FieldRef<"trx_official_travel", 'String'>
+    readonly approve_to_divhead_hc: FieldRef<"trx_official_travel", 'String'>
+    readonly approved_divhead_hc: FieldRef<"trx_official_travel", 'String'>
+    readonly approved_divhead_hc_date: FieldRef<"trx_official_travel", 'DateTime'>
+    readonly approved_divhead_hc_remark: FieldRef<"trx_official_travel", 'String'>
+    readonly approve_to_dichc: FieldRef<"trx_official_travel", 'String'>
+    readonly approved_dichc: FieldRef<"trx_official_travel", 'String'>
+    readonly approved_dichc_date: FieldRef<"trx_official_travel", 'DateTime'>
+    readonly approved_dichc_remark: FieldRef<"trx_official_travel", 'String'>
+    readonly approve_to_presdir: FieldRef<"trx_official_travel", 'String'>
+    readonly approved_presdir: FieldRef<"trx_official_travel", 'String'>
+    readonly approved_presdir_date: FieldRef<"trx_official_travel", 'DateTime'>
+    readonly approved_presdir_remark: FieldRef<"trx_official_travel", 'String'>
     readonly rejected: FieldRef<"trx_official_travel", 'String'>
     readonly rejected_date: FieldRef<"trx_official_travel", 'DateTime'>
     readonly rejected_remark: FieldRef<"trx_official_travel", 'String'>
@@ -15950,6 +16647,26 @@ export namespace Prisma {
   }
 
   /**
+   * trx_official_travel.trx_declaration
+   */
+  export type trx_official_travel$trx_declarationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_declaration
+     */
+    select?: trx_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_declarationInclude<ExtArgs> | null
+    where?: trx_declarationWhereInput
+    orderBy?: trx_declarationOrderByWithRelationInput | trx_declarationOrderByWithRelationInput[]
+    cursor?: trx_declarationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Trx_declarationScalarFieldEnum | Trx_declarationScalarFieldEnum[]
+  }
+
+  /**
    * trx_official_travel without action
    */
   export type trx_official_travelDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -15994,8 +16711,10 @@ export namespace Prisma {
     id: number | null
     user: string | null
     effective_date: Date | null
+    superior_from: string | null
     division_from: string | null
     dept_from: string | null
+    superior_to: string | null
     division_to: string | null
     dept_to: string | null
     reason: string | null
@@ -16024,8 +16743,10 @@ export namespace Prisma {
     id: number | null
     user: string | null
     effective_date: Date | null
+    superior_from: string | null
     division_from: string | null
     dept_from: string | null
+    superior_to: string | null
     division_to: string | null
     dept_to: string | null
     reason: string | null
@@ -16054,8 +16775,10 @@ export namespace Prisma {
     id: number
     user: number
     effective_date: number
+    superior_from: number
     division_from: number
     dept_from: number
+    superior_to: number
     division_to: number
     dept_to: number
     reason: number
@@ -16100,8 +16823,10 @@ export namespace Prisma {
     id?: true
     user?: true
     effective_date?: true
+    superior_from?: true
     division_from?: true
     dept_from?: true
+    superior_to?: true
     division_to?: true
     dept_to?: true
     reason?: true
@@ -16130,8 +16855,10 @@ export namespace Prisma {
     id?: true
     user?: true
     effective_date?: true
+    superior_from?: true
     division_from?: true
     dept_from?: true
+    superior_to?: true
     division_to?: true
     dept_to?: true
     reason?: true
@@ -16160,8 +16887,10 @@ export namespace Prisma {
     id?: true
     user?: true
     effective_date?: true
+    superior_from?: true
     division_from?: true
     dept_from?: true
+    superior_to?: true
     division_to?: true
     dept_to?: true
     reason?: true
@@ -16277,8 +17006,10 @@ export namespace Prisma {
     id: number
     user: string
     effective_date: Date
+    superior_from: string
     division_from: string
     dept_from: string
+    superior_to: string
     division_to: string
     dept_to: string
     reason: string
@@ -16326,8 +17057,10 @@ export namespace Prisma {
     id?: boolean
     user?: boolean
     effective_date?: boolean
+    superior_from?: boolean
     division_from?: boolean
     dept_from?: boolean
+    superior_to?: boolean
     division_to?: boolean
     dept_to?: boolean
     reason?: boolean
@@ -16358,8 +17091,10 @@ export namespace Prisma {
     id?: boolean
     user?: boolean
     effective_date?: boolean
+    superior_from?: boolean
     division_from?: boolean
     dept_from?: boolean
+    superior_to?: boolean
     division_to?: boolean
     dept_to?: boolean
     reason?: boolean
@@ -16397,8 +17132,10 @@ export namespace Prisma {
       id: number
       user: string
       effective_date: Date
+      superior_from: string
       division_from: string
       dept_from: string
+      superior_to: string
       division_to: string
       dept_to: string
       reason: string
@@ -16794,8 +17531,10 @@ export namespace Prisma {
     readonly id: FieldRef<"trx_mutation", 'Int'>
     readonly user: FieldRef<"trx_mutation", 'String'>
     readonly effective_date: FieldRef<"trx_mutation", 'DateTime'>
+    readonly superior_from: FieldRef<"trx_mutation", 'String'>
     readonly division_from: FieldRef<"trx_mutation", 'String'>
     readonly dept_from: FieldRef<"trx_mutation", 'String'>
+    readonly superior_to: FieldRef<"trx_mutation", 'String'>
     readonly division_to: FieldRef<"trx_mutation", 'String'>
     readonly dept_to: FieldRef<"trx_mutation", 'String'>
     readonly reason: FieldRef<"trx_mutation", 'String'>
@@ -17161,6 +17900,7 @@ export namespace Prisma {
     user: string | null
     effective_date: Date | null
     reason: string | null
+    file_upload: string | null
     status_id: bigint | null
     accept_to: string | null
     accepted: string | null
@@ -17187,6 +17927,7 @@ export namespace Prisma {
     user: string | null
     effective_date: Date | null
     reason: string | null
+    file_upload: string | null
     status_id: bigint | null
     accept_to: string | null
     accepted: string | null
@@ -17213,6 +17954,7 @@ export namespace Prisma {
     user: number
     effective_date: number
     reason: number
+    file_upload: number
     status_id: number
     accept_to: number
     accepted: number
@@ -17255,6 +17997,7 @@ export namespace Prisma {
     user?: true
     effective_date?: true
     reason?: true
+    file_upload?: true
     status_id?: true
     accept_to?: true
     accepted?: true
@@ -17281,6 +18024,7 @@ export namespace Prisma {
     user?: true
     effective_date?: true
     reason?: true
+    file_upload?: true
     status_id?: true
     accept_to?: true
     accepted?: true
@@ -17307,6 +18051,7 @@ export namespace Prisma {
     user?: true
     effective_date?: true
     reason?: true
+    file_upload?: true
     status_id?: true
     accept_to?: true
     accepted?: true
@@ -17420,6 +18165,7 @@ export namespace Prisma {
     user: string
     effective_date: Date
     reason: string
+    file_upload: string
     status_id: bigint
     accept_to: string
     accepted: string | null
@@ -17465,6 +18211,7 @@ export namespace Prisma {
     user?: boolean
     effective_date?: boolean
     reason?: boolean
+    file_upload?: boolean
     status_id?: boolean
     accept_to?: boolean
     accepted?: boolean
@@ -17493,6 +18240,7 @@ export namespace Prisma {
     user?: boolean
     effective_date?: boolean
     reason?: boolean
+    file_upload?: boolean
     status_id?: boolean
     accept_to?: boolean
     accepted?: boolean
@@ -17528,6 +18276,7 @@ export namespace Prisma {
       user: string
       effective_date: Date
       reason: string
+      file_upload: string
       status_id: bigint
       accept_to: string
       accepted: string | null
@@ -17921,6 +18670,7 @@ export namespace Prisma {
     readonly user: FieldRef<"trx_resign", 'String'>
     readonly effective_date: FieldRef<"trx_resign", 'DateTime'>
     readonly reason: FieldRef<"trx_resign", 'String'>
+    readonly file_upload: FieldRef<"trx_resign", 'String'>
     readonly status_id: FieldRef<"trx_resign", 'BigInt'>
     readonly accept_to: FieldRef<"trx_resign", 'String'>
     readonly accepted: FieldRef<"trx_resign", 'String'>
@@ -24899,6 +25649,7 @@ export namespace Prisma {
     is_sent_sap: number | null
     created_by: number | null
     updated_by: number | null
+    is_late: number | null
   }
 
   export type AttendanceSumAggregateOutputType = {
@@ -24909,6 +25660,7 @@ export namespace Prisma {
     is_sent_sap: number | null
     created_by: bigint | null
     updated_by: bigint | null
+    is_late: number | null
   }
 
   export type AttendanceMinAggregateOutputType = {
@@ -24943,6 +25695,7 @@ export namespace Prisma {
     created_at: Date | null
     updated_by: bigint | null
     updated_at: Date | null
+    is_late: number | null
   }
 
   export type AttendanceMaxAggregateOutputType = {
@@ -24977,6 +25730,7 @@ export namespace Prisma {
     created_at: Date | null
     updated_by: bigint | null
     updated_at: Date | null
+    is_late: number | null
   }
 
   export type AttendanceCountAggregateOutputType = {
@@ -25011,6 +25765,7 @@ export namespace Prisma {
     created_at: number
     updated_by: number
     updated_at: number
+    is_late: number
     _all: number
   }
 
@@ -25023,6 +25778,7 @@ export namespace Prisma {
     is_sent_sap?: true
     created_by?: true
     updated_by?: true
+    is_late?: true
   }
 
   export type AttendanceSumAggregateInputType = {
@@ -25033,6 +25789,7 @@ export namespace Prisma {
     is_sent_sap?: true
     created_by?: true
     updated_by?: true
+    is_late?: true
   }
 
   export type AttendanceMinAggregateInputType = {
@@ -25067,6 +25824,7 @@ export namespace Prisma {
     created_at?: true
     updated_by?: true
     updated_at?: true
+    is_late?: true
   }
 
   export type AttendanceMaxAggregateInputType = {
@@ -25101,6 +25859,7 @@ export namespace Prisma {
     created_at?: true
     updated_by?: true
     updated_at?: true
+    is_late?: true
   }
 
   export type AttendanceCountAggregateInputType = {
@@ -25135,6 +25894,7 @@ export namespace Prisma {
     created_at?: true
     updated_by?: true
     updated_at?: true
+    is_late?: true
     _all?: true
   }
 
@@ -25256,6 +26016,7 @@ export namespace Prisma {
     created_at: Date
     updated_by: bigint | null
     updated_at: Date
+    is_late: number | null
     _count: AttendanceCountAggregateOutputType | null
     _avg: AttendanceAvgAggregateOutputType | null
     _sum: AttendanceSumAggregateOutputType | null
@@ -25309,6 +26070,7 @@ export namespace Prisma {
     created_at?: boolean
     updated_by?: boolean
     updated_at?: boolean
+    is_late?: boolean
   }, ExtArgs["result"]["attendance"]>
 
 
@@ -25344,6 +26106,7 @@ export namespace Prisma {
     created_at?: boolean
     updated_by?: boolean
     updated_at?: boolean
+    is_late?: boolean
   }
 
 
@@ -25382,6 +26145,7 @@ export namespace Prisma {
       created_at: Date
       updated_by: bigint | null
       updated_at: Date
+      is_late: number | null
     }, ExtArgs["result"]["attendance"]>
     composites: {}
   }
@@ -25782,6 +26546,7 @@ export namespace Prisma {
     readonly created_at: FieldRef<"attendance", 'DateTime'>
     readonly updated_by: FieldRef<"attendance", 'BigInt'>
     readonly updated_at: FieldRef<"attendance", 'DateTime'>
+    readonly is_late: FieldRef<"attendance", 'Int'>
   }
     
 
@@ -26055,6 +26820,2271 @@ export namespace Prisma {
 
 
   /**
+   * Model trx_declaration
+   */
+
+  export type AggregateTrx_declaration = {
+    _count: Trx_declarationCountAggregateOutputType | null
+    _avg: Trx_declarationAvgAggregateOutputType | null
+    _sum: Trx_declarationSumAggregateOutputType | null
+    _min: Trx_declarationMinAggregateOutputType | null
+    _max: Trx_declarationMaxAggregateOutputType | null
+  }
+
+  export type Trx_declarationAvgAggregateOutputType = {
+    id: number | null
+    total_money_change: Decimal | null
+    status_id: number | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type Trx_declarationSumAggregateOutputType = {
+    id: number | null
+    total_money_change: Decimal | null
+    status_id: bigint | null
+    created_by: bigint | null
+    updated_by: bigint | null
+  }
+
+  export type Trx_declarationMinAggregateOutputType = {
+    id: number | null
+    code: string | null
+    user: string | null
+    code_trx: string | null
+    start_date_actual: Date | null
+    end_date_actual: Date | null
+    evidence_file: string | null
+    accept_to: string | null
+    accepted: string | null
+    accepted_date: Date | null
+    accepted_remark: string | null
+    approve_to: string | null
+    approved: string | null
+    approved_date: Date | null
+    approved_remark: string | null
+    rejected: string | null
+    rejected_date: Date | null
+    rejected_remark: string | null
+    canceled: string | null
+    canceled_date: Date | null
+    canceled_remark: string | null
+    total_money_change: Decimal | null
+    status_id: bigint | null
+    created_by: bigint | null
+    created_at: Date | null
+    updated_by: bigint | null
+    updated_at: Date | null
+  }
+
+  export type Trx_declarationMaxAggregateOutputType = {
+    id: number | null
+    code: string | null
+    user: string | null
+    code_trx: string | null
+    start_date_actual: Date | null
+    end_date_actual: Date | null
+    evidence_file: string | null
+    accept_to: string | null
+    accepted: string | null
+    accepted_date: Date | null
+    accepted_remark: string | null
+    approve_to: string | null
+    approved: string | null
+    approved_date: Date | null
+    approved_remark: string | null
+    rejected: string | null
+    rejected_date: Date | null
+    rejected_remark: string | null
+    canceled: string | null
+    canceled_date: Date | null
+    canceled_remark: string | null
+    total_money_change: Decimal | null
+    status_id: bigint | null
+    created_by: bigint | null
+    created_at: Date | null
+    updated_by: bigint | null
+    updated_at: Date | null
+  }
+
+  export type Trx_declarationCountAggregateOutputType = {
+    id: number
+    code: number
+    user: number
+    code_trx: number
+    start_date_actual: number
+    end_date_actual: number
+    evidence_file: number
+    accept_to: number
+    accepted: number
+    accepted_date: number
+    accepted_remark: number
+    approve_to: number
+    approved: number
+    approved_date: number
+    approved_remark: number
+    rejected: number
+    rejected_date: number
+    rejected_remark: number
+    canceled: number
+    canceled_date: number
+    canceled_remark: number
+    total_money_change: number
+    status_id: number
+    created_by: number
+    created_at: number
+    updated_by: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type Trx_declarationAvgAggregateInputType = {
+    id?: true
+    total_money_change?: true
+    status_id?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type Trx_declarationSumAggregateInputType = {
+    id?: true
+    total_money_change?: true
+    status_id?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type Trx_declarationMinAggregateInputType = {
+    id?: true
+    code?: true
+    user?: true
+    code_trx?: true
+    start_date_actual?: true
+    end_date_actual?: true
+    evidence_file?: true
+    accept_to?: true
+    accepted?: true
+    accepted_date?: true
+    accepted_remark?: true
+    approve_to?: true
+    approved?: true
+    approved_date?: true
+    approved_remark?: true
+    rejected?: true
+    rejected_date?: true
+    rejected_remark?: true
+    canceled?: true
+    canceled_date?: true
+    canceled_remark?: true
+    total_money_change?: true
+    status_id?: true
+    created_by?: true
+    created_at?: true
+    updated_by?: true
+    updated_at?: true
+  }
+
+  export type Trx_declarationMaxAggregateInputType = {
+    id?: true
+    code?: true
+    user?: true
+    code_trx?: true
+    start_date_actual?: true
+    end_date_actual?: true
+    evidence_file?: true
+    accept_to?: true
+    accepted?: true
+    accepted_date?: true
+    accepted_remark?: true
+    approve_to?: true
+    approved?: true
+    approved_date?: true
+    approved_remark?: true
+    rejected?: true
+    rejected_date?: true
+    rejected_remark?: true
+    canceled?: true
+    canceled_date?: true
+    canceled_remark?: true
+    total_money_change?: true
+    status_id?: true
+    created_by?: true
+    created_at?: true
+    updated_by?: true
+    updated_at?: true
+  }
+
+  export type Trx_declarationCountAggregateInputType = {
+    id?: true
+    code?: true
+    user?: true
+    code_trx?: true
+    start_date_actual?: true
+    end_date_actual?: true
+    evidence_file?: true
+    accept_to?: true
+    accepted?: true
+    accepted_date?: true
+    accepted_remark?: true
+    approve_to?: true
+    approved?: true
+    approved_date?: true
+    approved_remark?: true
+    rejected?: true
+    rejected_date?: true
+    rejected_remark?: true
+    canceled?: true
+    canceled_date?: true
+    canceled_remark?: true
+    total_money_change?: true
+    status_id?: true
+    created_by?: true
+    created_at?: true
+    updated_by?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type Trx_declarationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which trx_declaration to aggregate.
+     */
+    where?: trx_declarationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of trx_declarations to fetch.
+     */
+    orderBy?: trx_declarationOrderByWithRelationInput | trx_declarationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: trx_declarationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` trx_declarations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` trx_declarations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned trx_declarations
+    **/
+    _count?: true | Trx_declarationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Trx_declarationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Trx_declarationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Trx_declarationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Trx_declarationMaxAggregateInputType
+  }
+
+  export type GetTrx_declarationAggregateType<T extends Trx_declarationAggregateArgs> = {
+        [P in keyof T & keyof AggregateTrx_declaration]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTrx_declaration[P]>
+      : GetScalarType<T[P], AggregateTrx_declaration[P]>
+  }
+
+
+
+
+  export type trx_declarationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: trx_declarationWhereInput
+    orderBy?: trx_declarationOrderByWithAggregationInput | trx_declarationOrderByWithAggregationInput[]
+    by: Trx_declarationScalarFieldEnum[] | Trx_declarationScalarFieldEnum
+    having?: trx_declarationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Trx_declarationCountAggregateInputType | true
+    _avg?: Trx_declarationAvgAggregateInputType
+    _sum?: Trx_declarationSumAggregateInputType
+    _min?: Trx_declarationMinAggregateInputType
+    _max?: Trx_declarationMaxAggregateInputType
+  }
+
+  export type Trx_declarationGroupByOutputType = {
+    id: number
+    code: string
+    user: string
+    code_trx: string
+    start_date_actual: Date
+    end_date_actual: Date
+    evidence_file: string
+    accept_to: string
+    accepted: string | null
+    accepted_date: Date | null
+    accepted_remark: string | null
+    approve_to: string
+    approved: string | null
+    approved_date: Date | null
+    approved_remark: string | null
+    rejected: string | null
+    rejected_date: Date | null
+    rejected_remark: string | null
+    canceled: string | null
+    canceled_date: Date | null
+    canceled_remark: string | null
+    total_money_change: Decimal
+    status_id: bigint
+    created_by: bigint | null
+    created_at: Date
+    updated_by: bigint | null
+    updated_at: Date
+    _count: Trx_declarationCountAggregateOutputType | null
+    _avg: Trx_declarationAvgAggregateOutputType | null
+    _sum: Trx_declarationSumAggregateOutputType | null
+    _min: Trx_declarationMinAggregateOutputType | null
+    _max: Trx_declarationMaxAggregateOutputType | null
+  }
+
+  type GetTrx_declarationGroupByPayload<T extends trx_declarationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Trx_declarationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Trx_declarationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Trx_declarationGroupByOutputType[P]>
+            : GetScalarType<T[P], Trx_declarationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type trx_declarationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    user?: boolean
+    code_trx?: boolean
+    start_date_actual?: boolean
+    end_date_actual?: boolean
+    evidence_file?: boolean
+    accept_to?: boolean
+    accepted?: boolean
+    accepted_date?: boolean
+    accepted_remark?: boolean
+    approve_to?: boolean
+    approved?: boolean
+    approved_date?: boolean
+    approved_remark?: boolean
+    rejected?: boolean
+    rejected_date?: boolean
+    rejected_remark?: boolean
+    canceled?: boolean
+    canceled_date?: boolean
+    canceled_remark?: boolean
+    total_money_change?: boolean
+    status_id?: boolean
+    created_by?: boolean
+    created_at?: boolean
+    updated_by?: boolean
+    updated_at?: boolean
+    officialTravel_data?: boolean | trx_official_travelDefaultArgs<ExtArgs>
+    trx_detail_declaration?: boolean | trx_declaration$trx_detail_declarationArgs<ExtArgs>
+    _count?: boolean | Trx_declarationCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["trx_declaration"]>
+
+
+  export type trx_declarationSelectScalar = {
+    id?: boolean
+    code?: boolean
+    user?: boolean
+    code_trx?: boolean
+    start_date_actual?: boolean
+    end_date_actual?: boolean
+    evidence_file?: boolean
+    accept_to?: boolean
+    accepted?: boolean
+    accepted_date?: boolean
+    accepted_remark?: boolean
+    approve_to?: boolean
+    approved?: boolean
+    approved_date?: boolean
+    approved_remark?: boolean
+    rejected?: boolean
+    rejected_date?: boolean
+    rejected_remark?: boolean
+    canceled?: boolean
+    canceled_date?: boolean
+    canceled_remark?: boolean
+    total_money_change?: boolean
+    status_id?: boolean
+    created_by?: boolean
+    created_at?: boolean
+    updated_by?: boolean
+    updated_at?: boolean
+  }
+
+  export type trx_declarationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    officialTravel_data?: boolean | trx_official_travelDefaultArgs<ExtArgs>
+    trx_detail_declaration?: boolean | trx_declaration$trx_detail_declarationArgs<ExtArgs>
+    _count?: boolean | Trx_declarationCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $trx_declarationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "trx_declaration"
+    objects: {
+      officialTravel_data: Prisma.$trx_official_travelPayload<ExtArgs>
+      trx_detail_declaration: Prisma.$trx_detail_declarationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      code: string
+      user: string
+      code_trx: string
+      start_date_actual: Date
+      end_date_actual: Date
+      evidence_file: string
+      accept_to: string
+      accepted: string | null
+      accepted_date: Date | null
+      accepted_remark: string | null
+      approve_to: string
+      approved: string | null
+      approved_date: Date | null
+      approved_remark: string | null
+      rejected: string | null
+      rejected_date: Date | null
+      rejected_remark: string | null
+      canceled: string | null
+      canceled_date: Date | null
+      canceled_remark: string | null
+      total_money_change: Prisma.Decimal
+      status_id: bigint
+      created_by: bigint | null
+      created_at: Date
+      updated_by: bigint | null
+      updated_at: Date
+    }, ExtArgs["result"]["trx_declaration"]>
+    composites: {}
+  }
+
+  type trx_declarationGetPayload<S extends boolean | null | undefined | trx_declarationDefaultArgs> = $Result.GetResult<Prisma.$trx_declarationPayload, S>
+
+  type trx_declarationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<trx_declarationFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Trx_declarationCountAggregateInputType | true
+    }
+
+  export interface trx_declarationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['trx_declaration'], meta: { name: 'trx_declaration' } }
+    /**
+     * Find zero or one Trx_declaration that matches the filter.
+     * @param {trx_declarationFindUniqueArgs} args - Arguments to find a Trx_declaration
+     * @example
+     * // Get one Trx_declaration
+     * const trx_declaration = await prisma.trx_declaration.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends trx_declarationFindUniqueArgs>(args: SelectSubset<T, trx_declarationFindUniqueArgs<ExtArgs>>): Prisma__trx_declarationClient<$Result.GetResult<Prisma.$trx_declarationPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Trx_declaration that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {trx_declarationFindUniqueOrThrowArgs} args - Arguments to find a Trx_declaration
+     * @example
+     * // Get one Trx_declaration
+     * const trx_declaration = await prisma.trx_declaration.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends trx_declarationFindUniqueOrThrowArgs>(args: SelectSubset<T, trx_declarationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__trx_declarationClient<$Result.GetResult<Prisma.$trx_declarationPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Trx_declaration that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {trx_declarationFindFirstArgs} args - Arguments to find a Trx_declaration
+     * @example
+     * // Get one Trx_declaration
+     * const trx_declaration = await prisma.trx_declaration.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends trx_declarationFindFirstArgs>(args?: SelectSubset<T, trx_declarationFindFirstArgs<ExtArgs>>): Prisma__trx_declarationClient<$Result.GetResult<Prisma.$trx_declarationPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Trx_declaration that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {trx_declarationFindFirstOrThrowArgs} args - Arguments to find a Trx_declaration
+     * @example
+     * // Get one Trx_declaration
+     * const trx_declaration = await prisma.trx_declaration.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends trx_declarationFindFirstOrThrowArgs>(args?: SelectSubset<T, trx_declarationFindFirstOrThrowArgs<ExtArgs>>): Prisma__trx_declarationClient<$Result.GetResult<Prisma.$trx_declarationPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Trx_declarations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {trx_declarationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Trx_declarations
+     * const trx_declarations = await prisma.trx_declaration.findMany()
+     * 
+     * // Get first 10 Trx_declarations
+     * const trx_declarations = await prisma.trx_declaration.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const trx_declarationWithIdOnly = await prisma.trx_declaration.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends trx_declarationFindManyArgs>(args?: SelectSubset<T, trx_declarationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_declarationPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Trx_declaration.
+     * @param {trx_declarationCreateArgs} args - Arguments to create a Trx_declaration.
+     * @example
+     * // Create one Trx_declaration
+     * const Trx_declaration = await prisma.trx_declaration.create({
+     *   data: {
+     *     // ... data to create a Trx_declaration
+     *   }
+     * })
+     * 
+     */
+    create<T extends trx_declarationCreateArgs>(args: SelectSubset<T, trx_declarationCreateArgs<ExtArgs>>): Prisma__trx_declarationClient<$Result.GetResult<Prisma.$trx_declarationPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Trx_declarations.
+     * @param {trx_declarationCreateManyArgs} args - Arguments to create many Trx_declarations.
+     * @example
+     * // Create many Trx_declarations
+     * const trx_declaration = await prisma.trx_declaration.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends trx_declarationCreateManyArgs>(args?: SelectSubset<T, trx_declarationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Trx_declaration.
+     * @param {trx_declarationDeleteArgs} args - Arguments to delete one Trx_declaration.
+     * @example
+     * // Delete one Trx_declaration
+     * const Trx_declaration = await prisma.trx_declaration.delete({
+     *   where: {
+     *     // ... filter to delete one Trx_declaration
+     *   }
+     * })
+     * 
+     */
+    delete<T extends trx_declarationDeleteArgs>(args: SelectSubset<T, trx_declarationDeleteArgs<ExtArgs>>): Prisma__trx_declarationClient<$Result.GetResult<Prisma.$trx_declarationPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Trx_declaration.
+     * @param {trx_declarationUpdateArgs} args - Arguments to update one Trx_declaration.
+     * @example
+     * // Update one Trx_declaration
+     * const trx_declaration = await prisma.trx_declaration.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends trx_declarationUpdateArgs>(args: SelectSubset<T, trx_declarationUpdateArgs<ExtArgs>>): Prisma__trx_declarationClient<$Result.GetResult<Prisma.$trx_declarationPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Trx_declarations.
+     * @param {trx_declarationDeleteManyArgs} args - Arguments to filter Trx_declarations to delete.
+     * @example
+     * // Delete a few Trx_declarations
+     * const { count } = await prisma.trx_declaration.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends trx_declarationDeleteManyArgs>(args?: SelectSubset<T, trx_declarationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Trx_declarations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {trx_declarationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Trx_declarations
+     * const trx_declaration = await prisma.trx_declaration.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends trx_declarationUpdateManyArgs>(args: SelectSubset<T, trx_declarationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Trx_declaration.
+     * @param {trx_declarationUpsertArgs} args - Arguments to update or create a Trx_declaration.
+     * @example
+     * // Update or create a Trx_declaration
+     * const trx_declaration = await prisma.trx_declaration.upsert({
+     *   create: {
+     *     // ... data to create a Trx_declaration
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Trx_declaration we want to update
+     *   }
+     * })
+     */
+    upsert<T extends trx_declarationUpsertArgs>(args: SelectSubset<T, trx_declarationUpsertArgs<ExtArgs>>): Prisma__trx_declarationClient<$Result.GetResult<Prisma.$trx_declarationPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Trx_declarations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {trx_declarationCountArgs} args - Arguments to filter Trx_declarations to count.
+     * @example
+     * // Count the number of Trx_declarations
+     * const count = await prisma.trx_declaration.count({
+     *   where: {
+     *     // ... the filter for the Trx_declarations we want to count
+     *   }
+     * })
+    **/
+    count<T extends trx_declarationCountArgs>(
+      args?: Subset<T, trx_declarationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Trx_declarationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Trx_declaration.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Trx_declarationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Trx_declarationAggregateArgs>(args: Subset<T, Trx_declarationAggregateArgs>): Prisma.PrismaPromise<GetTrx_declarationAggregateType<T>>
+
+    /**
+     * Group by Trx_declaration.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {trx_declarationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends trx_declarationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: trx_declarationGroupByArgs['orderBy'] }
+        : { orderBy?: trx_declarationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, trx_declarationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTrx_declarationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the trx_declaration model
+   */
+  readonly fields: trx_declarationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for trx_declaration.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__trx_declarationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    officialTravel_data<T extends trx_official_travelDefaultArgs<ExtArgs> = {}>(args?: Subset<T, trx_official_travelDefaultArgs<ExtArgs>>): Prisma__trx_official_travelClient<$Result.GetResult<Prisma.$trx_official_travelPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    trx_detail_declaration<T extends trx_declaration$trx_detail_declarationArgs<ExtArgs> = {}>(args?: Subset<T, trx_declaration$trx_detail_declarationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_detail_declarationPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the trx_declaration model
+   */ 
+  interface trx_declarationFieldRefs {
+    readonly id: FieldRef<"trx_declaration", 'Int'>
+    readonly code: FieldRef<"trx_declaration", 'String'>
+    readonly user: FieldRef<"trx_declaration", 'String'>
+    readonly code_trx: FieldRef<"trx_declaration", 'String'>
+    readonly start_date_actual: FieldRef<"trx_declaration", 'DateTime'>
+    readonly end_date_actual: FieldRef<"trx_declaration", 'DateTime'>
+    readonly evidence_file: FieldRef<"trx_declaration", 'String'>
+    readonly accept_to: FieldRef<"trx_declaration", 'String'>
+    readonly accepted: FieldRef<"trx_declaration", 'String'>
+    readonly accepted_date: FieldRef<"trx_declaration", 'DateTime'>
+    readonly accepted_remark: FieldRef<"trx_declaration", 'String'>
+    readonly approve_to: FieldRef<"trx_declaration", 'String'>
+    readonly approved: FieldRef<"trx_declaration", 'String'>
+    readonly approved_date: FieldRef<"trx_declaration", 'DateTime'>
+    readonly approved_remark: FieldRef<"trx_declaration", 'String'>
+    readonly rejected: FieldRef<"trx_declaration", 'String'>
+    readonly rejected_date: FieldRef<"trx_declaration", 'DateTime'>
+    readonly rejected_remark: FieldRef<"trx_declaration", 'String'>
+    readonly canceled: FieldRef<"trx_declaration", 'String'>
+    readonly canceled_date: FieldRef<"trx_declaration", 'DateTime'>
+    readonly canceled_remark: FieldRef<"trx_declaration", 'String'>
+    readonly total_money_change: FieldRef<"trx_declaration", 'Decimal'>
+    readonly status_id: FieldRef<"trx_declaration", 'BigInt'>
+    readonly created_by: FieldRef<"trx_declaration", 'BigInt'>
+    readonly created_at: FieldRef<"trx_declaration", 'DateTime'>
+    readonly updated_by: FieldRef<"trx_declaration", 'BigInt'>
+    readonly updated_at: FieldRef<"trx_declaration", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * trx_declaration findUnique
+   */
+  export type trx_declarationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_declaration
+     */
+    select?: trx_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_declarationInclude<ExtArgs> | null
+    /**
+     * Filter, which trx_declaration to fetch.
+     */
+    where: trx_declarationWhereUniqueInput
+  }
+
+  /**
+   * trx_declaration findUniqueOrThrow
+   */
+  export type trx_declarationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_declaration
+     */
+    select?: trx_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_declarationInclude<ExtArgs> | null
+    /**
+     * Filter, which trx_declaration to fetch.
+     */
+    where: trx_declarationWhereUniqueInput
+  }
+
+  /**
+   * trx_declaration findFirst
+   */
+  export type trx_declarationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_declaration
+     */
+    select?: trx_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_declarationInclude<ExtArgs> | null
+    /**
+     * Filter, which trx_declaration to fetch.
+     */
+    where?: trx_declarationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of trx_declarations to fetch.
+     */
+    orderBy?: trx_declarationOrderByWithRelationInput | trx_declarationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for trx_declarations.
+     */
+    cursor?: trx_declarationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` trx_declarations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` trx_declarations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of trx_declarations.
+     */
+    distinct?: Trx_declarationScalarFieldEnum | Trx_declarationScalarFieldEnum[]
+  }
+
+  /**
+   * trx_declaration findFirstOrThrow
+   */
+  export type trx_declarationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_declaration
+     */
+    select?: trx_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_declarationInclude<ExtArgs> | null
+    /**
+     * Filter, which trx_declaration to fetch.
+     */
+    where?: trx_declarationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of trx_declarations to fetch.
+     */
+    orderBy?: trx_declarationOrderByWithRelationInput | trx_declarationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for trx_declarations.
+     */
+    cursor?: trx_declarationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` trx_declarations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` trx_declarations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of trx_declarations.
+     */
+    distinct?: Trx_declarationScalarFieldEnum | Trx_declarationScalarFieldEnum[]
+  }
+
+  /**
+   * trx_declaration findMany
+   */
+  export type trx_declarationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_declaration
+     */
+    select?: trx_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_declarationInclude<ExtArgs> | null
+    /**
+     * Filter, which trx_declarations to fetch.
+     */
+    where?: trx_declarationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of trx_declarations to fetch.
+     */
+    orderBy?: trx_declarationOrderByWithRelationInput | trx_declarationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing trx_declarations.
+     */
+    cursor?: trx_declarationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` trx_declarations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` trx_declarations.
+     */
+    skip?: number
+    distinct?: Trx_declarationScalarFieldEnum | Trx_declarationScalarFieldEnum[]
+  }
+
+  /**
+   * trx_declaration create
+   */
+  export type trx_declarationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_declaration
+     */
+    select?: trx_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_declarationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a trx_declaration.
+     */
+    data: XOR<trx_declarationCreateInput, trx_declarationUncheckedCreateInput>
+  }
+
+  /**
+   * trx_declaration createMany
+   */
+  export type trx_declarationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many trx_declarations.
+     */
+    data: trx_declarationCreateManyInput | trx_declarationCreateManyInput[]
+  }
+
+  /**
+   * trx_declaration update
+   */
+  export type trx_declarationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_declaration
+     */
+    select?: trx_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_declarationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a trx_declaration.
+     */
+    data: XOR<trx_declarationUpdateInput, trx_declarationUncheckedUpdateInput>
+    /**
+     * Choose, which trx_declaration to update.
+     */
+    where: trx_declarationWhereUniqueInput
+  }
+
+  /**
+   * trx_declaration updateMany
+   */
+  export type trx_declarationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update trx_declarations.
+     */
+    data: XOR<trx_declarationUpdateManyMutationInput, trx_declarationUncheckedUpdateManyInput>
+    /**
+     * Filter which trx_declarations to update
+     */
+    where?: trx_declarationWhereInput
+  }
+
+  /**
+   * trx_declaration upsert
+   */
+  export type trx_declarationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_declaration
+     */
+    select?: trx_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_declarationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the trx_declaration to update in case it exists.
+     */
+    where: trx_declarationWhereUniqueInput
+    /**
+     * In case the trx_declaration found by the `where` argument doesn't exist, create a new trx_declaration with this data.
+     */
+    create: XOR<trx_declarationCreateInput, trx_declarationUncheckedCreateInput>
+    /**
+     * In case the trx_declaration was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<trx_declarationUpdateInput, trx_declarationUncheckedUpdateInput>
+  }
+
+  /**
+   * trx_declaration delete
+   */
+  export type trx_declarationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_declaration
+     */
+    select?: trx_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_declarationInclude<ExtArgs> | null
+    /**
+     * Filter which trx_declaration to delete.
+     */
+    where: trx_declarationWhereUniqueInput
+  }
+
+  /**
+   * trx_declaration deleteMany
+   */
+  export type trx_declarationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which trx_declarations to delete
+     */
+    where?: trx_declarationWhereInput
+  }
+
+  /**
+   * trx_declaration.trx_detail_declaration
+   */
+  export type trx_declaration$trx_detail_declarationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_detail_declaration
+     */
+    select?: trx_detail_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_detail_declarationInclude<ExtArgs> | null
+    where?: trx_detail_declarationWhereInput
+    orderBy?: trx_detail_declarationOrderByWithRelationInput | trx_detail_declarationOrderByWithRelationInput[]
+    cursor?: trx_detail_declarationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Trx_detail_declarationScalarFieldEnum | Trx_detail_declarationScalarFieldEnum[]
+  }
+
+  /**
+   * trx_declaration without action
+   */
+  export type trx_declarationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_declaration
+     */
+    select?: trx_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_declarationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model trx_detail_declaration
+   */
+
+  export type AggregateTrx_detail_declaration = {
+    _count: Trx_detail_declarationCountAggregateOutputType | null
+    _avg: Trx_detail_declarationAvgAggregateOutputType | null
+    _sum: Trx_detail_declarationSumAggregateOutputType | null
+    _min: Trx_detail_declarationMinAggregateOutputType | null
+    _max: Trx_detail_declarationMaxAggregateOutputType | null
+  }
+
+  export type Trx_detail_declarationAvgAggregateOutputType = {
+    id: number | null
+    hotel_cost: Decimal | null
+    taxi_cost: Decimal | null
+    upd_cost: Decimal | null
+    consume_cost: Decimal | null
+    ticket_cost: Decimal | null
+    other_cost: Decimal | null
+    total_cost: Decimal | null
+    created_by: number | null
+    updated_by: number | null
+  }
+
+  export type Trx_detail_declarationSumAggregateOutputType = {
+    id: number | null
+    hotel_cost: Decimal | null
+    taxi_cost: Decimal | null
+    upd_cost: Decimal | null
+    consume_cost: Decimal | null
+    ticket_cost: Decimal | null
+    other_cost: Decimal | null
+    total_cost: Decimal | null
+    created_by: bigint | null
+    updated_by: bigint | null
+  }
+
+  export type Trx_detail_declarationMinAggregateOutputType = {
+    id: number | null
+    declaration_code: string | null
+    date_activity: Date | null
+    location_activity: string | null
+    hotel_cost: Decimal | null
+    taxi_cost: Decimal | null
+    upd_cost: Decimal | null
+    consume_cost: Decimal | null
+    ticket_cost: Decimal | null
+    other_cost: Decimal | null
+    total_cost: Decimal | null
+    explanation: string | null
+    created_by: bigint | null
+    created_at: Date | null
+    updated_by: bigint | null
+    updated_at: Date | null
+  }
+
+  export type Trx_detail_declarationMaxAggregateOutputType = {
+    id: number | null
+    declaration_code: string | null
+    date_activity: Date | null
+    location_activity: string | null
+    hotel_cost: Decimal | null
+    taxi_cost: Decimal | null
+    upd_cost: Decimal | null
+    consume_cost: Decimal | null
+    ticket_cost: Decimal | null
+    other_cost: Decimal | null
+    total_cost: Decimal | null
+    explanation: string | null
+    created_by: bigint | null
+    created_at: Date | null
+    updated_by: bigint | null
+    updated_at: Date | null
+  }
+
+  export type Trx_detail_declarationCountAggregateOutputType = {
+    id: number
+    declaration_code: number
+    date_activity: number
+    location_activity: number
+    hotel_cost: number
+    taxi_cost: number
+    upd_cost: number
+    consume_cost: number
+    ticket_cost: number
+    other_cost: number
+    total_cost: number
+    explanation: number
+    created_by: number
+    created_at: number
+    updated_by: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type Trx_detail_declarationAvgAggregateInputType = {
+    id?: true
+    hotel_cost?: true
+    taxi_cost?: true
+    upd_cost?: true
+    consume_cost?: true
+    ticket_cost?: true
+    other_cost?: true
+    total_cost?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type Trx_detail_declarationSumAggregateInputType = {
+    id?: true
+    hotel_cost?: true
+    taxi_cost?: true
+    upd_cost?: true
+    consume_cost?: true
+    ticket_cost?: true
+    other_cost?: true
+    total_cost?: true
+    created_by?: true
+    updated_by?: true
+  }
+
+  export type Trx_detail_declarationMinAggregateInputType = {
+    id?: true
+    declaration_code?: true
+    date_activity?: true
+    location_activity?: true
+    hotel_cost?: true
+    taxi_cost?: true
+    upd_cost?: true
+    consume_cost?: true
+    ticket_cost?: true
+    other_cost?: true
+    total_cost?: true
+    explanation?: true
+    created_by?: true
+    created_at?: true
+    updated_by?: true
+    updated_at?: true
+  }
+
+  export type Trx_detail_declarationMaxAggregateInputType = {
+    id?: true
+    declaration_code?: true
+    date_activity?: true
+    location_activity?: true
+    hotel_cost?: true
+    taxi_cost?: true
+    upd_cost?: true
+    consume_cost?: true
+    ticket_cost?: true
+    other_cost?: true
+    total_cost?: true
+    explanation?: true
+    created_by?: true
+    created_at?: true
+    updated_by?: true
+    updated_at?: true
+  }
+
+  export type Trx_detail_declarationCountAggregateInputType = {
+    id?: true
+    declaration_code?: true
+    date_activity?: true
+    location_activity?: true
+    hotel_cost?: true
+    taxi_cost?: true
+    upd_cost?: true
+    consume_cost?: true
+    ticket_cost?: true
+    other_cost?: true
+    total_cost?: true
+    explanation?: true
+    created_by?: true
+    created_at?: true
+    updated_by?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type Trx_detail_declarationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which trx_detail_declaration to aggregate.
+     */
+    where?: trx_detail_declarationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of trx_detail_declarations to fetch.
+     */
+    orderBy?: trx_detail_declarationOrderByWithRelationInput | trx_detail_declarationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: trx_detail_declarationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` trx_detail_declarations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` trx_detail_declarations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned trx_detail_declarations
+    **/
+    _count?: true | Trx_detail_declarationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Trx_detail_declarationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Trx_detail_declarationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Trx_detail_declarationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Trx_detail_declarationMaxAggregateInputType
+  }
+
+  export type GetTrx_detail_declarationAggregateType<T extends Trx_detail_declarationAggregateArgs> = {
+        [P in keyof T & keyof AggregateTrx_detail_declaration]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTrx_detail_declaration[P]>
+      : GetScalarType<T[P], AggregateTrx_detail_declaration[P]>
+  }
+
+
+
+
+  export type trx_detail_declarationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: trx_detail_declarationWhereInput
+    orderBy?: trx_detail_declarationOrderByWithAggregationInput | trx_detail_declarationOrderByWithAggregationInput[]
+    by: Trx_detail_declarationScalarFieldEnum[] | Trx_detail_declarationScalarFieldEnum
+    having?: trx_detail_declarationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Trx_detail_declarationCountAggregateInputType | true
+    _avg?: Trx_detail_declarationAvgAggregateInputType
+    _sum?: Trx_detail_declarationSumAggregateInputType
+    _min?: Trx_detail_declarationMinAggregateInputType
+    _max?: Trx_detail_declarationMaxAggregateInputType
+  }
+
+  export type Trx_detail_declarationGroupByOutputType = {
+    id: number
+    declaration_code: string
+    date_activity: Date
+    location_activity: string
+    hotel_cost: Decimal | null
+    taxi_cost: Decimal | null
+    upd_cost: Decimal | null
+    consume_cost: Decimal | null
+    ticket_cost: Decimal | null
+    other_cost: Decimal | null
+    total_cost: Decimal
+    explanation: string
+    created_by: bigint | null
+    created_at: Date
+    updated_by: bigint | null
+    updated_at: Date
+    _count: Trx_detail_declarationCountAggregateOutputType | null
+    _avg: Trx_detail_declarationAvgAggregateOutputType | null
+    _sum: Trx_detail_declarationSumAggregateOutputType | null
+    _min: Trx_detail_declarationMinAggregateOutputType | null
+    _max: Trx_detail_declarationMaxAggregateOutputType | null
+  }
+
+  type GetTrx_detail_declarationGroupByPayload<T extends trx_detail_declarationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Trx_detail_declarationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Trx_detail_declarationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Trx_detail_declarationGroupByOutputType[P]>
+            : GetScalarType<T[P], Trx_detail_declarationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type trx_detail_declarationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    declaration_code?: boolean
+    date_activity?: boolean
+    location_activity?: boolean
+    hotel_cost?: boolean
+    taxi_cost?: boolean
+    upd_cost?: boolean
+    consume_cost?: boolean
+    ticket_cost?: boolean
+    other_cost?: boolean
+    total_cost?: boolean
+    explanation?: boolean
+    created_by?: boolean
+    created_at?: boolean
+    updated_by?: boolean
+    updated_at?: boolean
+    declaration_data?: boolean | trx_declarationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["trx_detail_declaration"]>
+
+
+  export type trx_detail_declarationSelectScalar = {
+    id?: boolean
+    declaration_code?: boolean
+    date_activity?: boolean
+    location_activity?: boolean
+    hotel_cost?: boolean
+    taxi_cost?: boolean
+    upd_cost?: boolean
+    consume_cost?: boolean
+    ticket_cost?: boolean
+    other_cost?: boolean
+    total_cost?: boolean
+    explanation?: boolean
+    created_by?: boolean
+    created_at?: boolean
+    updated_by?: boolean
+    updated_at?: boolean
+  }
+
+  export type trx_detail_declarationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    declaration_data?: boolean | trx_declarationDefaultArgs<ExtArgs>
+  }
+
+  export type $trx_detail_declarationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "trx_detail_declaration"
+    objects: {
+      declaration_data: Prisma.$trx_declarationPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      declaration_code: string
+      date_activity: Date
+      location_activity: string
+      hotel_cost: Prisma.Decimal | null
+      taxi_cost: Prisma.Decimal | null
+      upd_cost: Prisma.Decimal | null
+      consume_cost: Prisma.Decimal | null
+      ticket_cost: Prisma.Decimal | null
+      other_cost: Prisma.Decimal | null
+      total_cost: Prisma.Decimal
+      explanation: string
+      created_by: bigint | null
+      created_at: Date
+      updated_by: bigint | null
+      updated_at: Date
+    }, ExtArgs["result"]["trx_detail_declaration"]>
+    composites: {}
+  }
+
+  type trx_detail_declarationGetPayload<S extends boolean | null | undefined | trx_detail_declarationDefaultArgs> = $Result.GetResult<Prisma.$trx_detail_declarationPayload, S>
+
+  type trx_detail_declarationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<trx_detail_declarationFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Trx_detail_declarationCountAggregateInputType | true
+    }
+
+  export interface trx_detail_declarationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['trx_detail_declaration'], meta: { name: 'trx_detail_declaration' } }
+    /**
+     * Find zero or one Trx_detail_declaration that matches the filter.
+     * @param {trx_detail_declarationFindUniqueArgs} args - Arguments to find a Trx_detail_declaration
+     * @example
+     * // Get one Trx_detail_declaration
+     * const trx_detail_declaration = await prisma.trx_detail_declaration.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends trx_detail_declarationFindUniqueArgs>(args: SelectSubset<T, trx_detail_declarationFindUniqueArgs<ExtArgs>>): Prisma__trx_detail_declarationClient<$Result.GetResult<Prisma.$trx_detail_declarationPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Trx_detail_declaration that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {trx_detail_declarationFindUniqueOrThrowArgs} args - Arguments to find a Trx_detail_declaration
+     * @example
+     * // Get one Trx_detail_declaration
+     * const trx_detail_declaration = await prisma.trx_detail_declaration.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends trx_detail_declarationFindUniqueOrThrowArgs>(args: SelectSubset<T, trx_detail_declarationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__trx_detail_declarationClient<$Result.GetResult<Prisma.$trx_detail_declarationPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Trx_detail_declaration that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {trx_detail_declarationFindFirstArgs} args - Arguments to find a Trx_detail_declaration
+     * @example
+     * // Get one Trx_detail_declaration
+     * const trx_detail_declaration = await prisma.trx_detail_declaration.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends trx_detail_declarationFindFirstArgs>(args?: SelectSubset<T, trx_detail_declarationFindFirstArgs<ExtArgs>>): Prisma__trx_detail_declarationClient<$Result.GetResult<Prisma.$trx_detail_declarationPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Trx_detail_declaration that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {trx_detail_declarationFindFirstOrThrowArgs} args - Arguments to find a Trx_detail_declaration
+     * @example
+     * // Get one Trx_detail_declaration
+     * const trx_detail_declaration = await prisma.trx_detail_declaration.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends trx_detail_declarationFindFirstOrThrowArgs>(args?: SelectSubset<T, trx_detail_declarationFindFirstOrThrowArgs<ExtArgs>>): Prisma__trx_detail_declarationClient<$Result.GetResult<Prisma.$trx_detail_declarationPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Trx_detail_declarations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {trx_detail_declarationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Trx_detail_declarations
+     * const trx_detail_declarations = await prisma.trx_detail_declaration.findMany()
+     * 
+     * // Get first 10 Trx_detail_declarations
+     * const trx_detail_declarations = await prisma.trx_detail_declaration.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const trx_detail_declarationWithIdOnly = await prisma.trx_detail_declaration.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends trx_detail_declarationFindManyArgs>(args?: SelectSubset<T, trx_detail_declarationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_detail_declarationPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Trx_detail_declaration.
+     * @param {trx_detail_declarationCreateArgs} args - Arguments to create a Trx_detail_declaration.
+     * @example
+     * // Create one Trx_detail_declaration
+     * const Trx_detail_declaration = await prisma.trx_detail_declaration.create({
+     *   data: {
+     *     // ... data to create a Trx_detail_declaration
+     *   }
+     * })
+     * 
+     */
+    create<T extends trx_detail_declarationCreateArgs>(args: SelectSubset<T, trx_detail_declarationCreateArgs<ExtArgs>>): Prisma__trx_detail_declarationClient<$Result.GetResult<Prisma.$trx_detail_declarationPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Trx_detail_declarations.
+     * @param {trx_detail_declarationCreateManyArgs} args - Arguments to create many Trx_detail_declarations.
+     * @example
+     * // Create many Trx_detail_declarations
+     * const trx_detail_declaration = await prisma.trx_detail_declaration.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends trx_detail_declarationCreateManyArgs>(args?: SelectSubset<T, trx_detail_declarationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Trx_detail_declaration.
+     * @param {trx_detail_declarationDeleteArgs} args - Arguments to delete one Trx_detail_declaration.
+     * @example
+     * // Delete one Trx_detail_declaration
+     * const Trx_detail_declaration = await prisma.trx_detail_declaration.delete({
+     *   where: {
+     *     // ... filter to delete one Trx_detail_declaration
+     *   }
+     * })
+     * 
+     */
+    delete<T extends trx_detail_declarationDeleteArgs>(args: SelectSubset<T, trx_detail_declarationDeleteArgs<ExtArgs>>): Prisma__trx_detail_declarationClient<$Result.GetResult<Prisma.$trx_detail_declarationPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Trx_detail_declaration.
+     * @param {trx_detail_declarationUpdateArgs} args - Arguments to update one Trx_detail_declaration.
+     * @example
+     * // Update one Trx_detail_declaration
+     * const trx_detail_declaration = await prisma.trx_detail_declaration.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends trx_detail_declarationUpdateArgs>(args: SelectSubset<T, trx_detail_declarationUpdateArgs<ExtArgs>>): Prisma__trx_detail_declarationClient<$Result.GetResult<Prisma.$trx_detail_declarationPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Trx_detail_declarations.
+     * @param {trx_detail_declarationDeleteManyArgs} args - Arguments to filter Trx_detail_declarations to delete.
+     * @example
+     * // Delete a few Trx_detail_declarations
+     * const { count } = await prisma.trx_detail_declaration.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends trx_detail_declarationDeleteManyArgs>(args?: SelectSubset<T, trx_detail_declarationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Trx_detail_declarations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {trx_detail_declarationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Trx_detail_declarations
+     * const trx_detail_declaration = await prisma.trx_detail_declaration.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends trx_detail_declarationUpdateManyArgs>(args: SelectSubset<T, trx_detail_declarationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Trx_detail_declaration.
+     * @param {trx_detail_declarationUpsertArgs} args - Arguments to update or create a Trx_detail_declaration.
+     * @example
+     * // Update or create a Trx_detail_declaration
+     * const trx_detail_declaration = await prisma.trx_detail_declaration.upsert({
+     *   create: {
+     *     // ... data to create a Trx_detail_declaration
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Trx_detail_declaration we want to update
+     *   }
+     * })
+     */
+    upsert<T extends trx_detail_declarationUpsertArgs>(args: SelectSubset<T, trx_detail_declarationUpsertArgs<ExtArgs>>): Prisma__trx_detail_declarationClient<$Result.GetResult<Prisma.$trx_detail_declarationPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Trx_detail_declarations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {trx_detail_declarationCountArgs} args - Arguments to filter Trx_detail_declarations to count.
+     * @example
+     * // Count the number of Trx_detail_declarations
+     * const count = await prisma.trx_detail_declaration.count({
+     *   where: {
+     *     // ... the filter for the Trx_detail_declarations we want to count
+     *   }
+     * })
+    **/
+    count<T extends trx_detail_declarationCountArgs>(
+      args?: Subset<T, trx_detail_declarationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Trx_detail_declarationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Trx_detail_declaration.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Trx_detail_declarationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Trx_detail_declarationAggregateArgs>(args: Subset<T, Trx_detail_declarationAggregateArgs>): Prisma.PrismaPromise<GetTrx_detail_declarationAggregateType<T>>
+
+    /**
+     * Group by Trx_detail_declaration.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {trx_detail_declarationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends trx_detail_declarationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: trx_detail_declarationGroupByArgs['orderBy'] }
+        : { orderBy?: trx_detail_declarationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, trx_detail_declarationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTrx_detail_declarationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the trx_detail_declaration model
+   */
+  readonly fields: trx_detail_declarationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for trx_detail_declaration.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__trx_detail_declarationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    declaration_data<T extends trx_declarationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, trx_declarationDefaultArgs<ExtArgs>>): Prisma__trx_declarationClient<$Result.GetResult<Prisma.$trx_declarationPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the trx_detail_declaration model
+   */ 
+  interface trx_detail_declarationFieldRefs {
+    readonly id: FieldRef<"trx_detail_declaration", 'Int'>
+    readonly declaration_code: FieldRef<"trx_detail_declaration", 'String'>
+    readonly date_activity: FieldRef<"trx_detail_declaration", 'DateTime'>
+    readonly location_activity: FieldRef<"trx_detail_declaration", 'String'>
+    readonly hotel_cost: FieldRef<"trx_detail_declaration", 'Decimal'>
+    readonly taxi_cost: FieldRef<"trx_detail_declaration", 'Decimal'>
+    readonly upd_cost: FieldRef<"trx_detail_declaration", 'Decimal'>
+    readonly consume_cost: FieldRef<"trx_detail_declaration", 'Decimal'>
+    readonly ticket_cost: FieldRef<"trx_detail_declaration", 'Decimal'>
+    readonly other_cost: FieldRef<"trx_detail_declaration", 'Decimal'>
+    readonly total_cost: FieldRef<"trx_detail_declaration", 'Decimal'>
+    readonly explanation: FieldRef<"trx_detail_declaration", 'String'>
+    readonly created_by: FieldRef<"trx_detail_declaration", 'BigInt'>
+    readonly created_at: FieldRef<"trx_detail_declaration", 'DateTime'>
+    readonly updated_by: FieldRef<"trx_detail_declaration", 'BigInt'>
+    readonly updated_at: FieldRef<"trx_detail_declaration", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * trx_detail_declaration findUnique
+   */
+  export type trx_detail_declarationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_detail_declaration
+     */
+    select?: trx_detail_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_detail_declarationInclude<ExtArgs> | null
+    /**
+     * Filter, which trx_detail_declaration to fetch.
+     */
+    where: trx_detail_declarationWhereUniqueInput
+  }
+
+  /**
+   * trx_detail_declaration findUniqueOrThrow
+   */
+  export type trx_detail_declarationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_detail_declaration
+     */
+    select?: trx_detail_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_detail_declarationInclude<ExtArgs> | null
+    /**
+     * Filter, which trx_detail_declaration to fetch.
+     */
+    where: trx_detail_declarationWhereUniqueInput
+  }
+
+  /**
+   * trx_detail_declaration findFirst
+   */
+  export type trx_detail_declarationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_detail_declaration
+     */
+    select?: trx_detail_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_detail_declarationInclude<ExtArgs> | null
+    /**
+     * Filter, which trx_detail_declaration to fetch.
+     */
+    where?: trx_detail_declarationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of trx_detail_declarations to fetch.
+     */
+    orderBy?: trx_detail_declarationOrderByWithRelationInput | trx_detail_declarationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for trx_detail_declarations.
+     */
+    cursor?: trx_detail_declarationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` trx_detail_declarations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` trx_detail_declarations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of trx_detail_declarations.
+     */
+    distinct?: Trx_detail_declarationScalarFieldEnum | Trx_detail_declarationScalarFieldEnum[]
+  }
+
+  /**
+   * trx_detail_declaration findFirstOrThrow
+   */
+  export type trx_detail_declarationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_detail_declaration
+     */
+    select?: trx_detail_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_detail_declarationInclude<ExtArgs> | null
+    /**
+     * Filter, which trx_detail_declaration to fetch.
+     */
+    where?: trx_detail_declarationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of trx_detail_declarations to fetch.
+     */
+    orderBy?: trx_detail_declarationOrderByWithRelationInput | trx_detail_declarationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for trx_detail_declarations.
+     */
+    cursor?: trx_detail_declarationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` trx_detail_declarations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` trx_detail_declarations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of trx_detail_declarations.
+     */
+    distinct?: Trx_detail_declarationScalarFieldEnum | Trx_detail_declarationScalarFieldEnum[]
+  }
+
+  /**
+   * trx_detail_declaration findMany
+   */
+  export type trx_detail_declarationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_detail_declaration
+     */
+    select?: trx_detail_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_detail_declarationInclude<ExtArgs> | null
+    /**
+     * Filter, which trx_detail_declarations to fetch.
+     */
+    where?: trx_detail_declarationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of trx_detail_declarations to fetch.
+     */
+    orderBy?: trx_detail_declarationOrderByWithRelationInput | trx_detail_declarationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing trx_detail_declarations.
+     */
+    cursor?: trx_detail_declarationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` trx_detail_declarations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` trx_detail_declarations.
+     */
+    skip?: number
+    distinct?: Trx_detail_declarationScalarFieldEnum | Trx_detail_declarationScalarFieldEnum[]
+  }
+
+  /**
+   * trx_detail_declaration create
+   */
+  export type trx_detail_declarationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_detail_declaration
+     */
+    select?: trx_detail_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_detail_declarationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a trx_detail_declaration.
+     */
+    data: XOR<trx_detail_declarationCreateInput, trx_detail_declarationUncheckedCreateInput>
+  }
+
+  /**
+   * trx_detail_declaration createMany
+   */
+  export type trx_detail_declarationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many trx_detail_declarations.
+     */
+    data: trx_detail_declarationCreateManyInput | trx_detail_declarationCreateManyInput[]
+  }
+
+  /**
+   * trx_detail_declaration update
+   */
+  export type trx_detail_declarationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_detail_declaration
+     */
+    select?: trx_detail_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_detail_declarationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a trx_detail_declaration.
+     */
+    data: XOR<trx_detail_declarationUpdateInput, trx_detail_declarationUncheckedUpdateInput>
+    /**
+     * Choose, which trx_detail_declaration to update.
+     */
+    where: trx_detail_declarationWhereUniqueInput
+  }
+
+  /**
+   * trx_detail_declaration updateMany
+   */
+  export type trx_detail_declarationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update trx_detail_declarations.
+     */
+    data: XOR<trx_detail_declarationUpdateManyMutationInput, trx_detail_declarationUncheckedUpdateManyInput>
+    /**
+     * Filter which trx_detail_declarations to update
+     */
+    where?: trx_detail_declarationWhereInput
+  }
+
+  /**
+   * trx_detail_declaration upsert
+   */
+  export type trx_detail_declarationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_detail_declaration
+     */
+    select?: trx_detail_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_detail_declarationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the trx_detail_declaration to update in case it exists.
+     */
+    where: trx_detail_declarationWhereUniqueInput
+    /**
+     * In case the trx_detail_declaration found by the `where` argument doesn't exist, create a new trx_detail_declaration with this data.
+     */
+    create: XOR<trx_detail_declarationCreateInput, trx_detail_declarationUncheckedCreateInput>
+    /**
+     * In case the trx_detail_declaration was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<trx_detail_declarationUpdateInput, trx_detail_declarationUncheckedUpdateInput>
+  }
+
+  /**
+   * trx_detail_declaration delete
+   */
+  export type trx_detail_declarationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_detail_declaration
+     */
+    select?: trx_detail_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_detail_declarationInclude<ExtArgs> | null
+    /**
+     * Filter which trx_detail_declaration to delete.
+     */
+    where: trx_detail_declarationWhereUniqueInput
+  }
+
+  /**
+   * trx_detail_declaration deleteMany
+   */
+  export type trx_detail_declarationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which trx_detail_declarations to delete
+     */
+    where?: trx_detail_declarationWhereInput
+  }
+
+  /**
+   * trx_detail_declaration without action
+   */
+  export type trx_detail_declarationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_detail_declaration
+     */
+    select?: trx_detail_declarationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_detail_declarationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -26144,6 +29174,7 @@ export namespace Prisma {
     end_date: 'end_date',
     total_leave_days: 'total_leave_days',
     leave_reason: 'leave_reason',
+    support_document: 'support_document',
     accept_to: 'accept_to',
     accepted: 'accepted',
     accepted_date: 'accepted_date',
@@ -26322,22 +29353,59 @@ export namespace Prisma {
 
   export const Trx_official_travelScalarFieldEnum: {
     id: 'id',
+    code: 'code',
     user: 'user',
-    effective_date: 'effective_date',
     start_date: 'start_date',
     end_date: 'end_date',
     total_leave_days: 'total_leave_days',
+    type: 'type',
+    destination_place: 'destination_place',
+    transportation: 'transportation',
+    lodging: 'lodging',
+    work_status: 'work_status',
+    office_activities: 'office_activities',
     purpose: 'purpose',
+    taxi_cost: 'taxi_cost',
+    hotel_cost: 'hotel_cost',
+    rent_cost: 'rent_cost',
+    upd_cost: 'upd_cost',
+    fiskal_cost: 'fiskal_cost',
+    other_cost: 'other_cost',
+    total_cost: 'total_cost',
     destination_city: 'destination_city',
+    activity_agenda: 'activity_agenda',
+    symbol_currency: 'symbol_currency',
+    currency: 'currency',
+    down_payment: 'down_payment',
     status_id: 'status_id',
-    accept_to: 'accept_to',
-    accepted: 'accepted',
-    accepted_date: 'accepted_date',
-    accepted_remark: 'accepted_remark',
-    approve_to: 'approve_to',
-    approved: 'approved',
-    approved_date: 'approved_date',
-    approved_remark: 'approved_remark',
+    accept_to_depthead: 'accept_to_depthead',
+    accepted_depthead: 'accepted_depthead',
+    accepted_depthead_date: 'accepted_depthead_date',
+    accepted_depthead_remark: 'accepted_depthead_remark',
+    approve_to_divhead: 'approve_to_divhead',
+    approved_divhead: 'approved_divhead',
+    approved_divhead_date: 'approved_divhead_date',
+    approved_divhead_remark: 'approved_divhead_remark',
+    approve_to_dicdiv: 'approve_to_dicdiv',
+    approved_dicdiv: 'approved_dicdiv',
+    approved_dicdiv_date: 'approved_dicdiv_date',
+    approved_dicdiv_remark: 'approved_dicdiv_remark',
+    approve_to_depthead_hc: 'approve_to_depthead_hc',
+    approved_depthead_hc: 'approved_depthead_hc',
+    approved_depthead_hc_date: 'approved_depthead_hc_date',
+    approved_depthead_hc_remark: 'approved_depthead_hc_remark',
+    approve_to_divhead_hc: 'approve_to_divhead_hc',
+    approved_divhead_hc: 'approved_divhead_hc',
+    approved_divhead_hc_date: 'approved_divhead_hc_date',
+    approved_divhead_hc_remark: 'approved_divhead_hc_remark',
+    approve_to_dichc: 'approve_to_dichc',
+    approved_dichc: 'approved_dichc',
+    approved_dichc_date: 'approved_dichc_date',
+    approved_dichc_remark: 'approved_dichc_remark',
+    approve_to_presdir: 'approve_to_presdir',
+    approved_presdir: 'approved_presdir',
+    approved_presdir_date: 'approved_presdir_date',
+    approved_presdir_remark: 'approved_presdir_remark',
     rejected: 'rejected',
     rejected_date: 'rejected_date',
     rejected_remark: 'rejected_remark',
@@ -26357,8 +29425,10 @@ export namespace Prisma {
     id: 'id',
     user: 'user',
     effective_date: 'effective_date',
+    superior_from: 'superior_from',
     division_from: 'division_from',
     dept_from: 'dept_from',
+    superior_to: 'superior_to',
     division_to: 'division_to',
     dept_to: 'dept_to',
     reason: 'reason',
@@ -26391,6 +29461,7 @@ export namespace Prisma {
     user: 'user',
     effective_date: 'effective_date',
     reason: 'reason',
+    file_upload: 'file_upload',
     status_id: 'status_id',
     accept_to: 'accept_to',
     accepted: 'accepted',
@@ -26562,10 +29633,66 @@ export namespace Prisma {
     created_by: 'created_by',
     created_at: 'created_at',
     updated_by: 'updated_by',
-    updated_at: 'updated_at'
+    updated_at: 'updated_at',
+    is_late: 'is_late'
   };
 
   export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
+
+
+  export const Trx_declarationScalarFieldEnum: {
+    id: 'id',
+    code: 'code',
+    user: 'user',
+    code_trx: 'code_trx',
+    start_date_actual: 'start_date_actual',
+    end_date_actual: 'end_date_actual',
+    evidence_file: 'evidence_file',
+    accept_to: 'accept_to',
+    accepted: 'accepted',
+    accepted_date: 'accepted_date',
+    accepted_remark: 'accepted_remark',
+    approve_to: 'approve_to',
+    approved: 'approved',
+    approved_date: 'approved_date',
+    approved_remark: 'approved_remark',
+    rejected: 'rejected',
+    rejected_date: 'rejected_date',
+    rejected_remark: 'rejected_remark',
+    canceled: 'canceled',
+    canceled_date: 'canceled_date',
+    canceled_remark: 'canceled_remark',
+    total_money_change: 'total_money_change',
+    status_id: 'status_id',
+    created_by: 'created_by',
+    created_at: 'created_at',
+    updated_by: 'updated_by',
+    updated_at: 'updated_at'
+  };
+
+  export type Trx_declarationScalarFieldEnum = (typeof Trx_declarationScalarFieldEnum)[keyof typeof Trx_declarationScalarFieldEnum]
+
+
+  export const Trx_detail_declarationScalarFieldEnum: {
+    id: 'id',
+    declaration_code: 'declaration_code',
+    date_activity: 'date_activity',
+    location_activity: 'location_activity',
+    hotel_cost: 'hotel_cost',
+    taxi_cost: 'taxi_cost',
+    upd_cost: 'upd_cost',
+    consume_cost: 'consume_cost',
+    ticket_cost: 'ticket_cost',
+    other_cost: 'other_cost',
+    total_cost: 'total_cost',
+    explanation: 'explanation',
+    created_by: 'created_by',
+    created_at: 'created_at',
+    updated_by: 'updated_by',
+    updated_at: 'updated_at'
+  };
+
+  export type Trx_detail_declarationScalarFieldEnum = (typeof Trx_detail_declarationScalarFieldEnum)[keyof typeof Trx_detail_declarationScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -26625,6 +29752,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Decimal'
+   */
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -26655,7 +29789,7 @@ export namespace Prisma {
     section?: StringNullableFilter<"User"> | string | null
     divid?: StringNullableFilter<"User"> | string | null
     companyid?: StringNullableFilter<"User"> | string | null
-    dept?: IntFilter<"User"> | number
+    dept?: IntNullableFilter<"User"> | number | null
     department?: StringNullableFilter<"User"> | string | null
     division?: StringNullableFilter<"User"> | string | null
     title?: StringNullableFilter<"User"> | string | null
@@ -26683,7 +29817,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: StringNullableFilter<"User"> | string | null
     created_at?: DateTimeNullableFilter<"User"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"User"> | Date | string | null
-    dept_data?: XOR<Mst_deptRelationFilter, mst_deptWhereInput>
+    dept_data?: XOR<Mst_deptNullableRelationFilter, mst_deptWhereInput> | null
     trx_leaves?: Trx_leavesListRelationFilter
     trx_ovt?: Trx_ovtListRelationFilter
     trx_officialTravel?: Trx_official_travelListRelationFilter
@@ -26711,7 +29845,7 @@ export namespace Prisma {
     section?: SortOrderInput | SortOrder
     divid?: SortOrderInput | SortOrder
     companyid?: SortOrderInput | SortOrder
-    dept?: SortOrder
+    dept?: SortOrderInput | SortOrder
     department?: SortOrderInput | SortOrder
     division?: SortOrderInput | SortOrder
     title?: SortOrderInput | SortOrder
@@ -26771,7 +29905,7 @@ export namespace Prisma {
     section?: StringNullableFilter<"User"> | string | null
     divid?: StringNullableFilter<"User"> | string | null
     companyid?: StringNullableFilter<"User"> | string | null
-    dept?: IntFilter<"User"> | number
+    dept?: IntNullableFilter<"User"> | number | null
     department?: StringNullableFilter<"User"> | string | null
     division?: StringNullableFilter<"User"> | string | null
     title?: StringNullableFilter<"User"> | string | null
@@ -26798,7 +29932,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: StringNullableFilter<"User"> | string | null
     created_at?: DateTimeNullableFilter<"User"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"User"> | Date | string | null
-    dept_data?: XOR<Mst_deptRelationFilter, mst_deptWhereInput>
+    dept_data?: XOR<Mst_deptNullableRelationFilter, mst_deptWhereInput> | null
     trx_leaves?: Trx_leavesListRelationFilter
     trx_ovt?: Trx_ovtListRelationFilter
     trx_officialTravel?: Trx_official_travelListRelationFilter
@@ -26826,7 +29960,7 @@ export namespace Prisma {
     section?: SortOrderInput | SortOrder
     divid?: SortOrderInput | SortOrder
     companyid?: SortOrderInput | SortOrder
-    dept?: SortOrder
+    dept?: SortOrderInput | SortOrder
     department?: SortOrderInput | SortOrder
     division?: SortOrderInput | SortOrder
     title?: SortOrderInput | SortOrder
@@ -26882,7 +30016,7 @@ export namespace Prisma {
     section?: StringNullableWithAggregatesFilter<"User"> | string | null
     divid?: StringNullableWithAggregatesFilter<"User"> | string | null
     companyid?: StringNullableWithAggregatesFilter<"User"> | string | null
-    dept?: IntWithAggregatesFilter<"User"> | number
+    dept?: IntNullableWithAggregatesFilter<"User"> | number | null
     department?: StringNullableWithAggregatesFilter<"User"> | string | null
     division?: StringNullableWithAggregatesFilter<"User"> | string | null
     title?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -27000,6 +30134,7 @@ export namespace Prisma {
     end_date?: DateTimeFilter<"trx_leaves"> | Date | string
     total_leave_days?: BigIntFilter<"trx_leaves"> | bigint | number
     leave_reason?: StringFilter<"trx_leaves"> | string
+    support_document?: StringNullableFilter<"trx_leaves"> | string | null
     accept_to?: StringNullableFilter<"trx_leaves"> | string | null
     accepted?: StringNullableFilter<"trx_leaves"> | string | null
     accepted_date?: DateTimeNullableFilter<"trx_leaves"> | Date | string | null
@@ -27033,6 +30168,7 @@ export namespace Prisma {
     end_date?: SortOrder
     total_leave_days?: SortOrder
     leave_reason?: SortOrder
+    support_document?: SortOrderInput | SortOrder
     accept_to?: SortOrderInput | SortOrder
     accepted?: SortOrderInput | SortOrder
     accepted_date?: SortOrderInput | SortOrder
@@ -27069,6 +30205,7 @@ export namespace Prisma {
     end_date?: DateTimeFilter<"trx_leaves"> | Date | string
     total_leave_days?: BigIntFilter<"trx_leaves"> | bigint | number
     leave_reason?: StringFilter<"trx_leaves"> | string
+    support_document?: StringNullableFilter<"trx_leaves"> | string | null
     accept_to?: StringNullableFilter<"trx_leaves"> | string | null
     accepted?: StringNullableFilter<"trx_leaves"> | string | null
     accepted_date?: DateTimeNullableFilter<"trx_leaves"> | Date | string | null
@@ -27102,6 +30239,7 @@ export namespace Prisma {
     end_date?: SortOrder
     total_leave_days?: SortOrder
     leave_reason?: SortOrder
+    support_document?: SortOrderInput | SortOrder
     accept_to?: SortOrderInput | SortOrder
     accepted?: SortOrderInput | SortOrder
     accepted_date?: SortOrderInput | SortOrder
@@ -27141,6 +30279,7 @@ export namespace Prisma {
     end_date?: DateTimeWithAggregatesFilter<"trx_leaves"> | Date | string
     total_leave_days?: BigIntWithAggregatesFilter<"trx_leaves"> | bigint | number
     leave_reason?: StringWithAggregatesFilter<"trx_leaves"> | string
+    support_document?: StringNullableWithAggregatesFilter<"trx_leaves"> | string | null
     accept_to?: StringNullableWithAggregatesFilter<"trx_leaves"> | string | null
     accepted?: StringNullableWithAggregatesFilter<"trx_leaves"> | string | null
     accepted_date?: DateTimeNullableWithAggregatesFilter<"trx_leaves"> | Date | string | null
@@ -27959,22 +31098,59 @@ export namespace Prisma {
     OR?: trx_official_travelWhereInput[]
     NOT?: trx_official_travelWhereInput | trx_official_travelWhereInput[]
     id?: IntFilter<"trx_official_travel"> | number
+    code?: StringFilter<"trx_official_travel"> | string
     user?: StringFilter<"trx_official_travel"> | string
-    effective_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
     start_date?: DateTimeFilter<"trx_official_travel"> | Date | string
     end_date?: DateTimeFilter<"trx_official_travel"> | Date | string
     total_leave_days?: BigIntFilter<"trx_official_travel"> | bigint | number
+    type?: StringFilter<"trx_official_travel"> | string
+    destination_place?: StringFilter<"trx_official_travel"> | string
+    transportation?: StringFilter<"trx_official_travel"> | string
+    lodging?: StringFilter<"trx_official_travel"> | string
+    work_status?: StringFilter<"trx_official_travel"> | string
+    office_activities?: StringFilter<"trx_official_travel"> | string
     purpose?: StringFilter<"trx_official_travel"> | string
+    taxi_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    rent_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    other_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     destination_city?: StringFilter<"trx_official_travel"> | string
+    activity_agenda?: StringFilter<"trx_official_travel"> | string
+    symbol_currency?: StringNullableFilter<"trx_official_travel"> | string | null
+    currency?: StringNullableFilter<"trx_official_travel"> | string | null
+    down_payment?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     status_id?: BigIntFilter<"trx_official_travel"> | bigint | number
-    accept_to?: StringFilter<"trx_official_travel"> | string
-    accepted?: StringNullableFilter<"trx_official_travel"> | string | null
-    accepted_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
-    accepted_remark?: StringNullableFilter<"trx_official_travel"> | string | null
-    approve_to?: StringFilter<"trx_official_travel"> | string
-    approved?: StringNullableFilter<"trx_official_travel"> | string | null
-    approved_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
-    approved_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    accept_to_depthead?: StringFilter<"trx_official_travel"> | string
+    accepted_depthead?: StringNullableFilter<"trx_official_travel"> | string | null
+    accepted_depthead_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    accepted_depthead_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_divhead?: StringFilter<"trx_official_travel"> | string
+    approved_divhead?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_divhead_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_divhead_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_dicdiv?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_dicdiv?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_dicdiv_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_dicdiv_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_depthead_hc?: StringFilter<"trx_official_travel"> | string
+    approved_depthead_hc?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_depthead_hc_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_depthead_hc_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_divhead_hc?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_divhead_hc?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_divhead_hc_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_divhead_hc_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_dichc?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_dichc?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_dichc_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_dichc_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_presdir?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_presdir?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_presdir_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_presdir_remark?: StringNullableFilter<"trx_official_travel"> | string | null
     rejected?: StringNullableFilter<"trx_official_travel"> | string | null
     rejected_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
     rejected_remark?: StringNullableFilter<"trx_official_travel"> | string | null
@@ -27986,26 +31162,64 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"trx_official_travel"> | bigint | number | null
     updated_at?: DateTimeFilter<"trx_official_travel"> | Date | string
     user_data?: XOR<UserRelationFilter, UserWhereInput>
+    trx_declaration?: Trx_declarationListRelationFilter
   }
 
   export type trx_official_travelOrderByWithRelationInput = {
     id?: SortOrder
+    code?: SortOrder
     user?: SortOrder
-    effective_date?: SortOrderInput | SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
     total_leave_days?: SortOrder
+    type?: SortOrder
+    destination_place?: SortOrder
+    transportation?: SortOrder
+    lodging?: SortOrder
+    work_status?: SortOrder
+    office_activities?: SortOrder
     purpose?: SortOrder
+    taxi_cost?: SortOrderInput | SortOrder
+    hotel_cost?: SortOrderInput | SortOrder
+    rent_cost?: SortOrderInput | SortOrder
+    upd_cost?: SortOrderInput | SortOrder
+    fiskal_cost?: SortOrderInput | SortOrder
+    other_cost?: SortOrderInput | SortOrder
+    total_cost?: SortOrderInput | SortOrder
     destination_city?: SortOrder
+    activity_agenda?: SortOrder
+    symbol_currency?: SortOrderInput | SortOrder
+    currency?: SortOrderInput | SortOrder
+    down_payment?: SortOrderInput | SortOrder
     status_id?: SortOrder
-    accept_to?: SortOrder
-    accepted?: SortOrderInput | SortOrder
-    accepted_date?: SortOrderInput | SortOrder
-    accepted_remark?: SortOrderInput | SortOrder
-    approve_to?: SortOrder
-    approved?: SortOrderInput | SortOrder
-    approved_date?: SortOrderInput | SortOrder
-    approved_remark?: SortOrderInput | SortOrder
+    accept_to_depthead?: SortOrder
+    accepted_depthead?: SortOrderInput | SortOrder
+    accepted_depthead_date?: SortOrderInput | SortOrder
+    accepted_depthead_remark?: SortOrderInput | SortOrder
+    approve_to_divhead?: SortOrder
+    approved_divhead?: SortOrderInput | SortOrder
+    approved_divhead_date?: SortOrderInput | SortOrder
+    approved_divhead_remark?: SortOrderInput | SortOrder
+    approve_to_dicdiv?: SortOrderInput | SortOrder
+    approved_dicdiv?: SortOrderInput | SortOrder
+    approved_dicdiv_date?: SortOrderInput | SortOrder
+    approved_dicdiv_remark?: SortOrderInput | SortOrder
+    approve_to_depthead_hc?: SortOrder
+    approved_depthead_hc?: SortOrderInput | SortOrder
+    approved_depthead_hc_date?: SortOrderInput | SortOrder
+    approved_depthead_hc_remark?: SortOrderInput | SortOrder
+    approve_to_divhead_hc?: SortOrderInput | SortOrder
+    approved_divhead_hc?: SortOrderInput | SortOrder
+    approved_divhead_hc_date?: SortOrderInput | SortOrder
+    approved_divhead_hc_remark?: SortOrderInput | SortOrder
+    approve_to_dichc?: SortOrderInput | SortOrder
+    approved_dichc?: SortOrderInput | SortOrder
+    approved_dichc_date?: SortOrderInput | SortOrder
+    approved_dichc_remark?: SortOrderInput | SortOrder
+    approve_to_presdir?: SortOrderInput | SortOrder
+    approved_presdir?: SortOrderInput | SortOrder
+    approved_presdir_date?: SortOrderInput | SortOrder
+    approved_presdir_remark?: SortOrderInput | SortOrder
     rejected?: SortOrderInput | SortOrder
     rejected_date?: SortOrderInput | SortOrder
     rejected_remark?: SortOrderInput | SortOrder
@@ -28017,29 +31231,67 @@ export namespace Prisma {
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrder
     user_data?: UserOrderByWithRelationInput
+    trx_declaration?: trx_declarationOrderByRelationAggregateInput
   }
 
   export type trx_official_travelWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    code?: string
     AND?: trx_official_travelWhereInput | trx_official_travelWhereInput[]
     OR?: trx_official_travelWhereInput[]
     NOT?: trx_official_travelWhereInput | trx_official_travelWhereInput[]
     user?: StringFilter<"trx_official_travel"> | string
-    effective_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
     start_date?: DateTimeFilter<"trx_official_travel"> | Date | string
     end_date?: DateTimeFilter<"trx_official_travel"> | Date | string
     total_leave_days?: BigIntFilter<"trx_official_travel"> | bigint | number
+    type?: StringFilter<"trx_official_travel"> | string
+    destination_place?: StringFilter<"trx_official_travel"> | string
+    transportation?: StringFilter<"trx_official_travel"> | string
+    lodging?: StringFilter<"trx_official_travel"> | string
+    work_status?: StringFilter<"trx_official_travel"> | string
+    office_activities?: StringFilter<"trx_official_travel"> | string
     purpose?: StringFilter<"trx_official_travel"> | string
+    taxi_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    rent_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    other_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     destination_city?: StringFilter<"trx_official_travel"> | string
+    activity_agenda?: StringFilter<"trx_official_travel"> | string
+    symbol_currency?: StringNullableFilter<"trx_official_travel"> | string | null
+    currency?: StringNullableFilter<"trx_official_travel"> | string | null
+    down_payment?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     status_id?: BigIntFilter<"trx_official_travel"> | bigint | number
-    accept_to?: StringFilter<"trx_official_travel"> | string
-    accepted?: StringNullableFilter<"trx_official_travel"> | string | null
-    accepted_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
-    accepted_remark?: StringNullableFilter<"trx_official_travel"> | string | null
-    approve_to?: StringFilter<"trx_official_travel"> | string
-    approved?: StringNullableFilter<"trx_official_travel"> | string | null
-    approved_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
-    approved_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    accept_to_depthead?: StringFilter<"trx_official_travel"> | string
+    accepted_depthead?: StringNullableFilter<"trx_official_travel"> | string | null
+    accepted_depthead_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    accepted_depthead_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_divhead?: StringFilter<"trx_official_travel"> | string
+    approved_divhead?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_divhead_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_divhead_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_dicdiv?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_dicdiv?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_dicdiv_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_dicdiv_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_depthead_hc?: StringFilter<"trx_official_travel"> | string
+    approved_depthead_hc?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_depthead_hc_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_depthead_hc_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_divhead_hc?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_divhead_hc?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_divhead_hc_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_divhead_hc_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_dichc?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_dichc?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_dichc_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_dichc_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_presdir?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_presdir?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_presdir_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_presdir_remark?: StringNullableFilter<"trx_official_travel"> | string | null
     rejected?: StringNullableFilter<"trx_official_travel"> | string | null
     rejected_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
     rejected_remark?: StringNullableFilter<"trx_official_travel"> | string | null
@@ -28051,26 +31303,64 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"trx_official_travel"> | bigint | number | null
     updated_at?: DateTimeFilter<"trx_official_travel"> | Date | string
     user_data?: XOR<UserRelationFilter, UserWhereInput>
-  }, "id">
+    trx_declaration?: Trx_declarationListRelationFilter
+  }, "id" | "code">
 
   export type trx_official_travelOrderByWithAggregationInput = {
     id?: SortOrder
+    code?: SortOrder
     user?: SortOrder
-    effective_date?: SortOrderInput | SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
     total_leave_days?: SortOrder
+    type?: SortOrder
+    destination_place?: SortOrder
+    transportation?: SortOrder
+    lodging?: SortOrder
+    work_status?: SortOrder
+    office_activities?: SortOrder
     purpose?: SortOrder
+    taxi_cost?: SortOrderInput | SortOrder
+    hotel_cost?: SortOrderInput | SortOrder
+    rent_cost?: SortOrderInput | SortOrder
+    upd_cost?: SortOrderInput | SortOrder
+    fiskal_cost?: SortOrderInput | SortOrder
+    other_cost?: SortOrderInput | SortOrder
+    total_cost?: SortOrderInput | SortOrder
     destination_city?: SortOrder
+    activity_agenda?: SortOrder
+    symbol_currency?: SortOrderInput | SortOrder
+    currency?: SortOrderInput | SortOrder
+    down_payment?: SortOrderInput | SortOrder
     status_id?: SortOrder
-    accept_to?: SortOrder
-    accepted?: SortOrderInput | SortOrder
-    accepted_date?: SortOrderInput | SortOrder
-    accepted_remark?: SortOrderInput | SortOrder
-    approve_to?: SortOrder
-    approved?: SortOrderInput | SortOrder
-    approved_date?: SortOrderInput | SortOrder
-    approved_remark?: SortOrderInput | SortOrder
+    accept_to_depthead?: SortOrder
+    accepted_depthead?: SortOrderInput | SortOrder
+    accepted_depthead_date?: SortOrderInput | SortOrder
+    accepted_depthead_remark?: SortOrderInput | SortOrder
+    approve_to_divhead?: SortOrder
+    approved_divhead?: SortOrderInput | SortOrder
+    approved_divhead_date?: SortOrderInput | SortOrder
+    approved_divhead_remark?: SortOrderInput | SortOrder
+    approve_to_dicdiv?: SortOrderInput | SortOrder
+    approved_dicdiv?: SortOrderInput | SortOrder
+    approved_dicdiv_date?: SortOrderInput | SortOrder
+    approved_dicdiv_remark?: SortOrderInput | SortOrder
+    approve_to_depthead_hc?: SortOrder
+    approved_depthead_hc?: SortOrderInput | SortOrder
+    approved_depthead_hc_date?: SortOrderInput | SortOrder
+    approved_depthead_hc_remark?: SortOrderInput | SortOrder
+    approve_to_divhead_hc?: SortOrderInput | SortOrder
+    approved_divhead_hc?: SortOrderInput | SortOrder
+    approved_divhead_hc_date?: SortOrderInput | SortOrder
+    approved_divhead_hc_remark?: SortOrderInput | SortOrder
+    approve_to_dichc?: SortOrderInput | SortOrder
+    approved_dichc?: SortOrderInput | SortOrder
+    approved_dichc_date?: SortOrderInput | SortOrder
+    approved_dichc_remark?: SortOrderInput | SortOrder
+    approve_to_presdir?: SortOrderInput | SortOrder
+    approved_presdir?: SortOrderInput | SortOrder
+    approved_presdir_date?: SortOrderInput | SortOrder
+    approved_presdir_remark?: SortOrderInput | SortOrder
     rejected?: SortOrderInput | SortOrder
     rejected_date?: SortOrderInput | SortOrder
     rejected_remark?: SortOrderInput | SortOrder
@@ -28093,22 +31383,59 @@ export namespace Prisma {
     OR?: trx_official_travelScalarWhereWithAggregatesInput[]
     NOT?: trx_official_travelScalarWhereWithAggregatesInput | trx_official_travelScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"trx_official_travel"> | number
+    code?: StringWithAggregatesFilter<"trx_official_travel"> | string
     user?: StringWithAggregatesFilter<"trx_official_travel"> | string
-    effective_date?: DateTimeNullableWithAggregatesFilter<"trx_official_travel"> | Date | string | null
     start_date?: DateTimeWithAggregatesFilter<"trx_official_travel"> | Date | string
     end_date?: DateTimeWithAggregatesFilter<"trx_official_travel"> | Date | string
     total_leave_days?: BigIntWithAggregatesFilter<"trx_official_travel"> | bigint | number
+    type?: StringWithAggregatesFilter<"trx_official_travel"> | string
+    destination_place?: StringWithAggregatesFilter<"trx_official_travel"> | string
+    transportation?: StringWithAggregatesFilter<"trx_official_travel"> | string
+    lodging?: StringWithAggregatesFilter<"trx_official_travel"> | string
+    work_status?: StringWithAggregatesFilter<"trx_official_travel"> | string
+    office_activities?: StringWithAggregatesFilter<"trx_official_travel"> | string
     purpose?: StringWithAggregatesFilter<"trx_official_travel"> | string
+    taxi_cost?: DecimalNullableWithAggregatesFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: DecimalNullableWithAggregatesFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    rent_cost?: DecimalNullableWithAggregatesFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: DecimalNullableWithAggregatesFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: DecimalNullableWithAggregatesFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    other_cost?: DecimalNullableWithAggregatesFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalNullableWithAggregatesFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     destination_city?: StringWithAggregatesFilter<"trx_official_travel"> | string
+    activity_agenda?: StringWithAggregatesFilter<"trx_official_travel"> | string
+    symbol_currency?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    currency?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    down_payment?: DecimalNullableWithAggregatesFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     status_id?: BigIntWithAggregatesFilter<"trx_official_travel"> | bigint | number
-    accept_to?: StringWithAggregatesFilter<"trx_official_travel"> | string
-    accepted?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
-    accepted_date?: DateTimeNullableWithAggregatesFilter<"trx_official_travel"> | Date | string | null
-    accepted_remark?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
-    approve_to?: StringWithAggregatesFilter<"trx_official_travel"> | string
-    approved?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
-    approved_date?: DateTimeNullableWithAggregatesFilter<"trx_official_travel"> | Date | string | null
-    approved_remark?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    accept_to_depthead?: StringWithAggregatesFilter<"trx_official_travel"> | string
+    accepted_depthead?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    accepted_depthead_date?: DateTimeNullableWithAggregatesFilter<"trx_official_travel"> | Date | string | null
+    accepted_depthead_remark?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approve_to_divhead?: StringWithAggregatesFilter<"trx_official_travel"> | string
+    approved_divhead?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approved_divhead_date?: DateTimeNullableWithAggregatesFilter<"trx_official_travel"> | Date | string | null
+    approved_divhead_remark?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approve_to_dicdiv?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approved_dicdiv?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approved_dicdiv_date?: DateTimeNullableWithAggregatesFilter<"trx_official_travel"> | Date | string | null
+    approved_dicdiv_remark?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approve_to_depthead_hc?: StringWithAggregatesFilter<"trx_official_travel"> | string
+    approved_depthead_hc?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approved_depthead_hc_date?: DateTimeNullableWithAggregatesFilter<"trx_official_travel"> | Date | string | null
+    approved_depthead_hc_remark?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approve_to_divhead_hc?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approved_divhead_hc?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approved_divhead_hc_date?: DateTimeNullableWithAggregatesFilter<"trx_official_travel"> | Date | string | null
+    approved_divhead_hc_remark?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approve_to_dichc?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approved_dichc?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approved_dichc_date?: DateTimeNullableWithAggregatesFilter<"trx_official_travel"> | Date | string | null
+    approved_dichc_remark?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approve_to_presdir?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approved_presdir?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    approved_presdir_date?: DateTimeNullableWithAggregatesFilter<"trx_official_travel"> | Date | string | null
+    approved_presdir_remark?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
     rejected?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
     rejected_date?: DateTimeNullableWithAggregatesFilter<"trx_official_travel"> | Date | string | null
     rejected_remark?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
@@ -28128,8 +31455,10 @@ export namespace Prisma {
     id?: IntFilter<"trx_mutation"> | number
     user?: StringFilter<"trx_mutation"> | string
     effective_date?: DateTimeFilter<"trx_mutation"> | Date | string
+    superior_from?: StringFilter<"trx_mutation"> | string
     division_from?: StringFilter<"trx_mutation"> | string
     dept_from?: StringFilter<"trx_mutation"> | string
+    superior_to?: StringFilter<"trx_mutation"> | string
     division_to?: StringFilter<"trx_mutation"> | string
     dept_to?: StringFilter<"trx_mutation"> | string
     reason?: StringFilter<"trx_mutation"> | string
@@ -28159,8 +31488,10 @@ export namespace Prisma {
     id?: SortOrder
     user?: SortOrder
     effective_date?: SortOrder
+    superior_from?: SortOrder
     division_from?: SortOrder
     dept_from?: SortOrder
+    superior_to?: SortOrder
     division_to?: SortOrder
     dept_to?: SortOrder
     reason?: SortOrder
@@ -28193,8 +31524,10 @@ export namespace Prisma {
     NOT?: trx_mutationWhereInput | trx_mutationWhereInput[]
     user?: StringFilter<"trx_mutation"> | string
     effective_date?: DateTimeFilter<"trx_mutation"> | Date | string
+    superior_from?: StringFilter<"trx_mutation"> | string
     division_from?: StringFilter<"trx_mutation"> | string
     dept_from?: StringFilter<"trx_mutation"> | string
+    superior_to?: StringFilter<"trx_mutation"> | string
     division_to?: StringFilter<"trx_mutation"> | string
     dept_to?: StringFilter<"trx_mutation"> | string
     reason?: StringFilter<"trx_mutation"> | string
@@ -28224,8 +31557,10 @@ export namespace Prisma {
     id?: SortOrder
     user?: SortOrder
     effective_date?: SortOrder
+    superior_from?: SortOrder
     division_from?: SortOrder
     dept_from?: SortOrder
+    superior_to?: SortOrder
     division_to?: SortOrder
     dept_to?: SortOrder
     reason?: SortOrder
@@ -28262,8 +31597,10 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"trx_mutation"> | number
     user?: StringWithAggregatesFilter<"trx_mutation"> | string
     effective_date?: DateTimeWithAggregatesFilter<"trx_mutation"> | Date | string
+    superior_from?: StringWithAggregatesFilter<"trx_mutation"> | string
     division_from?: StringWithAggregatesFilter<"trx_mutation"> | string
     dept_from?: StringWithAggregatesFilter<"trx_mutation"> | string
+    superior_to?: StringWithAggregatesFilter<"trx_mutation"> | string
     division_to?: StringWithAggregatesFilter<"trx_mutation"> | string
     dept_to?: StringWithAggregatesFilter<"trx_mutation"> | string
     reason?: StringWithAggregatesFilter<"trx_mutation"> | string
@@ -28296,6 +31633,7 @@ export namespace Prisma {
     user?: StringFilter<"trx_resign"> | string
     effective_date?: DateTimeFilter<"trx_resign"> | Date | string
     reason?: StringFilter<"trx_resign"> | string
+    file_upload?: StringFilter<"trx_resign"> | string
     status_id?: BigIntFilter<"trx_resign"> | bigint | number
     accept_to?: StringFilter<"trx_resign"> | string
     accepted?: StringNullableFilter<"trx_resign"> | string | null
@@ -28323,6 +31661,7 @@ export namespace Prisma {
     user?: SortOrder
     effective_date?: SortOrder
     reason?: SortOrder
+    file_upload?: SortOrder
     status_id?: SortOrder
     accept_to?: SortOrder
     accepted?: SortOrderInput | SortOrder
@@ -28353,6 +31692,7 @@ export namespace Prisma {
     user?: StringFilter<"trx_resign"> | string
     effective_date?: DateTimeFilter<"trx_resign"> | Date | string
     reason?: StringFilter<"trx_resign"> | string
+    file_upload?: StringFilter<"trx_resign"> | string
     status_id?: BigIntFilter<"trx_resign"> | bigint | number
     accept_to?: StringFilter<"trx_resign"> | string
     accepted?: StringNullableFilter<"trx_resign"> | string | null
@@ -28380,6 +31720,7 @@ export namespace Prisma {
     user?: SortOrder
     effective_date?: SortOrder
     reason?: SortOrder
+    file_upload?: SortOrder
     status_id?: SortOrder
     accept_to?: SortOrder
     accepted?: SortOrderInput | SortOrder
@@ -28414,6 +31755,7 @@ export namespace Prisma {
     user?: StringWithAggregatesFilter<"trx_resign"> | string
     effective_date?: DateTimeWithAggregatesFilter<"trx_resign"> | Date | string
     reason?: StringWithAggregatesFilter<"trx_resign"> | string
+    file_upload?: StringWithAggregatesFilter<"trx_resign"> | string
     status_id?: BigIntWithAggregatesFilter<"trx_resign"> | bigint | number
     accept_to?: StringWithAggregatesFilter<"trx_resign"> | string
     accepted?: StringNullableWithAggregatesFilter<"trx_resign"> | string | null
@@ -29049,6 +32391,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"attendance"> | Date | string
     updated_by?: BigIntNullableFilter<"attendance"> | bigint | number | null
     updated_at?: DateTimeFilter<"attendance"> | Date | string
+    is_late?: IntNullableFilter<"attendance"> | number | null
   }
 
   export type attendanceOrderByWithRelationInput = {
@@ -29083,6 +32426,7 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrder
+    is_late?: SortOrderInput | SortOrder
   }
 
   export type attendanceWhereUniqueInput = Prisma.AtLeast<{
@@ -29120,6 +32464,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"attendance"> | Date | string
     updated_by?: BigIntNullableFilter<"attendance"> | bigint | number | null
     updated_at?: DateTimeFilter<"attendance"> | Date | string
+    is_late?: IntNullableFilter<"attendance"> | number | null
   }, "id">
 
   export type attendanceOrderByWithAggregationInput = {
@@ -29154,6 +32499,7 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrder
+    is_late?: SortOrderInput | SortOrder
     _count?: attendanceCountOrderByAggregateInput
     _avg?: attendanceAvgOrderByAggregateInput
     _max?: attendanceMaxOrderByAggregateInput
@@ -29196,6 +32542,289 @@ export namespace Prisma {
     created_at?: DateTimeWithAggregatesFilter<"attendance"> | Date | string
     updated_by?: BigIntNullableWithAggregatesFilter<"attendance"> | bigint | number | null
     updated_at?: DateTimeWithAggregatesFilter<"attendance"> | Date | string
+    is_late?: IntNullableWithAggregatesFilter<"attendance"> | number | null
+  }
+
+  export type trx_declarationWhereInput = {
+    AND?: trx_declarationWhereInput | trx_declarationWhereInput[]
+    OR?: trx_declarationWhereInput[]
+    NOT?: trx_declarationWhereInput | trx_declarationWhereInput[]
+    id?: IntFilter<"trx_declaration"> | number
+    code?: StringFilter<"trx_declaration"> | string
+    user?: StringFilter<"trx_declaration"> | string
+    code_trx?: StringFilter<"trx_declaration"> | string
+    start_date_actual?: DateTimeFilter<"trx_declaration"> | Date | string
+    end_date_actual?: DateTimeFilter<"trx_declaration"> | Date | string
+    evidence_file?: StringFilter<"trx_declaration"> | string
+    accept_to?: StringFilter<"trx_declaration"> | string
+    accepted?: StringNullableFilter<"trx_declaration"> | string | null
+    accepted_date?: DateTimeNullableFilter<"trx_declaration"> | Date | string | null
+    accepted_remark?: StringNullableFilter<"trx_declaration"> | string | null
+    approve_to?: StringFilter<"trx_declaration"> | string
+    approved?: StringNullableFilter<"trx_declaration"> | string | null
+    approved_date?: DateTimeNullableFilter<"trx_declaration"> | Date | string | null
+    approved_remark?: StringNullableFilter<"trx_declaration"> | string | null
+    rejected?: StringNullableFilter<"trx_declaration"> | string | null
+    rejected_date?: DateTimeNullableFilter<"trx_declaration"> | Date | string | null
+    rejected_remark?: StringNullableFilter<"trx_declaration"> | string | null
+    canceled?: StringNullableFilter<"trx_declaration"> | string | null
+    canceled_date?: DateTimeNullableFilter<"trx_declaration"> | Date | string | null
+    canceled_remark?: StringNullableFilter<"trx_declaration"> | string | null
+    total_money_change?: DecimalFilter<"trx_declaration"> | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFilter<"trx_declaration"> | bigint | number
+    created_by?: BigIntNullableFilter<"trx_declaration"> | bigint | number | null
+    created_at?: DateTimeFilter<"trx_declaration"> | Date | string
+    updated_by?: BigIntNullableFilter<"trx_declaration"> | bigint | number | null
+    updated_at?: DateTimeFilter<"trx_declaration"> | Date | string
+    officialTravel_data?: XOR<Trx_official_travelRelationFilter, trx_official_travelWhereInput>
+    trx_detail_declaration?: Trx_detail_declarationListRelationFilter
+  }
+
+  export type trx_declarationOrderByWithRelationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    user?: SortOrder
+    code_trx?: SortOrder
+    start_date_actual?: SortOrder
+    end_date_actual?: SortOrder
+    evidence_file?: SortOrder
+    accept_to?: SortOrder
+    accepted?: SortOrderInput | SortOrder
+    accepted_date?: SortOrderInput | SortOrder
+    accepted_remark?: SortOrderInput | SortOrder
+    approve_to?: SortOrder
+    approved?: SortOrderInput | SortOrder
+    approved_date?: SortOrderInput | SortOrder
+    approved_remark?: SortOrderInput | SortOrder
+    rejected?: SortOrderInput | SortOrder
+    rejected_date?: SortOrderInput | SortOrder
+    rejected_remark?: SortOrderInput | SortOrder
+    canceled?: SortOrderInput | SortOrder
+    canceled_date?: SortOrderInput | SortOrder
+    canceled_remark?: SortOrderInput | SortOrder
+    total_money_change?: SortOrder
+    status_id?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_by?: SortOrderInput | SortOrder
+    updated_at?: SortOrder
+    officialTravel_data?: trx_official_travelOrderByWithRelationInput
+    trx_detail_declaration?: trx_detail_declarationOrderByRelationAggregateInput
+  }
+
+  export type trx_declarationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    code?: string
+    AND?: trx_declarationWhereInput | trx_declarationWhereInput[]
+    OR?: trx_declarationWhereInput[]
+    NOT?: trx_declarationWhereInput | trx_declarationWhereInput[]
+    user?: StringFilter<"trx_declaration"> | string
+    code_trx?: StringFilter<"trx_declaration"> | string
+    start_date_actual?: DateTimeFilter<"trx_declaration"> | Date | string
+    end_date_actual?: DateTimeFilter<"trx_declaration"> | Date | string
+    evidence_file?: StringFilter<"trx_declaration"> | string
+    accept_to?: StringFilter<"trx_declaration"> | string
+    accepted?: StringNullableFilter<"trx_declaration"> | string | null
+    accepted_date?: DateTimeNullableFilter<"trx_declaration"> | Date | string | null
+    accepted_remark?: StringNullableFilter<"trx_declaration"> | string | null
+    approve_to?: StringFilter<"trx_declaration"> | string
+    approved?: StringNullableFilter<"trx_declaration"> | string | null
+    approved_date?: DateTimeNullableFilter<"trx_declaration"> | Date | string | null
+    approved_remark?: StringNullableFilter<"trx_declaration"> | string | null
+    rejected?: StringNullableFilter<"trx_declaration"> | string | null
+    rejected_date?: DateTimeNullableFilter<"trx_declaration"> | Date | string | null
+    rejected_remark?: StringNullableFilter<"trx_declaration"> | string | null
+    canceled?: StringNullableFilter<"trx_declaration"> | string | null
+    canceled_date?: DateTimeNullableFilter<"trx_declaration"> | Date | string | null
+    canceled_remark?: StringNullableFilter<"trx_declaration"> | string | null
+    total_money_change?: DecimalFilter<"trx_declaration"> | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFilter<"trx_declaration"> | bigint | number
+    created_by?: BigIntNullableFilter<"trx_declaration"> | bigint | number | null
+    created_at?: DateTimeFilter<"trx_declaration"> | Date | string
+    updated_by?: BigIntNullableFilter<"trx_declaration"> | bigint | number | null
+    updated_at?: DateTimeFilter<"trx_declaration"> | Date | string
+    officialTravel_data?: XOR<Trx_official_travelRelationFilter, trx_official_travelWhereInput>
+    trx_detail_declaration?: Trx_detail_declarationListRelationFilter
+  }, "id" | "code">
+
+  export type trx_declarationOrderByWithAggregationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    user?: SortOrder
+    code_trx?: SortOrder
+    start_date_actual?: SortOrder
+    end_date_actual?: SortOrder
+    evidence_file?: SortOrder
+    accept_to?: SortOrder
+    accepted?: SortOrderInput | SortOrder
+    accepted_date?: SortOrderInput | SortOrder
+    accepted_remark?: SortOrderInput | SortOrder
+    approve_to?: SortOrder
+    approved?: SortOrderInput | SortOrder
+    approved_date?: SortOrderInput | SortOrder
+    approved_remark?: SortOrderInput | SortOrder
+    rejected?: SortOrderInput | SortOrder
+    rejected_date?: SortOrderInput | SortOrder
+    rejected_remark?: SortOrderInput | SortOrder
+    canceled?: SortOrderInput | SortOrder
+    canceled_date?: SortOrderInput | SortOrder
+    canceled_remark?: SortOrderInput | SortOrder
+    total_money_change?: SortOrder
+    status_id?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_by?: SortOrderInput | SortOrder
+    updated_at?: SortOrder
+    _count?: trx_declarationCountOrderByAggregateInput
+    _avg?: trx_declarationAvgOrderByAggregateInput
+    _max?: trx_declarationMaxOrderByAggregateInput
+    _min?: trx_declarationMinOrderByAggregateInput
+    _sum?: trx_declarationSumOrderByAggregateInput
+  }
+
+  export type trx_declarationScalarWhereWithAggregatesInput = {
+    AND?: trx_declarationScalarWhereWithAggregatesInput | trx_declarationScalarWhereWithAggregatesInput[]
+    OR?: trx_declarationScalarWhereWithAggregatesInput[]
+    NOT?: trx_declarationScalarWhereWithAggregatesInput | trx_declarationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"trx_declaration"> | number
+    code?: StringWithAggregatesFilter<"trx_declaration"> | string
+    user?: StringWithAggregatesFilter<"trx_declaration"> | string
+    code_trx?: StringWithAggregatesFilter<"trx_declaration"> | string
+    start_date_actual?: DateTimeWithAggregatesFilter<"trx_declaration"> | Date | string
+    end_date_actual?: DateTimeWithAggregatesFilter<"trx_declaration"> | Date | string
+    evidence_file?: StringWithAggregatesFilter<"trx_declaration"> | string
+    accept_to?: StringWithAggregatesFilter<"trx_declaration"> | string
+    accepted?: StringNullableWithAggregatesFilter<"trx_declaration"> | string | null
+    accepted_date?: DateTimeNullableWithAggregatesFilter<"trx_declaration"> | Date | string | null
+    accepted_remark?: StringNullableWithAggregatesFilter<"trx_declaration"> | string | null
+    approve_to?: StringWithAggregatesFilter<"trx_declaration"> | string
+    approved?: StringNullableWithAggregatesFilter<"trx_declaration"> | string | null
+    approved_date?: DateTimeNullableWithAggregatesFilter<"trx_declaration"> | Date | string | null
+    approved_remark?: StringNullableWithAggregatesFilter<"trx_declaration"> | string | null
+    rejected?: StringNullableWithAggregatesFilter<"trx_declaration"> | string | null
+    rejected_date?: DateTimeNullableWithAggregatesFilter<"trx_declaration"> | Date | string | null
+    rejected_remark?: StringNullableWithAggregatesFilter<"trx_declaration"> | string | null
+    canceled?: StringNullableWithAggregatesFilter<"trx_declaration"> | string | null
+    canceled_date?: DateTimeNullableWithAggregatesFilter<"trx_declaration"> | Date | string | null
+    canceled_remark?: StringNullableWithAggregatesFilter<"trx_declaration"> | string | null
+    total_money_change?: DecimalWithAggregatesFilter<"trx_declaration"> | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntWithAggregatesFilter<"trx_declaration"> | bigint | number
+    created_by?: BigIntNullableWithAggregatesFilter<"trx_declaration"> | bigint | number | null
+    created_at?: DateTimeWithAggregatesFilter<"trx_declaration"> | Date | string
+    updated_by?: BigIntNullableWithAggregatesFilter<"trx_declaration"> | bigint | number | null
+    updated_at?: DateTimeWithAggregatesFilter<"trx_declaration"> | Date | string
+  }
+
+  export type trx_detail_declarationWhereInput = {
+    AND?: trx_detail_declarationWhereInput | trx_detail_declarationWhereInput[]
+    OR?: trx_detail_declarationWhereInput[]
+    NOT?: trx_detail_declarationWhereInput | trx_detail_declarationWhereInput[]
+    id?: IntFilter<"trx_detail_declaration"> | number
+    declaration_code?: StringFilter<"trx_detail_declaration"> | string
+    date_activity?: DateTimeFilter<"trx_detail_declaration"> | Date | string
+    location_activity?: StringFilter<"trx_detail_declaration"> | string
+    hotel_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    consume_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    other_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string
+    explanation?: StringFilter<"trx_detail_declaration"> | string
+    created_by?: BigIntNullableFilter<"trx_detail_declaration"> | bigint | number | null
+    created_at?: DateTimeFilter<"trx_detail_declaration"> | Date | string
+    updated_by?: BigIntNullableFilter<"trx_detail_declaration"> | bigint | number | null
+    updated_at?: DateTimeFilter<"trx_detail_declaration"> | Date | string
+    declaration_data?: XOR<Trx_declarationRelationFilter, trx_declarationWhereInput>
+  }
+
+  export type trx_detail_declarationOrderByWithRelationInput = {
+    id?: SortOrder
+    declaration_code?: SortOrder
+    date_activity?: SortOrder
+    location_activity?: SortOrder
+    hotel_cost?: SortOrderInput | SortOrder
+    taxi_cost?: SortOrderInput | SortOrder
+    upd_cost?: SortOrderInput | SortOrder
+    consume_cost?: SortOrderInput | SortOrder
+    ticket_cost?: SortOrderInput | SortOrder
+    other_cost?: SortOrderInput | SortOrder
+    total_cost?: SortOrder
+    explanation?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_by?: SortOrderInput | SortOrder
+    updated_at?: SortOrder
+    declaration_data?: trx_declarationOrderByWithRelationInput
+  }
+
+  export type trx_detail_declarationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: trx_detail_declarationWhereInput | trx_detail_declarationWhereInput[]
+    OR?: trx_detail_declarationWhereInput[]
+    NOT?: trx_detail_declarationWhereInput | trx_detail_declarationWhereInput[]
+    declaration_code?: StringFilter<"trx_detail_declaration"> | string
+    date_activity?: DateTimeFilter<"trx_detail_declaration"> | Date | string
+    location_activity?: StringFilter<"trx_detail_declaration"> | string
+    hotel_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    consume_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    other_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string
+    explanation?: StringFilter<"trx_detail_declaration"> | string
+    created_by?: BigIntNullableFilter<"trx_detail_declaration"> | bigint | number | null
+    created_at?: DateTimeFilter<"trx_detail_declaration"> | Date | string
+    updated_by?: BigIntNullableFilter<"trx_detail_declaration"> | bigint | number | null
+    updated_at?: DateTimeFilter<"trx_detail_declaration"> | Date | string
+    declaration_data?: XOR<Trx_declarationRelationFilter, trx_declarationWhereInput>
+  }, "id">
+
+  export type trx_detail_declarationOrderByWithAggregationInput = {
+    id?: SortOrder
+    declaration_code?: SortOrder
+    date_activity?: SortOrder
+    location_activity?: SortOrder
+    hotel_cost?: SortOrderInput | SortOrder
+    taxi_cost?: SortOrderInput | SortOrder
+    upd_cost?: SortOrderInput | SortOrder
+    consume_cost?: SortOrderInput | SortOrder
+    ticket_cost?: SortOrderInput | SortOrder
+    other_cost?: SortOrderInput | SortOrder
+    total_cost?: SortOrder
+    explanation?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_by?: SortOrderInput | SortOrder
+    updated_at?: SortOrder
+    _count?: trx_detail_declarationCountOrderByAggregateInput
+    _avg?: trx_detail_declarationAvgOrderByAggregateInput
+    _max?: trx_detail_declarationMaxOrderByAggregateInput
+    _min?: trx_detail_declarationMinOrderByAggregateInput
+    _sum?: trx_detail_declarationSumOrderByAggregateInput
+  }
+
+  export type trx_detail_declarationScalarWhereWithAggregatesInput = {
+    AND?: trx_detail_declarationScalarWhereWithAggregatesInput | trx_detail_declarationScalarWhereWithAggregatesInput[]
+    OR?: trx_detail_declarationScalarWhereWithAggregatesInput[]
+    NOT?: trx_detail_declarationScalarWhereWithAggregatesInput | trx_detail_declarationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"trx_detail_declaration"> | number
+    declaration_code?: StringWithAggregatesFilter<"trx_detail_declaration"> | string
+    date_activity?: DateTimeWithAggregatesFilter<"trx_detail_declaration"> | Date | string
+    location_activity?: StringWithAggregatesFilter<"trx_detail_declaration"> | string
+    hotel_cost?: DecimalNullableWithAggregatesFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: DecimalNullableWithAggregatesFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: DecimalNullableWithAggregatesFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    consume_cost?: DecimalNullableWithAggregatesFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: DecimalNullableWithAggregatesFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    other_cost?: DecimalNullableWithAggregatesFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalWithAggregatesFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string
+    explanation?: StringWithAggregatesFilter<"trx_detail_declaration"> | string
+    created_by?: BigIntNullableWithAggregatesFilter<"trx_detail_declaration"> | bigint | number | null
+    created_at?: DateTimeWithAggregatesFilter<"trx_detail_declaration"> | Date | string
+    updated_by?: BigIntNullableWithAggregatesFilter<"trx_detail_declaration"> | bigint | number | null
+    updated_at?: DateTimeWithAggregatesFilter<"trx_detail_declaration"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -29243,7 +32872,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    dept_data: mst_deptCreateNestedOneWithoutMst_userInput
+    dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
@@ -29271,7 +32900,7 @@ export namespace Prisma {
     section?: string | null
     divid?: string | null
     companyid?: string | null
-    dept: number
+    dept?: number | null
     department?: string | null
     division?: string | null
     title?: string | null
@@ -29353,7 +32982,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
+    dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
@@ -29381,7 +33010,7 @@ export namespace Prisma {
     section?: NullableStringFieldUpdateOperationsInput | string | null
     divid?: NullableStringFieldUpdateOperationsInput | string | null
     companyid?: NullableStringFieldUpdateOperationsInput | string | null
-    dept?: IntFieldUpdateOperationsInput | number
+    dept?: NullableIntFieldUpdateOperationsInput | number | null
     department?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     title?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29435,7 +33064,7 @@ export namespace Prisma {
     section?: string | null
     divid?: string | null
     companyid?: string | null
-    dept: number
+    dept?: number | null
     department?: string | null
     division?: string | null
     title?: string | null
@@ -29530,7 +33159,7 @@ export namespace Prisma {
     section?: NullableStringFieldUpdateOperationsInput | string | null
     divid?: NullableStringFieldUpdateOperationsInput | string | null
     companyid?: NullableStringFieldUpdateOperationsInput | string | null
-    dept?: IntFieldUpdateOperationsInput | number
+    dept?: NullableIntFieldUpdateOperationsInput | number | null
     department?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     title?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29649,6 +33278,7 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     leave_reason: string
+    support_document?: string | null
     accept_to?: string | null
     accepted?: string | null
     accepted_date?: Date | string | null
@@ -29682,6 +33312,7 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     leave_reason: string
+    support_document?: string | null
     accept_to?: string | null
     accepted?: string | null
     accepted_date?: Date | string | null
@@ -29711,6 +33342,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     leave_reason?: StringFieldUpdateOperationsInput | string
+    support_document?: NullableStringFieldUpdateOperationsInput | string | null
     accept_to?: NullableStringFieldUpdateOperationsInput | string | null
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
     accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -29744,6 +33376,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     leave_reason?: StringFieldUpdateOperationsInput | string
+    support_document?: NullableStringFieldUpdateOperationsInput | string | null
     accept_to?: NullableStringFieldUpdateOperationsInput | string | null
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
     accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -29774,6 +33407,7 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     leave_reason: string
+    support_document?: string | null
     accept_to?: string | null
     accepted?: string | null
     accepted_date?: Date | string | null
@@ -29803,6 +33437,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     leave_reason?: StringFieldUpdateOperationsInput | string
+    support_document?: NullableStringFieldUpdateOperationsInput | string | null
     accept_to?: NullableStringFieldUpdateOperationsInput | string | null
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
     accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -29834,6 +33469,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     leave_reason?: StringFieldUpdateOperationsInput | string
+    support_document?: NullableStringFieldUpdateOperationsInput | string | null
     accept_to?: NullableStringFieldUpdateOperationsInput | string | null
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
     accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -30747,21 +34383,58 @@ export namespace Prisma {
   }
 
   export type trx_official_travelCreateInput = {
-    effective_date?: Date | string | null
+    code: string
     start_date: Date | string
     end_date: Date | string
     total_leave_days: bigint | number
+    type: string
+    destination_place: string
+    transportation: string
+    lodging: string
+    work_status: string
+    office_activities: string
     purpose: string
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    rent_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost?: Decimal | DecimalJsLike | number | string | null
     destination_city: string
+    activity_agenda: string
+    symbol_currency?: string | null
+    currency?: string | null
+    down_payment?: Decimal | DecimalJsLike | number | string | null
     status_id: bigint | number
-    accept_to: string
-    accepted?: string | null
-    accepted_date?: Date | string | null
-    accepted_remark?: string | null
-    approve_to: string
-    approved?: string | null
-    approved_date?: Date | string | null
-    approved_remark?: string | null
+    accept_to_depthead: string
+    accepted_depthead?: string | null
+    accepted_depthead_date?: Date | string | null
+    accepted_depthead_remark?: string | null
+    approve_to_divhead: string
+    approved_divhead?: string | null
+    approved_divhead_date?: Date | string | null
+    approved_divhead_remark?: string | null
+    approve_to_dicdiv?: string | null
+    approved_dicdiv?: string | null
+    approved_dicdiv_date?: Date | string | null
+    approved_dicdiv_remark?: string | null
+    approve_to_depthead_hc: string
+    approved_depthead_hc?: string | null
+    approved_depthead_hc_date?: Date | string | null
+    approved_depthead_hc_remark?: string | null
+    approve_to_divhead_hc?: string | null
+    approved_divhead_hc?: string | null
+    approved_divhead_hc_date?: Date | string | null
+    approved_divhead_hc_remark?: string | null
+    approve_to_dichc?: string | null
+    approved_dichc?: string | null
+    approved_dichc_date?: Date | string | null
+    approved_dichc_remark?: string | null
+    approve_to_presdir?: string | null
+    approved_presdir?: string | null
+    approved_presdir_date?: Date | string | null
+    approved_presdir_remark?: string | null
     rejected?: string | null
     rejected_date?: Date | string | null
     rejected_remark?: string | null
@@ -30773,26 +34446,64 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at: Date | string
     user_data: UserCreateNestedOneWithoutTrx_officialTravelInput
+    trx_declaration?: trx_declarationCreateNestedManyWithoutOfficialTravel_dataInput
   }
 
   export type trx_official_travelUncheckedCreateInput = {
     id?: number
+    code: string
     user: string
-    effective_date?: Date | string | null
     start_date: Date | string
     end_date: Date | string
     total_leave_days: bigint | number
+    type: string
+    destination_place: string
+    transportation: string
+    lodging: string
+    work_status: string
+    office_activities: string
     purpose: string
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    rent_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost?: Decimal | DecimalJsLike | number | string | null
     destination_city: string
+    activity_agenda: string
+    symbol_currency?: string | null
+    currency?: string | null
+    down_payment?: Decimal | DecimalJsLike | number | string | null
     status_id: bigint | number
-    accept_to: string
-    accepted?: string | null
-    accepted_date?: Date | string | null
-    accepted_remark?: string | null
-    approve_to: string
-    approved?: string | null
-    approved_date?: Date | string | null
-    approved_remark?: string | null
+    accept_to_depthead: string
+    accepted_depthead?: string | null
+    accepted_depthead_date?: Date | string | null
+    accepted_depthead_remark?: string | null
+    approve_to_divhead: string
+    approved_divhead?: string | null
+    approved_divhead_date?: Date | string | null
+    approved_divhead_remark?: string | null
+    approve_to_dicdiv?: string | null
+    approved_dicdiv?: string | null
+    approved_dicdiv_date?: Date | string | null
+    approved_dicdiv_remark?: string | null
+    approve_to_depthead_hc: string
+    approved_depthead_hc?: string | null
+    approved_depthead_hc_date?: Date | string | null
+    approved_depthead_hc_remark?: string | null
+    approve_to_divhead_hc?: string | null
+    approved_divhead_hc?: string | null
+    approved_divhead_hc_date?: Date | string | null
+    approved_divhead_hc_remark?: string | null
+    approve_to_dichc?: string | null
+    approved_dichc?: string | null
+    approved_dichc_date?: Date | string | null
+    approved_dichc_remark?: string | null
+    approve_to_presdir?: string | null
+    approved_presdir?: string | null
+    approved_presdir_date?: Date | string | null
+    approved_presdir_remark?: string | null
     rejected?: string | null
     rejected_date?: Date | string | null
     rejected_remark?: string | null
@@ -30803,24 +34514,62 @@ export namespace Prisma {
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
+    trx_declaration?: trx_declarationUncheckedCreateNestedManyWithoutOfficialTravel_dataInput
   }
 
   export type trx_official_travelUpdateInput = {
-    effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    code?: StringFieldUpdateOperationsInput | string
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    type?: StringFieldUpdateOperationsInput | string
+    destination_place?: StringFieldUpdateOperationsInput | string
+    transportation?: StringFieldUpdateOperationsInput | string
+    lodging?: StringFieldUpdateOperationsInput | string
+    work_status?: StringFieldUpdateOperationsInput | string
+    office_activities?: StringFieldUpdateOperationsInput | string
     purpose?: StringFieldUpdateOperationsInput | string
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rent_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     destination_city?: StringFieldUpdateOperationsInput | string
+    activity_agenda?: StringFieldUpdateOperationsInput | string
+    symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    down_payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    accept_to?: StringFieldUpdateOperationsInput | string
-    accepted?: NullableStringFieldUpdateOperationsInput | string | null
-    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    approve_to?: StringFieldUpdateOperationsInput | string
-    approved?: NullableStringFieldUpdateOperationsInput | string | null
-    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    accept_to_depthead?: StringFieldUpdateOperationsInput | string
+    accepted_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_depthead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_depthead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead?: StringFieldUpdateOperationsInput | string
+    approved_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dicdiv_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_depthead_hc?: StringFieldUpdateOperationsInput | string
+    approved_depthead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_depthead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_depthead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dichc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_presdir_remark?: NullableStringFieldUpdateOperationsInput | string | null
     rejected?: NullableStringFieldUpdateOperationsInput | string | null
     rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30832,26 +34581,64 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     user_data?: UserUpdateOneRequiredWithoutTrx_officialTravelNestedInput
+    trx_declaration?: trx_declarationUpdateManyWithoutOfficialTravel_dataNestedInput
   }
 
   export type trx_official_travelUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
     user?: StringFieldUpdateOperationsInput | string
-    effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    type?: StringFieldUpdateOperationsInput | string
+    destination_place?: StringFieldUpdateOperationsInput | string
+    transportation?: StringFieldUpdateOperationsInput | string
+    lodging?: StringFieldUpdateOperationsInput | string
+    work_status?: StringFieldUpdateOperationsInput | string
+    office_activities?: StringFieldUpdateOperationsInput | string
     purpose?: StringFieldUpdateOperationsInput | string
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rent_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     destination_city?: StringFieldUpdateOperationsInput | string
+    activity_agenda?: StringFieldUpdateOperationsInput | string
+    symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    down_payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    accept_to?: StringFieldUpdateOperationsInput | string
-    accepted?: NullableStringFieldUpdateOperationsInput | string | null
-    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    approve_to?: StringFieldUpdateOperationsInput | string
-    approved?: NullableStringFieldUpdateOperationsInput | string | null
-    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    accept_to_depthead?: StringFieldUpdateOperationsInput | string
+    accepted_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_depthead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_depthead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead?: StringFieldUpdateOperationsInput | string
+    approved_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dicdiv_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_depthead_hc?: StringFieldUpdateOperationsInput | string
+    approved_depthead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_depthead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_depthead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dichc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_presdir_remark?: NullableStringFieldUpdateOperationsInput | string | null
     rejected?: NullableStringFieldUpdateOperationsInput | string | null
     rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30862,25 +34649,63 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    trx_declaration?: trx_declarationUncheckedUpdateManyWithoutOfficialTravel_dataNestedInput
   }
 
   export type trx_official_travelCreateManyInput = {
+    code: string
     user: string
-    effective_date?: Date | string | null
     start_date: Date | string
     end_date: Date | string
     total_leave_days: bigint | number
+    type: string
+    destination_place: string
+    transportation: string
+    lodging: string
+    work_status: string
+    office_activities: string
     purpose: string
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    rent_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost?: Decimal | DecimalJsLike | number | string | null
     destination_city: string
+    activity_agenda: string
+    symbol_currency?: string | null
+    currency?: string | null
+    down_payment?: Decimal | DecimalJsLike | number | string | null
     status_id: bigint | number
-    accept_to: string
-    accepted?: string | null
-    accepted_date?: Date | string | null
-    accepted_remark?: string | null
-    approve_to: string
-    approved?: string | null
-    approved_date?: Date | string | null
-    approved_remark?: string | null
+    accept_to_depthead: string
+    accepted_depthead?: string | null
+    accepted_depthead_date?: Date | string | null
+    accepted_depthead_remark?: string | null
+    approve_to_divhead: string
+    approved_divhead?: string | null
+    approved_divhead_date?: Date | string | null
+    approved_divhead_remark?: string | null
+    approve_to_dicdiv?: string | null
+    approved_dicdiv?: string | null
+    approved_dicdiv_date?: Date | string | null
+    approved_dicdiv_remark?: string | null
+    approve_to_depthead_hc: string
+    approved_depthead_hc?: string | null
+    approved_depthead_hc_date?: Date | string | null
+    approved_depthead_hc_remark?: string | null
+    approve_to_divhead_hc?: string | null
+    approved_divhead_hc?: string | null
+    approved_divhead_hc_date?: Date | string | null
+    approved_divhead_hc_remark?: string | null
+    approve_to_dichc?: string | null
+    approved_dichc?: string | null
+    approved_dichc_date?: Date | string | null
+    approved_dichc_remark?: string | null
+    approve_to_presdir?: string | null
+    approved_presdir?: string | null
+    approved_presdir_date?: Date | string | null
+    approved_presdir_remark?: string | null
     rejected?: string | null
     rejected_date?: Date | string | null
     rejected_remark?: string | null
@@ -30894,21 +34719,58 @@ export namespace Prisma {
   }
 
   export type trx_official_travelUpdateManyMutationInput = {
-    effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    code?: StringFieldUpdateOperationsInput | string
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    type?: StringFieldUpdateOperationsInput | string
+    destination_place?: StringFieldUpdateOperationsInput | string
+    transportation?: StringFieldUpdateOperationsInput | string
+    lodging?: StringFieldUpdateOperationsInput | string
+    work_status?: StringFieldUpdateOperationsInput | string
+    office_activities?: StringFieldUpdateOperationsInput | string
     purpose?: StringFieldUpdateOperationsInput | string
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rent_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     destination_city?: StringFieldUpdateOperationsInput | string
+    activity_agenda?: StringFieldUpdateOperationsInput | string
+    symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    down_payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    accept_to?: StringFieldUpdateOperationsInput | string
-    accepted?: NullableStringFieldUpdateOperationsInput | string | null
-    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    approve_to?: StringFieldUpdateOperationsInput | string
-    approved?: NullableStringFieldUpdateOperationsInput | string | null
-    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    accept_to_depthead?: StringFieldUpdateOperationsInput | string
+    accepted_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_depthead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_depthead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead?: StringFieldUpdateOperationsInput | string
+    approved_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dicdiv_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_depthead_hc?: StringFieldUpdateOperationsInput | string
+    approved_depthead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_depthead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_depthead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dichc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_presdir_remark?: NullableStringFieldUpdateOperationsInput | string | null
     rejected?: NullableStringFieldUpdateOperationsInput | string | null
     rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30923,22 +34785,59 @@ export namespace Prisma {
 
   export type trx_official_travelUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
     user?: StringFieldUpdateOperationsInput | string
-    effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    type?: StringFieldUpdateOperationsInput | string
+    destination_place?: StringFieldUpdateOperationsInput | string
+    transportation?: StringFieldUpdateOperationsInput | string
+    lodging?: StringFieldUpdateOperationsInput | string
+    work_status?: StringFieldUpdateOperationsInput | string
+    office_activities?: StringFieldUpdateOperationsInput | string
     purpose?: StringFieldUpdateOperationsInput | string
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rent_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     destination_city?: StringFieldUpdateOperationsInput | string
+    activity_agenda?: StringFieldUpdateOperationsInput | string
+    symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    down_payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    accept_to?: StringFieldUpdateOperationsInput | string
-    accepted?: NullableStringFieldUpdateOperationsInput | string | null
-    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    approve_to?: StringFieldUpdateOperationsInput | string
-    approved?: NullableStringFieldUpdateOperationsInput | string | null
-    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    accept_to_depthead?: StringFieldUpdateOperationsInput | string
+    accepted_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_depthead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_depthead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead?: StringFieldUpdateOperationsInput | string
+    approved_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dicdiv_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_depthead_hc?: StringFieldUpdateOperationsInput | string
+    approved_depthead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_depthead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_depthead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dichc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_presdir_remark?: NullableStringFieldUpdateOperationsInput | string | null
     rejected?: NullableStringFieldUpdateOperationsInput | string | null
     rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30953,8 +34852,10 @@ export namespace Prisma {
 
   export type trx_mutationCreateInput = {
     effective_date: Date | string
+    superior_from: string
     division_from: string
     dept_from: string
+    superior_to: string
     division_to: string
     dept_to: string
     reason: string
@@ -30984,8 +34885,10 @@ export namespace Prisma {
     id?: number
     user: string
     effective_date: Date | string
+    superior_from: string
     division_from: string
     dept_from: string
+    superior_to: string
     division_to: string
     dept_to: string
     reason: string
@@ -31012,8 +34915,10 @@ export namespace Prisma {
 
   export type trx_mutationUpdateInput = {
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    superior_from?: StringFieldUpdateOperationsInput | string
     division_from?: StringFieldUpdateOperationsInput | string
     dept_from?: StringFieldUpdateOperationsInput | string
+    superior_to?: StringFieldUpdateOperationsInput | string
     division_to?: StringFieldUpdateOperationsInput | string
     dept_to?: StringFieldUpdateOperationsInput | string
     reason?: StringFieldUpdateOperationsInput | string
@@ -31043,8 +34948,10 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     user?: StringFieldUpdateOperationsInput | string
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    superior_from?: StringFieldUpdateOperationsInput | string
     division_from?: StringFieldUpdateOperationsInput | string
     dept_from?: StringFieldUpdateOperationsInput | string
+    superior_to?: StringFieldUpdateOperationsInput | string
     division_to?: StringFieldUpdateOperationsInput | string
     dept_to?: StringFieldUpdateOperationsInput | string
     reason?: StringFieldUpdateOperationsInput | string
@@ -31072,8 +34979,10 @@ export namespace Prisma {
   export type trx_mutationCreateManyInput = {
     user: string
     effective_date: Date | string
+    superior_from: string
     division_from: string
     dept_from: string
+    superior_to: string
     division_to: string
     dept_to: string
     reason: string
@@ -31100,8 +35009,10 @@ export namespace Prisma {
 
   export type trx_mutationUpdateManyMutationInput = {
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    superior_from?: StringFieldUpdateOperationsInput | string
     division_from?: StringFieldUpdateOperationsInput | string
     dept_from?: StringFieldUpdateOperationsInput | string
+    superior_to?: StringFieldUpdateOperationsInput | string
     division_to?: StringFieldUpdateOperationsInput | string
     dept_to?: StringFieldUpdateOperationsInput | string
     reason?: StringFieldUpdateOperationsInput | string
@@ -31130,8 +35041,10 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     user?: StringFieldUpdateOperationsInput | string
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    superior_from?: StringFieldUpdateOperationsInput | string
     division_from?: StringFieldUpdateOperationsInput | string
     dept_from?: StringFieldUpdateOperationsInput | string
+    superior_to?: StringFieldUpdateOperationsInput | string
     division_to?: StringFieldUpdateOperationsInput | string
     dept_to?: StringFieldUpdateOperationsInput | string
     reason?: StringFieldUpdateOperationsInput | string
@@ -31159,6 +35072,7 @@ export namespace Prisma {
   export type trx_resignCreateInput = {
     effective_date: Date | string
     reason: string
+    file_upload: string
     status_id: bigint | number
     accept_to: string
     accepted?: string | null
@@ -31186,6 +35100,7 @@ export namespace Prisma {
     user: string
     effective_date: Date | string
     reason: string
+    file_upload: string
     status_id: bigint | number
     accept_to: string
     accepted?: string | null
@@ -31210,6 +35125,7 @@ export namespace Prisma {
   export type trx_resignUpdateInput = {
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
+    file_upload?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     accept_to?: StringFieldUpdateOperationsInput | string
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31237,6 +35153,7 @@ export namespace Prisma {
     user?: StringFieldUpdateOperationsInput | string
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
+    file_upload?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     accept_to?: StringFieldUpdateOperationsInput | string
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31262,6 +35179,7 @@ export namespace Prisma {
     user: string
     effective_date: Date | string
     reason: string
+    file_upload: string
     status_id: bigint | number
     accept_to: string
     accepted?: string | null
@@ -31286,6 +35204,7 @@ export namespace Prisma {
   export type trx_resignUpdateManyMutationInput = {
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
+    file_upload?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     accept_to?: StringFieldUpdateOperationsInput | string
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31312,6 +35231,7 @@ export namespace Prisma {
     user?: StringFieldUpdateOperationsInput | string
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
+    file_upload?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     accept_to?: StringFieldUpdateOperationsInput | string
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32019,6 +35939,7 @@ export namespace Prisma {
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
+    is_late?: number | null
   }
 
   export type attendanceUncheckedCreateInput = {
@@ -32053,6 +35974,7 @@ export namespace Prisma {
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
+    is_late?: number | null
   }
 
   export type attendanceUpdateInput = {
@@ -32087,6 +36009,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_late?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type attendanceUncheckedUpdateInput = {
@@ -32121,6 +36044,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_late?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type attendanceCreateManyInput = {
@@ -32154,6 +36078,7 @@ export namespace Prisma {
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
+    is_late?: number | null
   }
 
   export type attendanceUpdateManyMutationInput = {
@@ -32188,6 +36113,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_late?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type attendanceUncheckedUpdateManyInput = {
@@ -32218,6 +36144,344 @@ export namespace Prisma {
     is_happy?: NullableIntFieldUpdateOperationsInput | number | null
     flag?: NullableIntFieldUpdateOperationsInput | number | null
     is_sent_sap?: NullableIntFieldUpdateOperationsInput | number | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_late?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type trx_declarationCreateInput = {
+    code: string
+    user: string
+    start_date_actual: Date | string
+    end_date_actual: Date | string
+    evidence_file: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    total_money_change: Decimal | DecimalJsLike | number | string
+    status_id: bigint | number
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    officialTravel_data: trx_official_travelCreateNestedOneWithoutTrx_declarationInput
+    trx_detail_declaration?: trx_detail_declarationCreateNestedManyWithoutDeclaration_dataInput
+  }
+
+  export type trx_declarationUncheckedCreateInput = {
+    id?: number
+    code: string
+    user: string
+    code_trx: string
+    start_date_actual: Date | string
+    end_date_actual: Date | string
+    evidence_file: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    total_money_change: Decimal | DecimalJsLike | number | string
+    status_id: bigint | number
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    trx_detail_declaration?: trx_detail_declarationUncheckedCreateNestedManyWithoutDeclaration_dataInput
+  }
+
+  export type trx_declarationUpdateInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    user?: StringFieldUpdateOperationsInput | string
+    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidence_file?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    officialTravel_data?: trx_official_travelUpdateOneRequiredWithoutTrx_declarationNestedInput
+    trx_detail_declaration?: trx_detail_declarationUpdateManyWithoutDeclaration_dataNestedInput
+  }
+
+  export type trx_declarationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    user?: StringFieldUpdateOperationsInput | string
+    code_trx?: StringFieldUpdateOperationsInput | string
+    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidence_file?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    trx_detail_declaration?: trx_detail_declarationUncheckedUpdateManyWithoutDeclaration_dataNestedInput
+  }
+
+  export type trx_declarationCreateManyInput = {
+    code: string
+    user: string
+    code_trx: string
+    start_date_actual: Date | string
+    end_date_actual: Date | string
+    evidence_file: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    total_money_change: Decimal | DecimalJsLike | number | string
+    status_id: bigint | number
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_declarationUpdateManyMutationInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    user?: StringFieldUpdateOperationsInput | string
+    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidence_file?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_declarationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    user?: StringFieldUpdateOperationsInput | string
+    code_trx?: StringFieldUpdateOperationsInput | string
+    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidence_file?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_detail_declarationCreateInput = {
+    date_activity: Date | string
+    location_activity: string
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    consume_cost?: Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost: Decimal | DecimalJsLike | number | string
+    explanation: string
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    declaration_data: trx_declarationCreateNestedOneWithoutTrx_detail_declarationInput
+  }
+
+  export type trx_detail_declarationUncheckedCreateInput = {
+    id?: number
+    declaration_code: string
+    date_activity: Date | string
+    location_activity: string
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    consume_cost?: Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost: Decimal | DecimalJsLike | number | string
+    explanation: string
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_detail_declarationUpdateInput = {
+    date_activity?: DateTimeFieldUpdateOperationsInput | Date | string
+    location_activity?: StringFieldUpdateOperationsInput | string
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    consume_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    declaration_data?: trx_declarationUpdateOneRequiredWithoutTrx_detail_declarationNestedInput
+  }
+
+  export type trx_detail_declarationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    declaration_code?: StringFieldUpdateOperationsInput | string
+    date_activity?: DateTimeFieldUpdateOperationsInput | Date | string
+    location_activity?: StringFieldUpdateOperationsInput | string
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    consume_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_detail_declarationCreateManyInput = {
+    declaration_code: string
+    date_activity: Date | string
+    location_activity: string
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    consume_cost?: Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost: Decimal | DecimalJsLike | number | string
+    explanation: string
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_detail_declarationUpdateManyMutationInput = {
+    date_activity?: DateTimeFieldUpdateOperationsInput | Date | string
+    location_activity?: StringFieldUpdateOperationsInput | string
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    consume_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_detail_declarationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    declaration_code?: StringFieldUpdateOperationsInput | string
+    date_activity?: DateTimeFieldUpdateOperationsInput | Date | string
+    location_activity?: StringFieldUpdateOperationsInput | string
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    consume_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    explanation?: StringFieldUpdateOperationsInput | string
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -32296,9 +36560,9 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type Mst_deptRelationFilter = {
-    is?: mst_deptWhereInput
-    isNot?: mst_deptWhereInput
+  export type Mst_deptNullableRelationFilter = {
+    is?: mst_deptWhereInput | null
+    isNot?: mst_deptWhereInput | null
   }
 
   export type Trx_leavesListRelationFilter = {
@@ -32743,6 +37007,7 @@ export namespace Prisma {
     end_date?: SortOrder
     total_leave_days?: SortOrder
     leave_reason?: SortOrder
+    support_document?: SortOrder
     accept_to?: SortOrder
     accepted?: SortOrder
     accepted_date?: SortOrder
@@ -32785,6 +37050,7 @@ export namespace Prisma {
     end_date?: SortOrder
     total_leave_days?: SortOrder
     leave_reason?: SortOrder
+    support_document?: SortOrder
     accept_to?: SortOrder
     accepted?: SortOrder
     accepted_date?: SortOrder
@@ -32816,6 +37082,7 @@ export namespace Prisma {
     end_date?: SortOrder
     total_leave_days?: SortOrder
     leave_reason?: SortOrder
+    support_document?: SortOrder
     accept_to?: SortOrder
     accepted?: SortOrder
     accepted_date?: SortOrder
@@ -33433,24 +37700,82 @@ export namespace Prisma {
     flag_shift?: SortOrder
   }
 
+  export type DecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type Trx_declarationListRelationFilter = {
+    every?: trx_declarationWhereInput
+    some?: trx_declarationWhereInput
+    none?: trx_declarationWhereInput
+  }
+
+  export type trx_declarationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type trx_official_travelCountOrderByAggregateInput = {
     id?: SortOrder
+    code?: SortOrder
     user?: SortOrder
-    effective_date?: SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
     total_leave_days?: SortOrder
+    type?: SortOrder
+    destination_place?: SortOrder
+    transportation?: SortOrder
+    lodging?: SortOrder
+    work_status?: SortOrder
+    office_activities?: SortOrder
     purpose?: SortOrder
+    taxi_cost?: SortOrder
+    hotel_cost?: SortOrder
+    rent_cost?: SortOrder
+    upd_cost?: SortOrder
+    fiskal_cost?: SortOrder
+    other_cost?: SortOrder
+    total_cost?: SortOrder
     destination_city?: SortOrder
+    activity_agenda?: SortOrder
+    symbol_currency?: SortOrder
+    currency?: SortOrder
+    down_payment?: SortOrder
     status_id?: SortOrder
-    accept_to?: SortOrder
-    accepted?: SortOrder
-    accepted_date?: SortOrder
-    accepted_remark?: SortOrder
-    approve_to?: SortOrder
-    approved?: SortOrder
-    approved_date?: SortOrder
-    approved_remark?: SortOrder
+    accept_to_depthead?: SortOrder
+    accepted_depthead?: SortOrder
+    accepted_depthead_date?: SortOrder
+    accepted_depthead_remark?: SortOrder
+    approve_to_divhead?: SortOrder
+    approved_divhead?: SortOrder
+    approved_divhead_date?: SortOrder
+    approved_divhead_remark?: SortOrder
+    approve_to_dicdiv?: SortOrder
+    approved_dicdiv?: SortOrder
+    approved_dicdiv_date?: SortOrder
+    approved_dicdiv_remark?: SortOrder
+    approve_to_depthead_hc?: SortOrder
+    approved_depthead_hc?: SortOrder
+    approved_depthead_hc_date?: SortOrder
+    approved_depthead_hc_remark?: SortOrder
+    approve_to_divhead_hc?: SortOrder
+    approved_divhead_hc?: SortOrder
+    approved_divhead_hc_date?: SortOrder
+    approved_divhead_hc_remark?: SortOrder
+    approve_to_dichc?: SortOrder
+    approved_dichc?: SortOrder
+    approved_dichc_date?: SortOrder
+    approved_dichc_remark?: SortOrder
+    approve_to_presdir?: SortOrder
+    approved_presdir?: SortOrder
+    approved_presdir_date?: SortOrder
+    approved_presdir_remark?: SortOrder
     rejected?: SortOrder
     rejected_date?: SortOrder
     rejected_remark?: SortOrder
@@ -33466,6 +37791,14 @@ export namespace Prisma {
   export type trx_official_travelAvgOrderByAggregateInput = {
     id?: SortOrder
     total_leave_days?: SortOrder
+    taxi_cost?: SortOrder
+    hotel_cost?: SortOrder
+    rent_cost?: SortOrder
+    upd_cost?: SortOrder
+    fiskal_cost?: SortOrder
+    other_cost?: SortOrder
+    total_cost?: SortOrder
+    down_payment?: SortOrder
     status_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -33473,22 +37806,59 @@ export namespace Prisma {
 
   export type trx_official_travelMaxOrderByAggregateInput = {
     id?: SortOrder
+    code?: SortOrder
     user?: SortOrder
-    effective_date?: SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
     total_leave_days?: SortOrder
+    type?: SortOrder
+    destination_place?: SortOrder
+    transportation?: SortOrder
+    lodging?: SortOrder
+    work_status?: SortOrder
+    office_activities?: SortOrder
     purpose?: SortOrder
+    taxi_cost?: SortOrder
+    hotel_cost?: SortOrder
+    rent_cost?: SortOrder
+    upd_cost?: SortOrder
+    fiskal_cost?: SortOrder
+    other_cost?: SortOrder
+    total_cost?: SortOrder
     destination_city?: SortOrder
+    activity_agenda?: SortOrder
+    symbol_currency?: SortOrder
+    currency?: SortOrder
+    down_payment?: SortOrder
     status_id?: SortOrder
-    accept_to?: SortOrder
-    accepted?: SortOrder
-    accepted_date?: SortOrder
-    accepted_remark?: SortOrder
-    approve_to?: SortOrder
-    approved?: SortOrder
-    approved_date?: SortOrder
-    approved_remark?: SortOrder
+    accept_to_depthead?: SortOrder
+    accepted_depthead?: SortOrder
+    accepted_depthead_date?: SortOrder
+    accepted_depthead_remark?: SortOrder
+    approve_to_divhead?: SortOrder
+    approved_divhead?: SortOrder
+    approved_divhead_date?: SortOrder
+    approved_divhead_remark?: SortOrder
+    approve_to_dicdiv?: SortOrder
+    approved_dicdiv?: SortOrder
+    approved_dicdiv_date?: SortOrder
+    approved_dicdiv_remark?: SortOrder
+    approve_to_depthead_hc?: SortOrder
+    approved_depthead_hc?: SortOrder
+    approved_depthead_hc_date?: SortOrder
+    approved_depthead_hc_remark?: SortOrder
+    approve_to_divhead_hc?: SortOrder
+    approved_divhead_hc?: SortOrder
+    approved_divhead_hc_date?: SortOrder
+    approved_divhead_hc_remark?: SortOrder
+    approve_to_dichc?: SortOrder
+    approved_dichc?: SortOrder
+    approved_dichc_date?: SortOrder
+    approved_dichc_remark?: SortOrder
+    approve_to_presdir?: SortOrder
+    approved_presdir?: SortOrder
+    approved_presdir_date?: SortOrder
+    approved_presdir_remark?: SortOrder
     rejected?: SortOrder
     rejected_date?: SortOrder
     rejected_remark?: SortOrder
@@ -33503,22 +37873,59 @@ export namespace Prisma {
 
   export type trx_official_travelMinOrderByAggregateInput = {
     id?: SortOrder
+    code?: SortOrder
     user?: SortOrder
-    effective_date?: SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
     total_leave_days?: SortOrder
+    type?: SortOrder
+    destination_place?: SortOrder
+    transportation?: SortOrder
+    lodging?: SortOrder
+    work_status?: SortOrder
+    office_activities?: SortOrder
     purpose?: SortOrder
+    taxi_cost?: SortOrder
+    hotel_cost?: SortOrder
+    rent_cost?: SortOrder
+    upd_cost?: SortOrder
+    fiskal_cost?: SortOrder
+    other_cost?: SortOrder
+    total_cost?: SortOrder
     destination_city?: SortOrder
+    activity_agenda?: SortOrder
+    symbol_currency?: SortOrder
+    currency?: SortOrder
+    down_payment?: SortOrder
     status_id?: SortOrder
-    accept_to?: SortOrder
-    accepted?: SortOrder
-    accepted_date?: SortOrder
-    accepted_remark?: SortOrder
-    approve_to?: SortOrder
-    approved?: SortOrder
-    approved_date?: SortOrder
-    approved_remark?: SortOrder
+    accept_to_depthead?: SortOrder
+    accepted_depthead?: SortOrder
+    accepted_depthead_date?: SortOrder
+    accepted_depthead_remark?: SortOrder
+    approve_to_divhead?: SortOrder
+    approved_divhead?: SortOrder
+    approved_divhead_date?: SortOrder
+    approved_divhead_remark?: SortOrder
+    approve_to_dicdiv?: SortOrder
+    approved_dicdiv?: SortOrder
+    approved_dicdiv_date?: SortOrder
+    approved_dicdiv_remark?: SortOrder
+    approve_to_depthead_hc?: SortOrder
+    approved_depthead_hc?: SortOrder
+    approved_depthead_hc_date?: SortOrder
+    approved_depthead_hc_remark?: SortOrder
+    approve_to_divhead_hc?: SortOrder
+    approved_divhead_hc?: SortOrder
+    approved_divhead_hc_date?: SortOrder
+    approved_divhead_hc_remark?: SortOrder
+    approve_to_dichc?: SortOrder
+    approved_dichc?: SortOrder
+    approved_dichc_date?: SortOrder
+    approved_dichc_remark?: SortOrder
+    approve_to_presdir?: SortOrder
+    approved_presdir?: SortOrder
+    approved_presdir_date?: SortOrder
+    approved_presdir_remark?: SortOrder
     rejected?: SortOrder
     rejected_date?: SortOrder
     rejected_remark?: SortOrder
@@ -33534,17 +37941,43 @@ export namespace Prisma {
   export type trx_official_travelSumOrderByAggregateInput = {
     id?: SortOrder
     total_leave_days?: SortOrder
+    taxi_cost?: SortOrder
+    hotel_cost?: SortOrder
+    rent_cost?: SortOrder
+    upd_cost?: SortOrder
+    fiskal_cost?: SortOrder
+    other_cost?: SortOrder
+    total_cost?: SortOrder
+    down_payment?: SortOrder
     status_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
+  }
+
+  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type trx_mutationCountOrderByAggregateInput = {
     id?: SortOrder
     user?: SortOrder
     effective_date?: SortOrder
+    superior_from?: SortOrder
     division_from?: SortOrder
     dept_from?: SortOrder
+    superior_to?: SortOrder
     division_to?: SortOrder
     dept_to?: SortOrder
     reason?: SortOrder
@@ -33580,8 +38013,10 @@ export namespace Prisma {
     id?: SortOrder
     user?: SortOrder
     effective_date?: SortOrder
+    superior_from?: SortOrder
     division_from?: SortOrder
     dept_from?: SortOrder
+    superior_to?: SortOrder
     division_to?: SortOrder
     dept_to?: SortOrder
     reason?: SortOrder
@@ -33610,8 +38045,10 @@ export namespace Prisma {
     id?: SortOrder
     user?: SortOrder
     effective_date?: SortOrder
+    superior_from?: SortOrder
     division_from?: SortOrder
     dept_from?: SortOrder
+    superior_to?: SortOrder
     division_to?: SortOrder
     dept_to?: SortOrder
     reason?: SortOrder
@@ -33648,6 +38085,7 @@ export namespace Prisma {
     user?: SortOrder
     effective_date?: SortOrder
     reason?: SortOrder
+    file_upload?: SortOrder
     status_id?: SortOrder
     accept_to?: SortOrder
     accepted?: SortOrder
@@ -33681,6 +38119,7 @@ export namespace Prisma {
     user?: SortOrder
     effective_date?: SortOrder
     reason?: SortOrder
+    file_upload?: SortOrder
     status_id?: SortOrder
     accept_to?: SortOrder
     accepted?: SortOrder
@@ -33707,6 +38146,7 @@ export namespace Prisma {
     user?: SortOrder
     effective_date?: SortOrder
     reason?: SortOrder
+    file_upload?: SortOrder
     status_id?: SortOrder
     accept_to?: SortOrder
     accepted?: SortOrder
@@ -34154,6 +38594,7 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_by?: SortOrder
     updated_at?: SortOrder
+    is_late?: SortOrder
   }
 
   export type attendanceAvgOrderByAggregateInput = {
@@ -34164,6 +38605,7 @@ export namespace Prisma {
     is_sent_sap?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
+    is_late?: SortOrder
   }
 
   export type attendanceMaxOrderByAggregateInput = {
@@ -34198,6 +38640,7 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_by?: SortOrder
     updated_at?: SortOrder
+    is_late?: SortOrder
   }
 
   export type attendanceMinOrderByAggregateInput = {
@@ -34232,6 +38675,7 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_by?: SortOrder
     updated_at?: SortOrder
+    is_late?: SortOrder
   }
 
   export type attendanceSumOrderByAggregateInput = {
@@ -34240,6 +38684,243 @@ export namespace Prisma {
     is_happy?: SortOrder
     flag?: SortOrder
     is_sent_sap?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+    is_late?: SortOrder
+  }
+
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type Trx_official_travelRelationFilter = {
+    is?: trx_official_travelWhereInput
+    isNot?: trx_official_travelWhereInput
+  }
+
+  export type Trx_detail_declarationListRelationFilter = {
+    every?: trx_detail_declarationWhereInput
+    some?: trx_detail_declarationWhereInput
+    none?: trx_detail_declarationWhereInput
+  }
+
+  export type trx_detail_declarationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type trx_declarationCountOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    user?: SortOrder
+    code_trx?: SortOrder
+    start_date_actual?: SortOrder
+    end_date_actual?: SortOrder
+    evidence_file?: SortOrder
+    accept_to?: SortOrder
+    accepted?: SortOrder
+    accepted_date?: SortOrder
+    accepted_remark?: SortOrder
+    approve_to?: SortOrder
+    approved?: SortOrder
+    approved_date?: SortOrder
+    approved_remark?: SortOrder
+    rejected?: SortOrder
+    rejected_date?: SortOrder
+    rejected_remark?: SortOrder
+    canceled?: SortOrder
+    canceled_date?: SortOrder
+    canceled_remark?: SortOrder
+    total_money_change?: SortOrder
+    status_id?: SortOrder
+    created_by?: SortOrder
+    created_at?: SortOrder
+    updated_by?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type trx_declarationAvgOrderByAggregateInput = {
+    id?: SortOrder
+    total_money_change?: SortOrder
+    status_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type trx_declarationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    user?: SortOrder
+    code_trx?: SortOrder
+    start_date_actual?: SortOrder
+    end_date_actual?: SortOrder
+    evidence_file?: SortOrder
+    accept_to?: SortOrder
+    accepted?: SortOrder
+    accepted_date?: SortOrder
+    accepted_remark?: SortOrder
+    approve_to?: SortOrder
+    approved?: SortOrder
+    approved_date?: SortOrder
+    approved_remark?: SortOrder
+    rejected?: SortOrder
+    rejected_date?: SortOrder
+    rejected_remark?: SortOrder
+    canceled?: SortOrder
+    canceled_date?: SortOrder
+    canceled_remark?: SortOrder
+    total_money_change?: SortOrder
+    status_id?: SortOrder
+    created_by?: SortOrder
+    created_at?: SortOrder
+    updated_by?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type trx_declarationMinOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    user?: SortOrder
+    code_trx?: SortOrder
+    start_date_actual?: SortOrder
+    end_date_actual?: SortOrder
+    evidence_file?: SortOrder
+    accept_to?: SortOrder
+    accepted?: SortOrder
+    accepted_date?: SortOrder
+    accepted_remark?: SortOrder
+    approve_to?: SortOrder
+    approved?: SortOrder
+    approved_date?: SortOrder
+    approved_remark?: SortOrder
+    rejected?: SortOrder
+    rejected_date?: SortOrder
+    rejected_remark?: SortOrder
+    canceled?: SortOrder
+    canceled_date?: SortOrder
+    canceled_remark?: SortOrder
+    total_money_change?: SortOrder
+    status_id?: SortOrder
+    created_by?: SortOrder
+    created_at?: SortOrder
+    updated_by?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type trx_declarationSumOrderByAggregateInput = {
+    id?: SortOrder
+    total_money_change?: SortOrder
+    status_id?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type Trx_declarationRelationFilter = {
+    is?: trx_declarationWhereInput
+    isNot?: trx_declarationWhereInput
+  }
+
+  export type trx_detail_declarationCountOrderByAggregateInput = {
+    id?: SortOrder
+    declaration_code?: SortOrder
+    date_activity?: SortOrder
+    location_activity?: SortOrder
+    hotel_cost?: SortOrder
+    taxi_cost?: SortOrder
+    upd_cost?: SortOrder
+    consume_cost?: SortOrder
+    ticket_cost?: SortOrder
+    other_cost?: SortOrder
+    total_cost?: SortOrder
+    explanation?: SortOrder
+    created_by?: SortOrder
+    created_at?: SortOrder
+    updated_by?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type trx_detail_declarationAvgOrderByAggregateInput = {
+    id?: SortOrder
+    hotel_cost?: SortOrder
+    taxi_cost?: SortOrder
+    upd_cost?: SortOrder
+    consume_cost?: SortOrder
+    ticket_cost?: SortOrder
+    other_cost?: SortOrder
+    total_cost?: SortOrder
+    created_by?: SortOrder
+    updated_by?: SortOrder
+  }
+
+  export type trx_detail_declarationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    declaration_code?: SortOrder
+    date_activity?: SortOrder
+    location_activity?: SortOrder
+    hotel_cost?: SortOrder
+    taxi_cost?: SortOrder
+    upd_cost?: SortOrder
+    consume_cost?: SortOrder
+    ticket_cost?: SortOrder
+    other_cost?: SortOrder
+    total_cost?: SortOrder
+    explanation?: SortOrder
+    created_by?: SortOrder
+    created_at?: SortOrder
+    updated_by?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type trx_detail_declarationMinOrderByAggregateInput = {
+    id?: SortOrder
+    declaration_code?: SortOrder
+    date_activity?: SortOrder
+    location_activity?: SortOrder
+    hotel_cost?: SortOrder
+    taxi_cost?: SortOrder
+    upd_cost?: SortOrder
+    consume_cost?: SortOrder
+    ticket_cost?: SortOrder
+    other_cost?: SortOrder
+    total_cost?: SortOrder
+    explanation?: SortOrder
+    created_by?: SortOrder
+    created_at?: SortOrder
+    updated_by?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type trx_detail_declarationSumOrderByAggregateInput = {
+    id?: SortOrder
+    hotel_cost?: SortOrder
+    taxi_cost?: SortOrder
+    upd_cost?: SortOrder
+    consume_cost?: SortOrder
+    ticket_cost?: SortOrder
+    other_cost?: SortOrder
+    total_cost?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
   }
@@ -34384,10 +39065,12 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type mst_deptUpdateOneRequiredWithoutMst_userNestedInput = {
+  export type mst_deptUpdateOneWithoutMst_userNestedInput = {
     create?: XOR<mst_deptCreateWithoutMst_userInput, mst_deptUncheckedCreateWithoutMst_userInput>
     connectOrCreate?: mst_deptCreateOrConnectWithoutMst_userInput
     upsert?: mst_deptUpsertWithoutMst_userInput
+    disconnect?: mst_deptWhereInput | boolean
+    delete?: mst_deptWhereInput | boolean
     connect?: mst_deptWhereUniqueInput
     update?: XOR<XOR<mst_deptUpdateToOneWithWhereWithoutMst_userInput, mst_deptUpdateWithoutMst_userInput>, mst_deptUncheckedUpdateWithoutMst_userInput>
   }
@@ -35072,12 +39755,62 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type trx_declarationCreateNestedManyWithoutOfficialTravel_dataInput = {
+    create?: XOR<trx_declarationCreateWithoutOfficialTravel_dataInput, trx_declarationUncheckedCreateWithoutOfficialTravel_dataInput> | trx_declarationCreateWithoutOfficialTravel_dataInput[] | trx_declarationUncheckedCreateWithoutOfficialTravel_dataInput[]
+    connectOrCreate?: trx_declarationCreateOrConnectWithoutOfficialTravel_dataInput | trx_declarationCreateOrConnectWithoutOfficialTravel_dataInput[]
+    createMany?: trx_declarationCreateManyOfficialTravel_dataInputEnvelope
+    connect?: trx_declarationWhereUniqueInput | trx_declarationWhereUniqueInput[]
+  }
+
+  export type trx_declarationUncheckedCreateNestedManyWithoutOfficialTravel_dataInput = {
+    create?: XOR<trx_declarationCreateWithoutOfficialTravel_dataInput, trx_declarationUncheckedCreateWithoutOfficialTravel_dataInput> | trx_declarationCreateWithoutOfficialTravel_dataInput[] | trx_declarationUncheckedCreateWithoutOfficialTravel_dataInput[]
+    connectOrCreate?: trx_declarationCreateOrConnectWithoutOfficialTravel_dataInput | trx_declarationCreateOrConnectWithoutOfficialTravel_dataInput[]
+    createMany?: trx_declarationCreateManyOfficialTravel_dataInputEnvelope
+    connect?: trx_declarationWhereUniqueInput | trx_declarationWhereUniqueInput[]
+  }
+
+  export type NullableDecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string | null
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
   export type UserUpdateOneRequiredWithoutTrx_officialTravelNestedInput = {
     create?: XOR<UserCreateWithoutTrx_officialTravelInput, UserUncheckedCreateWithoutTrx_officialTravelInput>
     connectOrCreate?: UserCreateOrConnectWithoutTrx_officialTravelInput
     upsert?: UserUpsertWithoutTrx_officialTravelInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTrx_officialTravelInput, UserUpdateWithoutTrx_officialTravelInput>, UserUncheckedUpdateWithoutTrx_officialTravelInput>
+  }
+
+  export type trx_declarationUpdateManyWithoutOfficialTravel_dataNestedInput = {
+    create?: XOR<trx_declarationCreateWithoutOfficialTravel_dataInput, trx_declarationUncheckedCreateWithoutOfficialTravel_dataInput> | trx_declarationCreateWithoutOfficialTravel_dataInput[] | trx_declarationUncheckedCreateWithoutOfficialTravel_dataInput[]
+    connectOrCreate?: trx_declarationCreateOrConnectWithoutOfficialTravel_dataInput | trx_declarationCreateOrConnectWithoutOfficialTravel_dataInput[]
+    upsert?: trx_declarationUpsertWithWhereUniqueWithoutOfficialTravel_dataInput | trx_declarationUpsertWithWhereUniqueWithoutOfficialTravel_dataInput[]
+    createMany?: trx_declarationCreateManyOfficialTravel_dataInputEnvelope
+    set?: trx_declarationWhereUniqueInput | trx_declarationWhereUniqueInput[]
+    disconnect?: trx_declarationWhereUniqueInput | trx_declarationWhereUniqueInput[]
+    delete?: trx_declarationWhereUniqueInput | trx_declarationWhereUniqueInput[]
+    connect?: trx_declarationWhereUniqueInput | trx_declarationWhereUniqueInput[]
+    update?: trx_declarationUpdateWithWhereUniqueWithoutOfficialTravel_dataInput | trx_declarationUpdateWithWhereUniqueWithoutOfficialTravel_dataInput[]
+    updateMany?: trx_declarationUpdateManyWithWhereWithoutOfficialTravel_dataInput | trx_declarationUpdateManyWithWhereWithoutOfficialTravel_dataInput[]
+    deleteMany?: trx_declarationScalarWhereInput | trx_declarationScalarWhereInput[]
+  }
+
+  export type trx_declarationUncheckedUpdateManyWithoutOfficialTravel_dataNestedInput = {
+    create?: XOR<trx_declarationCreateWithoutOfficialTravel_dataInput, trx_declarationUncheckedCreateWithoutOfficialTravel_dataInput> | trx_declarationCreateWithoutOfficialTravel_dataInput[] | trx_declarationUncheckedCreateWithoutOfficialTravel_dataInput[]
+    connectOrCreate?: trx_declarationCreateOrConnectWithoutOfficialTravel_dataInput | trx_declarationCreateOrConnectWithoutOfficialTravel_dataInput[]
+    upsert?: trx_declarationUpsertWithWhereUniqueWithoutOfficialTravel_dataInput | trx_declarationUpsertWithWhereUniqueWithoutOfficialTravel_dataInput[]
+    createMany?: trx_declarationCreateManyOfficialTravel_dataInputEnvelope
+    set?: trx_declarationWhereUniqueInput | trx_declarationWhereUniqueInput[]
+    disconnect?: trx_declarationWhereUniqueInput | trx_declarationWhereUniqueInput[]
+    delete?: trx_declarationWhereUniqueInput | trx_declarationWhereUniqueInput[]
+    connect?: trx_declarationWhereUniqueInput | trx_declarationWhereUniqueInput[]
+    update?: trx_declarationUpdateWithWhereUniqueWithoutOfficialTravel_dataInput | trx_declarationUpdateWithWhereUniqueWithoutOfficialTravel_dataInput[]
+    updateMany?: trx_declarationUpdateManyWithWhereWithoutOfficialTravel_dataInput | trx_declarationUpdateManyWithWhereWithoutOfficialTravel_dataInput[]
+    deleteMany?: trx_declarationScalarWhereInput | trx_declarationScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutTrx_mutationInput = {
@@ -35134,6 +39867,84 @@ export namespace Prisma {
     upsert?: ms_leave_typesUpsertWithoutTrx_leave_quotaInput
     connect?: ms_leave_typesWhereUniqueInput
     update?: XOR<XOR<ms_leave_typesUpdateToOneWithWhereWithoutTrx_leave_quotaInput, ms_leave_typesUpdateWithoutTrx_leave_quotaInput>, ms_leave_typesUncheckedUpdateWithoutTrx_leave_quotaInput>
+  }
+
+  export type trx_official_travelCreateNestedOneWithoutTrx_declarationInput = {
+    create?: XOR<trx_official_travelCreateWithoutTrx_declarationInput, trx_official_travelUncheckedCreateWithoutTrx_declarationInput>
+    connectOrCreate?: trx_official_travelCreateOrConnectWithoutTrx_declarationInput
+    connect?: trx_official_travelWhereUniqueInput
+  }
+
+  export type trx_detail_declarationCreateNestedManyWithoutDeclaration_dataInput = {
+    create?: XOR<trx_detail_declarationCreateWithoutDeclaration_dataInput, trx_detail_declarationUncheckedCreateWithoutDeclaration_dataInput> | trx_detail_declarationCreateWithoutDeclaration_dataInput[] | trx_detail_declarationUncheckedCreateWithoutDeclaration_dataInput[]
+    connectOrCreate?: trx_detail_declarationCreateOrConnectWithoutDeclaration_dataInput | trx_detail_declarationCreateOrConnectWithoutDeclaration_dataInput[]
+    createMany?: trx_detail_declarationCreateManyDeclaration_dataInputEnvelope
+    connect?: trx_detail_declarationWhereUniqueInput | trx_detail_declarationWhereUniqueInput[]
+  }
+
+  export type trx_detail_declarationUncheckedCreateNestedManyWithoutDeclaration_dataInput = {
+    create?: XOR<trx_detail_declarationCreateWithoutDeclaration_dataInput, trx_detail_declarationUncheckedCreateWithoutDeclaration_dataInput> | trx_detail_declarationCreateWithoutDeclaration_dataInput[] | trx_detail_declarationUncheckedCreateWithoutDeclaration_dataInput[]
+    connectOrCreate?: trx_detail_declarationCreateOrConnectWithoutDeclaration_dataInput | trx_detail_declarationCreateOrConnectWithoutDeclaration_dataInput[]
+    createMany?: trx_detail_declarationCreateManyDeclaration_dataInputEnvelope
+    connect?: trx_detail_declarationWhereUniqueInput | trx_detail_declarationWhereUniqueInput[]
+  }
+
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type trx_official_travelUpdateOneRequiredWithoutTrx_declarationNestedInput = {
+    create?: XOR<trx_official_travelCreateWithoutTrx_declarationInput, trx_official_travelUncheckedCreateWithoutTrx_declarationInput>
+    connectOrCreate?: trx_official_travelCreateOrConnectWithoutTrx_declarationInput
+    upsert?: trx_official_travelUpsertWithoutTrx_declarationInput
+    connect?: trx_official_travelWhereUniqueInput
+    update?: XOR<XOR<trx_official_travelUpdateToOneWithWhereWithoutTrx_declarationInput, trx_official_travelUpdateWithoutTrx_declarationInput>, trx_official_travelUncheckedUpdateWithoutTrx_declarationInput>
+  }
+
+  export type trx_detail_declarationUpdateManyWithoutDeclaration_dataNestedInput = {
+    create?: XOR<trx_detail_declarationCreateWithoutDeclaration_dataInput, trx_detail_declarationUncheckedCreateWithoutDeclaration_dataInput> | trx_detail_declarationCreateWithoutDeclaration_dataInput[] | trx_detail_declarationUncheckedCreateWithoutDeclaration_dataInput[]
+    connectOrCreate?: trx_detail_declarationCreateOrConnectWithoutDeclaration_dataInput | trx_detail_declarationCreateOrConnectWithoutDeclaration_dataInput[]
+    upsert?: trx_detail_declarationUpsertWithWhereUniqueWithoutDeclaration_dataInput | trx_detail_declarationUpsertWithWhereUniqueWithoutDeclaration_dataInput[]
+    createMany?: trx_detail_declarationCreateManyDeclaration_dataInputEnvelope
+    set?: trx_detail_declarationWhereUniqueInput | trx_detail_declarationWhereUniqueInput[]
+    disconnect?: trx_detail_declarationWhereUniqueInput | trx_detail_declarationWhereUniqueInput[]
+    delete?: trx_detail_declarationWhereUniqueInput | trx_detail_declarationWhereUniqueInput[]
+    connect?: trx_detail_declarationWhereUniqueInput | trx_detail_declarationWhereUniqueInput[]
+    update?: trx_detail_declarationUpdateWithWhereUniqueWithoutDeclaration_dataInput | trx_detail_declarationUpdateWithWhereUniqueWithoutDeclaration_dataInput[]
+    updateMany?: trx_detail_declarationUpdateManyWithWhereWithoutDeclaration_dataInput | trx_detail_declarationUpdateManyWithWhereWithoutDeclaration_dataInput[]
+    deleteMany?: trx_detail_declarationScalarWhereInput | trx_detail_declarationScalarWhereInput[]
+  }
+
+  export type trx_detail_declarationUncheckedUpdateManyWithoutDeclaration_dataNestedInput = {
+    create?: XOR<trx_detail_declarationCreateWithoutDeclaration_dataInput, trx_detail_declarationUncheckedCreateWithoutDeclaration_dataInput> | trx_detail_declarationCreateWithoutDeclaration_dataInput[] | trx_detail_declarationUncheckedCreateWithoutDeclaration_dataInput[]
+    connectOrCreate?: trx_detail_declarationCreateOrConnectWithoutDeclaration_dataInput | trx_detail_declarationCreateOrConnectWithoutDeclaration_dataInput[]
+    upsert?: trx_detail_declarationUpsertWithWhereUniqueWithoutDeclaration_dataInput | trx_detail_declarationUpsertWithWhereUniqueWithoutDeclaration_dataInput[]
+    createMany?: trx_detail_declarationCreateManyDeclaration_dataInputEnvelope
+    set?: trx_detail_declarationWhereUniqueInput | trx_detail_declarationWhereUniqueInput[]
+    disconnect?: trx_detail_declarationWhereUniqueInput | trx_detail_declarationWhereUniqueInput[]
+    delete?: trx_detail_declarationWhereUniqueInput | trx_detail_declarationWhereUniqueInput[]
+    connect?: trx_detail_declarationWhereUniqueInput | trx_detail_declarationWhereUniqueInput[]
+    update?: trx_detail_declarationUpdateWithWhereUniqueWithoutDeclaration_dataInput | trx_detail_declarationUpdateWithWhereUniqueWithoutDeclaration_dataInput[]
+    updateMany?: trx_detail_declarationUpdateManyWithWhereWithoutDeclaration_dataInput | trx_detail_declarationUpdateManyWithWhereWithoutDeclaration_dataInput[]
+    deleteMany?: trx_detail_declarationScalarWhereInput | trx_detail_declarationScalarWhereInput[]
+  }
+
+  export type trx_declarationCreateNestedOneWithoutTrx_detail_declarationInput = {
+    create?: XOR<trx_declarationCreateWithoutTrx_detail_declarationInput, trx_declarationUncheckedCreateWithoutTrx_detail_declarationInput>
+    connectOrCreate?: trx_declarationCreateOrConnectWithoutTrx_detail_declarationInput
+    connect?: trx_declarationWhereUniqueInput
+  }
+
+  export type trx_declarationUpdateOneRequiredWithoutTrx_detail_declarationNestedInput = {
+    create?: XOR<trx_declarationCreateWithoutTrx_detail_declarationInput, trx_declarationUncheckedCreateWithoutTrx_detail_declarationInput>
+    connectOrCreate?: trx_declarationCreateOrConnectWithoutTrx_detail_declarationInput
+    upsert?: trx_declarationUpsertWithoutTrx_detail_declarationInput
+    connect?: trx_declarationWhereUniqueInput
+    update?: XOR<XOR<trx_declarationUpdateToOneWithWhereWithoutTrx_detail_declarationInput, trx_declarationUpdateWithoutTrx_detail_declarationInput>, trx_declarationUncheckedUpdateWithoutTrx_detail_declarationInput>
   }
 
   export type NestedBigIntFilter<$PrismaModel = never> = {
@@ -35395,6 +40206,60 @@ export namespace Prisma {
     _max?: NestedBytesNullableFilter<$PrismaModel>
   }
 
+  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
   export type mst_deptCreateWithoutMst_userInput = {
     id: number
     nama: string
@@ -35438,6 +40303,7 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     leave_reason: string
+    support_document?: string | null
     accept_to?: string | null
     accepted?: string | null
     accepted_date?: Date | string | null
@@ -35469,6 +40335,7 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     leave_reason: string
+    support_document?: string | null
     accept_to?: string | null
     accepted?: string | null
     accepted_date?: Date | string | null
@@ -35565,21 +40432,58 @@ export namespace Prisma {
   }
 
   export type trx_official_travelCreateWithoutUser_dataInput = {
-    effective_date?: Date | string | null
+    code: string
     start_date: Date | string
     end_date: Date | string
     total_leave_days: bigint | number
+    type: string
+    destination_place: string
+    transportation: string
+    lodging: string
+    work_status: string
+    office_activities: string
     purpose: string
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    rent_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost?: Decimal | DecimalJsLike | number | string | null
     destination_city: string
+    activity_agenda: string
+    symbol_currency?: string | null
+    currency?: string | null
+    down_payment?: Decimal | DecimalJsLike | number | string | null
     status_id: bigint | number
-    accept_to: string
-    accepted?: string | null
-    accepted_date?: Date | string | null
-    accepted_remark?: string | null
-    approve_to: string
-    approved?: string | null
-    approved_date?: Date | string | null
-    approved_remark?: string | null
+    accept_to_depthead: string
+    accepted_depthead?: string | null
+    accepted_depthead_date?: Date | string | null
+    accepted_depthead_remark?: string | null
+    approve_to_divhead: string
+    approved_divhead?: string | null
+    approved_divhead_date?: Date | string | null
+    approved_divhead_remark?: string | null
+    approve_to_dicdiv?: string | null
+    approved_dicdiv?: string | null
+    approved_dicdiv_date?: Date | string | null
+    approved_dicdiv_remark?: string | null
+    approve_to_depthead_hc: string
+    approved_depthead_hc?: string | null
+    approved_depthead_hc_date?: Date | string | null
+    approved_depthead_hc_remark?: string | null
+    approve_to_divhead_hc?: string | null
+    approved_divhead_hc?: string | null
+    approved_divhead_hc_date?: Date | string | null
+    approved_divhead_hc_remark?: string | null
+    approve_to_dichc?: string | null
+    approved_dichc?: string | null
+    approved_dichc_date?: Date | string | null
+    approved_dichc_remark?: string | null
+    approve_to_presdir?: string | null
+    approved_presdir?: string | null
+    approved_presdir_date?: Date | string | null
+    approved_presdir_remark?: string | null
     rejected?: string | null
     rejected_date?: Date | string | null
     rejected_remark?: string | null
@@ -35590,25 +40494,63 @@ export namespace Prisma {
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
+    trx_declaration?: trx_declarationCreateNestedManyWithoutOfficialTravel_dataInput
   }
 
   export type trx_official_travelUncheckedCreateWithoutUser_dataInput = {
     id?: number
-    effective_date?: Date | string | null
+    code: string
     start_date: Date | string
     end_date: Date | string
     total_leave_days: bigint | number
+    type: string
+    destination_place: string
+    transportation: string
+    lodging: string
+    work_status: string
+    office_activities: string
     purpose: string
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    rent_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost?: Decimal | DecimalJsLike | number | string | null
     destination_city: string
+    activity_agenda: string
+    symbol_currency?: string | null
+    currency?: string | null
+    down_payment?: Decimal | DecimalJsLike | number | string | null
     status_id: bigint | number
-    accept_to: string
-    accepted?: string | null
-    accepted_date?: Date | string | null
-    accepted_remark?: string | null
-    approve_to: string
-    approved?: string | null
-    approved_date?: Date | string | null
-    approved_remark?: string | null
+    accept_to_depthead: string
+    accepted_depthead?: string | null
+    accepted_depthead_date?: Date | string | null
+    accepted_depthead_remark?: string | null
+    approve_to_divhead: string
+    approved_divhead?: string | null
+    approved_divhead_date?: Date | string | null
+    approved_divhead_remark?: string | null
+    approve_to_dicdiv?: string | null
+    approved_dicdiv?: string | null
+    approved_dicdiv_date?: Date | string | null
+    approved_dicdiv_remark?: string | null
+    approve_to_depthead_hc: string
+    approved_depthead_hc?: string | null
+    approved_depthead_hc_date?: Date | string | null
+    approved_depthead_hc_remark?: string | null
+    approve_to_divhead_hc?: string | null
+    approved_divhead_hc?: string | null
+    approved_divhead_hc_date?: Date | string | null
+    approved_divhead_hc_remark?: string | null
+    approve_to_dichc?: string | null
+    approved_dichc?: string | null
+    approved_dichc_date?: Date | string | null
+    approved_dichc_remark?: string | null
+    approve_to_presdir?: string | null
+    approved_presdir?: string | null
+    approved_presdir_date?: Date | string | null
+    approved_presdir_remark?: string | null
     rejected?: string | null
     rejected_date?: Date | string | null
     rejected_remark?: string | null
@@ -35619,6 +40561,7 @@ export namespace Prisma {
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
+    trx_declaration?: trx_declarationUncheckedCreateNestedManyWithoutOfficialTravel_dataInput
   }
 
   export type trx_official_travelCreateOrConnectWithoutUser_dataInput = {
@@ -35632,8 +40575,10 @@ export namespace Prisma {
 
   export type trx_mutationCreateWithoutUser_dataInput = {
     effective_date: Date | string
+    superior_from: string
     division_from: string
     dept_from: string
+    superior_to: string
     division_to: string
     dept_to: string
     reason: string
@@ -35661,8 +40606,10 @@ export namespace Prisma {
   export type trx_mutationUncheckedCreateWithoutUser_dataInput = {
     id?: number
     effective_date: Date | string
+    superior_from: string
     division_from: string
     dept_from: string
+    superior_to: string
     division_to: string
     dept_to: string
     reason: string
@@ -35699,6 +40646,7 @@ export namespace Prisma {
   export type trx_resignCreateWithoutUser_dataInput = {
     effective_date: Date | string
     reason: string
+    file_upload: string
     status_id: bigint | number
     accept_to: string
     accepted?: string | null
@@ -35724,6 +40672,7 @@ export namespace Prisma {
     id?: number
     effective_date: Date | string
     reason: string
+    file_upload: string
     status_id: bigint | number
     accept_to: string
     accepted?: string | null
@@ -35897,6 +40846,7 @@ export namespace Prisma {
     end_date?: DateTimeFilter<"trx_leaves"> | Date | string
     total_leave_days?: BigIntFilter<"trx_leaves"> | bigint | number
     leave_reason?: StringFilter<"trx_leaves"> | string
+    support_document?: StringNullableFilter<"trx_leaves"> | string | null
     accept_to?: StringNullableFilter<"trx_leaves"> | string | null
     accepted?: StringNullableFilter<"trx_leaves"> | string | null
     accepted_date?: DateTimeNullableFilter<"trx_leaves"> | Date | string | null
@@ -35987,22 +40937,59 @@ export namespace Prisma {
     OR?: trx_official_travelScalarWhereInput[]
     NOT?: trx_official_travelScalarWhereInput | trx_official_travelScalarWhereInput[]
     id?: IntFilter<"trx_official_travel"> | number
+    code?: StringFilter<"trx_official_travel"> | string
     user?: StringFilter<"trx_official_travel"> | string
-    effective_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
     start_date?: DateTimeFilter<"trx_official_travel"> | Date | string
     end_date?: DateTimeFilter<"trx_official_travel"> | Date | string
     total_leave_days?: BigIntFilter<"trx_official_travel"> | bigint | number
+    type?: StringFilter<"trx_official_travel"> | string
+    destination_place?: StringFilter<"trx_official_travel"> | string
+    transportation?: StringFilter<"trx_official_travel"> | string
+    lodging?: StringFilter<"trx_official_travel"> | string
+    work_status?: StringFilter<"trx_official_travel"> | string
+    office_activities?: StringFilter<"trx_official_travel"> | string
     purpose?: StringFilter<"trx_official_travel"> | string
+    taxi_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    rent_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    other_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     destination_city?: StringFilter<"trx_official_travel"> | string
+    activity_agenda?: StringFilter<"trx_official_travel"> | string
+    symbol_currency?: StringNullableFilter<"trx_official_travel"> | string | null
+    currency?: StringNullableFilter<"trx_official_travel"> | string | null
+    down_payment?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     status_id?: BigIntFilter<"trx_official_travel"> | bigint | number
-    accept_to?: StringFilter<"trx_official_travel"> | string
-    accepted?: StringNullableFilter<"trx_official_travel"> | string | null
-    accepted_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
-    accepted_remark?: StringNullableFilter<"trx_official_travel"> | string | null
-    approve_to?: StringFilter<"trx_official_travel"> | string
-    approved?: StringNullableFilter<"trx_official_travel"> | string | null
-    approved_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
-    approved_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    accept_to_depthead?: StringFilter<"trx_official_travel"> | string
+    accepted_depthead?: StringNullableFilter<"trx_official_travel"> | string | null
+    accepted_depthead_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    accepted_depthead_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_divhead?: StringFilter<"trx_official_travel"> | string
+    approved_divhead?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_divhead_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_divhead_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_dicdiv?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_dicdiv?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_dicdiv_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_dicdiv_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_depthead_hc?: StringFilter<"trx_official_travel"> | string
+    approved_depthead_hc?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_depthead_hc_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_depthead_hc_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_divhead_hc?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_divhead_hc?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_divhead_hc_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_divhead_hc_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_dichc?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_dichc?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_dichc_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_dichc_remark?: StringNullableFilter<"trx_official_travel"> | string | null
+    approve_to_presdir?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_presdir?: StringNullableFilter<"trx_official_travel"> | string | null
+    approved_presdir_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
+    approved_presdir_remark?: StringNullableFilter<"trx_official_travel"> | string | null
     rejected?: StringNullableFilter<"trx_official_travel"> | string | null
     rejected_date?: DateTimeNullableFilter<"trx_official_travel"> | Date | string | null
     rejected_remark?: StringNullableFilter<"trx_official_travel"> | string | null
@@ -36038,8 +41025,10 @@ export namespace Prisma {
     id?: IntFilter<"trx_mutation"> | number
     user?: StringFilter<"trx_mutation"> | string
     effective_date?: DateTimeFilter<"trx_mutation"> | Date | string
+    superior_from?: StringFilter<"trx_mutation"> | string
     division_from?: StringFilter<"trx_mutation"> | string
     dept_from?: StringFilter<"trx_mutation"> | string
+    superior_to?: StringFilter<"trx_mutation"> | string
     division_to?: StringFilter<"trx_mutation"> | string
     dept_to?: StringFilter<"trx_mutation"> | string
     reason?: StringFilter<"trx_mutation"> | string
@@ -36088,6 +41077,7 @@ export namespace Prisma {
     user?: StringFilter<"trx_resign"> | string
     effective_date?: DateTimeFilter<"trx_resign"> | Date | string
     reason?: StringFilter<"trx_resign"> | string
+    file_upload?: StringFilter<"trx_resign"> | string
     status_id?: BigIntFilter<"trx_resign"> | bigint | number
     accept_to?: StringFilter<"trx_resign"> | string
     accepted?: StringNullableFilter<"trx_resign"> | string | null
@@ -36185,6 +41175,7 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     leave_reason: string
+    support_document?: string | null
     accept_to?: string | null
     accepted?: string | null
     accepted_date?: Date | string | null
@@ -36216,6 +41207,7 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     leave_reason: string
+    support_document?: string | null
     accept_to?: string | null
     accepted?: string | null
     accepted_date?: Date | string | null
@@ -36387,7 +41379,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    dept_data: mst_deptCreateNestedOneWithoutMst_userInput
+    dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
     trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
     trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
@@ -36414,7 +41406,7 @@ export namespace Prisma {
     section?: string | null
     divid?: string | null
     companyid?: string | null
-    dept: number
+    dept?: number | null
     department?: string | null
     division?: string | null
     title?: string | null
@@ -36545,7 +41537,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
+    dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
     trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
@@ -36572,7 +41564,7 @@ export namespace Prisma {
     section?: NullableStringFieldUpdateOperationsInput | string | null
     divid?: NullableStringFieldUpdateOperationsInput | string | null
     companyid?: NullableStringFieldUpdateOperationsInput | string | null
-    dept?: IntFieldUpdateOperationsInput | number
+    dept?: NullableIntFieldUpdateOperationsInput | number | null
     department?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     title?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37205,7 +42197,7 @@ export namespace Prisma {
     section?: StringNullableFilter<"User"> | string | null
     divid?: StringNullableFilter<"User"> | string | null
     companyid?: StringNullableFilter<"User"> | string | null
-    dept?: IntFilter<"User"> | number
+    dept?: IntNullableFilter<"User"> | number | null
     department?: StringNullableFilter<"User"> | string | null
     division?: StringNullableFilter<"User"> | string | null
     title?: StringNullableFilter<"User"> | string | null
@@ -37397,7 +42389,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    dept_data: mst_deptCreateNestedOneWithoutMst_userInput
+    dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
     trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
@@ -37424,7 +42416,7 @@ export namespace Prisma {
     section?: string | null
     divid?: string | null
     companyid?: string | null
-    dept: number
+    dept?: number | null
     department?: string | null
     division?: string | null
     title?: string | null
@@ -37565,7 +42557,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
+    dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
     trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
@@ -37592,7 +42584,7 @@ export namespace Prisma {
     section?: NullableStringFieldUpdateOperationsInput | string | null
     divid?: NullableStringFieldUpdateOperationsInput | string | null
     companyid?: NullableStringFieldUpdateOperationsInput | string | null
-    dept?: IntFieldUpdateOperationsInput | number
+    dept?: NullableIntFieldUpdateOperationsInput | number | null
     department?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     title?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37723,7 +42715,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    dept_data: mst_deptCreateNestedOneWithoutMst_userInput
+    dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
@@ -37750,7 +42742,7 @@ export namespace Prisma {
     section?: string | null
     divid?: string | null
     companyid?: string | null
-    dept: number
+    dept?: number | null
     department?: string | null
     division?: string | null
     title?: string | null
@@ -37879,7 +42871,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
+    dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
@@ -37906,7 +42898,7 @@ export namespace Prisma {
     section?: NullableStringFieldUpdateOperationsInput | string | null
     divid?: NullableStringFieldUpdateOperationsInput | string | null
     companyid?: NullableStringFieldUpdateOperationsInput | string | null
-    dept?: IntFieldUpdateOperationsInput | number
+    dept?: NullableIntFieldUpdateOperationsInput | number | null
     department?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     title?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38025,7 +43017,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    dept_data: mst_deptCreateNestedOneWithoutMst_userInput
+    dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
     trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
@@ -38052,7 +43044,7 @@ export namespace Prisma {
     section?: string | null
     divid?: string | null
     companyid?: string | null
-    dept: number
+    dept?: number | null
     department?: string | null
     division?: string | null
     title?: string | null
@@ -38091,6 +43083,74 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutTrx_officialTravelInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutTrx_officialTravelInput, UserUncheckedCreateWithoutTrx_officialTravelInput>
+  }
+
+  export type trx_declarationCreateWithoutOfficialTravel_dataInput = {
+    code: string
+    user: string
+    start_date_actual: Date | string
+    end_date_actual: Date | string
+    evidence_file: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    total_money_change: Decimal | DecimalJsLike | number | string
+    status_id: bigint | number
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    trx_detail_declaration?: trx_detail_declarationCreateNestedManyWithoutDeclaration_dataInput
+  }
+
+  export type trx_declarationUncheckedCreateWithoutOfficialTravel_dataInput = {
+    id?: number
+    code: string
+    user: string
+    start_date_actual: Date | string
+    end_date_actual: Date | string
+    evidence_file: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    total_money_change: Decimal | DecimalJsLike | number | string
+    status_id: bigint | number
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    trx_detail_declaration?: trx_detail_declarationUncheckedCreateNestedManyWithoutDeclaration_dataInput
+  }
+
+  export type trx_declarationCreateOrConnectWithoutOfficialTravel_dataInput = {
+    where: trx_declarationWhereUniqueInput
+    create: XOR<trx_declarationCreateWithoutOfficialTravel_dataInput, trx_declarationUncheckedCreateWithoutOfficialTravel_dataInput>
+  }
+
+  export type trx_declarationCreateManyOfficialTravel_dataInputEnvelope = {
+    data: trx_declarationCreateManyOfficialTravel_dataInput | trx_declarationCreateManyOfficialTravel_dataInput[]
   }
 
   export type UserUpsertWithoutTrx_officialTravelInput = {
@@ -38149,7 +43209,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
+    dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
     trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
@@ -38176,7 +43236,7 @@ export namespace Prisma {
     section?: NullableStringFieldUpdateOperationsInput | string | null
     divid?: NullableStringFieldUpdateOperationsInput | string | null
     companyid?: NullableStringFieldUpdateOperationsInput | string | null
-    dept?: IntFieldUpdateOperationsInput | number
+    dept?: NullableIntFieldUpdateOperationsInput | number | null
     department?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     title?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38210,6 +43270,55 @@ export namespace Prisma {
     trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type trx_declarationUpsertWithWhereUniqueWithoutOfficialTravel_dataInput = {
+    where: trx_declarationWhereUniqueInput
+    update: XOR<trx_declarationUpdateWithoutOfficialTravel_dataInput, trx_declarationUncheckedUpdateWithoutOfficialTravel_dataInput>
+    create: XOR<trx_declarationCreateWithoutOfficialTravel_dataInput, trx_declarationUncheckedCreateWithoutOfficialTravel_dataInput>
+  }
+
+  export type trx_declarationUpdateWithWhereUniqueWithoutOfficialTravel_dataInput = {
+    where: trx_declarationWhereUniqueInput
+    data: XOR<trx_declarationUpdateWithoutOfficialTravel_dataInput, trx_declarationUncheckedUpdateWithoutOfficialTravel_dataInput>
+  }
+
+  export type trx_declarationUpdateManyWithWhereWithoutOfficialTravel_dataInput = {
+    where: trx_declarationScalarWhereInput
+    data: XOR<trx_declarationUpdateManyMutationInput, trx_declarationUncheckedUpdateManyWithoutOfficialTravel_dataInput>
+  }
+
+  export type trx_declarationScalarWhereInput = {
+    AND?: trx_declarationScalarWhereInput | trx_declarationScalarWhereInput[]
+    OR?: trx_declarationScalarWhereInput[]
+    NOT?: trx_declarationScalarWhereInput | trx_declarationScalarWhereInput[]
+    id?: IntFilter<"trx_declaration"> | number
+    code?: StringFilter<"trx_declaration"> | string
+    user?: StringFilter<"trx_declaration"> | string
+    code_trx?: StringFilter<"trx_declaration"> | string
+    start_date_actual?: DateTimeFilter<"trx_declaration"> | Date | string
+    end_date_actual?: DateTimeFilter<"trx_declaration"> | Date | string
+    evidence_file?: StringFilter<"trx_declaration"> | string
+    accept_to?: StringFilter<"trx_declaration"> | string
+    accepted?: StringNullableFilter<"trx_declaration"> | string | null
+    accepted_date?: DateTimeNullableFilter<"trx_declaration"> | Date | string | null
+    accepted_remark?: StringNullableFilter<"trx_declaration"> | string | null
+    approve_to?: StringFilter<"trx_declaration"> | string
+    approved?: StringNullableFilter<"trx_declaration"> | string | null
+    approved_date?: DateTimeNullableFilter<"trx_declaration"> | Date | string | null
+    approved_remark?: StringNullableFilter<"trx_declaration"> | string | null
+    rejected?: StringNullableFilter<"trx_declaration"> | string | null
+    rejected_date?: DateTimeNullableFilter<"trx_declaration"> | Date | string | null
+    rejected_remark?: StringNullableFilter<"trx_declaration"> | string | null
+    canceled?: StringNullableFilter<"trx_declaration"> | string | null
+    canceled_date?: DateTimeNullableFilter<"trx_declaration"> | Date | string | null
+    canceled_remark?: StringNullableFilter<"trx_declaration"> | string | null
+    total_money_change?: DecimalFilter<"trx_declaration"> | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFilter<"trx_declaration"> | bigint | number
+    created_by?: BigIntNullableFilter<"trx_declaration"> | bigint | number | null
+    created_at?: DateTimeFilter<"trx_declaration"> | Date | string
+    updated_by?: BigIntNullableFilter<"trx_declaration"> | bigint | number | null
+    updated_at?: DateTimeFilter<"trx_declaration"> | Date | string
   }
 
   export type UserCreateWithoutTrx_mutationInput = {
@@ -38257,7 +43366,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    dept_data: mst_deptCreateNestedOneWithoutMst_userInput
+    dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
@@ -38284,7 +43393,7 @@ export namespace Prisma {
     section?: string | null
     divid?: string | null
     companyid?: string | null
-    dept: number
+    dept?: number | null
     department?: string | null
     division?: string | null
     title?: string | null
@@ -38381,7 +43490,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
+    dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
@@ -38408,7 +43517,7 @@ export namespace Prisma {
     section?: NullableStringFieldUpdateOperationsInput | string | null
     divid?: NullableStringFieldUpdateOperationsInput | string | null
     companyid?: NullableStringFieldUpdateOperationsInput | string | null
-    dept?: IntFieldUpdateOperationsInput | number
+    dept?: NullableIntFieldUpdateOperationsInput | number | null
     department?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     title?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38489,7 +43598,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    dept_data: mst_deptCreateNestedOneWithoutMst_userInput
+    dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
@@ -38516,7 +43625,7 @@ export namespace Prisma {
     section?: string | null
     divid?: string | null
     companyid?: string | null
-    dept: number
+    dept?: number | null
     department?: string | null
     division?: string | null
     title?: string | null
@@ -38613,7 +43722,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
+    dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
@@ -38640,7 +43749,7 @@ export namespace Prisma {
     section?: NullableStringFieldUpdateOperationsInput | string | null
     divid?: NullableStringFieldUpdateOperationsInput | string | null
     companyid?: NullableStringFieldUpdateOperationsInput | string | null
-    dept?: IntFieldUpdateOperationsInput | number
+    dept?: NullableIntFieldUpdateOperationsInput | number | null
     department?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     title?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38721,7 +43830,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    dept_data: mst_deptCreateNestedOneWithoutMst_userInput
+    dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
@@ -38748,7 +43857,7 @@ export namespace Prisma {
     section?: string | null
     divid?: string | null
     companyid?: string | null
-    dept: number
+    dept?: number | null
     department?: string | null
     division?: string | null
     title?: string | null
@@ -38873,7 +43982,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dept_data?: mst_deptUpdateOneRequiredWithoutMst_userNestedInput
+    dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
@@ -38900,7 +44009,7 @@ export namespace Prisma {
     section?: NullableStringFieldUpdateOperationsInput | string | null
     divid?: NullableStringFieldUpdateOperationsInput | string | null
     companyid?: NullableStringFieldUpdateOperationsInput | string | null
-    dept?: IntFieldUpdateOperationsInput | number
+    dept?: NullableIntFieldUpdateOperationsInput | number | null
     department?: NullableStringFieldUpdateOperationsInput | string | null
     division?: NullableStringFieldUpdateOperationsInput | string | null
     title?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38970,6 +44079,504 @@ export namespace Prisma {
     trx_leaves?: trx_leavesUncheckedUpdateManyWithoutLeave_typeNestedInput
   }
 
+  export type trx_official_travelCreateWithoutTrx_declarationInput = {
+    code: string
+    start_date: Date | string
+    end_date: Date | string
+    total_leave_days: bigint | number
+    type: string
+    destination_place: string
+    transportation: string
+    lodging: string
+    work_status: string
+    office_activities: string
+    purpose: string
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    rent_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost?: Decimal | DecimalJsLike | number | string | null
+    destination_city: string
+    activity_agenda: string
+    symbol_currency?: string | null
+    currency?: string | null
+    down_payment?: Decimal | DecimalJsLike | number | string | null
+    status_id: bigint | number
+    accept_to_depthead: string
+    accepted_depthead?: string | null
+    accepted_depthead_date?: Date | string | null
+    accepted_depthead_remark?: string | null
+    approve_to_divhead: string
+    approved_divhead?: string | null
+    approved_divhead_date?: Date | string | null
+    approved_divhead_remark?: string | null
+    approve_to_dicdiv?: string | null
+    approved_dicdiv?: string | null
+    approved_dicdiv_date?: Date | string | null
+    approved_dicdiv_remark?: string | null
+    approve_to_depthead_hc: string
+    approved_depthead_hc?: string | null
+    approved_depthead_hc_date?: Date | string | null
+    approved_depthead_hc_remark?: string | null
+    approve_to_divhead_hc?: string | null
+    approved_divhead_hc?: string | null
+    approved_divhead_hc_date?: Date | string | null
+    approved_divhead_hc_remark?: string | null
+    approve_to_dichc?: string | null
+    approved_dichc?: string | null
+    approved_dichc_date?: Date | string | null
+    approved_dichc_remark?: string | null
+    approve_to_presdir?: string | null
+    approved_presdir?: string | null
+    approved_presdir_date?: Date | string | null
+    approved_presdir_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    user_data: UserCreateNestedOneWithoutTrx_officialTravelInput
+  }
+
+  export type trx_official_travelUncheckedCreateWithoutTrx_declarationInput = {
+    id?: number
+    code: string
+    user: string
+    start_date: Date | string
+    end_date: Date | string
+    total_leave_days: bigint | number
+    type: string
+    destination_place: string
+    transportation: string
+    lodging: string
+    work_status: string
+    office_activities: string
+    purpose: string
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    rent_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost?: Decimal | DecimalJsLike | number | string | null
+    destination_city: string
+    activity_agenda: string
+    symbol_currency?: string | null
+    currency?: string | null
+    down_payment?: Decimal | DecimalJsLike | number | string | null
+    status_id: bigint | number
+    accept_to_depthead: string
+    accepted_depthead?: string | null
+    accepted_depthead_date?: Date | string | null
+    accepted_depthead_remark?: string | null
+    approve_to_divhead: string
+    approved_divhead?: string | null
+    approved_divhead_date?: Date | string | null
+    approved_divhead_remark?: string | null
+    approve_to_dicdiv?: string | null
+    approved_dicdiv?: string | null
+    approved_dicdiv_date?: Date | string | null
+    approved_dicdiv_remark?: string | null
+    approve_to_depthead_hc: string
+    approved_depthead_hc?: string | null
+    approved_depthead_hc_date?: Date | string | null
+    approved_depthead_hc_remark?: string | null
+    approve_to_divhead_hc?: string | null
+    approved_divhead_hc?: string | null
+    approved_divhead_hc_date?: Date | string | null
+    approved_divhead_hc_remark?: string | null
+    approve_to_dichc?: string | null
+    approved_dichc?: string | null
+    approved_dichc_date?: Date | string | null
+    approved_dichc_remark?: string | null
+    approve_to_presdir?: string | null
+    approved_presdir?: string | null
+    approved_presdir_date?: Date | string | null
+    approved_presdir_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_official_travelCreateOrConnectWithoutTrx_declarationInput = {
+    where: trx_official_travelWhereUniqueInput
+    create: XOR<trx_official_travelCreateWithoutTrx_declarationInput, trx_official_travelUncheckedCreateWithoutTrx_declarationInput>
+  }
+
+  export type trx_detail_declarationCreateWithoutDeclaration_dataInput = {
+    date_activity: Date | string
+    location_activity: string
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    consume_cost?: Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost: Decimal | DecimalJsLike | number | string
+    explanation: string
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_detail_declarationUncheckedCreateWithoutDeclaration_dataInput = {
+    id?: number
+    date_activity: Date | string
+    location_activity: string
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    consume_cost?: Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost: Decimal | DecimalJsLike | number | string
+    explanation: string
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_detail_declarationCreateOrConnectWithoutDeclaration_dataInput = {
+    where: trx_detail_declarationWhereUniqueInput
+    create: XOR<trx_detail_declarationCreateWithoutDeclaration_dataInput, trx_detail_declarationUncheckedCreateWithoutDeclaration_dataInput>
+  }
+
+  export type trx_detail_declarationCreateManyDeclaration_dataInputEnvelope = {
+    data: trx_detail_declarationCreateManyDeclaration_dataInput | trx_detail_declarationCreateManyDeclaration_dataInput[]
+  }
+
+  export type trx_official_travelUpsertWithoutTrx_declarationInput = {
+    update: XOR<trx_official_travelUpdateWithoutTrx_declarationInput, trx_official_travelUncheckedUpdateWithoutTrx_declarationInput>
+    create: XOR<trx_official_travelCreateWithoutTrx_declarationInput, trx_official_travelUncheckedCreateWithoutTrx_declarationInput>
+    where?: trx_official_travelWhereInput
+  }
+
+  export type trx_official_travelUpdateToOneWithWhereWithoutTrx_declarationInput = {
+    where?: trx_official_travelWhereInput
+    data: XOR<trx_official_travelUpdateWithoutTrx_declarationInput, trx_official_travelUncheckedUpdateWithoutTrx_declarationInput>
+  }
+
+  export type trx_official_travelUpdateWithoutTrx_declarationInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    type?: StringFieldUpdateOperationsInput | string
+    destination_place?: StringFieldUpdateOperationsInput | string
+    transportation?: StringFieldUpdateOperationsInput | string
+    lodging?: StringFieldUpdateOperationsInput | string
+    work_status?: StringFieldUpdateOperationsInput | string
+    office_activities?: StringFieldUpdateOperationsInput | string
+    purpose?: StringFieldUpdateOperationsInput | string
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rent_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    destination_city?: StringFieldUpdateOperationsInput | string
+    activity_agenda?: StringFieldUpdateOperationsInput | string
+    symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    down_payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    accept_to_depthead?: StringFieldUpdateOperationsInput | string
+    accepted_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_depthead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_depthead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead?: StringFieldUpdateOperationsInput | string
+    approved_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dicdiv_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_depthead_hc?: StringFieldUpdateOperationsInput | string
+    approved_depthead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_depthead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_depthead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dichc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_presdir_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user_data?: UserUpdateOneRequiredWithoutTrx_officialTravelNestedInput
+  }
+
+  export type trx_official_travelUncheckedUpdateWithoutTrx_declarationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    user?: StringFieldUpdateOperationsInput | string
+    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    type?: StringFieldUpdateOperationsInput | string
+    destination_place?: StringFieldUpdateOperationsInput | string
+    transportation?: StringFieldUpdateOperationsInput | string
+    lodging?: StringFieldUpdateOperationsInput | string
+    work_status?: StringFieldUpdateOperationsInput | string
+    office_activities?: StringFieldUpdateOperationsInput | string
+    purpose?: StringFieldUpdateOperationsInput | string
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rent_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    destination_city?: StringFieldUpdateOperationsInput | string
+    activity_agenda?: StringFieldUpdateOperationsInput | string
+    symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    down_payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    accept_to_depthead?: StringFieldUpdateOperationsInput | string
+    accepted_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_depthead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_depthead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead?: StringFieldUpdateOperationsInput | string
+    approved_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dicdiv_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_depthead_hc?: StringFieldUpdateOperationsInput | string
+    approved_depthead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_depthead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_depthead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dichc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_presdir_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_detail_declarationUpsertWithWhereUniqueWithoutDeclaration_dataInput = {
+    where: trx_detail_declarationWhereUniqueInput
+    update: XOR<trx_detail_declarationUpdateWithoutDeclaration_dataInput, trx_detail_declarationUncheckedUpdateWithoutDeclaration_dataInput>
+    create: XOR<trx_detail_declarationCreateWithoutDeclaration_dataInput, trx_detail_declarationUncheckedCreateWithoutDeclaration_dataInput>
+  }
+
+  export type trx_detail_declarationUpdateWithWhereUniqueWithoutDeclaration_dataInput = {
+    where: trx_detail_declarationWhereUniqueInput
+    data: XOR<trx_detail_declarationUpdateWithoutDeclaration_dataInput, trx_detail_declarationUncheckedUpdateWithoutDeclaration_dataInput>
+  }
+
+  export type trx_detail_declarationUpdateManyWithWhereWithoutDeclaration_dataInput = {
+    where: trx_detail_declarationScalarWhereInput
+    data: XOR<trx_detail_declarationUpdateManyMutationInput, trx_detail_declarationUncheckedUpdateManyWithoutDeclaration_dataInput>
+  }
+
+  export type trx_detail_declarationScalarWhereInput = {
+    AND?: trx_detail_declarationScalarWhereInput | trx_detail_declarationScalarWhereInput[]
+    OR?: trx_detail_declarationScalarWhereInput[]
+    NOT?: trx_detail_declarationScalarWhereInput | trx_detail_declarationScalarWhereInput[]
+    id?: IntFilter<"trx_detail_declaration"> | number
+    declaration_code?: StringFilter<"trx_detail_declaration"> | string
+    date_activity?: DateTimeFilter<"trx_detail_declaration"> | Date | string
+    location_activity?: StringFilter<"trx_detail_declaration"> | string
+    hotel_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    consume_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    other_cost?: DecimalNullableFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalFilter<"trx_detail_declaration"> | Decimal | DecimalJsLike | number | string
+    explanation?: StringFilter<"trx_detail_declaration"> | string
+    created_by?: BigIntNullableFilter<"trx_detail_declaration"> | bigint | number | null
+    created_at?: DateTimeFilter<"trx_detail_declaration"> | Date | string
+    updated_by?: BigIntNullableFilter<"trx_detail_declaration"> | bigint | number | null
+    updated_at?: DateTimeFilter<"trx_detail_declaration"> | Date | string
+  }
+
+  export type trx_declarationCreateWithoutTrx_detail_declarationInput = {
+    code: string
+    user: string
+    start_date_actual: Date | string
+    end_date_actual: Date | string
+    evidence_file: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    total_money_change: Decimal | DecimalJsLike | number | string
+    status_id: bigint | number
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    officialTravel_data: trx_official_travelCreateNestedOneWithoutTrx_declarationInput
+  }
+
+  export type trx_declarationUncheckedCreateWithoutTrx_detail_declarationInput = {
+    id?: number
+    code: string
+    user: string
+    code_trx: string
+    start_date_actual: Date | string
+    end_date_actual: Date | string
+    evidence_file: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    total_money_change: Decimal | DecimalJsLike | number | string
+    status_id: bigint | number
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_declarationCreateOrConnectWithoutTrx_detail_declarationInput = {
+    where: trx_declarationWhereUniqueInput
+    create: XOR<trx_declarationCreateWithoutTrx_detail_declarationInput, trx_declarationUncheckedCreateWithoutTrx_detail_declarationInput>
+  }
+
+  export type trx_declarationUpsertWithoutTrx_detail_declarationInput = {
+    update: XOR<trx_declarationUpdateWithoutTrx_detail_declarationInput, trx_declarationUncheckedUpdateWithoutTrx_detail_declarationInput>
+    create: XOR<trx_declarationCreateWithoutTrx_detail_declarationInput, trx_declarationUncheckedCreateWithoutTrx_detail_declarationInput>
+    where?: trx_declarationWhereInput
+  }
+
+  export type trx_declarationUpdateToOneWithWhereWithoutTrx_detail_declarationInput = {
+    where?: trx_declarationWhereInput
+    data: XOR<trx_declarationUpdateWithoutTrx_detail_declarationInput, trx_declarationUncheckedUpdateWithoutTrx_detail_declarationInput>
+  }
+
+  export type trx_declarationUpdateWithoutTrx_detail_declarationInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    user?: StringFieldUpdateOperationsInput | string
+    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidence_file?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    officialTravel_data?: trx_official_travelUpdateOneRequiredWithoutTrx_declarationNestedInput
+  }
+
+  export type trx_declarationUncheckedUpdateWithoutTrx_detail_declarationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    user?: StringFieldUpdateOperationsInput | string
+    code_trx?: StringFieldUpdateOperationsInput | string
+    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidence_file?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type trx_leavesCreateManyUser_dataInput = {
     dept: bigint | number
     leave_type_id: number
@@ -38978,6 +44585,7 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     leave_reason: string
+    support_document?: string | null
     accept_to?: string | null
     accepted?: string | null
     accepted_date?: Date | string | null
@@ -39027,21 +44635,58 @@ export namespace Prisma {
   }
 
   export type trx_official_travelCreateManyUser_dataInput = {
-    effective_date?: Date | string | null
+    code: string
     start_date: Date | string
     end_date: Date | string
     total_leave_days: bigint | number
+    type: string
+    destination_place: string
+    transportation: string
+    lodging: string
+    work_status: string
+    office_activities: string
     purpose: string
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    rent_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost?: Decimal | DecimalJsLike | number | string | null
     destination_city: string
+    activity_agenda: string
+    symbol_currency?: string | null
+    currency?: string | null
+    down_payment?: Decimal | DecimalJsLike | number | string | null
     status_id: bigint | number
-    accept_to: string
-    accepted?: string | null
-    accepted_date?: Date | string | null
-    accepted_remark?: string | null
-    approve_to: string
-    approved?: string | null
-    approved_date?: Date | string | null
-    approved_remark?: string | null
+    accept_to_depthead: string
+    accepted_depthead?: string | null
+    accepted_depthead_date?: Date | string | null
+    accepted_depthead_remark?: string | null
+    approve_to_divhead: string
+    approved_divhead?: string | null
+    approved_divhead_date?: Date | string | null
+    approved_divhead_remark?: string | null
+    approve_to_dicdiv?: string | null
+    approved_dicdiv?: string | null
+    approved_dicdiv_date?: Date | string | null
+    approved_dicdiv_remark?: string | null
+    approve_to_depthead_hc: string
+    approved_depthead_hc?: string | null
+    approved_depthead_hc_date?: Date | string | null
+    approved_depthead_hc_remark?: string | null
+    approve_to_divhead_hc?: string | null
+    approved_divhead_hc?: string | null
+    approved_divhead_hc_date?: Date | string | null
+    approved_divhead_hc_remark?: string | null
+    approve_to_dichc?: string | null
+    approved_dichc?: string | null
+    approved_dichc_date?: Date | string | null
+    approved_dichc_remark?: string | null
+    approve_to_presdir?: string | null
+    approved_presdir?: string | null
+    approved_presdir_date?: Date | string | null
+    approved_presdir_remark?: string | null
     rejected?: string | null
     rejected_date?: Date | string | null
     rejected_remark?: string | null
@@ -39056,8 +44701,10 @@ export namespace Prisma {
 
   export type trx_mutationCreateManyUser_dataInput = {
     effective_date: Date | string
+    superior_from: string
     division_from: string
     dept_from: string
+    superior_to: string
     division_to: string
     dept_to: string
     reason: string
@@ -39085,6 +44732,7 @@ export namespace Prisma {
   export type trx_resignCreateManyUser_dataInput = {
     effective_date: Date | string
     reason: string
+    file_upload: string
     status_id: bigint | number
     accept_to: string
     accepted?: string | null
@@ -39140,6 +44788,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     leave_reason?: StringFieldUpdateOperationsInput | string
+    support_document?: NullableStringFieldUpdateOperationsInput | string | null
     accept_to?: NullableStringFieldUpdateOperationsInput | string | null
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
     accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39171,6 +44820,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     leave_reason?: StringFieldUpdateOperationsInput | string
+    support_document?: NullableStringFieldUpdateOperationsInput | string | null
     accept_to?: NullableStringFieldUpdateOperationsInput | string | null
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
     accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39201,6 +44851,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     leave_reason?: StringFieldUpdateOperationsInput | string
+    support_document?: NullableStringFieldUpdateOperationsInput | string | null
     accept_to?: NullableStringFieldUpdateOperationsInput | string | null
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
     accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39307,21 +44958,58 @@ export namespace Prisma {
   }
 
   export type trx_official_travelUpdateWithoutUser_dataInput = {
-    effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    code?: StringFieldUpdateOperationsInput | string
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    type?: StringFieldUpdateOperationsInput | string
+    destination_place?: StringFieldUpdateOperationsInput | string
+    transportation?: StringFieldUpdateOperationsInput | string
+    lodging?: StringFieldUpdateOperationsInput | string
+    work_status?: StringFieldUpdateOperationsInput | string
+    office_activities?: StringFieldUpdateOperationsInput | string
     purpose?: StringFieldUpdateOperationsInput | string
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rent_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     destination_city?: StringFieldUpdateOperationsInput | string
+    activity_agenda?: StringFieldUpdateOperationsInput | string
+    symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    down_payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    accept_to?: StringFieldUpdateOperationsInput | string
-    accepted?: NullableStringFieldUpdateOperationsInput | string | null
-    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    approve_to?: StringFieldUpdateOperationsInput | string
-    approved?: NullableStringFieldUpdateOperationsInput | string | null
-    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    accept_to_depthead?: StringFieldUpdateOperationsInput | string
+    accepted_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_depthead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_depthead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead?: StringFieldUpdateOperationsInput | string
+    approved_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dicdiv_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_depthead_hc?: StringFieldUpdateOperationsInput | string
+    approved_depthead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_depthead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_depthead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dichc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_presdir_remark?: NullableStringFieldUpdateOperationsInput | string | null
     rejected?: NullableStringFieldUpdateOperationsInput | string | null
     rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39332,25 +45020,63 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    trx_declaration?: trx_declarationUpdateManyWithoutOfficialTravel_dataNestedInput
   }
 
   export type trx_official_travelUncheckedUpdateWithoutUser_dataInput = {
     id?: IntFieldUpdateOperationsInput | number
-    effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    code?: StringFieldUpdateOperationsInput | string
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    type?: StringFieldUpdateOperationsInput | string
+    destination_place?: StringFieldUpdateOperationsInput | string
+    transportation?: StringFieldUpdateOperationsInput | string
+    lodging?: StringFieldUpdateOperationsInput | string
+    work_status?: StringFieldUpdateOperationsInput | string
+    office_activities?: StringFieldUpdateOperationsInput | string
     purpose?: StringFieldUpdateOperationsInput | string
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rent_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     destination_city?: StringFieldUpdateOperationsInput | string
+    activity_agenda?: StringFieldUpdateOperationsInput | string
+    symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    down_payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    accept_to?: StringFieldUpdateOperationsInput | string
-    accepted?: NullableStringFieldUpdateOperationsInput | string | null
-    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    approve_to?: StringFieldUpdateOperationsInput | string
-    approved?: NullableStringFieldUpdateOperationsInput | string | null
-    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    accept_to_depthead?: StringFieldUpdateOperationsInput | string
+    accepted_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_depthead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_depthead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead?: StringFieldUpdateOperationsInput | string
+    approved_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dicdiv_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_depthead_hc?: StringFieldUpdateOperationsInput | string
+    approved_depthead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_depthead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_depthead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dichc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_presdir_remark?: NullableStringFieldUpdateOperationsInput | string | null
     rejected?: NullableStringFieldUpdateOperationsInput | string | null
     rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39361,25 +45087,63 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    trx_declaration?: trx_declarationUncheckedUpdateManyWithoutOfficialTravel_dataNestedInput
   }
 
   export type trx_official_travelUncheckedUpdateManyWithoutUser_dataInput = {
     id?: IntFieldUpdateOperationsInput | number
-    effective_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    code?: StringFieldUpdateOperationsInput | string
     start_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
+    type?: StringFieldUpdateOperationsInput | string
+    destination_place?: StringFieldUpdateOperationsInput | string
+    transportation?: StringFieldUpdateOperationsInput | string
+    lodging?: StringFieldUpdateOperationsInput | string
+    work_status?: StringFieldUpdateOperationsInput | string
+    office_activities?: StringFieldUpdateOperationsInput | string
     purpose?: StringFieldUpdateOperationsInput | string
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    rent_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     destination_city?: StringFieldUpdateOperationsInput | string
+    activity_agenda?: StringFieldUpdateOperationsInput | string
+    symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    down_payment?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    accept_to?: StringFieldUpdateOperationsInput | string
-    accepted?: NullableStringFieldUpdateOperationsInput | string | null
-    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    approve_to?: StringFieldUpdateOperationsInput | string
-    approved?: NullableStringFieldUpdateOperationsInput | string | null
-    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    accept_to_depthead?: StringFieldUpdateOperationsInput | string
+    accepted_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_depthead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_depthead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead?: StringFieldUpdateOperationsInput | string
+    approved_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dicdiv_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dicdiv_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_depthead_hc?: StringFieldUpdateOperationsInput | string
+    approved_depthead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_depthead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_depthead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_divhead_hc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_divhead_hc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_dichc_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_dichc_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_presdir_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_presdir_remark?: NullableStringFieldUpdateOperationsInput | string | null
     rejected?: NullableStringFieldUpdateOperationsInput | string | null
     rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39394,8 +45158,10 @@ export namespace Prisma {
 
   export type trx_mutationUpdateWithoutUser_dataInput = {
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    superior_from?: StringFieldUpdateOperationsInput | string
     division_from?: StringFieldUpdateOperationsInput | string
     dept_from?: StringFieldUpdateOperationsInput | string
+    superior_to?: StringFieldUpdateOperationsInput | string
     division_to?: StringFieldUpdateOperationsInput | string
     dept_to?: StringFieldUpdateOperationsInput | string
     reason?: StringFieldUpdateOperationsInput | string
@@ -39423,8 +45189,10 @@ export namespace Prisma {
   export type trx_mutationUncheckedUpdateWithoutUser_dataInput = {
     id?: IntFieldUpdateOperationsInput | number
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    superior_from?: StringFieldUpdateOperationsInput | string
     division_from?: StringFieldUpdateOperationsInput | string
     dept_from?: StringFieldUpdateOperationsInput | string
+    superior_to?: StringFieldUpdateOperationsInput | string
     division_to?: StringFieldUpdateOperationsInput | string
     dept_to?: StringFieldUpdateOperationsInput | string
     reason?: StringFieldUpdateOperationsInput | string
@@ -39452,8 +45220,10 @@ export namespace Prisma {
   export type trx_mutationUncheckedUpdateManyWithoutUser_dataInput = {
     id?: IntFieldUpdateOperationsInput | number
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    superior_from?: StringFieldUpdateOperationsInput | string
     division_from?: StringFieldUpdateOperationsInput | string
     dept_from?: StringFieldUpdateOperationsInput | string
+    superior_to?: StringFieldUpdateOperationsInput | string
     division_to?: StringFieldUpdateOperationsInput | string
     dept_to?: StringFieldUpdateOperationsInput | string
     reason?: StringFieldUpdateOperationsInput | string
@@ -39481,6 +45251,7 @@ export namespace Prisma {
   export type trx_resignUpdateWithoutUser_dataInput = {
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
+    file_upload?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     accept_to?: StringFieldUpdateOperationsInput | string
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39506,6 +45277,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
+    file_upload?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     accept_to?: StringFieldUpdateOperationsInput | string
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39531,6 +45303,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
+    file_upload?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     accept_to?: StringFieldUpdateOperationsInput | string
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39643,6 +45416,7 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     leave_reason: string
+    support_document?: string | null
     accept_to?: string | null
     accepted?: string | null
     accepted_date?: Date | string | null
@@ -39685,6 +45459,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     leave_reason?: StringFieldUpdateOperationsInput | string
+    support_document?: NullableStringFieldUpdateOperationsInput | string | null
     accept_to?: NullableStringFieldUpdateOperationsInput | string | null
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
     accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39716,6 +45491,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     leave_reason?: StringFieldUpdateOperationsInput | string
+    support_document?: NullableStringFieldUpdateOperationsInput | string | null
     accept_to?: NullableStringFieldUpdateOperationsInput | string | null
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
     accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -39746,6 +45522,7 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     leave_reason?: StringFieldUpdateOperationsInput | string
+    support_document?: NullableStringFieldUpdateOperationsInput | string | null
     accept_to?: NullableStringFieldUpdateOperationsInput | string | null
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
     accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -40317,6 +46094,192 @@ export namespace Prisma {
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type trx_declarationCreateManyOfficialTravel_dataInput = {
+    code: string
+    user: string
+    start_date_actual: Date | string
+    end_date_actual: Date | string
+    evidence_file: string
+    accept_to: string
+    accepted?: string | null
+    accepted_date?: Date | string | null
+    accepted_remark?: string | null
+    approve_to: string
+    approved?: string | null
+    approved_date?: Date | string | null
+    approved_remark?: string | null
+    rejected?: string | null
+    rejected_date?: Date | string | null
+    rejected_remark?: string | null
+    canceled?: string | null
+    canceled_date?: Date | string | null
+    canceled_remark?: string | null
+    total_money_change: Decimal | DecimalJsLike | number | string
+    status_id: bigint | number
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_declarationUpdateWithoutOfficialTravel_dataInput = {
+    code?: StringFieldUpdateOperationsInput | string
+    user?: StringFieldUpdateOperationsInput | string
+    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidence_file?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    trx_detail_declaration?: trx_detail_declarationUpdateManyWithoutDeclaration_dataNestedInput
+  }
+
+  export type trx_declarationUncheckedUpdateWithoutOfficialTravel_dataInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    user?: StringFieldUpdateOperationsInput | string
+    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidence_file?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    trx_detail_declaration?: trx_detail_declarationUncheckedUpdateManyWithoutDeclaration_dataNestedInput
+  }
+
+  export type trx_declarationUncheckedUpdateManyWithoutOfficialTravel_dataInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    user?: StringFieldUpdateOperationsInput | string
+    start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
+    evidence_file?: StringFieldUpdateOperationsInput | string
+    accept_to?: StringFieldUpdateOperationsInput | string
+    accepted?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    accepted_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    approve_to?: StringFieldUpdateOperationsInput | string
+    approved?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approved_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    rejected_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
+    total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_detail_declarationCreateManyDeclaration_dataInput = {
+    date_activity: Date | string
+    location_activity: string
+    hotel_cost?: Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: Decimal | DecimalJsLike | number | string | null
+    upd_cost?: Decimal | DecimalJsLike | number | string | null
+    consume_cost?: Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: Decimal | DecimalJsLike | number | string | null
+    other_cost?: Decimal | DecimalJsLike | number | string | null
+    total_cost: Decimal | DecimalJsLike | number | string
+    explanation: string
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+  }
+
+  export type trx_detail_declarationUpdateWithoutDeclaration_dataInput = {
+    date_activity?: DateTimeFieldUpdateOperationsInput | Date | string
+    location_activity?: StringFieldUpdateOperationsInput | string
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    consume_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_detail_declarationUncheckedUpdateWithoutDeclaration_dataInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date_activity?: DateTimeFieldUpdateOperationsInput | Date | string
+    location_activity?: StringFieldUpdateOperationsInput | string
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    consume_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type trx_detail_declarationUncheckedUpdateManyWithoutDeclaration_dataInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date_activity?: DateTimeFieldUpdateOperationsInput | Date | string
+    location_activity?: StringFieldUpdateOperationsInput | string
+    hotel_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    taxi_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    upd_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    consume_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    ticket_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    total_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    explanation?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
 
 
   /**
@@ -40346,6 +46309,14 @@ export namespace Prisma {
      * @deprecated Use Mst_divisionCountOutputTypeDefaultArgs instead
      */
     export type Mst_divisionCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Mst_divisionCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use Trx_official_travelCountOutputTypeDefaultArgs instead
+     */
+    export type Trx_official_travelCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Trx_official_travelCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use Trx_declarationCountOutputTypeDefaultArgs instead
+     */
+    export type Trx_declarationCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Trx_declarationCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
@@ -40434,6 +46405,14 @@ export namespace Prisma {
      * @deprecated Use attendanceDefaultArgs instead
      */
     export type attendanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = attendanceDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use trx_declarationDefaultArgs instead
+     */
+    export type trx_declarationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = trx_declarationDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use trx_detail_declarationDefaultArgs instead
+     */
+    export type trx_detail_declarationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = trx_detail_declarationDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

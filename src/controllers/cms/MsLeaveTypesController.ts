@@ -52,16 +52,16 @@ export const getAllLeaveTypes = async (
     });
 
     const totalPages = Math.ceil(totalItems / pageSize);
-res.status(200).send(JSONbig.stringify({
-  success: true,
-  message: "Successfully retrieved leave types data",
-  data: {
-    data: leaveTypeData,
-    totalPages,
-    currentPage: pageNumber,
-    totalItems,
-  },
-}));
+    res.status(200).send(JSONbig.stringify({
+      success: true,
+      message: "Successfully retrieved leave types data",
+      data: {
+        data: leaveTypeData,
+        totalPages,
+        currentPage: pageNumber,
+        totalItems,
+      },
+    }));
   } catch (err) {
     res
       .status(500)
@@ -101,31 +101,40 @@ export const createLeaveType = async (
   res: Response
 ): Promise<void> => {
   try {
-  const { title, days } = req.body;
-    if (!title || !days ) {
-        res.status(400).json({
+    const { title } = req.body;
+
+    if (!title) {
+      res.status(400).json({
         success: false,
         message: "All fields must be provided and cannot be empty",
       });
+      return;
     }
+
     const newLeaveType = await LeaveTypes.create({
       data: {
         title: title,
-        days: days,
+        days: 999,
         created_at: getCurrentWIBDate(),
         updated_at: getCurrentWIBDate(),
       },
     });
+
     res.status(201).send(JSONbig.stringify({
       success: true,
       message: "Leave Type added successfully",
       data: { newLeaveType },
     }));
+    return;
   } catch (err) {
     console.error("Database Error:", err);
     res
       .status(500)
-      .json({ success: false, message: "Error adding leave type data" });
+      .json({
+        success: false,
+        message: "Error adding leave type data"
+      });
+    return
   }
 };
 
@@ -134,14 +143,14 @@ export const updateLeveType = async (
   res: Response
 ): Promise<void> => {
   try {
-  const { id } = req.params;
-  const { title, days } = req.body;
-    if (!title || !days ) {
+    const { id } = req.params;
+    const { title, days } = req.body;
+    if (!title || !days) {
       res.status(400).json({
-      success: false,
-      message: "All fields must be provided and cannot be empty",
-    });
-  }
+        success: false,
+        message: "All fields must be provided and cannot be empty",
+      });
+    }
     const updatedleaveType = await LeaveTypes.update({
       where: { id: Number(id) },
       data: {
