@@ -13,8 +13,7 @@ import transactionRoute from "./routes/transaksi/TransactionRoutes";
 import attendanceRoute from "./routes/transaksi/AttendanceRoutes";
 import authRoutes from "./routes/auth";
 import cors from "cors";
-import cookieParser from 'cookie-parser';
-
+import path from 'path';
 
 const app = express();
 app.use(bodyParser.json());
@@ -25,7 +24,9 @@ const corsOptions = {
   credentials: true,
 
 };
-
+const router = express.Router();
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+console.log('Static folder:', path.join(__dirname, '../uploads'));
 app.use(cors(corsOptions));
 
 // Tambahkan route auth kalau pengen login
@@ -49,17 +50,14 @@ app.get("*", (req: Request, res: Response) => {
   });
 });
 
-// Menangani uncaughtException
 process.on("uncaughtException", (err: Error) => {
   console.error("Uncaught Exception:", err);
 });
 
-// Menangani unhandledRejection
 process.on("unhandledRejection", (reason: any, promise: Promise<any>) => {
   console.error("Unhandled Rejection:", reason);
 });
 
-// Start server di port 3000
 const PORT: number = 3000;
 app.listen(PORT, () => {
   console.log(`The server is running on http://localhost:${PORT}`);

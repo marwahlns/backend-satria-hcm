@@ -32,7 +32,6 @@ export const getAllTrxLeaveQuota = async (req: Request & { user?: { nrp: string,
             : "id_user";
         const sortOrder = order === "desc" ? "desc" : "asc";
 
-        // Tentukan kondisi `where` berdasarkan apakah user adalah admin atau bukan
         const isAdmin = userNrp === "P0120001";
 
         const whereClause = {
@@ -113,7 +112,6 @@ export const createLeaveQuota = async (
 ): Promise<void> => {
     try {
         const { id_user, id_leave_type, valid_from, valid_to, leave_quota } = req.body;
-
         if (
             !id_leave_type ||
             !Array.isArray(id_user) ||
@@ -213,8 +211,8 @@ export const createLeaveQuota = async (
         res.status(500).json({
             success: false,
             message: "Error adding leave quota data",
-        });
-    }
+    });
+}
 };
 
 export const updateLeaveQuota = async (

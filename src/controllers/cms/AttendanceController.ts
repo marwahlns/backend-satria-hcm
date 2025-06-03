@@ -99,9 +99,6 @@ export const getAllAttendance = async (
         canCheckIn = now >= inStart && now <= inEnd;
         canCheckOut = now >= outStart && now <= outEnd;
         }
-
-
-    
     }
 
     const totalPages = Math.ceil(totalItems / pageSize);
@@ -152,7 +149,7 @@ export const checkInCheckOutAttendance = async (
     if (!shiftEmp) {
       res.status(404).json({ success: false, message: "Shift group not found for user." });
       return;
-    }
+    } 
 
     const daysOfWeek = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
     const todayIndex = new Date().getDay();
@@ -273,7 +270,7 @@ export const checkInCheckOutAttendance = async (
       });
     }
   } catch (error) {
-    console.error("❌ Error attendance:", error);
+    console.error("Error attendance:", error);
     res.status(500).json({
       success: false,
       message: "Error recording attendance.",
