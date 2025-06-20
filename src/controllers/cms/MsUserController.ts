@@ -2,12 +2,16 @@ import JSONbig from "json-bigint";
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import { User } from "../../models/Table/Satria/MsUser";
+import { TrxMutation } from "../../models/Table/Satria/TrxMutation";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 import { PrismaClient } from "../../../prisma/generated/satria-client";
 
 const prisma = new PrismaClient();
 
-export const getAllEmployee = async (req: Request, res: Response): Promise<void> => {
+export const getAllEmployee = async (
+  req: Request & { user?: { nrp: string } },
+  res: Response
+): Promise<void> => {
   try {
     const {
       page = "1",
@@ -15,8 +19,13 @@ export const getAllEmployee = async (req: Request, res: Response): Promise<void>
       search = "",
       sort = "name",
       order = "asc",
+      submition = false,
     } = req.query;
 
+    const isSubmition = submition === "true";
+    console.log("isSubmition", isSubmition)
+    const userNrp = req.user?.nrp ?? "";
+    const isAdmin = userNrp === "P0120001";
     const pageNumber = parseInt(page as string, 10);
     const pageSize = parseInt(limit as string, 10);
     const skip = (pageNumber - 1) * pageSize;
@@ -24,10 +33,25 @@ export const getAllEmployee = async (req: Request, res: Response): Promise<void>
     const sortField = validSortFields.includes(sort as string) ? (sort as string) : "name";
     const sortOrder = order === "desc" ? "desc" : "asc";
 
-    // Query untuk mendapatkan user dari tabel User
+    const currentUser = isSubmition
+      ? await User.findFirst({
+          where: { personal_number: userNrp },
+          select: { dept: true },
+        })
+      : null;
+
+    if (isSubmition && (!currentUser || !currentUser.dept)) {
+      res.status(404).json({
+        success: false,
+        message: "User login tidak ditemukan atau tidak memiliki department",
+      });
+      return;
+    }
+    const userDept = currentUser?.dept;
     const employees = await User.findMany({
       where: {
         role_id: "10",
+        ...(isAdmin || !isSubmition ? {} : { dept: userDept }),
         OR: [
           { name: { contains: search as string } },
           { email: { contains: search as string } },
@@ -41,9 +65,9 @@ export const getAllEmployee = async (req: Request, res: Response): Promise<void>
       take: pageSize,
     });
 
+
     const userIds: bigint[] = employees.map((user) => BigInt(user.id.toString()));
 
-    // Query untuk mendapatkan user_detail berdasarkan user_id yang ditemukan
     const userDetails = await User.findManyUserDetail({
       where: {
         user_id: { in: userIds },
@@ -67,19 +91,78 @@ export const getAllEmployee = async (req: Request, res: Response): Promise<void>
       },
     });
 
-    // Gabungkan data employee dan user_detail secara manual
+    const superiorNrps = employees
+      .map(emp => emp.superior)
+      .filter((personal_number): personal_number is string => !!personal_number);
+
+    const superiorUsers = await User.findMany({
+      where: { personal_number: { in: superiorNrps } },
+      select: { personal_number: true, name: true },
+    });
+
+    const superiorNameMap = new Map(
+      superiorUsers.map((sup) => [sup.personal_number, sup.name])
+    );
+
+    const mutations = await TrxMutation.findMany({
+      where: { created_by: userNrp },
+      select: {
+        id: true,
+        user: true,
+        status_id: true,
+      },
+    });
+
+    const mutationMap = new Map(mutations.map((m) => [m.user.toString(), m]));
+
+    const latestMutations = await TrxMutation.findMany({
+      select: { id: true, user: true },
+      orderBy: { id: 'desc' },
+    });
+
+    const latestMap = new Map<string, number>();
+    for (const m of latestMutations) {
+      const key = m.user.toString();
+      if (!latestMap.has(key)) {
+        latestMap.set(key, m.id);
+      }
+    }
+
     const mergedData = employees.map((employee) => {
-      const detail = userDetails.find((detail) => Number(detail.user_id) === Number(employee.id)) || {};
+      const detail = userDetails.find(
+        (d) => Number(d.user_id) === Number(employee.id)
+      ) || {};
+
+      const personalNumber = employee.personal_number?.toString() ?? "";
+      const userMutation = mutationMap.get(personalNumber);
+      const lastMutationId = latestMap.get(personalNumber);
+
+      const statusId = userMutation?.status_id;
+      const statusIdIsValid =
+        statusId !== undefined &&
+        statusId !== BigInt(6) &&
+        statusId !== BigInt(7);
+
+      const superior_name =
+        superiorNameMap.get(employee.superior || "") || "-";
+
+      // Hanya disable jika mutasi yang dibuat oleh userNrp adalah mutasi terakhir
+      const isDisabled =
+        userMutation?.id === lastMutationId && statusIdIsValid;
+
       return {
         ...employee,
-        user_detail: detail, // Tambahkan detail jika ada
+        user_detail: detail,
+        isDisable: isDisabled,
+        superior_name,
       };
     });
 
-    // Query untuk mendapatkan total jumlah user sesuai pencarian
+
     const totalItems = await User.count({
       where: {
         role_id: "10",
+        ...(isAdmin ? {} : { dept: userDept }),
         OR: [
           { name: { contains: search as string } },
           { email: { contains: search as string } },
@@ -94,7 +177,7 @@ export const getAllEmployee = async (req: Request, res: Response): Promise<void>
         success: true,
         message: "Successfully retrieved Employee data",
         data: {
-          data: mergedData, // Data karyawan yang sudah digabung dengan detailnya
+          data: mergedData, 
           totalPages,
           currentPage: pageNumber,
           totalItems,

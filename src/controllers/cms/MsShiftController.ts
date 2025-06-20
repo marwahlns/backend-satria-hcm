@@ -8,22 +8,22 @@ export const getAllShift = async (
   res: Response
 ): Promise<void> => {
   try {
-    const {
-      page = "1",
-      limit = "10",
-      search = "",
-      sort = "name",
-      order = "asc",
-    } = req.query;
+      const {
+        page = "1",
+        limit = "10",
+        search = "",
+        sort = "code",
+        order = "asc",
+      } = req.query;
 
-    const pageNumber = parseInt(page as string, 10);
-    const pageSize = parseInt(limit as string, 10);
-    const skip = (pageNumber - 1) * pageSize;
-    const validSortFields = ["code", "name", "in_time", "out_time"];
-    const sortField = validSortFields.includes(sort as string)
-      ? (sort as string)
-      : "name";
-    const sortOrder = order === "desc" ? "desc" : "asc";
+      const pageNumber = parseInt(page as string, 10);
+      const pageSize = parseInt(limit as string, 10);
+      const skip = (pageNumber - 1) * pageSize;
+      const validSortFields = ["code", "name", "in_time", "out_time"];
+      const sortField = validSortFields.includes(sort as string)
+        ? (sort as string)
+        : "code";
+      const sortOrder = order === "asc" ? "desc" : "asc";
 
     const shiftData = await Shift.findMany({
       where: {
@@ -114,6 +114,18 @@ export const createShift = async (req: Request, res: Response): Promise<void> =>
   }
 
   try {
+    const existingShift = await Shift.findUnique({
+      where: { code: code },
+    });
+
+    if (existingShift) {
+      res.status(409).json({
+        success: false,
+        message: "Shift with the same code already exists.",
+      });
+      return;
+    }
+
     const newShift = await Shift.create({
       data: {
         code: code,
@@ -124,6 +136,7 @@ export const createShift = async (req: Request, res: Response): Promise<void> =>
         gt_after_in: gtAfterIn,
         gt_before_out: gtBeforeOut,
         gt_after_out: gtAfterOut,
+        flag_shift: inTime > outTime ? 1 : 0,
         created_at: getCurrentWIBDate(),
         updated_at: getCurrentWIBDate(),
       },
@@ -138,7 +151,7 @@ export const createShift = async (req: Request, res: Response): Promise<void> =>
     res.status(201).send(JSONbig.stringify({
       success: true,
       message: "Shift added successfully",
-      data: { formattedShiftData },
+      data: formattedShiftData,
     }));
   } catch (err) {
     console.error("Database Error:", err);
@@ -172,6 +185,7 @@ export const updateShift = async (
         gt_after_in: gtAfterIn,
         gt_before_out: gtBeforeOut,
         gt_after_out: gtAfterOut,
+        flag_shift: inTime > outTime ? 1 : 0,
         updated_at: getCurrentWIBDate(),
       },
     });

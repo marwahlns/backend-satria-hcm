@@ -26,7 +26,7 @@ model User {
   section                   String?               @satria.NVarChar(255)
   divid                     String?               @satria.NVarChar(64)
   companyid                 String?               @satria.NVarChar(64)
-  dept                      Int
+  dept                      Int?
   department                String?               @satria.NVarChar(255)
   division                  String?               @satria.NVarChar(255)
   title                     String?               @satria.NVarChar(255)
@@ -54,7 +54,7 @@ model User {
   worklocation_lat_long_sap String?               @satria.NVarChar(255)
   created_at                DateTime?             @satria.DateTime
   updated_at                DateTime?             @satria.DateTime
-  dept_data                 mst_dept              @relation("UserToDept", fields: [dept], references: [id])
+  dept_data                 mst_dept?             @relation("UserToDept", fields: [dept], references: [id])
   trx_leaves                trx_leaves[]          @relation("UserToTrxLeaves")
   trx_ovt                   trx_ovt[]             @relation("UserToTrxOvt")
   trx_officialTravel        trx_official_travel[] @relation("UserToTrxOfficialTravel")
@@ -91,6 +91,7 @@ model trx_leaves {
   end_date         DateTime
   total_leave_days BigInt
   leave_reason     String         @satria.NVarChar(255)
+  support_document String?        @satria.NVarChar(255)
   accept_to        String?        @satria.NVarChar(255)
   accepted         String?        @satria.NVarChar(255)
   accepted_date    DateTime?      @satria.DateTime
@@ -278,34 +279,76 @@ model trx_shift_emp {
 }
 
 model trx_official_travel {
-  id               Int       @id(map: "PK_trx_official_travel") @default(autoincrement())
-  user             String    @satria.NVarChar(255)
-  effective_date   DateTime? @satria.Date
-  start_date       DateTime  @satria.Date
-  end_date         DateTime  @satria.Date
-  total_leave_days BigInt
-  purpose          String    @satria.NVarChar(255)
-  destination_city String    @satria.NVarChar(255)
-  status_id        BigInt
-  accept_to        String    @satria.NVarChar(255)
-  accepted         String?   @satria.NVarChar(255)
-  accepted_date    DateTime? @satria.DateTime
-  accepted_remark  String?   @satria.NVarChar(255)
-  approve_to       String    @satria.NVarChar(255)
-  approved         String?   @satria.NVarChar(255)
-  approved_date    DateTime? @satria.DateTime
-  approved_remark  String?   @satria.NVarChar(255)
-  rejected         String?   @satria.NVarChar(255)
-  rejected_date    DateTime? @satria.DateTime
-  rejected_remark  String?   @satria.NVarChar(255)
-  canceled         String?   @satria.NVarChar(255)
-  canceled_date    DateTime? @satria.DateTime
-  canceled_remark  String?   @satria.NVarChar(255)
-  created_by       BigInt?
-  created_at       DateTime
-  updated_by       BigInt?
-  updated_at       DateTime
-  user_data        User      @relation("UserToTrxOfficialTravel", fields: [user], references: [personal_number])
+  id                          Int               @id(map: "PK_trx_official_travel") @default(autoincrement())
+  code                        String            @unique @satria.NVarChar(255)
+  user                        String            @satria.NVarChar(255)
+  start_date                  DateTime          @satria.Date
+  end_date                    DateTime          @satria.Date
+  total_leave_days            BigInt
+  type                        String            @satria.NVarChar(255)
+  destination_place1          String            @satria.NVarChar(255)
+  destination_place2          String?           @satria.NVarChar(255)
+  destination_place3          String?           @satria.NVarChar(255)
+  transportation              String            @satria.NVarChar(255)
+  lodging                     String            @satria.NVarChar(255)
+  work_status                 String            @satria.NVarChar(255)
+  office_activities           String            @satria.NVarChar(255)
+  purpose                     String            @satria.NVarChar(255)
+  taxi_cost                   Decimal?
+  hotel_cost                  Decimal?
+  rent_cost                   Decimal?
+  upd_cost                    Decimal?
+  fiskal_cost                 Decimal?
+  other_cost                  Decimal?
+  total_cost                  Decimal?
+  destination_city1           String            @satria.NVarChar(255)
+  destination_city2           String?           @satria.NVarChar(255)
+  destination_city3           String?           @satria.NVarChar(255)
+  activity_agenda             String            @satria.NVarChar(255)
+  symbol_currency             String?           @satria.NVarChar(255)
+  currency                    String?           @satria.NVarChar(255)
+  down_payment                Decimal?
+  status_id                   BigInt
+  accept_to_depthead          String            @satria.NVarChar(255)
+  accepted_depthead           String?           @satria.NVarChar(255)
+  accepted_depthead_date      DateTime?         @satria.DateTime
+  accepted_depthead_remark    String?           @satria.NVarChar(255)
+  approve_to_divhead          String            @satria.NVarChar(255)
+  approved_divhead            String?           @satria.NVarChar(255)
+  approved_divhead_date       DateTime?         @satria.DateTime
+  approved_divhead_remark     String?           @satria.NVarChar(255)
+  approve_to_dicdiv           String?           @satria.NVarChar(255)
+  approved_dicdiv             String?           @satria.NVarChar(255)
+  approved_dicdiv_date        DateTime?         @satria.DateTime
+  approved_dicdiv_remark      String?           @satria.NVarChar(255)
+  approve_to_depthead_hc      String            @satria.NVarChar(255)
+  approved_depthead_hc        String?           @satria.NVarChar(255)
+  approved_depthead_hc_date   DateTime?         @satria.DateTime
+  approved_depthead_hc_remark String?           @satria.NVarChar(255)
+  approve_to_divhead_hc       String?           @satria.NVarChar(255)
+  approved_divhead_hc         String?           @satria.NVarChar(255)
+  approved_divhead_hc_date    DateTime?         @satria.DateTime
+  approved_divhead_hc_remark  String?           @satria.NVarChar(255)
+  approve_to_dichc            String?           @satria.NVarChar(255)
+  approved_dichc              String?           @satria.NVarChar(255)
+  approved_dichc_date         DateTime?         @satria.DateTime
+  approved_dichc_remark       String?           @satria.NVarChar(255)
+  approve_to_presdir          String?           @satria.NVarChar(255)
+  approved_presdir            String?           @satria.NVarChar(255)
+  approved_presdir_date       DateTime?         @satria.DateTime
+  approved_presdir_remark     String?           @satria.NVarChar(255)
+  rejected                    String?           @satria.NVarChar(255)
+  rejected_date               DateTime?         @satria.DateTime
+  rejected_remark             String?           @satria.NVarChar(255)
+  canceled                    String?           @satria.NVarChar(255)
+  canceled_date               DateTime?         @satria.DateTime
+  canceled_remark             String?           @satria.NVarChar(255)
+  created_by                  BigInt?
+  created_at                  DateTime
+  updated_by                  BigInt?
+  updated_at                  DateTime
+  user_data                   User              @relation("UserToTrxOfficialTravel", fields: [user], references: [personal_number])
+  trx_declaration             trx_declaration[] @relation("TrxDeclarationToOfficialTravel")
 
   @@map("trx_official_travel")
 }
@@ -314,8 +357,10 @@ model trx_mutation {
   id              Int       @id(map: "PK_trx_mutation") @default(autoincrement())
   user            String    @satria.NVarChar(255)
   effective_date  DateTime  @satria.Date
+  superior_from   String    @satria.NVarChar(255)
   division_from   String    @satria.NVarChar(255)
   dept_from       String    @satria.NVarChar(255)
+  superior_to     String    @satria.NVarChar(255)
   division_to     String    @satria.NVarChar(255)
   dept_to         String    @satria.NVarChar(255)
   reason          String    @satria.NVarChar(255)
@@ -334,7 +379,7 @@ model trx_mutation {
   canceled        String?   @satria.NVarChar(255)
   canceled_date   DateTime? @satria.DateTime
   canceled_remark String?   @satria.NVarChar(255)
-  created_by      BigInt?
+  created_by      String
   created_at      DateTime
   updated_by      BigInt?
   updated_at      DateTime
@@ -502,6 +547,64 @@ model attendance {
   created_at      DateTime
   updated_by      BigInt?
   updated_at      DateTime
+  is_late         Int?      @satria.SmallInt
 
   @@map("attendance")
+}
+
+model trx_declaration {
+  id                     Int                      @id(map: "PK_trx_declaration") @default(autoincrement())
+  code                   String                   @unique @satria.NVarChar(255)
+  user                   String                   @satria.NVarChar(255)
+  code_trx               String                   @satria.NVarChar(255)
+  start_date_actual      DateTime                 @satria.Date
+  end_date_actual        DateTime                 @satria.Date
+  evidence_file          String                   @satria.NVarChar(255)
+  accept_to              String                   @satria.NVarChar(255)
+  accepted               String?                  @satria.NVarChar(255)
+  accepted_date          DateTime?                @satria.DateTime
+  accepted_remark        String?                  @satria.NVarChar(255)
+  approve_to             String                   @satria.NVarChar(255)
+  approved               String?                  @satria.NVarChar(255)
+  approved_date          DateTime?                @satria.DateTime
+  approved_remark        String?                  @satria.NVarChar(255)
+  rejected               String?                  @satria.NVarChar(255)
+  rejected_date          DateTime?                @satria.DateTime
+  rejected_remark        String?                  @satria.NVarChar(255)
+  canceled               String?                  @satria.NVarChar(255)
+  canceled_date          DateTime?                @satria.DateTime
+  canceled_remark        String?                  @satria.NVarChar(255)
+  total_money_change     Decimal
+  total_detail_cost      Decimal
+  status_id              BigInt
+  created_by             BigInt?
+  created_at             DateTime
+  updated_by             BigInt?
+  updated_at             DateTime
+  officialTravel_data    trx_official_travel      @relation(fields: [code_trx], references: [code], name: "TrxDeclarationToOfficialTravel")
+  trx_detail_declaration trx_detail_declaration[] @relation("TrxDetailToMsDeclaration")
+
+  @@map("trx_declaration")
+}
+
+model trx_detail_declaration {
+  id                Int             @id(map: "PK_trx_detail_declaration") @default(autoincrement())
+  declaration_code  String          @satria.NVarChar(255)
+  date_activity     DateTime        @satria.Date
+  location_activity String          @satria.NVarChar(255)
+  hotel_cost        Decimal?
+  taxi_cost         Decimal?
+  upd_cost          Decimal?
+  consume_cost      Decimal?
+  ticket_cost       Decimal?
+  other_cost        Decimal?
+  total_cost        Decimal
+  explanation       String          @satria.NVarChar(255)
+  created_by        BigInt?
+  created_at        DateTime
+  updated_by        BigInt?
+  updated_at        DateTime
+  declaration_data  trx_declaration @relation(fields: [declaration_code], references: [code], name: "TrxDetailToMsDeclaration")
+
+  @@map("trx_detail_declaration")
 }

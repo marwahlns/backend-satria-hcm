@@ -16,4 +16,5 @@ export const TrxMutation = {
   count: prisma.trx_mutation.count,
   findFirst: prisma.trx_mutation.findFirst,
   upsert: prisma.trx_mutation.upsert,
+  groupBy: prisma.trx_mutation.groupBy,
 };

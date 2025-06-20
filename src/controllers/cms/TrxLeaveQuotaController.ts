@@ -23,7 +23,7 @@ export const getAllTrxLeaveQuota = async (req: Request & { user?: { nrp: string,
         const validSortFields = [
             "valid_from",
             "valid_to",
-            "leave_type_id",
+            "leaves_type_id",
             "leaves_quota",
             "id_user",
         ];
@@ -38,9 +38,26 @@ export const getAllTrxLeaveQuota = async (req: Request & { user?: { nrp: string,
         const whereClause = {
             is_deleted: 0,
             ...(isAdmin ? {} : { id_user: userNrp }),
-            OR: [
-                { MsUser: { name: { contains: search as string } } },
-            ],
+            ...(search
+                ? {
+                    OR: [
+                        {
+                            MsUser: {
+                                name: {
+                                    contains: search as string,
+                                },
+                            },
+                        },
+                        {
+                            MsLeaveType: {
+                                title: {
+                                    contains: search as string,
+                                },
+                            },
+                        }
+                    ]
+                }
+                : {}),
         };
 
         const rawLeaveQuota = await TrxLeaveQuota.findMany({
@@ -105,7 +122,6 @@ export const getAllTrxLeaveQuota = async (req: Request & { user?: { nrp: string,
         });
     }
 };
-
 
 export const createLeaveQuota = async (
     req: Request,
@@ -213,8 +229,8 @@ export const createLeaveQuota = async (
         res.status(500).json({
             success: false,
             message: "Error adding leave quota data",
-        });
-    }
+        });
+    }
 };
 
 export const updateLeaveQuota = async (

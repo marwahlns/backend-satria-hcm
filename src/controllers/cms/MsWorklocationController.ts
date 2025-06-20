@@ -43,6 +43,7 @@ export const getAllWorklocation = async (
 
     const totalItems = await Worklocation.count({
       where: {
+        is_deleted: 0,
         OR: [
             { worklocation_code: { contains: search as string } },
             { worklocation_name: { contains: search as string } },
@@ -125,7 +126,7 @@ export const createWorklocation = async (
       data: { newWorklocation },
     }));
   } catch (err) {
-    console.error("Database Error:", err); // Log error ke conso
+    console.error("Database Error:", err);
     res
       .status(500)
       .json({ success: false, message: "Error adding worklocation data" });

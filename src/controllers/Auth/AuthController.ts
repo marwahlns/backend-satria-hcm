@@ -2,7 +2,7 @@ import JSONbig from "json-bigint";
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { User } from "../../models/Table/Satria/MsUser";
-import { TrxShiftEmployee } from "../../models/Table/Satria/TrxShiftEmployee";
+import { MsDepartment } from "../../models/Table/Satria/MsDepartment";
 import bcrypt from "bcryptjs";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 import dotenv from "dotenv";
@@ -35,40 +35,16 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     }
 
     const isValidPassword = await bcrypt.compare(password, user.password);
-
     if (!isValidPassword) {
       res.status(401).json({ success: false, message: "Invalid credentials" });
       return;
     }
 
-    let shiftId: string | null = null;
-
-    // Cek apakah user memiliki shift
-    const shiftEmp = await TrxShiftEmployee.findFirst({
-      where: {
-        id_user: {
-          equals: user.personal_number || "",
-        },
-      },
+    const deptHeadMatch = await MsDepartment.findFirst({
+      where: { depthead_nrp: user.personal_number },
     });
 
-    if (shiftEmp) {
-      const shiftGroupId = shiftEmp.id_shift_group;
-      const daysOfWeek = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-      const todayIndex = new Date().getDay();
-      const todayDayName = daysOfWeek[todayIndex];
-
-      const shiftDetail = await TrxShiftEmployee.detailFindFirst({
-        where: {
-          id_shift_group: shiftGroupId,
-          index_day: todayDayName,
-        },
-      });
-
-      if (shiftDetail) {
-        shiftId = shiftDetail.id_shift;
-      }
-    }
+    const isDeptHead = !!deptHeadMatch;
 
     const token = jwt.sign(
       {
@@ -78,17 +54,23 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         nrp: user.personal_number,
         name: user.name,
         departement: user.department,
-        shift_id: shiftId, // Bisa null jika tidak ada shift
       },
       JWT_SECRET,
-      { expiresIn: "10m" }
+      { expiresIn: "24h" }
     );
 
     res.send(
       JSONbig.stringify({
         success: true,
         message: "Login successful",
-        data: { user, access_token: token, token_type: "Bearer" },
+        data: {
+          user: {
+            ...user,
+            is_dept_head: isDeptHead,
+          },
+          access_token: token,
+          token_type: "Bearer",
+        },
       })
     );
   } catch (err) {
