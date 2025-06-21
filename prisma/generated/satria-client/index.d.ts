@@ -2725,6 +2725,7 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
+    user_detail: number
     trx_leaves: number
     trx_ovt: number
     trx_officialTravel: number
@@ -2732,9 +2733,11 @@ export namespace Prisma {
     trx_resign: number
     trx_shift_emp: number
     trx_leave_quota: number
+    attendance: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_detail?: boolean | UserCountOutputTypeCountUser_detailArgs
     trx_leaves?: boolean | UserCountOutputTypeCountTrx_leavesArgs
     trx_ovt?: boolean | UserCountOutputTypeCountTrx_ovtArgs
     trx_officialTravel?: boolean | UserCountOutputTypeCountTrx_officialTravelArgs
@@ -2742,6 +2745,7 @@ export namespace Prisma {
     trx_resign?: boolean | UserCountOutputTypeCountTrx_resignArgs
     trx_shift_emp?: boolean | UserCountOutputTypeCountTrx_shift_empArgs
     trx_leave_quota?: boolean | UserCountOutputTypeCountTrx_leave_quotaArgs
+    attendance?: boolean | UserCountOutputTypeCountAttendanceArgs
   }
 
   // Custom InputTypes
@@ -2753,6 +2757,13 @@ export namespace Prisma {
      * Select specific fields to fetch from the UserCountOutputType
      */
     select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountUser_detailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: user_detailWhereInput
   }
 
   /**
@@ -2804,6 +2815,13 @@ export namespace Prisma {
     where?: trx_leave_quotaWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountAttendanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: attendanceWhereInput
+  }
+
 
   /**
    * Count Type Ms_leave_typesCountOutputType
@@ -2852,11 +2870,13 @@ export namespace Prisma {
   export type Ms_shiftCountOutputType = {
     details: number
     trx_ovt: number
+    attendance: number
   }
 
   export type Ms_shiftCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     details?: boolean | Ms_shiftCountOutputTypeCountDetailsArgs
     trx_ovt?: boolean | Ms_shiftCountOutputTypeCountTrx_ovtArgs
+    attendance?: boolean | Ms_shiftCountOutputTypeCountAttendanceArgs
   }
 
   // Custom InputTypes
@@ -2882,6 +2902,13 @@ export namespace Prisma {
    */
   export type Ms_shiftCountOutputTypeCountTrx_ovtArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: trx_ovtWhereInput
+  }
+
+  /**
+   * Ms_shiftCountOutputType without action
+   */
+  export type Ms_shiftCountOutputTypeCountAttendanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: attendanceWhereInput
   }
 
 
@@ -3015,6 +3042,99 @@ export namespace Prisma {
    */
   export type Trx_official_travelCountOutputTypeCountTrx_declarationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: trx_declarationWhereInput
+  }
+
+
+  /**
+   * Count Type Ms_klasifikasiCountOutputType
+   */
+
+  export type Ms_klasifikasiCountOutputType = {
+    user_detail: number
+  }
+
+  export type Ms_klasifikasiCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_detail?: boolean | Ms_klasifikasiCountOutputTypeCountUser_detailArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Ms_klasifikasiCountOutputType without action
+   */
+  export type Ms_klasifikasiCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ms_klasifikasiCountOutputType
+     */
+    select?: Ms_klasifikasiCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Ms_klasifikasiCountOutputType without action
+   */
+  export type Ms_klasifikasiCountOutputTypeCountUser_detailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: user_detailWhereInput
+  }
+
+
+  /**
+   * Count Type Ms_subcontCountOutputType
+   */
+
+  export type Ms_subcontCountOutputType = {
+    user_detail: number
+  }
+
+  export type Ms_subcontCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_detail?: boolean | Ms_subcontCountOutputTypeCountUser_detailArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Ms_subcontCountOutputType without action
+   */
+  export type Ms_subcontCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ms_subcontCountOutputType
+     */
+    select?: Ms_subcontCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Ms_subcontCountOutputType without action
+   */
+  export type Ms_subcontCountOutputTypeCountUser_detailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: user_detailWhereInput
+  }
+
+
+  /**
+   * Count Type Ms_marital_statusCountOutputType
+   */
+
+  export type Ms_marital_statusCountOutputType = {
+    user_detail: number
+  }
+
+  export type Ms_marital_statusCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_detail?: boolean | Ms_marital_statusCountOutputTypeCountUser_detailArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Ms_marital_statusCountOutputType without action
+   */
+  export type Ms_marital_statusCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ms_marital_statusCountOutputType
+     */
+    select?: Ms_marital_statusCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Ms_marital_statusCountOutputType without action
+   */
+  export type Ms_marital_statusCountOutputTypeCountUser_detailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: user_detailWhereInput
   }
 
 
@@ -3595,6 +3715,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: boolean
     created_at?: boolean
     updated_at?: boolean
+    user_detail?: boolean | User$user_detailArgs<ExtArgs>
     dept_data?: boolean | User$dept_dataArgs<ExtArgs>
     trx_leaves?: boolean | User$trx_leavesArgs<ExtArgs>
     trx_ovt?: boolean | User$trx_ovtArgs<ExtArgs>
@@ -3603,6 +3724,7 @@ export namespace Prisma {
     trx_resign?: boolean | User$trx_resignArgs<ExtArgs>
     trx_shift_emp?: boolean | User$trx_shift_empArgs<ExtArgs>
     trx_leave_quota?: boolean | User$trx_leave_quotaArgs<ExtArgs>
+    attendance?: boolean | User$attendanceArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3656,6 +3778,7 @@ export namespace Prisma {
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_detail?: boolean | User$user_detailArgs<ExtArgs>
     dept_data?: boolean | User$dept_dataArgs<ExtArgs>
     trx_leaves?: boolean | User$trx_leavesArgs<ExtArgs>
     trx_ovt?: boolean | User$trx_ovtArgs<ExtArgs>
@@ -3664,12 +3787,14 @@ export namespace Prisma {
     trx_resign?: boolean | User$trx_resignArgs<ExtArgs>
     trx_shift_emp?: boolean | User$trx_shift_empArgs<ExtArgs>
     trx_leave_quota?: boolean | User$trx_leave_quotaArgs<ExtArgs>
+    attendance?: boolean | User$attendanceArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
+      user_detail: Prisma.$user_detailPayload<ExtArgs>[]
       dept_data: Prisma.$mst_deptPayload<ExtArgs> | null
       trx_leaves: Prisma.$trx_leavesPayload<ExtArgs>[]
       trx_ovt: Prisma.$trx_ovtPayload<ExtArgs>[]
@@ -3678,6 +3803,7 @@ export namespace Prisma {
       trx_resign: Prisma.$trx_resignPayload<ExtArgs>[]
       trx_shift_emp: Prisma.$trx_shift_empPayload<ExtArgs>[]
       trx_leave_quota: Prisma.$trx_leave_quotaPayload<ExtArgs>[]
+      attendance: Prisma.$attendancePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -4065,6 +4191,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    user_detail<T extends User$user_detailArgs<ExtArgs> = {}>(args?: Subset<T, User$user_detailArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_detailPayload<ExtArgs>, T, "findMany"> | Null>
     dept_data<T extends User$dept_dataArgs<ExtArgs> = {}>(args?: Subset<T, User$dept_dataArgs<ExtArgs>>): Prisma__mst_deptClient<$Result.GetResult<Prisma.$mst_deptPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     trx_leaves<T extends User$trx_leavesArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_leavesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_leavesPayload<ExtArgs>, T, "findMany"> | Null>
     trx_ovt<T extends User$trx_ovtArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_ovtArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_ovtPayload<ExtArgs>, T, "findMany"> | Null>
@@ -4073,6 +4200,7 @@ export namespace Prisma {
     trx_resign<T extends User$trx_resignArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_resignArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_resignPayload<ExtArgs>, T, "findMany"> | Null>
     trx_shift_emp<T extends User$trx_shift_empArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_shift_empArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_shift_empPayload<ExtArgs>, T, "findMany"> | Null>
     trx_leave_quota<T extends User$trx_leave_quotaArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_leave_quotaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_leave_quotaPayload<ExtArgs>, T, "findMany"> | Null>
+    attendance<T extends User$attendanceArgs<ExtArgs> = {}>(args?: Subset<T, User$attendanceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$attendancePayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4445,6 +4573,26 @@ export namespace Prisma {
   }
 
   /**
+   * User.user_detail
+   */
+  export type User$user_detailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_detail
+     */
+    select?: user_detailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_detailInclude<ExtArgs> | null
+    where?: user_detailWhereInput
+    orderBy?: user_detailOrderByWithRelationInput | user_detailOrderByWithRelationInput[]
+    cursor?: user_detailWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: User_detailScalarFieldEnum | User_detailScalarFieldEnum[]
+  }
+
+  /**
    * User.dept_data
    */
   export type User$dept_dataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4597,6 +4745,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Trx_leave_quotaScalarFieldEnum | Trx_leave_quotaScalarFieldEnum[]
+  }
+
+  /**
+   * User.attendance
+   */
+  export type User$attendanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the attendance
+     */
+    select?: attendanceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: attendanceInclude<ExtArgs> | null
+    where?: attendanceWhereInput
+    orderBy?: attendanceOrderByWithRelationInput | attendanceOrderByWithRelationInput[]
+    cursor?: attendanceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AttendanceScalarFieldEnum | AttendanceScalarFieldEnum[]
   }
 
   /**
@@ -7149,6 +7317,7 @@ export namespace Prisma {
     is_deleted?: boolean
     details?: boolean | ms_shift$detailsArgs<ExtArgs>
     trx_ovt?: boolean | ms_shift$trx_ovtArgs<ExtArgs>
+    attendance?: boolean | ms_shift$attendanceArgs<ExtArgs>
     _count?: boolean | Ms_shiftCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ms_shift"]>
 
@@ -7175,6 +7344,7 @@ export namespace Prisma {
   export type ms_shiftInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     details?: boolean | ms_shift$detailsArgs<ExtArgs>
     trx_ovt?: boolean | ms_shift$trx_ovtArgs<ExtArgs>
+    attendance?: boolean | ms_shift$attendanceArgs<ExtArgs>
     _count?: boolean | Ms_shiftCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -7183,6 +7353,7 @@ export namespace Prisma {
     objects: {
       details: Prisma.$ms_detail_shift_groupPayload<ExtArgs>[]
       trx_ovt: Prisma.$trx_ovtPayload<ExtArgs>[]
+      attendance: Prisma.$attendancePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -7543,6 +7714,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     details<T extends ms_shift$detailsArgs<ExtArgs> = {}>(args?: Subset<T, ms_shift$detailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ms_detail_shift_groupPayload<ExtArgs>, T, "findMany"> | Null>
     trx_ovt<T extends ms_shift$trx_ovtArgs<ExtArgs> = {}>(args?: Subset<T, ms_shift$trx_ovtArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_ovtPayload<ExtArgs>, T, "findMany"> | Null>
+    attendance<T extends ms_shift$attendanceArgs<ExtArgs> = {}>(args?: Subset<T, ms_shift$attendanceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$attendancePayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7923,6 +8095,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Trx_ovtScalarFieldEnum | Trx_ovtScalarFieldEnum[]
+  }
+
+  /**
+   * ms_shift.attendance
+   */
+  export type ms_shift$attendanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the attendance
+     */
+    select?: attendanceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: attendanceInclude<ExtArgs> | null
+    where?: attendanceWhereInput
+    orderBy?: attendanceOrderByWithRelationInput | attendanceOrderByWithRelationInput[]
+    cursor?: attendanceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AttendanceScalarFieldEnum | AttendanceScalarFieldEnum[]
   }
 
   /**
@@ -15098,7 +15290,9 @@ export namespace Prisma {
     end_date: Date | null
     total_leave_days: bigint | null
     type: string | null
-    destination_place: string | null
+    destination_place1: string | null
+    destination_place2: string | null
+    destination_place3: string | null
     transportation: string | null
     lodging: string | null
     work_status: string | null
@@ -15111,7 +15305,9 @@ export namespace Prisma {
     fiskal_cost: Decimal | null
     other_cost: Decimal | null
     total_cost: Decimal | null
-    destination_city: string | null
+    destination_city1: string | null
+    destination_city2: string | null
+    destination_city3: string | null
     activity_agenda: string | null
     symbol_currency: string | null
     currency: string | null
@@ -15165,7 +15361,9 @@ export namespace Prisma {
     end_date: Date | null
     total_leave_days: bigint | null
     type: string | null
-    destination_place: string | null
+    destination_place1: string | null
+    destination_place2: string | null
+    destination_place3: string | null
     transportation: string | null
     lodging: string | null
     work_status: string | null
@@ -15178,7 +15376,9 @@ export namespace Prisma {
     fiskal_cost: Decimal | null
     other_cost: Decimal | null
     total_cost: Decimal | null
-    destination_city: string | null
+    destination_city1: string | null
+    destination_city2: string | null
+    destination_city3: string | null
     activity_agenda: string | null
     symbol_currency: string | null
     currency: string | null
@@ -15232,7 +15432,9 @@ export namespace Prisma {
     end_date: number
     total_leave_days: number
     type: number
-    destination_place: number
+    destination_place1: number
+    destination_place2: number
+    destination_place3: number
     transportation: number
     lodging: number
     work_status: number
@@ -15245,7 +15447,9 @@ export namespace Prisma {
     fiskal_cost: number
     other_cost: number
     total_cost: number
-    destination_city: number
+    destination_city1: number
+    destination_city2: number
+    destination_city3: number
     activity_agenda: number
     symbol_currency: number
     currency: number
@@ -15333,7 +15537,9 @@ export namespace Prisma {
     end_date?: true
     total_leave_days?: true
     type?: true
-    destination_place?: true
+    destination_place1?: true
+    destination_place2?: true
+    destination_place3?: true
     transportation?: true
     lodging?: true
     work_status?: true
@@ -15346,7 +15552,9 @@ export namespace Prisma {
     fiskal_cost?: true
     other_cost?: true
     total_cost?: true
-    destination_city?: true
+    destination_city1?: true
+    destination_city2?: true
+    destination_city3?: true
     activity_agenda?: true
     symbol_currency?: true
     currency?: true
@@ -15400,7 +15608,9 @@ export namespace Prisma {
     end_date?: true
     total_leave_days?: true
     type?: true
-    destination_place?: true
+    destination_place1?: true
+    destination_place2?: true
+    destination_place3?: true
     transportation?: true
     lodging?: true
     work_status?: true
@@ -15413,7 +15623,9 @@ export namespace Prisma {
     fiskal_cost?: true
     other_cost?: true
     total_cost?: true
-    destination_city?: true
+    destination_city1?: true
+    destination_city2?: true
+    destination_city3?: true
     activity_agenda?: true
     symbol_currency?: true
     currency?: true
@@ -15467,7 +15679,9 @@ export namespace Prisma {
     end_date?: true
     total_leave_days?: true
     type?: true
-    destination_place?: true
+    destination_place1?: true
+    destination_place2?: true
+    destination_place3?: true
     transportation?: true
     lodging?: true
     work_status?: true
@@ -15480,7 +15694,9 @@ export namespace Prisma {
     fiskal_cost?: true
     other_cost?: true
     total_cost?: true
-    destination_city?: true
+    destination_city1?: true
+    destination_city2?: true
+    destination_city3?: true
     activity_agenda?: true
     symbol_currency?: true
     currency?: true
@@ -15621,7 +15837,9 @@ export namespace Prisma {
     end_date: Date
     total_leave_days: bigint
     type: string
-    destination_place: string
+    destination_place1: string
+    destination_place2: string | null
+    destination_place3: string | null
     transportation: string
     lodging: string
     work_status: string
@@ -15634,7 +15852,9 @@ export namespace Prisma {
     fiskal_cost: Decimal | null
     other_cost: Decimal | null
     total_cost: Decimal | null
-    destination_city: string
+    destination_city1: string
+    destination_city2: string | null
+    destination_city3: string | null
     activity_agenda: string
     symbol_currency: string | null
     currency: string | null
@@ -15707,7 +15927,9 @@ export namespace Prisma {
     end_date?: boolean
     total_leave_days?: boolean
     type?: boolean
-    destination_place?: boolean
+    destination_place1?: boolean
+    destination_place2?: boolean
+    destination_place3?: boolean
     transportation?: boolean
     lodging?: boolean
     work_status?: boolean
@@ -15720,7 +15942,9 @@ export namespace Prisma {
     fiskal_cost?: boolean
     other_cost?: boolean
     total_cost?: boolean
-    destination_city?: boolean
+    destination_city1?: boolean
+    destination_city2?: boolean
+    destination_city3?: boolean
     activity_agenda?: boolean
     symbol_currency?: boolean
     currency?: boolean
@@ -15778,7 +16002,9 @@ export namespace Prisma {
     end_date?: boolean
     total_leave_days?: boolean
     type?: boolean
-    destination_place?: boolean
+    destination_place1?: boolean
+    destination_place2?: boolean
+    destination_place3?: boolean
     transportation?: boolean
     lodging?: boolean
     work_status?: boolean
@@ -15791,7 +16017,9 @@ export namespace Prisma {
     fiskal_cost?: boolean
     other_cost?: boolean
     total_cost?: boolean
-    destination_city?: boolean
+    destination_city1?: boolean
+    destination_city2?: boolean
+    destination_city3?: boolean
     activity_agenda?: boolean
     symbol_currency?: boolean
     currency?: boolean
@@ -15857,7 +16085,9 @@ export namespace Prisma {
       end_date: Date
       total_leave_days: bigint
       type: string
-      destination_place: string
+      destination_place1: string
+      destination_place2: string | null
+      destination_place3: string | null
       transportation: string
       lodging: string
       work_status: string
@@ -15870,7 +16100,9 @@ export namespace Prisma {
       fiskal_cost: Prisma.Decimal | null
       other_cost: Prisma.Decimal | null
       total_cost: Prisma.Decimal | null
-      destination_city: string
+      destination_city1: string
+      destination_city2: string | null
+      destination_city3: string | null
       activity_agenda: string
       symbol_currency: string | null
       currency: string | null
@@ -16292,7 +16524,9 @@ export namespace Prisma {
     readonly end_date: FieldRef<"trx_official_travel", 'DateTime'>
     readonly total_leave_days: FieldRef<"trx_official_travel", 'BigInt'>
     readonly type: FieldRef<"trx_official_travel", 'String'>
-    readonly destination_place: FieldRef<"trx_official_travel", 'String'>
+    readonly destination_place1: FieldRef<"trx_official_travel", 'String'>
+    readonly destination_place2: FieldRef<"trx_official_travel", 'String'>
+    readonly destination_place3: FieldRef<"trx_official_travel", 'String'>
     readonly transportation: FieldRef<"trx_official_travel", 'String'>
     readonly lodging: FieldRef<"trx_official_travel", 'String'>
     readonly work_status: FieldRef<"trx_official_travel", 'String'>
@@ -16305,7 +16539,9 @@ export namespace Prisma {
     readonly fiskal_cost: FieldRef<"trx_official_travel", 'Decimal'>
     readonly other_cost: FieldRef<"trx_official_travel", 'Decimal'>
     readonly total_cost: FieldRef<"trx_official_travel", 'Decimal'>
-    readonly destination_city: FieldRef<"trx_official_travel", 'String'>
+    readonly destination_city1: FieldRef<"trx_official_travel", 'String'>
+    readonly destination_city2: FieldRef<"trx_official_travel", 'String'>
+    readonly destination_city3: FieldRef<"trx_official_travel", 'String'>
     readonly activity_agenda: FieldRef<"trx_official_travel", 'String'>
     readonly symbol_currency: FieldRef<"trx_official_travel", 'String'>
     readonly currency: FieldRef<"trx_official_travel", 'String'>
@@ -16696,14 +16932,12 @@ export namespace Prisma {
   export type Trx_mutationAvgAggregateOutputType = {
     id: number | null
     status_id: number | null
-    created_by: number | null
     updated_by: number | null
   }
 
   export type Trx_mutationSumAggregateOutputType = {
     id: number | null
     status_id: bigint | null
-    created_by: bigint | null
     updated_by: bigint | null
   }
 
@@ -16733,7 +16967,7 @@ export namespace Prisma {
     canceled: string | null
     canceled_date: Date | null
     canceled_remark: string | null
-    created_by: bigint | null
+    created_by: string | null
     created_at: Date | null
     updated_by: bigint | null
     updated_at: Date | null
@@ -16765,7 +16999,7 @@ export namespace Prisma {
     canceled: string | null
     canceled_date: Date | null
     canceled_remark: string | null
-    created_by: bigint | null
+    created_by: string | null
     created_at: Date | null
     updated_by: bigint | null
     updated_at: Date | null
@@ -16808,14 +17042,12 @@ export namespace Prisma {
   export type Trx_mutationAvgAggregateInputType = {
     id?: true
     status_id?: true
-    created_by?: true
     updated_by?: true
   }
 
   export type Trx_mutationSumAggregateInputType = {
     id?: true
     status_id?: true
-    created_by?: true
     updated_by?: true
   }
 
@@ -17028,7 +17260,7 @@ export namespace Prisma {
     canceled: string | null
     canceled_date: Date | null
     canceled_remark: string | null
-    created_by: bigint | null
+    created_by: string
     created_at: Date
     updated_by: bigint | null
     updated_at: Date
@@ -17154,7 +17386,7 @@ export namespace Prisma {
       canceled: string | null
       canceled_date: Date | null
       canceled_remark: string | null
-      created_by: bigint | null
+      created_by: string
       created_at: Date
       updated_by: bigint | null
       updated_at: Date
@@ -17553,7 +17785,7 @@ export namespace Prisma {
     readonly canceled: FieldRef<"trx_mutation", 'String'>
     readonly canceled_date: FieldRef<"trx_mutation", 'DateTime'>
     readonly canceled_remark: FieldRef<"trx_mutation", 'String'>
-    readonly created_by: FieldRef<"trx_mutation", 'BigInt'>
+    readonly created_by: FieldRef<"trx_mutation", 'String'>
     readonly created_at: FieldRef<"trx_mutation", 'DateTime'>
     readonly updated_by: FieldRef<"trx_mutation", 'BigInt'>
     readonly updated_at: FieldRef<"trx_mutation", 'DateTime'>
@@ -17900,7 +18132,6 @@ export namespace Prisma {
     user: string | null
     effective_date: Date | null
     reason: string | null
-    file_upload: string | null
     status_id: bigint | null
     accept_to: string | null
     accepted: string | null
@@ -17927,7 +18158,6 @@ export namespace Prisma {
     user: string | null
     effective_date: Date | null
     reason: string | null
-    file_upload: string | null
     status_id: bigint | null
     accept_to: string | null
     accepted: string | null
@@ -17954,7 +18184,6 @@ export namespace Prisma {
     user: number
     effective_date: number
     reason: number
-    file_upload: number
     status_id: number
     accept_to: number
     accepted: number
@@ -17997,7 +18226,6 @@ export namespace Prisma {
     user?: true
     effective_date?: true
     reason?: true
-    file_upload?: true
     status_id?: true
     accept_to?: true
     accepted?: true
@@ -18024,7 +18252,6 @@ export namespace Prisma {
     user?: true
     effective_date?: true
     reason?: true
-    file_upload?: true
     status_id?: true
     accept_to?: true
     accepted?: true
@@ -18051,7 +18278,6 @@ export namespace Prisma {
     user?: true
     effective_date?: true
     reason?: true
-    file_upload?: true
     status_id?: true
     accept_to?: true
     accepted?: true
@@ -18165,7 +18391,6 @@ export namespace Prisma {
     user: string
     effective_date: Date
     reason: string
-    file_upload: string
     status_id: bigint
     accept_to: string
     accepted: string | null
@@ -18211,7 +18436,6 @@ export namespace Prisma {
     user?: boolean
     effective_date?: boolean
     reason?: boolean
-    file_upload?: boolean
     status_id?: boolean
     accept_to?: boolean
     accepted?: boolean
@@ -18240,7 +18464,6 @@ export namespace Prisma {
     user?: boolean
     effective_date?: boolean
     reason?: boolean
-    file_upload?: boolean
     status_id?: boolean
     accept_to?: boolean
     accepted?: boolean
@@ -18276,7 +18499,6 @@ export namespace Prisma {
       user: string
       effective_date: Date
       reason: string
-      file_upload: string
       status_id: bigint
       accept_to: string
       accepted: string | null
@@ -18670,7 +18892,6 @@ export namespace Prisma {
     readonly user: FieldRef<"trx_resign", 'String'>
     readonly effective_date: FieldRef<"trx_resign", 'DateTime'>
     readonly reason: FieldRef<"trx_resign", 'String'>
-    readonly file_upload: FieldRef<"trx_resign", 'String'>
     readonly status_id: FieldRef<"trx_resign", 'BigInt'>
     readonly accept_to: FieldRef<"trx_resign", 'String'>
     readonly accepted: FieldRef<"trx_resign", 'String'>
@@ -19348,6 +19569,10 @@ export namespace Prisma {
     created_at?: boolean
     updated_by?: boolean
     updated_at?: boolean
+    MsUser?: boolean | user_detail$MsUserArgs<ExtArgs>
+    MsMarital?: boolean | user_detail$MsMaritalArgs<ExtArgs>
+    MsKlasifikasi?: boolean | user_detail$MsKlasifikasiArgs<ExtArgs>
+    MsVendor?: boolean | user_detail$MsVendorArgs<ExtArgs>
   }, ExtArgs["result"]["user_detail"]>
 
 
@@ -19374,10 +19599,21 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
+  export type user_detailInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    MsUser?: boolean | user_detail$MsUserArgs<ExtArgs>
+    MsMarital?: boolean | user_detail$MsMaritalArgs<ExtArgs>
+    MsKlasifikasi?: boolean | user_detail$MsKlasifikasiArgs<ExtArgs>
+    MsVendor?: boolean | user_detail$MsVendorArgs<ExtArgs>
+  }
 
   export type $user_detailPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "user_detail"
-    objects: {}
+    objects: {
+      MsUser: Prisma.$UserPayload<ExtArgs> | null
+      MsMarital: Prisma.$ms_marital_statusPayload<ExtArgs> | null
+      MsKlasifikasi: Prisma.$ms_klasifikasiPayload<ExtArgs> | null
+      MsVendor: Prisma.$ms_subcontPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
       user_id: bigint
@@ -19739,6 +19975,10 @@ export namespace Prisma {
    */
   export interface Prisma__user_detailClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    MsUser<T extends user_detail$MsUserArgs<ExtArgs> = {}>(args?: Subset<T, user_detail$MsUserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    MsMarital<T extends user_detail$MsMaritalArgs<ExtArgs> = {}>(args?: Subset<T, user_detail$MsMaritalArgs<ExtArgs>>): Prisma__ms_marital_statusClient<$Result.GetResult<Prisma.$ms_marital_statusPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    MsKlasifikasi<T extends user_detail$MsKlasifikasiArgs<ExtArgs> = {}>(args?: Subset<T, user_detail$MsKlasifikasiArgs<ExtArgs>>): Prisma__ms_klasifikasiClient<$Result.GetResult<Prisma.$ms_klasifikasiPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    MsVendor<T extends user_detail$MsVendorArgs<ExtArgs> = {}>(args?: Subset<T, user_detail$MsVendorArgs<ExtArgs>>): Prisma__ms_subcontClient<$Result.GetResult<Prisma.$ms_subcontPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -19801,6 +20041,10 @@ export namespace Prisma {
      */
     select?: user_detailSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_detailInclude<ExtArgs> | null
+    /**
      * Filter, which user_detail to fetch.
      */
     where: user_detailWhereUniqueInput
@@ -19815,6 +20059,10 @@ export namespace Prisma {
      */
     select?: user_detailSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_detailInclude<ExtArgs> | null
+    /**
      * Filter, which user_detail to fetch.
      */
     where: user_detailWhereUniqueInput
@@ -19828,6 +20076,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the user_detail
      */
     select?: user_detailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_detailInclude<ExtArgs> | null
     /**
      * Filter, which user_detail to fetch.
      */
@@ -19873,6 +20125,10 @@ export namespace Prisma {
      */
     select?: user_detailSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_detailInclude<ExtArgs> | null
+    /**
      * Filter, which user_detail to fetch.
      */
     where?: user_detailWhereInput
@@ -19917,6 +20173,10 @@ export namespace Prisma {
      */
     select?: user_detailSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_detailInclude<ExtArgs> | null
+    /**
      * Filter, which user_details to fetch.
      */
     where?: user_detailWhereInput
@@ -19956,6 +20216,10 @@ export namespace Prisma {
      */
     select?: user_detailSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_detailInclude<ExtArgs> | null
+    /**
      * The data needed to create a user_detail.
      */
     data: XOR<user_detailCreateInput, user_detailUncheckedCreateInput>
@@ -19979,6 +20243,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the user_detail
      */
     select?: user_detailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_detailInclude<ExtArgs> | null
     /**
      * The data needed to update a user_detail.
      */
@@ -20012,6 +20280,10 @@ export namespace Prisma {
      */
     select?: user_detailSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_detailInclude<ExtArgs> | null
+    /**
      * The filter to search for the user_detail to update in case it exists.
      */
     where: user_detailWhereUniqueInput
@@ -20034,6 +20306,10 @@ export namespace Prisma {
      */
     select?: user_detailSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_detailInclude<ExtArgs> | null
+    /**
      * Filter which user_detail to delete.
      */
     where: user_detailWhereUniqueInput
@@ -20050,6 +20326,66 @@ export namespace Prisma {
   }
 
   /**
+   * user_detail.MsUser
+   */
+  export type user_detail$MsUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * user_detail.MsMarital
+   */
+  export type user_detail$MsMaritalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ms_marital_status
+     */
+    select?: ms_marital_statusSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_marital_statusInclude<ExtArgs> | null
+    where?: ms_marital_statusWhereInput
+  }
+
+  /**
+   * user_detail.MsKlasifikasi
+   */
+  export type user_detail$MsKlasifikasiArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ms_klasifikasi
+     */
+    select?: ms_klasifikasiSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_klasifikasiInclude<ExtArgs> | null
+    where?: ms_klasifikasiWhereInput
+  }
+
+  /**
+   * user_detail.MsVendor
+   */
+  export type user_detail$MsVendorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ms_subcont
+     */
+    select?: ms_subcontSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_subcontInclude<ExtArgs> | null
+    where?: ms_subcontWhereInput
+  }
+
+  /**
    * user_detail without action
    */
   export type user_detailDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20057,6 +20393,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the user_detail
      */
     select?: user_detailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_detailInclude<ExtArgs> | null
   }
 
 
@@ -21165,6 +21505,8 @@ export namespace Prisma {
     created_at?: boolean
     updated_by?: boolean
     updated_at?: boolean
+    user_detail?: boolean | ms_klasifikasi$user_detailArgs<ExtArgs>
+    _count?: boolean | Ms_klasifikasiCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ms_klasifikasi"]>
 
 
@@ -21177,10 +21519,16 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
+  export type ms_klasifikasiInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_detail?: boolean | ms_klasifikasi$user_detailArgs<ExtArgs>
+    _count?: boolean | Ms_klasifikasiCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
   export type $ms_klasifikasiPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ms_klasifikasi"
-    objects: {}
+    objects: {
+      user_detail: Prisma.$user_detailPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
@@ -21528,6 +21876,7 @@ export namespace Prisma {
    */
   export interface Prisma__ms_klasifikasiClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    user_detail<T extends ms_klasifikasi$user_detailArgs<ExtArgs> = {}>(args?: Subset<T, ms_klasifikasi$user_detailArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_detailPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -21576,6 +21925,10 @@ export namespace Prisma {
      */
     select?: ms_klasifikasiSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_klasifikasiInclude<ExtArgs> | null
+    /**
      * Filter, which ms_klasifikasi to fetch.
      */
     where: ms_klasifikasiWhereUniqueInput
@@ -21590,6 +21943,10 @@ export namespace Prisma {
      */
     select?: ms_klasifikasiSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_klasifikasiInclude<ExtArgs> | null
+    /**
      * Filter, which ms_klasifikasi to fetch.
      */
     where: ms_klasifikasiWhereUniqueInput
@@ -21603,6 +21960,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_klasifikasi
      */
     select?: ms_klasifikasiSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_klasifikasiInclude<ExtArgs> | null
     /**
      * Filter, which ms_klasifikasi to fetch.
      */
@@ -21648,6 +22009,10 @@ export namespace Prisma {
      */
     select?: ms_klasifikasiSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_klasifikasiInclude<ExtArgs> | null
+    /**
      * Filter, which ms_klasifikasi to fetch.
      */
     where?: ms_klasifikasiWhereInput
@@ -21692,6 +22057,10 @@ export namespace Prisma {
      */
     select?: ms_klasifikasiSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_klasifikasiInclude<ExtArgs> | null
+    /**
      * Filter, which ms_klasifikasis to fetch.
      */
     where?: ms_klasifikasiWhereInput
@@ -21731,6 +22100,10 @@ export namespace Prisma {
      */
     select?: ms_klasifikasiSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_klasifikasiInclude<ExtArgs> | null
+    /**
      * The data needed to create a ms_klasifikasi.
      */
     data: XOR<ms_klasifikasiCreateInput, ms_klasifikasiUncheckedCreateInput>
@@ -21754,6 +22127,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_klasifikasi
      */
     select?: ms_klasifikasiSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_klasifikasiInclude<ExtArgs> | null
     /**
      * The data needed to update a ms_klasifikasi.
      */
@@ -21787,6 +22164,10 @@ export namespace Prisma {
      */
     select?: ms_klasifikasiSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_klasifikasiInclude<ExtArgs> | null
+    /**
      * The filter to search for the ms_klasifikasi to update in case it exists.
      */
     where: ms_klasifikasiWhereUniqueInput
@@ -21809,6 +22190,10 @@ export namespace Prisma {
      */
     select?: ms_klasifikasiSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_klasifikasiInclude<ExtArgs> | null
+    /**
      * Filter which ms_klasifikasi to delete.
      */
     where: ms_klasifikasiWhereUniqueInput
@@ -21825,6 +22210,26 @@ export namespace Prisma {
   }
 
   /**
+   * ms_klasifikasi.user_detail
+   */
+  export type ms_klasifikasi$user_detailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_detail
+     */
+    select?: user_detailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_detailInclude<ExtArgs> | null
+    where?: user_detailWhereInput
+    orderBy?: user_detailOrderByWithRelationInput | user_detailOrderByWithRelationInput[]
+    cursor?: user_detailWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: User_detailScalarFieldEnum | User_detailScalarFieldEnum[]
+  }
+
+  /**
    * ms_klasifikasi without action
    */
   export type ms_klasifikasiDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -21832,6 +22237,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_klasifikasi
      */
     select?: ms_klasifikasiSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_klasifikasiInclude<ExtArgs> | null
   }
 
 
@@ -22057,6 +22466,8 @@ export namespace Prisma {
     created_at?: boolean
     updated_by?: boolean
     updated_at?: boolean
+    user_detail?: boolean | ms_subcont$user_detailArgs<ExtArgs>
+    _count?: boolean | Ms_subcontCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ms_subcont"]>
 
 
@@ -22070,10 +22481,16 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
+  export type ms_subcontInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_detail?: boolean | ms_subcont$user_detailArgs<ExtArgs>
+    _count?: boolean | Ms_subcontCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
   export type $ms_subcontPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ms_subcont"
-    objects: {}
+    objects: {
+      user_detail: Prisma.$user_detailPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       code: string
@@ -22422,6 +22839,7 @@ export namespace Prisma {
    */
   export interface Prisma__ms_subcontClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    user_detail<T extends ms_subcont$user_detailArgs<ExtArgs> = {}>(args?: Subset<T, ms_subcont$user_detailArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_detailPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -22471,6 +22889,10 @@ export namespace Prisma {
      */
     select?: ms_subcontSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_subcontInclude<ExtArgs> | null
+    /**
      * Filter, which ms_subcont to fetch.
      */
     where: ms_subcontWhereUniqueInput
@@ -22485,6 +22907,10 @@ export namespace Prisma {
      */
     select?: ms_subcontSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_subcontInclude<ExtArgs> | null
+    /**
      * Filter, which ms_subcont to fetch.
      */
     where: ms_subcontWhereUniqueInput
@@ -22498,6 +22924,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_subcont
      */
     select?: ms_subcontSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_subcontInclude<ExtArgs> | null
     /**
      * Filter, which ms_subcont to fetch.
      */
@@ -22543,6 +22973,10 @@ export namespace Prisma {
      */
     select?: ms_subcontSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_subcontInclude<ExtArgs> | null
+    /**
      * Filter, which ms_subcont to fetch.
      */
     where?: ms_subcontWhereInput
@@ -22587,6 +23021,10 @@ export namespace Prisma {
      */
     select?: ms_subcontSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_subcontInclude<ExtArgs> | null
+    /**
      * Filter, which ms_subconts to fetch.
      */
     where?: ms_subcontWhereInput
@@ -22626,6 +23064,10 @@ export namespace Prisma {
      */
     select?: ms_subcontSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_subcontInclude<ExtArgs> | null
+    /**
      * The data needed to create a ms_subcont.
      */
     data: XOR<ms_subcontCreateInput, ms_subcontUncheckedCreateInput>
@@ -22649,6 +23091,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_subcont
      */
     select?: ms_subcontSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_subcontInclude<ExtArgs> | null
     /**
      * The data needed to update a ms_subcont.
      */
@@ -22682,6 +23128,10 @@ export namespace Prisma {
      */
     select?: ms_subcontSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_subcontInclude<ExtArgs> | null
+    /**
      * The filter to search for the ms_subcont to update in case it exists.
      */
     where: ms_subcontWhereUniqueInput
@@ -22704,6 +23154,10 @@ export namespace Prisma {
      */
     select?: ms_subcontSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_subcontInclude<ExtArgs> | null
+    /**
      * Filter which ms_subcont to delete.
      */
     where: ms_subcontWhereUniqueInput
@@ -22720,6 +23174,26 @@ export namespace Prisma {
   }
 
   /**
+   * ms_subcont.user_detail
+   */
+  export type ms_subcont$user_detailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_detail
+     */
+    select?: user_detailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_detailInclude<ExtArgs> | null
+    where?: user_detailWhereInput
+    orderBy?: user_detailOrderByWithRelationInput | user_detailOrderByWithRelationInput[]
+    cursor?: user_detailWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: User_detailScalarFieldEnum | User_detailScalarFieldEnum[]
+  }
+
+  /**
    * ms_subcont without action
    */
   export type ms_subcontDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -22727,6 +23201,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_subcont
      */
     select?: ms_subcontSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_subcontInclude<ExtArgs> | null
   }
 
 
@@ -23939,6 +24417,8 @@ export namespace Prisma {
     created_at?: boolean
     updated_by?: boolean
     updated_at?: boolean
+    user_detail?: boolean | ms_marital_status$user_detailArgs<ExtArgs>
+    _count?: boolean | Ms_marital_statusCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ms_marital_status"]>
 
 
@@ -23952,10 +24432,16 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
+  export type ms_marital_statusInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_detail?: boolean | ms_marital_status$user_detailArgs<ExtArgs>
+    _count?: boolean | Ms_marital_statusCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
   export type $ms_marital_statusPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ms_marital_status"
-    objects: {}
+    objects: {
+      user_detail: Prisma.$user_detailPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       code: string
@@ -24304,6 +24790,7 @@ export namespace Prisma {
    */
   export interface Prisma__ms_marital_statusClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    user_detail<T extends ms_marital_status$user_detailArgs<ExtArgs> = {}>(args?: Subset<T, ms_marital_status$user_detailArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_detailPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -24353,6 +24840,10 @@ export namespace Prisma {
      */
     select?: ms_marital_statusSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_marital_statusInclude<ExtArgs> | null
+    /**
      * Filter, which ms_marital_status to fetch.
      */
     where: ms_marital_statusWhereUniqueInput
@@ -24367,6 +24858,10 @@ export namespace Prisma {
      */
     select?: ms_marital_statusSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_marital_statusInclude<ExtArgs> | null
+    /**
      * Filter, which ms_marital_status to fetch.
      */
     where: ms_marital_statusWhereUniqueInput
@@ -24380,6 +24875,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_marital_status
      */
     select?: ms_marital_statusSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_marital_statusInclude<ExtArgs> | null
     /**
      * Filter, which ms_marital_status to fetch.
      */
@@ -24425,6 +24924,10 @@ export namespace Prisma {
      */
     select?: ms_marital_statusSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_marital_statusInclude<ExtArgs> | null
+    /**
      * Filter, which ms_marital_status to fetch.
      */
     where?: ms_marital_statusWhereInput
@@ -24469,6 +24972,10 @@ export namespace Prisma {
      */
     select?: ms_marital_statusSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_marital_statusInclude<ExtArgs> | null
+    /**
      * Filter, which ms_marital_statuses to fetch.
      */
     where?: ms_marital_statusWhereInput
@@ -24508,6 +25015,10 @@ export namespace Prisma {
      */
     select?: ms_marital_statusSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_marital_statusInclude<ExtArgs> | null
+    /**
      * The data needed to create a ms_marital_status.
      */
     data: XOR<ms_marital_statusCreateInput, ms_marital_statusUncheckedCreateInput>
@@ -24531,6 +25042,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_marital_status
      */
     select?: ms_marital_statusSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_marital_statusInclude<ExtArgs> | null
     /**
      * The data needed to update a ms_marital_status.
      */
@@ -24564,6 +25079,10 @@ export namespace Prisma {
      */
     select?: ms_marital_statusSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_marital_statusInclude<ExtArgs> | null
+    /**
      * The filter to search for the ms_marital_status to update in case it exists.
      */
     where: ms_marital_statusWhereUniqueInput
@@ -24586,6 +25105,10 @@ export namespace Prisma {
      */
     select?: ms_marital_statusSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_marital_statusInclude<ExtArgs> | null
+    /**
      * Filter which ms_marital_status to delete.
      */
     where: ms_marital_statusWhereUniqueInput
@@ -24602,6 +25125,26 @@ export namespace Prisma {
   }
 
   /**
+   * ms_marital_status.user_detail
+   */
+  export type ms_marital_status$user_detailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_detail
+     */
+    select?: user_detailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_detailInclude<ExtArgs> | null
+    where?: user_detailWhereInput
+    orderBy?: user_detailOrderByWithRelationInput | user_detailOrderByWithRelationInput[]
+    cursor?: user_detailWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: User_detailScalarFieldEnum | User_detailScalarFieldEnum[]
+  }
+
+  /**
    * ms_marital_status without action
    */
   export type ms_marital_statusDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -24609,6 +25152,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ms_marital_status
      */
     select?: ms_marital_statusSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_marital_statusInclude<ExtArgs> | null
   }
 
 
@@ -25650,6 +26197,7 @@ export namespace Prisma {
     created_by: number | null
     updated_by: number | null
     is_late: number | null
+    is_early_out: number | null
   }
 
   export type AttendanceSumAggregateOutputType = {
@@ -25661,6 +26209,7 @@ export namespace Prisma {
     created_by: bigint | null
     updated_by: bigint | null
     is_late: number | null
+    is_early_out: number | null
   }
 
   export type AttendanceMinAggregateOutputType = {
@@ -25696,6 +26245,7 @@ export namespace Prisma {
     updated_by: bigint | null
     updated_at: Date | null
     is_late: number | null
+    is_early_out: number | null
   }
 
   export type AttendanceMaxAggregateOutputType = {
@@ -25731,6 +26281,7 @@ export namespace Prisma {
     updated_by: bigint | null
     updated_at: Date | null
     is_late: number | null
+    is_early_out: number | null
   }
 
   export type AttendanceCountAggregateOutputType = {
@@ -25766,6 +26317,7 @@ export namespace Prisma {
     updated_by: number
     updated_at: number
     is_late: number
+    is_early_out: number
     _all: number
   }
 
@@ -25779,6 +26331,7 @@ export namespace Prisma {
     created_by?: true
     updated_by?: true
     is_late?: true
+    is_early_out?: true
   }
 
   export type AttendanceSumAggregateInputType = {
@@ -25790,6 +26343,7 @@ export namespace Prisma {
     created_by?: true
     updated_by?: true
     is_late?: true
+    is_early_out?: true
   }
 
   export type AttendanceMinAggregateInputType = {
@@ -25825,6 +26379,7 @@ export namespace Prisma {
     updated_by?: true
     updated_at?: true
     is_late?: true
+    is_early_out?: true
   }
 
   export type AttendanceMaxAggregateInputType = {
@@ -25860,6 +26415,7 @@ export namespace Prisma {
     updated_by?: true
     updated_at?: true
     is_late?: true
+    is_early_out?: true
   }
 
   export type AttendanceCountAggregateInputType = {
@@ -25895,6 +26451,7 @@ export namespace Prisma {
     updated_by?: true
     updated_at?: true
     is_late?: true
+    is_early_out?: true
     _all?: true
   }
 
@@ -26017,6 +26574,7 @@ export namespace Prisma {
     updated_by: bigint | null
     updated_at: Date
     is_late: number | null
+    is_early_out: number | null
     _count: AttendanceCountAggregateOutputType | null
     _avg: AttendanceAvgAggregateOutputType | null
     _sum: AttendanceSumAggregateOutputType | null
@@ -26071,6 +26629,9 @@ export namespace Prisma {
     updated_by?: boolean
     updated_at?: boolean
     is_late?: boolean
+    is_early_out?: boolean
+    MsUser?: boolean | attendance$MsUserArgs<ExtArgs>
+    MsShift?: boolean | attendance$MsShiftArgs<ExtArgs>
   }, ExtArgs["result"]["attendance"]>
 
 
@@ -26107,12 +26668,20 @@ export namespace Prisma {
     updated_by?: boolean
     updated_at?: boolean
     is_late?: boolean
+    is_early_out?: boolean
   }
 
+  export type attendanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    MsUser?: boolean | attendance$MsUserArgs<ExtArgs>
+    MsShift?: boolean | attendance$MsShiftArgs<ExtArgs>
+  }
 
   export type $attendancePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "attendance"
-    objects: {}
+    objects: {
+      MsUser: Prisma.$UserPayload<ExtArgs> | null
+      MsShift: Prisma.$ms_shiftPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
       remote_addr_in: string | null
@@ -26146,6 +26715,7 @@ export namespace Prisma {
       updated_by: bigint | null
       updated_at: Date
       is_late: number | null
+      is_early_out: number | null
     }, ExtArgs["result"]["attendance"]>
     composites: {}
   }
@@ -26486,6 +27056,8 @@ export namespace Prisma {
    */
   export interface Prisma__attendanceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    MsUser<T extends attendance$MsUserArgs<ExtArgs> = {}>(args?: Subset<T, attendance$MsUserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    MsShift<T extends attendance$MsShiftArgs<ExtArgs> = {}>(args?: Subset<T, attendance$MsShiftArgs<ExtArgs>>): Prisma__ms_shiftClient<$Result.GetResult<Prisma.$ms_shiftPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -26547,6 +27119,7 @@ export namespace Prisma {
     readonly updated_by: FieldRef<"attendance", 'BigInt'>
     readonly updated_at: FieldRef<"attendance", 'DateTime'>
     readonly is_late: FieldRef<"attendance", 'Int'>
+    readonly is_early_out: FieldRef<"attendance", 'Int'>
   }
     
 
@@ -26559,6 +27132,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the attendance
      */
     select?: attendanceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: attendanceInclude<ExtArgs> | null
     /**
      * Filter, which attendance to fetch.
      */
@@ -26574,6 +27151,10 @@ export namespace Prisma {
      */
     select?: attendanceSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: attendanceInclude<ExtArgs> | null
+    /**
      * Filter, which attendance to fetch.
      */
     where: attendanceWhereUniqueInput
@@ -26587,6 +27168,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the attendance
      */
     select?: attendanceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: attendanceInclude<ExtArgs> | null
     /**
      * Filter, which attendance to fetch.
      */
@@ -26632,6 +27217,10 @@ export namespace Prisma {
      */
     select?: attendanceSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: attendanceInclude<ExtArgs> | null
+    /**
      * Filter, which attendance to fetch.
      */
     where?: attendanceWhereInput
@@ -26676,6 +27265,10 @@ export namespace Prisma {
      */
     select?: attendanceSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: attendanceInclude<ExtArgs> | null
+    /**
      * Filter, which attendances to fetch.
      */
     where?: attendanceWhereInput
@@ -26715,6 +27308,10 @@ export namespace Prisma {
      */
     select?: attendanceSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: attendanceInclude<ExtArgs> | null
+    /**
      * The data needed to create a attendance.
      */
     data: XOR<attendanceCreateInput, attendanceUncheckedCreateInput>
@@ -26738,6 +27335,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the attendance
      */
     select?: attendanceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: attendanceInclude<ExtArgs> | null
     /**
      * The data needed to update a attendance.
      */
@@ -26771,6 +27372,10 @@ export namespace Prisma {
      */
     select?: attendanceSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: attendanceInclude<ExtArgs> | null
+    /**
      * The filter to search for the attendance to update in case it exists.
      */
     where: attendanceWhereUniqueInput
@@ -26793,6 +27398,10 @@ export namespace Prisma {
      */
     select?: attendanceSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: attendanceInclude<ExtArgs> | null
+    /**
      * Filter which attendance to delete.
      */
     where: attendanceWhereUniqueInput
@@ -26809,6 +27418,36 @@ export namespace Prisma {
   }
 
   /**
+   * attendance.MsUser
+   */
+  export type attendance$MsUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * attendance.MsShift
+   */
+  export type attendance$MsShiftArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ms_shift
+     */
+    select?: ms_shiftSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ms_shiftInclude<ExtArgs> | null
+    where?: ms_shiftWhereInput
+  }
+
+  /**
    * attendance without action
    */
   export type attendanceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -26816,6 +27455,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the attendance
      */
     select?: attendanceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: attendanceInclude<ExtArgs> | null
   }
 
 
@@ -26834,6 +27477,7 @@ export namespace Prisma {
   export type Trx_declarationAvgAggregateOutputType = {
     id: number | null
     total_money_change: Decimal | null
+    total_detail_cost: Decimal | null
     status_id: number | null
     created_by: number | null
     updated_by: number | null
@@ -26842,6 +27486,7 @@ export namespace Prisma {
   export type Trx_declarationSumAggregateOutputType = {
     id: number | null
     total_money_change: Decimal | null
+    total_detail_cost: Decimal | null
     status_id: bigint | null
     created_by: bigint | null
     updated_by: bigint | null
@@ -26870,6 +27515,7 @@ export namespace Prisma {
     canceled_date: Date | null
     canceled_remark: string | null
     total_money_change: Decimal | null
+    total_detail_cost: Decimal | null
     status_id: bigint | null
     created_by: bigint | null
     created_at: Date | null
@@ -26900,6 +27546,7 @@ export namespace Prisma {
     canceled_date: Date | null
     canceled_remark: string | null
     total_money_change: Decimal | null
+    total_detail_cost: Decimal | null
     status_id: bigint | null
     created_by: bigint | null
     created_at: Date | null
@@ -26930,6 +27577,7 @@ export namespace Prisma {
     canceled_date: number
     canceled_remark: number
     total_money_change: number
+    total_detail_cost: number
     status_id: number
     created_by: number
     created_at: number
@@ -26942,6 +27590,7 @@ export namespace Prisma {
   export type Trx_declarationAvgAggregateInputType = {
     id?: true
     total_money_change?: true
+    total_detail_cost?: true
     status_id?: true
     created_by?: true
     updated_by?: true
@@ -26950,6 +27599,7 @@ export namespace Prisma {
   export type Trx_declarationSumAggregateInputType = {
     id?: true
     total_money_change?: true
+    total_detail_cost?: true
     status_id?: true
     created_by?: true
     updated_by?: true
@@ -26978,6 +27628,7 @@ export namespace Prisma {
     canceled_date?: true
     canceled_remark?: true
     total_money_change?: true
+    total_detail_cost?: true
     status_id?: true
     created_by?: true
     created_at?: true
@@ -27008,6 +27659,7 @@ export namespace Prisma {
     canceled_date?: true
     canceled_remark?: true
     total_money_change?: true
+    total_detail_cost?: true
     status_id?: true
     created_by?: true
     created_at?: true
@@ -27038,6 +27690,7 @@ export namespace Prisma {
     canceled_date?: true
     canceled_remark?: true
     total_money_change?: true
+    total_detail_cost?: true
     status_id?: true
     created_by?: true
     created_at?: true
@@ -27155,6 +27808,7 @@ export namespace Prisma {
     canceled_date: Date | null
     canceled_remark: string | null
     total_money_change: Decimal
+    total_detail_cost: Decimal
     status_id: bigint
     created_by: bigint | null
     created_at: Date
@@ -27204,6 +27858,7 @@ export namespace Prisma {
     canceled_date?: boolean
     canceled_remark?: boolean
     total_money_change?: boolean
+    total_detail_cost?: boolean
     status_id?: boolean
     created_by?: boolean
     created_at?: boolean
@@ -27238,6 +27893,7 @@ export namespace Prisma {
     canceled_date?: boolean
     canceled_remark?: boolean
     total_money_change?: boolean
+    total_detail_cost?: boolean
     status_id?: boolean
     created_by?: boolean
     created_at?: boolean
@@ -27280,6 +27936,7 @@ export namespace Prisma {
       canceled_date: Date | null
       canceled_remark: string | null
       total_money_change: Prisma.Decimal
+      total_detail_cost: Prisma.Decimal
       status_id: bigint
       created_by: bigint | null
       created_at: Date
@@ -27678,6 +28335,7 @@ export namespace Prisma {
     readonly canceled_date: FieldRef<"trx_declaration", 'DateTime'>
     readonly canceled_remark: FieldRef<"trx_declaration", 'String'>
     readonly total_money_change: FieldRef<"trx_declaration", 'Decimal'>
+    readonly total_detail_cost: FieldRef<"trx_declaration", 'Decimal'>
     readonly status_id: FieldRef<"trx_declaration", 'BigInt'>
     readonly created_by: FieldRef<"trx_declaration", 'BigInt'>
     readonly created_at: FieldRef<"trx_declaration", 'DateTime'>
@@ -29359,7 +30017,9 @@ export namespace Prisma {
     end_date: 'end_date',
     total_leave_days: 'total_leave_days',
     type: 'type',
-    destination_place: 'destination_place',
+    destination_place1: 'destination_place1',
+    destination_place2: 'destination_place2',
+    destination_place3: 'destination_place3',
     transportation: 'transportation',
     lodging: 'lodging',
     work_status: 'work_status',
@@ -29372,7 +30032,9 @@ export namespace Prisma {
     fiskal_cost: 'fiskal_cost',
     other_cost: 'other_cost',
     total_cost: 'total_cost',
-    destination_city: 'destination_city',
+    destination_city1: 'destination_city1',
+    destination_city2: 'destination_city2',
+    destination_city3: 'destination_city3',
     activity_agenda: 'activity_agenda',
     symbol_currency: 'symbol_currency',
     currency: 'currency',
@@ -29461,7 +30123,6 @@ export namespace Prisma {
     user: 'user',
     effective_date: 'effective_date',
     reason: 'reason',
-    file_upload: 'file_upload',
     status_id: 'status_id',
     accept_to: 'accept_to',
     accepted: 'accepted',
@@ -29634,7 +30295,8 @@ export namespace Prisma {
     created_at: 'created_at',
     updated_by: 'updated_by',
     updated_at: 'updated_at',
-    is_late: 'is_late'
+    is_late: 'is_late',
+    is_early_out: 'is_early_out'
   };
 
   export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
@@ -29663,6 +30325,7 @@ export namespace Prisma {
     canceled_date: 'canceled_date',
     canceled_remark: 'canceled_remark',
     total_money_change: 'total_money_change',
+    total_detail_cost: 'total_detail_cost',
     status_id: 'status_id',
     created_by: 'created_by',
     created_at: 'created_at',
@@ -29817,6 +30480,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: StringNullableFilter<"User"> | string | null
     created_at?: DateTimeNullableFilter<"User"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"User"> | Date | string | null
+    user_detail?: User_detailListRelationFilter
     dept_data?: XOR<Mst_deptNullableRelationFilter, mst_deptWhereInput> | null
     trx_leaves?: Trx_leavesListRelationFilter
     trx_ovt?: Trx_ovtListRelationFilter
@@ -29825,6 +30489,7 @@ export namespace Prisma {
     trx_resign?: Trx_resignListRelationFilter
     trx_shift_emp?: Trx_shift_empListRelationFilter
     trx_leave_quota?: Trx_leave_quotaListRelationFilter
+    attendance?: AttendanceListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -29873,6 +30538,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: SortOrderInput | SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
+    user_detail?: user_detailOrderByRelationAggregateInput
     dept_data?: mst_deptOrderByWithRelationInput
     trx_leaves?: trx_leavesOrderByRelationAggregateInput
     trx_ovt?: trx_ovtOrderByRelationAggregateInput
@@ -29881,6 +30547,7 @@ export namespace Prisma {
     trx_resign?: trx_resignOrderByRelationAggregateInput
     trx_shift_emp?: trx_shift_empOrderByRelationAggregateInput
     trx_leave_quota?: trx_leave_quotaOrderByRelationAggregateInput
+    attendance?: attendanceOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -29932,6 +30599,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: StringNullableFilter<"User"> | string | null
     created_at?: DateTimeNullableFilter<"User"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"User"> | Date | string | null
+    user_detail?: User_detailListRelationFilter
     dept_data?: XOR<Mst_deptNullableRelationFilter, mst_deptWhereInput> | null
     trx_leaves?: Trx_leavesListRelationFilter
     trx_ovt?: Trx_ovtListRelationFilter
@@ -29940,6 +30608,7 @@ export namespace Prisma {
     trx_resign?: Trx_resignListRelationFilter
     trx_shift_emp?: Trx_shift_empListRelationFilter
     trx_leave_quota?: Trx_leave_quotaListRelationFilter
+    attendance?: AttendanceListRelationFilter
   }, "id" | "email" | "personal_number">
 
   export type UserOrderByWithAggregationInput = {
@@ -30323,6 +30992,7 @@ export namespace Prisma {
     is_deleted?: IntNullableFilter<"ms_shift"> | number | null
     details?: Ms_detail_shift_groupListRelationFilter
     trx_ovt?: Trx_ovtListRelationFilter
+    attendance?: AttendanceListRelationFilter
   }
 
   export type ms_shiftOrderByWithRelationInput = {
@@ -30344,6 +31014,7 @@ export namespace Prisma {
     is_deleted?: SortOrderInput | SortOrder
     details?: ms_detail_shift_groupOrderByRelationAggregateInput
     trx_ovt?: trx_ovtOrderByRelationAggregateInput
+    attendance?: attendanceOrderByRelationAggregateInput
   }
 
   export type ms_shiftWhereUniqueInput = Prisma.AtLeast<{
@@ -30368,6 +31039,7 @@ export namespace Prisma {
     is_deleted?: IntNullableFilter<"ms_shift"> | number | null
     details?: Ms_detail_shift_groupListRelationFilter
     trx_ovt?: Trx_ovtListRelationFilter
+    attendance?: AttendanceListRelationFilter
   }, "id" | "code">
 
   export type ms_shiftOrderByWithAggregationInput = {
@@ -31104,7 +31776,9 @@ export namespace Prisma {
     end_date?: DateTimeFilter<"trx_official_travel"> | Date | string
     total_leave_days?: BigIntFilter<"trx_official_travel"> | bigint | number
     type?: StringFilter<"trx_official_travel"> | string
-    destination_place?: StringFilter<"trx_official_travel"> | string
+    destination_place1?: StringFilter<"trx_official_travel"> | string
+    destination_place2?: StringNullableFilter<"trx_official_travel"> | string | null
+    destination_place3?: StringNullableFilter<"trx_official_travel"> | string | null
     transportation?: StringFilter<"trx_official_travel"> | string
     lodging?: StringFilter<"trx_official_travel"> | string
     work_status?: StringFilter<"trx_official_travel"> | string
@@ -31117,7 +31791,9 @@ export namespace Prisma {
     fiskal_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     other_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     total_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
-    destination_city?: StringFilter<"trx_official_travel"> | string
+    destination_city1?: StringFilter<"trx_official_travel"> | string
+    destination_city2?: StringNullableFilter<"trx_official_travel"> | string | null
+    destination_city3?: StringNullableFilter<"trx_official_travel"> | string | null
     activity_agenda?: StringFilter<"trx_official_travel"> | string
     symbol_currency?: StringNullableFilter<"trx_official_travel"> | string | null
     currency?: StringNullableFilter<"trx_official_travel"> | string | null
@@ -31173,7 +31849,9 @@ export namespace Prisma {
     end_date?: SortOrder
     total_leave_days?: SortOrder
     type?: SortOrder
-    destination_place?: SortOrder
+    destination_place1?: SortOrder
+    destination_place2?: SortOrderInput | SortOrder
+    destination_place3?: SortOrderInput | SortOrder
     transportation?: SortOrder
     lodging?: SortOrder
     work_status?: SortOrder
@@ -31186,7 +31864,9 @@ export namespace Prisma {
     fiskal_cost?: SortOrderInput | SortOrder
     other_cost?: SortOrderInput | SortOrder
     total_cost?: SortOrderInput | SortOrder
-    destination_city?: SortOrder
+    destination_city1?: SortOrder
+    destination_city2?: SortOrderInput | SortOrder
+    destination_city3?: SortOrderInput | SortOrder
     activity_agenda?: SortOrder
     symbol_currency?: SortOrderInput | SortOrder
     currency?: SortOrderInput | SortOrder
@@ -31245,7 +31925,9 @@ export namespace Prisma {
     end_date?: DateTimeFilter<"trx_official_travel"> | Date | string
     total_leave_days?: BigIntFilter<"trx_official_travel"> | bigint | number
     type?: StringFilter<"trx_official_travel"> | string
-    destination_place?: StringFilter<"trx_official_travel"> | string
+    destination_place1?: StringFilter<"trx_official_travel"> | string
+    destination_place2?: StringNullableFilter<"trx_official_travel"> | string | null
+    destination_place3?: StringNullableFilter<"trx_official_travel"> | string | null
     transportation?: StringFilter<"trx_official_travel"> | string
     lodging?: StringFilter<"trx_official_travel"> | string
     work_status?: StringFilter<"trx_official_travel"> | string
@@ -31258,7 +31940,9 @@ export namespace Prisma {
     fiskal_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     other_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     total_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
-    destination_city?: StringFilter<"trx_official_travel"> | string
+    destination_city1?: StringFilter<"trx_official_travel"> | string
+    destination_city2?: StringNullableFilter<"trx_official_travel"> | string | null
+    destination_city3?: StringNullableFilter<"trx_official_travel"> | string | null
     activity_agenda?: StringFilter<"trx_official_travel"> | string
     symbol_currency?: StringNullableFilter<"trx_official_travel"> | string | null
     currency?: StringNullableFilter<"trx_official_travel"> | string | null
@@ -31314,7 +31998,9 @@ export namespace Prisma {
     end_date?: SortOrder
     total_leave_days?: SortOrder
     type?: SortOrder
-    destination_place?: SortOrder
+    destination_place1?: SortOrder
+    destination_place2?: SortOrderInput | SortOrder
+    destination_place3?: SortOrderInput | SortOrder
     transportation?: SortOrder
     lodging?: SortOrder
     work_status?: SortOrder
@@ -31327,7 +32013,9 @@ export namespace Prisma {
     fiskal_cost?: SortOrderInput | SortOrder
     other_cost?: SortOrderInput | SortOrder
     total_cost?: SortOrderInput | SortOrder
-    destination_city?: SortOrder
+    destination_city1?: SortOrder
+    destination_city2?: SortOrderInput | SortOrder
+    destination_city3?: SortOrderInput | SortOrder
     activity_agenda?: SortOrder
     symbol_currency?: SortOrderInput | SortOrder
     currency?: SortOrderInput | SortOrder
@@ -31389,7 +32077,9 @@ export namespace Prisma {
     end_date?: DateTimeWithAggregatesFilter<"trx_official_travel"> | Date | string
     total_leave_days?: BigIntWithAggregatesFilter<"trx_official_travel"> | bigint | number
     type?: StringWithAggregatesFilter<"trx_official_travel"> | string
-    destination_place?: StringWithAggregatesFilter<"trx_official_travel"> | string
+    destination_place1?: StringWithAggregatesFilter<"trx_official_travel"> | string
+    destination_place2?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    destination_place3?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
     transportation?: StringWithAggregatesFilter<"trx_official_travel"> | string
     lodging?: StringWithAggregatesFilter<"trx_official_travel"> | string
     work_status?: StringWithAggregatesFilter<"trx_official_travel"> | string
@@ -31402,7 +32092,9 @@ export namespace Prisma {
     fiskal_cost?: DecimalNullableWithAggregatesFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     other_cost?: DecimalNullableWithAggregatesFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     total_cost?: DecimalNullableWithAggregatesFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
-    destination_city?: StringWithAggregatesFilter<"trx_official_travel"> | string
+    destination_city1?: StringWithAggregatesFilter<"trx_official_travel"> | string
+    destination_city2?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
+    destination_city3?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
     activity_agenda?: StringWithAggregatesFilter<"trx_official_travel"> | string
     symbol_currency?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
     currency?: StringNullableWithAggregatesFilter<"trx_official_travel"> | string | null
@@ -31477,7 +32169,7 @@ export namespace Prisma {
     canceled?: StringNullableFilter<"trx_mutation"> | string | null
     canceled_date?: DateTimeNullableFilter<"trx_mutation"> | Date | string | null
     canceled_remark?: StringNullableFilter<"trx_mutation"> | string | null
-    created_by?: BigIntNullableFilter<"trx_mutation"> | bigint | number | null
+    created_by?: StringFilter<"trx_mutation"> | string
     created_at?: DateTimeFilter<"trx_mutation"> | Date | string
     updated_by?: BigIntNullableFilter<"trx_mutation"> | bigint | number | null
     updated_at?: DateTimeFilter<"trx_mutation"> | Date | string
@@ -31510,7 +32202,7 @@ export namespace Prisma {
     canceled?: SortOrderInput | SortOrder
     canceled_date?: SortOrderInput | SortOrder
     canceled_remark?: SortOrderInput | SortOrder
-    created_by?: SortOrderInput | SortOrder
+    created_by?: SortOrder
     created_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrder
@@ -31546,7 +32238,7 @@ export namespace Prisma {
     canceled?: StringNullableFilter<"trx_mutation"> | string | null
     canceled_date?: DateTimeNullableFilter<"trx_mutation"> | Date | string | null
     canceled_remark?: StringNullableFilter<"trx_mutation"> | string | null
-    created_by?: BigIntNullableFilter<"trx_mutation"> | bigint | number | null
+    created_by?: StringFilter<"trx_mutation"> | string
     created_at?: DateTimeFilter<"trx_mutation"> | Date | string
     updated_by?: BigIntNullableFilter<"trx_mutation"> | bigint | number | null
     updated_at?: DateTimeFilter<"trx_mutation"> | Date | string
@@ -31579,7 +32271,7 @@ export namespace Prisma {
     canceled?: SortOrderInput | SortOrder
     canceled_date?: SortOrderInput | SortOrder
     canceled_remark?: SortOrderInput | SortOrder
-    created_by?: SortOrderInput | SortOrder
+    created_by?: SortOrder
     created_at?: SortOrder
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrder
@@ -31619,7 +32311,7 @@ export namespace Prisma {
     canceled?: StringNullableWithAggregatesFilter<"trx_mutation"> | string | null
     canceled_date?: DateTimeNullableWithAggregatesFilter<"trx_mutation"> | Date | string | null
     canceled_remark?: StringNullableWithAggregatesFilter<"trx_mutation"> | string | null
-    created_by?: BigIntNullableWithAggregatesFilter<"trx_mutation"> | bigint | number | null
+    created_by?: StringWithAggregatesFilter<"trx_mutation"> | string
     created_at?: DateTimeWithAggregatesFilter<"trx_mutation"> | Date | string
     updated_by?: BigIntNullableWithAggregatesFilter<"trx_mutation"> | bigint | number | null
     updated_at?: DateTimeWithAggregatesFilter<"trx_mutation"> | Date | string
@@ -31633,7 +32325,6 @@ export namespace Prisma {
     user?: StringFilter<"trx_resign"> | string
     effective_date?: DateTimeFilter<"trx_resign"> | Date | string
     reason?: StringFilter<"trx_resign"> | string
-    file_upload?: StringFilter<"trx_resign"> | string
     status_id?: BigIntFilter<"trx_resign"> | bigint | number
     accept_to?: StringFilter<"trx_resign"> | string
     accepted?: StringNullableFilter<"trx_resign"> | string | null
@@ -31661,7 +32352,6 @@ export namespace Prisma {
     user?: SortOrder
     effective_date?: SortOrder
     reason?: SortOrder
-    file_upload?: SortOrder
     status_id?: SortOrder
     accept_to?: SortOrder
     accepted?: SortOrderInput | SortOrder
@@ -31692,7 +32382,6 @@ export namespace Prisma {
     user?: StringFilter<"trx_resign"> | string
     effective_date?: DateTimeFilter<"trx_resign"> | Date | string
     reason?: StringFilter<"trx_resign"> | string
-    file_upload?: StringFilter<"trx_resign"> | string
     status_id?: BigIntFilter<"trx_resign"> | bigint | number
     accept_to?: StringFilter<"trx_resign"> | string
     accepted?: StringNullableFilter<"trx_resign"> | string | null
@@ -31720,7 +32409,6 @@ export namespace Prisma {
     user?: SortOrder
     effective_date?: SortOrder
     reason?: SortOrder
-    file_upload?: SortOrder
     status_id?: SortOrder
     accept_to?: SortOrder
     accepted?: SortOrderInput | SortOrder
@@ -31755,7 +32443,6 @@ export namespace Prisma {
     user?: StringWithAggregatesFilter<"trx_resign"> | string
     effective_date?: DateTimeWithAggregatesFilter<"trx_resign"> | Date | string
     reason?: StringWithAggregatesFilter<"trx_resign"> | string
-    file_upload?: StringWithAggregatesFilter<"trx_resign"> | string
     status_id?: BigIntWithAggregatesFilter<"trx_resign"> | bigint | number
     accept_to?: StringWithAggregatesFilter<"trx_resign"> | string
     accepted?: StringNullableWithAggregatesFilter<"trx_resign"> | string | null
@@ -31801,6 +32488,10 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"user_detail"> | Date | string | null
     updated_by?: BigIntNullableFilter<"user_detail"> | bigint | number | null
     updated_at?: DateTimeNullableFilter<"user_detail"> | Date | string | null
+    MsUser?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+    MsMarital?: XOR<Ms_marital_statusNullableRelationFilter, ms_marital_statusWhereInput> | null
+    MsKlasifikasi?: XOR<Ms_klasifikasiNullableRelationFilter, ms_klasifikasiWhereInput> | null
+    MsVendor?: XOR<Ms_subcontNullableRelationFilter, ms_subcontWhereInput> | null
   }
 
   export type user_detailOrderByWithRelationInput = {
@@ -31824,6 +32515,10 @@ export namespace Prisma {
     created_at?: SortOrderInput | SortOrder
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
+    MsUser?: UserOrderByWithRelationInput
+    MsMarital?: ms_marital_statusOrderByWithRelationInput
+    MsKlasifikasi?: ms_klasifikasiOrderByWithRelationInput
+    MsVendor?: ms_subcontOrderByWithRelationInput
   }
 
   export type user_detailWhereUniqueInput = Prisma.AtLeast<{
@@ -31850,6 +32545,10 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"user_detail"> | Date | string | null
     updated_by?: BigIntNullableFilter<"user_detail"> | bigint | number | null
     updated_at?: DateTimeNullableFilter<"user_detail"> | Date | string | null
+    MsUser?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+    MsMarital?: XOR<Ms_marital_statusNullableRelationFilter, ms_marital_statusWhereInput> | null
+    MsKlasifikasi?: XOR<Ms_klasifikasiNullableRelationFilter, ms_klasifikasiWhereInput> | null
+    MsVendor?: XOR<Ms_subcontNullableRelationFilter, ms_subcontWhereInput> | null
   }, "id" | "nrp">
 
   export type user_detailOrderByWithAggregationInput = {
@@ -31980,6 +32679,7 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"ms_klasifikasi"> | Date | string | null
     updated_by?: BigIntNullableFilter<"ms_klasifikasi"> | bigint | number | null
     updated_at?: DateTimeNullableFilter<"ms_klasifikasi"> | Date | string | null
+    user_detail?: User_detailListRelationFilter
   }
 
   export type ms_klasifikasiOrderByWithRelationInput = {
@@ -31989,6 +32689,7 @@ export namespace Prisma {
     created_at?: SortOrderInput | SortOrder
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
+    user_detail?: user_detailOrderByRelationAggregateInput
   }
 
   export type ms_klasifikasiWhereUniqueInput = Prisma.AtLeast<{
@@ -32001,6 +32702,7 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"ms_klasifikasi"> | Date | string | null
     updated_by?: BigIntNullableFilter<"ms_klasifikasi"> | bigint | number | null
     updated_at?: DateTimeNullableFilter<"ms_klasifikasi"> | Date | string | null
+    user_detail?: User_detailListRelationFilter
   }, "id">
 
   export type ms_klasifikasiOrderByWithAggregationInput = {
@@ -32040,6 +32742,7 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"ms_subcont"> | Date | string | null
     updated_by?: BigIntNullableFilter<"ms_subcont"> | bigint | number | null
     updated_at?: DateTimeNullableFilter<"ms_subcont"> | Date | string | null
+    user_detail?: User_detailListRelationFilter
   }
 
   export type ms_subcontOrderByWithRelationInput = {
@@ -32050,6 +32753,7 @@ export namespace Prisma {
     created_at?: SortOrderInput | SortOrder
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
+    user_detail?: user_detailOrderByRelationAggregateInput
   }
 
   export type ms_subcontWhereUniqueInput = Prisma.AtLeast<{
@@ -32063,6 +32767,7 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"ms_subcont"> | Date | string | null
     updated_by?: BigIntNullableFilter<"ms_subcont"> | bigint | number | null
     updated_at?: DateTimeNullableFilter<"ms_subcont"> | Date | string | null
+    user_detail?: User_detailListRelationFilter
   }, "id">
 
   export type ms_subcontOrderByWithAggregationInput = {
@@ -32208,6 +32913,7 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"ms_marital_status"> | Date | string | null
     updated_by?: BigIntNullableFilter<"ms_marital_status"> | bigint | number | null
     updated_at?: DateTimeNullableFilter<"ms_marital_status"> | Date | string | null
+    user_detail?: User_detailListRelationFilter
   }
 
   export type ms_marital_statusOrderByWithRelationInput = {
@@ -32218,6 +32924,7 @@ export namespace Prisma {
     created_at?: SortOrderInput | SortOrder
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
+    user_detail?: user_detailOrderByRelationAggregateInput
   }
 
   export type ms_marital_statusWhereUniqueInput = Prisma.AtLeast<{
@@ -32231,6 +32938,7 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"ms_marital_status"> | Date | string | null
     updated_by?: BigIntNullableFilter<"ms_marital_status"> | bigint | number | null
     updated_at?: DateTimeNullableFilter<"ms_marital_status"> | Date | string | null
+    user_detail?: User_detailListRelationFilter
   }, "id">
 
   export type ms_marital_statusOrderByWithAggregationInput = {
@@ -32392,6 +33100,9 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"attendance"> | bigint | number | null
     updated_at?: DateTimeFilter<"attendance"> | Date | string
     is_late?: IntNullableFilter<"attendance"> | number | null
+    is_early_out?: IntNullableFilter<"attendance"> | number | null
+    MsUser?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+    MsShift?: XOR<Ms_shiftNullableRelationFilter, ms_shiftWhereInput> | null
   }
 
   export type attendanceOrderByWithRelationInput = {
@@ -32427,6 +33138,9 @@ export namespace Prisma {
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrder
     is_late?: SortOrderInput | SortOrder
+    is_early_out?: SortOrderInput | SortOrder
+    MsUser?: UserOrderByWithRelationInput
+    MsShift?: ms_shiftOrderByWithRelationInput
   }
 
   export type attendanceWhereUniqueInput = Prisma.AtLeast<{
@@ -32465,6 +33179,9 @@ export namespace Prisma {
     updated_by?: BigIntNullableFilter<"attendance"> | bigint | number | null
     updated_at?: DateTimeFilter<"attendance"> | Date | string
     is_late?: IntNullableFilter<"attendance"> | number | null
+    is_early_out?: IntNullableFilter<"attendance"> | number | null
+    MsUser?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+    MsShift?: XOR<Ms_shiftNullableRelationFilter, ms_shiftWhereInput> | null
   }, "id">
 
   export type attendanceOrderByWithAggregationInput = {
@@ -32500,6 +33217,7 @@ export namespace Prisma {
     updated_by?: SortOrderInput | SortOrder
     updated_at?: SortOrder
     is_late?: SortOrderInput | SortOrder
+    is_early_out?: SortOrderInput | SortOrder
     _count?: attendanceCountOrderByAggregateInput
     _avg?: attendanceAvgOrderByAggregateInput
     _max?: attendanceMaxOrderByAggregateInput
@@ -32543,6 +33261,7 @@ export namespace Prisma {
     updated_by?: BigIntNullableWithAggregatesFilter<"attendance"> | bigint | number | null
     updated_at?: DateTimeWithAggregatesFilter<"attendance"> | Date | string
     is_late?: IntNullableWithAggregatesFilter<"attendance"> | number | null
+    is_early_out?: IntNullableWithAggregatesFilter<"attendance"> | number | null
   }
 
   export type trx_declarationWhereInput = {
@@ -32571,6 +33290,7 @@ export namespace Prisma {
     canceled_date?: DateTimeNullableFilter<"trx_declaration"> | Date | string | null
     canceled_remark?: StringNullableFilter<"trx_declaration"> | string | null
     total_money_change?: DecimalFilter<"trx_declaration"> | Decimal | DecimalJsLike | number | string
+    total_detail_cost?: DecimalFilter<"trx_declaration"> | Decimal | DecimalJsLike | number | string
     status_id?: BigIntFilter<"trx_declaration"> | bigint | number
     created_by?: BigIntNullableFilter<"trx_declaration"> | bigint | number | null
     created_at?: DateTimeFilter<"trx_declaration"> | Date | string
@@ -32603,6 +33323,7 @@ export namespace Prisma {
     canceled_date?: SortOrderInput | SortOrder
     canceled_remark?: SortOrderInput | SortOrder
     total_money_change?: SortOrder
+    total_detail_cost?: SortOrder
     status_id?: SortOrder
     created_by?: SortOrderInput | SortOrder
     created_at?: SortOrder
@@ -32638,6 +33359,7 @@ export namespace Prisma {
     canceled_date?: DateTimeNullableFilter<"trx_declaration"> | Date | string | null
     canceled_remark?: StringNullableFilter<"trx_declaration"> | string | null
     total_money_change?: DecimalFilter<"trx_declaration"> | Decimal | DecimalJsLike | number | string
+    total_detail_cost?: DecimalFilter<"trx_declaration"> | Decimal | DecimalJsLike | number | string
     status_id?: BigIntFilter<"trx_declaration"> | bigint | number
     created_by?: BigIntNullableFilter<"trx_declaration"> | bigint | number | null
     created_at?: DateTimeFilter<"trx_declaration"> | Date | string
@@ -32670,6 +33392,7 @@ export namespace Prisma {
     canceled_date?: SortOrderInput | SortOrder
     canceled_remark?: SortOrderInput | SortOrder
     total_money_change?: SortOrder
+    total_detail_cost?: SortOrder
     status_id?: SortOrder
     created_by?: SortOrderInput | SortOrder
     created_at?: SortOrder
@@ -32708,6 +33431,7 @@ export namespace Prisma {
     canceled_date?: DateTimeNullableWithAggregatesFilter<"trx_declaration"> | Date | string | null
     canceled_remark?: StringNullableWithAggregatesFilter<"trx_declaration"> | string | null
     total_money_change?: DecimalWithAggregatesFilter<"trx_declaration"> | Decimal | DecimalJsLike | number | string
+    total_detail_cost?: DecimalWithAggregatesFilter<"trx_declaration"> | Decimal | DecimalJsLike | number | string
     status_id?: BigIntWithAggregatesFilter<"trx_declaration"> | bigint | number
     created_by?: BigIntNullableWithAggregatesFilter<"trx_declaration"> | bigint | number | null
     created_at?: DateTimeWithAggregatesFilter<"trx_declaration"> | Date | string
@@ -32872,6 +33596,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailCreateNestedManyWithoutMsUserInput
     dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
@@ -32880,6 +33605,7 @@ export namespace Prisma {
     trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -32928,6 +33654,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailUncheckedCreateNestedManyWithoutMsUserInput
     trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
@@ -32935,6 +33662,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUpdateInput = {
@@ -32982,6 +33710,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUpdateManyWithoutMsUserNestedInput
     dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
@@ -32990,6 +33719,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -33038,6 +33768,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
@@ -33045,6 +33776,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -33509,6 +34241,7 @@ export namespace Prisma {
     is_deleted?: number | null
     details?: ms_detail_shift_groupCreateNestedManyWithoutMsShiftInput
     trx_ovt?: trx_ovtCreateNestedManyWithoutShift_dataInput
+    attendance?: attendanceCreateNestedManyWithoutMsShiftInput
   }
 
   export type ms_shiftUncheckedCreateInput = {
@@ -33530,6 +34263,7 @@ export namespace Prisma {
     is_deleted?: number | null
     details?: ms_detail_shift_groupUncheckedCreateNestedManyWithoutMsShiftInput
     trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutShift_dataInput
+    attendance?: attendanceUncheckedCreateNestedManyWithoutMsShiftInput
   }
 
   export type ms_shiftUpdateInput = {
@@ -33550,6 +34284,7 @@ export namespace Prisma {
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
     details?: ms_detail_shift_groupUpdateManyWithoutMsShiftNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutShift_dataNestedInput
+    attendance?: attendanceUpdateManyWithoutMsShiftNestedInput
   }
 
   export type ms_shiftUncheckedUpdateInput = {
@@ -33571,6 +34306,7 @@ export namespace Prisma {
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
     details?: ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftNestedInput
     trx_ovt?: trx_ovtUncheckedUpdateManyWithoutShift_dataNestedInput
+    attendance?: attendanceUncheckedUpdateManyWithoutMsShiftNestedInput
   }
 
   export type ms_shiftCreateManyInput = {
@@ -34388,7 +35124,9 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     type: string
-    destination_place: string
+    destination_place1: string
+    destination_place2?: string | null
+    destination_place3?: string | null
     transportation: string
     lodging: string
     work_status: string
@@ -34401,7 +35139,9 @@ export namespace Prisma {
     fiskal_cost?: Decimal | DecimalJsLike | number | string | null
     other_cost?: Decimal | DecimalJsLike | number | string | null
     total_cost?: Decimal | DecimalJsLike | number | string | null
-    destination_city: string
+    destination_city1: string
+    destination_city2?: string | null
+    destination_city3?: string | null
     activity_agenda: string
     symbol_currency?: string | null
     currency?: string | null
@@ -34457,7 +35197,9 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     type: string
-    destination_place: string
+    destination_place1: string
+    destination_place2?: string | null
+    destination_place3?: string | null
     transportation: string
     lodging: string
     work_status: string
@@ -34470,7 +35212,9 @@ export namespace Prisma {
     fiskal_cost?: Decimal | DecimalJsLike | number | string | null
     other_cost?: Decimal | DecimalJsLike | number | string | null
     total_cost?: Decimal | DecimalJsLike | number | string | null
-    destination_city: string
+    destination_city1: string
+    destination_city2?: string | null
+    destination_city3?: string | null
     activity_agenda: string
     symbol_currency?: string | null
     currency?: string | null
@@ -34523,7 +35267,9 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     type?: StringFieldUpdateOperationsInput | string
-    destination_place?: StringFieldUpdateOperationsInput | string
+    destination_place1?: StringFieldUpdateOperationsInput | string
+    destination_place2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_place3?: NullableStringFieldUpdateOperationsInput | string | null
     transportation?: StringFieldUpdateOperationsInput | string
     lodging?: StringFieldUpdateOperationsInput | string
     work_status?: StringFieldUpdateOperationsInput | string
@@ -34536,7 +35282,9 @@ export namespace Prisma {
     fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    destination_city?: StringFieldUpdateOperationsInput | string
+    destination_city1?: StringFieldUpdateOperationsInput | string
+    destination_city2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_city3?: NullableStringFieldUpdateOperationsInput | string | null
     activity_agenda?: StringFieldUpdateOperationsInput | string
     symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
     currency?: NullableStringFieldUpdateOperationsInput | string | null
@@ -34592,7 +35340,9 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     type?: StringFieldUpdateOperationsInput | string
-    destination_place?: StringFieldUpdateOperationsInput | string
+    destination_place1?: StringFieldUpdateOperationsInput | string
+    destination_place2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_place3?: NullableStringFieldUpdateOperationsInput | string | null
     transportation?: StringFieldUpdateOperationsInput | string
     lodging?: StringFieldUpdateOperationsInput | string
     work_status?: StringFieldUpdateOperationsInput | string
@@ -34605,7 +35355,9 @@ export namespace Prisma {
     fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    destination_city?: StringFieldUpdateOperationsInput | string
+    destination_city1?: StringFieldUpdateOperationsInput | string
+    destination_city2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_city3?: NullableStringFieldUpdateOperationsInput | string | null
     activity_agenda?: StringFieldUpdateOperationsInput | string
     symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
     currency?: NullableStringFieldUpdateOperationsInput | string | null
@@ -34659,7 +35411,9 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     type: string
-    destination_place: string
+    destination_place1: string
+    destination_place2?: string | null
+    destination_place3?: string | null
     transportation: string
     lodging: string
     work_status: string
@@ -34672,7 +35426,9 @@ export namespace Prisma {
     fiskal_cost?: Decimal | DecimalJsLike | number | string | null
     other_cost?: Decimal | DecimalJsLike | number | string | null
     total_cost?: Decimal | DecimalJsLike | number | string | null
-    destination_city: string
+    destination_city1: string
+    destination_city2?: string | null
+    destination_city3?: string | null
     activity_agenda: string
     symbol_currency?: string | null
     currency?: string | null
@@ -34724,7 +35480,9 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     type?: StringFieldUpdateOperationsInput | string
-    destination_place?: StringFieldUpdateOperationsInput | string
+    destination_place1?: StringFieldUpdateOperationsInput | string
+    destination_place2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_place3?: NullableStringFieldUpdateOperationsInput | string | null
     transportation?: StringFieldUpdateOperationsInput | string
     lodging?: StringFieldUpdateOperationsInput | string
     work_status?: StringFieldUpdateOperationsInput | string
@@ -34737,7 +35495,9 @@ export namespace Prisma {
     fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    destination_city?: StringFieldUpdateOperationsInput | string
+    destination_city1?: StringFieldUpdateOperationsInput | string
+    destination_city2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_city3?: NullableStringFieldUpdateOperationsInput | string | null
     activity_agenda?: StringFieldUpdateOperationsInput | string
     symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
     currency?: NullableStringFieldUpdateOperationsInput | string | null
@@ -34791,7 +35551,9 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     type?: StringFieldUpdateOperationsInput | string
-    destination_place?: StringFieldUpdateOperationsInput | string
+    destination_place1?: StringFieldUpdateOperationsInput | string
+    destination_place2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_place3?: NullableStringFieldUpdateOperationsInput | string | null
     transportation?: StringFieldUpdateOperationsInput | string
     lodging?: StringFieldUpdateOperationsInput | string
     work_status?: StringFieldUpdateOperationsInput | string
@@ -34804,7 +35566,9 @@ export namespace Prisma {
     fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    destination_city?: StringFieldUpdateOperationsInput | string
+    destination_city1?: StringFieldUpdateOperationsInput | string
+    destination_city2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_city3?: NullableStringFieldUpdateOperationsInput | string | null
     activity_agenda?: StringFieldUpdateOperationsInput | string
     symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
     currency?: NullableStringFieldUpdateOperationsInput | string | null
@@ -34874,7 +35638,7 @@ export namespace Prisma {
     canceled?: string | null
     canceled_date?: Date | string | null
     canceled_remark?: string | null
-    created_by?: bigint | number | null
+    created_by: string
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
@@ -34907,7 +35671,7 @@ export namespace Prisma {
     canceled?: string | null
     canceled_date?: Date | string | null
     canceled_remark?: string | null
-    created_by?: bigint | number | null
+    created_by: string
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
@@ -34937,7 +35701,7 @@ export namespace Prisma {
     canceled?: NullableStringFieldUpdateOperationsInput | string | null
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_by?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34970,7 +35734,7 @@ export namespace Prisma {
     canceled?: NullableStringFieldUpdateOperationsInput | string | null
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_by?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35001,7 +35765,7 @@ export namespace Prisma {
     canceled?: string | null
     canceled_date?: Date | string | null
     canceled_remark?: string | null
-    created_by?: bigint | number | null
+    created_by: string
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
@@ -35031,7 +35795,7 @@ export namespace Prisma {
     canceled?: NullableStringFieldUpdateOperationsInput | string | null
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_by?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35063,7 +35827,7 @@ export namespace Prisma {
     canceled?: NullableStringFieldUpdateOperationsInput | string | null
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_by?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35072,7 +35836,6 @@ export namespace Prisma {
   export type trx_resignCreateInput = {
     effective_date: Date | string
     reason: string
-    file_upload: string
     status_id: bigint | number
     accept_to: string
     accepted?: string | null
@@ -35100,7 +35863,6 @@ export namespace Prisma {
     user: string
     effective_date: Date | string
     reason: string
-    file_upload: string
     status_id: bigint | number
     accept_to: string
     accepted?: string | null
@@ -35125,7 +35887,6 @@ export namespace Prisma {
   export type trx_resignUpdateInput = {
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
-    file_upload?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     accept_to?: StringFieldUpdateOperationsInput | string
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
@@ -35153,7 +35914,6 @@ export namespace Prisma {
     user?: StringFieldUpdateOperationsInput | string
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
-    file_upload?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     accept_to?: StringFieldUpdateOperationsInput | string
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
@@ -35179,7 +35939,6 @@ export namespace Prisma {
     user: string
     effective_date: Date | string
     reason: string
-    file_upload: string
     status_id: bigint | number
     accept_to: string
     accepted?: string | null
@@ -35204,7 +35963,6 @@ export namespace Prisma {
   export type trx_resignUpdateManyMutationInput = {
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
-    file_upload?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     accept_to?: StringFieldUpdateOperationsInput | string
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
@@ -35231,7 +35989,6 @@ export namespace Prisma {
     user?: StringFieldUpdateOperationsInput | string
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
-    file_upload?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     accept_to?: StringFieldUpdateOperationsInput | string
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
@@ -35255,11 +36012,9 @@ export namespace Prisma {
 
   export type user_detailCreateInput = {
     id?: bigint | number
-    user_id: bigint | number
     nrp?: string | null
     name?: string | null
     email: string
-    marital_status: number
     gender?: string | null
     birth_date: Date | string
     address: string
@@ -35268,12 +36023,14 @@ export namespace Prisma {
     join_date: Date | string
     end_date: Date | string
     status: number
-    klasifikasi: number
-    vendor: number
     created_by?: bigint | number | null
     created_at?: Date | string | null
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
+    MsUser?: UserCreateNestedOneWithoutUser_detailInput
+    MsMarital?: ms_marital_statusCreateNestedOneWithoutUser_detailInput
+    MsKlasifikasi?: ms_klasifikasiCreateNestedOneWithoutUser_detailInput
+    MsVendor?: ms_subcontCreateNestedOneWithoutUser_detailInput
   }
 
   export type user_detailUncheckedCreateInput = {
@@ -35301,11 +36058,9 @@ export namespace Prisma {
 
   export type user_detailUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    user_id?: BigIntFieldUpdateOperationsInput | bigint | number
     nrp?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
-    marital_status?: IntFieldUpdateOperationsInput | number
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
     address?: StringFieldUpdateOperationsInput | string
@@ -35314,12 +36069,14 @@ export namespace Prisma {
     join_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: IntFieldUpdateOperationsInput | number
-    klasifikasi?: IntFieldUpdateOperationsInput | number
-    vendor?: IntFieldUpdateOperationsInput | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    MsUser?: UserUpdateOneWithoutUser_detailNestedInput
+    MsMarital?: ms_marital_statusUpdateOneWithoutUser_detailNestedInput
+    MsKlasifikasi?: ms_klasifikasiUpdateOneWithoutUser_detailNestedInput
+    MsVendor?: ms_subcontUpdateOneWithoutUser_detailNestedInput
   }
 
   export type user_detailUncheckedUpdateInput = {
@@ -35369,11 +36126,9 @@ export namespace Prisma {
 
   export type user_detailUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    user_id?: BigIntFieldUpdateOperationsInput | bigint | number
     nrp?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
-    marital_status?: IntFieldUpdateOperationsInput | number
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
     address?: StringFieldUpdateOperationsInput | string
@@ -35382,8 +36137,6 @@ export namespace Prisma {
     join_date?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: IntFieldUpdateOperationsInput | number
-    klasifikasi?: IntFieldUpdateOperationsInput | number
-    vendor?: IntFieldUpdateOperationsInput | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -35486,6 +36239,7 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
+    user_detail?: user_detailCreateNestedManyWithoutMsKlasifikasiInput
   }
 
   export type ms_klasifikasiUncheckedCreateInput = {
@@ -35495,6 +36249,7 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
+    user_detail?: user_detailUncheckedCreateNestedManyWithoutMsKlasifikasiInput
   }
 
   export type ms_klasifikasiUpdateInput = {
@@ -35504,6 +36259,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUpdateManyWithoutMsKlasifikasiNestedInput
   }
 
   export type ms_klasifikasiUncheckedUpdateInput = {
@@ -35513,6 +36269,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUncheckedUpdateManyWithoutMsKlasifikasiNestedInput
   }
 
   export type ms_klasifikasiCreateManyInput = {
@@ -35550,6 +36307,7 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
+    user_detail?: user_detailCreateNestedManyWithoutMsVendorInput
   }
 
   export type ms_subcontUncheckedCreateInput = {
@@ -35560,6 +36318,7 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
+    user_detail?: user_detailUncheckedCreateNestedManyWithoutMsVendorInput
   }
 
   export type ms_subcontUpdateInput = {
@@ -35570,6 +36329,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUpdateManyWithoutMsVendorNestedInput
   }
 
   export type ms_subcontUncheckedUpdateInput = {
@@ -35580,6 +36340,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUncheckedUpdateManyWithoutMsVendorNestedInput
   }
 
   export type ms_subcontCreateManyInput = {
@@ -35746,6 +36507,7 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
+    user_detail?: user_detailCreateNestedManyWithoutMsMaritalInput
   }
 
   export type ms_marital_statusUncheckedCreateInput = {
@@ -35756,6 +36518,7 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_by?: bigint | number | null
     updated_at?: Date | string | null
+    user_detail?: user_detailUncheckedCreateNestedManyWithoutMsMaritalInput
   }
 
   export type ms_marital_statusUpdateInput = {
@@ -35766,6 +36529,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUpdateManyWithoutMsMaritalNestedInput
   }
 
   export type ms_marital_statusUncheckedUpdateInput = {
@@ -35776,6 +36540,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUncheckedUpdateManyWithoutMsMaritalNestedInput
   }
 
   export type ms_marital_statusCreateManyInput = {
@@ -35913,9 +36678,7 @@ export namespace Prisma {
     longitude_in?: string | null
     latitude_in?: string | null
     address_in?: string | null
-    subcont?: string | null
     client?: string | null
-    shift_code?: string | null
     in_time?: Date | string | null
     out_time?: Date | string | null
     revice_in_time?: Date | string | null
@@ -35940,6 +36703,9 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at: Date | string
     is_late?: number | null
+    is_early_out?: number | null
+    MsUser?: UserCreateNestedOneWithoutAttendanceInput
+    MsShift?: ms_shiftCreateNestedOneWithoutAttendanceInput
   }
 
   export type attendanceUncheckedCreateInput = {
@@ -35975,6 +36741,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at: Date | string
     is_late?: number | null
+    is_early_out?: number | null
   }
 
   export type attendanceUpdateInput = {
@@ -35983,9 +36750,7 @@ export namespace Prisma {
     longitude_in?: NullableStringFieldUpdateOperationsInput | string | null
     latitude_in?: NullableStringFieldUpdateOperationsInput | string | null
     address_in?: NullableStringFieldUpdateOperationsInput | string | null
-    subcont?: NullableStringFieldUpdateOperationsInput | string | null
     client?: NullableStringFieldUpdateOperationsInput | string | null
-    shift_code?: NullableStringFieldUpdateOperationsInput | string | null
     in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     revice_in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -36010,6 +36775,9 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     is_late?: NullableIntFieldUpdateOperationsInput | number | null
+    is_early_out?: NullableIntFieldUpdateOperationsInput | number | null
+    MsUser?: UserUpdateOneWithoutAttendanceNestedInput
+    MsShift?: ms_shiftUpdateOneWithoutAttendanceNestedInput
   }
 
   export type attendanceUncheckedUpdateInput = {
@@ -36045,6 +36813,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     is_late?: NullableIntFieldUpdateOperationsInput | number | null
+    is_early_out?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type attendanceCreateManyInput = {
@@ -36079,6 +36848,7 @@ export namespace Prisma {
     updated_by?: bigint | number | null
     updated_at: Date | string
     is_late?: number | null
+    is_early_out?: number | null
   }
 
   export type attendanceUpdateManyMutationInput = {
@@ -36087,9 +36857,7 @@ export namespace Prisma {
     longitude_in?: NullableStringFieldUpdateOperationsInput | string | null
     latitude_in?: NullableStringFieldUpdateOperationsInput | string | null
     address_in?: NullableStringFieldUpdateOperationsInput | string | null
-    subcont?: NullableStringFieldUpdateOperationsInput | string | null
     client?: NullableStringFieldUpdateOperationsInput | string | null
-    shift_code?: NullableStringFieldUpdateOperationsInput | string | null
     in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     revice_in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -36114,6 +36882,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     is_late?: NullableIntFieldUpdateOperationsInput | number | null
+    is_early_out?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type attendanceUncheckedUpdateManyInput = {
@@ -36149,6 +36918,7 @@ export namespace Prisma {
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     is_late?: NullableIntFieldUpdateOperationsInput | number | null
+    is_early_out?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type trx_declarationCreateInput = {
@@ -36172,6 +36942,7 @@ export namespace Prisma {
     canceled_date?: Date | string | null
     canceled_remark?: string | null
     total_money_change: Decimal | DecimalJsLike | number | string
+    total_detail_cost: Decimal | DecimalJsLike | number | string
     status_id: bigint | number
     created_by?: bigint | number | null
     created_at: Date | string
@@ -36204,6 +36975,7 @@ export namespace Prisma {
     canceled_date?: Date | string | null
     canceled_remark?: string | null
     total_money_change: Decimal | DecimalJsLike | number | string
+    total_detail_cost: Decimal | DecimalJsLike | number | string
     status_id: bigint | number
     created_by?: bigint | number | null
     created_at: Date | string
@@ -36233,6 +37005,7 @@ export namespace Prisma {
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
     total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_detail_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -36265,6 +37038,7 @@ export namespace Prisma {
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
     total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_detail_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -36295,6 +37069,7 @@ export namespace Prisma {
     canceled_date?: Date | string | null
     canceled_remark?: string | null
     total_money_change: Decimal | DecimalJsLike | number | string
+    total_detail_cost: Decimal | DecimalJsLike | number | string
     status_id: bigint | number
     created_by?: bigint | number | null
     created_at: Date | string
@@ -36323,6 +37098,7 @@ export namespace Prisma {
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
     total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_detail_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -36353,6 +37129,7 @@ export namespace Prisma {
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
     total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_detail_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -36560,6 +37337,12 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type User_detailListRelationFilter = {
+    every?: user_detailWhereInput
+    some?: user_detailWhereInput
+    none?: user_detailWhereInput
+  }
+
   export type Mst_deptNullableRelationFilter = {
     is?: mst_deptWhereInput | null
     isNot?: mst_deptWhereInput | null
@@ -36607,9 +37390,19 @@ export namespace Prisma {
     none?: trx_leave_quotaWhereInput
   }
 
+  export type AttendanceListRelationFilter = {
+    every?: attendanceWhereInput
+    some?: attendanceWhereInput
+    none?: attendanceWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type user_detailOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type trx_leavesOrderByRelationAggregateInput = {
@@ -36637,6 +37430,10 @@ export namespace Prisma {
   }
 
   export type trx_leave_quotaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type attendanceOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -37729,7 +38526,9 @@ export namespace Prisma {
     end_date?: SortOrder
     total_leave_days?: SortOrder
     type?: SortOrder
-    destination_place?: SortOrder
+    destination_place1?: SortOrder
+    destination_place2?: SortOrder
+    destination_place3?: SortOrder
     transportation?: SortOrder
     lodging?: SortOrder
     work_status?: SortOrder
@@ -37742,7 +38541,9 @@ export namespace Prisma {
     fiskal_cost?: SortOrder
     other_cost?: SortOrder
     total_cost?: SortOrder
-    destination_city?: SortOrder
+    destination_city1?: SortOrder
+    destination_city2?: SortOrder
+    destination_city3?: SortOrder
     activity_agenda?: SortOrder
     symbol_currency?: SortOrder
     currency?: SortOrder
@@ -37812,7 +38613,9 @@ export namespace Prisma {
     end_date?: SortOrder
     total_leave_days?: SortOrder
     type?: SortOrder
-    destination_place?: SortOrder
+    destination_place1?: SortOrder
+    destination_place2?: SortOrder
+    destination_place3?: SortOrder
     transportation?: SortOrder
     lodging?: SortOrder
     work_status?: SortOrder
@@ -37825,7 +38628,9 @@ export namespace Prisma {
     fiskal_cost?: SortOrder
     other_cost?: SortOrder
     total_cost?: SortOrder
-    destination_city?: SortOrder
+    destination_city1?: SortOrder
+    destination_city2?: SortOrder
+    destination_city3?: SortOrder
     activity_agenda?: SortOrder
     symbol_currency?: SortOrder
     currency?: SortOrder
@@ -37879,7 +38684,9 @@ export namespace Prisma {
     end_date?: SortOrder
     total_leave_days?: SortOrder
     type?: SortOrder
-    destination_place?: SortOrder
+    destination_place1?: SortOrder
+    destination_place2?: SortOrder
+    destination_place3?: SortOrder
     transportation?: SortOrder
     lodging?: SortOrder
     work_status?: SortOrder
@@ -37892,7 +38699,9 @@ export namespace Prisma {
     fiskal_cost?: SortOrder
     other_cost?: SortOrder
     total_cost?: SortOrder
-    destination_city?: SortOrder
+    destination_city1?: SortOrder
+    destination_city2?: SortOrder
+    destination_city3?: SortOrder
     activity_agenda?: SortOrder
     symbol_currency?: SortOrder
     currency?: SortOrder
@@ -38005,7 +38814,6 @@ export namespace Prisma {
   export type trx_mutationAvgOrderByAggregateInput = {
     id?: SortOrder
     status_id?: SortOrder
-    created_by?: SortOrder
     updated_by?: SortOrder
   }
 
@@ -38076,7 +38884,6 @@ export namespace Prisma {
   export type trx_mutationSumOrderByAggregateInput = {
     id?: SortOrder
     status_id?: SortOrder
-    created_by?: SortOrder
     updated_by?: SortOrder
   }
 
@@ -38085,7 +38892,6 @@ export namespace Prisma {
     user?: SortOrder
     effective_date?: SortOrder
     reason?: SortOrder
-    file_upload?: SortOrder
     status_id?: SortOrder
     accept_to?: SortOrder
     accepted?: SortOrder
@@ -38119,7 +38925,6 @@ export namespace Prisma {
     user?: SortOrder
     effective_date?: SortOrder
     reason?: SortOrder
-    file_upload?: SortOrder
     status_id?: SortOrder
     accept_to?: SortOrder
     accepted?: SortOrder
@@ -38146,7 +38951,6 @@ export namespace Prisma {
     user?: SortOrder
     effective_date?: SortOrder
     reason?: SortOrder
-    file_upload?: SortOrder
     status_id?: SortOrder
     accept_to?: SortOrder
     accepted?: SortOrder
@@ -38173,6 +38977,26 @@ export namespace Prisma {
     status_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
+  }
+
+  export type UserNullableRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
+  export type Ms_marital_statusNullableRelationFilter = {
+    is?: ms_marital_statusWhereInput | null
+    isNot?: ms_marital_statusWhereInput | null
+  }
+
+  export type Ms_klasifikasiNullableRelationFilter = {
+    is?: ms_klasifikasiWhereInput | null
+    isNot?: ms_klasifikasiWhereInput | null
+  }
+
+  export type Ms_subcontNullableRelationFilter = {
+    is?: ms_subcontWhereInput | null
+    isNot?: ms_subcontWhereInput | null
   }
 
   export type user_detailCountOrderByAggregateInput = {
@@ -38562,6 +39386,11 @@ export namespace Prisma {
     is_deleted?: SortOrder
   }
 
+  export type Ms_shiftNullableRelationFilter = {
+    is?: ms_shiftWhereInput | null
+    isNot?: ms_shiftWhereInput | null
+  }
+
   export type attendanceCountOrderByAggregateInput = {
     id?: SortOrder
     remote_addr_in?: SortOrder
@@ -38595,6 +39424,7 @@ export namespace Prisma {
     updated_by?: SortOrder
     updated_at?: SortOrder
     is_late?: SortOrder
+    is_early_out?: SortOrder
   }
 
   export type attendanceAvgOrderByAggregateInput = {
@@ -38606,6 +39436,7 @@ export namespace Prisma {
     created_by?: SortOrder
     updated_by?: SortOrder
     is_late?: SortOrder
+    is_early_out?: SortOrder
   }
 
   export type attendanceMaxOrderByAggregateInput = {
@@ -38641,6 +39472,7 @@ export namespace Prisma {
     updated_by?: SortOrder
     updated_at?: SortOrder
     is_late?: SortOrder
+    is_early_out?: SortOrder
   }
 
   export type attendanceMinOrderByAggregateInput = {
@@ -38676,6 +39508,7 @@ export namespace Prisma {
     updated_by?: SortOrder
     updated_at?: SortOrder
     is_late?: SortOrder
+    is_early_out?: SortOrder
   }
 
   export type attendanceSumOrderByAggregateInput = {
@@ -38687,6 +39520,7 @@ export namespace Prisma {
     created_by?: SortOrder
     updated_by?: SortOrder
     is_late?: SortOrder
+    is_early_out?: SortOrder
   }
 
   export type DecimalFilter<$PrismaModel = never> = {
@@ -38738,6 +39572,7 @@ export namespace Prisma {
     canceled_date?: SortOrder
     canceled_remark?: SortOrder
     total_money_change?: SortOrder
+    total_detail_cost?: SortOrder
     status_id?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
@@ -38748,6 +39583,7 @@ export namespace Prisma {
   export type trx_declarationAvgOrderByAggregateInput = {
     id?: SortOrder
     total_money_change?: SortOrder
+    total_detail_cost?: SortOrder
     status_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -38776,6 +39612,7 @@ export namespace Prisma {
     canceled_date?: SortOrder
     canceled_remark?: SortOrder
     total_money_change?: SortOrder
+    total_detail_cost?: SortOrder
     status_id?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
@@ -38806,6 +39643,7 @@ export namespace Prisma {
     canceled_date?: SortOrder
     canceled_remark?: SortOrder
     total_money_change?: SortOrder
+    total_detail_cost?: SortOrder
     status_id?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
@@ -38816,6 +39654,7 @@ export namespace Prisma {
   export type trx_declarationSumOrderByAggregateInput = {
     id?: SortOrder
     total_money_change?: SortOrder
+    total_detail_cost?: SortOrder
     status_id?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
@@ -38925,6 +39764,13 @@ export namespace Prisma {
     updated_by?: SortOrder
   }
 
+  export type user_detailCreateNestedManyWithoutMsUserInput = {
+    create?: XOR<user_detailCreateWithoutMsUserInput, user_detailUncheckedCreateWithoutMsUserInput> | user_detailCreateWithoutMsUserInput[] | user_detailUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsUserInput | user_detailCreateOrConnectWithoutMsUserInput[]
+    createMany?: user_detailCreateManyMsUserInputEnvelope
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+  }
+
   export type mst_deptCreateNestedOneWithoutMst_userInput = {
     create?: XOR<mst_deptCreateWithoutMst_userInput, mst_deptUncheckedCreateWithoutMst_userInput>
     connectOrCreate?: mst_deptCreateOrConnectWithoutMst_userInput
@@ -38980,6 +39826,20 @@ export namespace Prisma {
     connect?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
   }
 
+  export type attendanceCreateNestedManyWithoutMsUserInput = {
+    create?: XOR<attendanceCreateWithoutMsUserInput, attendanceUncheckedCreateWithoutMsUserInput> | attendanceCreateWithoutMsUserInput[] | attendanceUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: attendanceCreateOrConnectWithoutMsUserInput | attendanceCreateOrConnectWithoutMsUserInput[]
+    createMany?: attendanceCreateManyMsUserInputEnvelope
+    connect?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+  }
+
+  export type user_detailUncheckedCreateNestedManyWithoutMsUserInput = {
+    create?: XOR<user_detailCreateWithoutMsUserInput, user_detailUncheckedCreateWithoutMsUserInput> | user_detailCreateWithoutMsUserInput[] | user_detailUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsUserInput | user_detailCreateOrConnectWithoutMsUserInput[]
+    createMany?: user_detailCreateManyMsUserInputEnvelope
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+  }
+
   export type trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput = {
     create?: XOR<trx_leavesCreateWithoutUser_dataInput, trx_leavesUncheckedCreateWithoutUser_dataInput> | trx_leavesCreateWithoutUser_dataInput[] | trx_leavesUncheckedCreateWithoutUser_dataInput[]
     connectOrCreate?: trx_leavesCreateOrConnectWithoutUser_dataInput | trx_leavesCreateOrConnectWithoutUser_dataInput[]
@@ -39029,6 +39889,13 @@ export namespace Prisma {
     connect?: trx_leave_quotaWhereUniqueInput | trx_leave_quotaWhereUniqueInput[]
   }
 
+  export type attendanceUncheckedCreateNestedManyWithoutMsUserInput = {
+    create?: XOR<attendanceCreateWithoutMsUserInput, attendanceUncheckedCreateWithoutMsUserInput> | attendanceCreateWithoutMsUserInput[] | attendanceUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: attendanceCreateOrConnectWithoutMsUserInput | attendanceCreateOrConnectWithoutMsUserInput[]
+    createMany?: attendanceCreateManyMsUserInputEnvelope
+    connect?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+  }
+
   export type BigIntFieldUpdateOperationsInput = {
     set?: bigint | number
     increment?: bigint | number
@@ -39063,6 +39930,20 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type user_detailUpdateManyWithoutMsUserNestedInput = {
+    create?: XOR<user_detailCreateWithoutMsUserInput, user_detailUncheckedCreateWithoutMsUserInput> | user_detailCreateWithoutMsUserInput[] | user_detailUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsUserInput | user_detailCreateOrConnectWithoutMsUserInput[]
+    upsert?: user_detailUpsertWithWhereUniqueWithoutMsUserInput | user_detailUpsertWithWhereUniqueWithoutMsUserInput[]
+    createMany?: user_detailCreateManyMsUserInputEnvelope
+    set?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    disconnect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    delete?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    update?: user_detailUpdateWithWhereUniqueWithoutMsUserInput | user_detailUpdateWithWhereUniqueWithoutMsUserInput[]
+    updateMany?: user_detailUpdateManyWithWhereWithoutMsUserInput | user_detailUpdateManyWithWhereWithoutMsUserInput[]
+    deleteMany?: user_detailScalarWhereInput | user_detailScalarWhereInput[]
   }
 
   export type mst_deptUpdateOneWithoutMst_userNestedInput = {
@@ -39173,6 +40054,34 @@ export namespace Prisma {
     deleteMany?: trx_leave_quotaScalarWhereInput | trx_leave_quotaScalarWhereInput[]
   }
 
+  export type attendanceUpdateManyWithoutMsUserNestedInput = {
+    create?: XOR<attendanceCreateWithoutMsUserInput, attendanceUncheckedCreateWithoutMsUserInput> | attendanceCreateWithoutMsUserInput[] | attendanceUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: attendanceCreateOrConnectWithoutMsUserInput | attendanceCreateOrConnectWithoutMsUserInput[]
+    upsert?: attendanceUpsertWithWhereUniqueWithoutMsUserInput | attendanceUpsertWithWhereUniqueWithoutMsUserInput[]
+    createMany?: attendanceCreateManyMsUserInputEnvelope
+    set?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    disconnect?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    delete?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    connect?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    update?: attendanceUpdateWithWhereUniqueWithoutMsUserInput | attendanceUpdateWithWhereUniqueWithoutMsUserInput[]
+    updateMany?: attendanceUpdateManyWithWhereWithoutMsUserInput | attendanceUpdateManyWithWhereWithoutMsUserInput[]
+    deleteMany?: attendanceScalarWhereInput | attendanceScalarWhereInput[]
+  }
+
+  export type user_detailUncheckedUpdateManyWithoutMsUserNestedInput = {
+    create?: XOR<user_detailCreateWithoutMsUserInput, user_detailUncheckedCreateWithoutMsUserInput> | user_detailCreateWithoutMsUserInput[] | user_detailUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsUserInput | user_detailCreateOrConnectWithoutMsUserInput[]
+    upsert?: user_detailUpsertWithWhereUniqueWithoutMsUserInput | user_detailUpsertWithWhereUniqueWithoutMsUserInput[]
+    createMany?: user_detailCreateManyMsUserInputEnvelope
+    set?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    disconnect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    delete?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    update?: user_detailUpdateWithWhereUniqueWithoutMsUserInput | user_detailUpdateWithWhereUniqueWithoutMsUserInput[]
+    updateMany?: user_detailUpdateManyWithWhereWithoutMsUserInput | user_detailUpdateManyWithWhereWithoutMsUserInput[]
+    deleteMany?: user_detailScalarWhereInput | user_detailScalarWhereInput[]
+  }
+
   export type trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput = {
     create?: XOR<trx_leavesCreateWithoutUser_dataInput, trx_leavesUncheckedCreateWithoutUser_dataInput> | trx_leavesCreateWithoutUser_dataInput[] | trx_leavesUncheckedCreateWithoutUser_dataInput[]
     connectOrCreate?: trx_leavesCreateOrConnectWithoutUser_dataInput | trx_leavesCreateOrConnectWithoutUser_dataInput[]
@@ -39269,6 +40178,20 @@ export namespace Prisma {
     update?: trx_leave_quotaUpdateWithWhereUniqueWithoutMsUserInput | trx_leave_quotaUpdateWithWhereUniqueWithoutMsUserInput[]
     updateMany?: trx_leave_quotaUpdateManyWithWhereWithoutMsUserInput | trx_leave_quotaUpdateManyWithWhereWithoutMsUserInput[]
     deleteMany?: trx_leave_quotaScalarWhereInput | trx_leave_quotaScalarWhereInput[]
+  }
+
+  export type attendanceUncheckedUpdateManyWithoutMsUserNestedInput = {
+    create?: XOR<attendanceCreateWithoutMsUserInput, attendanceUncheckedCreateWithoutMsUserInput> | attendanceCreateWithoutMsUserInput[] | attendanceUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: attendanceCreateOrConnectWithoutMsUserInput | attendanceCreateOrConnectWithoutMsUserInput[]
+    upsert?: attendanceUpsertWithWhereUniqueWithoutMsUserInput | attendanceUpsertWithWhereUniqueWithoutMsUserInput[]
+    createMany?: attendanceCreateManyMsUserInputEnvelope
+    set?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    disconnect?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    delete?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    connect?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    update?: attendanceUpdateWithWhereUniqueWithoutMsUserInput | attendanceUpdateWithWhereUniqueWithoutMsUserInput[]
+    updateMany?: attendanceUpdateManyWithWhereWithoutMsUserInput | attendanceUpdateManyWithWhereWithoutMsUserInput[]
+    deleteMany?: attendanceScalarWhereInput | attendanceScalarWhereInput[]
   }
 
   export type trx_leavesCreateNestedManyWithoutLeave_typeInput = {
@@ -39409,6 +40332,13 @@ export namespace Prisma {
     connect?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
   }
 
+  export type attendanceCreateNestedManyWithoutMsShiftInput = {
+    create?: XOR<attendanceCreateWithoutMsShiftInput, attendanceUncheckedCreateWithoutMsShiftInput> | attendanceCreateWithoutMsShiftInput[] | attendanceUncheckedCreateWithoutMsShiftInput[]
+    connectOrCreate?: attendanceCreateOrConnectWithoutMsShiftInput | attendanceCreateOrConnectWithoutMsShiftInput[]
+    createMany?: attendanceCreateManyMsShiftInputEnvelope
+    connect?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+  }
+
   export type ms_detail_shift_groupUncheckedCreateNestedManyWithoutMsShiftInput = {
     create?: XOR<ms_detail_shift_groupCreateWithoutMsShiftInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput> | ms_detail_shift_groupCreateWithoutMsShiftInput[] | ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput[]
     connectOrCreate?: ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput | ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput[]
@@ -39421,6 +40351,13 @@ export namespace Prisma {
     connectOrCreate?: trx_ovtCreateOrConnectWithoutShift_dataInput | trx_ovtCreateOrConnectWithoutShift_dataInput[]
     createMany?: trx_ovtCreateManyShift_dataInputEnvelope
     connect?: trx_ovtWhereUniqueInput | trx_ovtWhereUniqueInput[]
+  }
+
+  export type attendanceUncheckedCreateNestedManyWithoutMsShiftInput = {
+    create?: XOR<attendanceCreateWithoutMsShiftInput, attendanceUncheckedCreateWithoutMsShiftInput> | attendanceCreateWithoutMsShiftInput[] | attendanceUncheckedCreateWithoutMsShiftInput[]
+    connectOrCreate?: attendanceCreateOrConnectWithoutMsShiftInput | attendanceCreateOrConnectWithoutMsShiftInput[]
+    createMany?: attendanceCreateManyMsShiftInputEnvelope
+    connect?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
   }
 
   export type ms_detail_shift_groupUpdateManyWithoutMsShiftNestedInput = {
@@ -39451,6 +40388,20 @@ export namespace Prisma {
     deleteMany?: trx_ovtScalarWhereInput | trx_ovtScalarWhereInput[]
   }
 
+  export type attendanceUpdateManyWithoutMsShiftNestedInput = {
+    create?: XOR<attendanceCreateWithoutMsShiftInput, attendanceUncheckedCreateWithoutMsShiftInput> | attendanceCreateWithoutMsShiftInput[] | attendanceUncheckedCreateWithoutMsShiftInput[]
+    connectOrCreate?: attendanceCreateOrConnectWithoutMsShiftInput | attendanceCreateOrConnectWithoutMsShiftInput[]
+    upsert?: attendanceUpsertWithWhereUniqueWithoutMsShiftInput | attendanceUpsertWithWhereUniqueWithoutMsShiftInput[]
+    createMany?: attendanceCreateManyMsShiftInputEnvelope
+    set?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    disconnect?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    delete?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    connect?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    update?: attendanceUpdateWithWhereUniqueWithoutMsShiftInput | attendanceUpdateWithWhereUniqueWithoutMsShiftInput[]
+    updateMany?: attendanceUpdateManyWithWhereWithoutMsShiftInput | attendanceUpdateManyWithWhereWithoutMsShiftInput[]
+    deleteMany?: attendanceScalarWhereInput | attendanceScalarWhereInput[]
+  }
+
   export type ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftNestedInput = {
     create?: XOR<ms_detail_shift_groupCreateWithoutMsShiftInput, ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput> | ms_detail_shift_groupCreateWithoutMsShiftInput[] | ms_detail_shift_groupUncheckedCreateWithoutMsShiftInput[]
     connectOrCreate?: ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput | ms_detail_shift_groupCreateOrConnectWithoutMsShiftInput[]
@@ -39477,6 +40428,20 @@ export namespace Prisma {
     update?: trx_ovtUpdateWithWhereUniqueWithoutShift_dataInput | trx_ovtUpdateWithWhereUniqueWithoutShift_dataInput[]
     updateMany?: trx_ovtUpdateManyWithWhereWithoutShift_dataInput | trx_ovtUpdateManyWithWhereWithoutShift_dataInput[]
     deleteMany?: trx_ovtScalarWhereInput | trx_ovtScalarWhereInput[]
+  }
+
+  export type attendanceUncheckedUpdateManyWithoutMsShiftNestedInput = {
+    create?: XOR<attendanceCreateWithoutMsShiftInput, attendanceUncheckedCreateWithoutMsShiftInput> | attendanceCreateWithoutMsShiftInput[] | attendanceUncheckedCreateWithoutMsShiftInput[]
+    connectOrCreate?: attendanceCreateOrConnectWithoutMsShiftInput | attendanceCreateOrConnectWithoutMsShiftInput[]
+    upsert?: attendanceUpsertWithWhereUniqueWithoutMsShiftInput | attendanceUpsertWithWhereUniqueWithoutMsShiftInput[]
+    createMany?: attendanceCreateManyMsShiftInputEnvelope
+    set?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    disconnect?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    delete?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    connect?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+    update?: attendanceUpdateWithWhereUniqueWithoutMsShiftInput | attendanceUpdateWithWhereUniqueWithoutMsShiftInput[]
+    updateMany?: attendanceUpdateManyWithWhereWithoutMsShiftInput | attendanceUpdateManyWithWhereWithoutMsShiftInput[]
+    deleteMany?: attendanceScalarWhereInput | attendanceScalarWhereInput[]
   }
 
   export type ms_detail_shift_groupCreateNestedManyWithoutMsShiftGroupInput = {
@@ -39841,6 +40806,196 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTrx_resignInput, UserUpdateWithoutTrx_resignInput>, UserUncheckedUpdateWithoutTrx_resignInput>
   }
 
+  export type UserCreateNestedOneWithoutUser_detailInput = {
+    create?: XOR<UserCreateWithoutUser_detailInput, UserUncheckedCreateWithoutUser_detailInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUser_detailInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ms_marital_statusCreateNestedOneWithoutUser_detailInput = {
+    create?: XOR<ms_marital_statusCreateWithoutUser_detailInput, ms_marital_statusUncheckedCreateWithoutUser_detailInput>
+    connectOrCreate?: ms_marital_statusCreateOrConnectWithoutUser_detailInput
+    connect?: ms_marital_statusWhereUniqueInput
+  }
+
+  export type ms_klasifikasiCreateNestedOneWithoutUser_detailInput = {
+    create?: XOR<ms_klasifikasiCreateWithoutUser_detailInput, ms_klasifikasiUncheckedCreateWithoutUser_detailInput>
+    connectOrCreate?: ms_klasifikasiCreateOrConnectWithoutUser_detailInput
+    connect?: ms_klasifikasiWhereUniqueInput
+  }
+
+  export type ms_subcontCreateNestedOneWithoutUser_detailInput = {
+    create?: XOR<ms_subcontCreateWithoutUser_detailInput, ms_subcontUncheckedCreateWithoutUser_detailInput>
+    connectOrCreate?: ms_subcontCreateOrConnectWithoutUser_detailInput
+    connect?: ms_subcontWhereUniqueInput
+  }
+
+  export type UserUpdateOneWithoutUser_detailNestedInput = {
+    create?: XOR<UserCreateWithoutUser_detailInput, UserUncheckedCreateWithoutUser_detailInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUser_detailInput
+    upsert?: UserUpsertWithoutUser_detailInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUser_detailInput, UserUpdateWithoutUser_detailInput>, UserUncheckedUpdateWithoutUser_detailInput>
+  }
+
+  export type ms_marital_statusUpdateOneWithoutUser_detailNestedInput = {
+    create?: XOR<ms_marital_statusCreateWithoutUser_detailInput, ms_marital_statusUncheckedCreateWithoutUser_detailInput>
+    connectOrCreate?: ms_marital_statusCreateOrConnectWithoutUser_detailInput
+    upsert?: ms_marital_statusUpsertWithoutUser_detailInput
+    disconnect?: ms_marital_statusWhereInput | boolean
+    delete?: ms_marital_statusWhereInput | boolean
+    connect?: ms_marital_statusWhereUniqueInput
+    update?: XOR<XOR<ms_marital_statusUpdateToOneWithWhereWithoutUser_detailInput, ms_marital_statusUpdateWithoutUser_detailInput>, ms_marital_statusUncheckedUpdateWithoutUser_detailInput>
+  }
+
+  export type ms_klasifikasiUpdateOneWithoutUser_detailNestedInput = {
+    create?: XOR<ms_klasifikasiCreateWithoutUser_detailInput, ms_klasifikasiUncheckedCreateWithoutUser_detailInput>
+    connectOrCreate?: ms_klasifikasiCreateOrConnectWithoutUser_detailInput
+    upsert?: ms_klasifikasiUpsertWithoutUser_detailInput
+    disconnect?: ms_klasifikasiWhereInput | boolean
+    delete?: ms_klasifikasiWhereInput | boolean
+    connect?: ms_klasifikasiWhereUniqueInput
+    update?: XOR<XOR<ms_klasifikasiUpdateToOneWithWhereWithoutUser_detailInput, ms_klasifikasiUpdateWithoutUser_detailInput>, ms_klasifikasiUncheckedUpdateWithoutUser_detailInput>
+  }
+
+  export type ms_subcontUpdateOneWithoutUser_detailNestedInput = {
+    create?: XOR<ms_subcontCreateWithoutUser_detailInput, ms_subcontUncheckedCreateWithoutUser_detailInput>
+    connectOrCreate?: ms_subcontCreateOrConnectWithoutUser_detailInput
+    upsert?: ms_subcontUpsertWithoutUser_detailInput
+    disconnect?: ms_subcontWhereInput | boolean
+    delete?: ms_subcontWhereInput | boolean
+    connect?: ms_subcontWhereUniqueInput
+    update?: XOR<XOR<ms_subcontUpdateToOneWithWhereWithoutUser_detailInput, ms_subcontUpdateWithoutUser_detailInput>, ms_subcontUncheckedUpdateWithoutUser_detailInput>
+  }
+
+  export type user_detailCreateNestedManyWithoutMsKlasifikasiInput = {
+    create?: XOR<user_detailCreateWithoutMsKlasifikasiInput, user_detailUncheckedCreateWithoutMsKlasifikasiInput> | user_detailCreateWithoutMsKlasifikasiInput[] | user_detailUncheckedCreateWithoutMsKlasifikasiInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsKlasifikasiInput | user_detailCreateOrConnectWithoutMsKlasifikasiInput[]
+    createMany?: user_detailCreateManyMsKlasifikasiInputEnvelope
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+  }
+
+  export type user_detailUncheckedCreateNestedManyWithoutMsKlasifikasiInput = {
+    create?: XOR<user_detailCreateWithoutMsKlasifikasiInput, user_detailUncheckedCreateWithoutMsKlasifikasiInput> | user_detailCreateWithoutMsKlasifikasiInput[] | user_detailUncheckedCreateWithoutMsKlasifikasiInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsKlasifikasiInput | user_detailCreateOrConnectWithoutMsKlasifikasiInput[]
+    createMany?: user_detailCreateManyMsKlasifikasiInputEnvelope
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+  }
+
+  export type user_detailUpdateManyWithoutMsKlasifikasiNestedInput = {
+    create?: XOR<user_detailCreateWithoutMsKlasifikasiInput, user_detailUncheckedCreateWithoutMsKlasifikasiInput> | user_detailCreateWithoutMsKlasifikasiInput[] | user_detailUncheckedCreateWithoutMsKlasifikasiInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsKlasifikasiInput | user_detailCreateOrConnectWithoutMsKlasifikasiInput[]
+    upsert?: user_detailUpsertWithWhereUniqueWithoutMsKlasifikasiInput | user_detailUpsertWithWhereUniqueWithoutMsKlasifikasiInput[]
+    createMany?: user_detailCreateManyMsKlasifikasiInputEnvelope
+    set?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    disconnect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    delete?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    update?: user_detailUpdateWithWhereUniqueWithoutMsKlasifikasiInput | user_detailUpdateWithWhereUniqueWithoutMsKlasifikasiInput[]
+    updateMany?: user_detailUpdateManyWithWhereWithoutMsKlasifikasiInput | user_detailUpdateManyWithWhereWithoutMsKlasifikasiInput[]
+    deleteMany?: user_detailScalarWhereInput | user_detailScalarWhereInput[]
+  }
+
+  export type user_detailUncheckedUpdateManyWithoutMsKlasifikasiNestedInput = {
+    create?: XOR<user_detailCreateWithoutMsKlasifikasiInput, user_detailUncheckedCreateWithoutMsKlasifikasiInput> | user_detailCreateWithoutMsKlasifikasiInput[] | user_detailUncheckedCreateWithoutMsKlasifikasiInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsKlasifikasiInput | user_detailCreateOrConnectWithoutMsKlasifikasiInput[]
+    upsert?: user_detailUpsertWithWhereUniqueWithoutMsKlasifikasiInput | user_detailUpsertWithWhereUniqueWithoutMsKlasifikasiInput[]
+    createMany?: user_detailCreateManyMsKlasifikasiInputEnvelope
+    set?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    disconnect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    delete?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    update?: user_detailUpdateWithWhereUniqueWithoutMsKlasifikasiInput | user_detailUpdateWithWhereUniqueWithoutMsKlasifikasiInput[]
+    updateMany?: user_detailUpdateManyWithWhereWithoutMsKlasifikasiInput | user_detailUpdateManyWithWhereWithoutMsKlasifikasiInput[]
+    deleteMany?: user_detailScalarWhereInput | user_detailScalarWhereInput[]
+  }
+
+  export type user_detailCreateNestedManyWithoutMsVendorInput = {
+    create?: XOR<user_detailCreateWithoutMsVendorInput, user_detailUncheckedCreateWithoutMsVendorInput> | user_detailCreateWithoutMsVendorInput[] | user_detailUncheckedCreateWithoutMsVendorInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsVendorInput | user_detailCreateOrConnectWithoutMsVendorInput[]
+    createMany?: user_detailCreateManyMsVendorInputEnvelope
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+  }
+
+  export type user_detailUncheckedCreateNestedManyWithoutMsVendorInput = {
+    create?: XOR<user_detailCreateWithoutMsVendorInput, user_detailUncheckedCreateWithoutMsVendorInput> | user_detailCreateWithoutMsVendorInput[] | user_detailUncheckedCreateWithoutMsVendorInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsVendorInput | user_detailCreateOrConnectWithoutMsVendorInput[]
+    createMany?: user_detailCreateManyMsVendorInputEnvelope
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+  }
+
+  export type user_detailUpdateManyWithoutMsVendorNestedInput = {
+    create?: XOR<user_detailCreateWithoutMsVendorInput, user_detailUncheckedCreateWithoutMsVendorInput> | user_detailCreateWithoutMsVendorInput[] | user_detailUncheckedCreateWithoutMsVendorInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsVendorInput | user_detailCreateOrConnectWithoutMsVendorInput[]
+    upsert?: user_detailUpsertWithWhereUniqueWithoutMsVendorInput | user_detailUpsertWithWhereUniqueWithoutMsVendorInput[]
+    createMany?: user_detailCreateManyMsVendorInputEnvelope
+    set?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    disconnect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    delete?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    update?: user_detailUpdateWithWhereUniqueWithoutMsVendorInput | user_detailUpdateWithWhereUniqueWithoutMsVendorInput[]
+    updateMany?: user_detailUpdateManyWithWhereWithoutMsVendorInput | user_detailUpdateManyWithWhereWithoutMsVendorInput[]
+    deleteMany?: user_detailScalarWhereInput | user_detailScalarWhereInput[]
+  }
+
+  export type user_detailUncheckedUpdateManyWithoutMsVendorNestedInput = {
+    create?: XOR<user_detailCreateWithoutMsVendorInput, user_detailUncheckedCreateWithoutMsVendorInput> | user_detailCreateWithoutMsVendorInput[] | user_detailUncheckedCreateWithoutMsVendorInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsVendorInput | user_detailCreateOrConnectWithoutMsVendorInput[]
+    upsert?: user_detailUpsertWithWhereUniqueWithoutMsVendorInput | user_detailUpsertWithWhereUniqueWithoutMsVendorInput[]
+    createMany?: user_detailCreateManyMsVendorInputEnvelope
+    set?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    disconnect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    delete?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    update?: user_detailUpdateWithWhereUniqueWithoutMsVendorInput | user_detailUpdateWithWhereUniqueWithoutMsVendorInput[]
+    updateMany?: user_detailUpdateManyWithWhereWithoutMsVendorInput | user_detailUpdateManyWithWhereWithoutMsVendorInput[]
+    deleteMany?: user_detailScalarWhereInput | user_detailScalarWhereInput[]
+  }
+
+  export type user_detailCreateNestedManyWithoutMsMaritalInput = {
+    create?: XOR<user_detailCreateWithoutMsMaritalInput, user_detailUncheckedCreateWithoutMsMaritalInput> | user_detailCreateWithoutMsMaritalInput[] | user_detailUncheckedCreateWithoutMsMaritalInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsMaritalInput | user_detailCreateOrConnectWithoutMsMaritalInput[]
+    createMany?: user_detailCreateManyMsMaritalInputEnvelope
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+  }
+
+  export type user_detailUncheckedCreateNestedManyWithoutMsMaritalInput = {
+    create?: XOR<user_detailCreateWithoutMsMaritalInput, user_detailUncheckedCreateWithoutMsMaritalInput> | user_detailCreateWithoutMsMaritalInput[] | user_detailUncheckedCreateWithoutMsMaritalInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsMaritalInput | user_detailCreateOrConnectWithoutMsMaritalInput[]
+    createMany?: user_detailCreateManyMsMaritalInputEnvelope
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+  }
+
+  export type user_detailUpdateManyWithoutMsMaritalNestedInput = {
+    create?: XOR<user_detailCreateWithoutMsMaritalInput, user_detailUncheckedCreateWithoutMsMaritalInput> | user_detailCreateWithoutMsMaritalInput[] | user_detailUncheckedCreateWithoutMsMaritalInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsMaritalInput | user_detailCreateOrConnectWithoutMsMaritalInput[]
+    upsert?: user_detailUpsertWithWhereUniqueWithoutMsMaritalInput | user_detailUpsertWithWhereUniqueWithoutMsMaritalInput[]
+    createMany?: user_detailCreateManyMsMaritalInputEnvelope
+    set?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    disconnect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    delete?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    update?: user_detailUpdateWithWhereUniqueWithoutMsMaritalInput | user_detailUpdateWithWhereUniqueWithoutMsMaritalInput[]
+    updateMany?: user_detailUpdateManyWithWhereWithoutMsMaritalInput | user_detailUpdateManyWithWhereWithoutMsMaritalInput[]
+    deleteMany?: user_detailScalarWhereInput | user_detailScalarWhereInput[]
+  }
+
+  export type user_detailUncheckedUpdateManyWithoutMsMaritalNestedInput = {
+    create?: XOR<user_detailCreateWithoutMsMaritalInput, user_detailUncheckedCreateWithoutMsMaritalInput> | user_detailCreateWithoutMsMaritalInput[] | user_detailUncheckedCreateWithoutMsMaritalInput[]
+    connectOrCreate?: user_detailCreateOrConnectWithoutMsMaritalInput | user_detailCreateOrConnectWithoutMsMaritalInput[]
+    upsert?: user_detailUpsertWithWhereUniqueWithoutMsMaritalInput | user_detailUpsertWithWhereUniqueWithoutMsMaritalInput[]
+    createMany?: user_detailCreateManyMsMaritalInputEnvelope
+    set?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    disconnect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    delete?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    connect?: user_detailWhereUniqueInput | user_detailWhereUniqueInput[]
+    update?: user_detailUpdateWithWhereUniqueWithoutMsMaritalInput | user_detailUpdateWithWhereUniqueWithoutMsMaritalInput[]
+    updateMany?: user_detailUpdateManyWithWhereWithoutMsMaritalInput | user_detailUpdateManyWithWhereWithoutMsMaritalInput[]
+    deleteMany?: user_detailScalarWhereInput | user_detailScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutTrx_leave_quotaInput = {
     create?: XOR<UserCreateWithoutTrx_leave_quotaInput, UserUncheckedCreateWithoutTrx_leave_quotaInput>
     connectOrCreate?: UserCreateOrConnectWithoutTrx_leave_quotaInput
@@ -39867,6 +41022,38 @@ export namespace Prisma {
     upsert?: ms_leave_typesUpsertWithoutTrx_leave_quotaInput
     connect?: ms_leave_typesWhereUniqueInput
     update?: XOR<XOR<ms_leave_typesUpdateToOneWithWhereWithoutTrx_leave_quotaInput, ms_leave_typesUpdateWithoutTrx_leave_quotaInput>, ms_leave_typesUncheckedUpdateWithoutTrx_leave_quotaInput>
+  }
+
+  export type UserCreateNestedOneWithoutAttendanceInput = {
+    create?: XOR<UserCreateWithoutAttendanceInput, UserUncheckedCreateWithoutAttendanceInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAttendanceInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ms_shiftCreateNestedOneWithoutAttendanceInput = {
+    create?: XOR<ms_shiftCreateWithoutAttendanceInput, ms_shiftUncheckedCreateWithoutAttendanceInput>
+    connectOrCreate?: ms_shiftCreateOrConnectWithoutAttendanceInput
+    connect?: ms_shiftWhereUniqueInput
+  }
+
+  export type UserUpdateOneWithoutAttendanceNestedInput = {
+    create?: XOR<UserCreateWithoutAttendanceInput, UserUncheckedCreateWithoutAttendanceInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAttendanceInput
+    upsert?: UserUpsertWithoutAttendanceInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAttendanceInput, UserUpdateWithoutAttendanceInput>, UserUncheckedUpdateWithoutAttendanceInput>
+  }
+
+  export type ms_shiftUpdateOneWithoutAttendanceNestedInput = {
+    create?: XOR<ms_shiftCreateWithoutAttendanceInput, ms_shiftUncheckedCreateWithoutAttendanceInput>
+    connectOrCreate?: ms_shiftCreateOrConnectWithoutAttendanceInput
+    upsert?: ms_shiftUpsertWithoutAttendanceInput
+    disconnect?: ms_shiftWhereInput | boolean
+    delete?: ms_shiftWhereInput | boolean
+    connect?: ms_shiftWhereUniqueInput
+    update?: XOR<XOR<ms_shiftUpdateToOneWithWhereWithoutAttendanceInput, ms_shiftUpdateWithoutAttendanceInput>, ms_shiftUncheckedUpdateWithoutAttendanceInput>
   }
 
   export type trx_official_travelCreateNestedOneWithoutTrx_declarationInput = {
@@ -40260,6 +41447,59 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
+  export type user_detailCreateWithoutMsUserInput = {
+    id?: bigint | number
+    nrp?: string | null
+    name?: string | null
+    email: string
+    gender?: string | null
+    birth_date: Date | string
+    address: string
+    address_coordinate?: string | null
+    plant: string
+    join_date: Date | string
+    end_date: Date | string
+    status: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    MsMarital?: ms_marital_statusCreateNestedOneWithoutUser_detailInput
+    MsKlasifikasi?: ms_klasifikasiCreateNestedOneWithoutUser_detailInput
+    MsVendor?: ms_subcontCreateNestedOneWithoutUser_detailInput
+  }
+
+  export type user_detailUncheckedCreateWithoutMsUserInput = {
+    id?: bigint | number
+    nrp?: string | null
+    name?: string | null
+    email: string
+    marital_status: number
+    gender?: string | null
+    birth_date: Date | string
+    address: string
+    address_coordinate?: string | null
+    plant: string
+    join_date: Date | string
+    end_date: Date | string
+    status: number
+    klasifikasi: number
+    vendor: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+  }
+
+  export type user_detailCreateOrConnectWithoutMsUserInput = {
+    where: user_detailWhereUniqueInput
+    create: XOR<user_detailCreateWithoutMsUserInput, user_detailUncheckedCreateWithoutMsUserInput>
+  }
+
+  export type user_detailCreateManyMsUserInputEnvelope = {
+    data: user_detailCreateManyMsUserInput | user_detailCreateManyMsUserInput[]
+  }
+
   export type mst_deptCreateWithoutMst_userInput = {
     id: number
     nama: string
@@ -40437,7 +41677,9 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     type: string
-    destination_place: string
+    destination_place1: string
+    destination_place2?: string | null
+    destination_place3?: string | null
     transportation: string
     lodging: string
     work_status: string
@@ -40450,7 +41692,9 @@ export namespace Prisma {
     fiskal_cost?: Decimal | DecimalJsLike | number | string | null
     other_cost?: Decimal | DecimalJsLike | number | string | null
     total_cost?: Decimal | DecimalJsLike | number | string | null
-    destination_city: string
+    destination_city1: string
+    destination_city2?: string | null
+    destination_city3?: string | null
     activity_agenda: string
     symbol_currency?: string | null
     currency?: string | null
@@ -40504,7 +41748,9 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     type: string
-    destination_place: string
+    destination_place1: string
+    destination_place2?: string | null
+    destination_place3?: string | null
     transportation: string
     lodging: string
     work_status: string
@@ -40517,7 +41763,9 @@ export namespace Prisma {
     fiskal_cost?: Decimal | DecimalJsLike | number | string | null
     other_cost?: Decimal | DecimalJsLike | number | string | null
     total_cost?: Decimal | DecimalJsLike | number | string | null
-    destination_city: string
+    destination_city1: string
+    destination_city2?: string | null
+    destination_city3?: string | null
     activity_agenda: string
     symbol_currency?: string | null
     currency?: string | null
@@ -40597,7 +41845,7 @@ export namespace Prisma {
     canceled?: string | null
     canceled_date?: Date | string | null
     canceled_remark?: string | null
-    created_by?: bigint | number | null
+    created_by: string
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
@@ -40628,7 +41876,7 @@ export namespace Prisma {
     canceled?: string | null
     canceled_date?: Date | string | null
     canceled_remark?: string | null
-    created_by?: bigint | number | null
+    created_by: string
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
@@ -40646,7 +41894,6 @@ export namespace Prisma {
   export type trx_resignCreateWithoutUser_dataInput = {
     effective_date: Date | string
     reason: string
-    file_upload: string
     status_id: bigint | number
     accept_to: string
     accepted?: string | null
@@ -40672,7 +41919,6 @@ export namespace Prisma {
     id?: number
     effective_date: Date | string
     reason: string
-    file_upload: string
     status_id: bigint | number
     accept_to: string
     accepted?: string | null
@@ -40774,6 +42020,127 @@ export namespace Prisma {
 
   export type trx_leave_quotaCreateManyMsUserInputEnvelope = {
     data: trx_leave_quotaCreateManyMsUserInput | trx_leave_quotaCreateManyMsUserInput[]
+  }
+
+  export type attendanceCreateWithoutMsUserInput = {
+    id?: bigint | number
+    remote_addr_in?: string | null
+    longitude_in?: string | null
+    latitude_in?: string | null
+    address_in?: string | null
+    client?: string | null
+    in_time?: Date | string | null
+    out_time?: Date | string | null
+    revice_in_time?: Date | string | null
+    revice_out_time?: Date | string | null
+    remote_addr_out?: string | null
+    longitude_out?: string | null
+    latitude_out?: string | null
+    address_out?: string | null
+    work_metode?: string | null
+    foto_in?: string | null
+    foto_out?: string | null
+    note?: string | null
+    checked_by?: string | null
+    checked_at?: Date | string | null
+    reject_reason?: string | null
+    is_ovt?: number | null
+    is_happy?: number | null
+    flag?: number | null
+    is_sent_sap?: number | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    is_late?: number | null
+    is_early_out?: number | null
+    MsShift?: ms_shiftCreateNestedOneWithoutAttendanceInput
+  }
+
+  export type attendanceUncheckedCreateWithoutMsUserInput = {
+    id?: bigint | number
+    remote_addr_in?: string | null
+    longitude_in?: string | null
+    latitude_in?: string | null
+    address_in?: string | null
+    client?: string | null
+    shift_code?: string | null
+    in_time?: Date | string | null
+    out_time?: Date | string | null
+    revice_in_time?: Date | string | null
+    revice_out_time?: Date | string | null
+    remote_addr_out?: string | null
+    longitude_out?: string | null
+    latitude_out?: string | null
+    address_out?: string | null
+    work_metode?: string | null
+    foto_in?: string | null
+    foto_out?: string | null
+    note?: string | null
+    checked_by?: string | null
+    checked_at?: Date | string | null
+    reject_reason?: string | null
+    is_ovt?: number | null
+    is_happy?: number | null
+    flag?: number | null
+    is_sent_sap?: number | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    is_late?: number | null
+    is_early_out?: number | null
+  }
+
+  export type attendanceCreateOrConnectWithoutMsUserInput = {
+    where: attendanceWhereUniqueInput
+    create: XOR<attendanceCreateWithoutMsUserInput, attendanceUncheckedCreateWithoutMsUserInput>
+  }
+
+  export type attendanceCreateManyMsUserInputEnvelope = {
+    data: attendanceCreateManyMsUserInput | attendanceCreateManyMsUserInput[]
+  }
+
+  export type user_detailUpsertWithWhereUniqueWithoutMsUserInput = {
+    where: user_detailWhereUniqueInput
+    update: XOR<user_detailUpdateWithoutMsUserInput, user_detailUncheckedUpdateWithoutMsUserInput>
+    create: XOR<user_detailCreateWithoutMsUserInput, user_detailUncheckedCreateWithoutMsUserInput>
+  }
+
+  export type user_detailUpdateWithWhereUniqueWithoutMsUserInput = {
+    where: user_detailWhereUniqueInput
+    data: XOR<user_detailUpdateWithoutMsUserInput, user_detailUncheckedUpdateWithoutMsUserInput>
+  }
+
+  export type user_detailUpdateManyWithWhereWithoutMsUserInput = {
+    where: user_detailScalarWhereInput
+    data: XOR<user_detailUpdateManyMutationInput, user_detailUncheckedUpdateManyWithoutMsUserInput>
+  }
+
+  export type user_detailScalarWhereInput = {
+    AND?: user_detailScalarWhereInput | user_detailScalarWhereInput[]
+    OR?: user_detailScalarWhereInput[]
+    NOT?: user_detailScalarWhereInput | user_detailScalarWhereInput[]
+    id?: BigIntFilter<"user_detail"> | bigint | number
+    user_id?: BigIntFilter<"user_detail"> | bigint | number
+    nrp?: StringNullableFilter<"user_detail"> | string | null
+    name?: StringNullableFilter<"user_detail"> | string | null
+    email?: StringFilter<"user_detail"> | string
+    marital_status?: IntFilter<"user_detail"> | number
+    gender?: StringNullableFilter<"user_detail"> | string | null
+    birth_date?: DateTimeFilter<"user_detail"> | Date | string
+    address?: StringFilter<"user_detail"> | string
+    address_coordinate?: StringNullableFilter<"user_detail"> | string | null
+    plant?: StringFilter<"user_detail"> | string
+    join_date?: DateTimeFilter<"user_detail"> | Date | string
+    end_date?: DateTimeFilter<"user_detail"> | Date | string
+    status?: IntFilter<"user_detail"> | number
+    klasifikasi?: IntFilter<"user_detail"> | number
+    vendor?: IntFilter<"user_detail"> | number
+    created_by?: BigIntNullableFilter<"user_detail"> | bigint | number | null
+    created_at?: DateTimeNullableFilter<"user_detail"> | Date | string | null
+    updated_by?: BigIntNullableFilter<"user_detail"> | bigint | number | null
+    updated_at?: DateTimeNullableFilter<"user_detail"> | Date | string | null
   }
 
   export type mst_deptUpsertWithoutMst_userInput = {
@@ -40943,7 +42310,9 @@ export namespace Prisma {
     end_date?: DateTimeFilter<"trx_official_travel"> | Date | string
     total_leave_days?: BigIntFilter<"trx_official_travel"> | bigint | number
     type?: StringFilter<"trx_official_travel"> | string
-    destination_place?: StringFilter<"trx_official_travel"> | string
+    destination_place1?: StringFilter<"trx_official_travel"> | string
+    destination_place2?: StringNullableFilter<"trx_official_travel"> | string | null
+    destination_place3?: StringNullableFilter<"trx_official_travel"> | string | null
     transportation?: StringFilter<"trx_official_travel"> | string
     lodging?: StringFilter<"trx_official_travel"> | string
     work_status?: StringFilter<"trx_official_travel"> | string
@@ -40956,7 +42325,9 @@ export namespace Prisma {
     fiskal_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     other_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
     total_cost?: DecimalNullableFilter<"trx_official_travel"> | Decimal | DecimalJsLike | number | string | null
-    destination_city?: StringFilter<"trx_official_travel"> | string
+    destination_city1?: StringFilter<"trx_official_travel"> | string
+    destination_city2?: StringNullableFilter<"trx_official_travel"> | string | null
+    destination_city3?: StringNullableFilter<"trx_official_travel"> | string | null
     activity_agenda?: StringFilter<"trx_official_travel"> | string
     symbol_currency?: StringNullableFilter<"trx_official_travel"> | string | null
     currency?: StringNullableFilter<"trx_official_travel"> | string | null
@@ -41047,7 +42418,7 @@ export namespace Prisma {
     canceled?: StringNullableFilter<"trx_mutation"> | string | null
     canceled_date?: DateTimeNullableFilter<"trx_mutation"> | Date | string | null
     canceled_remark?: StringNullableFilter<"trx_mutation"> | string | null
-    created_by?: BigIntNullableFilter<"trx_mutation"> | bigint | number | null
+    created_by?: StringFilter<"trx_mutation"> | string
     created_at?: DateTimeFilter<"trx_mutation"> | Date | string
     updated_by?: BigIntNullableFilter<"trx_mutation"> | bigint | number | null
     updated_at?: DateTimeFilter<"trx_mutation"> | Date | string
@@ -41077,7 +42448,6 @@ export namespace Prisma {
     user?: StringFilter<"trx_resign"> | string
     effective_date?: DateTimeFilter<"trx_resign"> | Date | string
     reason?: StringFilter<"trx_resign"> | string
-    file_upload?: StringFilter<"trx_resign"> | string
     status_id?: BigIntFilter<"trx_resign"> | bigint | number
     accept_to?: StringFilter<"trx_resign"> | string
     accepted?: StringNullableFilter<"trx_resign"> | string | null
@@ -41165,6 +42535,61 @@ export namespace Prisma {
     is_deleted?: IntNullableFilter<"trx_leave_quota"> | number | null
     created_at?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"trx_leave_quota"> | Date | string | null
+  }
+
+  export type attendanceUpsertWithWhereUniqueWithoutMsUserInput = {
+    where: attendanceWhereUniqueInput
+    update: XOR<attendanceUpdateWithoutMsUserInput, attendanceUncheckedUpdateWithoutMsUserInput>
+    create: XOR<attendanceCreateWithoutMsUserInput, attendanceUncheckedCreateWithoutMsUserInput>
+  }
+
+  export type attendanceUpdateWithWhereUniqueWithoutMsUserInput = {
+    where: attendanceWhereUniqueInput
+    data: XOR<attendanceUpdateWithoutMsUserInput, attendanceUncheckedUpdateWithoutMsUserInput>
+  }
+
+  export type attendanceUpdateManyWithWhereWithoutMsUserInput = {
+    where: attendanceScalarWhereInput
+    data: XOR<attendanceUpdateManyMutationInput, attendanceUncheckedUpdateManyWithoutMsUserInput>
+  }
+
+  export type attendanceScalarWhereInput = {
+    AND?: attendanceScalarWhereInput | attendanceScalarWhereInput[]
+    OR?: attendanceScalarWhereInput[]
+    NOT?: attendanceScalarWhereInput | attendanceScalarWhereInput[]
+    id?: BigIntFilter<"attendance"> | bigint | number
+    remote_addr_in?: StringNullableFilter<"attendance"> | string | null
+    longitude_in?: StringNullableFilter<"attendance"> | string | null
+    latitude_in?: StringNullableFilter<"attendance"> | string | null
+    address_in?: StringNullableFilter<"attendance"> | string | null
+    subcont?: StringNullableFilter<"attendance"> | string | null
+    client?: StringNullableFilter<"attendance"> | string | null
+    shift_code?: StringNullableFilter<"attendance"> | string | null
+    in_time?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    out_time?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    revice_in_time?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    revice_out_time?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    remote_addr_out?: StringNullableFilter<"attendance"> | string | null
+    longitude_out?: StringNullableFilter<"attendance"> | string | null
+    latitude_out?: StringNullableFilter<"attendance"> | string | null
+    address_out?: StringNullableFilter<"attendance"> | string | null
+    work_metode?: StringNullableFilter<"attendance"> | string | null
+    foto_in?: StringNullableFilter<"attendance"> | string | null
+    foto_out?: StringNullableFilter<"attendance"> | string | null
+    note?: StringNullableFilter<"attendance"> | string | null
+    checked_by?: StringNullableFilter<"attendance"> | string | null
+    checked_at?: DateTimeNullableFilter<"attendance"> | Date | string | null
+    reject_reason?: StringNullableFilter<"attendance"> | string | null
+    is_ovt?: IntNullableFilter<"attendance"> | number | null
+    is_happy?: IntNullableFilter<"attendance"> | number | null
+    flag?: IntNullableFilter<"attendance"> | number | null
+    is_sent_sap?: IntNullableFilter<"attendance"> | number | null
+    created_by?: BigIntNullableFilter<"attendance"> | bigint | number | null
+    created_at?: DateTimeFilter<"attendance"> | Date | string
+    updated_by?: BigIntNullableFilter<"attendance"> | bigint | number | null
+    updated_at?: DateTimeFilter<"attendance"> | Date | string
+    is_late?: IntNullableFilter<"attendance"> | number | null
+    is_early_out?: IntNullableFilter<"attendance"> | number | null
   }
 
   export type trx_leavesCreateWithoutLeave_typeInput = {
@@ -41379,6 +42804,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailCreateNestedManyWithoutMsUserInput
     dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
     trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
@@ -41386,6 +42812,7 @@ export namespace Prisma {
     trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutTrx_leavesInput = {
@@ -41434,12 +42861,14 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailUncheckedCreateNestedManyWithoutMsUserInput
     trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
     trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
     trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutTrx_leavesInput = {
@@ -41537,6 +42966,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUpdateManyWithoutMsUserNestedInput
     dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
@@ -41544,6 +42974,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTrx_leavesInput = {
@@ -41592,12 +43023,14 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUncheckedUpdateManyWithoutMsUserNestedInput
     trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type ms_detail_shift_groupCreateWithoutMsShiftInput = {
@@ -41695,6 +43128,85 @@ export namespace Prisma {
     data: trx_ovtCreateManyShift_dataInput | trx_ovtCreateManyShift_dataInput[]
   }
 
+  export type attendanceCreateWithoutMsShiftInput = {
+    id?: bigint | number
+    remote_addr_in?: string | null
+    longitude_in?: string | null
+    latitude_in?: string | null
+    address_in?: string | null
+    client?: string | null
+    in_time?: Date | string | null
+    out_time?: Date | string | null
+    revice_in_time?: Date | string | null
+    revice_out_time?: Date | string | null
+    remote_addr_out?: string | null
+    longitude_out?: string | null
+    latitude_out?: string | null
+    address_out?: string | null
+    work_metode?: string | null
+    foto_in?: string | null
+    foto_out?: string | null
+    note?: string | null
+    checked_by?: string | null
+    checked_at?: Date | string | null
+    reject_reason?: string | null
+    is_ovt?: number | null
+    is_happy?: number | null
+    flag?: number | null
+    is_sent_sap?: number | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    is_late?: number | null
+    is_early_out?: number | null
+    MsUser?: UserCreateNestedOneWithoutAttendanceInput
+  }
+
+  export type attendanceUncheckedCreateWithoutMsShiftInput = {
+    id?: bigint | number
+    remote_addr_in?: string | null
+    longitude_in?: string | null
+    latitude_in?: string | null
+    address_in?: string | null
+    subcont?: string | null
+    client?: string | null
+    in_time?: Date | string | null
+    out_time?: Date | string | null
+    revice_in_time?: Date | string | null
+    revice_out_time?: Date | string | null
+    remote_addr_out?: string | null
+    longitude_out?: string | null
+    latitude_out?: string | null
+    address_out?: string | null
+    work_metode?: string | null
+    foto_in?: string | null
+    foto_out?: string | null
+    note?: string | null
+    checked_by?: string | null
+    checked_at?: Date | string | null
+    reject_reason?: string | null
+    is_ovt?: number | null
+    is_happy?: number | null
+    flag?: number | null
+    is_sent_sap?: number | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    is_late?: number | null
+    is_early_out?: number | null
+  }
+
+  export type attendanceCreateOrConnectWithoutMsShiftInput = {
+    where: attendanceWhereUniqueInput
+    create: XOR<attendanceCreateWithoutMsShiftInput, attendanceUncheckedCreateWithoutMsShiftInput>
+  }
+
+  export type attendanceCreateManyMsShiftInputEnvelope = {
+    data: attendanceCreateManyMsShiftInput | attendanceCreateManyMsShiftInput[]
+  }
+
   export type ms_detail_shift_groupUpsertWithWhereUniqueWithoutMsShiftInput = {
     where: ms_detail_shift_groupWhereUniqueInput
     update: XOR<ms_detail_shift_groupUpdateWithoutMsShiftInput, ms_detail_shift_groupUncheckedUpdateWithoutMsShiftInput>
@@ -41740,6 +43252,22 @@ export namespace Prisma {
   export type trx_ovtUpdateManyWithWhereWithoutShift_dataInput = {
     where: trx_ovtScalarWhereInput
     data: XOR<trx_ovtUpdateManyMutationInput, trx_ovtUncheckedUpdateManyWithoutShift_dataInput>
+  }
+
+  export type attendanceUpsertWithWhereUniqueWithoutMsShiftInput = {
+    where: attendanceWhereUniqueInput
+    update: XOR<attendanceUpdateWithoutMsShiftInput, attendanceUncheckedUpdateWithoutMsShiftInput>
+    create: XOR<attendanceCreateWithoutMsShiftInput, attendanceUncheckedCreateWithoutMsShiftInput>
+  }
+
+  export type attendanceUpdateWithWhereUniqueWithoutMsShiftInput = {
+    where: attendanceWhereUniqueInput
+    data: XOR<attendanceUpdateWithoutMsShiftInput, attendanceUncheckedUpdateWithoutMsShiftInput>
+  }
+
+  export type attendanceUpdateManyWithWhereWithoutMsShiftInput = {
+    where: attendanceScalarWhereInput
+    data: XOR<attendanceUpdateManyMutationInput, attendanceUncheckedUpdateManyWithoutMsShiftInput>
   }
 
   export type ms_detail_shift_groupCreateWithoutMsShiftGroupInput = {
@@ -41858,6 +43386,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     is_deleted?: number | null
     trx_ovt?: trx_ovtCreateNestedManyWithoutShift_dataInput
+    attendance?: attendanceCreateNestedManyWithoutMsShiftInput
   }
 
   export type ms_shiftUncheckedCreateWithoutDetailsInput = {
@@ -41878,6 +43407,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     is_deleted?: number | null
     trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutShift_dataInput
+    attendance?: attendanceUncheckedCreateNestedManyWithoutMsShiftInput
   }
 
   export type ms_shiftCreateOrConnectWithoutDetailsInput = {
@@ -41945,6 +43475,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
     trx_ovt?: trx_ovtUpdateManyWithoutShift_dataNestedInput
+    attendance?: attendanceUpdateManyWithoutMsShiftNestedInput
   }
 
   export type ms_shiftUncheckedUpdateWithoutDetailsInput = {
@@ -41965,6 +43496,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
     trx_ovt?: trx_ovtUncheckedUpdateManyWithoutShift_dataNestedInput
+    attendance?: attendanceUncheckedUpdateManyWithoutMsShiftNestedInput
   }
 
   export type ms_shift_groupUpsertWithoutDetailsInput = {
@@ -42050,6 +43582,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailCreateNestedManyWithoutMsUserInput
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
@@ -42057,6 +43590,7 @@ export namespace Prisma {
     trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutDept_dataInput = {
@@ -42104,6 +43638,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailUncheckedCreateNestedManyWithoutMsUserInput
     trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
@@ -42111,6 +43646,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutDept_dataInput = {
@@ -42389,6 +43925,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailCreateNestedManyWithoutMsUserInput
     dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
@@ -42396,6 +43933,7 @@ export namespace Prisma {
     trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutTrx_ovtInput = {
@@ -42444,12 +43982,14 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailUncheckedCreateNestedManyWithoutMsUserInput
     trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
     trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
     trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutTrx_ovtInput = {
@@ -42474,6 +44014,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     is_deleted?: number | null
     details?: ms_detail_shift_groupCreateNestedManyWithoutMsShiftInput
+    attendance?: attendanceCreateNestedManyWithoutMsShiftInput
   }
 
   export type ms_shiftUncheckedCreateWithoutTrx_ovtInput = {
@@ -42494,6 +44035,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     is_deleted?: number | null
     details?: ms_detail_shift_groupUncheckedCreateNestedManyWithoutMsShiftInput
+    attendance?: attendanceUncheckedCreateNestedManyWithoutMsShiftInput
   }
 
   export type ms_shiftCreateOrConnectWithoutTrx_ovtInput = {
@@ -42557,6 +44099,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUpdateManyWithoutMsUserNestedInput
     dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
@@ -42564,6 +44107,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTrx_ovtInput = {
@@ -42612,12 +44156,14 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type ms_shiftUpsertWithoutTrx_ovtInput = {
@@ -42648,6 +44194,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
     details?: ms_detail_shift_groupUpdateManyWithoutMsShiftNestedInput
+    attendance?: attendanceUpdateManyWithoutMsShiftNestedInput
   }
 
   export type ms_shiftUncheckedUpdateWithoutTrx_ovtInput = {
@@ -42668,6 +44215,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
     details?: ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftNestedInput
+    attendance?: attendanceUncheckedUpdateManyWithoutMsShiftNestedInput
   }
 
   export type UserCreateWithoutTrx_shift_empInput = {
@@ -42715,6 +44263,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailCreateNestedManyWithoutMsUserInput
     dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
@@ -42722,6 +44271,7 @@ export namespace Prisma {
     trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
     trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutTrx_shift_empInput = {
@@ -42770,12 +44320,14 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailUncheckedCreateNestedManyWithoutMsUserInput
     trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
     trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
     trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutTrx_shift_empInput = {
@@ -42871,6 +44423,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUpdateManyWithoutMsUserNestedInput
     dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
@@ -42878,6 +44431,7 @@ export namespace Prisma {
     trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
     trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTrx_shift_empInput = {
@@ -42926,12 +44480,14 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type ms_shift_groupUpsertWithoutTrx_shift_empsInput = {
@@ -43017,6 +44573,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailCreateNestedManyWithoutMsUserInput
     dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
@@ -43024,6 +44581,7 @@ export namespace Prisma {
     trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutTrx_officialTravelInput = {
@@ -43072,12 +44630,14 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailUncheckedCreateNestedManyWithoutMsUserInput
     trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
     trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
     trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutTrx_officialTravelInput = {
@@ -43106,6 +44666,7 @@ export namespace Prisma {
     canceled_date?: Date | string | null
     canceled_remark?: string | null
     total_money_change: Decimal | DecimalJsLike | number | string
+    total_detail_cost: Decimal | DecimalJsLike | number | string
     status_id: bigint | number
     created_by?: bigint | number | null
     created_at: Date | string
@@ -43136,6 +44697,7 @@ export namespace Prisma {
     canceled_date?: Date | string | null
     canceled_remark?: string | null
     total_money_change: Decimal | DecimalJsLike | number | string
+    total_detail_cost: Decimal | DecimalJsLike | number | string
     status_id: bigint | number
     created_by?: bigint | number | null
     created_at: Date | string
@@ -43209,6 +44771,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUpdateManyWithoutMsUserNestedInput
     dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
@@ -43216,6 +44779,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTrx_officialTravelInput = {
@@ -43264,12 +44828,14 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type trx_declarationUpsertWithWhereUniqueWithoutOfficialTravel_dataInput = {
@@ -43314,6 +44880,7 @@ export namespace Prisma {
     canceled_date?: DateTimeNullableFilter<"trx_declaration"> | Date | string | null
     canceled_remark?: StringNullableFilter<"trx_declaration"> | string | null
     total_money_change?: DecimalFilter<"trx_declaration"> | Decimal | DecimalJsLike | number | string
+    total_detail_cost?: DecimalFilter<"trx_declaration"> | Decimal | DecimalJsLike | number | string
     status_id?: BigIntFilter<"trx_declaration"> | bigint | number
     created_by?: BigIntNullableFilter<"trx_declaration"> | bigint | number | null
     created_at?: DateTimeFilter<"trx_declaration"> | Date | string
@@ -43366,6 +44933,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailCreateNestedManyWithoutMsUserInput
     dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
@@ -43373,6 +44941,7 @@ export namespace Prisma {
     trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutTrx_mutationInput = {
@@ -43421,12 +44990,14 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailUncheckedCreateNestedManyWithoutMsUserInput
     trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
     trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutTrx_mutationInput = {
@@ -43490,6 +45061,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUpdateManyWithoutMsUserNestedInput
     dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
@@ -43497,6 +45069,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTrx_mutationInput = {
@@ -43545,12 +45118,14 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserCreateWithoutTrx_resignInput = {
@@ -43598,6 +45173,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailCreateNestedManyWithoutMsUserInput
     dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
     trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
@@ -43605,6 +45181,7 @@ export namespace Prisma {
     trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutTrx_resignInput = {
@@ -43653,12 +45230,14 @@ export namespace Prisma {
     worklocation_lat_long_sap?: string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    user_detail?: user_detailUncheckedCreateNestedManyWithoutMsUserInput
     trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
     trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
     trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
     trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutTrx_resignInput = {
@@ -43722,6 +45301,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUpdateManyWithoutMsUserNestedInput
     dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
@@ -43729,6 +45309,7 @@ export namespace Prisma {
     trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTrx_resignInput = {
@@ -43777,15 +45358,17 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
-  export type UserCreateWithoutTrx_leave_quotaInput = {
+  export type UserCreateWithoutUser_detailInput = {
     id?: bigint | number
     name: string
     email: string
@@ -43837,9 +45420,11 @@ export namespace Prisma {
     trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
     trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceCreateNestedManyWithoutMsUserInput
   }
 
-  export type UserUncheckedCreateWithoutTrx_leave_quotaInput = {
+  export type UserUncheckedCreateWithoutUser_detailInput = {
     id?: bigint | number
     name: string
     email: string
@@ -43891,6 +45476,619 @@ export namespace Prisma {
     trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
     trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserCreateOrConnectWithoutUser_detailInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUser_detailInput, UserUncheckedCreateWithoutUser_detailInput>
+  }
+
+  export type ms_marital_statusCreateWithoutUser_detailInput = {
+    id: number
+    code: string
+    ket: string
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+  }
+
+  export type ms_marital_statusUncheckedCreateWithoutUser_detailInput = {
+    id: number
+    code: string
+    ket: string
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+  }
+
+  export type ms_marital_statusCreateOrConnectWithoutUser_detailInput = {
+    where: ms_marital_statusWhereUniqueInput
+    create: XOR<ms_marital_statusCreateWithoutUser_detailInput, ms_marital_statusUncheckedCreateWithoutUser_detailInput>
+  }
+
+  export type ms_klasifikasiCreateWithoutUser_detailInput = {
+    id: number
+    name: string
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+  }
+
+  export type ms_klasifikasiUncheckedCreateWithoutUser_detailInput = {
+    id: number
+    name: string
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+  }
+
+  export type ms_klasifikasiCreateOrConnectWithoutUser_detailInput = {
+    where: ms_klasifikasiWhereUniqueInput
+    create: XOR<ms_klasifikasiCreateWithoutUser_detailInput, ms_klasifikasiUncheckedCreateWithoutUser_detailInput>
+  }
+
+  export type ms_subcontCreateWithoutUser_detailInput = {
+    id: number
+    code: string
+    name: string
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+  }
+
+  export type ms_subcontUncheckedCreateWithoutUser_detailInput = {
+    id: number
+    code: string
+    name: string
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+  }
+
+  export type ms_subcontCreateOrConnectWithoutUser_detailInput = {
+    where: ms_subcontWhereUniqueInput
+    create: XOR<ms_subcontCreateWithoutUser_detailInput, ms_subcontUncheckedCreateWithoutUser_detailInput>
+  }
+
+  export type UserUpsertWithoutUser_detailInput = {
+    update: XOR<UserUpdateWithoutUser_detailInput, UserUncheckedUpdateWithoutUser_detailInput>
+    create: XOR<UserCreateWithoutUser_detailInput, UserUncheckedCreateWithoutUser_detailInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUser_detailInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUser_detailInput, UserUncheckedUpdateWithoutUser_detailInput>
+  }
+
+  export type UserUpdateWithoutUser_detailInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
+    trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutUser_detailInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    dept?: NullableIntFieldUpdateOperationsInput | number | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type ms_marital_statusUpsertWithoutUser_detailInput = {
+    update: XOR<ms_marital_statusUpdateWithoutUser_detailInput, ms_marital_statusUncheckedUpdateWithoutUser_detailInput>
+    create: XOR<ms_marital_statusCreateWithoutUser_detailInput, ms_marital_statusUncheckedCreateWithoutUser_detailInput>
+    where?: ms_marital_statusWhereInput
+  }
+
+  export type ms_marital_statusUpdateToOneWithWhereWithoutUser_detailInput = {
+    where?: ms_marital_statusWhereInput
+    data: XOR<ms_marital_statusUpdateWithoutUser_detailInput, ms_marital_statusUncheckedUpdateWithoutUser_detailInput>
+  }
+
+  export type ms_marital_statusUpdateWithoutUser_detailInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    ket?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ms_marital_statusUncheckedUpdateWithoutUser_detailInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    ket?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ms_klasifikasiUpsertWithoutUser_detailInput = {
+    update: XOR<ms_klasifikasiUpdateWithoutUser_detailInput, ms_klasifikasiUncheckedUpdateWithoutUser_detailInput>
+    create: XOR<ms_klasifikasiCreateWithoutUser_detailInput, ms_klasifikasiUncheckedCreateWithoutUser_detailInput>
+    where?: ms_klasifikasiWhereInput
+  }
+
+  export type ms_klasifikasiUpdateToOneWithWhereWithoutUser_detailInput = {
+    where?: ms_klasifikasiWhereInput
+    data: XOR<ms_klasifikasiUpdateWithoutUser_detailInput, ms_klasifikasiUncheckedUpdateWithoutUser_detailInput>
+  }
+
+  export type ms_klasifikasiUpdateWithoutUser_detailInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ms_klasifikasiUncheckedUpdateWithoutUser_detailInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ms_subcontUpsertWithoutUser_detailInput = {
+    update: XOR<ms_subcontUpdateWithoutUser_detailInput, ms_subcontUncheckedUpdateWithoutUser_detailInput>
+    create: XOR<ms_subcontCreateWithoutUser_detailInput, ms_subcontUncheckedCreateWithoutUser_detailInput>
+    where?: ms_subcontWhereInput
+  }
+
+  export type ms_subcontUpdateToOneWithWhereWithoutUser_detailInput = {
+    where?: ms_subcontWhereInput
+    data: XOR<ms_subcontUpdateWithoutUser_detailInput, ms_subcontUncheckedUpdateWithoutUser_detailInput>
+  }
+
+  export type ms_subcontUpdateWithoutUser_detailInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ms_subcontUncheckedUpdateWithoutUser_detailInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type user_detailCreateWithoutMsKlasifikasiInput = {
+    id?: bigint | number
+    nrp?: string | null
+    name?: string | null
+    email: string
+    gender?: string | null
+    birth_date: Date | string
+    address: string
+    address_coordinate?: string | null
+    plant: string
+    join_date: Date | string
+    end_date: Date | string
+    status: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    MsUser?: UserCreateNestedOneWithoutUser_detailInput
+    MsMarital?: ms_marital_statusCreateNestedOneWithoutUser_detailInput
+    MsVendor?: ms_subcontCreateNestedOneWithoutUser_detailInput
+  }
+
+  export type user_detailUncheckedCreateWithoutMsKlasifikasiInput = {
+    id?: bigint | number
+    user_id: bigint | number
+    nrp?: string | null
+    name?: string | null
+    email: string
+    marital_status: number
+    gender?: string | null
+    birth_date: Date | string
+    address: string
+    address_coordinate?: string | null
+    plant: string
+    join_date: Date | string
+    end_date: Date | string
+    status: number
+    vendor: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+  }
+
+  export type user_detailCreateOrConnectWithoutMsKlasifikasiInput = {
+    where: user_detailWhereUniqueInput
+    create: XOR<user_detailCreateWithoutMsKlasifikasiInput, user_detailUncheckedCreateWithoutMsKlasifikasiInput>
+  }
+
+  export type user_detailCreateManyMsKlasifikasiInputEnvelope = {
+    data: user_detailCreateManyMsKlasifikasiInput | user_detailCreateManyMsKlasifikasiInput[]
+  }
+
+  export type user_detailUpsertWithWhereUniqueWithoutMsKlasifikasiInput = {
+    where: user_detailWhereUniqueInput
+    update: XOR<user_detailUpdateWithoutMsKlasifikasiInput, user_detailUncheckedUpdateWithoutMsKlasifikasiInput>
+    create: XOR<user_detailCreateWithoutMsKlasifikasiInput, user_detailUncheckedCreateWithoutMsKlasifikasiInput>
+  }
+
+  export type user_detailUpdateWithWhereUniqueWithoutMsKlasifikasiInput = {
+    where: user_detailWhereUniqueInput
+    data: XOR<user_detailUpdateWithoutMsKlasifikasiInput, user_detailUncheckedUpdateWithoutMsKlasifikasiInput>
+  }
+
+  export type user_detailUpdateManyWithWhereWithoutMsKlasifikasiInput = {
+    where: user_detailScalarWhereInput
+    data: XOR<user_detailUpdateManyMutationInput, user_detailUncheckedUpdateManyWithoutMsKlasifikasiInput>
+  }
+
+  export type user_detailCreateWithoutMsVendorInput = {
+    id?: bigint | number
+    nrp?: string | null
+    name?: string | null
+    email: string
+    gender?: string | null
+    birth_date: Date | string
+    address: string
+    address_coordinate?: string | null
+    plant: string
+    join_date: Date | string
+    end_date: Date | string
+    status: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    MsUser?: UserCreateNestedOneWithoutUser_detailInput
+    MsMarital?: ms_marital_statusCreateNestedOneWithoutUser_detailInput
+    MsKlasifikasi?: ms_klasifikasiCreateNestedOneWithoutUser_detailInput
+  }
+
+  export type user_detailUncheckedCreateWithoutMsVendorInput = {
+    id?: bigint | number
+    user_id: bigint | number
+    nrp?: string | null
+    name?: string | null
+    email: string
+    marital_status: number
+    gender?: string | null
+    birth_date: Date | string
+    address: string
+    address_coordinate?: string | null
+    plant: string
+    join_date: Date | string
+    end_date: Date | string
+    status: number
+    klasifikasi: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+  }
+
+  export type user_detailCreateOrConnectWithoutMsVendorInput = {
+    where: user_detailWhereUniqueInput
+    create: XOR<user_detailCreateWithoutMsVendorInput, user_detailUncheckedCreateWithoutMsVendorInput>
+  }
+
+  export type user_detailCreateManyMsVendorInputEnvelope = {
+    data: user_detailCreateManyMsVendorInput | user_detailCreateManyMsVendorInput[]
+  }
+
+  export type user_detailUpsertWithWhereUniqueWithoutMsVendorInput = {
+    where: user_detailWhereUniqueInput
+    update: XOR<user_detailUpdateWithoutMsVendorInput, user_detailUncheckedUpdateWithoutMsVendorInput>
+    create: XOR<user_detailCreateWithoutMsVendorInput, user_detailUncheckedCreateWithoutMsVendorInput>
+  }
+
+  export type user_detailUpdateWithWhereUniqueWithoutMsVendorInput = {
+    where: user_detailWhereUniqueInput
+    data: XOR<user_detailUpdateWithoutMsVendorInput, user_detailUncheckedUpdateWithoutMsVendorInput>
+  }
+
+  export type user_detailUpdateManyWithWhereWithoutMsVendorInput = {
+    where: user_detailScalarWhereInput
+    data: XOR<user_detailUpdateManyMutationInput, user_detailUncheckedUpdateManyWithoutMsVendorInput>
+  }
+
+  export type user_detailCreateWithoutMsMaritalInput = {
+    id?: bigint | number
+    nrp?: string | null
+    name?: string | null
+    email: string
+    gender?: string | null
+    birth_date: Date | string
+    address: string
+    address_coordinate?: string | null
+    plant: string
+    join_date: Date | string
+    end_date: Date | string
+    status: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    MsUser?: UserCreateNestedOneWithoutUser_detailInput
+    MsKlasifikasi?: ms_klasifikasiCreateNestedOneWithoutUser_detailInput
+    MsVendor?: ms_subcontCreateNestedOneWithoutUser_detailInput
+  }
+
+  export type user_detailUncheckedCreateWithoutMsMaritalInput = {
+    id?: bigint | number
+    user_id: bigint | number
+    nrp?: string | null
+    name?: string | null
+    email: string
+    gender?: string | null
+    birth_date: Date | string
+    address: string
+    address_coordinate?: string | null
+    plant: string
+    join_date: Date | string
+    end_date: Date | string
+    status: number
+    klasifikasi: number
+    vendor: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+  }
+
+  export type user_detailCreateOrConnectWithoutMsMaritalInput = {
+    where: user_detailWhereUniqueInput
+    create: XOR<user_detailCreateWithoutMsMaritalInput, user_detailUncheckedCreateWithoutMsMaritalInput>
+  }
+
+  export type user_detailCreateManyMsMaritalInputEnvelope = {
+    data: user_detailCreateManyMsMaritalInput | user_detailCreateManyMsMaritalInput[]
+  }
+
+  export type user_detailUpsertWithWhereUniqueWithoutMsMaritalInput = {
+    where: user_detailWhereUniqueInput
+    update: XOR<user_detailUpdateWithoutMsMaritalInput, user_detailUncheckedUpdateWithoutMsMaritalInput>
+    create: XOR<user_detailCreateWithoutMsMaritalInput, user_detailUncheckedCreateWithoutMsMaritalInput>
+  }
+
+  export type user_detailUpdateWithWhereUniqueWithoutMsMaritalInput = {
+    where: user_detailWhereUniqueInput
+    data: XOR<user_detailUpdateWithoutMsMaritalInput, user_detailUncheckedUpdateWithoutMsMaritalInput>
+  }
+
+  export type user_detailUpdateManyWithWhereWithoutMsMaritalInput = {
+    where: user_detailScalarWhereInput
+    data: XOR<user_detailUpdateManyMutationInput, user_detailUncheckedUpdateManyWithoutMsMaritalInput>
+  }
+
+  export type UserCreateWithoutTrx_leave_quotaInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    user_detail?: user_detailCreateNestedManyWithoutMsUserInput
+    dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
+    trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTrx_leave_quotaInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    dept?: number | null
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    user_detail?: user_detailUncheckedCreateNestedManyWithoutMsUserInput
+    trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutTrx_leave_quotaInput = {
@@ -43982,6 +46180,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUpdateManyWithoutMsUserNestedInput
     dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
@@ -43989,6 +46188,7 @@ export namespace Prisma {
     trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
     trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTrx_leave_quotaInput = {
@@ -44037,12 +46237,14 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type ms_leave_typesUpsertWithoutTrx_leave_quotaInput = {
@@ -44079,13 +46281,353 @@ export namespace Prisma {
     trx_leaves?: trx_leavesUncheckedUpdateManyWithoutLeave_typeNestedInput
   }
 
+  export type UserCreateWithoutAttendanceInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    user_detail?: user_detailCreateNestedManyWithoutMsUserInput
+    dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
+    trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserUncheckedCreateWithoutAttendanceInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    dept?: number | null
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number?: string | null
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    user_detail?: user_detailUncheckedCreateNestedManyWithoutMsUserInput
+    trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserCreateOrConnectWithoutAttendanceInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAttendanceInput, UserUncheckedCreateWithoutAttendanceInput>
+  }
+
+  export type ms_shiftCreateWithoutAttendanceInput = {
+    id_shift_sap?: string | null
+    code: string
+    name: string
+    in_time?: Date | string | null
+    out_time?: Date | string | null
+    gt_before_in?: number
+    gt_after_in?: number
+    gt_before_out?: number
+    gt_after_out?: number
+    flag_shift?: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+    details?: ms_detail_shift_groupCreateNestedManyWithoutMsShiftInput
+    trx_ovt?: trx_ovtCreateNestedManyWithoutShift_dataInput
+  }
+
+  export type ms_shiftUncheckedCreateWithoutAttendanceInput = {
+    id?: number
+    id_shift_sap?: string | null
+    code: string
+    name: string
+    in_time?: Date | string | null
+    out_time?: Date | string | null
+    gt_before_in?: number
+    gt_after_in?: number
+    gt_before_out?: number
+    gt_after_out?: number
+    flag_shift?: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+    is_deleted?: number | null
+    details?: ms_detail_shift_groupUncheckedCreateNestedManyWithoutMsShiftInput
+    trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutShift_dataInput
+  }
+
+  export type ms_shiftCreateOrConnectWithoutAttendanceInput = {
+    where: ms_shiftWhereUniqueInput
+    create: XOR<ms_shiftCreateWithoutAttendanceInput, ms_shiftUncheckedCreateWithoutAttendanceInput>
+  }
+
+  export type UserUpsertWithoutAttendanceInput = {
+    update: XOR<UserUpdateWithoutAttendanceInput, UserUncheckedUpdateWithoutAttendanceInput>
+    create: XOR<UserCreateWithoutAttendanceInput, UserUncheckedCreateWithoutAttendanceInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAttendanceInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAttendanceInput, UserUncheckedUpdateWithoutAttendanceInput>
+  }
+
+  export type UserUpdateWithoutAttendanceInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUpdateManyWithoutMsUserNestedInput
+    dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
+    trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutAttendanceInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    dept?: NullableIntFieldUpdateOperationsInput | number | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUncheckedUpdateManyWithoutMsUserNestedInput
+    trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type ms_shiftUpsertWithoutAttendanceInput = {
+    update: XOR<ms_shiftUpdateWithoutAttendanceInput, ms_shiftUncheckedUpdateWithoutAttendanceInput>
+    create: XOR<ms_shiftCreateWithoutAttendanceInput, ms_shiftUncheckedCreateWithoutAttendanceInput>
+    where?: ms_shiftWhereInput
+  }
+
+  export type ms_shiftUpdateToOneWithWhereWithoutAttendanceInput = {
+    where?: ms_shiftWhereInput
+    data: XOR<ms_shiftUpdateWithoutAttendanceInput, ms_shiftUncheckedUpdateWithoutAttendanceInput>
+  }
+
+  export type ms_shiftUpdateWithoutAttendanceInput = {
+    id_shift_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gt_before_in?: IntFieldUpdateOperationsInput | number
+    gt_after_in?: IntFieldUpdateOperationsInput | number
+    gt_before_out?: IntFieldUpdateOperationsInput | number
+    gt_after_out?: IntFieldUpdateOperationsInput | number
+    flag_shift?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    details?: ms_detail_shift_groupUpdateManyWithoutMsShiftNestedInput
+    trx_ovt?: trx_ovtUpdateManyWithoutShift_dataNestedInput
+  }
+
+  export type ms_shiftUncheckedUpdateWithoutAttendanceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    id_shift_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gt_before_in?: IntFieldUpdateOperationsInput | number
+    gt_after_in?: IntFieldUpdateOperationsInput | number
+    gt_before_out?: IntFieldUpdateOperationsInput | number
+    gt_after_out?: IntFieldUpdateOperationsInput | number
+    flag_shift?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
+    details?: ms_detail_shift_groupUncheckedUpdateManyWithoutMsShiftNestedInput
+    trx_ovt?: trx_ovtUncheckedUpdateManyWithoutShift_dataNestedInput
+  }
+
   export type trx_official_travelCreateWithoutTrx_declarationInput = {
     code: string
     start_date: Date | string
     end_date: Date | string
     total_leave_days: bigint | number
     type: string
-    destination_place: string
+    destination_place1: string
+    destination_place2?: string | null
+    destination_place3?: string | null
     transportation: string
     lodging: string
     work_status: string
@@ -44098,7 +46640,9 @@ export namespace Prisma {
     fiskal_cost?: Decimal | DecimalJsLike | number | string | null
     other_cost?: Decimal | DecimalJsLike | number | string | null
     total_cost?: Decimal | DecimalJsLike | number | string | null
-    destination_city: string
+    destination_city1: string
+    destination_city2?: string | null
+    destination_city3?: string | null
     activity_agenda: string
     symbol_currency?: string | null
     currency?: string | null
@@ -44153,7 +46697,9 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     type: string
-    destination_place: string
+    destination_place1: string
+    destination_place2?: string | null
+    destination_place3?: string | null
     transportation: string
     lodging: string
     work_status: string
@@ -44166,7 +46712,9 @@ export namespace Prisma {
     fiskal_cost?: Decimal | DecimalJsLike | number | string | null
     other_cost?: Decimal | DecimalJsLike | number | string | null
     total_cost?: Decimal | DecimalJsLike | number | string | null
-    destination_city: string
+    destination_city1: string
+    destination_city2?: string | null
+    destination_city3?: string | null
     activity_agenda: string
     symbol_currency?: string | null
     currency?: string | null
@@ -44278,7 +46826,9 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     type?: StringFieldUpdateOperationsInput | string
-    destination_place?: StringFieldUpdateOperationsInput | string
+    destination_place1?: StringFieldUpdateOperationsInput | string
+    destination_place2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_place3?: NullableStringFieldUpdateOperationsInput | string | null
     transportation?: StringFieldUpdateOperationsInput | string
     lodging?: StringFieldUpdateOperationsInput | string
     work_status?: StringFieldUpdateOperationsInput | string
@@ -44291,7 +46841,9 @@ export namespace Prisma {
     fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    destination_city?: StringFieldUpdateOperationsInput | string
+    destination_city1?: StringFieldUpdateOperationsInput | string
+    destination_city2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_city3?: NullableStringFieldUpdateOperationsInput | string | null
     activity_agenda?: StringFieldUpdateOperationsInput | string
     symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
     currency?: NullableStringFieldUpdateOperationsInput | string | null
@@ -44346,7 +46898,9 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     type?: StringFieldUpdateOperationsInput | string
-    destination_place?: StringFieldUpdateOperationsInput | string
+    destination_place1?: StringFieldUpdateOperationsInput | string
+    destination_place2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_place3?: NullableStringFieldUpdateOperationsInput | string | null
     transportation?: StringFieldUpdateOperationsInput | string
     lodging?: StringFieldUpdateOperationsInput | string
     work_status?: StringFieldUpdateOperationsInput | string
@@ -44359,7 +46913,9 @@ export namespace Prisma {
     fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    destination_city?: StringFieldUpdateOperationsInput | string
+    destination_city1?: StringFieldUpdateOperationsInput | string
+    destination_city2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_city3?: NullableStringFieldUpdateOperationsInput | string | null
     activity_agenda?: StringFieldUpdateOperationsInput | string
     symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
     currency?: NullableStringFieldUpdateOperationsInput | string | null
@@ -44464,6 +47020,7 @@ export namespace Prisma {
     canceled_date?: Date | string | null
     canceled_remark?: string | null
     total_money_change: Decimal | DecimalJsLike | number | string
+    total_detail_cost: Decimal | DecimalJsLike | number | string
     status_id: bigint | number
     created_by?: bigint | number | null
     created_at: Date | string
@@ -44495,6 +47052,7 @@ export namespace Prisma {
     canceled_date?: Date | string | null
     canceled_remark?: string | null
     total_money_change: Decimal | DecimalJsLike | number | string
+    total_detail_cost: Decimal | DecimalJsLike | number | string
     status_id: bigint | number
     created_by?: bigint | number | null
     created_at: Date | string
@@ -44539,6 +47097,7 @@ export namespace Prisma {
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
     total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_detail_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -44570,11 +47129,33 @@ export namespace Prisma {
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
     total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_detail_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type user_detailCreateManyMsUserInput = {
+    nrp?: string | null
+    name?: string | null
+    email: string
+    marital_status: number
+    gender?: string | null
+    birth_date: Date | string
+    address: string
+    address_coordinate?: string | null
+    plant: string
+    join_date: Date | string
+    end_date: Date | string
+    status: number
+    klasifikasi: number
+    vendor: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
   }
 
   export type trx_leavesCreateManyUser_dataInput = {
@@ -44640,7 +47221,9 @@ export namespace Prisma {
     end_date: Date | string
     total_leave_days: bigint | number
     type: string
-    destination_place: string
+    destination_place1: string
+    destination_place2?: string | null
+    destination_place3?: string | null
     transportation: string
     lodging: string
     work_status: string
@@ -44653,7 +47236,9 @@ export namespace Prisma {
     fiskal_cost?: Decimal | DecimalJsLike | number | string | null
     other_cost?: Decimal | DecimalJsLike | number | string | null
     total_cost?: Decimal | DecimalJsLike | number | string | null
-    destination_city: string
+    destination_city1: string
+    destination_city2?: string | null
+    destination_city3?: string | null
     activity_agenda: string
     symbol_currency?: string | null
     currency?: string | null
@@ -44723,7 +47308,7 @@ export namespace Prisma {
     canceled?: string | null
     canceled_date?: Date | string | null
     canceled_remark?: string | null
-    created_by?: bigint | number | null
+    created_by: string
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
@@ -44732,7 +47317,6 @@ export namespace Prisma {
   export type trx_resignCreateManyUser_dataInput = {
     effective_date: Date | string
     reason: string
-    file_upload: string
     status_id: bigint | number
     accept_to: string
     accepted?: string | null
@@ -44778,6 +47362,106 @@ export namespace Prisma {
     is_deleted?: number | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
+  }
+
+  export type attendanceCreateManyMsUserInput = {
+    remote_addr_in?: string | null
+    longitude_in?: string | null
+    latitude_in?: string | null
+    address_in?: string | null
+    client?: string | null
+    shift_code?: string | null
+    in_time?: Date | string | null
+    out_time?: Date | string | null
+    revice_in_time?: Date | string | null
+    revice_out_time?: Date | string | null
+    remote_addr_out?: string | null
+    longitude_out?: string | null
+    latitude_out?: string | null
+    address_out?: string | null
+    work_metode?: string | null
+    foto_in?: string | null
+    foto_out?: string | null
+    note?: string | null
+    checked_by?: string | null
+    checked_at?: Date | string | null
+    reject_reason?: string | null
+    is_ovt?: number | null
+    is_happy?: number | null
+    flag?: number | null
+    is_sent_sap?: number | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    is_late?: number | null
+    is_early_out?: number | null
+  }
+
+  export type user_detailUpdateWithoutMsUserInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nrp?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    address_coordinate?: NullableStringFieldUpdateOperationsInput | string | null
+    plant?: StringFieldUpdateOperationsInput | string
+    join_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    MsMarital?: ms_marital_statusUpdateOneWithoutUser_detailNestedInput
+    MsKlasifikasi?: ms_klasifikasiUpdateOneWithoutUser_detailNestedInput
+    MsVendor?: ms_subcontUpdateOneWithoutUser_detailNestedInput
+  }
+
+  export type user_detailUncheckedUpdateWithoutMsUserInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nrp?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    marital_status?: IntFieldUpdateOperationsInput | number
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    address_coordinate?: NullableStringFieldUpdateOperationsInput | string | null
+    plant?: StringFieldUpdateOperationsInput | string
+    join_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: IntFieldUpdateOperationsInput | number
+    klasifikasi?: IntFieldUpdateOperationsInput | number
+    vendor?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type user_detailUncheckedUpdateManyWithoutMsUserInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nrp?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    marital_status?: IntFieldUpdateOperationsInput | number
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    address_coordinate?: NullableStringFieldUpdateOperationsInput | string | null
+    plant?: StringFieldUpdateOperationsInput | string
+    join_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: IntFieldUpdateOperationsInput | number
+    klasifikasi?: IntFieldUpdateOperationsInput | number
+    vendor?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type trx_leavesUpdateWithoutUser_dataInput = {
@@ -44963,7 +47647,9 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     type?: StringFieldUpdateOperationsInput | string
-    destination_place?: StringFieldUpdateOperationsInput | string
+    destination_place1?: StringFieldUpdateOperationsInput | string
+    destination_place2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_place3?: NullableStringFieldUpdateOperationsInput | string | null
     transportation?: StringFieldUpdateOperationsInput | string
     lodging?: StringFieldUpdateOperationsInput | string
     work_status?: StringFieldUpdateOperationsInput | string
@@ -44976,7 +47662,9 @@ export namespace Prisma {
     fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    destination_city?: StringFieldUpdateOperationsInput | string
+    destination_city1?: StringFieldUpdateOperationsInput | string
+    destination_city2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_city3?: NullableStringFieldUpdateOperationsInput | string | null
     activity_agenda?: StringFieldUpdateOperationsInput | string
     symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
     currency?: NullableStringFieldUpdateOperationsInput | string | null
@@ -45030,7 +47718,9 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     type?: StringFieldUpdateOperationsInput | string
-    destination_place?: StringFieldUpdateOperationsInput | string
+    destination_place1?: StringFieldUpdateOperationsInput | string
+    destination_place2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_place3?: NullableStringFieldUpdateOperationsInput | string | null
     transportation?: StringFieldUpdateOperationsInput | string
     lodging?: StringFieldUpdateOperationsInput | string
     work_status?: StringFieldUpdateOperationsInput | string
@@ -45043,7 +47733,9 @@ export namespace Prisma {
     fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    destination_city?: StringFieldUpdateOperationsInput | string
+    destination_city1?: StringFieldUpdateOperationsInput | string
+    destination_city2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_city3?: NullableStringFieldUpdateOperationsInput | string | null
     activity_agenda?: StringFieldUpdateOperationsInput | string
     symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
     currency?: NullableStringFieldUpdateOperationsInput | string | null
@@ -45097,7 +47789,9 @@ export namespace Prisma {
     end_date?: DateTimeFieldUpdateOperationsInput | Date | string
     total_leave_days?: BigIntFieldUpdateOperationsInput | bigint | number
     type?: StringFieldUpdateOperationsInput | string
-    destination_place?: StringFieldUpdateOperationsInput | string
+    destination_place1?: StringFieldUpdateOperationsInput | string
+    destination_place2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_place3?: NullableStringFieldUpdateOperationsInput | string | null
     transportation?: StringFieldUpdateOperationsInput | string
     lodging?: StringFieldUpdateOperationsInput | string
     work_status?: StringFieldUpdateOperationsInput | string
@@ -45110,7 +47804,9 @@ export namespace Prisma {
     fiskal_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     other_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     total_cost?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    destination_city?: StringFieldUpdateOperationsInput | string
+    destination_city1?: StringFieldUpdateOperationsInput | string
+    destination_city2?: NullableStringFieldUpdateOperationsInput | string | null
+    destination_city3?: NullableStringFieldUpdateOperationsInput | string | null
     activity_agenda?: StringFieldUpdateOperationsInput | string
     symbol_currency?: NullableStringFieldUpdateOperationsInput | string | null
     currency?: NullableStringFieldUpdateOperationsInput | string | null
@@ -45180,7 +47876,7 @@ export namespace Prisma {
     canceled?: NullableStringFieldUpdateOperationsInput | string | null
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_by?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -45211,7 +47907,7 @@ export namespace Prisma {
     canceled?: NullableStringFieldUpdateOperationsInput | string | null
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_by?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -45242,7 +47938,7 @@ export namespace Prisma {
     canceled?: NullableStringFieldUpdateOperationsInput | string | null
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
-    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_by?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -45251,7 +47947,6 @@ export namespace Prisma {
   export type trx_resignUpdateWithoutUser_dataInput = {
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
-    file_upload?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     accept_to?: StringFieldUpdateOperationsInput | string
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
@@ -45277,7 +47972,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
-    file_upload?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     accept_to?: StringFieldUpdateOperationsInput | string
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
@@ -45303,7 +47997,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     effective_date?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: StringFieldUpdateOperationsInput | string
-    file_upload?: StringFieldUpdateOperationsInput | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     accept_to?: StringFieldUpdateOperationsInput | string
     accepted?: NullableStringFieldUpdateOperationsInput | string | null
@@ -45406,6 +48099,111 @@ export namespace Prisma {
     is_deleted?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type attendanceUpdateWithoutMsUserInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    remote_addr_in?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    address_in?: NullableStringFieldUpdateOperationsInput | string | null
+    client?: NullableStringFieldUpdateOperationsInput | string | null
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    remote_addr_out?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    address_out?: NullableStringFieldUpdateOperationsInput | string | null
+    work_metode?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_in?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_out?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_by?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reject_reason?: NullableStringFieldUpdateOperationsInput | string | null
+    is_ovt?: NullableIntFieldUpdateOperationsInput | number | null
+    is_happy?: NullableIntFieldUpdateOperationsInput | number | null
+    flag?: NullableIntFieldUpdateOperationsInput | number | null
+    is_sent_sap?: NullableIntFieldUpdateOperationsInput | number | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_late?: NullableIntFieldUpdateOperationsInput | number | null
+    is_early_out?: NullableIntFieldUpdateOperationsInput | number | null
+    MsShift?: ms_shiftUpdateOneWithoutAttendanceNestedInput
+  }
+
+  export type attendanceUncheckedUpdateWithoutMsUserInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    remote_addr_in?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    address_in?: NullableStringFieldUpdateOperationsInput | string | null
+    client?: NullableStringFieldUpdateOperationsInput | string | null
+    shift_code?: NullableStringFieldUpdateOperationsInput | string | null
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    remote_addr_out?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    address_out?: NullableStringFieldUpdateOperationsInput | string | null
+    work_metode?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_in?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_out?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_by?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reject_reason?: NullableStringFieldUpdateOperationsInput | string | null
+    is_ovt?: NullableIntFieldUpdateOperationsInput | number | null
+    is_happy?: NullableIntFieldUpdateOperationsInput | number | null
+    flag?: NullableIntFieldUpdateOperationsInput | number | null
+    is_sent_sap?: NullableIntFieldUpdateOperationsInput | number | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_late?: NullableIntFieldUpdateOperationsInput | number | null
+    is_early_out?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type attendanceUncheckedUpdateManyWithoutMsUserInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    remote_addr_in?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    address_in?: NullableStringFieldUpdateOperationsInput | string | null
+    client?: NullableStringFieldUpdateOperationsInput | string | null
+    shift_code?: NullableStringFieldUpdateOperationsInput | string | null
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    remote_addr_out?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    address_out?: NullableStringFieldUpdateOperationsInput | string | null
+    work_metode?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_in?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_out?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_by?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reject_reason?: NullableStringFieldUpdateOperationsInput | string | null
+    is_ovt?: NullableIntFieldUpdateOperationsInput | number | null
+    is_happy?: NullableIntFieldUpdateOperationsInput | number | null
+    flag?: NullableIntFieldUpdateOperationsInput | number | null
+    is_sent_sap?: NullableIntFieldUpdateOperationsInput | number | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_late?: NullableIntFieldUpdateOperationsInput | number | null
+    is_early_out?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type trx_leavesCreateManyLeave_typeInput = {
@@ -45622,6 +48420,40 @@ export namespace Prisma {
     updated_at?: Date | string
   }
 
+  export type attendanceCreateManyMsShiftInput = {
+    remote_addr_in?: string | null
+    longitude_in?: string | null
+    latitude_in?: string | null
+    address_in?: string | null
+    subcont?: string | null
+    client?: string | null
+    in_time?: Date | string | null
+    out_time?: Date | string | null
+    revice_in_time?: Date | string | null
+    revice_out_time?: Date | string | null
+    remote_addr_out?: string | null
+    longitude_out?: string | null
+    latitude_out?: string | null
+    address_out?: string | null
+    work_metode?: string | null
+    foto_in?: string | null
+    foto_out?: string | null
+    note?: string | null
+    checked_by?: string | null
+    checked_at?: Date | string | null
+    reject_reason?: string | null
+    is_ovt?: number | null
+    is_happy?: number | null
+    flag?: number | null
+    is_sent_sap?: number | null
+    created_by?: bigint | number | null
+    created_at: Date | string
+    updated_by?: bigint | number | null
+    updated_at: Date | string
+    is_late?: number | null
+    is_early_out?: number | null
+  }
+
   export type ms_detail_shift_groupUpdateWithoutMsShiftInput = {
     index_day?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
@@ -45736,6 +48568,111 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type attendanceUpdateWithoutMsShiftInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    remote_addr_in?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    address_in?: NullableStringFieldUpdateOperationsInput | string | null
+    client?: NullableStringFieldUpdateOperationsInput | string | null
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    remote_addr_out?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    address_out?: NullableStringFieldUpdateOperationsInput | string | null
+    work_metode?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_in?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_out?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_by?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reject_reason?: NullableStringFieldUpdateOperationsInput | string | null
+    is_ovt?: NullableIntFieldUpdateOperationsInput | number | null
+    is_happy?: NullableIntFieldUpdateOperationsInput | number | null
+    flag?: NullableIntFieldUpdateOperationsInput | number | null
+    is_sent_sap?: NullableIntFieldUpdateOperationsInput | number | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_late?: NullableIntFieldUpdateOperationsInput | number | null
+    is_early_out?: NullableIntFieldUpdateOperationsInput | number | null
+    MsUser?: UserUpdateOneWithoutAttendanceNestedInput
+  }
+
+  export type attendanceUncheckedUpdateWithoutMsShiftInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    remote_addr_in?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    address_in?: NullableStringFieldUpdateOperationsInput | string | null
+    subcont?: NullableStringFieldUpdateOperationsInput | string | null
+    client?: NullableStringFieldUpdateOperationsInput | string | null
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    remote_addr_out?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    address_out?: NullableStringFieldUpdateOperationsInput | string | null
+    work_metode?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_in?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_out?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_by?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reject_reason?: NullableStringFieldUpdateOperationsInput | string | null
+    is_ovt?: NullableIntFieldUpdateOperationsInput | number | null
+    is_happy?: NullableIntFieldUpdateOperationsInput | number | null
+    flag?: NullableIntFieldUpdateOperationsInput | number | null
+    is_sent_sap?: NullableIntFieldUpdateOperationsInput | number | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_late?: NullableIntFieldUpdateOperationsInput | number | null
+    is_early_out?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type attendanceUncheckedUpdateManyWithoutMsShiftInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    remote_addr_in?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_in?: NullableStringFieldUpdateOperationsInput | string | null
+    address_in?: NullableStringFieldUpdateOperationsInput | string | null
+    subcont?: NullableStringFieldUpdateOperationsInput | string | null
+    client?: NullableStringFieldUpdateOperationsInput | string | null
+    in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_in_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    revice_out_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    remote_addr_out?: NullableStringFieldUpdateOperationsInput | string | null
+    longitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude_out?: NullableStringFieldUpdateOperationsInput | string | null
+    address_out?: NullableStringFieldUpdateOperationsInput | string | null
+    work_metode?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_in?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_out?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_by?: NullableStringFieldUpdateOperationsInput | string | null
+    checked_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reject_reason?: NullableStringFieldUpdateOperationsInput | string | null
+    is_ovt?: NullableIntFieldUpdateOperationsInput | number | null
+    is_happy?: NullableIntFieldUpdateOperationsInput | number | null
+    flag?: NullableIntFieldUpdateOperationsInput | number | null
+    is_sent_sap?: NullableIntFieldUpdateOperationsInput | number | null
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_late?: NullableIntFieldUpdateOperationsInput | number | null
+    is_early_out?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ms_detail_shift_groupCreateManyMsShiftGroupInput = {
@@ -45926,6 +48863,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUpdateManyWithoutMsUserNestedInput
     trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
@@ -45933,6 +48871,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDept_dataInput = {
@@ -45980,6 +48919,7 @@ export namespace Prisma {
     worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
@@ -45987,6 +48927,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutDept_dataInput = {
@@ -46115,6 +49056,7 @@ export namespace Prisma {
     canceled_date?: Date | string | null
     canceled_remark?: string | null
     total_money_change: Decimal | DecimalJsLike | number | string
+    total_detail_cost: Decimal | DecimalJsLike | number | string
     status_id: bigint | number
     created_by?: bigint | number | null
     created_at: Date | string
@@ -46143,6 +49085,7 @@ export namespace Prisma {
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
     total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_detail_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -46173,6 +49116,7 @@ export namespace Prisma {
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
     total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_detail_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -46203,11 +49147,273 @@ export namespace Prisma {
     canceled_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     canceled_remark?: NullableStringFieldUpdateOperationsInput | string | null
     total_money_change?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    total_detail_cost?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status_id?: BigIntFieldUpdateOperationsInput | bigint | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type user_detailCreateManyMsKlasifikasiInput = {
+    user_id: bigint | number
+    nrp?: string | null
+    name?: string | null
+    email: string
+    marital_status: number
+    gender?: string | null
+    birth_date: Date | string
+    address: string
+    address_coordinate?: string | null
+    plant: string
+    join_date: Date | string
+    end_date: Date | string
+    status: number
+    vendor: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+  }
+
+  export type user_detailUpdateWithoutMsKlasifikasiInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nrp?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    address_coordinate?: NullableStringFieldUpdateOperationsInput | string | null
+    plant?: StringFieldUpdateOperationsInput | string
+    join_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    MsUser?: UserUpdateOneWithoutUser_detailNestedInput
+    MsMarital?: ms_marital_statusUpdateOneWithoutUser_detailNestedInput
+    MsVendor?: ms_subcontUpdateOneWithoutUser_detailNestedInput
+  }
+
+  export type user_detailUncheckedUpdateWithoutMsKlasifikasiInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    user_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nrp?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    marital_status?: IntFieldUpdateOperationsInput | number
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    address_coordinate?: NullableStringFieldUpdateOperationsInput | string | null
+    plant?: StringFieldUpdateOperationsInput | string
+    join_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: IntFieldUpdateOperationsInput | number
+    vendor?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type user_detailUncheckedUpdateManyWithoutMsKlasifikasiInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    user_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nrp?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    marital_status?: IntFieldUpdateOperationsInput | number
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    address_coordinate?: NullableStringFieldUpdateOperationsInput | string | null
+    plant?: StringFieldUpdateOperationsInput | string
+    join_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: IntFieldUpdateOperationsInput | number
+    vendor?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type user_detailCreateManyMsVendorInput = {
+    user_id: bigint | number
+    nrp?: string | null
+    name?: string | null
+    email: string
+    marital_status: number
+    gender?: string | null
+    birth_date: Date | string
+    address: string
+    address_coordinate?: string | null
+    plant: string
+    join_date: Date | string
+    end_date: Date | string
+    status: number
+    klasifikasi: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+  }
+
+  export type user_detailUpdateWithoutMsVendorInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nrp?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    address_coordinate?: NullableStringFieldUpdateOperationsInput | string | null
+    plant?: StringFieldUpdateOperationsInput | string
+    join_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    MsUser?: UserUpdateOneWithoutUser_detailNestedInput
+    MsMarital?: ms_marital_statusUpdateOneWithoutUser_detailNestedInput
+    MsKlasifikasi?: ms_klasifikasiUpdateOneWithoutUser_detailNestedInput
+  }
+
+  export type user_detailUncheckedUpdateWithoutMsVendorInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    user_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nrp?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    marital_status?: IntFieldUpdateOperationsInput | number
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    address_coordinate?: NullableStringFieldUpdateOperationsInput | string | null
+    plant?: StringFieldUpdateOperationsInput | string
+    join_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: IntFieldUpdateOperationsInput | number
+    klasifikasi?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type user_detailUncheckedUpdateManyWithoutMsVendorInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    user_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nrp?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    marital_status?: IntFieldUpdateOperationsInput | number
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    address_coordinate?: NullableStringFieldUpdateOperationsInput | string | null
+    plant?: StringFieldUpdateOperationsInput | string
+    join_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: IntFieldUpdateOperationsInput | number
+    klasifikasi?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type user_detailCreateManyMsMaritalInput = {
+    user_id: bigint | number
+    nrp?: string | null
+    name?: string | null
+    email: string
+    gender?: string | null
+    birth_date: Date | string
+    address: string
+    address_coordinate?: string | null
+    plant: string
+    join_date: Date | string
+    end_date: Date | string
+    status: number
+    klasifikasi: number
+    vendor: number
+    created_by?: bigint | number | null
+    created_at?: Date | string | null
+    updated_by?: bigint | number | null
+    updated_at?: Date | string | null
+  }
+
+  export type user_detailUpdateWithoutMsMaritalInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nrp?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    address_coordinate?: NullableStringFieldUpdateOperationsInput | string | null
+    plant?: StringFieldUpdateOperationsInput | string
+    join_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    MsUser?: UserUpdateOneWithoutUser_detailNestedInput
+    MsKlasifikasi?: ms_klasifikasiUpdateOneWithoutUser_detailNestedInput
+    MsVendor?: ms_subcontUpdateOneWithoutUser_detailNestedInput
+  }
+
+  export type user_detailUncheckedUpdateWithoutMsMaritalInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    user_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nrp?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    address_coordinate?: NullableStringFieldUpdateOperationsInput | string | null
+    plant?: StringFieldUpdateOperationsInput | string
+    join_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: IntFieldUpdateOperationsInput | number
+    klasifikasi?: IntFieldUpdateOperationsInput | number
+    vendor?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type user_detailUncheckedUpdateManyWithoutMsMaritalInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    user_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nrp?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: StringFieldUpdateOperationsInput | string
+    address_coordinate?: NullableStringFieldUpdateOperationsInput | string | null
+    plant?: StringFieldUpdateOperationsInput | string
+    join_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: IntFieldUpdateOperationsInput | number
+    klasifikasi?: IntFieldUpdateOperationsInput | number
+    vendor?: IntFieldUpdateOperationsInput | number
+    created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type trx_detail_declarationCreateManyDeclaration_dataInput = {
@@ -46313,6 +49519,18 @@ export namespace Prisma {
      * @deprecated Use Trx_official_travelCountOutputTypeDefaultArgs instead
      */
     export type Trx_official_travelCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Trx_official_travelCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use Ms_klasifikasiCountOutputTypeDefaultArgs instead
+     */
+    export type Ms_klasifikasiCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Ms_klasifikasiCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use Ms_subcontCountOutputTypeDefaultArgs instead
+     */
+    export type Ms_subcontCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Ms_subcontCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use Ms_marital_statusCountOutputTypeDefaultArgs instead
+     */
+    export type Ms_marital_statusCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Ms_marital_statusCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use Trx_declarationCountOutputTypeDefaultArgs instead
      */

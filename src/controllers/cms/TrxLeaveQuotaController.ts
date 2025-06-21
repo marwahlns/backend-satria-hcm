@@ -11,8 +11,8 @@ export const getAllTrxLeaveQuota = async (req: Request & { user?: { nrp: string,
             page = "1",
             limit = "10",
             search = "",
-            sort = "id_user",
-            order = "asc",
+            sort = "id",
+            order = "desc",
         } = req.query;
 
         const userNrp = req.user?.nrp;
@@ -21,6 +21,7 @@ export const getAllTrxLeaveQuota = async (req: Request & { user?: { nrp: string,
         const skip = (pageNumber - 1) * pageSize;
 
         const validSortFields = [
+            "id",
             "valid_from",
             "valid_to",
             "leaves_type_id",
@@ -29,15 +30,23 @@ export const getAllTrxLeaveQuota = async (req: Request & { user?: { nrp: string,
         ];
         const sortField = validSortFields.includes(sort as string)
             ? (sort as string)
-            : "id_user";
-        const sortOrder = order === "desc" ? "desc" : "asc";
+            : "id";
+        const sortOrder = order === "asc" ? "asc" : "desc";
 
         // Tentukan kondisi `where` berdasarkan apakah user adalah admin atau bukan
         const isAdmin = userNrp === "P0120001";
+        const currentDate = new Date();
 
         const whereClause = {
             is_deleted: 0,
-            ...(isAdmin ? {} : { id_user: userNrp }),
+            ...(isAdmin ? {} : {
+                id_user: userNrp, valid_from: {
+                    lte: currentDate,
+                },
+                valid_to: {
+                    gte: currentDate,
+                },
+            }),
             ...(search
                 ? {
                     OR: [
@@ -85,7 +94,7 @@ export const getAllTrxLeaveQuota = async (req: Request & { user?: { nrp: string,
             if (!date) return null;
             return date.toLocaleDateString("en-GB", {
                 day: "2-digit",
-                month: "long",
+                month: "short",
                 year: "numeric",
             });
         };
@@ -148,6 +157,14 @@ export const createLeaveQuota = async (
         const startDate = new Date(valid_from);
         const endDate = new Date(valid_to);
 
+        if (startDate > endDate) {
+            res.status(400).json({
+                success: false,
+                message: "Valid From cannot be later than Valid To!",
+            });
+            return;
+        }
+
         const validUsers = await User.findMany({
             where: {
                 personal_number: { in: id_user },
@@ -155,23 +172,28 @@ export const createLeaveQuota = async (
             select: { personal_number: true },
         });
 
-        const validUserIds = validUsers.map(user => user.personal_number);
+        const validUserPersonalNumbers = validUsers.map(user => user.personal_number);
 
-        if (validUserIds.length === 0) {
+        if (validUserPersonalNumbers.length === 0) {
             res.status(400).json({
                 success: false,
-                message: "Tidak ada id_user yang valid ditemukan di tabel User",
+                message: "No valid user IDs found in the User table.",
             });
             return;
         }
 
-        const leaveQuota = [];
+        const createdLeaveQuotas = [];
+        const invalidUsers: string[] = [];
 
         for (let i = 0; i < id_user.length; i++) {
             const userId = id_user[i];
             const quota = leave_quota[i];
 
-            // Cek apakah ada data leave quota yang tanggalnya bentrok
+            if (!validUserPersonalNumbers.includes(userId)) {
+                invalidUsers.push(userId);
+                continue;
+            }
+
             const existingQuota = await TrxLeaveQuota.findFirst({
                 where: {
                     id_user: userId,
@@ -186,16 +208,25 @@ export const createLeaveQuota = async (
                                 gte: startDate,
                             },
                         },
+                        {
+                            valid_from: {
+                                gte: startDate,
+                                lte: endDate
+                            }
+                        },
+                        {
+                            valid_to: {
+                                gte: startDate,
+                                lte: endDate
+                            }
+                        }
                     ],
                 },
             });
 
             if (existingQuota) {
-                res.status(400).json({
-                    success: false,
-                    message: `User ID ${userId} already has a leave quota for this type that overlaps with the provided date range.`,
-                });
-                return;
+                invalidUsers.push(userId);
+                continue;
             }
 
             const newQuota = await TrxLeaveQuota.create({
@@ -214,21 +245,31 @@ export const createLeaveQuota = async (
                 },
             });
 
-            leaveQuota.push(newQuota);
+            createdLeaveQuotas.push(newQuota);
+        }
+
+        if (createdLeaveQuotas.length === 0) {
+            res.status(400).json({
+                success: false,
+                message: invalidUsers.length > 0
+                    ? `No leave quotas were added. The following user already have overlapping quotas or are invalid: ${invalidUsers.join(', ')}.`
+                    : "No leave quotas were added due to an unknown issue.",
+            });
+            return;
         }
 
         res.status(201).send(
             JSONbig.stringify({
                 success: true,
-                message: "Leave quota added successfully",
-                data: leaveQuota,
+                message: `Leave quotas added successfully. ${invalidUsers.length > 0 ? `Skipped for overlapping/invalid users: ${invalidUsers.join(', ')}.` : ''}`,
+                data: createdLeaveQuotas,
             })
         );
     } catch (err) {
         console.error("Database Error:", err);
         res.status(500).json({
             success: false,
-            message: "Error adding leave quota data",
+            message: "Error adding leave quota data: " + (err instanceof Error ? err.message : "An unknown error occurred."),
         });
     }
 };
@@ -244,19 +285,63 @@ export const updateLeaveQuota = async (
         if (!id_leave_type || !valid_from || !valid_to || !leave_quota) {
             res.status(400).json({
                 success: false,
-                message: "All fields must be provided and cannot be empty",
+                message: "All fields must be provided and cannot be empty.",
             });
             return;
         }
 
+        const quotaId = Number(id);
+
         const existingLeaveQuota = await TrxLeaveQuota.findUnique({
-            where: { id: Number(id) },
+            where: { id: quotaId },
         });
 
-        if (existingLeaveQuota === undefined || existingLeaveQuota === null) {
+        if (!existingLeaveQuota) {
             res.status(404).json({
                 success: false,
-                message: "Leave quota record not found",
+                message: "Leave quota record not found.",
+            });
+            return;
+        }
+
+        const newStartDate = new Date(valid_from);
+        const newEndDate = new Date(valid_to);
+
+        if (newStartDate > newEndDate) {
+            res.status(400).json({
+                success: false,
+                message: "Valid To date cannot be earlier than Valid From date.",
+            });
+            return;
+        }
+
+        const overlappingQuota = await TrxLeaveQuota.findFirst({
+            where: {
+                id_user: existingLeaveQuota.id_user,
+                leaves_type_id: Number(id_leave_type),
+                is_deleted: 0,
+                NOT: {
+                    id: quotaId,
+                },
+                OR: [
+                    {
+                        valid_from: { lte: newEndDate },
+                        valid_to: { gte: newStartDate },
+                    },
+                    {
+                        valid_from: { gte: newStartDate, lte: newEndDate }
+                    },
+                    {
+                        valid_to: { gte: newStartDate, lte: newEndDate }
+                    }
+                ],
+            },
+        });
+
+        if (overlappingQuota) {
+            res.status(400).json({
+                success: false,
+                message: "The provided date range overlaps with an existing leave quota for this user and leave type.",
             });
             return;
         }
@@ -265,9 +350,9 @@ export const updateLeaveQuota = async (
         const usedLeave = existingLeaveQuota.used_leave;
 
         if (usedLeave === undefined || usedLeave === null) {
-            res.status(404).json({
+            res.status(500).json({
                 success: false,
-                message: "Used leave quota record not found",
+                message: "Used leave data is missing for the existing quota.",
             });
             return;
         }
@@ -275,31 +360,36 @@ export const updateLeaveQuota = async (
         if (newQuota < usedLeave) {
             res.status(400).json({
                 success: false,
-                message: `Leave quota (${newQuota}) cannot be less than used leave (${usedLeave})`,
+                message: `Leave quota (${newQuota}) cannot be less than used leave (${usedLeave}).`,
             });
             return;
         }
 
         const leaveBalance = newQuota - usedLeave;
 
-        const updatedShiftEmployee = await TrxLeaveQuota.update({
-            where: { id: Number(id) },
+        const updatedLeaveQuota = await TrxLeaveQuota.update({
+            where: { id: quotaId },
             data: {
                 leaves_type_id: Number(id_leave_type),
-                valid_from: new Date(valid_from),
-                valid_to: new Date(valid_to),
+                valid_from: newStartDate,
+                valid_to: newEndDate,
                 leaves_quota: newQuota,
                 leave_balance: leaveBalance,
+                updated_at: getCurrentWIBDate(),
             },
         });
-        res.status(201).send(JSONbig.stringify({
+
+        res.status(200).send(JSONbig.stringify({
             success: true,
-            message: "Leave quota updated successfully",
-            data: { updatedShiftEmployee },
+            message: "Leave quota updated successfully.",
+            data: updatedLeaveQuota,
         }));
     } catch (err) {
-        console.error("Error while update leave quota:", err);
-        res.status(500).json({ success: false, message: err });
+        console.error("Error while updating leave quota:", err);
+        res.status(500).json({
+            success: false,
+            message: "Error updating leave quota data: " + (err instanceof Error ? err.message : "An unknown error occurred."),
+        });
     }
 };
 

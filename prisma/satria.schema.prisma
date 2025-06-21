@@ -54,6 +54,7 @@ model User {
   worklocation_lat_long_sap String?               @satria.NVarChar(255)
   created_at                DateTime?             @satria.DateTime
   updated_at                DateTime?             @satria.DateTime
+  user_detail               user_detail[]         @relation("UserToUserDetail")
   dept_data                 mst_dept?             @relation("UserToDept", fields: [dept], references: [id])
   trx_leaves                trx_leaves[]          @relation("UserToTrxLeaves")
   trx_ovt                   trx_ovt[]             @relation("UserToTrxOvt")
@@ -62,6 +63,7 @@ model User {
   trx_resign                trx_resign[]          @relation("UserToTrxResign")
   trx_shift_emp             trx_shift_emp[]       @relation("TrxShiftToUser")
   trx_leave_quota           trx_leave_quota[]     @relation("TrxLeaveQuotaToUser")
+  attendance                attendance[]          @relation("AttendanceToUser")
 
   @@map("users")
 }
@@ -137,6 +139,7 @@ model ms_shift {
 
   details ms_detail_shift_group[] @relation("DetailsToMsShift")
   trx_ovt trx_ovt[]               @relation("ShiftToTrxOvt")
+  attendance  attendance[]        @relation("AttendanceToMsShift")
 
   @@map("ms_shift")
 }
@@ -286,7 +289,9 @@ model trx_official_travel {
   end_date                    DateTime          @satria.Date
   total_leave_days            BigInt
   type                        String            @satria.NVarChar(255)
-  destination_place           String            @satria.NVarChar(255)
+  destination_place1          String            @satria.NVarChar(255)
+  destination_place2          String?           @satria.NVarChar(255)
+  destination_place3          String?           @satria.NVarChar(255)
   transportation              String            @satria.NVarChar(255)
   lodging                     String            @satria.NVarChar(255)
   work_status                 String            @satria.NVarChar(255)
@@ -299,7 +304,9 @@ model trx_official_travel {
   fiskal_cost                 Decimal?
   other_cost                  Decimal?
   total_cost                  Decimal?
-  destination_city            String            @satria.NVarChar(255)
+  destination_city1           String            @satria.NVarChar(255)
+  destination_city2           String?           @satria.NVarChar(255)
+  destination_city3           String?           @satria.NVarChar(255)
   activity_agenda             String            @satria.NVarChar(255)
   symbol_currency             String?           @satria.NVarChar(255)
   currency                    String?           @satria.NVarChar(255)
@@ -375,7 +382,7 @@ model trx_mutation {
   canceled        String?   @satria.NVarChar(255)
   canceled_date   DateTime? @satria.DateTime
   canceled_remark String?   @satria.NVarChar(255)
-  created_by      BigInt?
+  created_by      String
   created_at      DateTime
   updated_by      BigInt?
   updated_at      DateTime
@@ -389,7 +396,6 @@ model trx_resign {
   user            String    @satria.NVarChar(255)
   effective_date  DateTime  @satria.Date
   reason          String    @satria.NVarChar(255)
-  file_upload     String    @satria.NVarChar(255)
   status_id       BigInt
   accept_to       String    @satria.NVarChar(255)
   accepted        String?   @satria.NVarChar(255)
@@ -435,6 +441,10 @@ model user_detail {
   created_at         DateTime? @default(dbgenerated("sysdatetime()"), map: "DF__user_deta__creat__7A3223E8")
   updated_by         BigInt?
   updated_at         DateTime? @default(dbgenerated("sysdatetime()"), map: "DF__user_deta__updat__7B264821")
+  MsUser             User? @relation("UserToUserDetail", fields: [user_id], references: [id])
+  MsMarital          ms_marital_status? @relation("MaritalStatusToUserDetail", fields: [marital_status], references: [id])
+  MsKlasifikasi      ms_klasifikasi? @relation("KlasifikasiToUserDetail", fields: [klasifikasi], references: [id])
+  MsVendor           ms_subcont? @relation("VendorToUserDetail", fields: [vendor], references: [id])
 }
 
 model ms_worklocation {
@@ -454,6 +464,7 @@ model ms_klasifikasi {
   created_at DateTime? @default(now(), map: "DF__ms_klasif__creat__17C286CF") @satria.DateTime
   updated_by BigInt?   @default(dbgenerated("NULL"), map: "DF__ms_klasif__updat__18B6AB08")
   updated_at DateTime? @default(now(), map: "DF__ms_klasif__updat__19AACF41") @satria.DateTime
+  user_detail user_detail[] @relation("KlasifikasiToUserDetail")
 }
 
 model ms_subcont {
@@ -464,6 +475,7 @@ model ms_subcont {
   created_at DateTime? @default(now(), map: "DF__ms_subcon__creat__1D7B6025") @satria.DateTime
   updated_by BigInt?   @default(dbgenerated("NULL"), map: "DF__ms_subcon__updat__1E6F845E")
   updated_at DateTime? @default(now(), map: "DF__ms_subcon__updat__1F63A897") @satria.DateTime
+  user_detail user_detail[] @relation("VendorToUserDetail")
 }
 
 model mst_plant {
@@ -492,6 +504,7 @@ model ms_marital_status {
   created_at DateTime? @default(now(), map: "DF__ms_marita__creat__2334397B") @satria.DateTime
   updated_by BigInt?   @default(dbgenerated("NULL"), map: "DF__ms_marita__updat__24285DB4")
   updated_at DateTime? @default(now(), map: "DF__ms_marita__updat__251C81ED") @satria.DateTime
+  user_detail user_detail[] @relation("MaritalStatusToUserDetail")
 }
 
 model trx_leave_quota {
@@ -545,6 +558,9 @@ model attendance {
   updated_by      BigInt?
   updated_at      DateTime
   is_late         Int?      @satria.SmallInt
+  is_early_out    Int?      @satria.SmallInt
+  MsUser          User?     @relation("AttendanceToUser", fields: [subcont], references: [personal_number])
+  MsShift         ms_shift? @relation("AttendanceToMsShift", fields: [shift_code], references: [code])
 
   @@map("attendance")
 }
@@ -572,6 +588,7 @@ model trx_declaration {
   canceled_date          DateTime?                @satria.DateTime
   canceled_remark        String?                  @satria.NVarChar(255)
   total_money_change     Decimal
+  total_detail_cost      Decimal
   status_id              BigInt
   created_by             BigInt?
   created_at             DateTime

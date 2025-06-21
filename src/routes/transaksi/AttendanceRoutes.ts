@@ -14,19 +14,7 @@ const storage = multer.diskStorage({
     cb(null, "uploads/");
   },
   filename: (req, file, cb) => {
-    const d = new Date();
-    const pad = (n: number) => String(n).padStart(2, "0");
-    const name =
-      "absensi_" +
-      d.getFullYear() +
-      pad(d.getMonth() + 1) +
-      pad(d.getDate()) +
-      pad(d.getHours()) +
-      pad(d.getMinutes()) +
-      pad(d.getSeconds()) +
-      path.extname(file.originalname);
-
-    cb(null, name);
+    cb(null, file.originalname);
   },
 });
 
@@ -34,6 +22,14 @@ const upload = multer({ storage });
 
 router.get("/", async (req: Request, res: Response) => {
   await AttendanceController.getAttendanceReport(req, res);
+});
+
+router.get("/summary-by-month", async (req: Request, res: Response) => {
+  await AttendanceController.getMonthlyAttendanceSummary(req, res);
+});
+
+router.get("/daily", async (req: Request, res: Response) => {
+  await AttendanceController.getAllDailyAttendance(req, res);
 });
 
 router.get("/shift-today", async (req: Request, res: Response) => {

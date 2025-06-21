@@ -12,18 +12,18 @@ export const getAllShift = async (
       page = "1",
       limit = "10",
       search = "",
-      sort = "code",
-      order = "asc",
+      sort = "id",
+      order = "desc",
     } = req.query;
 
     const pageNumber = parseInt(page as string, 10);
     const pageSize = parseInt(limit as string, 10);
     const skip = (pageNumber - 1) * pageSize;
-    const validSortFields = ["code", "name", "in_time", "out_time"];
+    const validSortFields = ["id","code", "name", "in_time", "out_time"];
     const sortField = validSortFields.includes(sort as string)
       ? (sort as string)
-      : "code";
-    const sortOrder = order === "asc" ? "desc" : "asc";
+      : "id";
+    const sortOrder = order === "asc" ? "asc" : "desc";
 
     const shiftData = await Shift.findMany({
       where: {

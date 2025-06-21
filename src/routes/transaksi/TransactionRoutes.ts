@@ -44,7 +44,6 @@ router.get(
 
 router.put(
   "/:id", async (req: Request, res: Response) => {
-    console.log(req.body);
     await TrxLeave.handleTrx(req, res);
   }
 );

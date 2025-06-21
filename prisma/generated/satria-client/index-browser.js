@@ -350,7 +350,9 @@ exports.Prisma.Trx_official_travelScalarFieldEnum = {
   end_date: 'end_date',
   total_leave_days: 'total_leave_days',
   type: 'type',
-  destination_place: 'destination_place',
+  destination_place1: 'destination_place1',
+  destination_place2: 'destination_place2',
+  destination_place3: 'destination_place3',
   transportation: 'transportation',
   lodging: 'lodging',
   work_status: 'work_status',
@@ -363,7 +365,9 @@ exports.Prisma.Trx_official_travelScalarFieldEnum = {
   fiskal_cost: 'fiskal_cost',
   other_cost: 'other_cost',
   total_cost: 'total_cost',
-  destination_city: 'destination_city',
+  destination_city1: 'destination_city1',
+  destination_city2: 'destination_city2',
+  destination_city3: 'destination_city3',
   activity_agenda: 'activity_agenda',
   symbol_currency: 'symbol_currency',
   currency: 'currency',
@@ -446,7 +450,6 @@ exports.Prisma.Trx_resignScalarFieldEnum = {
   user: 'user',
   effective_date: 'effective_date',
   reason: 'reason',
-  file_upload: 'file_upload',
   status_id: 'status_id',
   accept_to: 'accept_to',
   accepted: 'accepted',
@@ -595,7 +598,8 @@ exports.Prisma.AttendanceScalarFieldEnum = {
   created_at: 'created_at',
   updated_by: 'updated_by',
   updated_at: 'updated_at',
-  is_late: 'is_late'
+  is_late: 'is_late',
+  is_early_out: 'is_early_out'
 };
 
 exports.Prisma.Trx_declarationScalarFieldEnum = {
@@ -621,6 +625,7 @@ exports.Prisma.Trx_declarationScalarFieldEnum = {
   canceled_date: 'canceled_date',
   canceled_remark: 'canceled_remark',
   total_money_change: 'total_money_change',
+  total_detail_cost: 'total_detail_cost',
   status_id: 'status_id',
   created_by: 'created_by',
   created_at: 'created_at',

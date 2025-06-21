@@ -14,7 +14,7 @@ export const getAllTrxShiftEmployee = async (
       limit = "10",
       search = "",
       sort = "code",
-      order = "asc",
+      order = "desc",
     } = req.query;
 
     const pageNumber = Number(page) || 1;
@@ -30,15 +30,27 @@ export const getAllTrxShiftEmployee = async (
     const sortField = validSortFields.includes(sort as string)
       ? (sort as string)
       : "code";
-    const sortOrder = order === "desc" ? "desc" : "asc";
+    const sortOrder = order === "asc" ? "asc" : "desc";
 
     const shiftEmployees = await TrxShiftEmployee.findMany({
       where: {
         is_deleted: 0,
         OR: [
           { code: { contains: search as string } },
-          { id_user: { contains: search as string } },
-          { id_shift_group: { contains: search as string } },
+          {
+            MsUser: {
+              name: {
+                contains: search as string,
+              },
+            },
+          },
+          {
+            MsShiftGroup: {
+              nama: {
+                contains: search as string,
+              },
+            },
+          },
         ],
       },
       include: {
@@ -66,7 +78,7 @@ export const getAllTrxShiftEmployee = async (
       if (!date) return null;
       return date.toLocaleDateString("en-GB", {
         day: "2-digit",
-        month: "long",
+        month: "short",
         year: "numeric",
       });
     };
@@ -82,8 +94,20 @@ export const getAllTrxShiftEmployee = async (
         is_deleted: 0,
         OR: [
           { code: { contains: search as string } },
-          { id_user: { contains: search as string } },
-          { id_shift_group: { contains: search as string } },
+          {
+            MsUser: {
+              name: {
+                contains: search as string,
+              },
+            },
+          },
+          {
+            MsShiftGroup: {
+              nama: {
+                contains: search as string,
+              },
+            },
+          },
         ],
       },
     });

@@ -12,18 +12,18 @@ export const getAllLeaveTypes = async (
       page = "1",
       limit = "10",
       search = "",
-      sort = "title",
-      order = "asc",
+      sort = "id",
+      order = "desc",
     } = req.query;
 
     const pageNumber = parseInt(page as string, 10);
     const pageSize = parseInt(limit as string, 10);
     const skip = (pageNumber - 1) * pageSize;
-    const validSortFields = ["title", "days"];
+    const validSortFields = ["id","title", "days"];
     const sortField = validSortFields.includes(sort as string)
       ? (sort as string)
-      : "title";
-    const sortOrder = order === "desc" ? "desc" : "asc";
+      : "id";
+    const sortOrder = order === "asc" ? "asc" : "desc";
     const searchNumber = parseInt(search as string, 10);
 
     const leaveTypeData = await LeaveTypes.findMany({

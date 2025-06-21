@@ -14,19 +14,19 @@ export const getAllShiftGroup = async (
       page = "1",
       limit = "10",
       search = "",
-      sort = "nama",
-      order = "asc",
+      sort = "id",
+      order = "desc",
     } = req.query;
 
     const pageNumber = parseInt(page as string, 10);
     const pageSize = parseInt(limit as string, 10);
     const skip = (pageNumber - 1) * pageSize;
 
-    const validSortFields = ["code", "nama"];
+    const validSortFields = ["id","code", "nama"];
     const sortField = validSortFields.includes(sort as string)
       ? (sort as string)
-      : "nama";
-    const sortOrder = order === "desc" ? "desc" : "asc";
+      : "id";
+    const sortOrder = order === "asc" ? "asc" : "desc";
 
     // Ambil shift group dengan relasi detail dan shift
     const shiftGroups = await prisma.ms_shift_group.findMany({

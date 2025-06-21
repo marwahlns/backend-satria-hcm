@@ -12,18 +12,18 @@ export const getAllWorklocation = async (
       page = "1",
       limit = "10",
       search = "",
-      sort = "worklocation_code",
-      order = "asc",
+      sort = "worklocation_id",
+      order = "desc",
     } = req.query;
 
     const pageNumber = parseInt(page as string, 10);
     const pageSize = parseInt(limit as string, 10);
     const skip = (pageNumber - 1) * pageSize;
-    const validSortFields = ["worklocation_code", "worklocation_name", "worklocation_lat_long"];
+    const validSortFields = ["worklocation_id","worklocation_code", "worklocation_name", "worklocation_lat_long"];
     const sortField = validSortFields.includes(sort as string)
       ? (sort as string)
-      : "worklocation_code";
-    const sortOrder = order === "desc" ? "desc" : "asc";
+      : "worklocation_id";
+    const sortOrder = order === "asc" ? "asc" : "desc";
 
     const WorklocationData = await Worklocation.findMany({
       where: {
@@ -64,7 +64,6 @@ export const getAllWorklocation = async (
       },
     }));
   } catch (err) {
-    console.log(err)
     res
       .status(500)
       .json({ success: false, message: "Error retrieving worklocations data" });

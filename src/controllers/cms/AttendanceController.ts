@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Attendance } from "../../models/Table/Satria/TrxAttendance";
 import { TrxShiftEmployee } from "../../models/Table/Satria/TrxShiftEmployee";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
-import { getDistanceMeters } from "../../helpers/geo";
+import { calculateDistance } from "../../helpers/geofences";
 import JSONbig from "json-bigint";
 import { Shift } from "../../models/Table/Satria/MsShift";
 import { TrxLeave } from "../../models/Table/Satria/TrxLeave";
@@ -11,6 +11,926 @@ import { TrxOfficialTravel } from "../../models/Table/Satria/TrxOfficialTravel";
 import { User } from "../../models/Table/Satria/MsUser";
 import ExcelJS from "exceljs";
 import * as fs from 'fs';
+
+export const getMonthlyAttendanceSummary = async (
+  req: Request & { user?: { nrp: string } },
+  res: Response
+): Promise<void> => {
+  try {
+    const userNrp = req.user?.nrp;
+    const isAdmin = userNrp === "P0120001";
+
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const currentMonth = now.getMonth();
+    const startDate = new Date(currentYear, currentMonth, 1);
+    const endDate = new Date(currentYear, currentMonth + 1, 0, 23, 59, 59, 999);
+
+    // Date range untuk perhitungan tahunan
+    const yearStartDate = new Date(currentYear, 0, 1);
+    const yearEndDate = new Date(currentYear, 11, 31, 23, 59, 59, 999);
+
+    const subordinateUsers = !isAdmin
+      ? await User.findMany({
+        where: { superior: userNrp },
+        select: { personal_number: true },
+      })
+      : [];
+
+    const allowedNrps = isAdmin
+      ? undefined
+      : [userNrp!, ...subordinateUsers.map((u) => u.personal_number)];
+
+    const buildWhereClause = (start: Date, end: Date) => {
+      const whereClause: any = {
+        in_time: { gte: start, lte: end },
+      };
+      if (allowedNrps) whereClause.subcont = { in: allowedNrps };
+      return whereClause;
+    };
+
+    const userWhereClause: any = {
+      role_id: "10",
+      is_active: 0,
+    };
+    if (allowedNrps) userWhereClause.personal_number = { in: allowedNrps };
+
+    const totalEmployees = await User.count({ where: userWhereClause });
+
+    const yearlyWorkingDays = (() => {
+      let count = 0;
+      for (let month = 0; month < 12; month++) {
+        const monthEnd = new Date(currentYear, month + 1, 0);
+        const totalDaysInMonth = monthEnd.getDate();
+
+        for (let d = 1; d <= totalDaysInMonth; d++) {
+          const date = new Date(currentYear, month, d);
+          const day = date.getDay();
+          if (day >= 1 && day <= 5) count++;
+        }
+      }
+      return count;
+    })();
+
+    const yearlyExpected = totalEmployees * yearlyWorkingDays;
+
+    const yearlyData = await Attendance.findMany({
+      where: buildWhereClause(yearStartDate, yearEndDate),
+    });
+
+    const yearlyTotalAttendance = yearlyData.length;
+    const yearlyOnTimeAttendance = yearlyData.filter((a) => a.is_late === 0 && a.is_early_out === 0).length;
+    const yearlyLateAttendance = yearlyData.filter((a) => a.is_late === 1 && a.is_early_out === 0).length;
+    const yearlyEarlyOutAttendance = yearlyData.filter((a) => a.is_late === 0 && a.is_early_out === 1).length;
+    const yearlyLateAndEarlyOutAttendance = yearlyData.filter((a) => a.is_late === 1 && a.is_early_out === 1).length;
+    const yearlyAbsent = yearlyExpected - yearlyTotalAttendance;
+
+    const yearlyOnTimePercentage = yearlyExpected > 0 ? Math.round((yearlyOnTimeAttendance / yearlyExpected) * 100) : 0;
+    const yearlyLatePercentage = yearlyExpected > 0 ? Math.round((yearlyLateAttendance / yearlyExpected) * 100) : 0;
+    const yearlyEarlyOutPercentage = yearlyExpected > 0 ? Math.round((yearlyEarlyOutAttendance / yearlyExpected) * 100) : 0;
+    const yearlyLateAndEarlyOutPercentage = yearlyExpected > 0 ? Math.round((yearlyLateAndEarlyOutAttendance / yearlyExpected) * 100) : 0;
+    const yearlyAbsentPercentage = yearlyExpected > 0 ? Math.round((yearlyAbsent / yearlyExpected) * 100) : 0;
+
+    const workingDays = (() => {
+      const totalDays = endDate.getDate();
+      let count = 0;
+      for (let d = 1; d <= totalDays; d++) {
+        const date = new Date(currentYear, currentMonth, d);
+        const day = date.getDay();
+        if (day >= 1 && day <= 5) count++;
+      }
+      return count;
+    })();
+
+    const expected = totalEmployees * workingDays;
+
+    const thisMonthData = await Attendance.findMany({
+      where: buildWhereClause(startDate, endDate),
+    });
+
+    const summary = {
+      statsData: {
+        onTime: {
+          title: `${yearlyOnTimeAttendance}/${yearlyExpected}`,
+          subtitle: `On Time ${yearlyOnTimePercentage}%`,
+          percentage: "0.4%",
+          count: yearlyOnTimeAttendance,
+          total: yearlyExpected,
+          percentage_value: yearlyOnTimePercentage
+        },
+        late: {
+          title: `${yearlyLateAttendance}/${yearlyExpected}`,
+          subtitle: `Late In ${yearlyLatePercentage}%`,
+          percentage: "0%",
+          count: yearlyLateAttendance,
+          total: yearlyExpected,
+          percentage_value: yearlyLatePercentage
+        },
+        earlyOut: {
+          title: `${yearlyEarlyOutAttendance}/${yearlyExpected}`,
+          subtitle: `Early Out ${yearlyEarlyOutPercentage}%`,
+          percentage: "-2.78%",
+          count: yearlyEarlyOutAttendance,
+          total: yearlyExpected,
+          percentage_value: yearlyEarlyOutPercentage
+        },
+        lateAndEarly: {
+          title: `${yearlyLateAndEarlyOutAttendance}/${yearlyExpected}`,
+          subtitle: `Late & Early ${yearlyLateAndEarlyOutPercentage}%`,
+          percentage: "-2.78%",
+          count: yearlyLateAndEarlyOutAttendance,
+          total: yearlyExpected,
+          percentage_value: yearlyLateAndEarlyOutPercentage
+        },
+        absent: {
+          title: `${yearlyAbsent}/${yearlyExpected}`,
+          subtitle: `Absence ${yearlyAbsentPercentage}%`,
+          percentage: "100%",
+          count: yearlyAbsent,
+          total: yearlyExpected,
+          percentage_value: yearlyAbsentPercentage
+        }
+      },
+      total_employees: totalEmployees,
+      working_days: workingDays,
+      expected_attendance: expected,
+      actual_attendance: thisMonthData.length,
+      attendance_rate: expected > 0 ? Math.round((thisMonthData.length / expected) * 100) : 0,
+    };
+
+    const trend: any[] = [];
+    for (let month = 0; month < 12; month++) {
+      const mStart = new Date(currentYear, month, 1);
+      const mEnd = new Date(currentYear, month + 1, 0, 23, 59, 59, 999);
+
+      const data = await Attendance.findMany({
+        where: buildWhereClause(mStart, mEnd),
+      });
+
+      const mTotalDays = mEnd.getDate();
+      let mWorkingDays = 0;
+      for (let d = 1; d <= mTotalDays; d++) {
+        const date = new Date(currentYear, month, d);
+        const day = date.getDay();
+        if (day >= 1 && day <= 5) mWorkingDays++;
+      }
+
+      const mExpected = totalEmployees * mWorkingDays;
+
+      trend.push({
+        month: new Date(currentYear, month).toLocaleString("default", { month: "short" }),
+        onTime: data.filter((a) => a.is_late === 0 && a.is_early_out === 0).length,
+        late: data.filter((a) => a.is_late === 1 && a.is_early_out === 0).length,
+        earlyOut: data.filter((a) => a.is_late === 0 && a.is_early_out === 1).length,
+        lateAndEarly: data.filter((a) => a.is_late === 1 && a.is_early_out === 1).length,
+        absent: mExpected - data.length,
+        expected: mExpected,
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Full attendance overview",
+      data: {
+        data: {
+          summary,
+          chart: trend,
+        }
+      },
+    });
+  } catch (err) {
+    console.error("Full overview error:", err);
+    res.status(500).json({ message: "Server error", error: err });
+  }
+};
+
+export const getAllDailyAttendance = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const {
+      page = "1",
+      limit = "5",
+      search = "",
+      sort = "in_time",
+      order = "desc",
+      date,
+      detail = "false",
+      user_id,
+      export: exportExcel = "",
+    } = req.query;
+    const pageNumber = parseInt(page as string, 10);
+    const pageSize = parseInt(limit as string, 10);
+    const skip = (pageNumber - 1) * pageSize;
+
+    const whereCondition = {
+      ...(date && {
+        in_time: {
+          gte: new Date(`${date}T00:00:00.000Z`),
+          lte: new Date(`${date}T23:59:59.999Z`),
+        },
+      }),
+      ...(search && {
+        OR: [
+          {
+            MsUser: {
+              name: {
+                contains: search as string,
+              },
+            }
+          },
+          {
+            MsUser: {
+              personal_number: {
+                contains: search as string,
+              },
+            }
+          },
+          {
+            MsShift: {
+              name: {
+                contains: search as string,
+              }
+            }
+          }
+        ]
+      })
+    };
+    const attendanceData = await Attendance.findMany({
+      where: whereCondition,
+      include: {
+        MsUser: {
+          select: {
+            id: true,
+            photo: true,
+            name: true,
+            personal_number: true,
+            division: true,
+            department: true,
+            company_name: true
+          }
+        },
+        MsShift: true,
+      },
+      orderBy: {
+        in_time: "desc"
+      },
+      skip,
+      take: pageSize,
+    });
+
+    // HANDLE DETAIL REQUEST
+    if (detail === "true" && user_id) {
+      try {
+        const userDetailData = await User.findFirst({
+          where: {
+            personal_number: String(user_id)
+          },
+          include: {
+            user_detail: {
+              include: {
+                MsMarital: {
+                  select: {
+                    code: true,
+                    ket: true
+                  }
+                },
+                MsKlasifikasi: {
+                  select: {
+                    name: true
+                  }
+                },
+                MsVendor: {
+                  select: {
+                    name: true
+                  }
+                }
+              }
+            }
+          },
+        });
+
+        const attendanceHistoryCondition: any = {
+          subcont: String(user_id),
+        };
+
+        if (date) {
+          const inputDate = new Date(String(date));
+
+          const startOfMonth = new Date(inputDate.getFullYear(), inputDate.getMonth(), 1);
+          const endOfMonth = new Date(inputDate.getFullYear(), inputDate.getMonth() + 1, 0, 23, 59, 59, 999);
+
+          attendanceHistoryCondition.in_time = {
+            gte: startOfMonth,
+            lte: endOfMonth,
+          };
+        }
+
+        const attendanceUserData = await Attendance.findMany({
+          where: attendanceHistoryCondition,
+          include: {
+            MsUser: {
+              select: {
+                id: true,
+                photo: true,
+                name: true,
+                personal_number: true,
+                division: true,
+                department: true,
+                company_name: true,
+                email: true
+              }
+            },
+            MsShift: true
+          },
+          orderBy: {
+            in_time: "desc"
+          },
+        });
+
+        const totalAttendanceItems = await Attendance.count({
+          where: attendanceHistoryCondition,
+        });
+
+        res.status(200).send(
+          JSONbig.stringify({
+            success: true,
+            data: {
+              data: {
+                userData: userDetailData,
+                attendanceHistory: attendanceUserData,
+              },
+              totalItems: totalAttendanceItems,
+              currentPage: pageNumber,
+              totalPages: Math.ceil(totalAttendanceItems / pageSize),
+            },
+          })
+        );
+        return;
+      } catch (detailError) {
+        console.error("Error getting user detail:", detailError);
+        res.status(404).json({
+          success: false,
+          message: "User not found or error retrieving user details",
+        });
+        return;
+      }
+    }
+
+    // HANDLE EXPORT REQUEST
+    if (exportExcel === "monthly") {
+      try {
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Attendance Report');
+
+        try {
+          const imageBuffer = fs.readFileSync('uploads/logo.png');
+          const imageId = workbook.addImage({
+            buffer: imageBuffer,
+            extension: 'png',
+          });
+          worksheet.addImage(imageId, {
+            tl: { col: 0, row: 0 },
+            ext: { width: 206, height: 55 },
+            editAs: 'oneCell',
+          });
+        } catch (error) {
+          console.warn("Failed to load logo.png:", error);
+        }
+
+        const userAttendanceMap = new Map();
+        let startDate, endDate, selectedYear, selectedMonth, totalDaysInMonth;
+
+        if (date) {
+          const inputDate = new Date(String(date));
+          selectedYear = inputDate.getFullYear();
+          selectedMonth = inputDate.getMonth();
+          startDate = new Date(selectedYear, selectedMonth, 1);
+          endDate = new Date(selectedYear, selectedMonth + 1, 0, 23, 59, 59, 999);
+          totalDaysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
+        } else {
+          const now = new Date();
+          selectedYear = now.getFullYear();
+          selectedMonth = now.getMonth();
+          startDate = new Date(selectedYear, selectedMonth, 1);
+          endDate = new Date(selectedYear, selectedMonth + 1, 0, 23, 59, 59, 999);
+          totalDaysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
+        }
+
+        const excelWhereCondition = date
+          ? {
+            in_time: {
+              gte: startDate,
+              lte: endDate,
+            },
+          }
+          : {};
+
+        const attendanceDataForExcel = await Attendance.findMany({
+          where: excelWhereCondition,
+          include: {
+            MsUser: {
+              select: {
+                id: true,
+                photo: true,
+                name: true,
+                personal_number: true,
+                division: true,
+                department: true,
+                company_name: true
+              }
+            }
+          },
+          orderBy: {
+            in_time: "desc"
+          },
+        });
+
+        if (!attendanceDataForExcel || attendanceDataForExcel.length === 0) {
+          res.status(204).send();
+          return;
+        }
+
+        attendanceDataForExcel.forEach(record => {
+          const userKey = record.MsUser?.personal_number || '';
+          if (!userAttendanceMap.has(userKey)) {
+            userAttendanceMap.set(userKey, {
+              userData: record.MsUser,
+              attendanceRecords: []
+            });
+          }
+          userAttendanceMap.get(userKey).attendanceRecords.push(record);
+        });
+
+        if (userAttendanceMap.size === 0) {
+          res.status(204).send();
+          return;
+        }
+
+        const getMonthName = (monthIndex: number): string => {
+          const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+          return months[monthIndex];
+        };
+
+        const getDayStatus = (date: Date): string => {
+          const dayOfWeek = date.getDay();
+          return (dayOfWeek === 0 || dayOfWeek === 6) ? 'H' : 'W';
+        };
+
+        let isFirstUserInSheet = true;
+
+        for (const [userNrp, userInfo] of userAttendanceMap) {
+          const { userData, attendanceRecords } = userInfo;
+
+          if (!isFirstUserInSheet) {
+            worksheet.addRow([]);
+            worksheet.addRow([]);
+          } else {
+            while (worksheet.lastRow && worksheet.lastRow.number < 3) {
+              worksheet.addRow([]);
+            }
+            if (!worksheet.lastRow || worksheet.lastRow.number < 3) {
+              let currentLastRow = worksheet.lastRow ? worksheet.lastRow.number : 0;
+              while (currentLastRow < 3) {
+                worksheet.addRow([]);
+                currentLastRow++;
+              }
+            }
+          }
+
+          let titleRow = worksheet.addRow(['Attendance Report']);
+          worksheet.mergeCells(`A${titleRow.number}:H${titleRow.number}`);
+          titleRow.getCell('A').font = { size: 16, bold: true };
+          titleRow.getCell('A').alignment = { horizontal: 'center' };
+
+          let empRow1 = worksheet.addRow(['NRP .', userData?.personal_number || '-', '', 'Name .', userData?.name || '-']);
+          let empRow2 = worksheet.addRow(['DEPT .', userData?.department || '-', '']);
+          let empRow3 = worksheet.addRow(['Perusahaan .', userData?.company_name || '-']);
+          let empRow4 = worksheet.addRow(['PERIODE .', date ? `${getMonthName(selectedMonth)} ${selectedYear}` : 'Semua Data']);
+
+          [empRow1, empRow2, empRow3, empRow4].forEach(row => {
+            row.getCell('A').font = { bold: true };
+            row.getCell('D').font = { bold: true };
+          });
+
+          worksheet.addRow([]);
+
+          const attendanceMap = new Map();
+          let totalLateIn = 0;
+          let totalPresence = 0;
+
+          attendanceRecords.forEach((record: any) => {
+            if (record.in_time) {
+              const recordDate = new Date(record.in_time);
+              const dateKey = recordDate.getUTCDate();
+              attendanceMap.set(dateKey, record);
+              totalPresence++;
+              if (record.is_late) {
+                totalLateIn++;
+              }
+            }
+          });
+
+          // Fetch overtime data for the current user and month
+          const overtimeData = await TrxOvertime.findMany({
+            where: {
+              user: userNrp,
+              status_id: 3,
+              check_in_ovt: {
+                gte: startDate,
+                lte: endDate,
+              },
+            },
+            orderBy: {
+              check_in_ovt: "asc",
+            },
+          });
+
+          const overtimeMap = new Map();
+          overtimeData.forEach((record) => {
+            if (record.check_in_ovt) {
+              const dateKey = new Date(record.check_in_ovt).getUTCDate();
+              overtimeMap.set(dateKey, record);
+            }
+          });
+
+          const [totalLeave, totalOfficialTravel] = await Promise.all([
+            TrxLeave.count({
+              where: {
+                user: userNrp,
+                status_id: 3,
+                start_date: {
+                  gte: startDate,
+                  lte: endDate,
+                }
+              }
+            }),
+            TrxOfficialTravel.count({
+              where: {
+                user: userNrp,
+                start_date: {
+                  gte: startDate,
+                  lte: endDate,
+                }
+              }
+            }),
+          ]);
+
+          let summaryHeaderRow = worksheet.addRow([]);
+          summaryHeaderRow.getCell('A').value = 'PRESENCE';
+          worksheet.mergeCells(`A${summaryHeaderRow.number}:B${summaryHeaderRow.number}`);
+          summaryHeaderRow.getCell('C').value = 'LATE IN';
+          worksheet.mergeCells(`C${summaryHeaderRow.number}:D${summaryHeaderRow.number}`);
+          summaryHeaderRow.getCell('E').value = 'LEAVE';
+          worksheet.mergeCells(`E${summaryHeaderRow.number}:F${summaryHeaderRow.number}`);
+          summaryHeaderRow.getCell('G').value = 'OFFICIAL TRAVEL';
+          worksheet.mergeCells(`G${summaryHeaderRow.number}:H${summaryHeaderRow.number}`);
+
+          let summaryValueRow = worksheet.addRow([]);
+          summaryValueRow.getCell('A').value = totalPresence;
+          worksheet.mergeCells(`A${summaryValueRow.number}:B${summaryValueRow.number}`);
+          summaryValueRow.getCell('C').value = totalLateIn;
+          worksheet.mergeCells(`C${summaryValueRow.number}:D${summaryValueRow.number}`);
+          summaryValueRow.getCell('E').value = totalLeave;
+          worksheet.mergeCells(`E${summaryValueRow.number}:F${summaryValueRow.number}`);
+          summaryValueRow.getCell('G').value = totalOfficialTravel;
+          worksheet.mergeCells(`G${summaryValueRow.number}:H${summaryValueRow.number}`);
+
+          [summaryHeaderRow, summaryValueRow].forEach(row => {
+            for (let col = 1; col <= 8; col++) {
+              row.getCell(col).alignment = { horizontal: 'center', vertical: 'middle' };
+              row.getCell(col).border = {
+                top: { style: 'thin' },
+                left: { style: 'thin' },
+                bottom: { style: 'thin' },
+                right: { style: 'thin' }
+              };
+            }
+          });
+
+          worksheet.addRow([]);
+          let tableHeaderRow1 = worksheet.addRow([]);
+          tableHeaderRow1.getCell('A').value = 'Date';
+          tableHeaderRow1.getCell('B').value = 'ATTENDANCE';
+          tableHeaderRow1.getCell('D').value = 'OVERTIME';
+          tableHeaderRow1.getCell('F').value = 'NOTES';
+
+          let tableHeaderRow2 = worksheet.addRow([]);
+          tableHeaderRow2.getCell('B').value = 'In';
+          tableHeaderRow2.getCell('C').value = 'Out';
+          tableHeaderRow2.getCell('D').value = 'In';
+          tableHeaderRow2.getCell('E').value = 'Out';
+
+          worksheet.mergeCells(`A${tableHeaderRow1.number}:A${tableHeaderRow2.number}`);
+          worksheet.mergeCells(`B${tableHeaderRow1.number}:C${tableHeaderRow1.number}`);
+          worksheet.mergeCells(`D${tableHeaderRow1.number}:E${tableHeaderRow1.number}`);
+          worksheet.mergeCells(`F${tableHeaderRow1.number}:H${tableHeaderRow2.number}`);
+
+          [tableHeaderRow1, tableHeaderRow2].forEach(row => {
+            for (let col = 1; col <= 8; col++) {
+              const cell = row.getCell(col);
+              cell.alignment = { horizontal: 'center', vertical: 'middle' };
+              cell.font = { bold: true };
+              cell.border = {
+                top: { style: 'thin' },
+                left: { style: 'thin' },
+                bottom: { style: 'thin' },
+                right: { style: 'thin' }
+              };
+            }
+          });
+
+          const dataStartRow = tableHeaderRow2.number + 1;
+          let lastDataRow = dataStartRow;
+
+          if (date && totalDaysInMonth) {
+            for (let day = 1; day <= totalDaysInMonth; day++) {
+              const currentDate = new Date(selectedYear, selectedMonth, day);
+              const attendanceRecord = attendanceMap.get(day);
+              const overtimeRecord = overtimeMap.get(day);
+
+              const inTime = attendanceRecord?.in_time
+                ? new Date(attendanceRecord.in_time).toISOString().slice(11, 16)
+                : "-";
+              const outTime = attendanceRecord?.out_time
+                ? new Date(attendanceRecord.out_time).toISOString().slice(11, 16)
+                : "-";
+              const notes = attendanceRecord?.note || "";
+
+              const overtimeIn = overtimeRecord?.check_in_ovt
+                ? new Date(overtimeRecord.check_in_ovt).toISOString().slice(11, 16)
+                : "-";
+              const overtimeOut = overtimeRecord?.check_out_ovt
+                ? new Date(overtimeRecord.check_out_ovt).toISOString().slice(11, 16)
+                : "-";
+
+              const row = worksheet.addRow([day, inTime, outTime, overtimeIn, overtimeOut, notes]);
+              worksheet.mergeCells(`F${row.number}:H${row.number}`);
+              row.getCell('F').value = notes;
+              lastDataRow = row.number;
+
+              if (attendanceRecord?.is_late === 1) {
+                row.getCell(2).font = { color: { argb: 'FF0000' } };
+              }
+
+              const dayStatus = getDayStatus(currentDate);
+              if (dayStatus === 'H') {
+                row.eachCell((cell) => {
+                  cell.fill = {
+                    type: 'pattern',
+                    pattern: 'solid',
+                    fgColor: { argb: 'D3D3D3' },
+                  };
+                });
+              }
+            }
+          } else {
+            attendanceRecords.forEach((record: any) => {
+              const recordDate = record.in_time ? new Date(record.in_time) : null;
+              const day = recordDate ? recordDate.getDate() : '-';
+              const overtimeRecord = overtimeMap.get(day);
+
+              const inTime = record.in_time
+                ? new Date(record.in_time).toISOString().slice(11, 16)
+                : "-";
+              const outTime = record.out_time
+                ? new Date(record.out_time).toISOString().slice(11, 16)
+                : "-";
+              const notes = record.note || "";
+
+              const overtimeIn = overtimeRecord?.check_in_ovt
+                ? new Date(overtimeRecord.check_in_ovt).toISOString().slice(11, 16)
+                : "-";
+              const overtimeOut = overtimeRecord?.check_out_ovt
+                ? new Date(overtimeRecord.check_out_ovt).toISOString().slice(11, 16)
+                : "-";
+
+              const row = worksheet.addRow([day, inTime, outTime, overtimeIn, overtimeOut, notes]);
+              worksheet.mergeCells(`F${row.number}:H${row.number}`);
+              row.getCell('F').value = notes;
+              lastDataRow = row.number;
+
+              if (record.is_late === 1) {
+                row.getCell(2).font = { color: { argb: 'FF0000' } };
+              }
+            });
+          }
+
+          for (let rowNum = tableHeaderRow1.number; rowNum <= Math.max(tableHeaderRow2.number + 1, lastDataRow); rowNum++) {
+            for (let col = 1; col <= 8; col++) {
+              const cell = worksheet.getCell(rowNum, col);
+              if (rowNum < dataStartRow) {
+                cell.border = {
+                  top: { style: 'thin' },
+                  left: { style: 'thin' },
+                  bottom: { style: 'thin' },
+                  right: { style: 'thin' }
+                };
+              } else {
+                cell.border = {
+                  top: { style: 'thin' },
+                  left: { style: 'thin' },
+                  bottom: { style: 'thin' },
+                  right: { style: 'thin' }
+                };
+                cell.alignment = { horizontal: 'center', vertical: 'middle' };
+              }
+            }
+          }
+
+          isFirstUserInSheet = false;
+        }
+
+        const buffer = await workbook.xlsx.writeBuffer();
+        res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        res.setHeader("Content-Disposition", `attachment; filename=Laporan_Absensi_Harian_${date || "all"}.xlsx`);
+        res.send(buffer);
+        return;
+      } catch (error) {
+        console.error('Kesalahan dalam pembuatan Excel:', error);
+      }
+    } else if (exportExcel === "daily") {
+      try {
+        if (!date) {
+          res.status(400).json({
+            success: false,
+            message: "Parameter 'date' diperlukan untuk ekspor harian."
+          });
+          return;
+        }
+
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Laporan Absensi Harian');
+
+        try {
+          const imageBuffer = fs.readFileSync('uploads/logo.png');
+          const imageId = workbook.addImage({
+            buffer: imageBuffer,
+            extension: 'png',
+          });
+          worksheet.addImage(imageId, {
+            tl: { col: 0, row: 0 },
+            ext: { width: 206, height: 55 },
+            editAs: 'oneCell',
+          });
+        } catch (error) {
+          // Silent catch for logo error
+        }
+
+        const exportInputDate = new Date(String(date));
+        const exportSelectedYear = exportInputDate.getFullYear();
+        const exportSelectedMonth = exportInputDate.getMonth();
+        const exportSelectedDay = exportInputDate.getDate();
+        const exportStartDate = new Date(exportSelectedYear, exportSelectedMonth, exportSelectedDay, 0, 0, 0, 0);
+        const exportEndDate = new Date(exportSelectedYear, exportSelectedMonth, exportSelectedDay, 23, 59, 59, 999);
+
+        const excelWhereCondition: any = {
+          in_time: {
+            gte: exportStartDate,
+            lte: exportEndDate,
+          },
+        };
+
+        if (user_id) {
+          excelWhereCondition.MsUser = { personal_number: String(user_id) };
+        }
+
+        const attendanceDataForExcel = await Attendance.findMany({
+          where: excelWhereCondition,
+          include: {
+            MsUser: {
+              select: {
+                id: true,
+                name: true,
+                personal_number: true,
+                division: true,
+                department: true,
+              }
+            }
+          },
+          orderBy: {
+            in_time: "asc"
+          },
+        });
+
+        if (!attendanceDataForExcel || attendanceDataForExcel.length === 0) {
+          res.status(204).send();
+          return;
+        }
+
+        // Adjust rows to start after logo
+        while (worksheet.lastRow && worksheet.lastRow.number < 3) {
+          worksheet.addRow([]);
+        }
+        if (!worksheet.lastRow || worksheet.lastRow.number < 3) {
+          let currentLastRow = worksheet.lastRow ? worksheet.lastRow.number : 0;
+          while (currentLastRow < 3) {
+            worksheet.addRow([]);
+            currentLastRow++;
+          }
+        }
+
+        // Title
+        let titleRow = worksheet.addRow(['Attendance Report Daily']);
+        worksheet.mergeCells(`A${titleRow.number}:E${titleRow.number}`);
+        titleRow.getCell('A').font = { size: 16, bold: true };
+        titleRow.getCell('A').alignment = { horizontal: 'center' };
+
+        let periodRow = worksheet.addRow(['Date .', exportInputDate.toLocaleDateString('id-ID')]);
+        periodRow.getCell('A').font = { bold: true };
+        worksheet.addRow([]);
+
+        // Table Headers
+        let headerRow = worksheet.addRow(['NRP', 'Name', 'Department', 'In Time', 'Out Time']);
+        headerRow.eachCell((cell) => {
+          cell.font = { bold: true };
+          cell.alignment = { horizontal: 'center', vertical: 'middle' };
+          cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } };
+        });
+
+        const dataStartRow = headerRow.number + 1;
+        let lastDataRow = dataStartRow - 1;
+
+        // Add data rows
+        attendanceDataForExcel.forEach(record => {
+          const inTime = record.in_time ? new Date(record.in_time).toISOString().slice(11, 16) : "-";
+          const outTime = record.out_time ? new Date(record.out_time).toISOString().slice(11, 16) : "-";
+
+          const row = worksheet.addRow([
+            record.MsUser?.personal_number || '-',
+            record.MsUser?.name || '-',
+            record.MsUser?.department || '-',
+            inTime,
+            outTime
+          ]);
+          lastDataRow = row.number;
+
+          if (record.is_late === 1) {
+            row.getCell(4).font = { color: { argb: 'FF0000' } };
+          }
+        });
+
+        for (let rowNum = headerRow.number; rowNum <= lastDataRow; rowNum++) {
+          for (let col = 1; col <= 5; col++) {
+            const cell = worksheet.getCell(rowNum, col);
+            cell.border = {
+              top: { style: 'thin' },
+              left: { style: 'thin' },
+              bottom: { style: 'thin' },
+              right: { style: 'thin' }
+            };
+            if (rowNum >= dataStartRow) {
+              cell.alignment = { horizontal: 'center', vertical: 'middle' };
+            }
+          }
+        }
+
+        // Auto-fit columns
+        worksheet.columns.forEach((column, index) => {
+          if (index === 0) column.width = 15;
+          else if (index === 1) column.width = 25;
+          else if (index === 2) column.width = 20;
+          else if (index === 4 || index === 5) column.width = 15;
+        });
+
+        const buffer = await workbook.xlsx.writeBuffer();
+
+        res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        res.setHeader("Content-Disposition", `attachment; filename=Laporan_Absensi_Harian_${date}.xlsx`);
+        res.send(buffer);
+        return;
+      } catch (error) {
+        console.error('Kesalahan dalam pembuatan Excel Harian:', error);
+        res.status(500).json({
+          success: false,
+          message: "Gagal membuat laporan Excel Harian.",
+        });
+      }
+    }
+
+    const totalItems = await Attendance.count({
+      where: whereCondition,
+    });
+
+    res.status(200).send(
+      JSONbig.stringify({
+        success: true,
+        data: {
+          data: attendanceData,
+          totalItems,
+          currentPage: pageNumber,
+          totalPages: Math.ceil(totalItems / pageSize),
+        },
+      })
+    );
+
+  } catch (err) {
+    console.error("Error getAllDailyAttendance:", err);
+    res.status(500).json({
+      success: false,
+      message: "Gagal mengambil data kehadiran",
+    });
+  }
+};
 
 export const getAttendanceReport = async (
   req: Request & { user?: { nrp: string; name: string; departement: string } },
@@ -390,19 +1310,13 @@ export const getAttendanceToday = async (req: Request & { user?: { nrp: string }
     if (!userNrp) throw new Error("User not found");
 
     const now = getCurrentWIBDate();
-    console.log("==========================")
-    console.log("now : ", now)
     const today = new Date(now);
-    console.log("today : ", today)
     const yesterday = new Date(now);
     yesterday.setDate(yesterday.getDate() - 1);
-    console.log("yesterday : ", yesterday)
 
     const daysOfWeek = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
     const todayDayName = daysOfWeek[today.getUTCDay()];
-    console.log("todayDayName : ", todayDayName)
     const yesterdayDayName = daysOfWeek[yesterday.getUTCDay()];
-    console.log("yesterdayDayName : ", yesterdayDayName)
 
     const user = await User.findFirst({
       where: {
@@ -475,27 +1389,20 @@ export const getAttendanceToday = async (req: Request & { user?: { nrp: string }
     }
 
     const shift = shiftDetail.MsShift;
-    console.log("SHIFT DAY : ", shiftDay)
     const inTime = setTimeToDay(new Date(shift.in_time!), shiftDay);
-    console.log("inTime : ", inTime)
     const outTime = setTimeToDay(new Date(shift.out_time!), shiftDay, shift.flag_shift === 1 ? 1 : 0);
-    console.log("outTime : ", outTime)
 
     const startIn = new Date(inTime);
     startIn.setMinutes(startIn.getMinutes() - shift.gt_before_in);
-    console.log("startIn : ", startIn)
 
     const endIn = new Date(inTime);
     endIn.setMinutes(endIn.getMinutes() + shift.gt_after_in);
-    console.log("endIn : ", endIn)
 
     const startOut = new Date(outTime);
     startOut.setMinutes(startOut.getMinutes() - shift.gt_before_out);
-    console.log("startOut : ", startOut)
 
     const endOut = new Date(outTime);
     endOut.setMinutes(endOut.getMinutes() + shift.gt_after_out);
-    console.log("endOut : ", endOut)
 
     const startOfMonth = new Date(now);
     startOfMonth.setDate(1);
@@ -557,11 +1464,9 @@ export const getAttendanceToday = async (req: Request & { user?: { nrp: string }
 
     const startOfDay = new Date(shiftDay);
     startOfDay.setUTCHours(0, 0, 0, 0);
-    console.log("startOfDay : ", startOfDay)
 
     const endOfDay = new Date(shiftDay);
     endOfDay.setUTCHours(23, 59, 59, 999);
-    console.log("endOfDay : ", endOfDay)
 
     const existingAttendance = await Attendance.findFirst({
       where: {
@@ -573,8 +1478,6 @@ export const getAttendanceToday = async (req: Request & { user?: { nrp: string }
       },
     });
 
-    const hasCheckedIn = !!existingAttendance?.in_time;
-    console.log(now >= startOut && now <= endOut)
     res.status(200).json({
       success: true,
       data: {
@@ -595,8 +1498,6 @@ export const getAttendanceToday = async (req: Request & { user?: { nrp: string }
         total_data_official_travel: officialTravel,
         clock_in_today: existingAttendance?.in_time ?? "",
         clock_out_today: existingAttendance?.out_time ?? "",
-        canCheckIn: now >= startIn && now <= endIn && !hasCheckedIn,
-        canCheckOut: now >= startOut && now <= endOut,
         usedYesterdayShift,
       },
     });
@@ -616,7 +1517,6 @@ export const checkInAttendance = async (req: Request & { user?: { nrp: string };
       res.status(400).json({ success: false, message: "Cannot be empty" });
       return;
     }
-    console.log(`lat,long : ${latitude},${longitude}`)
 
     const checkTime = getCurrentWIBDate();
 
@@ -642,22 +1542,20 @@ export const checkInAttendance = async (req: Request & { user?: { nrp: string };
       .split(",")
       .map(Number);
 
-    const distance = getDistanceMeters(
+    const { distance } = await calculateDistance(
       Number(latitude),
       Number(longitude),
       refLat,
       refLon
     );
-    console.log("distance REAL : ", distance)
-    console.log("distance yang diizinkan : ", user.latlon_distance)
 
-    // if (distance > user.latlon_distance) {
-    //   res.status(403).json({
-    //     success: false,
-    //     message: `You are outside the allowed radius (${Math.round(distance)} m > ${user.latlon_distance} m)`,
-    //   });
-    //   return;
-    // }
+    if (distance > user.latlon_distance) {
+      res.status(403).json({
+        success: false,
+        message: `You are outside the allowed radius (${Math.round(distance)} m > ${user.latlon_distance} m)`,
+      });
+      return;
+    }
 
     const fotoFilename = req.file?.filename;
     if (!fotoFilename) {
@@ -665,7 +1563,11 @@ export const checkInAttendance = async (req: Request & { user?: { nrp: string };
       return;
     }
 
-    const isLate = checkTime > inTime ? 1 : 0;
+    const [inTimeHours, inTimeMinutes] = inTime.split(':').map(Number);
+    const checkTimeTotalMinutes = checkTime.getUTCHours() * 60 + checkTime.getUTCMinutes();
+    const inTimeTargetTotalMinutes = inTimeHours * 60 + inTimeMinutes;
+
+    const isLate = checkTimeTotalMinutes > inTimeTargetTotalMinutes ? 1 : 0;
 
     const checkedIn = await Attendance.create({
       data: {
@@ -706,11 +1608,11 @@ export const checkOutAttendance = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { userIP, longitude, latitude, endIn, startOut, endOut, shiftId } = req.body;
+    const { userIP, longitude, latitude, endIn, outTime, startOut, endOut, shiftId } = req.body;
     const userNrp = req.user?.nrp;
     const formattedIP = userIP ? `::ffff:${userIP}` : "";
 
-    if (!longitude || !latitude || !endIn || !startOut || !endOut || !shiftId) {
+    if (!longitude || !latitude || !endIn || !outTime || !startOut || !endOut || !shiftId) {
       res.status(400).json({ success: false, message: "Cannot be empty" });
       return;
     }
@@ -727,19 +1629,27 @@ export const checkOutAttendance = async (
       where: { personal_number: userNrp },
       select: { worklocation_lat_long: true, latlon_distance: true },
     });
+    
     if (!user?.worklocation_lat_long || !user?.latlon_distance) {
       res.status(403).json({ success: false, message: "Work-location not set" });
       return;
     }
 
-    const [refLat, refLon] = user.worklocation_lat_long.split(",").map(Number);
-    const distance = getDistanceMeters(+latitude, +longitude, refLat, refLon);
+    const [refLat, refLon] = user.worklocation_lat_long
+      .split(",")
+      .map(Number);
+
+    const { distance } = await calculateDistance(
+      Number(latitude),
+      Number(longitude),
+      refLat,
+      refLon
+    );
+
     // if (distance > user.latlon_distance) {
     //   res.status(403).json({
     //     success: false,
-    //     message: `You are outside the allowed radius (${Math.round(
-    //       distance
-    //     )} m > ${user.latlon_distance} m)`,
+    //     message: `You are outside the allowed radius (${Math.round(distance)} m > ${user.latlon_distance} m)`,
     //   });
     //   return;
     // }
@@ -771,6 +1681,12 @@ export const checkOutAttendance = async (
       return;
     }
 
+    const [outTimeHours, outTimeMinutes] = outTime.split(':').map(Number);
+    const checkTimeTotalMinutes = checkTime.getUTCHours() * 60 + checkTime.getUTCMinutes();
+    const outTimeTargetTotalMinutes = outTimeHours * 60 + outTimeMinutes;
+
+    const isEarlyOut = checkTimeTotalMinutes < outTimeTargetTotalMinutes ? 1 : 0;
+
     const attendance = await Attendance.findFirst({
       where: {
         subcont: userNrp,
@@ -791,6 +1707,7 @@ export const checkOutAttendance = async (
           latitude_out: latitude,
           longitude_out: longitude,
           foto_out: fotoFilename,
+          is_early_out: isEarlyOut,
           updated_at: getCurrentWIBDate(),
         },
       });
@@ -812,6 +1729,7 @@ export const checkOutAttendance = async (
           client: "PT United Tractors Pandu Engineering",
           work_metode: "WFO",
           is_late: 1,
+          is_early_out: isEarlyOut,
           is_ovt: 0,
           is_happy: 1,
           checked_by: userNrp,
