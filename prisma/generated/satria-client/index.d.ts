@@ -3627,7 +3627,7 @@ export namespace Prisma {
     worklocation_code: string | null
     worklocation_name: string | null
     worklocation_lat_long: string | null
-    personal_number: string | null
+    personal_number: string
     csfield10: string | null
     company_name: string | null
     photo: string | null
@@ -3830,7 +3830,7 @@ export namespace Prisma {
       worklocation_code: string | null
       worklocation_name: string | null
       worklocation_lat_long: string | null
-      personal_number: string | null
+      personal_number: string
       csfield10: string | null
       company_name: string | null
       photo: string | null
@@ -4797,6 +4797,7 @@ export namespace Prisma {
   export type Ms_leave_typesAvgAggregateOutputType = {
     id: number | null
     days: number | null
+    is_quota_needed: number | null
     created_by: number | null
     updated_by: number | null
     is_deleted: number | null
@@ -4805,6 +4806,7 @@ export namespace Prisma {
   export type Ms_leave_typesSumAggregateOutputType = {
     id: number | null
     days: number | null
+    is_quota_needed: number | null
     created_by: bigint | null
     updated_by: bigint | null
     is_deleted: number | null
@@ -4814,6 +4816,7 @@ export namespace Prisma {
     id: number | null
     title: string | null
     days: number | null
+    is_quota_needed: number | null
     created_by: bigint | null
     created_at: Date | null
     updated_by: bigint | null
@@ -4825,6 +4828,7 @@ export namespace Prisma {
     id: number | null
     title: string | null
     days: number | null
+    is_quota_needed: number | null
     created_by: bigint | null
     created_at: Date | null
     updated_by: bigint | null
@@ -4836,6 +4840,7 @@ export namespace Prisma {
     id: number
     title: number
     days: number
+    is_quota_needed: number
     created_by: number
     created_at: number
     updated_by: number
@@ -4848,6 +4853,7 @@ export namespace Prisma {
   export type Ms_leave_typesAvgAggregateInputType = {
     id?: true
     days?: true
+    is_quota_needed?: true
     created_by?: true
     updated_by?: true
     is_deleted?: true
@@ -4856,6 +4862,7 @@ export namespace Prisma {
   export type Ms_leave_typesSumAggregateInputType = {
     id?: true
     days?: true
+    is_quota_needed?: true
     created_by?: true
     updated_by?: true
     is_deleted?: true
@@ -4865,6 +4872,7 @@ export namespace Prisma {
     id?: true
     title?: true
     days?: true
+    is_quota_needed?: true
     created_by?: true
     created_at?: true
     updated_by?: true
@@ -4876,6 +4884,7 @@ export namespace Prisma {
     id?: true
     title?: true
     days?: true
+    is_quota_needed?: true
     created_by?: true
     created_at?: true
     updated_by?: true
@@ -4887,6 +4896,7 @@ export namespace Prisma {
     id?: true
     title?: true
     days?: true
+    is_quota_needed?: true
     created_by?: true
     created_at?: true
     updated_by?: true
@@ -4985,6 +4995,7 @@ export namespace Prisma {
     id: number
     title: string
     days: number
+    is_quota_needed: number
     created_by: bigint | null
     created_at: Date | null
     updated_by: bigint | null
@@ -5015,6 +5026,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     days?: boolean
+    is_quota_needed?: boolean
     created_by?: boolean
     created_at?: boolean
     updated_by?: boolean
@@ -5030,6 +5042,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     days?: boolean
+    is_quota_needed?: boolean
     created_by?: boolean
     created_at?: boolean
     updated_by?: boolean
@@ -5053,6 +5066,7 @@ export namespace Prisma {
       id: number
       title: string
       days: number
+      is_quota_needed: number
       created_by: bigint | null
       created_at: Date | null
       updated_by: bigint | null
@@ -5432,6 +5446,7 @@ export namespace Prisma {
     readonly id: FieldRef<"ms_leave_types", 'Int'>
     readonly title: FieldRef<"ms_leave_types", 'String'>
     readonly days: FieldRef<"ms_leave_types", 'Int'>
+    readonly is_quota_needed: FieldRef<"ms_leave_types", 'Int'>
     readonly created_by: FieldRef<"ms_leave_types", 'BigInt'>
     readonly created_at: FieldRef<"ms_leave_types", 'DateTime'>
     readonly updated_by: FieldRef<"ms_leave_types", 'BigInt'>
@@ -29812,6 +29827,7 @@ export namespace Prisma {
     id: 'id',
     title: 'title',
     days: 'days',
+    is_quota_needed: 'is_quota_needed',
     created_by: 'created_by',
     created_at: 'created_at',
     updated_by: 'updated_by',
@@ -30459,7 +30475,7 @@ export namespace Prisma {
     worklocation_code?: StringNullableFilter<"User"> | string | null
     worklocation_name?: StringNullableFilter<"User"> | string | null
     worklocation_lat_long?: StringNullableFilter<"User"> | string | null
-    personal_number?: StringNullableFilter<"User"> | string | null
+    personal_number?: StringFilter<"User"> | string
     csfield10?: StringNullableFilter<"User"> | string | null
     company_name?: StringNullableFilter<"User"> | string | null
     photo?: StringNullableFilter<"User"> | string | null
@@ -30517,7 +30533,7 @@ export namespace Prisma {
     worklocation_code?: SortOrderInput | SortOrder
     worklocation_name?: SortOrderInput | SortOrder
     worklocation_lat_long?: SortOrderInput | SortOrder
-    personal_number?: SortOrderInput | SortOrder
+    personal_number?: SortOrder
     csfield10?: SortOrderInput | SortOrder
     company_name?: SortOrderInput | SortOrder
     photo?: SortOrderInput | SortOrder
@@ -30636,7 +30652,7 @@ export namespace Prisma {
     worklocation_code?: SortOrderInput | SortOrder
     worklocation_name?: SortOrderInput | SortOrder
     worklocation_lat_long?: SortOrderInput | SortOrder
-    personal_number?: SortOrderInput | SortOrder
+    personal_number?: SortOrder
     csfield10?: SortOrderInput | SortOrder
     company_name?: SortOrderInput | SortOrder
     photo?: SortOrderInput | SortOrder
@@ -30692,7 +30708,7 @@ export namespace Prisma {
     worklocation_code?: StringNullableWithAggregatesFilter<"User"> | string | null
     worklocation_name?: StringNullableWithAggregatesFilter<"User"> | string | null
     worklocation_lat_long?: StringNullableWithAggregatesFilter<"User"> | string | null
-    personal_number?: StringNullableWithAggregatesFilter<"User"> | string | null
+    personal_number?: StringWithAggregatesFilter<"User"> | string
     csfield10?: StringNullableWithAggregatesFilter<"User"> | string | null
     company_name?: StringNullableWithAggregatesFilter<"User"> | string | null
     photo?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -30722,6 +30738,7 @@ export namespace Prisma {
     id?: IntFilter<"ms_leave_types"> | number
     title?: StringFilter<"ms_leave_types"> | string
     days?: IntFilter<"ms_leave_types"> | number
+    is_quota_needed?: IntFilter<"ms_leave_types"> | number
     created_by?: BigIntNullableFilter<"ms_leave_types"> | bigint | number | null
     created_at?: DateTimeNullableFilter<"ms_leave_types"> | Date | string | null
     updated_by?: BigIntNullableFilter<"ms_leave_types"> | bigint | number | null
@@ -30735,6 +30752,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     days?: SortOrder
+    is_quota_needed?: SortOrder
     created_by?: SortOrderInput | SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_by?: SortOrderInput | SortOrder
@@ -30751,6 +30769,7 @@ export namespace Prisma {
     NOT?: ms_leave_typesWhereInput | ms_leave_typesWhereInput[]
     title?: StringFilter<"ms_leave_types"> | string
     days?: IntFilter<"ms_leave_types"> | number
+    is_quota_needed?: IntFilter<"ms_leave_types"> | number
     created_by?: BigIntNullableFilter<"ms_leave_types"> | bigint | number | null
     created_at?: DateTimeNullableFilter<"ms_leave_types"> | Date | string | null
     updated_by?: BigIntNullableFilter<"ms_leave_types"> | bigint | number | null
@@ -30764,6 +30783,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     days?: SortOrder
+    is_quota_needed?: SortOrder
     created_by?: SortOrderInput | SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_by?: SortOrderInput | SortOrder
@@ -30783,6 +30803,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"ms_leave_types"> | number
     title?: StringWithAggregatesFilter<"ms_leave_types"> | string
     days?: IntWithAggregatesFilter<"ms_leave_types"> | number
+    is_quota_needed?: IntWithAggregatesFilter<"ms_leave_types"> | number
     created_by?: BigIntNullableWithAggregatesFilter<"ms_leave_types"> | bigint | number | null
     created_at?: DateTimeNullableWithAggregatesFilter<"ms_leave_types"> | Date | string | null
     updated_by?: BigIntNullableWithAggregatesFilter<"ms_leave_types"> | bigint | number | null
@@ -33575,7 +33596,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -33633,7 +33654,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -33689,7 +33710,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -33747,7 +33768,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -33803,7 +33824,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -33850,7 +33871,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -33898,7 +33919,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -33924,6 +33945,7 @@ export namespace Prisma {
   export type ms_leave_typesCreateInput = {
     title: string
     days: number
+    is_quota_needed: number
     created_by?: bigint | number | null
     created_at?: Date | string | null
     updated_by?: bigint | number | null
@@ -33937,6 +33959,7 @@ export namespace Prisma {
     id?: number
     title: string
     days: number
+    is_quota_needed: number
     created_by?: bigint | number | null
     created_at?: Date | string | null
     updated_by?: bigint | number | null
@@ -33949,6 +33972,7 @@ export namespace Prisma {
   export type ms_leave_typesUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
     days?: IntFieldUpdateOperationsInput | number
+    is_quota_needed?: IntFieldUpdateOperationsInput | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -33962,6 +33986,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     days?: IntFieldUpdateOperationsInput | number
+    is_quota_needed?: IntFieldUpdateOperationsInput | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -33974,6 +33999,7 @@ export namespace Prisma {
   export type ms_leave_typesCreateManyInput = {
     title: string
     days: number
+    is_quota_needed: number
     created_by?: bigint | number | null
     created_at?: Date | string | null
     updated_by?: bigint | number | null
@@ -33984,6 +34010,7 @@ export namespace Prisma {
   export type ms_leave_typesUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
     days?: IntFieldUpdateOperationsInput | number
+    is_quota_needed?: IntFieldUpdateOperationsInput | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -33995,6 +34022,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     days?: IntFieldUpdateOperationsInput | number
+    is_quota_needed?: IntFieldUpdateOperationsInput | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -37712,6 +37740,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     days?: SortOrder
+    is_quota_needed?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
     updated_by?: SortOrder
@@ -37722,6 +37751,7 @@ export namespace Prisma {
   export type ms_leave_typesAvgOrderByAggregateInput = {
     id?: SortOrder
     days?: SortOrder
+    is_quota_needed?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
     is_deleted?: SortOrder
@@ -37731,6 +37761,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     days?: SortOrder
+    is_quota_needed?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
     updated_by?: SortOrder
@@ -37742,6 +37773,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     days?: SortOrder
+    is_quota_needed?: SortOrder
     created_by?: SortOrder
     created_at?: SortOrder
     updated_by?: SortOrder
@@ -37752,6 +37784,7 @@ export namespace Prisma {
   export type ms_leave_typesSumOrderByAggregateInput = {
     id?: SortOrder
     days?: SortOrder
+    is_quota_needed?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
     is_deleted?: SortOrder
@@ -42734,6 +42767,7 @@ export namespace Prisma {
   export type ms_leave_typesCreateWithoutTrx_leavesInput = {
     title: string
     days: number
+    is_quota_needed: number
     created_by?: bigint | number | null
     created_at?: Date | string | null
     updated_by?: bigint | number | null
@@ -42746,6 +42780,7 @@ export namespace Prisma {
     id?: number
     title: string
     days: number
+    is_quota_needed: number
     created_by?: bigint | number | null
     created_at?: Date | string | null
     updated_by?: bigint | number | null
@@ -42783,7 +42818,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -42840,7 +42875,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -42890,6 +42925,7 @@ export namespace Prisma {
   export type ms_leave_typesUpdateWithoutTrx_leavesInput = {
     title?: StringFieldUpdateOperationsInput | string
     days?: IntFieldUpdateOperationsInput | number
+    is_quota_needed?: IntFieldUpdateOperationsInput | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -42902,6 +42938,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     days?: IntFieldUpdateOperationsInput | number
+    is_quota_needed?: IntFieldUpdateOperationsInput | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -42945,7 +42982,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -43002,7 +43039,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -43561,7 +43598,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -43617,7 +43654,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -43740,7 +43777,7 @@ export namespace Prisma {
     worklocation_code?: StringNullableFilter<"User"> | string | null
     worklocation_name?: StringNullableFilter<"User"> | string | null
     worklocation_lat_long?: StringNullableFilter<"User"> | string | null
-    personal_number?: StringNullableFilter<"User"> | string | null
+    personal_number?: StringFilter<"User"> | string
     csfield10?: StringNullableFilter<"User"> | string | null
     company_name?: StringNullableFilter<"User"> | string | null
     photo?: StringNullableFilter<"User"> | string | null
@@ -43904,7 +43941,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -43961,7 +43998,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -44078,7 +44115,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -44135,7 +44172,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -44242,7 +44279,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -44299,7 +44336,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -44402,7 +44439,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -44459,7 +44496,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -44552,7 +44589,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -44609,7 +44646,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -44750,7 +44787,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -44807,7 +44844,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -44912,7 +44949,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -44969,7 +45006,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -45040,7 +45077,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -45097,7 +45134,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -45152,7 +45189,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -45209,7 +45246,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -45280,7 +45317,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -45337,7 +45374,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -45392,7 +45429,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -45449,7 +45486,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -45593,7 +45630,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -45650,7 +45687,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -46003,7 +46040,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -46060,7 +46097,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -46099,6 +46136,7 @@ export namespace Prisma {
   export type ms_leave_typesCreateWithoutTrx_leave_quotaInput = {
     title: string
     days: number
+    is_quota_needed: number
     created_by?: bigint | number | null
     created_at?: Date | string | null
     updated_by?: bigint | number | null
@@ -46111,6 +46149,7 @@ export namespace Prisma {
     id?: number
     title: string
     days: number
+    is_quota_needed: number
     created_by?: bigint | number | null
     created_at?: Date | string | null
     updated_by?: bigint | number | null
@@ -46159,7 +46198,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -46216,7 +46255,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -46261,6 +46300,7 @@ export namespace Prisma {
   export type ms_leave_typesUpdateWithoutTrx_leave_quotaInput = {
     title?: StringFieldUpdateOperationsInput | string
     days?: IntFieldUpdateOperationsInput | number
+    is_quota_needed?: IntFieldUpdateOperationsInput | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -46273,6 +46313,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     days?: IntFieldUpdateOperationsInput | number
+    is_quota_needed?: IntFieldUpdateOperationsInput | number
     created_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
@@ -46305,7 +46346,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -46362,7 +46403,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -46479,7 +46520,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -46536,7 +46577,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -48795,7 +48836,7 @@ export namespace Prisma {
     worklocation_code?: string | null
     worklocation_name?: string | null
     worklocation_lat_long?: string | null
-    personal_number?: string | null
+    personal_number: string
     csfield10?: string | null
     company_name?: string | null
     photo?: string | null
@@ -48842,7 +48883,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -48898,7 +48939,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -48954,7 +48995,7 @@ export namespace Prisma {
     worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
     worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
-    personal_number?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
     csfield10?: NullableStringFieldUpdateOperationsInput | string | null
     company_name?: NullableStringFieldUpdateOperationsInput | string | null
     photo?: NullableStringFieldUpdateOperationsInput | string | null

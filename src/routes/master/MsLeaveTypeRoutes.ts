@@ -29,7 +29,7 @@ router.post(
 router.put(
   "/:id",
   async (req: Request, res: Response) => {
-    await LeaveTypesController.updateLeveType(req, res);
+    await LeaveTypesController.updateLeaveType(req, res);
   }
 );
 

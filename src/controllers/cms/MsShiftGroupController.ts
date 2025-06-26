@@ -191,7 +191,6 @@ export const updateShiftGroup = async (req: Request, res: Response): Promise<voi
         where: { id_shift_group: shiftGroup.code },
       });
 
-      // 3. Simpan kembali `details` baru seperti di createShiftGroup
       if (details && details.length > 0) {
         await ShiftGroup.createMany({
           data: details.map((detail: { index_day: string; id_shift: string }) => ({
@@ -207,7 +206,7 @@ export const updateShiftGroup = async (req: Request, res: Response): Promise<voi
 
       return {
         id: shiftGroup.id,
-        id_shift_group_sap: 0,  // Jika ada mapping ke SAP, tambahkan di sini
+        id_shift_group_sap: 0,
         code: shiftGroup.code,
         nama: shiftGroup.nama,
         flag_shift: shiftGroup.flag_shift,
@@ -215,7 +214,7 @@ export const updateShiftGroup = async (req: Request, res: Response): Promise<voi
         updated_by: shiftGroup.updated_by ?? null,
         created_at: shiftGroup.created_at,
         updated_at: shiftGroup.updated_at,
-        is_deleted: shiftGroup.is_deleted ?? 0, // Pastikan tidak null
+        is_deleted: shiftGroup.is_deleted ?? 0,
       };
     });
 

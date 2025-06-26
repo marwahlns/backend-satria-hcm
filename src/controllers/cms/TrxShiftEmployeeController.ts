@@ -150,7 +150,6 @@ export const createShiftEmployee = async (
       return;
     }
 
-    // Ambil user yang valid dari database
     const validUsers = await User.findMany({
       where: {
         personal_number: { in: id_user },
@@ -163,7 +162,7 @@ export const createShiftEmployee = async (
     if (validUserIds.length === 0) {
       res.status(400).json({
         success: false,
-        message: "Tidak ada id_user yang valid ditemukan di tabel User",
+        message: "No valid id_user found in the User table",
       });
       return;
     }
@@ -223,7 +222,7 @@ export const createShiftEmployee = async (
     res.status(201).send(
       JSONbig.stringify({
         success: true,
-        message: "Shift Employees added successfully (hanya user yang valid)",
+        message: `Shift Employees added successfully. \nTotal: ${validUserIds.length} employee(s) added.\n NRP(s): ${validUserIds.join(", ")}`,
         data: shiftEmployees,
       })
     );

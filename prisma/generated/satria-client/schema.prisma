@@ -33,7 +33,7 @@ model User {
   worklocation_code         String?               @satria.NVarChar(32)
   worklocation_name         String?               @satria.NVarChar(255)
   worklocation_lat_long     String?               @satria.NVarChar(255)
-  personal_number           String?               @unique @satria.NVarChar(255)
+  personal_number           String                @unique @satria.NVarChar(255)
   csfield10                 String?               @satria.NVarChar(255)
   company_name              String?               @satria.NVarChar(255)
   photo                     String?               @satria.NVarChar(255)
@@ -72,6 +72,7 @@ model ms_leave_types {
   id              Int               @id(map: "PK_leave_types_id") @default(autoincrement())
   title           String            @satria.NVarChar(191)
   days            Int
+  is_quota_needed Int               @satria.SmallInt
   created_by      BigInt?
   created_at      DateTime?
   updated_by      BigInt?

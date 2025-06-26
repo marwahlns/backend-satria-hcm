@@ -1,7 +1,7 @@
 import JSONbig from "json-bigint";
 import { Request, Response } from "express";
 import { LeaveTypes } from "../../models/Table/Satria/MsLeaveTypes";
-import { getCurrentWIBDate, getCurrentWIBTime } from "../../helpers/timeHelper";
+import { getCurrentWIBDate } from "../../helpers/timeHelper";
 
 export const getAllLeaveTypes = async (
   req: Request,
@@ -14,6 +14,7 @@ export const getAllLeaveTypes = async (
       search = "",
       sort = "id",
       order = "desc",
+      trx_quota = "false",
     } = req.query;
 
     const pageNumber = parseInt(page as string, 10);
@@ -25,15 +26,24 @@ export const getAllLeaveTypes = async (
       : "id";
     const sortOrder = order === "asc" ? "asc" : "desc";
     const searchNumber = parseInt(search as string, 10);
+    const isQuotaTransaction = trx_quota === "true";
+
+    // Build where condition
+    const whereCondition: any = {
+      is_deleted: 0,
+      OR: [
+        { title: { contains: search as string } },
+        ...(isNaN(searchNumber) ? [] : [{ days: { equals: searchNumber } }]),
+      ],
+    };
+
+    // Add quota filter if trx_quota is true
+    if (isQuotaTransaction) {
+      whereCondition.is_quota_needed = 0;
+    }
 
     const leaveTypeData = await LeaveTypes.findMany({
-      where: {
-        is_deleted: 0,
-        OR: [
-          { title: { contains: search as string } },
-          ...(isNaN(searchNumber) ? [] : [{ days: { equals: searchNumber } }]),
-        ],
-      },
+      where: whereCondition,
       orderBy: {
         [sortField]: sortOrder,
       },
@@ -42,13 +52,7 @@ export const getAllLeaveTypes = async (
     });
 
     const totalItems = await LeaveTypes.count({
-      where: {
-        is_deleted: 0,
-        OR: [
-          { title: { contains: search as string } },
-          ...(isNaN(searchNumber) ? [] : [{ days: { equals: searchNumber } }]),
-        ],
-      },
+      where: whereCondition,
     });
 
     const totalPages = Math.ceil(totalItems / pageSize);
@@ -101,7 +105,7 @@ export const createLeaveType = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { title } = req.body;
+    const { title, is_quota_needed } = req.body;
 
     if (!title) {
       res.status(400).json({
@@ -115,6 +119,7 @@ export const createLeaveType = async (
       data: {
         title: title,
         days: 999,
+        is_quota_needed: is_quota_needed,
         created_at: getCurrentWIBDate(),
         updated_at: getCurrentWIBDate(),
       },
@@ -138,35 +143,103 @@ export const createLeaveType = async (
   }
 };
 
-export const updateLeveType = async (
+export const updateLeaveType = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
     const { id } = req.params;
-    const { title, days } = req.body;
-    if (!title || !days) {
+    const { title, is_quota_needed, days } = req.body;
+
+    // Validation
+    if (!title || title.trim().length === 0) {
       res.status(400).json({
         success: false,
-        message: "All fields must be provided and cannot be empty",
+        message: "Title is required and cannot be empty"
+      });
+      return;
+    }
+
+    if (is_quota_needed === undefined || is_quota_needed === null) {
+      res.status(400).json({
+        success: false,
+        message: "Quota selection is required"
+      });
+      return;
+    }
+
+    if (!days && days !== 0) {
+      res.status(400).json({
+        success: false,
+        message: "Days is required"
+      });
+      return;
+    }
+
+    // Check if leave type exists
+    const existingLeaveType = await LeaveTypes.findFirst({
+      where: {
+        id: parseInt(id),
+        is_deleted: 0
+      }
+    });
+
+    if (!existingLeaveType) {
+      res.status(404).json({
+        success: false,
+        message: "Leave type not found"
+      });
+      return;
+    }
+
+    // Check if title already exists (exclude current record)
+    const duplicateTitle = await LeaveTypes.findFirst({
+      where: {
+        title: title.trim(),
+        is_deleted: 0,
+        NOT: {
+          id: parseInt(id)
+        }
+      }
+    });
+
+    if (duplicateTitle) {
+      res.status(400).json({
+        success: false,
+        message: "Leave type with this title already exists"
+      });
+      return;
+    }
+
+    // Update leave type
+    const updatedLeaveType = await LeaveTypes.update({
+      where: {
+        id: parseInt(id)
+      },
+      data: {
+        title: title.trim(),
+        is_quota_needed: parseInt(is_quota_needed),
+        days: parseInt(days),
+        updated_at: new Date()
+      }
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Leave type updated successfully",
+      data: updatedLeaveType
+    });
+
+  } catch (error) {
+    console.error("Error updating leave type:", error);
+    
+    // Check if response was already sent
+    if (!res.headersSent) {
+      res.status(500).json({
+        success: false,
+        message: "Internal server error while updating leave type"
       });
     }
-    const updatedleaveType = await LeaveTypes.update({
-      where: { id: Number(id) },
-      data: {
-        title: title,
-        updated_at: getCurrentWIBDate(),
-      },
-    });
-    res.status(201).send(JSONbig.stringify({
-      success: true,
-      message: "Leave Type updated successfully",
-      data: { updatedleaveType },
-    }));
-  } catch (err) {
-    res
-      .status(500)
-      .json({ success: false, message: err });
   }
 };
 

@@ -276,6 +276,26 @@ export const shouldShowSignatureResign = (
 };
 
 
+export const shouldShowSignatureMutation = (
+  title: string,
+  trx: { statusPdf: number }
+): boolean => {
+  const status = Number(trx.statusPdf);
+
+  if (title === 'Diajukan Oleh') {
+    return status !== 7;
+  }
+
+  if ([1, 7].includes(status)) return false;
+
+  const statusMap: Record<number, string[]> = {
+    2: ['Disetujui Oleh'],
+    3: ['Disetujui Oleh'],
+  };
+
+  return statusMap[status]?.includes(title) || false;
+};
+
 
 export const generatePdfOfficialTravel = (res: any, data: any[]) => {
   const doc = new PDFDocument({ size: 'A4', layout: 'landscape', margin: 30 });
@@ -519,9 +539,9 @@ export const generatePdfOfficialTravel = (res: any, data: any[]) => {
   if (trx.code?.startsWith("TRF2")) {
     signers = [
       { title: "Acting Officer", name: `(${trx.name})`, position: "Employee" },
-      { title: "Assigning Officer", name: `(${trx.deptheadName})`, position: "Department Head / Project Manager" },
+      { title: "Assigning Officer", name: `(${trx.deptheadName})`, position: "Dept Head / Project Manager" },
       { title: "Approved By", name: `(${trx.divheadName})`, position: "Division Head" },
-      { title: "Acknowledged By", name: "(Rina Rusmayanti)", position: "CHCAS Department Head" }
+      { title: "Acknowledged By", name: "(Rina Rusmayanti)", position: "CHCAS Dept Head" }
     ];
   } else {
     signers = [
@@ -866,7 +886,7 @@ export const generatePdfResign = (res: any, data: any[]) => {
     // Kepada Yth
     doc.font("Times-Roman").fontSize(12);
     doc.text("Kepada Yth:", margin, doc.y);
-    doc.text("HRD PT United Tractors Pandu Engineering", margin, doc.y);
+    doc.text(`HRD ${item.vendorName}`, margin, doc.y);
     doc.text("Di Tempat", margin, doc.y);
 
     doc.moveDown();
@@ -1001,14 +1021,14 @@ export const generatePdfMutation = (res: any, data: any[]) => {
     const valueX = colonX + 10;
 
     doc.font("Times-Roman").fontSize(12);
-    doc.text("Yang bertanda tangan di bawah ini:");
+    doc.text("Yang bertanda tangan di bawah ini sebagai pengusul:");
     doc.moveDown();
 
     // Bagian informasi pembuat surat
     let currentY = doc.y;
     doc.text("Nama", labelX, currentY);
     doc.text(":", colonX, currentY);
-    doc.text(item.superiorFrom, valueX, currentY);
+    doc.text(item.deptheadName, valueX, currentY);
 
     currentY += 15;
     doc.text("Divisi", labelX, currentY);
@@ -1041,6 +1061,11 @@ export const generatePdfMutation = (res: any, data: any[]) => {
     doc.text(":", colonX, currentY);
     doc.text(item.deptFrom, valueX, currentY);
 
+    currentY += 15;
+    doc.text("Superior Asal", labelX, currentY);
+    doc.text(":", colonX, currentY);
+    doc.text(item.superiorFrom, valueX, currentY);
+
     // Update posisi Y setelah informasi karyawan
     doc.y = currentY + 30;
 
@@ -1056,6 +1081,10 @@ export const generatePdfMutation = (res: any, data: any[]) => {
     doc.text("Departemen Baru", labelX, currentY);
     doc.text(":", colonX, currentY);
     doc.text(item.deptTo, valueX, currentY);
+    currentY += 15;
+    doc.text("Superior Baru", labelX, currentY);
+    doc.text(":", colonX, currentY);
+    doc.text(item.superiorTo, valueX, currentY);
 
     // Update posisi Y setelah informasi baru
     doc.y = currentY + 30;
@@ -1069,23 +1098,23 @@ export const generatePdfMutation = (res: any, data: any[]) => {
     // Bagian tanda tangan
     const signatureY = doc.y;
     doc.font("Times-Roman").fontSize(12);
-    doc.text("Hormat Saya,", margin, signatureY);
-    doc.text("Atasan Langsung,", halfPage, signatureY, { align: "right" });
+    doc.text("Diajukan Oleh,", margin, signatureY);
+    doc.text("Disetujui Oleh,", halfPage, signatureY, { align: "right" });
 
     const ttdY = signatureY + 20;
     const nameY = signatureY + 60;
 
-    const firstName = item.name.split(" ")[0];
-    const deptheadFirstName = item.superiorFrom.split(" ")[0];
+    const firstName = item.deptheadName.split(" ")[0];
+    const deptheadFirstName = item.divheadName.split(" ")[0];
 
     try {
       doc.registerFont('GreatVibes', 'fonts/GreatVibes-Regular.ttf');
 
-      if (shouldShowSignatureResign('Hormat Saya', item)) {
+      if (shouldShowSignatureMutation('Diajukan Oleh', item)) {
         doc.font('GreatVibes').fontSize(24).text(firstName, margin, ttdY);
       }
 
-      if (shouldShowSignatureResign('Atasan Langsung', item)) {
+      if (shouldShowSignatureMutation('Disetujui Oleh', item)) {
         //harusnya divhead
         doc.font('GreatVibes').fontSize(24).text(deptheadFirstName, halfPage, ttdY, { align: "right" });
       }
@@ -1093,8 +1122,8 @@ export const generatePdfMutation = (res: any, data: any[]) => {
       doc.font('Times-Roman').fontSize(12);
     } catch {}
 
-    doc.text(`(${item.name})`, margin, nameY);
-    doc.text(`(${item.superiorFrom})`, halfPage, nameY, { align: "right" });
+    doc.text(`(${item.deptheadName})`, margin, nameY);
+    doc.text(`(${item.divheadName})`, halfPage, nameY, { align: "right" });
   });
 
   doc.end();

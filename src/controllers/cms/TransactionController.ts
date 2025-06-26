@@ -18,6 +18,7 @@ import { Attendance } from "../../models/Table/Satria/TrxAttendance";
 import { TrxDeclaration } from "../../models/Table/Satria/TrxDeclaration";
 import { MsDepartment } from "../../models/Table/Satria/MsDepartment";
 import { MsDivision } from "../../models/Table/Satria/MsDivision";
+import { LeaveTypes } from "../../models/Table/Satria/MsLeaveTypes";
 
 
 const trxModelMap: { [key: string]: any } = {
@@ -171,10 +172,26 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
                     return { [sortField]: sortOrder };
                 }
               })(),
-              ...(exportQuery ? {} : { skip, take: pageSize }),
             });
 
-            return TrxLeaveData.map((trx) => ({
+            const sortedData = TrxLeaveData.sort((a, b) => {
+              const aStatusId = Number(a.status_id);
+              const bStatusId = Number(b.status_id);
+
+              if (sortField === "id") {
+                if (aStatusId === 1 && bStatusId !== 1) return -1;
+                if (aStatusId !== 1 && bStatusId === 1) return 1;
+
+                if (Number(a.id) > Number(b.id)) return -1;
+                if (Number(a.id) < Number(b.id)) return 1;
+              }
+
+              return 0;
+            });
+
+            const paginatedData = exportQuery ? sortedData : sortedData.slice(skip, skip + pageSize);
+
+            return paginatedData.map((trx) => ({
               ...trx,
               leave_type_name: trx.leave_type?.title || "Unknown",
               start_date: formatDateToEnglish(trx.start_date) ?? "-",
@@ -315,20 +332,42 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
                   },
                 },
               },
-              orderBy: (() => {
-                switch (sortField) {
-                  case "user_name":
-                    return { user_data: { name: sortOrder } };
-                  case "user_departement":
-                    return { user_data: { dept_data: { nama: sortOrder } } };
-                  default:
-                    return { [sortField]: sortOrder };
-                }
-              })(),
-              ...(exportQuery ? {} : { skip, take: pageSize }),
+              orderBy: [
+                ...(sortField === "id" ? [
+                  { status_id: 'asc' as const },
+                ] : []),
+                (() => {
+                  switch (sortField) {
+                    case "user_name":
+                      return { user_data: { name: sortOrder } };
+                    case "user_departement":
+                      return { user_data: { dept_data: { nama: sortOrder } } };
+                    default:
+                      return { [sortField]: sortOrder };
+                  }
+                })(),
+              ],
             });
 
-            return TrxOvertimeData.map((trx) => ({
+            const sortedData = TrxOvertimeData.sort((a, b) => {
+              if (sortField === "id") {
+                const aStatusId = Number(a.status_id);
+                const bStatusId = Number(b.status_id);
+
+                if (aStatusId === 1 && bStatusId !== 1) return -1;
+                if (aStatusId !== 1 && bStatusId === 1) return 1;
+
+                // Jika status sama, sort berdasarkan ID desc
+                if (Number(a.id) > Number(b.id)) return -1;
+                if (Number(a.id) < Number(b.id)) return 1;
+              }
+
+              return 0;
+            });
+
+            const paginatedData = exportQuery ? sortedData : sortedData.slice(skip, skip + pageSize);
+
+            return paginatedData.map((trx) => ({
               ...trx,
               user_name: trx.user_data?.name,
               user_departement: trx.user_data?.dept_data?.nama,
@@ -500,23 +539,44 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
                   },
                 },
               },
-              orderBy: (() => {
-                switch (sortField) {
-                  case "user_name":
-                    return { user_data: { name: sortOrder } };
-                  case "user_departement":
-                    return { user_data: { dept_data: { nama: sortOrder } } };
-                  default:
-                    return { [sortField]: sortOrder };
-                }
-              })(),
-              ...(exportQuery ? {} : { skip, take: pageSize }),
+              orderBy: [
+                ...(sortField === "id" ? [
+                  { status_id: 'asc' as const },
+                ] : []),
+                (() => {
+                  switch (sortField) {
+                    case "user_name":
+                      return { user_data: { name: sortOrder } };
+                    case "user_departement":
+                      return { user_data: { dept_data: { nama: sortOrder } } };
+                    default:
+                      return { [sortField]: sortOrder };
+                  }
+                })(),
+              ],
             });
+
+            const sortedTravelData = trxOfficialTravelData.sort((a, b) => {
+              if (sortField === "id") {
+                const aStatusId = Number(a.status_id);
+                const bStatusId = Number(b.status_id);
+
+                if (aStatusId === 1 && bStatusId !== 1) return -1;
+                if (aStatusId !== 1 && bStatusId === 1) return 1;
+
+                if (Number(a.id) > Number(b.id)) return -1;
+                if (Number(a.id) < Number(b.id)) return 1;
+              }
+
+              return 0;
+            });
+
+            const paginatedTravelData = exportQuery ? sortedTravelData : sortedTravelData.slice(skip, skip + pageSize);
 
             const declarationTrx = await TrxDeclaration.findMany({
               where: {
                 code_trx: {
-                  in: trxOfficialTravelData.map((trx) => trx.code),
+                  in: paginatedTravelData.map((trx) => trx.code),
                 },
               },
               select: { code_trx: true },
@@ -538,7 +598,8 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
             });
 
             const declarationTrxSet = new Set(declarationTrx.map((d: any) => d.code_trx));
-            return trxOfficialTravelData.map((trx) => ({
+
+            return paginatedTravelData.map((trx) => ({
               ...trx,
               code_trx: trx.code,
               user_nrp: trx.user,
@@ -585,7 +646,6 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
                               isDeptHead ? "DeptHead" :
                                 "User",
               isDomestic: trx.code?.startsWith("TRF2") || false,
-
             }));
           };
 
@@ -728,6 +788,15 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
             };
           };
 
+          const users = await User.findMany();
+          const nrpNameMap: Record<string, string> = {};
+
+          users.forEach((u) => {
+            if (u.personal_number) {
+              nrpNameMap[u.personal_number] = u.name;
+            }
+          });
+
           const getMutationData = async () => {
             const trxMutationData = await TrxMutation.findMany({
               where: buildWhereClause(),
@@ -753,8 +822,24 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
                     return { [sortField]: sortOrder };
                 }
               })(),
-              ...(exportQuery ? {} : { skip, take: pageSize }),
             });
+
+            const sortedData = trxMutationData.sort((a, b) => {
+              const aStatusId = Number(a.status_id);
+              const bStatusId = Number(b.status_id);
+
+              if (aStatusId === 1 && bStatusId !== 1) return -1;
+              if (aStatusId !== 1 && bStatusId === 1) return 1;
+
+              if (sortField === "id") {
+                if (Number(a.id) > Number(b.id)) return -1;
+                if (Number(a.id) < Number(b.id)) return 1;
+              }
+
+              return 0;
+            });
+
+            const paginatedData = exportQuery ? sortedData : sortedData.slice(skip, skip + pageSize);
 
             const userList = await User.findMany();
             const userNrpMap = Object.fromEntries(
@@ -767,7 +852,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
             const deptDivCodeMap = Object.fromEntries(
               deptList.map((dept: any) => [dept.div_code, dept])
             );
-            return trxMutationData.map((trx) => ({
+            return paginatedData.map((trx) => ({
               ...trx,
               user_name: trx.user_data?.name,
               user_departement: trx.user_data?.department,
@@ -779,6 +864,8 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               superior_to: userNrpMap[trx.superior_to]?.name ?? "-",
               effective_date: formatDateToEnglish(trx?.effective_date),
               status_submittion: getStatusName(trx?.status_id),
+              depthead_name: nrpNameMap[trx.created_by],
+              divhead_name: nrpNameMap[trx.accept_to],
               actionType:
                 ((trx.accept_to === userNrp && trx.approve_to === userNrp) || trx.approve_to === userNrp)
                   ? "Approved"
@@ -788,7 +875,6 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               modalType: getModalType(trx, userNrp ?? ""),
             }));
           };
-
 
           const data = await getMutationData();
           const formattedData = data.map((trx, index) => ({
@@ -800,6 +886,8 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
             deptTo: trx.dept_to ?? "-",
             superiorFrom: trx.superior_from ?? "-",
             superiorTo: trx.superior_to ?? "-",
+            deptheadName: trx.depthead_name ?? "-",
+            divheadName: trx.divhead_name ?? "-",
             effectiveDate: trx.effective_date ?? "-",
             reason: trx.reason ?? "-",
             status: trx.status_submittion ?? "-",
@@ -828,7 +916,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
             await generateExcelResponse(res, worksheet, data);
 
           } else if (exportQuery === "pdf") {
-            const pdfData = formattedData.map(({ no, name, divisionFrom, deptFrom, divisionTo, deptTo, superiorTo, superiorFrom, effectiveDate, reason, statusPdf }) => ({
+            const pdfData = formattedData.map(({ no, name, divisionFrom, deptFrom, divisionTo, deptTo, superiorTo, superiorFrom, effectiveDate, reason, statusPdf, deptheadName, divheadName }) => ({
               no,
               name,
               divisionFrom,
@@ -840,6 +928,8 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               effectiveDate,
               reason,
               statusPdf,
+              deptheadName,
+              divheadName,
             }));
             generatePdfMutation(res, pdfData);
           } else {
@@ -933,17 +1023,70 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
                     return { [sortField]: sortOrder };
                 }
               })(),
-              ...(exportQuery ? {} : { skip, take: pageSize }),
             });
 
-            const users = await User.findMany();
+            const sortedData = trxResignData.sort((a, b) => {
+              const aStatusId = Number(a.status_id);
+              const bStatusId = Number(b.status_id);
+
+              if (aStatusId === 1 && bStatusId !== 1) return -1;
+              if (aStatusId !== 1 && bStatusId === 1) return 1;
+
+              if (sortField === "id") {
+                if (Number(a.id) > Number(b.id)) return -1;
+                if (Number(a.id) < Number(b.id)) return 1;
+              }
+
+              return 0;
+            });
+
+            const paginatedData = exportQuery ? sortedData : sortedData.slice(skip, skip + pageSize);
+
+            const [users, usersDetail] = await Promise.all([
+              User.findMany(),
+              User.findManyUserDetail(),
+            ]);
+
             const nrpNameMap: Record<string, string> = {};
+            const nrpVendorMap: Record<string, string> = {};
+
             users.forEach((u) => {
               if (u.personal_number) {
                 nrpNameMap[u.personal_number] = u.name;
               }
             });
-            return trxResignData.map((trx) => ({
+
+            const vendorIds = new Set<number>();
+            const userIdToVendor: Record<string, number> = {};
+            usersDetail.forEach((ud) => {
+              if (ud.nrp && ud.vendor) {
+                userIdToVendor[ud.nrp] = ud.vendor;
+                vendorIds.add(ud.vendor);
+              }
+            });
+
+            const vendors = await User.findManyVendor({
+              where: { id: { in: Array.from(vendorIds) } },
+            });
+
+            const vendorMap: Record<number, string> = {};
+            vendors.forEach((v) => {
+              vendorMap[v.id] = v.name;
+            });
+
+            users.forEach((u) => {
+              const vendorId = userIdToVendor[u.personal_number];
+              if (u.personal_number && vendorId) {
+                nrpVendorMap[u.personal_number] = vendorMap[vendorId] || "-";
+              }
+            });
+
+            const getVendorName = (nrp: string) => {
+              if (!nrp) return "-";
+              return nrpVendorMap[nrp] || "-";
+            };
+
+            return paginatedData.map((trx) => ({
               ...trx,
               user_name: trx.user_data?.name,
               user_departement: trx.user_data?.department,
@@ -951,6 +1094,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               effective_date: formatDateToEnglish(trx.effective_date),
               effective_date_export: formatDateIndo(trx.effective_date),
               status_submittion: getStatusName(trx?.status_id),
+              vendor: getVendorName(trx?.user),
               actionType:
                 ((trx.accept_to === userNrp && trx.approve_to === userNrp) || trx.approve_to === userNrp)
                   ? "Approved"
@@ -973,6 +1117,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               effectiveDate: trx.effective_date_export ?? "-",
               deptheadName: trx.depthead_name ?? "-",
               reason: trx.reason ?? "-",
+              vendorName: trx.vendor ?? "-",
               status: trx.status_id ?? "-",
             }));
 
@@ -1046,6 +1191,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               ...(statusFilter ? [statusFilter] : []),
             ],
           });
+
           const getDeclarationData = async () => {
             const TrxDeclarationData = await TrxDeclaration.findMany({
               where: buildWhereClause(),
@@ -1071,9 +1217,26 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
                     return { [sortField]: sortOrder };
                 }
               })(),
-              ...(exportQuery ? {} : { skip, take: pageSize }),
             });
 
+            const sortedData = TrxDeclarationData.sort((a, b) => {
+              const aStatusId = Number(a.status_id);
+              const bStatusId = Number(b.status_id);
+
+              if (sortField !== "id") {
+                return 0;
+              }
+
+              if (aStatusId === 1 && bStatusId !== 1) return -1;
+              if (aStatusId !== 1 && bStatusId === 1) return 1;
+
+              if (Number(a.id) > Number(b.id)) return -1;
+              if (Number(a.id) < Number(b.id)) return 1;
+
+              return 0;
+            });
+
+            const paginatedData = exportQuery ? sortedData : sortedData.slice(skip, skip + pageSize);
 
             const users = await User.findMany();
             const nrpNameMap: Record<string, string> = {};
@@ -1082,7 +1245,8 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
                 nrpNameMap[u.personal_number] = u.name;
               }
             });
-            return TrxDeclarationData.map((declaration) => ({
+
+            return paginatedData.map((declaration) => ({
               ...declaration,
               no_st: declaration.officialTravel_data?.code || null,
               user_name: declaration.officialTravel_data?.user_data?.name || null,
@@ -1520,9 +1684,9 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
 
     switch (type) {
       case "leave": {
-        const { leave_type_id, start_date, end_date, leave_reason, } = req.body;
+        const { leave_type_id, start_date, end_date, leave_reason } = req.body;
         const file = req.file;
-        const typeInt = parseInt(req.body.leave_type_id, 10);
+        const typeInt = parseInt(leave_type_id, 10);
 
         if (!leave_type_id || !start_date || !end_date || !leave_reason) {
           res.status(400).json({
@@ -1548,37 +1712,62 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
         const approveToValue = userData?.dept_data?.depthead_nrp ?? "";
         const deptValue = userData?.dept ?? 0;
 
-        const totalLeaveDays = differenceInDays(new Date(end_date), new Date(start_date)) + 1;
-        const quotaData = await TrxLeaveQuota.findFirst({
-          where: {
-            id_user: userNrp,
-            leaves_type_id: typeInt,
-            is_active: 0,
-            is_deleted: 0,
-          },
+        const totalLeaveDays =
+          differenceInDays(new Date(end_date), new Date(start_date)) + 1;
+
+        // 1. Cek apakah leave type memerlukan kuota
+        const leaveType = await LeaveTypes.findUnique({
+          where: { id: typeInt },
         });
 
-        if (!quotaData) {
-          res.status(200).json({
+        if (!leaveType) {
+          res.status(404).json({
             success: false,
-            message: "Leave quota not found or inactive",
+            message: "Leave type not found",
           });
           return;
         }
 
-        const currentUsedLeave = quotaData.used_leave || 0;
-        const currentBalance = quotaData.leave_balance || 0;
-        const newUsedLeave = currentUsedLeave + totalLeaveDays;
-        const newBalance = currentBalance - totalLeaveDays;
+        const isQuotaRequired = leaveType.is_quota_needed;
 
-        if (newBalance < 0) {
-          res.status(200).json({
-            success: false,
-            message: "Insufficient leave balance",
+        let quotaData = null;
+        let newUsedLeave = 0;
+        let newBalance = 0;
+
+        // 2. Jika leave type butuh kuota, validasi kuota
+        if (isQuotaRequired === 0) {
+          quotaData = await TrxLeaveQuota.findFirst({
+            where: {
+              id_user: userNrp,
+              leaves_type_id: typeInt,
+              is_active: 0,
+              is_deleted: 0,
+            },
           });
-          return;
+
+          if (!quotaData) {
+            res.status(200).json({
+              success: false,
+              message: "Leave quota not found or inactive",
+            });
+            return;
+          }
+
+          const currentUsedLeave = quotaData.used_leave || 0;
+          const currentBalance = quotaData.leave_balance || 0;
+          newUsedLeave = currentUsedLeave + totalLeaveDays;
+          newBalance = currentBalance - totalLeaveDays;
+
+          if (newBalance < 0) {
+            res.status(200).json({
+              success: false,
+              message: "Insufficient leave balance",
+            });
+            return;
+          }
         }
 
+        // 3. Simpan pengajuan cuti
         try {
           const newLeave = await TrxLeave.create({
             data: {
@@ -1601,20 +1790,25 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
             },
           });
 
-          await TrxLeaveQuota.update({
-            where: { id: quotaData.id },
-            data: {
-              used_leave: newUsedLeave,
-              leave_balance: newBalance,
-              updated_at: getCurrentWIBDate(),
-            },
-          });
+          // 4. Jika perlu kuota, update quota
+          if (isQuotaRequired && quotaData) {
+            await TrxLeaveQuota.update({
+              where: { id: quotaData.id },
+              data: {
+                used_leave: newUsedLeave,
+                leave_balance: newBalance,
+                updated_at: getCurrentWIBDate(),
+              },
+            });
+          }
 
-          res.status(201).send(JSONbig.stringify({
-            success: true,
-            message: "Leave added successfully",
-            data: { newLeave },
-          }));
+          res.status(201).send(
+            JSONbig.stringify({
+              success: true,
+              message: "Leave added successfully",
+              data: { newLeave },
+            })
+          );
         } catch (error) {
           console.error("Error during leave submission:", error);
           res.status(500).json({
@@ -1622,6 +1816,7 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
             message: "Internal server error during leave submission",
           });
         }
+
         break;
       }
       case "overtime": {

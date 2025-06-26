@@ -212,20 +212,51 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
       search = "",
       sort = "in_time",
       order = "desc",
-      date,
+      startDate: queryStartDate,
+      endDate: queryEndDate,
+      month: queryMonth,
       detail = "false",
       user_id,
       export: exportExcel = "",
     } = req.query;
+
     const pageNumber = parseInt(page as string, 10);
     const pageSize = parseInt(limit as string, 10);
     const skip = (pageNumber - 1) * pageSize;
 
+    let parsedStartDate: Date | undefined;
+    let parsedEndDate: Date | undefined;
+
+    if (queryStartDate) {
+      parsedStartDate = new Date(`${queryStartDate as string}T00:00:00.000Z`);
+      if (isNaN(parsedStartDate.getTime())) {
+        res.status(400).json({ success: false, message: "Invalid startDate format. Use YYYY-MM-DD." });
+        return;
+      }
+    }
+    if (queryEndDate) {
+      parsedEndDate = new Date(`${queryEndDate as string}T23:59:59.999Z`);
+      if (isNaN(parsedEndDate.getTime())) {
+        res.status(400).json({ success: false, message: "Invalid endDate format. Use YYYY-MM-DD." });
+        return;
+      }
+    }
+
+    if (!parsedStartDate && !parsedEndDate && exportExcel === "") {
+      const today = new Date();
+      parsedStartDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0, 0);
+      parsedEndDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999);
+    }
+
+    if (parsedStartDate && !parsedEndDate && exportExcel === "") {
+      parsedEndDate = new Date(parsedStartDate.getFullYear(), parsedStartDate.getMonth(), parsedStartDate.getDate(), 23, 59, 59, 999);
+    }
+
     const whereCondition = {
-      ...(date && {
+      ...(parsedStartDate && parsedEndDate && {
         in_time: {
-          gte: new Date(`${date}T00:00:00.000Z`),
-          lte: new Date(`${date}T23:59:59.999Z`),
+          gte: parsedStartDate,
+          lte: parsedEndDate,
         },
       }),
       ...(search && {
@@ -254,6 +285,7 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
         ]
       })
     };
+
     const attendanceData = await Attendance.findMany({
       where: whereCondition,
       include: {
@@ -312,9 +344,8 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
           subcont: String(user_id),
         };
 
-        if (date) {
-          const inputDate = new Date(String(date));
-
+        if (queryMonth) {
+          const inputDate = new Date(String(queryMonth));
           const startOfMonth = new Date(inputDate.getFullYear(), inputDate.getMonth(), 1);
           const endOfMonth = new Date(inputDate.getFullYear(), inputDate.getMonth() + 1, 0, 23, 59, 59, 999);
 
@@ -375,11 +406,44 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
       }
     }
 
-    // HANDLE EXPORT REQUEST
+    // --- HANDLE EXPORT REQUEST (MONTHLY) ---
     if (exportExcel === "monthly") {
       try {
+        let exportStartDate: Date;
+        let exportEndDate: Date;
+        let selectedYear: number;
+        let selectedMonth: number;
+
+        if (queryStartDate && queryEndDate) {
+          exportStartDate = parsedStartDate!;
+          exportEndDate = parsedEndDate!;
+          selectedYear = exportStartDate.getFullYear();
+          selectedMonth = exportStartDate.getMonth();
+        } else if (queryMonth) {
+          const [yearStr, monthStr] = (queryMonth as string).split('-');
+          const year = parseInt(yearStr, 10);
+          const month = parseInt(monthStr, 10) - 1;
+
+          if (isNaN(year) || isNaN(month) || month < 0 || month > 11) {
+            res.status(400).json({ success: false, message: "Invalid month format for monthly export. Use YYYY-MM." });
+            return;
+          }
+          exportStartDate = new Date(year, month, 1, 0, 0, 0, 0);
+          exportEndDate = new Date(year, month + 1, 0, 23, 59, 59, 999);
+          selectedYear = year;
+          selectedMonth = month;
+        } else {
+          const now = new Date();
+          selectedYear = now.getFullYear();
+          selectedMonth = now.getMonth();
+          exportStartDate = new Date(selectedYear, selectedMonth, 1, 0, 0, 0, 0);
+          exportEndDate = new Date(selectedYear, selectedMonth + 1, 0, 23, 59, 59, 999);
+        }
+
+        const totalDaysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
+
         const workbook = new ExcelJS.Workbook();
-        const worksheet = workbook.addWorksheet('Attendance Report');
+        const worksheet = workbook.addWorksheet('Attendance Report Monthly');
 
         try {
           const imageBuffer = fs.readFileSync('uploads/logo.png');
@@ -393,36 +457,18 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
             editAs: 'oneCell',
           });
         } catch (error) {
-          console.warn("Failed to load logo.png:", error);
+          console.warn("Failed to load logo.png, proceeding without logo:", error);
         }
 
-        const userAttendanceMap = new Map();
-        let startDate, endDate, selectedYear, selectedMonth, totalDaysInMonth;
-
-        if (date) {
-          const inputDate = new Date(String(date));
-          selectedYear = inputDate.getFullYear();
-          selectedMonth = inputDate.getMonth();
-          startDate = new Date(selectedYear, selectedMonth, 1);
-          endDate = new Date(selectedYear, selectedMonth + 1, 0, 23, 59, 59, 999);
-          totalDaysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
-        } else {
-          const now = new Date();
-          selectedYear = now.getFullYear();
-          selectedMonth = now.getMonth();
-          startDate = new Date(selectedYear, selectedMonth, 1);
-          endDate = new Date(selectedYear, selectedMonth + 1, 0, 23, 59, 59, 999);
-          totalDaysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
+        const excelWhereCondition: any = {
+          in_time: {
+            gte: exportStartDate,
+            lte: exportEndDate,
+          },
+        };
+        if (user_id) {
+          excelWhereCondition.MsUser = { personal_number: String(user_id) };
         }
-
-        const excelWhereCondition = date
-          ? {
-            in_time: {
-              gte: startDate,
-              lte: endDate,
-            },
-          }
-          : {};
 
         const attendanceDataForExcel = await Attendance.findMany({
           where: excelWhereCondition,
@@ -440,17 +486,14 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
             }
           },
           orderBy: {
-            in_time: "desc"
+            in_time: "asc"
           },
         });
 
-        if (!attendanceDataForExcel || attendanceDataForExcel.length === 0) {
-          res.status(204).send();
-          return;
-        }
-
+        // Group attendance records by user
+        const userAttendanceMap = new Map();
         attendanceDataForExcel.forEach(record => {
-          const userKey = record.MsUser?.personal_number || '';
+          const userKey = record.MsUser?.personal_number || 'UNKNOWN_NRP';
           if (!userAttendanceMap.has(userKey)) {
             userAttendanceMap.set(userKey, {
               userData: record.MsUser,
@@ -505,7 +548,7 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
           let empRow1 = worksheet.addRow(['NRP .', userData?.personal_number || '-', '', 'Name .', userData?.name || '-']);
           let empRow2 = worksheet.addRow(['DEPT .', userData?.department || '-', '']);
           let empRow3 = worksheet.addRow(['Perusahaan .', userData?.company_name || '-']);
-          let empRow4 = worksheet.addRow(['PERIODE .', date ? `${getMonthName(selectedMonth)} ${selectedYear}` : 'Semua Data']);
+          let empRow4 = worksheet.addRow(['PERIODE .', `${getMonthName(selectedMonth)} ${selectedYear}`]);
 
           [empRow1, empRow2, empRow3, empRow4].forEach(row => {
             row.getCell('A').font = { bold: true };
@@ -530,14 +573,13 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
             }
           });
 
-          // Fetch overtime data for the current user and month
           const overtimeData = await TrxOvertime.findMany({
             where: {
               user: userNrp,
               status_id: 3,
               check_in_ovt: {
-                gte: startDate,
-                lte: endDate,
+                gte: exportStartDate,
+                lte: exportEndDate,
               },
             },
             orderBy: {
@@ -559,8 +601,8 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
                 user: userNrp,
                 status_id: 3,
                 start_date: {
-                  gte: startDate,
-                  lte: endDate,
+                  gte: exportStartDate,
+                  lte: exportEndDate,
                 }
               }
             }),
@@ -568,8 +610,8 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
               where: {
                 user: userNrp,
                 start_date: {
-                  gte: startDate,
-                  lte: endDate,
+                  gte: exportStartDate,
+                  lte: exportEndDate,
                 }
               }
             }),
@@ -642,96 +684,55 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
           const dataStartRow = tableHeaderRow2.number + 1;
           let lastDataRow = dataStartRow;
 
-          if (date && totalDaysInMonth) {
-            for (let day = 1; day <= totalDaysInMonth; day++) {
-              const currentDate = new Date(selectedYear, selectedMonth, day);
-              const attendanceRecord = attendanceMap.get(day);
-              const overtimeRecord = overtimeMap.get(day);
+          for (let day = 1; day <= totalDaysInMonth; day++) {
+            const currentDate = new Date(selectedYear, selectedMonth, day);
+            const attendanceRecord = attendanceMap.get(day);
+            const overtimeRecord = overtimeMap.get(day);
 
-              const inTime = attendanceRecord?.in_time
-                ? new Date(attendanceRecord.in_time).toISOString().slice(11, 16)
-                : "-";
-              const outTime = attendanceRecord?.out_time
-                ? new Date(attendanceRecord.out_time).toISOString().slice(11, 16)
-                : "-";
-              const notes = attendanceRecord?.note || "";
+            const inTime = attendanceRecord?.in_time
+              ? new Date(attendanceRecord.in_time).toISOString().slice(11, 16)
+              : "-";
+            const outTime = attendanceRecord?.out_time
+              ? new Date(attendanceRecord.out_time).toISOString().slice(11, 16)
+              : "-";
+            const notes = attendanceRecord?.note || "";
 
-              const overtimeIn = overtimeRecord?.check_in_ovt
-                ? new Date(overtimeRecord.check_in_ovt).toISOString().slice(11, 16)
-                : "-";
-              const overtimeOut = overtimeRecord?.check_out_ovt
-                ? new Date(overtimeRecord.check_out_ovt).toISOString().slice(11, 16)
-                : "-";
+            const overtimeIn = overtimeRecord?.check_in_ovt
+              ? new Date(overtimeRecord.check_in_ovt).toISOString().slice(11, 16)
+              : "-";
+            const overtimeOut = overtimeRecord?.check_out_ovt
+              ? new Date(overtimeRecord.check_out_ovt).toISOString().slice(11, 16)
+              : "-";
 
-              const row = worksheet.addRow([day, inTime, outTime, overtimeIn, overtimeOut, notes]);
-              worksheet.mergeCells(`F${row.number}:H${row.number}`);
-              row.getCell('F').value = notes;
-              lastDataRow = row.number;
+            const row = worksheet.addRow([day, inTime, outTime, overtimeIn, overtimeOut, notes]);
+            worksheet.mergeCells(`F${row.number}:H${row.number}`);
+            row.getCell('F').value = notes;
+            lastDataRow = row.number;
 
-              if (attendanceRecord?.is_late === 1) {
-                row.getCell(2).font = { color: { argb: 'FF0000' } };
-              }
-
-              const dayStatus = getDayStatus(currentDate);
-              if (dayStatus === 'H') {
-                row.eachCell((cell) => {
-                  cell.fill = {
-                    type: 'pattern',
-                    pattern: 'solid',
-                    fgColor: { argb: 'D3D3D3' },
-                  };
-                });
-              }
+            if (attendanceRecord?.is_late === 1) {
+              row.getCell(2).font = { color: { argb: 'FFFF0000' } };
             }
-          } else {
-            attendanceRecords.forEach((record: any) => {
-              const recordDate = record.in_time ? new Date(record.in_time) : null;
-              const day = recordDate ? recordDate.getDate() : '-';
-              const overtimeRecord = overtimeMap.get(day);
 
-              const inTime = record.in_time
-                ? new Date(record.in_time).toISOString().slice(11, 16)
-                : "-";
-              const outTime = record.out_time
-                ? new Date(record.out_time).toISOString().slice(11, 16)
-                : "-";
-              const notes = record.note || "";
+            const dayStatus = getDayStatus(currentDate);
+            if (dayStatus === 'H') {
+              row.eachCell((cell) => {
+                cell.fill = {
+                  type: 'pattern',
+                  pattern: 'solid',
+                  fgColor: { argb: 'FFD3D3D3' },
+                };
+              });
+            }
 
-              const overtimeIn = overtimeRecord?.check_in_ovt
-                ? new Date(overtimeRecord.check_in_ovt).toISOString().slice(11, 16)
-                : "-";
-              const overtimeOut = overtimeRecord?.check_out_ovt
-                ? new Date(overtimeRecord.check_out_ovt).toISOString().slice(11, 16)
-                : "-";
-
-              const row = worksheet.addRow([day, inTime, outTime, overtimeIn, overtimeOut, notes]);
-              worksheet.mergeCells(`F${row.number}:H${row.number}`);
-              row.getCell('F').value = notes;
-              lastDataRow = row.number;
-
-              if (record.is_late === 1) {
-                row.getCell(2).font = { color: { argb: 'FF0000' } };
-              }
-            });
-          }
-
-          for (let rowNum = tableHeaderRow1.number; rowNum <= Math.max(tableHeaderRow2.number + 1, lastDataRow); rowNum++) {
             for (let col = 1; col <= 8; col++) {
-              const cell = worksheet.getCell(rowNum, col);
-              if (rowNum < dataStartRow) {
-                cell.border = {
-                  top: { style: 'thin' },
-                  left: { style: 'thin' },
-                  bottom: { style: 'thin' },
-                  right: { style: 'thin' }
-                };
-              } else {
-                cell.border = {
-                  top: { style: 'thin' },
-                  left: { style: 'thin' },
-                  bottom: { style: 'thin' },
-                  right: { style: 'thin' }
-                };
+              const cell = row.getCell(col);
+              cell.border = {
+                top: { style: 'thin' },
+                left: { style: 'thin' },
+                bottom: { style: 'thin' },
+                right: { style: 'thin' }
+              };
+              if (col < 6) {
                 cell.alignment = { horizontal: 'center', vertical: 'middle' };
               }
             }
@@ -742,24 +743,42 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
 
         const buffer = await workbook.xlsx.writeBuffer();
         res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-        res.setHeader("Content-Disposition", `attachment; filename=Laporan_Absensi_Harian_${date || "all"}.xlsx`);
+        res.setHeader("Content-Disposition", `attachment; filename=Monthly_Attendance_Report_${queryMonth || `${getMonthName(selectedMonth)}_${selectedYear}`}.xlsx`);
         res.send(buffer);
         return;
       } catch (error) {
-        console.error('Kesalahan dalam pembuatan Excel:', error);
+        console.error('Error generating monthly Excel report:', error);
+        res.status(500).json({
+          success: false,
+          message: "Failed to generate monthly Excel report.",
+        });
+        return;
       }
     } else if (exportExcel === "daily") {
+      // --- HANDLE EXPORT REQUEST (DAILY) ---
       try {
-        if (!date) {
+        if (!queryStartDate) {
           res.status(400).json({
             success: false,
-            message: "Parameter 'date' diperlukan untuk ekspor harian."
+            message: "Parameter 'startDate' is required for daily export."
           });
           return;
         }
 
+        const exportInputDate = new Date(queryStartDate as string);
+        if (isNaN(exportInputDate.getTime())) {
+          res.status(400).json({ success: false, message: "Invalid startDate format for daily export. Use YYYY-MM-DD." });
+          return;
+        }
+
+        const exportSelectedYear = exportInputDate.getFullYear();
+        const exportSelectedMonth = exportInputDate.getMonth();
+        const exportSelectedDay = exportInputDate.getDate();
+        const exportStartDate = new Date(exportSelectedYear, exportSelectedMonth, exportSelectedDay, 0, 0, 0, 0);
+        const exportEndDate = new Date(exportSelectedYear, exportSelectedMonth, exportSelectedDay, 23, 59, 59, 999);
+
         const workbook = new ExcelJS.Workbook();
-        const worksheet = workbook.addWorksheet('Laporan Absensi Harian');
+        const worksheet = workbook.addWorksheet('Daily Attendance Report');
 
         try {
           const imageBuffer = fs.readFileSync('uploads/logo.png');
@@ -773,15 +792,8 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
             editAs: 'oneCell',
           });
         } catch (error) {
-          // Silent catch for logo error
+          console.warn("Failed to load logo.png, proceeding without logo:", error);
         }
-
-        const exportInputDate = new Date(String(date));
-        const exportSelectedYear = exportInputDate.getFullYear();
-        const exportSelectedMonth = exportInputDate.getMonth();
-        const exportSelectedDay = exportInputDate.getDate();
-        const exportStartDate = new Date(exportSelectedYear, exportSelectedMonth, exportSelectedDay, 0, 0, 0, 0);
-        const exportEndDate = new Date(exportSelectedYear, exportSelectedMonth, exportSelectedDay, 23, 59, 59, 999);
 
         const excelWhereCondition: any = {
           in_time: {
@@ -817,7 +829,6 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
           return;
         }
 
-        // Adjust rows to start after logo
         while (worksheet.lastRow && worksheet.lastRow.number < 3) {
           worksheet.addRow([]);
         }
@@ -830,7 +841,7 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
         }
 
         // Title
-        let titleRow = worksheet.addRow(['Attendance Report Daily']);
+        let titleRow = worksheet.addRow(['Daily Attendance Report']);
         worksheet.mergeCells(`A${titleRow.number}:E${titleRow.number}`);
         titleRow.getCell('A').font = { size: 16, bold: true };
         titleRow.getCell('A').alignment = { horizontal: 'center' };
@@ -865,48 +876,45 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
           lastDataRow = row.number;
 
           if (record.is_late === 1) {
-            row.getCell(4).font = { color: { argb: 'FF0000' } };
+            row.getCell(4).font = { color: { argb: 'FFFF0000' } };
           }
-        });
 
-        for (let rowNum = headerRow.number; rowNum <= lastDataRow; rowNum++) {
           for (let col = 1; col <= 5; col++) {
-            const cell = worksheet.getCell(rowNum, col);
+            const cell = row.getCell(col);
             cell.border = {
               top: { style: 'thin' },
               left: { style: 'thin' },
               bottom: { style: 'thin' },
               right: { style: 'thin' }
             };
-            if (rowNum >= dataStartRow) {
-              cell.alignment = { horizontal: 'center', vertical: 'middle' };
-            }
+            cell.alignment = { horizontal: 'center', vertical: 'middle' };
           }
-        }
+        });
 
-        // Auto-fit columns
         worksheet.columns.forEach((column, index) => {
-          if (index === 0) column.width = 15;
-          else if (index === 1) column.width = 25;
-          else if (index === 2) column.width = 20;
-          else if (index === 4 || index === 5) column.width = 15;
+          if (index === 0) column.width = 15; // NRP
+          else if (index === 1) column.width = 25; // Name
+          else if (index === 2) column.width = 20; // Department
+          else if (index === 3 || index === 4) column.width = 15; // In Time, Out Time
         });
 
         const buffer = await workbook.xlsx.writeBuffer();
 
         res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-        res.setHeader("Content-Disposition", `attachment; filename=Laporan_Absensi_Harian_${date}.xlsx`);
+        res.setHeader("Content-Disposition", `attachment; filename=Daily_Attendance_Report_${queryStartDate}.xlsx`);
         res.send(buffer);
         return;
       } catch (error) {
-        console.error('Kesalahan dalam pembuatan Excel Harian:', error);
+        console.error('Error generating daily Excel report:', error);
         res.status(500).json({
           success: false,
-          message: "Gagal membuat laporan Excel Harian.",
+          message: "Failed to generate daily Excel report.",
         });
+        return;
       }
     }
 
+    // --- DEFAULT RESPONSE (NON-EXPORT, NON-DETAIL) ---
     const totalItems = await Attendance.count({
       where: whereCondition,
     });
@@ -924,10 +932,10 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
     );
 
   } catch (err) {
-    console.error("Error getAllDailyAttendance:", err);
+    console.error("Error in getAllDailyAttendance:", err);
     res.status(500).json({
       success: false,
-      message: "Gagal mengambil data kehadiran",
+      message: "Failed to retrieve attendance data.",
     });
   }
 };
@@ -1629,7 +1637,7 @@ export const checkOutAttendance = async (
       where: { personal_number: userNrp },
       select: { worklocation_lat_long: true, latlon_distance: true },
     });
-    
+
     if (!user?.worklocation_lat_long || !user?.latlon_distance) {
       res.status(403).json({ success: false, message: "Work-location not set" });
       return;

@@ -175,6 +175,7 @@ exports.Prisma.Ms_leave_typesScalarFieldEnum = {
   id: 'id',
   title: 'title',
   days: 'days',
+  is_quota_needed: 'is_quota_needed',
   created_by: 'created_by',
   created_at: 'created_at',
   updated_by: 'updated_by',
