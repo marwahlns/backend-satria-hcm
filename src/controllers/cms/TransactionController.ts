@@ -19,7 +19,7 @@ import { TrxDeclaration } from "../../models/Table/Satria/TrxDeclaration";
 import { MsDepartment } from "../../models/Table/Satria/MsDepartment";
 import { MsDivision } from "../../models/Table/Satria/MsDivision";
 import { LeaveTypes } from "../../models/Table/Satria/MsLeaveTypes";
-
+import { Error } from "../../models/Table/Satria/LogError";
 
 const trxModelMap: { [key: string]: any } = {
   leave: TrxLeave,
@@ -263,7 +263,15 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               })
             );
           }
-        } catch (err) {
+        } catch (err: any) {
+            await Error.create({
+              data: {
+                module: "getAllTrxData(leave)",
+                message: err?.message ?? String(err),
+                created_by: userNrp ?? "-",
+                created_at: getCurrentWIBDate(),
+              },
+            });
           res.status(500).json({
             success: false,
             message: "Error retrieving leave data",
@@ -435,7 +443,15 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               })
             );
           }
-        } catch (err) {
+        } catch (err: any) {
+            await Error.create({
+              data: {
+                module: "getAllTrxData(overtime)",
+                message: err?.message ?? String(err),
+                created_by: userNrp ?? "-",
+                created_at: getCurrentWIBDate(),
+              },
+            });
           res.status(500).json({
             success: false,
             message: "Error retrieving overtime data",
@@ -712,7 +728,15 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               })
             );
           }
-        } catch (err) {
+        } catch (err: any) {
+            await Error.create({
+              data: {
+                module: "getAllTrxData(officialTravel)",
+                message: err?.message ?? String(err),
+                created_by: userNrp ?? "-",
+                created_at: getCurrentWIBDate(),
+              },
+            });
           res.status(500).json({
             success: false,
             message: "Error retrieving official travel data",
@@ -954,8 +978,15 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               })
             );
           }
-        } catch (err) {
-          console.log("error mutasi", err)
+        } catch (err: any) {
+            await Error.create({
+              data: {
+                module: "getAllTrxData(mutation)",
+                message: err?.message ?? String(err),
+                created_by: userNrp ?? "-",
+                created_at: getCurrentWIBDate(),
+              },
+            });
           res.status(500).json({
             success: false,
             message: "Error retrieving mutation data",
@@ -1146,8 +1177,15 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               })
             );
           }
-        } catch (err) {
-          console.error("ERROR DI BE (resign):", err);
+        } catch (err: any) {
+            await Error.create({
+              data: {
+                module: "getAllTrxData(resign)",
+                message: err?.message ?? String(err),
+                created_by: userNrp ?? "-",
+                created_at: getCurrentWIBDate(),
+              },
+            });
           res.status(500).json({
             success: false,
             message: "Error retrieving resign data",
@@ -1360,8 +1398,15 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               })
             );
           }
-        } catch (err) {
-          console.error("Error fetching Declaration:", err);
+        } catch (err: any) {
+            await Error.create({
+              data: {
+                module: "getAllTrxData(declaration)",
+                message: err?.message ?? String(err),
+                created_by: userNrp ?? "-",
+                created_at: getCurrentWIBDate(),
+              },
+            });
           res.status(500).json({
             success: false,
             message: "Error retrieving Declaration data",
@@ -1372,8 +1417,14 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
       default:
         res.status(400).json({ success: false, message: "Invalid type" });
     }
-  } catch (error) {
-    console.error("ERROR getAllTrxData:", error);
+  } catch (err: any) {
+      await Error.create({
+        data: {
+          module: "getAllTrxData(general)",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
@@ -1663,12 +1714,18 @@ export const handleTrx = async (
         data: result,
       })
     );
-  } catch (err) {
-    console.error("Error in handleTrx:", err);
+  } catch (err: any) {
+      await Error.create({
+        data: {
+          module: "handleTrx",
+          message: err?.message ?? String(err),
+          created_by: userNrp ?? "-",
+          created_at: getCurrentWIBDate(),
+        },
+      });
     res.status(500).json({
       success: false,
       message: "Something went wrong",
-      error: err instanceof Error ? err.message : err,
     });
   }
 };
@@ -1809,8 +1866,15 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
               data: { newLeave },
             })
           );
-        } catch (error) {
-          console.error("Error during leave submission:", error);
+        } catch (err: any) {
+            await Error.create({
+              data: {
+                module: "createSubmittion(leave)",
+                message: err?.message ?? String(err),
+                created_by: userNrp ?? "-",
+                created_at: getCurrentWIBDate(),
+              },
+            });
           res.status(500).json({
             success: false,
             message: "Internal server error during leave submission",
@@ -1820,7 +1884,8 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
         break;
       }
       case "overtime": {
-        const { check_in_ovt, check_out_ovt, note_ovt } = req.body;
+        try{
+           const { check_in_ovt, check_out_ovt, note_ovt } = req.body;
 
         if (!check_in_ovt || !check_out_ovt || !note_ovt) {
           res.status(400).json({
@@ -1929,11 +1994,25 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
           message: "Overtime added successfully",
           data: { newOvertime },
         }));
-
+      } catch (error:any) {
+           await Error.create({
+              data: {
+                module: "createSubmittion(overtime)",
+                message: error?.message ?? String(error),
+                created_by: userNrp ?? "-",
+                created_at: getCurrentWIBDate(),
+              },
+            });
+          res.status(500).json({
+            success: false,
+            message: "Internal server error during create overtime submission",
+          });
+        }
         break;
       }
       case "officialTravel": {
-        const { start_date, end_date, type, destination_place1, destination_place2, destination_place3, transportation, lodging, work_status, office_activities, symbol_currency, currency, taxi_cost, hotel_cost, rent_cost, upd_cost, fiskal_cost, other_cost, total_cost, activity_agenda, purpose, destination_city1, destination_city2, destination_city3 } = req.body;
+        try{
+          const { start_date, end_date, type, destination_place1, destination_place2, destination_place3, transportation, lodging, work_status, office_activities, symbol_currency, currency, taxi_cost, hotel_cost, rent_cost, upd_cost, fiskal_cost, other_cost, total_cost, activity_agenda, purpose, destination_city1, destination_city2, destination_city3 } = req.body;
 
         if (!start_date || !end_date || !purpose || !destination_place1 || !destination_city1) {
           res.status(200).json({
@@ -2051,18 +2130,31 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
             },
           },
         });
-
-
         res.status(201).send(JSONbig.stringify({
           success: true,
           message: "Official Travel added successfully",
           data: { newLeave },
         }));
+        } catch (error:any) {
+           await Error.create({
+              data: {
+                module: "createSubmittion(officialTravel",
+                message: error?.message ?? String(error),
+                created_by: userNrp ?? "-",
+                created_at: getCurrentWIBDate(),
+              },
+            });
+          res.status(500).json({
+            success: false,
+            message: "Internal server error during create official travel submission",
+          });
+        }
         break
       }
 
       case "mutation": {
-        const { user, superior_to, division_to, department_to, superior_from, division_from, department_from, effective_date, reason } = req.body;
+        try{
+          const { user, superior_to, division_to, department_to, superior_from, division_from, department_from, effective_date, reason } = req.body;
 
         if (!user || !superior_to || !division_to || !department_to || !superior_from || !division_from || !department_from || !effective_date || !reason) {
           res.status(400).json({
@@ -2111,12 +2203,25 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
           message: "Mutation added successfully",
           data: { newMutation },
         }));
+        } catch (error:any) {
+           await Error.create({
+              data: {
+                module: "createSubmittion(mutation)",
+                message: error?.message ?? String(error),
+                created_by: userNrp ?? "-",
+                created_at: getCurrentWIBDate(),
+              },
+            });
+          res.status(500).json({
+            success: false,
+            message: "Internal server error during create mutation submission",
+          });
+        }
         break
       }
-
       case "resign": {
+        try{
         const { effective_date, reason } = req.body;
-
         if (!effective_date || !reason) {
           res.status(400).json({
             success: false,
@@ -2146,7 +2251,6 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
         const acceptToValue = userData?.dept_data?.depthead_nrp ?? "";
         const approveToValue = "P0120001"
 
-        try {
           const newresign = await TrxResign.create({
             data: {
               user: userNrp,
@@ -2168,11 +2272,18 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
             data: { newresign },
           }));
 
-        } catch (error) {
-          console.error("Error while inserting resign:", error);
+        } catch (error:any) {
+           await Error.create({
+              data: {
+                module: "CreateSubmittion(resign)",
+                message: error?.message ?? String(error),
+                created_by: userNrp ?? "-",
+                created_at: getCurrentWIBDate(),
+              },
+            });
           res.status(500).json({
             success: false,
-            message: "Internal server error",
+            message: "Internal server error during create resign submission",
           });
         }
         break;
@@ -2293,26 +2404,30 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
             message: "Declaration created successfully",
             data: newDeclaration,
           }));
-        } catch (err) {
-          console.error("Error creating Declaration:", err);
+        } catch (error:any) {
+           await Error.create({
+              data: {
+                module: "Create Overtime Submission",
+                message: error?.message ?? String(error),
+                created_by: userNrp ?? "-",
+                created_at: getCurrentWIBDate(),
+              },
+            });
           res.status(500).json({
             success: false,
-            message: "Error creating Declaration",
+            message: "Internal server error during create declaration submission",
           });
         }
         break;
       }
-
       default:
         res.status(400).json({ success: false, message: "Invalid type" });
-
     }
 
   } catch (error) {
     res.status(500).json({
       success: false,
       message: "Error creating request",
-      error: error instanceof Error ? error.message : error,
     });
   }
 };
@@ -2366,8 +2481,14 @@ export const getTrendAttendance = async (req: Request, res: Response): Promise<v
     });
 
     res.status(200).json(formattedData);
-  } catch (err) {
-    console.error('Error fetching attendance trend:', err);
+  } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "getTrendAAttendance",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });   
     res.status(500).json({ message: 'Error fetching attendance trend', error: err });
   }
 };
@@ -2566,8 +2687,14 @@ export const getTrendSubmission = async (req: Request & { user?: { nrp: string }
         data: monthlyCounts
       }
     });
-  } catch (error) {
-    console.error('[getAllSubmission]', error);
+  } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "getTrendSubmission",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });   
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };

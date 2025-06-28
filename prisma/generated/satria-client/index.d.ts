@@ -133,6 +133,11 @@ export type trx_declaration = $Result.DefaultSelection<Prisma.$trx_declarationPa
  * 
  */
 export type trx_detail_declaration = $Result.DefaultSelection<Prisma.$trx_detail_declarationPayload>
+/**
+ * Model log_error
+ * 
+ */
+export type log_error = $Result.DefaultSelection<Prisma.$log_errorPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -496,6 +501,16 @@ export class PrismaClient<
     * ```
     */
   get trx_detail_declaration(): Prisma.trx_detail_declarationDelegate<ExtArgs>;
+
+  /**
+   * `prisma.log_error`: Exposes CRUD operations for the **log_error** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Log_errors
+    * const log_errors = await prisma.log_error.findMany()
+    * ```
+    */
+  get log_error(): Prisma.log_errorDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -960,7 +975,8 @@ export namespace Prisma {
     trx_leave_quota: 'trx_leave_quota',
     attendance: 'attendance',
     trx_declaration: 'trx_declaration',
-    trx_detail_declaration: 'trx_detail_declaration'
+    trx_detail_declaration: 'trx_detail_declaration',
+    log_error: 'log_error'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -976,7 +992,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "ms_leave_types" | "trx_leaves" | "ms_shift" | "ms_shift_group" | "ms_detail_shift_group" | "mst_dept" | "mst_division" | "sysdiagrams" | "trx_ovt" | "trx_shift_emp" | "trx_official_travel" | "trx_mutation" | "trx_resign" | "user_detail" | "ms_worklocation" | "ms_klasifikasi" | "ms_subcont" | "mst_plant" | "ms_marital_status" | "trx_leave_quota" | "attendance" | "trx_declaration" | "trx_detail_declaration"
+      modelProps: "user" | "ms_leave_types" | "trx_leaves" | "ms_shift" | "ms_shift_group" | "ms_detail_shift_group" | "mst_dept" | "mst_division" | "sysdiagrams" | "trx_ovt" | "trx_shift_emp" | "trx_official_travel" | "trx_mutation" | "trx_resign" | "user_detail" | "ms_worklocation" | "ms_klasifikasi" | "ms_subcont" | "mst_plant" | "ms_marital_status" | "trx_leave_quota" | "attendance" | "trx_declaration" | "trx_detail_declaration" | "log_error"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2561,6 +2577,72 @@ export namespace Prisma {
           count: {
             args: Prisma.trx_detail_declarationCountArgs<ExtArgs>
             result: $Utils.Optional<Trx_detail_declarationCountAggregateOutputType> | number
+          }
+        }
+      }
+      log_error: {
+        payload: Prisma.$log_errorPayload<ExtArgs>
+        fields: Prisma.log_errorFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.log_errorFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_errorPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.log_errorFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_errorPayload>
+          }
+          findFirst: {
+            args: Prisma.log_errorFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_errorPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.log_errorFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_errorPayload>
+          }
+          findMany: {
+            args: Prisma.log_errorFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_errorPayload>[]
+          }
+          create: {
+            args: Prisma.log_errorCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_errorPayload>
+          }
+          createMany: {
+            args: Prisma.log_errorCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.log_errorDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_errorPayload>
+          }
+          update: {
+            args: Prisma.log_errorUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_errorPayload>
+          }
+          deleteMany: {
+            args: Prisma.log_errorDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.log_errorUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.log_errorUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_errorPayload>
+          }
+          aggregate: {
+            args: Prisma.Log_errorAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLog_error>
+          }
+          groupBy: {
+            args: Prisma.log_errorGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Log_errorGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.log_errorCountArgs<ExtArgs>
+            result: $Utils.Optional<Log_errorCountAggregateOutputType> | number
           }
         }
       }
@@ -29758,6 +29840,871 @@ export namespace Prisma {
 
 
   /**
+   * Model log_error
+   */
+
+  export type AggregateLog_error = {
+    _count: Log_errorCountAggregateOutputType | null
+    _avg: Log_errorAvgAggregateOutputType | null
+    _sum: Log_errorSumAggregateOutputType | null
+    _min: Log_errorMinAggregateOutputType | null
+    _max: Log_errorMaxAggregateOutputType | null
+  }
+
+  export type Log_errorAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Log_errorSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Log_errorMinAggregateOutputType = {
+    id: number | null
+    module: string | null
+    message: string | null
+    created_by: string | null
+    created_at: Date | null
+  }
+
+  export type Log_errorMaxAggregateOutputType = {
+    id: number | null
+    module: string | null
+    message: string | null
+    created_by: string | null
+    created_at: Date | null
+  }
+
+  export type Log_errorCountAggregateOutputType = {
+    id: number
+    module: number
+    message: number
+    created_by: number
+    created_at: number
+    _all: number
+  }
+
+
+  export type Log_errorAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type Log_errorSumAggregateInputType = {
+    id?: true
+  }
+
+  export type Log_errorMinAggregateInputType = {
+    id?: true
+    module?: true
+    message?: true
+    created_by?: true
+    created_at?: true
+  }
+
+  export type Log_errorMaxAggregateInputType = {
+    id?: true
+    module?: true
+    message?: true
+    created_by?: true
+    created_at?: true
+  }
+
+  export type Log_errorCountAggregateInputType = {
+    id?: true
+    module?: true
+    message?: true
+    created_by?: true
+    created_at?: true
+    _all?: true
+  }
+
+  export type Log_errorAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which log_error to aggregate.
+     */
+    where?: log_errorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of log_errors to fetch.
+     */
+    orderBy?: log_errorOrderByWithRelationInput | log_errorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: log_errorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` log_errors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` log_errors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned log_errors
+    **/
+    _count?: true | Log_errorCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Log_errorAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Log_errorSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Log_errorMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Log_errorMaxAggregateInputType
+  }
+
+  export type GetLog_errorAggregateType<T extends Log_errorAggregateArgs> = {
+        [P in keyof T & keyof AggregateLog_error]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLog_error[P]>
+      : GetScalarType<T[P], AggregateLog_error[P]>
+  }
+
+
+
+
+  export type log_errorGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: log_errorWhereInput
+    orderBy?: log_errorOrderByWithAggregationInput | log_errorOrderByWithAggregationInput[]
+    by: Log_errorScalarFieldEnum[] | Log_errorScalarFieldEnum
+    having?: log_errorScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Log_errorCountAggregateInputType | true
+    _avg?: Log_errorAvgAggregateInputType
+    _sum?: Log_errorSumAggregateInputType
+    _min?: Log_errorMinAggregateInputType
+    _max?: Log_errorMaxAggregateInputType
+  }
+
+  export type Log_errorGroupByOutputType = {
+    id: number
+    module: string
+    message: string
+    created_by: string | null
+    created_at: Date
+    _count: Log_errorCountAggregateOutputType | null
+    _avg: Log_errorAvgAggregateOutputType | null
+    _sum: Log_errorSumAggregateOutputType | null
+    _min: Log_errorMinAggregateOutputType | null
+    _max: Log_errorMaxAggregateOutputType | null
+  }
+
+  type GetLog_errorGroupByPayload<T extends log_errorGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Log_errorGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Log_errorGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Log_errorGroupByOutputType[P]>
+            : GetScalarType<T[P], Log_errorGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type log_errorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    module?: boolean
+    message?: boolean
+    created_by?: boolean
+    created_at?: boolean
+  }, ExtArgs["result"]["log_error"]>
+
+
+  export type log_errorSelectScalar = {
+    id?: boolean
+    module?: boolean
+    message?: boolean
+    created_by?: boolean
+    created_at?: boolean
+  }
+
+
+  export type $log_errorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "log_error"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      module: string
+      message: string
+      created_by: string | null
+      created_at: Date
+    }, ExtArgs["result"]["log_error"]>
+    composites: {}
+  }
+
+  type log_errorGetPayload<S extends boolean | null | undefined | log_errorDefaultArgs> = $Result.GetResult<Prisma.$log_errorPayload, S>
+
+  type log_errorCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<log_errorFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Log_errorCountAggregateInputType | true
+    }
+
+  export interface log_errorDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['log_error'], meta: { name: 'log_error' } }
+    /**
+     * Find zero or one Log_error that matches the filter.
+     * @param {log_errorFindUniqueArgs} args - Arguments to find a Log_error
+     * @example
+     * // Get one Log_error
+     * const log_error = await prisma.log_error.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends log_errorFindUniqueArgs>(args: SelectSubset<T, log_errorFindUniqueArgs<ExtArgs>>): Prisma__log_errorClient<$Result.GetResult<Prisma.$log_errorPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Log_error that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {log_errorFindUniqueOrThrowArgs} args - Arguments to find a Log_error
+     * @example
+     * // Get one Log_error
+     * const log_error = await prisma.log_error.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends log_errorFindUniqueOrThrowArgs>(args: SelectSubset<T, log_errorFindUniqueOrThrowArgs<ExtArgs>>): Prisma__log_errorClient<$Result.GetResult<Prisma.$log_errorPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Log_error that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_errorFindFirstArgs} args - Arguments to find a Log_error
+     * @example
+     * // Get one Log_error
+     * const log_error = await prisma.log_error.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends log_errorFindFirstArgs>(args?: SelectSubset<T, log_errorFindFirstArgs<ExtArgs>>): Prisma__log_errorClient<$Result.GetResult<Prisma.$log_errorPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Log_error that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_errorFindFirstOrThrowArgs} args - Arguments to find a Log_error
+     * @example
+     * // Get one Log_error
+     * const log_error = await prisma.log_error.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends log_errorFindFirstOrThrowArgs>(args?: SelectSubset<T, log_errorFindFirstOrThrowArgs<ExtArgs>>): Prisma__log_errorClient<$Result.GetResult<Prisma.$log_errorPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Log_errors that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_errorFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Log_errors
+     * const log_errors = await prisma.log_error.findMany()
+     * 
+     * // Get first 10 Log_errors
+     * const log_errors = await prisma.log_error.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const log_errorWithIdOnly = await prisma.log_error.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends log_errorFindManyArgs>(args?: SelectSubset<T, log_errorFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$log_errorPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Log_error.
+     * @param {log_errorCreateArgs} args - Arguments to create a Log_error.
+     * @example
+     * // Create one Log_error
+     * const Log_error = await prisma.log_error.create({
+     *   data: {
+     *     // ... data to create a Log_error
+     *   }
+     * })
+     * 
+     */
+    create<T extends log_errorCreateArgs>(args: SelectSubset<T, log_errorCreateArgs<ExtArgs>>): Prisma__log_errorClient<$Result.GetResult<Prisma.$log_errorPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Log_errors.
+     * @param {log_errorCreateManyArgs} args - Arguments to create many Log_errors.
+     * @example
+     * // Create many Log_errors
+     * const log_error = await prisma.log_error.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends log_errorCreateManyArgs>(args?: SelectSubset<T, log_errorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Log_error.
+     * @param {log_errorDeleteArgs} args - Arguments to delete one Log_error.
+     * @example
+     * // Delete one Log_error
+     * const Log_error = await prisma.log_error.delete({
+     *   where: {
+     *     // ... filter to delete one Log_error
+     *   }
+     * })
+     * 
+     */
+    delete<T extends log_errorDeleteArgs>(args: SelectSubset<T, log_errorDeleteArgs<ExtArgs>>): Prisma__log_errorClient<$Result.GetResult<Prisma.$log_errorPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Log_error.
+     * @param {log_errorUpdateArgs} args - Arguments to update one Log_error.
+     * @example
+     * // Update one Log_error
+     * const log_error = await prisma.log_error.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends log_errorUpdateArgs>(args: SelectSubset<T, log_errorUpdateArgs<ExtArgs>>): Prisma__log_errorClient<$Result.GetResult<Prisma.$log_errorPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Log_errors.
+     * @param {log_errorDeleteManyArgs} args - Arguments to filter Log_errors to delete.
+     * @example
+     * // Delete a few Log_errors
+     * const { count } = await prisma.log_error.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends log_errorDeleteManyArgs>(args?: SelectSubset<T, log_errorDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Log_errors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_errorUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Log_errors
+     * const log_error = await prisma.log_error.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends log_errorUpdateManyArgs>(args: SelectSubset<T, log_errorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Log_error.
+     * @param {log_errorUpsertArgs} args - Arguments to update or create a Log_error.
+     * @example
+     * // Update or create a Log_error
+     * const log_error = await prisma.log_error.upsert({
+     *   create: {
+     *     // ... data to create a Log_error
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Log_error we want to update
+     *   }
+     * })
+     */
+    upsert<T extends log_errorUpsertArgs>(args: SelectSubset<T, log_errorUpsertArgs<ExtArgs>>): Prisma__log_errorClient<$Result.GetResult<Prisma.$log_errorPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Log_errors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_errorCountArgs} args - Arguments to filter Log_errors to count.
+     * @example
+     * // Count the number of Log_errors
+     * const count = await prisma.log_error.count({
+     *   where: {
+     *     // ... the filter for the Log_errors we want to count
+     *   }
+     * })
+    **/
+    count<T extends log_errorCountArgs>(
+      args?: Subset<T, log_errorCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Log_errorCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Log_error.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Log_errorAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Log_errorAggregateArgs>(args: Subset<T, Log_errorAggregateArgs>): Prisma.PrismaPromise<GetLog_errorAggregateType<T>>
+
+    /**
+     * Group by Log_error.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_errorGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends log_errorGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: log_errorGroupByArgs['orderBy'] }
+        : { orderBy?: log_errorGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, log_errorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLog_errorGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the log_error model
+   */
+  readonly fields: log_errorFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for log_error.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__log_errorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the log_error model
+   */ 
+  interface log_errorFieldRefs {
+    readonly id: FieldRef<"log_error", 'Int'>
+    readonly module: FieldRef<"log_error", 'String'>
+    readonly message: FieldRef<"log_error", 'String'>
+    readonly created_by: FieldRef<"log_error", 'String'>
+    readonly created_at: FieldRef<"log_error", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * log_error findUnique
+   */
+  export type log_errorFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_error
+     */
+    select?: log_errorSelect<ExtArgs> | null
+    /**
+     * Filter, which log_error to fetch.
+     */
+    where: log_errorWhereUniqueInput
+  }
+
+  /**
+   * log_error findUniqueOrThrow
+   */
+  export type log_errorFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_error
+     */
+    select?: log_errorSelect<ExtArgs> | null
+    /**
+     * Filter, which log_error to fetch.
+     */
+    where: log_errorWhereUniqueInput
+  }
+
+  /**
+   * log_error findFirst
+   */
+  export type log_errorFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_error
+     */
+    select?: log_errorSelect<ExtArgs> | null
+    /**
+     * Filter, which log_error to fetch.
+     */
+    where?: log_errorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of log_errors to fetch.
+     */
+    orderBy?: log_errorOrderByWithRelationInput | log_errorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for log_errors.
+     */
+    cursor?: log_errorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` log_errors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` log_errors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of log_errors.
+     */
+    distinct?: Log_errorScalarFieldEnum | Log_errorScalarFieldEnum[]
+  }
+
+  /**
+   * log_error findFirstOrThrow
+   */
+  export type log_errorFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_error
+     */
+    select?: log_errorSelect<ExtArgs> | null
+    /**
+     * Filter, which log_error to fetch.
+     */
+    where?: log_errorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of log_errors to fetch.
+     */
+    orderBy?: log_errorOrderByWithRelationInput | log_errorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for log_errors.
+     */
+    cursor?: log_errorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` log_errors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` log_errors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of log_errors.
+     */
+    distinct?: Log_errorScalarFieldEnum | Log_errorScalarFieldEnum[]
+  }
+
+  /**
+   * log_error findMany
+   */
+  export type log_errorFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_error
+     */
+    select?: log_errorSelect<ExtArgs> | null
+    /**
+     * Filter, which log_errors to fetch.
+     */
+    where?: log_errorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of log_errors to fetch.
+     */
+    orderBy?: log_errorOrderByWithRelationInput | log_errorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing log_errors.
+     */
+    cursor?: log_errorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` log_errors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` log_errors.
+     */
+    skip?: number
+    distinct?: Log_errorScalarFieldEnum | Log_errorScalarFieldEnum[]
+  }
+
+  /**
+   * log_error create
+   */
+  export type log_errorCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_error
+     */
+    select?: log_errorSelect<ExtArgs> | null
+    /**
+     * The data needed to create a log_error.
+     */
+    data: XOR<log_errorCreateInput, log_errorUncheckedCreateInput>
+  }
+
+  /**
+   * log_error createMany
+   */
+  export type log_errorCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many log_errors.
+     */
+    data: log_errorCreateManyInput | log_errorCreateManyInput[]
+  }
+
+  /**
+   * log_error update
+   */
+  export type log_errorUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_error
+     */
+    select?: log_errorSelect<ExtArgs> | null
+    /**
+     * The data needed to update a log_error.
+     */
+    data: XOR<log_errorUpdateInput, log_errorUncheckedUpdateInput>
+    /**
+     * Choose, which log_error to update.
+     */
+    where: log_errorWhereUniqueInput
+  }
+
+  /**
+   * log_error updateMany
+   */
+  export type log_errorUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update log_errors.
+     */
+    data: XOR<log_errorUpdateManyMutationInput, log_errorUncheckedUpdateManyInput>
+    /**
+     * Filter which log_errors to update
+     */
+    where?: log_errorWhereInput
+  }
+
+  /**
+   * log_error upsert
+   */
+  export type log_errorUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_error
+     */
+    select?: log_errorSelect<ExtArgs> | null
+    /**
+     * The filter to search for the log_error to update in case it exists.
+     */
+    where: log_errorWhereUniqueInput
+    /**
+     * In case the log_error found by the `where` argument doesn't exist, create a new log_error with this data.
+     */
+    create: XOR<log_errorCreateInput, log_errorUncheckedCreateInput>
+    /**
+     * In case the log_error was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<log_errorUpdateInput, log_errorUncheckedUpdateInput>
+  }
+
+  /**
+   * log_error delete
+   */
+  export type log_errorDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_error
+     */
+    select?: log_errorSelect<ExtArgs> | null
+    /**
+     * Filter which log_error to delete.
+     */
+    where: log_errorWhereUniqueInput
+  }
+
+  /**
+   * log_error deleteMany
+   */
+  export type log_errorDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which log_errors to delete
+     */
+    where?: log_errorWhereInput
+  }
+
+  /**
+   * log_error without action
+   */
+  export type log_errorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_error
+     */
+    select?: log_errorSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -30372,6 +31319,17 @@ export namespace Prisma {
   };
 
   export type Trx_detail_declarationScalarFieldEnum = (typeof Trx_detail_declarationScalarFieldEnum)[keyof typeof Trx_detail_declarationScalarFieldEnum]
+
+
+  export const Log_errorScalarFieldEnum: {
+    id: 'id',
+    module: 'module',
+    message: 'message',
+    created_by: 'created_by',
+    created_at: 'created_at'
+  };
+
+  export type Log_errorScalarFieldEnum = (typeof Log_errorScalarFieldEnum)[keyof typeof Log_errorScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -33570,6 +34528,60 @@ export namespace Prisma {
     created_at?: DateTimeWithAggregatesFilter<"trx_detail_declaration"> | Date | string
     updated_by?: BigIntNullableWithAggregatesFilter<"trx_detail_declaration"> | bigint | number | null
     updated_at?: DateTimeWithAggregatesFilter<"trx_detail_declaration"> | Date | string
+  }
+
+  export type log_errorWhereInput = {
+    AND?: log_errorWhereInput | log_errorWhereInput[]
+    OR?: log_errorWhereInput[]
+    NOT?: log_errorWhereInput | log_errorWhereInput[]
+    id?: IntFilter<"log_error"> | number
+    module?: StringFilter<"log_error"> | string
+    message?: StringFilter<"log_error"> | string
+    created_by?: StringNullableFilter<"log_error"> | string | null
+    created_at?: DateTimeFilter<"log_error"> | Date | string
+  }
+
+  export type log_errorOrderByWithRelationInput = {
+    id?: SortOrder
+    module?: SortOrder
+    message?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+  }
+
+  export type log_errorWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: log_errorWhereInput | log_errorWhereInput[]
+    OR?: log_errorWhereInput[]
+    NOT?: log_errorWhereInput | log_errorWhereInput[]
+    module?: StringFilter<"log_error"> | string
+    message?: StringFilter<"log_error"> | string
+    created_by?: StringNullableFilter<"log_error"> | string | null
+    created_at?: DateTimeFilter<"log_error"> | Date | string
+  }, "id">
+
+  export type log_errorOrderByWithAggregationInput = {
+    id?: SortOrder
+    module?: SortOrder
+    message?: SortOrder
+    created_by?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    _count?: log_errorCountOrderByAggregateInput
+    _avg?: log_errorAvgOrderByAggregateInput
+    _max?: log_errorMaxOrderByAggregateInput
+    _min?: log_errorMinOrderByAggregateInput
+    _sum?: log_errorSumOrderByAggregateInput
+  }
+
+  export type log_errorScalarWhereWithAggregatesInput = {
+    AND?: log_errorScalarWhereWithAggregatesInput | log_errorScalarWhereWithAggregatesInput[]
+    OR?: log_errorScalarWhereWithAggregatesInput[]
+    NOT?: log_errorScalarWhereWithAggregatesInput | log_errorScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"log_error"> | number
+    module?: StringWithAggregatesFilter<"log_error"> | string
+    message?: StringWithAggregatesFilter<"log_error"> | string
+    created_by?: StringNullableWithAggregatesFilter<"log_error"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"log_error"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -37293,6 +38305,58 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type log_errorCreateInput = {
+    module: string
+    message: string
+    created_by?: string | null
+    created_at: Date | string
+  }
+
+  export type log_errorUncheckedCreateInput = {
+    id?: number
+    module: string
+    message: string
+    created_by?: string | null
+    created_at: Date | string
+  }
+
+  export type log_errorUpdateInput = {
+    module?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type log_errorUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    module?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type log_errorCreateManyInput = {
+    module: string
+    message: string
+    created_by?: string | null
+    created_at: Date | string
+  }
+
+  export type log_errorUpdateManyMutationInput = {
+    module?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type log_errorUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    module?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    created_by?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type BigIntFilter<$PrismaModel = never> = {
     equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     in?: bigint[] | number[]
@@ -39795,6 +40859,38 @@ export namespace Prisma {
     total_cost?: SortOrder
     created_by?: SortOrder
     updated_by?: SortOrder
+  }
+
+  export type log_errorCountOrderByAggregateInput = {
+    id?: SortOrder
+    module?: SortOrder
+    message?: SortOrder
+    created_by?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type log_errorAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type log_errorMaxOrderByAggregateInput = {
+    id?: SortOrder
+    module?: SortOrder
+    message?: SortOrder
+    created_by?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type log_errorMinOrderByAggregateInput = {
+    id?: SortOrder
+    module?: SortOrder
+    message?: SortOrder
+    created_by?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type log_errorSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type user_detailCreateNestedManyWithoutMsUserInput = {
@@ -49672,6 +50768,10 @@ export namespace Prisma {
      * @deprecated Use trx_detail_declarationDefaultArgs instead
      */
     export type trx_detail_declarationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = trx_detail_declarationDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use log_errorDefaultArgs instead
+     */
+    export type log_errorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = log_errorDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

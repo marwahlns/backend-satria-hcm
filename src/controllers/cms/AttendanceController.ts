@@ -9,6 +9,7 @@ import { TrxLeave } from "../../models/Table/Satria/TrxLeave";
 import { TrxOvertime } from "../../models/Table/Satria/TrxOvertime";
 import { TrxOfficialTravel } from "../../models/Table/Satria/TrxOfficialTravel";
 import { User } from "../../models/Table/Satria/MsUser";
+import { Error } from "../../models/Table/Satria/LogError";
 import ExcelJS from "exceljs";
 import * as fs from 'fs';
 
@@ -17,11 +18,12 @@ export const getMonthlyAttendanceSummary = async (
   res: Response
 ): Promise<void> => {
   try {
+    const { year } = req.query;
     const userNrp = req.user?.nrp;
     const isAdmin = userNrp === "P0120001";
 
     const now = new Date();
-    const currentYear = now.getFullYear();
+    const currentYear = parseInt(year as string, 10);
     const currentMonth = now.getMonth();
     const startDate = new Date(currentYear, currentMonth, 1);
     const endDate = new Date(currentYear, currentMonth + 1, 0, 23, 59, 59, 999);
@@ -198,8 +200,14 @@ export const getMonthlyAttendanceSummary = async (
         }
       },
     });
-  } catch (err) {
-    console.error("Full overview error:", err);
+  } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "getMonthlyAttendanceSummary",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });
     res.status(500).json({ message: "Server error", error: err });
   }
 };
@@ -396,9 +404,15 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
           })
         );
         return;
-      } catch (detailError) {
-        console.error("Error getting user detail:", detailError);
-        res.status(404).json({
+      } catch (err:any) {
+        await Error.create({
+          data: {
+            module: "getAllDailyAttendance",
+            message: err?.message ?? String(err),
+            created_at: getCurrentWIBDate(),
+          },
+        });
+          res.status(404).json({
           success: false,
           message: "User not found or error retrieving user details",
         });
@@ -746,8 +760,14 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
         res.setHeader("Content-Disposition", `attachment; filename=Monthly_Attendance_Report_${queryMonth || `${getMonthName(selectedMonth)}_${selectedYear}`}.xlsx`);
         res.send(buffer);
         return;
-      } catch (error) {
-        console.error('Error generating monthly Excel report:', error);
+      } catch (err:any) {
+          await Error.create({
+            data: {
+              module: "getAllDailyAttendance(monthlyReport)",
+              message: err?.message ?? String(err),
+              created_at: getCurrentWIBDate(),
+            },
+        });
         res.status(500).json({
           success: false,
           message: "Failed to generate monthly Excel report.",
@@ -904,8 +924,14 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
         res.setHeader("Content-Disposition", `attachment; filename=Daily_Attendance_Report_${queryStartDate}.xlsx`);
         res.send(buffer);
         return;
-      } catch (error) {
-        console.error('Error generating daily Excel report:', error);
+      } catch (err:any) {
+        await Error.create({
+          data: {
+            module: "getAllDailyAttendance(dailyeport)",
+            message: err?.message ?? String(err),
+            created_at: getCurrentWIBDate(),
+          },
+      });
         res.status(500).json({
           success: false,
           message: "Failed to generate daily Excel report.",
@@ -930,15 +956,20 @@ export const getAllDailyAttendance = async (req: Request, res: Response): Promis
         },
       })
     );
-
-  } catch (err) {
-    console.error("Error in getAllDailyAttendance:", err);
-    res.status(500).json({
-      success: false,
-      message: "Failed to retrieve attendance data.",
-    });
-  }
-};
+    } catch (err:any) {
+        await Error.create({
+          data: {
+            module: "Get Daily Attendance",
+            message: err?.message ?? String(err),
+            created_at: getCurrentWIBDate(),
+          },
+      });
+      res.status(500).json({
+        success: false,
+        message: "Failed to retrieve attendance data.",
+      });
+    }
+  };
 
 export const getAttendanceReport = async (
   req: Request & { user?: { nrp: string; name: string; departement: string } },
@@ -1299,8 +1330,14 @@ export const getAttendanceReport = async (
     };
 
     res.status(200).send(JSONbig.stringify(response));
-  } catch (err) {
-    console.error("Error fetching attendance:", err);
+  } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "getAttendanceReport",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
@@ -1315,8 +1352,6 @@ function setTimeToDay(time: Date, day: Date, addDay = 0) {
 export const getAttendanceToday = async (req: Request & { user?: { nrp: string } }, res: Response): Promise<void> => {
   try {
     const userNrp = req.user?.nrp;
-    if (!userNrp) throw new Error("User not found");
-
     const now = getCurrentWIBDate();
     const today = new Date(now);
     const yesterday = new Date(now);
@@ -1509,8 +1544,14 @@ export const getAttendanceToday = async (req: Request & { user?: { nrp: string }
         usedYesterdayShift,
       },
     });
-  } catch (error) {
-    console.error("Error in getAttendanceToday:", error);
+  } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "Get Attendance Today",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
@@ -1605,8 +1646,14 @@ export const checkInAttendance = async (req: Request & { user?: { nrp: string };
         data: checkedIn
       })
     );
-  } catch (error) {
-    console.error("Error checkInAttendance:", error);
+  } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "Check in attendance",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });  
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
@@ -1751,10 +1798,14 @@ export const checkOutAttendance = async (
     res
       .status(200)
       .json({ success: true, message: "Check-out was successful" });
-  } catch (err) {
-    console.error("Error checkOutAttendance:", err);
-    res
-      .status(500)
-      .json({ success: false, message: "Internal server error" });
+  } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "Check out attendance",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
 };

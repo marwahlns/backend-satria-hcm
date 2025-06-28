@@ -2,6 +2,7 @@ import JSONbig from "json-bigint";
 import { Request, Response } from "express";
 import { TrxShiftEmployee } from "../../models/Table/Satria/TrxShiftEmployee";
 import { User } from "../../models/Table/Satria/MsUser";
+import { Error } from "../../models/Table/Satria/LogError";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 
 export const getAllTrxShiftEmployee = async (
@@ -126,9 +127,14 @@ export const getAllTrxShiftEmployee = async (
         },
       })
     );
-  } catch (err) {
-    console.error("Error fetching Shift Employees:", err);
-    res.status(500).json({
+  } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "getAllShiftEmployee",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });       res.status(500).json({
       success: false,
       message: "Error retrieving Shift Employees data",
     });
@@ -150,6 +156,7 @@ export const createShiftEmployee = async (
       return;
     }
 
+    // Ambil user yang valid dari database
     const validUsers = await User.findMany({
       where: {
         personal_number: { in: id_user },
@@ -162,7 +169,7 @@ export const createShiftEmployee = async (
     if (validUserIds.length === 0) {
       res.status(400).json({
         success: false,
-        message: "No valid id_user found in the User table",
+        message: "Tidak ada id_user yang valid ditemukan di tabel User",
       });
       return;
     }
@@ -222,12 +229,18 @@ export const createShiftEmployee = async (
     res.status(201).send(
       JSONbig.stringify({
         success: true,
-        message: `Shift Employees added successfully. \nTotal: ${validUserIds.length} employee(s) added.\n NRP(s): ${validUserIds.join(", ")}`,
+        message: "Shift Employees added successfully (hanya user yang valid)",
         data: shiftEmployees,
       })
     );
-  } catch (err) {
-    console.error("Database Error:", err);
+  } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "createShiftEmployee",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });   
     res.status(500).json({
       success: false,
       message: "Error adding Shift Employee data",
@@ -264,8 +277,14 @@ export const updateShiftEmployee = async (
       message: "Transaction shift updated successfully",
       data: { updatedShiftEmployee },
     }));
-  } catch (err) {
-    console.error("Error while update transaction shift:", err);
+  } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "updateShiftEmployee",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });   
     res.status(500).json({ success: false, message: err });
   }
 };
@@ -292,7 +311,15 @@ export const deleteShiftEmployee = async (
         message: "Shift Employee deleted successfully",
       });
     }
-  } catch (err) {
+  }
+    catch (err:any) {
+      await Error.create({
+        data: {
+          module: "deleteShiftEmployee",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });   
     res
       .status(500)
       .json({ success: false, message: "Error deleting Shift Employee data" });

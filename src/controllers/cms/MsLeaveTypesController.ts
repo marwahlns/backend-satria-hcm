@@ -2,6 +2,7 @@ import JSONbig from "json-bigint";
 import { Request, Response } from "express";
 import { LeaveTypes } from "../../models/Table/Satria/MsLeaveTypes";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
+import { Error } from "../../models/Table/Satria/LogError";
 
 export const getAllLeaveTypes = async (
   req: Request,
@@ -66,10 +67,15 @@ export const getAllLeaveTypes = async (
         totalItems,
       },
     }));
-  } catch (err) {
-    res
-      .status(500)
-      .json({ success: false, message: "Error retrieving leave types data" });
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getAllLeaveTypes",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
+    res.status(500).json({ success: false, message: "Error retrieving leave types data" });
   }
 };
 
@@ -93,10 +99,15 @@ export const getLeaveTypeById = async (
         data: { leaveType },
       }));
     }
-  } catch (err) {
-    res
-      .status(500)
-      .json({ success: false, message: "Error retrieving leave type data" });
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getLeaveTypeById",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
+    res.status(500).json({ success: false, message: "Error retrieving leave type data" });
   }
 };
 
@@ -131,14 +142,16 @@ export const createLeaveType = async (
       data: { newLeaveType },
     }));
     return;
-  } catch (err) {
-    console.error("Database Error:", err);
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: "Error adding leave type data"
-      });
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "createLeaveType",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
+    res.status(500).json({ success: false, message: "Error adding leave type data"
+  });
     return
   }
 };
@@ -230,16 +243,18 @@ export const updateLeaveType = async (
       data: updatedLeaveType
     });
 
-  } catch (error) {
-    console.error("Error updating leave type:", error);
-    
-    // Check if response was already sent
-    if (!res.headersSent) {
-      res.status(500).json({
-        success: false,
-        message: "Internal server error while updating leave type"
-      });
-    }
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "updateLeaveType",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
+    res.status(500).json({
+      success: false,
+      message: "Internal server error while updating leave type"
+    });
   }
 };
 
@@ -265,9 +280,14 @@ export const deleteLeaveType = async (
         message: "Leave Type deleted successfully",
       });
     }
-  } catch (err) {
-    res
-      .status(500)
-      .json({ success: false, message: "Error deleting leave type data" });
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "deleteLeaveType",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
+    res.status(500).json({ success: false, message: "Error deleting leave type data" });
   }
 };

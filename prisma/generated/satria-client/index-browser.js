@@ -653,6 +653,14 @@ exports.Prisma.Trx_detail_declarationScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.Log_errorScalarFieldEnum = {
+  id: 'id',
+  module: 'module',
+  message: 'message',
+  created_by: 'created_by',
+  created_at: 'created_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -688,7 +696,8 @@ exports.Prisma.ModelName = {
   trx_leave_quota: 'trx_leave_quota',
   attendance: 'attendance',
   trx_declaration: 'trx_declaration',
-  trx_detail_declaration: 'trx_detail_declaration'
+  trx_detail_declaration: 'trx_detail_declaration',
+  log_error: 'log_error'
 };
 
 /**

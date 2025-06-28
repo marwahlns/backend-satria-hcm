@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Shift } from "../../models/Table/Satria/MsShift";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
+import { Error } from "../../models/Table/Satria/LogError";
 import JSONbig from "json-bigint";
 
 export const getAllShift = async (
@@ -68,10 +69,15 @@ export const getAllShift = async (
         totalItems,
       },
     }));
-  } catch (err) {
-    res
-      .status(500)
-      .json({ success: false, message: "Error retrieving shift data" });
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getAllShift",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
+    res.status(500).json({ success: false, message: "Error retrieving shift data" });
   }
 };
 
@@ -95,10 +101,15 @@ export const getShiftById = async (
         data: { shift },
       }));
     }
-  } catch (err) {
-    res
-      .status(500)
-      .json({ success: false, message: "Error retrieving shift data" });
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getShiftById",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
+    res.status(500).json({ success: false, message: "Error retrieving shift data" });
   }
 };
 
@@ -153,8 +164,14 @@ export const createShift = async (req: Request, res: Response): Promise<void> =>
       message: "Shift added successfully",
       data: formattedShiftData,
     }));
-  } catch (err) {
-    console.error("Database Error:", err);
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "createShift",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res.status(500).json({ success: false, message: "Error adding shift data" });
   }
 };
@@ -201,10 +218,15 @@ export const updateShift = async (
       message: "Shift updated successfully",
       data: { formattedShiftData },
     }));
-  } catch (err) {
-    res
-      .status(500)
-      .json({ success: false, message: "Error updating food data" });
+  } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "updateShift",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+      });
+    res.status(500).json({ success: false, message: "Error updating food data" });
   }
 };
 
@@ -231,9 +253,14 @@ export const deleteShift = async (
         message: "Shift deleted successfully",
       });
     }
-  } catch (err) {
-    res
-      .status(500)
-      .json({ success: false, message: "Error deleting shift data" });
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "deleteShift",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
+    res.status(500).json({ success: false, message: "Error deleting shift data" });
   }
 };

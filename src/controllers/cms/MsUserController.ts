@@ -5,6 +5,7 @@ import { User } from "../../models/Table/Satria/MsUser";
 import { TrxMutation } from "../../models/Table/Satria/TrxMutation";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 import { PrismaClient } from "../../../prisma/generated/satria-client";
+import { Error } from "../../models/Table/Satria/LogError";
 
 const prisma = new PrismaClient();
 
@@ -173,8 +174,16 @@ export const getAllEmployee = async (req: Request & { user?: { nrp: string } }, 
         },
       })
     );
-  } catch (err) {
-    console.error("Error retrieving employee data:", err);
+  } catch (err:any) {
+    const userNrp = req.user?.nrp;
+    await Error.create({
+      data: {
+        module: "getAllEmployee",
+        message: err?.message ?? String(err),
+        created_by: userNrp ?? "-",
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res.status(500).json({
       success: false,
       message: "Error retrieving employee data",
@@ -304,8 +313,14 @@ export const createEmployee = async (
         message: "Employee added successfully",
       })
     );
-  } catch (err: any) {
-    console.error("Database Error:", err);
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "createEmployee",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res.status(500).json({
       success: false,
       message: "Error adding employee data",
@@ -477,8 +492,14 @@ export const updateEmployee = async (
       success: true,
       message: "Employee updated successfully",
     });
-  } catch (err) {
-    console.error("Database Error:", err);
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "updateEmployee",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res.status(500).json({
       success: false,
       message: "Error updating employee data",
@@ -508,10 +529,15 @@ export const deleteEmployee = async (
         message: "Employee deleted successfully",
       });
     }
-  } catch (err) {
-    res
-      .status(500)
-      .json({ success: false, message: "Error deleting Employee data" });
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "deleteEmployee",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
+    res.status(500).json({ success: false, message: "Error deleting Employee data" });
   }
 };
 
@@ -537,7 +563,14 @@ export const getAllVendor = async (req: Request, res: Response): Promise<void> =
         },
       })
     );
-  } catch (err) {
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getAllVendor",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res.status(500).json({ success: false, message: "Error retrieving vendor data" });
   }
 };
@@ -563,7 +596,14 @@ export const getAllPlant = async (req: Request, res: Response): Promise<void> =>
         },
       })
     );
-  } catch (err) {
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getAllPlant",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res.status(500).json({ success: false, message: "Error retrieving plant data" });
   }
 };
@@ -589,7 +629,14 @@ export const getAllKlasifikasi = async (req: Request, res: Response): Promise<vo
         },
       })
     );
-  } catch (err) {
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getAllKlasifikasi",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res.status(500).json({ success: false, message: "Error retrieving klasifikasi data" });
   }
 };
@@ -616,7 +663,14 @@ export const getAllMaritalStatus = async (req: Request, res: Response): Promise<
         },
       })
     );
-  } catch (err) {
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getAllMaritalStatus",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res.status(500).json({ success: false, message: "Error retrieving marital status data" });
   }
 };
@@ -656,7 +710,14 @@ export const getAllSuperior = async (req: Request, res: Response): Promise<void>
         },
       })
     );
-  } catch (err) {
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getAllSuperior",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res.status(500).json({ success: false, message: "Error retrieving superior data" });
   }
 };
@@ -682,7 +743,14 @@ export const getAllDepartment = async (req: Request, res: Response): Promise<voi
         },
       })
     );
-  } catch (err) {
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getAllDepartment",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res.status(500).json({ success: false, message: "Error retrieving department data" });
   }
 };

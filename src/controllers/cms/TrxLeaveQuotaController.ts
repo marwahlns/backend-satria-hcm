@@ -4,6 +4,7 @@ import { TrxLeaveQuota } from "../../models/Table/Satria/TrxLeaveQuota";
 import { User } from "../../models/Table/Satria/MsUser";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 import { LeaveTypes } from "../../models/Table/Satria/MsLeaveTypes";
+import { Error } from "../../models/Table/Satria/LogError";
 
 export const getAllTrxLeaveQuota = async (
   req: Request & { user?: { nrp: string; id: number } },
@@ -186,8 +187,14 @@ export const getAllTrxLeaveQuota = async (
         },
       })
     );
-  } catch (err) {
-    console.error("Error fetching leave quota:", err);
+  } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "getAllTrxLeaveQuota",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });   
     res.status(500).json({
       success: false,
       message: "Error retrieving leave quota data",
@@ -328,11 +335,17 @@ export const createLeaveQuota = async (
         data: createdLeaveQuotas,
       })
     );
-  } catch (err) {
-    console.error("Database Error:", err);
+  } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "createLeaveQuota",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });   
     res.status(500).json({
       success: false,
-      message: "Error adding leave quota data: " + (err instanceof Error ? err.message : "An unknown error occurred."),
+      message: "Error adding leave quota data: " + (err instanceof err ? err.message : "An unknown error occurred."),
     });
   }
 };
@@ -447,12 +460,18 @@ export const updateLeaveQuota = async (
       message: "Leave quota updated successfully.",
       data: updatedLeaveQuota,
     }));
-  } catch (err) {
-    console.error("Error while updating leave quota:", err);
-    res.status(500).json({
-      success: false,
-      message: "Error updating leave quota data: " + (err instanceof Error ? err.message : "An unknown error occurred."),
-    });
+  } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "updateLeaveQuota",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });   
+        res.status(500).json({
+            success: false,
+            message: "Error updating leave quota data: " + (err instanceof err ? err.message : "An unknown error occurred."),
+        });
   }
 };
 
@@ -478,7 +497,14 @@ export const deleteLeaveQuota = async (
         message: "Leave quota deleted successfully",
       });
     }
-  } catch (err) {
+  } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "deleteLeaveQuota",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });   
     res
       .status(500)
       .json({ success: false, message: "Error deleting leave quota data" });

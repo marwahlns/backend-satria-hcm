@@ -622,3 +622,13 @@ model trx_detail_declaration {
 
   @@map("trx_detail_declaration")
 }
+
+model log_error {
+  id         Int      @id(map: "PK_log_error") @default(autoincrement())
+  module     String   @satria.NVarChar(255)
+  message    String   @satria.NVarChar(Max)
+  created_by String?
+  created_at DateTime
+
+  @@map("log_error")
+}

@@ -2,6 +2,7 @@ import JSONbig from "json-bigint";
 import { Request, Response } from "express";
 import { Worklocation } from "../../models/Table/Satria/MsWorklocation";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
+import { Error } from "../../models/Table/Satria/LogError";
 
 export const getAllWorklocation = async (
   req: Request,
@@ -63,7 +64,14 @@ export const getAllWorklocation = async (
         totalItems,
       },
     }));
-  } catch (err) {
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getAllWorklocation",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res
       .status(500)
       .json({ success: false, message: "Error retrieving worklocations data" });
@@ -90,7 +98,14 @@ export const getWorklocationById = async (
         data: { worklocation },
       }));
     }
-  } catch (err) {
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getWorklocationById",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res
       .status(500)
       .json({ success: false, message: "Error retrieving worklocation data" });
@@ -124,8 +139,14 @@ export const createWorklocation = async (
       message: "Worklocation added successfully",
       data: { newWorklocation },
     }));
-  } catch (err) {
-    console.error("Database Error:", err);
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "createWorklocation",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res
       .status(500)
       .json({ success: false, message: "Error adding worklocation data" });
@@ -158,7 +179,14 @@ export const updateWorklocation = async (
       message: "Worklocation updated successfully",
       data: { updatedWorklocation },
     }));
-  } catch (err) {
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "updateWorklocation",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res
       .status(500)
       .json({ success: false, message: err });
@@ -187,7 +215,14 @@ export const deleteWorklocation = async (
         message: "Worklocation deleted successfully",
       });
     }
-  } catch (err) {
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "deleteWorklocation",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res
       .status(500)
       .json({ success: false, message: "Error deleting worklocation data" });

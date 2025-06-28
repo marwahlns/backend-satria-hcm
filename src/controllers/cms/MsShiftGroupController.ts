@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ShiftGroup } from "../../models/Table/Satria/MsShiftGroup";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 import { PrismaClient as SatriaClient } from "../../../prisma/generated/satria-client";
+import { Error } from "../../models/Table/Satria/LogError";
 
 const prisma = new SatriaClient();
 
@@ -101,8 +102,14 @@ export const getAllShiftGroup = async (
         totalItems,
       },
     });
-  } catch (err) {
-    console.error("Database Error:", err);
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getAllShiftGroup",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res.status(500).json({
       success: false,
       message: "Error retrieving shift group data",
@@ -163,8 +170,14 @@ export const createShiftGroup = async (
       message: "Shift group and details added successfully",
       data: { newShiftGroup },
     });
-  } catch (err) {
-    console.error("Database Error:", err);
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "createShiftGroup",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res.status(500).json({ success: false, message: "Error adding shift group data" });
   }
 };
@@ -223,8 +236,14 @@ export const updateShiftGroup = async (req: Request, res: Response): Promise<voi
       message: "Shift group and details updated successfully",
       data: { newShiftGroup: updatedShiftGroup },
     });
-  } catch (err) {
-    console.error("Database Error:", err);
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "updateShiftGroup",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res.status(500).json({
       success: false,
       message: "Error updating shift group",
@@ -254,9 +273,17 @@ export const deleteShiftGroup = async (
         message: "Shift deleted successfully",
       });
     }
-  } catch (err) {
-    res
-      .status(500)
-      .json({ success: false, message: "Error deleting shift data" });
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "deleteShiftGroup",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
+    res.status(500).json({ 
+      success: false,
+      message: "Error deleting shift data"
+    });
   }
 };
