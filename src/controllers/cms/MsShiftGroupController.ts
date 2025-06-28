@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ShiftGroup } from "../../models/Table/Satria/MsShiftGroup";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
 import { PrismaClient as SatriaClient } from "../../../prisma/generated/satria-client";
+import { Error } from "../../models/Table/Satria/LogError";
 
 const prisma = new SatriaClient();
 
@@ -14,19 +15,19 @@ export const getAllShiftGroup = async (
       page = "1",
       limit = "10",
       search = "",
-      sort = "nama",
-      order = "asc",
+      sort = "id",
+      order = "desc",
     } = req.query;
 
     const pageNumber = parseInt(page as string, 10);
     const pageSize = parseInt(limit as string, 10);
     const skip = (pageNumber - 1) * pageSize;
 
-    const validSortFields = ["code", "nama"];
+    const validSortFields = ["id","code", "nama"];
     const sortField = validSortFields.includes(sort as string)
       ? (sort as string)
-      : "nama";
-    const sortOrder = order === "desc" ? "desc" : "asc";
+      : "id";
+    const sortOrder = order === "asc" ? "asc" : "desc";
 
     // Ambil shift group dengan relasi detail dan shift
     const shiftGroups = await prisma.ms_shift_group.findMany({
@@ -75,7 +76,7 @@ export const getAllShiftGroup = async (
       const minutes = date.getUTCMinutes().toString().padStart(2, "0");
       return `${hours}:${minutes}`;
     };
-    
+
     // Format in_time dan out_time
     const shiftGroupWithFormattedDetails = shiftGroups.map((group) => ({
       ...group,
@@ -83,13 +84,13 @@ export const getAllShiftGroup = async (
         ...detail,
         MsShift: detail.MsShift
           ? {
-              ...detail.MsShift,
-              in_time: formatTime(detail.MsShift.in_time),
-              out_time: formatTime(detail.MsShift.out_time),
-            }
+            ...detail.MsShift,
+            in_time: formatTime(detail.MsShift.in_time),
+            out_time: formatTime(detail.MsShift.out_time),
+          }
           : null,
       })),
-    }));    
+    }));
 
     res.status(200).json({
       success: true,
@@ -101,8 +102,14 @@ export const getAllShiftGroup = async (
         totalItems,
       },
     });
-  } catch (err) {
-    console.error("Database Error:", err);
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getAllShiftGroup",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res.status(500).json({
       success: false,
       message: "Error retrieving shift group data",
@@ -111,12 +118,24 @@ export const getAllShiftGroup = async (
 };
 
 export const createShiftGroup = async (
-    req: Request, 
-    res: Response
+  req: Request,
+  res: Response
 ): Promise<void> => {
   const { code, nama, flag_shift, details } = req.body;
 
   try {
+    const existingShiftGroup = await ShiftGroup.findUnique({
+      where: { code: code },
+    });
+
+    if (existingShiftGroup) {
+      res.status(409).json({
+        success: false,
+        message: "Shift group with the same code already exists.",
+      });
+      return;
+    }
+    
     const newShiftGroup = await prisma.$transaction(async (prisma) => {
       // 1. Simpan ke tabel ms_shift_group
       const shiftGroup = await ShiftGroup.create({
@@ -151,8 +170,14 @@ export const createShiftGroup = async (
       message: "Shift group and details added successfully",
       data: { newShiftGroup },
     });
-  } catch (err) {
-    console.error("Database Error:", err);
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "createShiftGroup",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res.status(500).json({ success: false, message: "Error adding shift group data" });
   }
 };
@@ -162,62 +187,67 @@ export const updateShiftGroup = async (req: Request, res: Response): Promise<voi
   const { code, nama, flag_shift, details } = req.body;
 
   try {
-      const updatedShiftGroup = await prisma.$transaction(async (prisma) => {
-          // 1. Update ShiftGroup utama di ms_shift_group
-          const shiftGroup = await ShiftGroup.update({
-              where: { id: Number(id) },
-              data: {
-                  code,
-                  nama,
-                  flag_shift,
-                  updated_at: getCurrentWIBDate(),
-              },
-          });
-
-          // 2. Hapus semua data lama di ms_detail_shift_group berdasarkan id_shift_group
-          await ShiftGroup.deleteMany({
-              where: { id_shift_group: shiftGroup.code },
-          });
-
-          // 3. Simpan kembali `details` baru seperti di createShiftGroup
-          if (details && details.length > 0) {
-              await ShiftGroup.createMany({
-                  data: details.map((detail: { index_day: string; id_shift: string }) => ({
-                      index_day: detail.index_day,
-                      code: shiftGroup.code,
-                      id_shift_group: shiftGroup.code,
-                      id_shift: detail.id_shift,
-                      created_at: getCurrentWIBDate(),
-                      updated_at: getCurrentWIBDate(),
-                  })),
-              });
-          }
-
-          return {
-              id: shiftGroup.id,
-              id_shift_group_sap: 0,  // Jika ada mapping ke SAP, tambahkan di sini
-              code: shiftGroup.code,
-              nama: shiftGroup.nama,
-              flag_shift: shiftGroup.flag_shift,
-              created_by: shiftGroup.created_by ?? null,
-              updated_by: shiftGroup.updated_by ?? null,
-              created_at: shiftGroup.created_at,
-              updated_at: shiftGroup.updated_at,
-              is_deleted: shiftGroup.is_deleted ?? 0, // Pastikan tidak null
-          };
+    const updatedShiftGroup = await prisma.$transaction(async (prisma) => {
+      // 1. Update ShiftGroup utama di ms_shift_group
+      const shiftGroup = await ShiftGroup.update({
+        where: { id: Number(id) },
+        data: {
+          code,
+          nama,
+          flag_shift,
+          updated_at: getCurrentWIBDate(),
+        },
       });
 
-      res.status(200).json({
-          success: true,
-          message: "Shift group and details updated successfully",
-          data: { newShiftGroup: updatedShiftGroup },
+      // 2. Hapus semua data lama di ms_detail_shift_group berdasarkan id_shift_group
+      await ShiftGroup.deleteMany({
+        where: { id_shift_group: shiftGroup.code },
       });
-  } catch (err) {
-      console.error("Database Error:", err);
-      res.status(500).json({
-          success: false,
-          message: "Error updating shift group",
-      });
+
+      if (details && details.length > 0) {
+        await ShiftGroup.createMany({
+          data: details.map((detail: { index_day: string; id_shift: string }) => ({
+            index_day: detail.index_day,
+            code: shiftGroup.code,
+            id_shift_group: shiftGroup.code,
+            id_shift: detail.id_shift,
+            created_at: getCurrentWIBDate(),
+            updated_at: getCurrentWIBDate(),
+          })),
+        });
+      }
+
+      return {
+        id: shiftGroup.id,
+        id_shift_group_sap: 0,
+        code: shiftGroup.code,
+        nama: shiftGroup.nama,
+        flag_shift: shiftGroup.flag_shift,
+        created_by: shiftGroup.created_by ?? null,
+        updated_by: shiftGroup.updated_by ?? null,
+        created_at: shiftGroup.created_at,
+        updated_at: shiftGroup.updated_at,
+        is_deleted: shiftGroup.is_deleted ?? 0,
+      };
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Shift group and details updated successfully",
+      data: { newShiftGroup: updatedShiftGroup },
+    });
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "updateShiftGroup",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
+    res.status(500).json({
+      success: false,
+      message: "Error updating shift group",
+    });
   }
 };
 
@@ -243,9 +273,17 @@ export const deleteShiftGroup = async (
         message: "Shift deleted successfully",
       });
     }
-  } catch (err) {
-    res
-      .status(500)
-      .json({ success: false, message: "Error deleting shift data" });
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "deleteShiftGroup",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
+    res.status(500).json({ 
+      success: false,
+      message: "Error deleting shift data"
+    });
   }
 };

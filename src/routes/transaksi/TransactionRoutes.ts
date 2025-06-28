@@ -5,7 +5,6 @@ import multer from 'multer';
 import path from 'path';
 const fs = require('fs');
 
-
 const router = express.Router();
 router.use(authenticateJWT);
 
@@ -45,7 +44,6 @@ router.get(
 
 router.put(
   "/:id", async (req: Request, res: Response) => {
-    console.log(req.body);
     await TrxLeave.handleTrx(req, res);
   }
 );
@@ -57,7 +55,6 @@ router.post(
     await TrxLeave.createSubmittion(req, res);
   }
 );
-
 
 router.get(
   "/tren-attendance", async (req: Request, res: Response) => {

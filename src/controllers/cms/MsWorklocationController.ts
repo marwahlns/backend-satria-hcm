@@ -2,6 +2,7 @@ import JSONbig from "json-bigint";
 import { Request, Response } from "express";
 import { Worklocation } from "../../models/Table/Satria/MsWorklocation";
 import { getCurrentWIBDate } from "../../helpers/timeHelper";
+import { Error } from "../../models/Table/Satria/LogError";
 
 export const getAllWorklocation = async (
   req: Request,
@@ -12,18 +13,18 @@ export const getAllWorklocation = async (
       page = "1",
       limit = "10",
       search = "",
-      sort = "worklocation_code",
-      order = "asc",
+      sort = "worklocation_id",
+      order = "desc",
     } = req.query;
 
     const pageNumber = parseInt(page as string, 10);
     const pageSize = parseInt(limit as string, 10);
     const skip = (pageNumber - 1) * pageSize;
-    const validSortFields = ["worklocation_code", "worklocation_name", "worklocation_lat_long"];
+    const validSortFields = ["worklocation_id","worklocation_code", "worklocation_name", "worklocation_lat_long"];
     const sortField = validSortFields.includes(sort as string)
       ? (sort as string)
-      : "worklocation_code";
-    const sortOrder = order === "desc" ? "desc" : "asc";
+      : "worklocation_id";
+    const sortOrder = order === "asc" ? "asc" : "desc";
 
     const WorklocationData = await Worklocation.findMany({
       where: {
@@ -43,6 +44,7 @@ export const getAllWorklocation = async (
 
     const totalItems = await Worklocation.count({
       where: {
+        is_deleted: 0,
         OR: [
             { worklocation_code: { contains: search as string } },
             { worklocation_name: { contains: search as string } },
@@ -62,8 +64,14 @@ export const getAllWorklocation = async (
         totalItems,
       },
     }));
-  } catch (err) {
-    console.log(err)
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getAllWorklocation",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res
       .status(500)
       .json({ success: false, message: "Error retrieving worklocations data" });
@@ -90,7 +98,14 @@ export const getWorklocationById = async (
         data: { worklocation },
       }));
     }
-  } catch (err) {
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "getWorklocationById",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res
       .status(500)
       .json({ success: false, message: "Error retrieving worklocation data" });
@@ -124,8 +139,14 @@ export const createWorklocation = async (
       message: "Worklocation added successfully",
       data: { newWorklocation },
     }));
-  } catch (err) {
-    console.error("Database Error:", err); // Log error ke conso
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "createWorklocation",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res
       .status(500)
       .json({ success: false, message: "Error adding worklocation data" });
@@ -158,7 +179,14 @@ export const updateWorklocation = async (
       message: "Worklocation updated successfully",
       data: { updatedWorklocation },
     }));
-  } catch (err) {
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "updateWorklocation",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res
       .status(500)
       .json({ success: false, message: err });
@@ -187,7 +215,14 @@ export const deleteWorklocation = async (
         message: "Worklocation deleted successfully",
       });
     }
-  } catch (err) {
+  } catch (err:any) {
+    await Error.create({
+      data: {
+        module: "deleteWorklocation",
+        message: err?.message ?? String(err),
+        created_at: getCurrentWIBDate(),
+      },
+    });
     res
       .status(500)
       .json({ success: false, message: "Error deleting worklocation data" });

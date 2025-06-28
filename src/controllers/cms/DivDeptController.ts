@@ -1,6 +1,8 @@
 import JSONbig from "json-bigint";
 import { Request, Response } from "express";
 import { MsDivision } from "../../models/Table/Satria/MsDivision";
+import { getCurrentWIBDate } from "../../helpers/timeHelper";
+import { Error } from "../../models/Table/Satria/LogError";
 
 export const getAllDivDept = async (
     req: Request,
@@ -18,8 +20,14 @@ export const getAllDivDept = async (
         data: allDivisions
       }));
       
-    } catch (error) {
-      console.error("Error:", error);
+    } catch (err:any) {
+      await Error.create({
+        data: {
+          module: "getAllDivDept",
+          message: err?.message ?? String(err),
+          created_at: getCurrentWIBDate(),
+        },
+    });   
       res.status(500).json({
         success: false,
         message: "An error occurred while retrieving division and department data",
