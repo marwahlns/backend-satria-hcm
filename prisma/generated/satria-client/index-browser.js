@@ -661,6 +661,39 @@ exports.Prisma.Log_errorScalarFieldEnum = {
   created_at: 'created_at'
 };
 
+exports.Prisma.Log_notificationScalarFieldEnum = {
+  id: 'id',
+  user: 'user',
+  tittle: 'tittle',
+  message_user: 'message_user',
+  message_approval: 'message_approval',
+  type: 'type',
+  redirect_url: 'redirect_url',
+  is_read: 'is_read',
+  accepted_to: 'accepted_to',
+  accepted_by: 'accepted_by',
+  approved_to: 'approved_to',
+  approved_by: 'approved_by',
+  accepted_to_depthead: 'accepted_to_depthead',
+  accepted_by_depthead: 'accepted_by_depthead',
+  approved_to_divhead: 'approved_to_divhead',
+  approved_by_divhead: 'approved_by_divhead',
+  approved_to_dicdiv: 'approved_to_dicdiv',
+  approved_by_dicdiv: 'approved_by_dicdiv',
+  approved_by_deptheadhc: 'approved_by_deptheadhc',
+  approved_to_deptheadhc: 'approved_to_deptheadhc',
+  approved_to_divheadhc: 'approved_to_divheadhc',
+  approved_by_divheadhc: 'approved_by_divheadhc',
+  approved_to_dichc: 'approved_to_dichc',
+  approved_by_dichc: 'approved_by_dichc',
+  approved_to_presdir: 'approved_to_presdir',
+  approved_by_presdir: 'approved_by_presdir',
+  rejected_by: 'rejected_by',
+  canceled_by: 'canceled_by',
+  created_at: 'created_at',
+  is_deleted: 'is_deleted'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -697,7 +730,8 @@ exports.Prisma.ModelName = {
   attendance: 'attendance',
   trx_declaration: 'trx_declaration',
   trx_detail_declaration: 'trx_detail_declaration',
-  log_error: 'log_error'
+  log_error: 'log_error',
+  log_notification: 'log_notification'
 };
 
 /**

@@ -1,6 +1,7 @@
   import ExcelJS from "exceljs";
   import { MsDepartment } from "../models/Table/Satria/MsDepartment";
   import { MsDivision } from "../models/Table/Satria/MsDivision";
+  import { Notification } from "../models/Table/Satria/LogNotification";
   import PDFDocument from 'pdfkit';
 
     export const getModalType = (trx: any, userNrp: string): "action" | "detail" => {
@@ -182,6 +183,7 @@
   export const getSelect = (trxType: string) => {
     return trxType === "officialTravel"
       ? {
+          user: true,
           accept_to_depthead: true,
           approve_to_divhead: true,
           approve_to_dicdiv: true,
@@ -198,6 +200,7 @@
           status_id: true,
         }
       : {
+        user: true,
           accept_to: true,
           approve_to: true,
           status_id: true,
@@ -664,7 +667,7 @@ const travelTo = [trx.travelTo1, trx.travelTo2, trx.travelTo3]
     ["N R P", trx.nrp],
     ["NAME", trx.name],
     ["POSITION", trx.position],
-    ["ST TYPE", trx.stType],
+    ["ST TYPE", trx.lodging],
     ["DEPARTMENT", trx.department],
     ["DIVISION", trx.division],
     ["COST ALLOCATION", formatRupiah(trx.costAllocation)],
@@ -1127,4 +1130,49 @@ export const generatePdfMutation = (res: any, data: any[]) => {
   });
 
   doc.end();
+};
+
+
+export const createNotification = async (
+  user: string,
+  title: string,
+  messageUser: string,
+  messageApprover: string,
+  type: string,
+  redirectUrl: string,
+  approverData: Partial<{
+    accepted_to: string;
+    approved_to: string;
+    accepted_to_depthead: string;
+    approved_to_divhead: string;
+    approved_to_dicdiv: string;
+    approved_to_deptheadhc: string;
+    approved_to_divheadhc: string;
+    approved_to_dichc: string;
+    approved_to_presdir: string;
+    accepted_by: string;
+    approved_by: string;
+    accepted_by_depthead: string;
+    approved_by_divhead: string;
+    approved_by_dicdiv: string;
+    approved_by_deptheadhc: string;
+    approved_by_divheadhc: string;
+    approved_by_dichc: string;
+    approved_by_presdir: string;
+    rejected_by: string;
+    canceled_by: string;
+  }> = {}
+) => {
+  await Notification.create({
+    data: {
+      user,
+      tittle: title,
+      message_user: messageUser,
+      message_approval: messageApprover,
+      type,
+      redirect_url: redirectUrl,
+      created_at: new Date(),
+      ...approverData,
+    },
+  });
 };

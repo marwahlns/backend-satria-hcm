@@ -59,6 +59,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         nrp: user.personal_number,
         name: user.name,
         departement: user.department,
+        title: user.title
       },
       JWT_SECRET,
       { expiresIn: "24h" }

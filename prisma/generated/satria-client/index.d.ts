@@ -138,6 +138,11 @@ export type trx_detail_declaration = $Result.DefaultSelection<Prisma.$trx_detail
  * 
  */
 export type log_error = $Result.DefaultSelection<Prisma.$log_errorPayload>
+/**
+ * Model log_notification
+ * 
+ */
+export type log_notification = $Result.DefaultSelection<Prisma.$log_notificationPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -511,6 +516,16 @@ export class PrismaClient<
     * ```
     */
   get log_error(): Prisma.log_errorDelegate<ExtArgs>;
+
+  /**
+   * `prisma.log_notification`: Exposes CRUD operations for the **log_notification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Log_notifications
+    * const log_notifications = await prisma.log_notification.findMany()
+    * ```
+    */
+  get log_notification(): Prisma.log_notificationDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -976,7 +991,8 @@ export namespace Prisma {
     attendance: 'attendance',
     trx_declaration: 'trx_declaration',
     trx_detail_declaration: 'trx_detail_declaration',
-    log_error: 'log_error'
+    log_error: 'log_error',
+    log_notification: 'log_notification'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -992,7 +1008,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "ms_leave_types" | "trx_leaves" | "ms_shift" | "ms_shift_group" | "ms_detail_shift_group" | "mst_dept" | "mst_division" | "sysdiagrams" | "trx_ovt" | "trx_shift_emp" | "trx_official_travel" | "trx_mutation" | "trx_resign" | "user_detail" | "ms_worklocation" | "ms_klasifikasi" | "ms_subcont" | "mst_plant" | "ms_marital_status" | "trx_leave_quota" | "attendance" | "trx_declaration" | "trx_detail_declaration" | "log_error"
+      modelProps: "user" | "ms_leave_types" | "trx_leaves" | "ms_shift" | "ms_shift_group" | "ms_detail_shift_group" | "mst_dept" | "mst_division" | "sysdiagrams" | "trx_ovt" | "trx_shift_emp" | "trx_official_travel" | "trx_mutation" | "trx_resign" | "user_detail" | "ms_worklocation" | "ms_klasifikasi" | "ms_subcont" | "mst_plant" | "ms_marital_status" | "trx_leave_quota" | "attendance" | "trx_declaration" | "trx_detail_declaration" | "log_error" | "log_notification"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2646,6 +2662,72 @@ export namespace Prisma {
           }
         }
       }
+      log_notification: {
+        payload: Prisma.$log_notificationPayload<ExtArgs>
+        fields: Prisma.log_notificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.log_notificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_notificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.log_notificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_notificationPayload>
+          }
+          findFirst: {
+            args: Prisma.log_notificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_notificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.log_notificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_notificationPayload>
+          }
+          findMany: {
+            args: Prisma.log_notificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_notificationPayload>[]
+          }
+          create: {
+            args: Prisma.log_notificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_notificationPayload>
+          }
+          createMany: {
+            args: Prisma.log_notificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.log_notificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_notificationPayload>
+          }
+          update: {
+            args: Prisma.log_notificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_notificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.log_notificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.log_notificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.log_notificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_notificationPayload>
+          }
+          aggregate: {
+            args: Prisma.Log_notificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLog_notification>
+          }
+          groupBy: {
+            args: Prisma.log_notificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Log_notificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.log_notificationCountArgs<ExtArgs>
+            result: $Utils.Optional<Log_notificationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2816,6 +2898,7 @@ export namespace Prisma {
     trx_shift_emp: number
     trx_leave_quota: number
     attendance: number
+    log_notification: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2828,6 +2911,7 @@ export namespace Prisma {
     trx_shift_emp?: boolean | UserCountOutputTypeCountTrx_shift_empArgs
     trx_leave_quota?: boolean | UserCountOutputTypeCountTrx_leave_quotaArgs
     attendance?: boolean | UserCountOutputTypeCountAttendanceArgs
+    log_notification?: boolean | UserCountOutputTypeCountLog_notificationArgs
   }
 
   // Custom InputTypes
@@ -2902,6 +2986,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountAttendanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: attendanceWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountLog_notificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: log_notificationWhereInput
   }
 
 
@@ -3807,6 +3898,7 @@ export namespace Prisma {
     trx_shift_emp?: boolean | User$trx_shift_empArgs<ExtArgs>
     trx_leave_quota?: boolean | User$trx_leave_quotaArgs<ExtArgs>
     attendance?: boolean | User$attendanceArgs<ExtArgs>
+    log_notification?: boolean | User$log_notificationArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3870,6 +3962,7 @@ export namespace Prisma {
     trx_shift_emp?: boolean | User$trx_shift_empArgs<ExtArgs>
     trx_leave_quota?: boolean | User$trx_leave_quotaArgs<ExtArgs>
     attendance?: boolean | User$attendanceArgs<ExtArgs>
+    log_notification?: boolean | User$log_notificationArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3886,6 +3979,7 @@ export namespace Prisma {
       trx_shift_emp: Prisma.$trx_shift_empPayload<ExtArgs>[]
       trx_leave_quota: Prisma.$trx_leave_quotaPayload<ExtArgs>[]
       attendance: Prisma.$attendancePayload<ExtArgs>[]
+      log_notification: Prisma.$log_notificationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -4283,6 +4377,7 @@ export namespace Prisma {
     trx_shift_emp<T extends User$trx_shift_empArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_shift_empArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_shift_empPayload<ExtArgs>, T, "findMany"> | Null>
     trx_leave_quota<T extends User$trx_leave_quotaArgs<ExtArgs> = {}>(args?: Subset<T, User$trx_leave_quotaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_leave_quotaPayload<ExtArgs>, T, "findMany"> | Null>
     attendance<T extends User$attendanceArgs<ExtArgs> = {}>(args?: Subset<T, User$attendanceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$attendancePayload<ExtArgs>, T, "findMany"> | Null>
+    log_notification<T extends User$log_notificationArgs<ExtArgs> = {}>(args?: Subset<T, User$log_notificationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$log_notificationPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4847,6 +4942,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AttendanceScalarFieldEnum | AttendanceScalarFieldEnum[]
+  }
+
+  /**
+   * User.log_notification
+   */
+  export type User$log_notificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_notification
+     */
+    select?: log_notificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_notificationInclude<ExtArgs> | null
+    where?: log_notificationWhereInput
+    orderBy?: log_notificationOrderByWithRelationInput | log_notificationOrderByWithRelationInput[]
+    cursor?: log_notificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Log_notificationScalarFieldEnum | Log_notificationScalarFieldEnum[]
   }
 
   /**
@@ -27886,7 +28001,7 @@ export namespace Prisma {
     id: number
     code: string
     user: string
-    code_trx: string
+    code_trx: string | null
     start_date_actual: Date
     end_date_actual: Date
     evidence_file: string
@@ -27961,7 +28076,7 @@ export namespace Prisma {
     created_at?: boolean
     updated_by?: boolean
     updated_at?: boolean
-    officialTravel_data?: boolean | trx_official_travelDefaultArgs<ExtArgs>
+    officialTravel_data?: boolean | trx_declaration$officialTravel_dataArgs<ExtArgs>
     trx_detail_declaration?: boolean | trx_declaration$trx_detail_declarationArgs<ExtArgs>
     _count?: boolean | Trx_declarationCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["trx_declaration"]>
@@ -27999,7 +28114,7 @@ export namespace Prisma {
   }
 
   export type trx_declarationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    officialTravel_data?: boolean | trx_official_travelDefaultArgs<ExtArgs>
+    officialTravel_data?: boolean | trx_declaration$officialTravel_dataArgs<ExtArgs>
     trx_detail_declaration?: boolean | trx_declaration$trx_detail_declarationArgs<ExtArgs>
     _count?: boolean | Trx_declarationCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -28007,14 +28122,14 @@ export namespace Prisma {
   export type $trx_declarationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "trx_declaration"
     objects: {
-      officialTravel_data: Prisma.$trx_official_travelPayload<ExtArgs>
+      officialTravel_data: Prisma.$trx_official_travelPayload<ExtArgs> | null
       trx_detail_declaration: Prisma.$trx_detail_declarationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       code: string
       user: string
-      code_trx: string
+      code_trx: string | null
       start_date_actual: Date
       end_date_actual: Date
       evidence_file: string
@@ -28379,7 +28494,7 @@ export namespace Prisma {
    */
   export interface Prisma__trx_declarationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    officialTravel_data<T extends trx_official_travelDefaultArgs<ExtArgs> = {}>(args?: Subset<T, trx_official_travelDefaultArgs<ExtArgs>>): Prisma__trx_official_travelClient<$Result.GetResult<Prisma.$trx_official_travelPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    officialTravel_data<T extends trx_declaration$officialTravel_dataArgs<ExtArgs> = {}>(args?: Subset<T, trx_declaration$officialTravel_dataArgs<ExtArgs>>): Prisma__trx_official_travelClient<$Result.GetResult<Prisma.$trx_official_travelPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     trx_detail_declaration<T extends trx_declaration$trx_detail_declarationArgs<ExtArgs> = {}>(args?: Subset<T, trx_declaration$trx_detail_declarationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$trx_detail_declarationPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -28733,6 +28848,21 @@ export namespace Prisma {
      * Filter which trx_declarations to delete
      */
     where?: trx_declarationWhereInput
+  }
+
+  /**
+   * trx_declaration.officialTravel_data
+   */
+  export type trx_declaration$officialTravel_dataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the trx_official_travel
+     */
+    select?: trx_official_travelSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: trx_official_travelInclude<ExtArgs> | null
+    where?: trx_official_travelWhereInput
   }
 
   /**
@@ -30705,6 +30835,1216 @@ export namespace Prisma {
 
 
   /**
+   * Model log_notification
+   */
+
+  export type AggregateLog_notification = {
+    _count: Log_notificationCountAggregateOutputType | null
+    _avg: Log_notificationAvgAggregateOutputType | null
+    _sum: Log_notificationSumAggregateOutputType | null
+    _min: Log_notificationMinAggregateOutputType | null
+    _max: Log_notificationMaxAggregateOutputType | null
+  }
+
+  export type Log_notificationAvgAggregateOutputType = {
+    id: number | null
+    is_read: number | null
+    is_deleted: number | null
+  }
+
+  export type Log_notificationSumAggregateOutputType = {
+    id: number | null
+    is_read: number | null
+    is_deleted: number | null
+  }
+
+  export type Log_notificationMinAggregateOutputType = {
+    id: number | null
+    user: string | null
+    tittle: string | null
+    message_user: string | null
+    message_approval: string | null
+    type: string | null
+    redirect_url: string | null
+    is_read: number | null
+    accepted_to: string | null
+    accepted_by: string | null
+    approved_to: string | null
+    approved_by: string | null
+    accepted_to_depthead: string | null
+    accepted_by_depthead: string | null
+    approved_to_divhead: string | null
+    approved_by_divhead: string | null
+    approved_to_dicdiv: string | null
+    approved_by_dicdiv: string | null
+    approved_by_deptheadhc: string | null
+    approved_to_deptheadhc: string | null
+    approved_to_divheadhc: string | null
+    approved_by_divheadhc: string | null
+    approved_to_dichc: string | null
+    approved_by_dichc: string | null
+    approved_to_presdir: string | null
+    approved_by_presdir: string | null
+    rejected_by: string | null
+    canceled_by: string | null
+    created_at: Date | null
+    is_deleted: number | null
+  }
+
+  export type Log_notificationMaxAggregateOutputType = {
+    id: number | null
+    user: string | null
+    tittle: string | null
+    message_user: string | null
+    message_approval: string | null
+    type: string | null
+    redirect_url: string | null
+    is_read: number | null
+    accepted_to: string | null
+    accepted_by: string | null
+    approved_to: string | null
+    approved_by: string | null
+    accepted_to_depthead: string | null
+    accepted_by_depthead: string | null
+    approved_to_divhead: string | null
+    approved_by_divhead: string | null
+    approved_to_dicdiv: string | null
+    approved_by_dicdiv: string | null
+    approved_by_deptheadhc: string | null
+    approved_to_deptheadhc: string | null
+    approved_to_divheadhc: string | null
+    approved_by_divheadhc: string | null
+    approved_to_dichc: string | null
+    approved_by_dichc: string | null
+    approved_to_presdir: string | null
+    approved_by_presdir: string | null
+    rejected_by: string | null
+    canceled_by: string | null
+    created_at: Date | null
+    is_deleted: number | null
+  }
+
+  export type Log_notificationCountAggregateOutputType = {
+    id: number
+    user: number
+    tittle: number
+    message_user: number
+    message_approval: number
+    type: number
+    redirect_url: number
+    is_read: number
+    accepted_to: number
+    accepted_by: number
+    approved_to: number
+    approved_by: number
+    accepted_to_depthead: number
+    accepted_by_depthead: number
+    approved_to_divhead: number
+    approved_by_divhead: number
+    approved_to_dicdiv: number
+    approved_by_dicdiv: number
+    approved_by_deptheadhc: number
+    approved_to_deptheadhc: number
+    approved_to_divheadhc: number
+    approved_by_divheadhc: number
+    approved_to_dichc: number
+    approved_by_dichc: number
+    approved_to_presdir: number
+    approved_by_presdir: number
+    rejected_by: number
+    canceled_by: number
+    created_at: number
+    is_deleted: number
+    _all: number
+  }
+
+
+  export type Log_notificationAvgAggregateInputType = {
+    id?: true
+    is_read?: true
+    is_deleted?: true
+  }
+
+  export type Log_notificationSumAggregateInputType = {
+    id?: true
+    is_read?: true
+    is_deleted?: true
+  }
+
+  export type Log_notificationMinAggregateInputType = {
+    id?: true
+    user?: true
+    tittle?: true
+    message_user?: true
+    message_approval?: true
+    type?: true
+    redirect_url?: true
+    is_read?: true
+    accepted_to?: true
+    accepted_by?: true
+    approved_to?: true
+    approved_by?: true
+    accepted_to_depthead?: true
+    accepted_by_depthead?: true
+    approved_to_divhead?: true
+    approved_by_divhead?: true
+    approved_to_dicdiv?: true
+    approved_by_dicdiv?: true
+    approved_by_deptheadhc?: true
+    approved_to_deptheadhc?: true
+    approved_to_divheadhc?: true
+    approved_by_divheadhc?: true
+    approved_to_dichc?: true
+    approved_by_dichc?: true
+    approved_to_presdir?: true
+    approved_by_presdir?: true
+    rejected_by?: true
+    canceled_by?: true
+    created_at?: true
+    is_deleted?: true
+  }
+
+  export type Log_notificationMaxAggregateInputType = {
+    id?: true
+    user?: true
+    tittle?: true
+    message_user?: true
+    message_approval?: true
+    type?: true
+    redirect_url?: true
+    is_read?: true
+    accepted_to?: true
+    accepted_by?: true
+    approved_to?: true
+    approved_by?: true
+    accepted_to_depthead?: true
+    accepted_by_depthead?: true
+    approved_to_divhead?: true
+    approved_by_divhead?: true
+    approved_to_dicdiv?: true
+    approved_by_dicdiv?: true
+    approved_by_deptheadhc?: true
+    approved_to_deptheadhc?: true
+    approved_to_divheadhc?: true
+    approved_by_divheadhc?: true
+    approved_to_dichc?: true
+    approved_by_dichc?: true
+    approved_to_presdir?: true
+    approved_by_presdir?: true
+    rejected_by?: true
+    canceled_by?: true
+    created_at?: true
+    is_deleted?: true
+  }
+
+  export type Log_notificationCountAggregateInputType = {
+    id?: true
+    user?: true
+    tittle?: true
+    message_user?: true
+    message_approval?: true
+    type?: true
+    redirect_url?: true
+    is_read?: true
+    accepted_to?: true
+    accepted_by?: true
+    approved_to?: true
+    approved_by?: true
+    accepted_to_depthead?: true
+    accepted_by_depthead?: true
+    approved_to_divhead?: true
+    approved_by_divhead?: true
+    approved_to_dicdiv?: true
+    approved_by_dicdiv?: true
+    approved_by_deptheadhc?: true
+    approved_to_deptheadhc?: true
+    approved_to_divheadhc?: true
+    approved_by_divheadhc?: true
+    approved_to_dichc?: true
+    approved_by_dichc?: true
+    approved_to_presdir?: true
+    approved_by_presdir?: true
+    rejected_by?: true
+    canceled_by?: true
+    created_at?: true
+    is_deleted?: true
+    _all?: true
+  }
+
+  export type Log_notificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which log_notification to aggregate.
+     */
+    where?: log_notificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of log_notifications to fetch.
+     */
+    orderBy?: log_notificationOrderByWithRelationInput | log_notificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: log_notificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` log_notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` log_notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned log_notifications
+    **/
+    _count?: true | Log_notificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Log_notificationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Log_notificationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Log_notificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Log_notificationMaxAggregateInputType
+  }
+
+  export type GetLog_notificationAggregateType<T extends Log_notificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateLog_notification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLog_notification[P]>
+      : GetScalarType<T[P], AggregateLog_notification[P]>
+  }
+
+
+
+
+  export type log_notificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: log_notificationWhereInput
+    orderBy?: log_notificationOrderByWithAggregationInput | log_notificationOrderByWithAggregationInput[]
+    by: Log_notificationScalarFieldEnum[] | Log_notificationScalarFieldEnum
+    having?: log_notificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Log_notificationCountAggregateInputType | true
+    _avg?: Log_notificationAvgAggregateInputType
+    _sum?: Log_notificationSumAggregateInputType
+    _min?: Log_notificationMinAggregateInputType
+    _max?: Log_notificationMaxAggregateInputType
+  }
+
+  export type Log_notificationGroupByOutputType = {
+    id: number
+    user: string
+    tittle: string
+    message_user: string
+    message_approval: string
+    type: string
+    redirect_url: string
+    is_read: number
+    accepted_to: string | null
+    accepted_by: string | null
+    approved_to: string | null
+    approved_by: string | null
+    accepted_to_depthead: string | null
+    accepted_by_depthead: string | null
+    approved_to_divhead: string | null
+    approved_by_divhead: string | null
+    approved_to_dicdiv: string | null
+    approved_by_dicdiv: string | null
+    approved_by_deptheadhc: string | null
+    approved_to_deptheadhc: string | null
+    approved_to_divheadhc: string | null
+    approved_by_divheadhc: string | null
+    approved_to_dichc: string | null
+    approved_by_dichc: string | null
+    approved_to_presdir: string | null
+    approved_by_presdir: string | null
+    rejected_by: string | null
+    canceled_by: string | null
+    created_at: Date
+    is_deleted: number
+    _count: Log_notificationCountAggregateOutputType | null
+    _avg: Log_notificationAvgAggregateOutputType | null
+    _sum: Log_notificationSumAggregateOutputType | null
+    _min: Log_notificationMinAggregateOutputType | null
+    _max: Log_notificationMaxAggregateOutputType | null
+  }
+
+  type GetLog_notificationGroupByPayload<T extends log_notificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Log_notificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Log_notificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Log_notificationGroupByOutputType[P]>
+            : GetScalarType<T[P], Log_notificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type log_notificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user?: boolean
+    tittle?: boolean
+    message_user?: boolean
+    message_approval?: boolean
+    type?: boolean
+    redirect_url?: boolean
+    is_read?: boolean
+    accepted_to?: boolean
+    accepted_by?: boolean
+    approved_to?: boolean
+    approved_by?: boolean
+    accepted_to_depthead?: boolean
+    accepted_by_depthead?: boolean
+    approved_to_divhead?: boolean
+    approved_by_divhead?: boolean
+    approved_to_dicdiv?: boolean
+    approved_by_dicdiv?: boolean
+    approved_by_deptheadhc?: boolean
+    approved_to_deptheadhc?: boolean
+    approved_to_divheadhc?: boolean
+    approved_by_divheadhc?: boolean
+    approved_to_dichc?: boolean
+    approved_by_dichc?: boolean
+    approved_to_presdir?: boolean
+    approved_by_presdir?: boolean
+    rejected_by?: boolean
+    canceled_by?: boolean
+    created_at?: boolean
+    is_deleted?: boolean
+    MsUser?: boolean | log_notification$MsUserArgs<ExtArgs>
+  }, ExtArgs["result"]["log_notification"]>
+
+
+  export type log_notificationSelectScalar = {
+    id?: boolean
+    user?: boolean
+    tittle?: boolean
+    message_user?: boolean
+    message_approval?: boolean
+    type?: boolean
+    redirect_url?: boolean
+    is_read?: boolean
+    accepted_to?: boolean
+    accepted_by?: boolean
+    approved_to?: boolean
+    approved_by?: boolean
+    accepted_to_depthead?: boolean
+    accepted_by_depthead?: boolean
+    approved_to_divhead?: boolean
+    approved_by_divhead?: boolean
+    approved_to_dicdiv?: boolean
+    approved_by_dicdiv?: boolean
+    approved_by_deptheadhc?: boolean
+    approved_to_deptheadhc?: boolean
+    approved_to_divheadhc?: boolean
+    approved_by_divheadhc?: boolean
+    approved_to_dichc?: boolean
+    approved_by_dichc?: boolean
+    approved_to_presdir?: boolean
+    approved_by_presdir?: boolean
+    rejected_by?: boolean
+    canceled_by?: boolean
+    created_at?: boolean
+    is_deleted?: boolean
+  }
+
+  export type log_notificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    MsUser?: boolean | log_notification$MsUserArgs<ExtArgs>
+  }
+
+  export type $log_notificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "log_notification"
+    objects: {
+      MsUser: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      user: string
+      tittle: string
+      message_user: string
+      message_approval: string
+      type: string
+      redirect_url: string
+      is_read: number
+      accepted_to: string | null
+      accepted_by: string | null
+      approved_to: string | null
+      approved_by: string | null
+      accepted_to_depthead: string | null
+      accepted_by_depthead: string | null
+      approved_to_divhead: string | null
+      approved_by_divhead: string | null
+      approved_to_dicdiv: string | null
+      approved_by_dicdiv: string | null
+      approved_by_deptheadhc: string | null
+      approved_to_deptheadhc: string | null
+      approved_to_divheadhc: string | null
+      approved_by_divheadhc: string | null
+      approved_to_dichc: string | null
+      approved_by_dichc: string | null
+      approved_to_presdir: string | null
+      approved_by_presdir: string | null
+      rejected_by: string | null
+      canceled_by: string | null
+      created_at: Date
+      is_deleted: number
+    }, ExtArgs["result"]["log_notification"]>
+    composites: {}
+  }
+
+  type log_notificationGetPayload<S extends boolean | null | undefined | log_notificationDefaultArgs> = $Result.GetResult<Prisma.$log_notificationPayload, S>
+
+  type log_notificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<log_notificationFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Log_notificationCountAggregateInputType | true
+    }
+
+  export interface log_notificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['log_notification'], meta: { name: 'log_notification' } }
+    /**
+     * Find zero or one Log_notification that matches the filter.
+     * @param {log_notificationFindUniqueArgs} args - Arguments to find a Log_notification
+     * @example
+     * // Get one Log_notification
+     * const log_notification = await prisma.log_notification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends log_notificationFindUniqueArgs>(args: SelectSubset<T, log_notificationFindUniqueArgs<ExtArgs>>): Prisma__log_notificationClient<$Result.GetResult<Prisma.$log_notificationPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Log_notification that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {log_notificationFindUniqueOrThrowArgs} args - Arguments to find a Log_notification
+     * @example
+     * // Get one Log_notification
+     * const log_notification = await prisma.log_notification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends log_notificationFindUniqueOrThrowArgs>(args: SelectSubset<T, log_notificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__log_notificationClient<$Result.GetResult<Prisma.$log_notificationPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Log_notification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_notificationFindFirstArgs} args - Arguments to find a Log_notification
+     * @example
+     * // Get one Log_notification
+     * const log_notification = await prisma.log_notification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends log_notificationFindFirstArgs>(args?: SelectSubset<T, log_notificationFindFirstArgs<ExtArgs>>): Prisma__log_notificationClient<$Result.GetResult<Prisma.$log_notificationPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Log_notification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_notificationFindFirstOrThrowArgs} args - Arguments to find a Log_notification
+     * @example
+     * // Get one Log_notification
+     * const log_notification = await prisma.log_notification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends log_notificationFindFirstOrThrowArgs>(args?: SelectSubset<T, log_notificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__log_notificationClient<$Result.GetResult<Prisma.$log_notificationPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Log_notifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_notificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Log_notifications
+     * const log_notifications = await prisma.log_notification.findMany()
+     * 
+     * // Get first 10 Log_notifications
+     * const log_notifications = await prisma.log_notification.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const log_notificationWithIdOnly = await prisma.log_notification.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends log_notificationFindManyArgs>(args?: SelectSubset<T, log_notificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$log_notificationPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Log_notification.
+     * @param {log_notificationCreateArgs} args - Arguments to create a Log_notification.
+     * @example
+     * // Create one Log_notification
+     * const Log_notification = await prisma.log_notification.create({
+     *   data: {
+     *     // ... data to create a Log_notification
+     *   }
+     * })
+     * 
+     */
+    create<T extends log_notificationCreateArgs>(args: SelectSubset<T, log_notificationCreateArgs<ExtArgs>>): Prisma__log_notificationClient<$Result.GetResult<Prisma.$log_notificationPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Log_notifications.
+     * @param {log_notificationCreateManyArgs} args - Arguments to create many Log_notifications.
+     * @example
+     * // Create many Log_notifications
+     * const log_notification = await prisma.log_notification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends log_notificationCreateManyArgs>(args?: SelectSubset<T, log_notificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Log_notification.
+     * @param {log_notificationDeleteArgs} args - Arguments to delete one Log_notification.
+     * @example
+     * // Delete one Log_notification
+     * const Log_notification = await prisma.log_notification.delete({
+     *   where: {
+     *     // ... filter to delete one Log_notification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends log_notificationDeleteArgs>(args: SelectSubset<T, log_notificationDeleteArgs<ExtArgs>>): Prisma__log_notificationClient<$Result.GetResult<Prisma.$log_notificationPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Log_notification.
+     * @param {log_notificationUpdateArgs} args - Arguments to update one Log_notification.
+     * @example
+     * // Update one Log_notification
+     * const log_notification = await prisma.log_notification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends log_notificationUpdateArgs>(args: SelectSubset<T, log_notificationUpdateArgs<ExtArgs>>): Prisma__log_notificationClient<$Result.GetResult<Prisma.$log_notificationPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Log_notifications.
+     * @param {log_notificationDeleteManyArgs} args - Arguments to filter Log_notifications to delete.
+     * @example
+     * // Delete a few Log_notifications
+     * const { count } = await prisma.log_notification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends log_notificationDeleteManyArgs>(args?: SelectSubset<T, log_notificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Log_notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_notificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Log_notifications
+     * const log_notification = await prisma.log_notification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends log_notificationUpdateManyArgs>(args: SelectSubset<T, log_notificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Log_notification.
+     * @param {log_notificationUpsertArgs} args - Arguments to update or create a Log_notification.
+     * @example
+     * // Update or create a Log_notification
+     * const log_notification = await prisma.log_notification.upsert({
+     *   create: {
+     *     // ... data to create a Log_notification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Log_notification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends log_notificationUpsertArgs>(args: SelectSubset<T, log_notificationUpsertArgs<ExtArgs>>): Prisma__log_notificationClient<$Result.GetResult<Prisma.$log_notificationPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Log_notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_notificationCountArgs} args - Arguments to filter Log_notifications to count.
+     * @example
+     * // Count the number of Log_notifications
+     * const count = await prisma.log_notification.count({
+     *   where: {
+     *     // ... the filter for the Log_notifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends log_notificationCountArgs>(
+      args?: Subset<T, log_notificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Log_notificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Log_notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Log_notificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Log_notificationAggregateArgs>(args: Subset<T, Log_notificationAggregateArgs>): Prisma.PrismaPromise<GetLog_notificationAggregateType<T>>
+
+    /**
+     * Group by Log_notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_notificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends log_notificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: log_notificationGroupByArgs['orderBy'] }
+        : { orderBy?: log_notificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, log_notificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLog_notificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the log_notification model
+   */
+  readonly fields: log_notificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for log_notification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__log_notificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    MsUser<T extends log_notification$MsUserArgs<ExtArgs> = {}>(args?: Subset<T, log_notification$MsUserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the log_notification model
+   */ 
+  interface log_notificationFieldRefs {
+    readonly id: FieldRef<"log_notification", 'Int'>
+    readonly user: FieldRef<"log_notification", 'String'>
+    readonly tittle: FieldRef<"log_notification", 'String'>
+    readonly message_user: FieldRef<"log_notification", 'String'>
+    readonly message_approval: FieldRef<"log_notification", 'String'>
+    readonly type: FieldRef<"log_notification", 'String'>
+    readonly redirect_url: FieldRef<"log_notification", 'String'>
+    readonly is_read: FieldRef<"log_notification", 'Int'>
+    readonly accepted_to: FieldRef<"log_notification", 'String'>
+    readonly accepted_by: FieldRef<"log_notification", 'String'>
+    readonly approved_to: FieldRef<"log_notification", 'String'>
+    readonly approved_by: FieldRef<"log_notification", 'String'>
+    readonly accepted_to_depthead: FieldRef<"log_notification", 'String'>
+    readonly accepted_by_depthead: FieldRef<"log_notification", 'String'>
+    readonly approved_to_divhead: FieldRef<"log_notification", 'String'>
+    readonly approved_by_divhead: FieldRef<"log_notification", 'String'>
+    readonly approved_to_dicdiv: FieldRef<"log_notification", 'String'>
+    readonly approved_by_dicdiv: FieldRef<"log_notification", 'String'>
+    readonly approved_by_deptheadhc: FieldRef<"log_notification", 'String'>
+    readonly approved_to_deptheadhc: FieldRef<"log_notification", 'String'>
+    readonly approved_to_divheadhc: FieldRef<"log_notification", 'String'>
+    readonly approved_by_divheadhc: FieldRef<"log_notification", 'String'>
+    readonly approved_to_dichc: FieldRef<"log_notification", 'String'>
+    readonly approved_by_dichc: FieldRef<"log_notification", 'String'>
+    readonly approved_to_presdir: FieldRef<"log_notification", 'String'>
+    readonly approved_by_presdir: FieldRef<"log_notification", 'String'>
+    readonly rejected_by: FieldRef<"log_notification", 'String'>
+    readonly canceled_by: FieldRef<"log_notification", 'String'>
+    readonly created_at: FieldRef<"log_notification", 'DateTime'>
+    readonly is_deleted: FieldRef<"log_notification", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * log_notification findUnique
+   */
+  export type log_notificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_notification
+     */
+    select?: log_notificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_notificationInclude<ExtArgs> | null
+    /**
+     * Filter, which log_notification to fetch.
+     */
+    where: log_notificationWhereUniqueInput
+  }
+
+  /**
+   * log_notification findUniqueOrThrow
+   */
+  export type log_notificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_notification
+     */
+    select?: log_notificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_notificationInclude<ExtArgs> | null
+    /**
+     * Filter, which log_notification to fetch.
+     */
+    where: log_notificationWhereUniqueInput
+  }
+
+  /**
+   * log_notification findFirst
+   */
+  export type log_notificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_notification
+     */
+    select?: log_notificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_notificationInclude<ExtArgs> | null
+    /**
+     * Filter, which log_notification to fetch.
+     */
+    where?: log_notificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of log_notifications to fetch.
+     */
+    orderBy?: log_notificationOrderByWithRelationInput | log_notificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for log_notifications.
+     */
+    cursor?: log_notificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` log_notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` log_notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of log_notifications.
+     */
+    distinct?: Log_notificationScalarFieldEnum | Log_notificationScalarFieldEnum[]
+  }
+
+  /**
+   * log_notification findFirstOrThrow
+   */
+  export type log_notificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_notification
+     */
+    select?: log_notificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_notificationInclude<ExtArgs> | null
+    /**
+     * Filter, which log_notification to fetch.
+     */
+    where?: log_notificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of log_notifications to fetch.
+     */
+    orderBy?: log_notificationOrderByWithRelationInput | log_notificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for log_notifications.
+     */
+    cursor?: log_notificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` log_notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` log_notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of log_notifications.
+     */
+    distinct?: Log_notificationScalarFieldEnum | Log_notificationScalarFieldEnum[]
+  }
+
+  /**
+   * log_notification findMany
+   */
+  export type log_notificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_notification
+     */
+    select?: log_notificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_notificationInclude<ExtArgs> | null
+    /**
+     * Filter, which log_notifications to fetch.
+     */
+    where?: log_notificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of log_notifications to fetch.
+     */
+    orderBy?: log_notificationOrderByWithRelationInput | log_notificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing log_notifications.
+     */
+    cursor?: log_notificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` log_notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` log_notifications.
+     */
+    skip?: number
+    distinct?: Log_notificationScalarFieldEnum | Log_notificationScalarFieldEnum[]
+  }
+
+  /**
+   * log_notification create
+   */
+  export type log_notificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_notification
+     */
+    select?: log_notificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_notificationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a log_notification.
+     */
+    data: XOR<log_notificationCreateInput, log_notificationUncheckedCreateInput>
+  }
+
+  /**
+   * log_notification createMany
+   */
+  export type log_notificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many log_notifications.
+     */
+    data: log_notificationCreateManyInput | log_notificationCreateManyInput[]
+  }
+
+  /**
+   * log_notification update
+   */
+  export type log_notificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_notification
+     */
+    select?: log_notificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_notificationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a log_notification.
+     */
+    data: XOR<log_notificationUpdateInput, log_notificationUncheckedUpdateInput>
+    /**
+     * Choose, which log_notification to update.
+     */
+    where: log_notificationWhereUniqueInput
+  }
+
+  /**
+   * log_notification updateMany
+   */
+  export type log_notificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update log_notifications.
+     */
+    data: XOR<log_notificationUpdateManyMutationInput, log_notificationUncheckedUpdateManyInput>
+    /**
+     * Filter which log_notifications to update
+     */
+    where?: log_notificationWhereInput
+  }
+
+  /**
+   * log_notification upsert
+   */
+  export type log_notificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_notification
+     */
+    select?: log_notificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_notificationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the log_notification to update in case it exists.
+     */
+    where: log_notificationWhereUniqueInput
+    /**
+     * In case the log_notification found by the `where` argument doesn't exist, create a new log_notification with this data.
+     */
+    create: XOR<log_notificationCreateInput, log_notificationUncheckedCreateInput>
+    /**
+     * In case the log_notification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<log_notificationUpdateInput, log_notificationUncheckedUpdateInput>
+  }
+
+  /**
+   * log_notification delete
+   */
+  export type log_notificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_notification
+     */
+    select?: log_notificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_notificationInclude<ExtArgs> | null
+    /**
+     * Filter which log_notification to delete.
+     */
+    where: log_notificationWhereUniqueInput
+  }
+
+  /**
+   * log_notification deleteMany
+   */
+  export type log_notificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which log_notifications to delete
+     */
+    where?: log_notificationWhereInput
+  }
+
+  /**
+   * log_notification.MsUser
+   */
+  export type log_notification$MsUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * log_notification without action
+   */
+  export type log_notificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_notification
+     */
+    select?: log_notificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_notificationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -31332,6 +32672,42 @@ export namespace Prisma {
   export type Log_errorScalarFieldEnum = (typeof Log_errorScalarFieldEnum)[keyof typeof Log_errorScalarFieldEnum]
 
 
+  export const Log_notificationScalarFieldEnum: {
+    id: 'id',
+    user: 'user',
+    tittle: 'tittle',
+    message_user: 'message_user',
+    message_approval: 'message_approval',
+    type: 'type',
+    redirect_url: 'redirect_url',
+    is_read: 'is_read',
+    accepted_to: 'accepted_to',
+    accepted_by: 'accepted_by',
+    approved_to: 'approved_to',
+    approved_by: 'approved_by',
+    accepted_to_depthead: 'accepted_to_depthead',
+    accepted_by_depthead: 'accepted_by_depthead',
+    approved_to_divhead: 'approved_to_divhead',
+    approved_by_divhead: 'approved_by_divhead',
+    approved_to_dicdiv: 'approved_to_dicdiv',
+    approved_by_dicdiv: 'approved_by_dicdiv',
+    approved_by_deptheadhc: 'approved_by_deptheadhc',
+    approved_to_deptheadhc: 'approved_to_deptheadhc',
+    approved_to_divheadhc: 'approved_to_divheadhc',
+    approved_by_divheadhc: 'approved_by_divheadhc',
+    approved_to_dichc: 'approved_to_dichc',
+    approved_by_dichc: 'approved_by_dichc',
+    approved_to_presdir: 'approved_to_presdir',
+    approved_by_presdir: 'approved_by_presdir',
+    rejected_by: 'rejected_by',
+    canceled_by: 'canceled_by',
+    created_at: 'created_at',
+    is_deleted: 'is_deleted'
+  };
+
+  export type Log_notificationScalarFieldEnum = (typeof Log_notificationScalarFieldEnum)[keyof typeof Log_notificationScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -31464,6 +32840,7 @@ export namespace Prisma {
     trx_shift_emp?: Trx_shift_empListRelationFilter
     trx_leave_quota?: Trx_leave_quotaListRelationFilter
     attendance?: AttendanceListRelationFilter
+    log_notification?: Log_notificationListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -31522,6 +32899,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empOrderByRelationAggregateInput
     trx_leave_quota?: trx_leave_quotaOrderByRelationAggregateInput
     attendance?: attendanceOrderByRelationAggregateInput
+    log_notification?: log_notificationOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -31583,6 +32961,7 @@ export namespace Prisma {
     trx_shift_emp?: Trx_shift_empListRelationFilter
     trx_leave_quota?: Trx_leave_quotaListRelationFilter
     attendance?: AttendanceListRelationFilter
+    log_notification?: Log_notificationListRelationFilter
   }, "id" | "email" | "personal_number">
 
   export type UserOrderByWithAggregationInput = {
@@ -34250,7 +35629,7 @@ export namespace Prisma {
     id?: IntFilter<"trx_declaration"> | number
     code?: StringFilter<"trx_declaration"> | string
     user?: StringFilter<"trx_declaration"> | string
-    code_trx?: StringFilter<"trx_declaration"> | string
+    code_trx?: StringNullableFilter<"trx_declaration"> | string | null
     start_date_actual?: DateTimeFilter<"trx_declaration"> | Date | string
     end_date_actual?: DateTimeFilter<"trx_declaration"> | Date | string
     evidence_file?: StringFilter<"trx_declaration"> | string
@@ -34275,7 +35654,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"trx_declaration"> | Date | string
     updated_by?: BigIntNullableFilter<"trx_declaration"> | bigint | number | null
     updated_at?: DateTimeFilter<"trx_declaration"> | Date | string
-    officialTravel_data?: XOR<Trx_official_travelRelationFilter, trx_official_travelWhereInput>
+    officialTravel_data?: XOR<Trx_official_travelNullableRelationFilter, trx_official_travelWhereInput> | null
     trx_detail_declaration?: Trx_detail_declarationListRelationFilter
   }
 
@@ -34283,7 +35662,7 @@ export namespace Prisma {
     id?: SortOrder
     code?: SortOrder
     user?: SortOrder
-    code_trx?: SortOrder
+    code_trx?: SortOrderInput | SortOrder
     start_date_actual?: SortOrder
     end_date_actual?: SortOrder
     evidence_file?: SortOrder
@@ -34319,7 +35698,7 @@ export namespace Prisma {
     OR?: trx_declarationWhereInput[]
     NOT?: trx_declarationWhereInput | trx_declarationWhereInput[]
     user?: StringFilter<"trx_declaration"> | string
-    code_trx?: StringFilter<"trx_declaration"> | string
+    code_trx?: StringNullableFilter<"trx_declaration"> | string | null
     start_date_actual?: DateTimeFilter<"trx_declaration"> | Date | string
     end_date_actual?: DateTimeFilter<"trx_declaration"> | Date | string
     evidence_file?: StringFilter<"trx_declaration"> | string
@@ -34344,7 +35723,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"trx_declaration"> | Date | string
     updated_by?: BigIntNullableFilter<"trx_declaration"> | bigint | number | null
     updated_at?: DateTimeFilter<"trx_declaration"> | Date | string
-    officialTravel_data?: XOR<Trx_official_travelRelationFilter, trx_official_travelWhereInput>
+    officialTravel_data?: XOR<Trx_official_travelNullableRelationFilter, trx_official_travelWhereInput> | null
     trx_detail_declaration?: Trx_detail_declarationListRelationFilter
   }, "id" | "code">
 
@@ -34352,7 +35731,7 @@ export namespace Prisma {
     id?: SortOrder
     code?: SortOrder
     user?: SortOrder
-    code_trx?: SortOrder
+    code_trx?: SortOrderInput | SortOrder
     start_date_actual?: SortOrder
     end_date_actual?: SortOrder
     evidence_file?: SortOrder
@@ -34391,7 +35770,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"trx_declaration"> | number
     code?: StringWithAggregatesFilter<"trx_declaration"> | string
     user?: StringWithAggregatesFilter<"trx_declaration"> | string
-    code_trx?: StringWithAggregatesFilter<"trx_declaration"> | string
+    code_trx?: StringNullableWithAggregatesFilter<"trx_declaration"> | string | null
     start_date_actual?: DateTimeWithAggregatesFilter<"trx_declaration"> | Date | string
     end_date_actual?: DateTimeWithAggregatesFilter<"trx_declaration"> | Date | string
     evidence_file?: StringWithAggregatesFilter<"trx_declaration"> | string
@@ -34584,6 +35963,188 @@ export namespace Prisma {
     created_at?: DateTimeWithAggregatesFilter<"log_error"> | Date | string
   }
 
+  export type log_notificationWhereInput = {
+    AND?: log_notificationWhereInput | log_notificationWhereInput[]
+    OR?: log_notificationWhereInput[]
+    NOT?: log_notificationWhereInput | log_notificationWhereInput[]
+    id?: IntFilter<"log_notification"> | number
+    user?: StringFilter<"log_notification"> | string
+    tittle?: StringFilter<"log_notification"> | string
+    message_user?: StringFilter<"log_notification"> | string
+    message_approval?: StringFilter<"log_notification"> | string
+    type?: StringFilter<"log_notification"> | string
+    redirect_url?: StringFilter<"log_notification"> | string
+    is_read?: IntFilter<"log_notification"> | number
+    accepted_to?: StringNullableFilter<"log_notification"> | string | null
+    accepted_by?: StringNullableFilter<"log_notification"> | string | null
+    approved_to?: StringNullableFilter<"log_notification"> | string | null
+    approved_by?: StringNullableFilter<"log_notification"> | string | null
+    accepted_to_depthead?: StringNullableFilter<"log_notification"> | string | null
+    accepted_by_depthead?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_divhead?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_divhead?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_dicdiv?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_dicdiv?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_deptheadhc?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_deptheadhc?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_divheadhc?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_divheadhc?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_dichc?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_dichc?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_presdir?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_presdir?: StringNullableFilter<"log_notification"> | string | null
+    rejected_by?: StringNullableFilter<"log_notification"> | string | null
+    canceled_by?: StringNullableFilter<"log_notification"> | string | null
+    created_at?: DateTimeFilter<"log_notification"> | Date | string
+    is_deleted?: IntFilter<"log_notification"> | number
+    MsUser?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+  }
+
+  export type log_notificationOrderByWithRelationInput = {
+    id?: SortOrder
+    user?: SortOrder
+    tittle?: SortOrder
+    message_user?: SortOrder
+    message_approval?: SortOrder
+    type?: SortOrder
+    redirect_url?: SortOrder
+    is_read?: SortOrder
+    accepted_to?: SortOrderInput | SortOrder
+    accepted_by?: SortOrderInput | SortOrder
+    approved_to?: SortOrderInput | SortOrder
+    approved_by?: SortOrderInput | SortOrder
+    accepted_to_depthead?: SortOrderInput | SortOrder
+    accepted_by_depthead?: SortOrderInput | SortOrder
+    approved_to_divhead?: SortOrderInput | SortOrder
+    approved_by_divhead?: SortOrderInput | SortOrder
+    approved_to_dicdiv?: SortOrderInput | SortOrder
+    approved_by_dicdiv?: SortOrderInput | SortOrder
+    approved_by_deptheadhc?: SortOrderInput | SortOrder
+    approved_to_deptheadhc?: SortOrderInput | SortOrder
+    approved_to_divheadhc?: SortOrderInput | SortOrder
+    approved_by_divheadhc?: SortOrderInput | SortOrder
+    approved_to_dichc?: SortOrderInput | SortOrder
+    approved_by_dichc?: SortOrderInput | SortOrder
+    approved_to_presdir?: SortOrderInput | SortOrder
+    approved_by_presdir?: SortOrderInput | SortOrder
+    rejected_by?: SortOrderInput | SortOrder
+    canceled_by?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    is_deleted?: SortOrder
+    MsUser?: UserOrderByWithRelationInput
+  }
+
+  export type log_notificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: log_notificationWhereInput | log_notificationWhereInput[]
+    OR?: log_notificationWhereInput[]
+    NOT?: log_notificationWhereInput | log_notificationWhereInput[]
+    user?: StringFilter<"log_notification"> | string
+    tittle?: StringFilter<"log_notification"> | string
+    message_user?: StringFilter<"log_notification"> | string
+    message_approval?: StringFilter<"log_notification"> | string
+    type?: StringFilter<"log_notification"> | string
+    redirect_url?: StringFilter<"log_notification"> | string
+    is_read?: IntFilter<"log_notification"> | number
+    accepted_to?: StringNullableFilter<"log_notification"> | string | null
+    accepted_by?: StringNullableFilter<"log_notification"> | string | null
+    approved_to?: StringNullableFilter<"log_notification"> | string | null
+    approved_by?: StringNullableFilter<"log_notification"> | string | null
+    accepted_to_depthead?: StringNullableFilter<"log_notification"> | string | null
+    accepted_by_depthead?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_divhead?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_divhead?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_dicdiv?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_dicdiv?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_deptheadhc?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_deptheadhc?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_divheadhc?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_divheadhc?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_dichc?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_dichc?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_presdir?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_presdir?: StringNullableFilter<"log_notification"> | string | null
+    rejected_by?: StringNullableFilter<"log_notification"> | string | null
+    canceled_by?: StringNullableFilter<"log_notification"> | string | null
+    created_at?: DateTimeFilter<"log_notification"> | Date | string
+    is_deleted?: IntFilter<"log_notification"> | number
+    MsUser?: XOR<UserNullableRelationFilter, UserWhereInput> | null
+  }, "id">
+
+  export type log_notificationOrderByWithAggregationInput = {
+    id?: SortOrder
+    user?: SortOrder
+    tittle?: SortOrder
+    message_user?: SortOrder
+    message_approval?: SortOrder
+    type?: SortOrder
+    redirect_url?: SortOrder
+    is_read?: SortOrder
+    accepted_to?: SortOrderInput | SortOrder
+    accepted_by?: SortOrderInput | SortOrder
+    approved_to?: SortOrderInput | SortOrder
+    approved_by?: SortOrderInput | SortOrder
+    accepted_to_depthead?: SortOrderInput | SortOrder
+    accepted_by_depthead?: SortOrderInput | SortOrder
+    approved_to_divhead?: SortOrderInput | SortOrder
+    approved_by_divhead?: SortOrderInput | SortOrder
+    approved_to_dicdiv?: SortOrderInput | SortOrder
+    approved_by_dicdiv?: SortOrderInput | SortOrder
+    approved_by_deptheadhc?: SortOrderInput | SortOrder
+    approved_to_deptheadhc?: SortOrderInput | SortOrder
+    approved_to_divheadhc?: SortOrderInput | SortOrder
+    approved_by_divheadhc?: SortOrderInput | SortOrder
+    approved_to_dichc?: SortOrderInput | SortOrder
+    approved_by_dichc?: SortOrderInput | SortOrder
+    approved_to_presdir?: SortOrderInput | SortOrder
+    approved_by_presdir?: SortOrderInput | SortOrder
+    rejected_by?: SortOrderInput | SortOrder
+    canceled_by?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    is_deleted?: SortOrder
+    _count?: log_notificationCountOrderByAggregateInput
+    _avg?: log_notificationAvgOrderByAggregateInput
+    _max?: log_notificationMaxOrderByAggregateInput
+    _min?: log_notificationMinOrderByAggregateInput
+    _sum?: log_notificationSumOrderByAggregateInput
+  }
+
+  export type log_notificationScalarWhereWithAggregatesInput = {
+    AND?: log_notificationScalarWhereWithAggregatesInput | log_notificationScalarWhereWithAggregatesInput[]
+    OR?: log_notificationScalarWhereWithAggregatesInput[]
+    NOT?: log_notificationScalarWhereWithAggregatesInput | log_notificationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"log_notification"> | number
+    user?: StringWithAggregatesFilter<"log_notification"> | string
+    tittle?: StringWithAggregatesFilter<"log_notification"> | string
+    message_user?: StringWithAggregatesFilter<"log_notification"> | string
+    message_approval?: StringWithAggregatesFilter<"log_notification"> | string
+    type?: StringWithAggregatesFilter<"log_notification"> | string
+    redirect_url?: StringWithAggregatesFilter<"log_notification"> | string
+    is_read?: IntWithAggregatesFilter<"log_notification"> | number
+    accepted_to?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    accepted_by?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    approved_to?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    approved_by?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    accepted_to_depthead?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    accepted_by_depthead?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    approved_to_divhead?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    approved_by_divhead?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    approved_to_dicdiv?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    approved_by_dicdiv?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    approved_by_deptheadhc?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    approved_to_deptheadhc?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    approved_to_divheadhc?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    approved_by_divheadhc?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    approved_to_dichc?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    approved_by_dichc?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    approved_to_presdir?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    approved_by_presdir?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    rejected_by?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    canceled_by?: StringNullableWithAggregatesFilter<"log_notification"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"log_notification"> | Date | string
+    is_deleted?: IntWithAggregatesFilter<"log_notification"> | number
+  }
+
   export type UserCreateInput = {
     id?: bigint | number
     name: string
@@ -34639,6 +36200,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
     attendance?: attendanceCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -34696,6 +36258,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUpdateInput = {
@@ -34753,6 +36316,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -34810,6 +36374,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -37988,7 +39553,7 @@ export namespace Prisma {
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
-    officialTravel_data: trx_official_travelCreateNestedOneWithoutTrx_declarationInput
+    officialTravel_data?: trx_official_travelCreateNestedOneWithoutTrx_declarationInput
     trx_detail_declaration?: trx_detail_declarationCreateNestedManyWithoutDeclaration_dataInput
   }
 
@@ -37996,7 +39561,7 @@ export namespace Prisma {
     id?: number
     code: string
     user: string
-    code_trx: string
+    code_trx?: string | null
     start_date_actual: Date | string
     end_date_actual: Date | string
     evidence_file: string
@@ -38051,7 +39616,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    officialTravel_data?: trx_official_travelUpdateOneRequiredWithoutTrx_declarationNestedInput
+    officialTravel_data?: trx_official_travelUpdateOneWithoutTrx_declarationNestedInput
     trx_detail_declaration?: trx_detail_declarationUpdateManyWithoutDeclaration_dataNestedInput
   }
 
@@ -38059,7 +39624,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     code?: StringFieldUpdateOperationsInput | string
     user?: StringFieldUpdateOperationsInput | string
-    code_trx?: StringFieldUpdateOperationsInput | string
+    code_trx?: NullableStringFieldUpdateOperationsInput | string | null
     start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
     evidence_file?: StringFieldUpdateOperationsInput | string
@@ -38090,7 +39655,7 @@ export namespace Prisma {
   export type trx_declarationCreateManyInput = {
     code: string
     user: string
-    code_trx: string
+    code_trx?: string | null
     start_date_actual: Date | string
     end_date_actual: Date | string
     evidence_file: string
@@ -38150,7 +39715,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     code?: StringFieldUpdateOperationsInput | string
     user?: StringFieldUpdateOperationsInput | string
-    code_trx?: StringFieldUpdateOperationsInput | string
+    code_trx?: NullableStringFieldUpdateOperationsInput | string | null
     start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
     evidence_file?: StringFieldUpdateOperationsInput | string
@@ -38357,6 +39922,232 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type log_notificationCreateInput = {
+    tittle: string
+    message_user: string
+    message_approval: string
+    type: string
+    redirect_url: string
+    is_read?: number
+    accepted_to?: string | null
+    accepted_by?: string | null
+    approved_to?: string | null
+    approved_by?: string | null
+    accepted_to_depthead?: string | null
+    accepted_by_depthead?: string | null
+    approved_to_divhead?: string | null
+    approved_by_divhead?: string | null
+    approved_to_dicdiv?: string | null
+    approved_by_dicdiv?: string | null
+    approved_by_deptheadhc?: string | null
+    approved_to_deptheadhc?: string | null
+    approved_to_divheadhc?: string | null
+    approved_by_divheadhc?: string | null
+    approved_to_dichc?: string | null
+    approved_by_dichc?: string | null
+    approved_to_presdir?: string | null
+    approved_by_presdir?: string | null
+    rejected_by?: string | null
+    canceled_by?: string | null
+    created_at: Date | string
+    is_deleted?: number
+    MsUser?: UserCreateNestedOneWithoutLog_notificationInput
+  }
+
+  export type log_notificationUncheckedCreateInput = {
+    id?: number
+    user: string
+    tittle: string
+    message_user: string
+    message_approval: string
+    type: string
+    redirect_url: string
+    is_read?: number
+    accepted_to?: string | null
+    accepted_by?: string | null
+    approved_to?: string | null
+    approved_by?: string | null
+    accepted_to_depthead?: string | null
+    accepted_by_depthead?: string | null
+    approved_to_divhead?: string | null
+    approved_by_divhead?: string | null
+    approved_to_dicdiv?: string | null
+    approved_by_dicdiv?: string | null
+    approved_by_deptheadhc?: string | null
+    approved_to_deptheadhc?: string | null
+    approved_to_divheadhc?: string | null
+    approved_by_divheadhc?: string | null
+    approved_to_dichc?: string | null
+    approved_by_dichc?: string | null
+    approved_to_presdir?: string | null
+    approved_by_presdir?: string | null
+    rejected_by?: string | null
+    canceled_by?: string | null
+    created_at: Date | string
+    is_deleted?: number
+  }
+
+  export type log_notificationUpdateInput = {
+    tittle?: StringFieldUpdateOperationsInput | string
+    message_user?: StringFieldUpdateOperationsInput | string
+    message_approval?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    redirect_url?: StringFieldUpdateOperationsInput | string
+    is_read?: IntFieldUpdateOperationsInput | number
+    accepted_to?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_by?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_to_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_by_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_deptheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_deptheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_divheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_divheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_by?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_by?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_deleted?: IntFieldUpdateOperationsInput | number
+    MsUser?: UserUpdateOneWithoutLog_notificationNestedInput
+  }
+
+  export type log_notificationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    user?: StringFieldUpdateOperationsInput | string
+    tittle?: StringFieldUpdateOperationsInput | string
+    message_user?: StringFieldUpdateOperationsInput | string
+    message_approval?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    redirect_url?: StringFieldUpdateOperationsInput | string
+    is_read?: IntFieldUpdateOperationsInput | number
+    accepted_to?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_by?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_to_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_by_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_deptheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_deptheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_divheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_divheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_by?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_by?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_deleted?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type log_notificationCreateManyInput = {
+    user: string
+    tittle: string
+    message_user: string
+    message_approval: string
+    type: string
+    redirect_url: string
+    is_read?: number
+    accepted_to?: string | null
+    accepted_by?: string | null
+    approved_to?: string | null
+    approved_by?: string | null
+    accepted_to_depthead?: string | null
+    accepted_by_depthead?: string | null
+    approved_to_divhead?: string | null
+    approved_by_divhead?: string | null
+    approved_to_dicdiv?: string | null
+    approved_by_dicdiv?: string | null
+    approved_by_deptheadhc?: string | null
+    approved_to_deptheadhc?: string | null
+    approved_to_divheadhc?: string | null
+    approved_by_divheadhc?: string | null
+    approved_to_dichc?: string | null
+    approved_by_dichc?: string | null
+    approved_to_presdir?: string | null
+    approved_by_presdir?: string | null
+    rejected_by?: string | null
+    canceled_by?: string | null
+    created_at: Date | string
+    is_deleted?: number
+  }
+
+  export type log_notificationUpdateManyMutationInput = {
+    tittle?: StringFieldUpdateOperationsInput | string
+    message_user?: StringFieldUpdateOperationsInput | string
+    message_approval?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    redirect_url?: StringFieldUpdateOperationsInput | string
+    is_read?: IntFieldUpdateOperationsInput | number
+    accepted_to?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_by?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_to_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_by_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_deptheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_deptheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_divheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_divheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_by?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_by?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_deleted?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type log_notificationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    user?: StringFieldUpdateOperationsInput | string
+    tittle?: StringFieldUpdateOperationsInput | string
+    message_user?: StringFieldUpdateOperationsInput | string
+    message_approval?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    redirect_url?: StringFieldUpdateOperationsInput | string
+    is_read?: IntFieldUpdateOperationsInput | number
+    accepted_to?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_by?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_to_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_by_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_deptheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_deptheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_divheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_divheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_by?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_by?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_deleted?: IntFieldUpdateOperationsInput | number
+  }
+
   export type BigIntFilter<$PrismaModel = never> = {
     equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     in?: bigint[] | number[]
@@ -38488,6 +40279,12 @@ export namespace Prisma {
     none?: attendanceWhereInput
   }
 
+  export type Log_notificationListRelationFilter = {
+    every?: log_notificationWhereInput
+    some?: log_notificationWhereInput
+    none?: log_notificationWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -38526,6 +40323,10 @@ export namespace Prisma {
   }
 
   export type attendanceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type log_notificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -40631,9 +42432,9 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
-  export type Trx_official_travelRelationFilter = {
-    is?: trx_official_travelWhereInput
-    isNot?: trx_official_travelWhereInput
+  export type Trx_official_travelNullableRelationFilter = {
+    is?: trx_official_travelWhereInput | null
+    isNot?: trx_official_travelWhereInput | null
   }
 
   export type Trx_detail_declarationListRelationFilter = {
@@ -40893,6 +42694,117 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type log_notificationCountOrderByAggregateInput = {
+    id?: SortOrder
+    user?: SortOrder
+    tittle?: SortOrder
+    message_user?: SortOrder
+    message_approval?: SortOrder
+    type?: SortOrder
+    redirect_url?: SortOrder
+    is_read?: SortOrder
+    accepted_to?: SortOrder
+    accepted_by?: SortOrder
+    approved_to?: SortOrder
+    approved_by?: SortOrder
+    accepted_to_depthead?: SortOrder
+    accepted_by_depthead?: SortOrder
+    approved_to_divhead?: SortOrder
+    approved_by_divhead?: SortOrder
+    approved_to_dicdiv?: SortOrder
+    approved_by_dicdiv?: SortOrder
+    approved_by_deptheadhc?: SortOrder
+    approved_to_deptheadhc?: SortOrder
+    approved_to_divheadhc?: SortOrder
+    approved_by_divheadhc?: SortOrder
+    approved_to_dichc?: SortOrder
+    approved_by_dichc?: SortOrder
+    approved_to_presdir?: SortOrder
+    approved_by_presdir?: SortOrder
+    rejected_by?: SortOrder
+    canceled_by?: SortOrder
+    created_at?: SortOrder
+    is_deleted?: SortOrder
+  }
+
+  export type log_notificationAvgOrderByAggregateInput = {
+    id?: SortOrder
+    is_read?: SortOrder
+    is_deleted?: SortOrder
+  }
+
+  export type log_notificationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    user?: SortOrder
+    tittle?: SortOrder
+    message_user?: SortOrder
+    message_approval?: SortOrder
+    type?: SortOrder
+    redirect_url?: SortOrder
+    is_read?: SortOrder
+    accepted_to?: SortOrder
+    accepted_by?: SortOrder
+    approved_to?: SortOrder
+    approved_by?: SortOrder
+    accepted_to_depthead?: SortOrder
+    accepted_by_depthead?: SortOrder
+    approved_to_divhead?: SortOrder
+    approved_by_divhead?: SortOrder
+    approved_to_dicdiv?: SortOrder
+    approved_by_dicdiv?: SortOrder
+    approved_by_deptheadhc?: SortOrder
+    approved_to_deptheadhc?: SortOrder
+    approved_to_divheadhc?: SortOrder
+    approved_by_divheadhc?: SortOrder
+    approved_to_dichc?: SortOrder
+    approved_by_dichc?: SortOrder
+    approved_to_presdir?: SortOrder
+    approved_by_presdir?: SortOrder
+    rejected_by?: SortOrder
+    canceled_by?: SortOrder
+    created_at?: SortOrder
+    is_deleted?: SortOrder
+  }
+
+  export type log_notificationMinOrderByAggregateInput = {
+    id?: SortOrder
+    user?: SortOrder
+    tittle?: SortOrder
+    message_user?: SortOrder
+    message_approval?: SortOrder
+    type?: SortOrder
+    redirect_url?: SortOrder
+    is_read?: SortOrder
+    accepted_to?: SortOrder
+    accepted_by?: SortOrder
+    approved_to?: SortOrder
+    approved_by?: SortOrder
+    accepted_to_depthead?: SortOrder
+    accepted_by_depthead?: SortOrder
+    approved_to_divhead?: SortOrder
+    approved_by_divhead?: SortOrder
+    approved_to_dicdiv?: SortOrder
+    approved_by_dicdiv?: SortOrder
+    approved_by_deptheadhc?: SortOrder
+    approved_to_deptheadhc?: SortOrder
+    approved_to_divheadhc?: SortOrder
+    approved_by_divheadhc?: SortOrder
+    approved_to_dichc?: SortOrder
+    approved_by_dichc?: SortOrder
+    approved_to_presdir?: SortOrder
+    approved_by_presdir?: SortOrder
+    rejected_by?: SortOrder
+    canceled_by?: SortOrder
+    created_at?: SortOrder
+    is_deleted?: SortOrder
+  }
+
+  export type log_notificationSumOrderByAggregateInput = {
+    id?: SortOrder
+    is_read?: SortOrder
+    is_deleted?: SortOrder
+  }
+
   export type user_detailCreateNestedManyWithoutMsUserInput = {
     create?: XOR<user_detailCreateWithoutMsUserInput, user_detailUncheckedCreateWithoutMsUserInput> | user_detailCreateWithoutMsUserInput[] | user_detailUncheckedCreateWithoutMsUserInput[]
     connectOrCreate?: user_detailCreateOrConnectWithoutMsUserInput | user_detailCreateOrConnectWithoutMsUserInput[]
@@ -40962,6 +42874,13 @@ export namespace Prisma {
     connect?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
   }
 
+  export type log_notificationCreateNestedManyWithoutMsUserInput = {
+    create?: XOR<log_notificationCreateWithoutMsUserInput, log_notificationUncheckedCreateWithoutMsUserInput> | log_notificationCreateWithoutMsUserInput[] | log_notificationUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: log_notificationCreateOrConnectWithoutMsUserInput | log_notificationCreateOrConnectWithoutMsUserInput[]
+    createMany?: log_notificationCreateManyMsUserInputEnvelope
+    connect?: log_notificationWhereUniqueInput | log_notificationWhereUniqueInput[]
+  }
+
   export type user_detailUncheckedCreateNestedManyWithoutMsUserInput = {
     create?: XOR<user_detailCreateWithoutMsUserInput, user_detailUncheckedCreateWithoutMsUserInput> | user_detailCreateWithoutMsUserInput[] | user_detailUncheckedCreateWithoutMsUserInput[]
     connectOrCreate?: user_detailCreateOrConnectWithoutMsUserInput | user_detailCreateOrConnectWithoutMsUserInput[]
@@ -41023,6 +42942,13 @@ export namespace Prisma {
     connectOrCreate?: attendanceCreateOrConnectWithoutMsUserInput | attendanceCreateOrConnectWithoutMsUserInput[]
     createMany?: attendanceCreateManyMsUserInputEnvelope
     connect?: attendanceWhereUniqueInput | attendanceWhereUniqueInput[]
+  }
+
+  export type log_notificationUncheckedCreateNestedManyWithoutMsUserInput = {
+    create?: XOR<log_notificationCreateWithoutMsUserInput, log_notificationUncheckedCreateWithoutMsUserInput> | log_notificationCreateWithoutMsUserInput[] | log_notificationUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: log_notificationCreateOrConnectWithoutMsUserInput | log_notificationCreateOrConnectWithoutMsUserInput[]
+    createMany?: log_notificationCreateManyMsUserInputEnvelope
+    connect?: log_notificationWhereUniqueInput | log_notificationWhereUniqueInput[]
   }
 
   export type BigIntFieldUpdateOperationsInput = {
@@ -41197,6 +43123,20 @@ export namespace Prisma {
     deleteMany?: attendanceScalarWhereInput | attendanceScalarWhereInput[]
   }
 
+  export type log_notificationUpdateManyWithoutMsUserNestedInput = {
+    create?: XOR<log_notificationCreateWithoutMsUserInput, log_notificationUncheckedCreateWithoutMsUserInput> | log_notificationCreateWithoutMsUserInput[] | log_notificationUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: log_notificationCreateOrConnectWithoutMsUserInput | log_notificationCreateOrConnectWithoutMsUserInput[]
+    upsert?: log_notificationUpsertWithWhereUniqueWithoutMsUserInput | log_notificationUpsertWithWhereUniqueWithoutMsUserInput[]
+    createMany?: log_notificationCreateManyMsUserInputEnvelope
+    set?: log_notificationWhereUniqueInput | log_notificationWhereUniqueInput[]
+    disconnect?: log_notificationWhereUniqueInput | log_notificationWhereUniqueInput[]
+    delete?: log_notificationWhereUniqueInput | log_notificationWhereUniqueInput[]
+    connect?: log_notificationWhereUniqueInput | log_notificationWhereUniqueInput[]
+    update?: log_notificationUpdateWithWhereUniqueWithoutMsUserInput | log_notificationUpdateWithWhereUniqueWithoutMsUserInput[]
+    updateMany?: log_notificationUpdateManyWithWhereWithoutMsUserInput | log_notificationUpdateManyWithWhereWithoutMsUserInput[]
+    deleteMany?: log_notificationScalarWhereInput | log_notificationScalarWhereInput[]
+  }
+
   export type user_detailUncheckedUpdateManyWithoutMsUserNestedInput = {
     create?: XOR<user_detailCreateWithoutMsUserInput, user_detailUncheckedCreateWithoutMsUserInput> | user_detailCreateWithoutMsUserInput[] | user_detailUncheckedCreateWithoutMsUserInput[]
     connectOrCreate?: user_detailCreateOrConnectWithoutMsUserInput | user_detailCreateOrConnectWithoutMsUserInput[]
@@ -41321,6 +43261,20 @@ export namespace Prisma {
     update?: attendanceUpdateWithWhereUniqueWithoutMsUserInput | attendanceUpdateWithWhereUniqueWithoutMsUserInput[]
     updateMany?: attendanceUpdateManyWithWhereWithoutMsUserInput | attendanceUpdateManyWithWhereWithoutMsUserInput[]
     deleteMany?: attendanceScalarWhereInput | attendanceScalarWhereInput[]
+  }
+
+  export type log_notificationUncheckedUpdateManyWithoutMsUserNestedInput = {
+    create?: XOR<log_notificationCreateWithoutMsUserInput, log_notificationUncheckedCreateWithoutMsUserInput> | log_notificationCreateWithoutMsUserInput[] | log_notificationUncheckedCreateWithoutMsUserInput[]
+    connectOrCreate?: log_notificationCreateOrConnectWithoutMsUserInput | log_notificationCreateOrConnectWithoutMsUserInput[]
+    upsert?: log_notificationUpsertWithWhereUniqueWithoutMsUserInput | log_notificationUpsertWithWhereUniqueWithoutMsUserInput[]
+    createMany?: log_notificationCreateManyMsUserInputEnvelope
+    set?: log_notificationWhereUniqueInput | log_notificationWhereUniqueInput[]
+    disconnect?: log_notificationWhereUniqueInput | log_notificationWhereUniqueInput[]
+    delete?: log_notificationWhereUniqueInput | log_notificationWhereUniqueInput[]
+    connect?: log_notificationWhereUniqueInput | log_notificationWhereUniqueInput[]
+    update?: log_notificationUpdateWithWhereUniqueWithoutMsUserInput | log_notificationUpdateWithWhereUniqueWithoutMsUserInput[]
+    updateMany?: log_notificationUpdateManyWithWhereWithoutMsUserInput | log_notificationUpdateManyWithWhereWithoutMsUserInput[]
+    deleteMany?: log_notificationScalarWhereInput | log_notificationScalarWhereInput[]
   }
 
   export type trx_leavesCreateNestedManyWithoutLeave_typeInput = {
@@ -42213,10 +44167,12 @@ export namespace Prisma {
     divide?: Decimal | DecimalJsLike | number | string
   }
 
-  export type trx_official_travelUpdateOneRequiredWithoutTrx_declarationNestedInput = {
+  export type trx_official_travelUpdateOneWithoutTrx_declarationNestedInput = {
     create?: XOR<trx_official_travelCreateWithoutTrx_declarationInput, trx_official_travelUncheckedCreateWithoutTrx_declarationInput>
     connectOrCreate?: trx_official_travelCreateOrConnectWithoutTrx_declarationInput
     upsert?: trx_official_travelUpsertWithoutTrx_declarationInput
+    disconnect?: trx_official_travelWhereInput | boolean
+    delete?: trx_official_travelWhereInput | boolean
     connect?: trx_official_travelWhereUniqueInput
     update?: XOR<XOR<trx_official_travelUpdateToOneWithWhereWithoutTrx_declarationInput, trx_official_travelUpdateWithoutTrx_declarationInput>, trx_official_travelUncheckedUpdateWithoutTrx_declarationInput>
   }
@@ -42261,6 +44217,22 @@ export namespace Prisma {
     upsert?: trx_declarationUpsertWithoutTrx_detail_declarationInput
     connect?: trx_declarationWhereUniqueInput
     update?: XOR<XOR<trx_declarationUpdateToOneWithWhereWithoutTrx_detail_declarationInput, trx_declarationUpdateWithoutTrx_detail_declarationInput>, trx_declarationUncheckedUpdateWithoutTrx_detail_declarationInput>
+  }
+
+  export type UserCreateNestedOneWithoutLog_notificationInput = {
+    create?: XOR<UserCreateWithoutLog_notificationInput, UserUncheckedCreateWithoutLog_notificationInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLog_notificationInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneWithoutLog_notificationNestedInput = {
+    create?: XOR<UserCreateWithoutLog_notificationInput, UserUncheckedCreateWithoutLog_notificationInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLog_notificationInput
+    upsert?: UserUpsertWithoutLog_notificationInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLog_notificationInput, UserUpdateWithoutLog_notificationInput>, UserUncheckedUpdateWithoutLog_notificationInput>
   }
 
   export type NestedBigIntFilter<$PrismaModel = never> = {
@@ -43230,6 +45202,78 @@ export namespace Prisma {
     data: attendanceCreateManyMsUserInput | attendanceCreateManyMsUserInput[]
   }
 
+  export type log_notificationCreateWithoutMsUserInput = {
+    tittle: string
+    message_user: string
+    message_approval: string
+    type: string
+    redirect_url: string
+    is_read?: number
+    accepted_to?: string | null
+    accepted_by?: string | null
+    approved_to?: string | null
+    approved_by?: string | null
+    accepted_to_depthead?: string | null
+    accepted_by_depthead?: string | null
+    approved_to_divhead?: string | null
+    approved_by_divhead?: string | null
+    approved_to_dicdiv?: string | null
+    approved_by_dicdiv?: string | null
+    approved_by_deptheadhc?: string | null
+    approved_to_deptheadhc?: string | null
+    approved_to_divheadhc?: string | null
+    approved_by_divheadhc?: string | null
+    approved_to_dichc?: string | null
+    approved_by_dichc?: string | null
+    approved_to_presdir?: string | null
+    approved_by_presdir?: string | null
+    rejected_by?: string | null
+    canceled_by?: string | null
+    created_at: Date | string
+    is_deleted?: number
+  }
+
+  export type log_notificationUncheckedCreateWithoutMsUserInput = {
+    id?: number
+    tittle: string
+    message_user: string
+    message_approval: string
+    type: string
+    redirect_url: string
+    is_read?: number
+    accepted_to?: string | null
+    accepted_by?: string | null
+    approved_to?: string | null
+    approved_by?: string | null
+    accepted_to_depthead?: string | null
+    accepted_by_depthead?: string | null
+    approved_to_divhead?: string | null
+    approved_by_divhead?: string | null
+    approved_to_dicdiv?: string | null
+    approved_by_dicdiv?: string | null
+    approved_by_deptheadhc?: string | null
+    approved_to_deptheadhc?: string | null
+    approved_to_divheadhc?: string | null
+    approved_by_divheadhc?: string | null
+    approved_to_dichc?: string | null
+    approved_by_dichc?: string | null
+    approved_to_presdir?: string | null
+    approved_by_presdir?: string | null
+    rejected_by?: string | null
+    canceled_by?: string | null
+    created_at: Date | string
+    is_deleted?: number
+  }
+
+  export type log_notificationCreateOrConnectWithoutMsUserInput = {
+    where: log_notificationWhereUniqueInput
+    create: XOR<log_notificationCreateWithoutMsUserInput, log_notificationUncheckedCreateWithoutMsUserInput>
+  }
+
+  export type log_notificationCreateManyMsUserInputEnvelope = {
+    data: log_notificationCreateManyMsUserInput | log_notificationCreateManyMsUserInput[]
+  }
+
   export type user_detailUpsertWithWhereUniqueWithoutMsUserInput = {
     where: user_detailWhereUniqueInput
     update: XOR<user_detailUpdateWithoutMsUserInput, user_detailUncheckedUpdateWithoutMsUserInput>
@@ -43721,6 +45765,58 @@ export namespace Prisma {
     is_early_out?: IntNullableFilter<"attendance"> | number | null
   }
 
+  export type log_notificationUpsertWithWhereUniqueWithoutMsUserInput = {
+    where: log_notificationWhereUniqueInput
+    update: XOR<log_notificationUpdateWithoutMsUserInput, log_notificationUncheckedUpdateWithoutMsUserInput>
+    create: XOR<log_notificationCreateWithoutMsUserInput, log_notificationUncheckedCreateWithoutMsUserInput>
+  }
+
+  export type log_notificationUpdateWithWhereUniqueWithoutMsUserInput = {
+    where: log_notificationWhereUniqueInput
+    data: XOR<log_notificationUpdateWithoutMsUserInput, log_notificationUncheckedUpdateWithoutMsUserInput>
+  }
+
+  export type log_notificationUpdateManyWithWhereWithoutMsUserInput = {
+    where: log_notificationScalarWhereInput
+    data: XOR<log_notificationUpdateManyMutationInput, log_notificationUncheckedUpdateManyWithoutMsUserInput>
+  }
+
+  export type log_notificationScalarWhereInput = {
+    AND?: log_notificationScalarWhereInput | log_notificationScalarWhereInput[]
+    OR?: log_notificationScalarWhereInput[]
+    NOT?: log_notificationScalarWhereInput | log_notificationScalarWhereInput[]
+    id?: IntFilter<"log_notification"> | number
+    user?: StringFilter<"log_notification"> | string
+    tittle?: StringFilter<"log_notification"> | string
+    message_user?: StringFilter<"log_notification"> | string
+    message_approval?: StringFilter<"log_notification"> | string
+    type?: StringFilter<"log_notification"> | string
+    redirect_url?: StringFilter<"log_notification"> | string
+    is_read?: IntFilter<"log_notification"> | number
+    accepted_to?: StringNullableFilter<"log_notification"> | string | null
+    accepted_by?: StringNullableFilter<"log_notification"> | string | null
+    approved_to?: StringNullableFilter<"log_notification"> | string | null
+    approved_by?: StringNullableFilter<"log_notification"> | string | null
+    accepted_to_depthead?: StringNullableFilter<"log_notification"> | string | null
+    accepted_by_depthead?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_divhead?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_divhead?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_dicdiv?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_dicdiv?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_deptheadhc?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_deptheadhc?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_divheadhc?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_divheadhc?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_dichc?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_dichc?: StringNullableFilter<"log_notification"> | string | null
+    approved_to_presdir?: StringNullableFilter<"log_notification"> | string | null
+    approved_by_presdir?: StringNullableFilter<"log_notification"> | string | null
+    rejected_by?: StringNullableFilter<"log_notification"> | string | null
+    canceled_by?: StringNullableFilter<"log_notification"> | string | null
+    created_at?: DateTimeFilter<"log_notification"> | Date | string
+    is_deleted?: IntFilter<"log_notification"> | number
+  }
+
   export type trx_leavesCreateWithoutLeave_typeInput = {
     id?: bigint | number
     dept: bigint | number
@@ -43944,6 +46040,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
     attendance?: attendanceCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutTrx_leavesInput = {
@@ -44000,6 +46097,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutTrx_leavesInput = {
@@ -44108,6 +46206,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTrx_leavesInput = {
@@ -44164,6 +46263,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type ms_detail_shift_groupCreateWithoutMsShiftInput = {
@@ -44724,6 +46824,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
     attendance?: attendanceCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutDept_dataInput = {
@@ -44780,6 +46881,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutDept_dataInput = {
@@ -45067,6 +47169,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
     attendance?: attendanceCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutTrx_ovtInput = {
@@ -45123,6 +47226,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutTrx_ovtInput = {
@@ -45241,6 +47345,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTrx_ovtInput = {
@@ -45297,6 +47402,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type ms_shiftUpsertWithoutTrx_ovtInput = {
@@ -45405,6 +47511,7 @@ export namespace Prisma {
     trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
     attendance?: attendanceCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutTrx_shift_empInput = {
@@ -45461,6 +47568,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutTrx_shift_empInput = {
@@ -45565,6 +47673,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTrx_shift_empInput = {
@@ -45621,6 +47730,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type ms_shift_groupUpsertWithoutTrx_shift_empsInput = {
@@ -45715,6 +47825,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
     attendance?: attendanceCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutTrx_officialTravelInput = {
@@ -45771,6 +47882,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutTrx_officialTravelInput = {
@@ -45913,6 +48025,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTrx_officialTravelInput = {
@@ -45969,6 +48082,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type trx_declarationUpsertWithWhereUniqueWithoutOfficialTravel_dataInput = {
@@ -45994,7 +48108,7 @@ export namespace Prisma {
     id?: IntFilter<"trx_declaration"> | number
     code?: StringFilter<"trx_declaration"> | string
     user?: StringFilter<"trx_declaration"> | string
-    code_trx?: StringFilter<"trx_declaration"> | string
+    code_trx?: StringNullableFilter<"trx_declaration"> | string | null
     start_date_actual?: DateTimeFilter<"trx_declaration"> | Date | string
     end_date_actual?: DateTimeFilter<"trx_declaration"> | Date | string
     evidence_file?: StringFilter<"trx_declaration"> | string
@@ -46075,6 +48189,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
     attendance?: attendanceCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutTrx_mutationInput = {
@@ -46131,6 +48246,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutTrx_mutationInput = {
@@ -46203,6 +48319,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTrx_mutationInput = {
@@ -46259,6 +48376,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserCreateWithoutTrx_resignInput = {
@@ -46315,6 +48433,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
     attendance?: attendanceCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutTrx_resignInput = {
@@ -46371,6 +48490,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutTrx_resignInput = {
@@ -46443,6 +48563,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTrx_resignInput = {
@@ -46499,6 +48620,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserCreateWithoutUser_detailInput = {
@@ -46555,6 +48677,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
     attendance?: attendanceCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutUser_detailInput = {
@@ -46611,6 +48734,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutUser_detailInput = {
@@ -46756,6 +48880,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUser_detailInput = {
@@ -46812,6 +48937,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type ms_marital_statusUpsertWithoutUser_detailInput = {
@@ -47166,6 +49292,7 @@ export namespace Prisma {
     trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     attendance?: attendanceCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutTrx_leave_quotaInput = {
@@ -47222,6 +49349,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutTrx_leave_quotaInput = {
@@ -47324,6 +49452,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTrx_leave_quotaInput = {
@@ -47380,6 +49509,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type ms_leave_typesUpsertWithoutTrx_leave_quotaInput = {
@@ -47472,6 +49602,7 @@ export namespace Prisma {
     trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationCreateNestedManyWithoutMsUserInput
   }
 
   export type UserUncheckedCreateWithoutAttendanceInput = {
@@ -47528,6 +49659,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
     trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
     trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+    log_notification?: log_notificationUncheckedCreateNestedManyWithoutMsUserInput
   }
 
   export type UserCreateOrConnectWithoutAttendanceInput = {
@@ -47646,6 +49778,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAttendanceInput = {
@@ -47702,6 +49835,7 @@ export namespace Prisma {
     trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type ms_shiftUpsertWithoutAttendanceInput = {
@@ -48163,14 +50297,14 @@ export namespace Prisma {
     created_at: Date | string
     updated_by?: bigint | number | null
     updated_at: Date | string
-    officialTravel_data: trx_official_travelCreateNestedOneWithoutTrx_declarationInput
+    officialTravel_data?: trx_official_travelCreateNestedOneWithoutTrx_declarationInput
   }
 
   export type trx_declarationUncheckedCreateWithoutTrx_detail_declarationInput = {
     id?: number
     code: string
     user: string
-    code_trx: string
+    code_trx?: string | null
     start_date_actual: Date | string
     end_date_actual: Date | string
     evidence_file: string
@@ -48240,14 +50374,14 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    officialTravel_data?: trx_official_travelUpdateOneRequiredWithoutTrx_declarationNestedInput
+    officialTravel_data?: trx_official_travelUpdateOneWithoutTrx_declarationNestedInput
   }
 
   export type trx_declarationUncheckedUpdateWithoutTrx_detail_declarationInput = {
     id?: IntFieldUpdateOperationsInput | number
     code?: StringFieldUpdateOperationsInput | string
     user?: StringFieldUpdateOperationsInput | string
-    code_trx?: StringFieldUpdateOperationsInput | string
+    code_trx?: NullableStringFieldUpdateOperationsInput | string | null
     start_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
     end_date_actual?: DateTimeFieldUpdateOperationsInput | Date | string
     evidence_file?: StringFieldUpdateOperationsInput | string
@@ -48272,6 +50406,250 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_by?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCreateWithoutLog_notificationInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number: string
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    user_detail?: user_detailCreateNestedManyWithoutMsUserInput
+    dept_data?: mst_deptCreateNestedOneWithoutMst_userInput
+    trx_leaves?: trx_leavesCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserUncheckedCreateWithoutLog_notificationInput = {
+    id?: bigint | number
+    name: string
+    email: string
+    email_verified_at?: Date | string | null
+    password: string
+    accessed_app?: number | null
+    role_id?: string | null
+    is_blocked?: number
+    is_active?: number
+    token?: string | null
+    phone?: string | null
+    email_sf?: string | null
+    superior?: string | null
+    section_code?: string | null
+    section?: string | null
+    divid?: string | null
+    companyid?: string | null
+    dept?: number | null
+    department?: string | null
+    division?: string | null
+    title?: string | null
+    worklocation_code?: string | null
+    worklocation_name?: string | null
+    worklocation_lat_long?: string | null
+    personal_number: string
+    csfield10?: string | null
+    company_name?: string | null
+    photo?: string | null
+    grade?: number
+    remember_token?: string | null
+    latlon_distance?: number
+    section_code_sap?: string | null
+    section_sap?: string | null
+    department_code_sap?: string | null
+    department_sap?: string | null
+    division_code_sap?: string | null
+    division_sap?: string | null
+    pos_code_sap?: string | null
+    company_id_sap?: string | null
+    company_name_sap?: string | null
+    worklocation_code_sap?: string | null
+    worklocation_name_sap?: string | null
+    worklocation_lat_long_sap?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    user_detail?: user_detailUncheckedCreateNestedManyWithoutMsUserInput
+    trx_leaves?: trx_leavesUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_ovt?: trx_ovtUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_officialTravel?: trx_official_travelUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_mutation?: trx_mutationUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_resign?: trx_resignUncheckedCreateNestedManyWithoutUser_dataInput
+    trx_shift_emp?: trx_shift_empUncheckedCreateNestedManyWithoutMsUserInput
+    trx_leave_quota?: trx_leave_quotaUncheckedCreateNestedManyWithoutMsUserInput
+    attendance?: attendanceUncheckedCreateNestedManyWithoutMsUserInput
+  }
+
+  export type UserCreateOrConnectWithoutLog_notificationInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLog_notificationInput, UserUncheckedCreateWithoutLog_notificationInput>
+  }
+
+  export type UserUpsertWithoutLog_notificationInput = {
+    update: XOR<UserUpdateWithoutLog_notificationInput, UserUncheckedUpdateWithoutLog_notificationInput>
+    create: XOR<UserCreateWithoutLog_notificationInput, UserUncheckedCreateWithoutLog_notificationInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLog_notificationInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLog_notificationInput, UserUncheckedUpdateWithoutLog_notificationInput>
+  }
+
+  export type UserUpdateWithoutLog_notificationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUpdateManyWithoutMsUserNestedInput
+    dept_data?: mst_deptUpdateOneWithoutMst_userNestedInput
+    trx_leaves?: trx_leavesUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUpdateManyWithoutMsUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutLog_notificationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    email_verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    accessed_app?: NullableIntFieldUpdateOperationsInput | number | null
+    role_id?: NullableStringFieldUpdateOperationsInput | string | null
+    is_blocked?: IntFieldUpdateOperationsInput | number
+    is_active?: IntFieldUpdateOperationsInput | number
+    token?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    email_sf?: NullableStringFieldUpdateOperationsInput | string | null
+    superior?: NullableStringFieldUpdateOperationsInput | string | null
+    section_code?: NullableStringFieldUpdateOperationsInput | string | null
+    section?: NullableStringFieldUpdateOperationsInput | string | null
+    divid?: NullableStringFieldUpdateOperationsInput | string | null
+    companyid?: NullableStringFieldUpdateOperationsInput | string | null
+    dept?: NullableIntFieldUpdateOperationsInput | number | null
+    department?: NullableStringFieldUpdateOperationsInput | string | null
+    division?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long?: NullableStringFieldUpdateOperationsInput | string | null
+    personal_number?: StringFieldUpdateOperationsInput | string
+    csfield10?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name?: NullableStringFieldUpdateOperationsInput | string | null
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: IntFieldUpdateOperationsInput | number
+    remember_token?: NullableStringFieldUpdateOperationsInput | string | null
+    latlon_distance?: IntFieldUpdateOperationsInput | number
+    section_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    section_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    department_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    division_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    pos_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_id_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    company_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_code_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_name_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    worklocation_lat_long_sap?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_detail?: user_detailUncheckedUpdateManyWithoutMsUserNestedInput
+    trx_leaves?: trx_leavesUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_ovt?: trx_ovtUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_officialTravel?: trx_official_travelUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_mutation?: trx_mutationUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_resign?: trx_resignUncheckedUpdateManyWithoutUser_dataNestedInput
+    trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
+    trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
+    attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type user_detailCreateManyMsUserInput = {
@@ -48533,6 +50911,37 @@ export namespace Prisma {
     updated_at: Date | string
     is_late?: number | null
     is_early_out?: number | null
+  }
+
+  export type log_notificationCreateManyMsUserInput = {
+    tittle: string
+    message_user: string
+    message_approval: string
+    type: string
+    redirect_url: string
+    is_read?: number
+    accepted_to?: string | null
+    accepted_by?: string | null
+    approved_to?: string | null
+    approved_by?: string | null
+    accepted_to_depthead?: string | null
+    accepted_by_depthead?: string | null
+    approved_to_divhead?: string | null
+    approved_by_divhead?: string | null
+    approved_to_dicdiv?: string | null
+    approved_by_dicdiv?: string | null
+    approved_by_deptheadhc?: string | null
+    approved_to_deptheadhc?: string | null
+    approved_to_divheadhc?: string | null
+    approved_by_divheadhc?: string | null
+    approved_to_dichc?: string | null
+    approved_by_dichc?: string | null
+    approved_to_presdir?: string | null
+    approved_by_presdir?: string | null
+    rejected_by?: string | null
+    canceled_by?: string | null
+    created_at: Date | string
+    is_deleted?: number
   }
 
   export type user_detailUpdateWithoutMsUserInput = {
@@ -49343,6 +51752,101 @@ export namespace Prisma {
     is_early_out?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
+  export type log_notificationUpdateWithoutMsUserInput = {
+    tittle?: StringFieldUpdateOperationsInput | string
+    message_user?: StringFieldUpdateOperationsInput | string
+    message_approval?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    redirect_url?: StringFieldUpdateOperationsInput | string
+    is_read?: IntFieldUpdateOperationsInput | number
+    accepted_to?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_by?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_to_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_by_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_deptheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_deptheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_divheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_divheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_by?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_by?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_deleted?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type log_notificationUncheckedUpdateWithoutMsUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tittle?: StringFieldUpdateOperationsInput | string
+    message_user?: StringFieldUpdateOperationsInput | string
+    message_approval?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    redirect_url?: StringFieldUpdateOperationsInput | string
+    is_read?: IntFieldUpdateOperationsInput | number
+    accepted_to?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_by?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_to_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_by_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_deptheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_deptheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_divheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_divheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_by?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_by?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_deleted?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type log_notificationUncheckedUpdateManyWithoutMsUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tittle?: StringFieldUpdateOperationsInput | string
+    message_user?: StringFieldUpdateOperationsInput | string
+    message_approval?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    redirect_url?: StringFieldUpdateOperationsInput | string
+    is_read?: IntFieldUpdateOperationsInput | number
+    accepted_to?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_by?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_to_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    accepted_by_depthead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_divhead?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_dicdiv?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_deptheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_deptheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_divheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_divheadhc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_dichc?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_to_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    approved_by_presdir?: NullableStringFieldUpdateOperationsInput | string | null
+    rejected_by?: NullableStringFieldUpdateOperationsInput | string | null
+    canceled_by?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_deleted?: IntFieldUpdateOperationsInput | number
+  }
+
   export type trx_leavesCreateManyLeave_typeInput = {
     user: string
     dept: bigint | number
@@ -50009,6 +52513,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDept_dataInput = {
@@ -50065,6 +52570,7 @@ export namespace Prisma {
     trx_shift_emp?: trx_shift_empUncheckedUpdateManyWithoutMsUserNestedInput
     trx_leave_quota?: trx_leave_quotaUncheckedUpdateManyWithoutMsUserNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutMsUserNestedInput
+    log_notification?: log_notificationUncheckedUpdateManyWithoutMsUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutDept_dataInput = {
@@ -50772,6 +53278,10 @@ export namespace Prisma {
      * @deprecated Use log_errorDefaultArgs instead
      */
     export type log_errorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = log_errorDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use log_notificationDefaultArgs instead
+     */
+    export type log_notificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = log_notificationDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

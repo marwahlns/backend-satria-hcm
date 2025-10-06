@@ -64,6 +64,7 @@ model User {
   trx_shift_emp             trx_shift_emp[]       @relation("TrxShiftToUser")
   trx_leave_quota           trx_leave_quota[]     @relation("TrxLeaveQuotaToUser")
   attendance                attendance[]          @relation("AttendanceToUser")
+  log_notification          log_notification[]    @relation("NotificationToUser")
 
   @@map("users")
 }
@@ -570,7 +571,11 @@ model trx_declaration {
   id                     Int                      @id(map: "PK_trx_declaration") @default(autoincrement())
   code                   String                   @unique @satria.NVarChar(255)
   user                   String                   @satria.NVarChar(255)
-  code_trx               String                   @satria.NVarChar(255)
+  code_trx               String?                  @satria.NVarChar(255)
+  // lodging                String?                  @satria.NVarChar(255)
+  // work_status            String?                  @satria.NVarChar(255)
+  // travel_from            String?                  @satria.NVarChar(255)
+  // travel_to              String?                  @satria.NVarChar(255)
   start_date_actual      DateTime                 @satria.Date
   end_date_actual        DateTime                 @satria.Date
   evidence_file          String                   @satria.NVarChar(255)
@@ -595,7 +600,7 @@ model trx_declaration {
   created_at             DateTime
   updated_by             BigInt?
   updated_at             DateTime
-  officialTravel_data    trx_official_travel      @relation(fields: [code_trx], references: [code], name: "TrxDeclarationToOfficialTravel")
+  officialTravel_data    trx_official_travel?     @relation(fields: [code_trx], references: [code], name: "TrxDeclarationToOfficialTravel")
   trx_detail_declaration trx_detail_declaration[] @relation("TrxDetailToMsDeclaration")
 
   @@map("trx_declaration")
@@ -631,4 +636,40 @@ model log_error {
   created_at DateTime
 
   @@map("log_error")
+}
+
+model log_notification {
+  id                     Int      @id(map: "PK_log_notification") @default(autoincrement())
+  user                   String   @satria.NVarChar(255)
+  tittle                 String   @satria.NVarChar(255)
+  message_user           String   @satria.NVarChar(Max)
+  message_approval       String   @satria.NVarChar(Max)
+  type                   String   @satria.NVarChar(50)
+  redirect_url           String   @satria.NVarChar(255)
+  is_read                Int      @default(0)
+  accepted_to            String?  @satria.NVarChar(50)
+  accepted_by            String?  @satria.NVarChar(50)
+  approved_to            String?  @satria.NVarChar(50)
+  approved_by            String?  @satria.NVarChar(50)
+  accepted_to_depthead   String?  @satria.NVarChar(50)
+  accepted_by_depthead   String?  @satria.NVarChar(50)
+  approved_to_divhead    String?  @satria.NVarChar(50)
+  approved_by_divhead    String?  @satria.NVarChar(50)
+  approved_to_dicdiv     String?  @satria.NVarChar(50)
+  approved_by_dicdiv     String?  @satria.NVarChar(50)
+  approved_by_deptheadhc String?  @satria.NVarChar(50)
+  approved_to_deptheadhc String?  @satria.NVarChar(50)
+  approved_to_divheadhc  String?  @satria.NVarChar(50)
+  approved_by_divheadhc  String?  @satria.NVarChar(50)
+  approved_to_dichc      String?  @satria.NVarChar(50)
+  approved_by_dichc      String?  @satria.NVarChar(50)
+  approved_to_presdir    String?  @satria.NVarChar(50)
+  approved_by_presdir    String?  @satria.NVarChar(50)
+  rejected_by            String?  @satria.NVarChar(50)
+  canceled_by            String?  @satria.NVarChar(50)
+  created_at             DateTime
+  is_deleted             Int      @default(0)
+  MsUser                 User?    @relation("NotificationToUser", fields: [user], references: [personal_number])
+
+  @@map("log_notification")
 }

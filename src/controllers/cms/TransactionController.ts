@@ -20,6 +20,9 @@ import { MsDepartment } from "../../models/Table/Satria/MsDepartment";
 import { MsDivision } from "../../models/Table/Satria/MsDivision";
 import { LeaveTypes } from "../../models/Table/Satria/MsLeaveTypes";
 import { Error } from "../../models/Table/Satria/LogError";
+import { getAllNotification } from "../cms/LogNotification";
+import { io } from "../../server";
+import { createNotification } from "../../helpers/functionHelper";
 
 const trxModelMap: { [key: string]: any } = {
   leave: TrxLeave,
@@ -84,6 +87,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
       status = "0",
       month,
       year,
+      done = "0",
       exportData: exportQuery,
     } = req.query;
 
@@ -250,6 +254,19 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
 
             const totalPages = Math.ceil(totalItems / pageSize);
 
+            const allData = await TrxLeave.findMany({
+              where: buildWhereClause(),
+            });
+
+            const totalNeedAcceptance = allData.filter(trx =>
+              trx.accept_to === userNrp && trx.status_id === BigInt(1)
+            ).length;
+
+            const totalNeedApproval = allData.filter(trx =>
+              trx.approve_to === userNrp && trx.status_id === BigInt(2) && trx.accepted !== null
+            ).length;
+
+
             res.status(200).send(
               JSONbig.stringify({
                 success: true,
@@ -259,6 +276,8 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
                   totalPages,
                   currentPage: pageNumber,
                   totalItems,
+                  totalNeedAcceptance,
+                  totalNeedApproval,
                 },
               })
             );
@@ -429,6 +448,16 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
             });
 
             const totalPages = Math.ceil(totalItems / pageSize);
+            const allData = await TrxOvertime.findMany({
+              where: buildWhereClause(),
+            });
+            const totalNeedAcceptance = allData.filter(trx =>
+              trx.accept_to === userNrp && trx.status_id === BigInt(1)
+            ).length;
+
+            const totalNeedApproval = allData.filter(trx =>
+              trx.approve_to === userNrp && trx.status_id === BigInt(2) && trx.accepted !== null
+            ).length;
 
             res.status(200).send(
               JSONbig.stringify({
@@ -439,6 +468,8 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
                   totalPages,
                   currentPage: pageNumber,
                   totalItems,
+                  totalNeedAcceptance,
+                  totalNeedApproval,
                 },
               })
             );
@@ -471,16 +502,20 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
           const isPresdir = userNrp === "P0120011";
           const isAdmin = userNrp === "P0120001";
 
-          let roleFilter: Record<string, any> = { user: userNrp };
+          const roleFilters = [];
 
-          if (isDeptHead) roleFilter = { accept_to_depthead: userNrp };
-          if (isDivHead) roleFilter = { approve_to_divhead: userNrp };
-          if (isDicDiv) roleFilter = { approve_to_dicdiv: userNrp };
-          if (isDeptHeadHc) roleFilter = { approve_to_depthead_hc: userNrp };
-          if (isDivHeadHc) roleFilter = { approve_to_divhead_hc: userNrp };
-          if (isDicHc) roleFilter = { approve_to_dichc: userNrp };
-          if (isPresdir) roleFilter = { approve_to_presdir: userNrp };
-          if (isAdmin) roleFilter = {};
+          if (isDeptHead) roleFilters.push({ accept_to_depthead: userNrp });
+          if (isDivHead) roleFilters.push({ approve_to_divhead: userNrp });
+          if (isDicDiv) roleFilters.push({ approve_to_dicdiv: userNrp });
+          if (isDeptHeadHc) roleFilters.push({ approve_to_depthead_hc: userNrp });
+          if (isDivHeadHc) roleFilters.push({ approve_to_divhead_hc: userNrp });
+          if (isDicHc) roleFilters.push({ approve_to_dichc: userNrp });
+          if (isPresdir) roleFilters.push({ approve_to_presdir: userNrp });
+
+          roleFilters.push({ user: userNrp });
+
+          // Jika admin, tidak perlu filter
+          const roleFilter = isAdmin ? {} : { OR: roleFilters };
 
           const validSortFields = ["user_name", "user_departement", "destination_city1", "destination_place1", "total_leave_days"];
           const sortField = validSortFields.includes(sort as string) ? (sort as string) : "id";
@@ -516,27 +551,47 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               ...(isDicDiv ? [{ approved_divhead: { not: null } }] : []),
               ...(isDeptHeadHc
                 ? [
-                  {
-                    OR: [
-                      {
-                        AND: [
-                          { code: { startsWith: "TRF2" } },
-                          { approved_divhead: { not: null } },
-                        ],
-                      },
-                      {
-                        AND: [
-                          { code: { not: { startsWith: "TRF2" } } },
-                          { approved_dicdiv: { not: null } },
-                        ],
-                      },
-                    ],
-                  },
-                ]
+                    {
+                      OR: [
+                        {
+                          AND: [
+                            { code: { startsWith: "TRF2" } },
+                            { approved_divhead: { not: null } },
+                          ],
+                        },
+                        {
+                          AND: [
+                            { code: { not: { startsWith: "TRF2" } } },
+                            { approved_dicdiv: { not: null } },
+                          ],
+                        },
+                      ],
+                    },
+                  ]
                 : []),
               ...(isDivHeadHc ? [{ approved_depthead_hc: { not: null } }] : []),
               ...(isDicHc ? [{ approved_divhead_hc: { not: null } }] : []),
               ...(isPresdir ? [{ approved_dichc: { not: null } }] : []),
+              ...(done === "1"
+                ? [
+                    {
+                      OR: [
+                        {
+                          AND: [
+                            { code: { startsWith: "TRF1" } },
+                            { status_id: 14 },
+                          ],
+                        },
+                        {
+                          AND: [
+                            { code: { startsWith: "TRF2" } },
+                            { status_id: 11 },
+                          ],
+                        },
+                      ],
+                    },
+                  ]
+                : []),
             ],
           });
 
@@ -714,6 +769,36 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               where: buildWhereClause(),
             });
             const totalPages = Math.ceil(totalItems / pageSize);
+            const allData = await TrxOfficialTravel.findMany({
+              where: buildWhereClause(),
+            });
+            const totalNeedAccDepthead = allData.filter(trx =>
+              trx.accept_to_depthead === userNrp && trx.status_id === BigInt(1)
+            ).length;
+
+            const totalNeedAppDivhead = allData.filter(trx =>
+              trx.approve_to_divhead === userNrp && trx.status_id === BigInt(8) && trx.accepted_depthead !== null
+            ).length;
+
+            const totalNeedAppDicdiv = allData.filter(trx =>
+              trx.approve_to_dicdiv === userNrp && trx.status_id === BigInt(9) && trx.approved_divhead !== null
+            ).length;
+
+            const totalNeedAppDeptheadHc = allData.filter(trx =>
+              trx.approve_to_depthead_hc === userNrp && trx.status_id === BigInt(10) && trx.approved_dicdiv !== null
+            ).length;
+
+            const totalNeedAppDivheadHc = allData.filter(trx =>
+              trx.approve_to_divhead_hc === userNrp && trx.status_id === BigInt(11) && trx.approved_depthead_hc !== null
+            ).length;
+
+            const totalNeedAppDicdivHc = allData.filter(trx =>
+              trx.approve_to_dichc === userNrp && trx.status_id === BigInt(12) && trx.approved_dichc !== null
+            ).length;
+
+            const totalNeedAppPresdir = allData.filter(trx =>
+              trx.approve_to_presdir === userNrp && trx.status_id === BigInt(13) && trx.approved_dichc !== null
+            ).length;
 
             res.status(200).send(
               JSONbig.stringify({
@@ -724,6 +809,13 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
                   totalPages,
                   currentPage: pageNumber,
                   totalItems,
+                  totalNeedAccDepthead,
+                  totalNeedAppDivhead,
+                  totalNeedAppDicdiv,
+                  totalNeedAppDeptheadHc,
+                  totalNeedAppDivheadHc,
+                  totalNeedAppDicdivHc,
+                  totalNeedAppPresdir
                 },
               })
             );
@@ -964,6 +1056,16 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
             });
 
             const totalPages = Math.ceil(totalItems / pageSize);
+            const allData = await TrxMutation.findMany({
+              where: buildWhereClause(),
+            });
+            const totalNeedAcceptance = allData.filter(trx =>
+              trx.accept_to === userNrp && trx.status_id === BigInt(1)
+            ).length;
+
+            const totalNeedApproval = allData.filter(trx =>
+              trx.approve_to === userNrp && trx.status_id === BigInt(2) && trx.accepted !== null
+            ).length;
 
             res.status(200).send(
               JSONbig.stringify({
@@ -974,6 +1076,8 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
                   totalPages,
                   currentPage: pageNumber,
                   totalItems,
+                  totalNeedAcceptance,
+                  totalNeedApproval,
                 },
               })
             );
@@ -1160,9 +1264,19 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               where: buildWhereClause(),
             });
 
-            const totalPages = Math.ceil(totalItems / pageSize);
             const alreadyResign = data.some(trx => trx.user === userNrp);
 
+            const totalPages = Math.ceil(totalItems / pageSize);
+            const allData = await TrxResign.findMany({
+              where: buildWhereClause(),
+            });
+            const totalNeedAcceptance = allData.filter(trx =>
+              trx.accept_to === userNrp && trx.status_id === BigInt(1)
+            ).length;
+
+            const totalNeedApproval = allData.filter(trx =>
+              trx.approve_to === userNrp && trx.status_id === BigInt(2) && trx.accepted !== null
+            ).length;
             res.status(200).send(
               JSONbig.stringify({
                 success: true,
@@ -1173,6 +1287,8 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
                   currentPage: pageNumber,
                   totalItems,
                   alreadyResign,
+                  totalNeedAcceptance,
+                  totalNeedApproval,
                 },
               })
             );
@@ -1277,30 +1393,43 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
             const paginatedData = exportQuery ? sortedData : sortedData.slice(skip, skip + pageSize);
 
             const users = await User.findMany();
-            const nrpNameMap: Record<string, string> = {};
-            users.forEach((u) => {
+            const nrpFullMap: Record<string, {
+              name: string;
+              department: string;
+              division: string;
+              title: string;
+              worklocation_name: string;
+            }> = {};
+
+          users.forEach((u) => {
               if (u.personal_number) {
-                nrpNameMap[u.personal_number] = u.name;
+                nrpFullMap[u.personal_number] = {
+                  name: u.name || '',               
+                  department: u.department || '',
+                  division: u.division || '',
+                  title: u.title || '',
+                  worklocation_name: u.worklocation_name || '',
+                };
               }
             });
 
             return paginatedData.map((declaration) => ({
               ...declaration,
               no_st: declaration.officialTravel_data?.code || null,
-              user_name: declaration.officialTravel_data?.user_data?.name || null,
-              user_department: declaration.officialTravel_data?.user_data?.department || null,
-              user_division: declaration.officialTravel_data?.user_data?.division || null,
-              user_position: declaration.officialTravel_data?.user_data?.title || null,
+              user_name: declaration.officialTravel_data?.user_data?.name || nrpFullMap[declaration.user]?.name || null,
+              user_department: declaration.officialTravel_data?.user_data?.department || nrpFullMap[declaration.user]?.department || null,
+              user_division: declaration.officialTravel_data?.user_data?.division || nrpFullMap[declaration.user]?.division || null,
+              user_position: declaration.officialTravel_data?.user_data?.title || nrpFullMap[declaration.user]?.title || null,
               total_cost: declaration.officialTravel_data?.total_cost || null,
               currency: declaration.officialTravel_data?.currency || null,
               symbol_currency: declaration.officialTravel_data?.symbol_currency || null,
-              lodging: declaration.officialTravel_data?.lodging || null,
+              // lodging: declaration.officialTravel_data?.lodging || declaration.lodging || null,
               destination_place1: declaration.officialTravel_data?.destination_place1 || null,
               destination_place2: declaration.officialTravel_data?.destination_place2 || null,
               destination_place3: declaration.officialTravel_data?.destination_place3 || null,
-              worklocation_name: declaration.officialTravel_data?.user_data?.worklocation_name || null,
-              work_status: declaration.officialTravel_data?.work_status || null,
-              st_type: declaration.officialTravel_data?.type || null,
+              worklocation_name: declaration.officialTravel_data?.user_data?.worklocation_name || nrpFullMap[declaration.user]?.worklocation_name || null,
+              // work_status: declaration.officialTravel_data?.work_status || declaration.work_status || null,
+              st_type: declaration.officialTravel_data?.type ||  null,
               down_payment: declaration.officialTravel_data?.down_payment
                 ? formatRupiah(declaration.officialTravel_data.down_payment)
                 : null,
@@ -1311,11 +1440,11 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               total_detail_cost: declaration.total_detail_cost
                 ? formatRupiah(declaration.total_detail_cost)
                 : null,
-              start_date: formatDateToEnglish(declaration.officialTravel_data?.start_date),
-              end_date: formatDateToEnglish(declaration.officialTravel_data?.end_date),
+              start_date: formatDateToEnglish(declaration.officialTravel_data?.start_date ?? null),
+              end_date: formatDateToEnglish(declaration.officialTravel_data?.end_date ?? null),
               start_date_actual: formatDateToEnglish(declaration.start_date_actual),
               end_date_actual: formatDateToEnglish(declaration.end_date_actual),
-              depthead_name: nrpNameMap[declaration.accept_to],
+              depthead_name: nrpFullMap[declaration.accept_to],
               actionType:
                 ((declaration.accept_to === userNrp && declaration.approve_to === userNrp) ||
                   declaration.approve_to === userNrp)
@@ -1363,12 +1492,12 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
               travelTo1: trx.destination_place1 ?? "-",
               travelTo2: trx.destination_place2 ?? "-",
               travelTo3: trx.destination_place3 ?? "-",
-              stType: trx.st_type ?? "-",
+              // lodging: trx.lodging ?? "-",
               startDate: trx.start_date ?? "-",
               startDateActual: trx.start_date_actual ?? "-",
               endDate: trx.end_date ?? "-",
               endDateActual: trx.end_date_actual ?? "-",
-              workStatus: trx.work_status ?? "-",
+              // workStatus: trx.work_status ?? "-",
               downPayment: trx.downpaymentExport ?? "-",
               currencySymbol: trx.symbol_currency ?? "-",
               currency: trx.currency ?? "-",
@@ -1384,7 +1513,16 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
             });
 
             const totalPages = Math.ceil(totalItems / pageSize);
+            const allData = await TrxDeclaration.findMany({
+              where: buildWhereClause(),
+            });
+            const totalNeedAcceptance = allData.filter(trx =>
+              trx.accept_to === userNrp && trx.status_id === BigInt(1)
+            ).length;
 
+            const totalNeedApproval = allData.filter(trx =>
+              trx.approve_to === userNrp && trx.status_id === BigInt(2) && trx.accepted !== null
+            ).length;
             res.status(200).send(
               JSONbig.stringify({
                 success: true,
@@ -1394,6 +1532,8 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
                   totalPages,
                   currentPage: pageNumber,
                   totalItems,
+                  totalNeedAcceptance,
+                  totalNeedApproval,
                 },
               })
             );
@@ -1430,7 +1570,7 @@ export const getAllTrxData = async (req: Request & { user?: { nrp: string, dept_
 };
 
 export const handleTrx = async (
-  req: Request & { user?: { nrp: string } },
+  req: Request & { user?: { nrp: string, dept_head: Number } },
   res: Response
 ): Promise<void> => {
   const { id } = req.params;
@@ -1444,6 +1584,11 @@ export const handleTrx = async (
     });
     return;
   }
+
+  const userdata = await User.findUnique({
+    where: { personal_number: userNrp },
+    select: { name: true },
+  });
 
   const now = getCurrentWIBDate();
   let updateData: any = { updated_at: now };
@@ -1515,6 +1660,15 @@ export const handleTrx = async (
           }
         }
       }
+      await createNotification(
+        trxData.user,
+        `Rejected`,
+        `Your ${trxType} submission has been rejected by ${userdata?.name} with remark: ${remark}`,
+        '',
+        trxType,
+        `/submission/${trxType}`,
+        { rejected_by: userNrp }
+      );
     } else if (actionType === "Canceled") {
       updateData = {
         ...updateData,
@@ -1554,6 +1708,15 @@ export const handleTrx = async (
           }
         }
       }
+      await createNotification(
+        trxData.user,
+        `Cancelled`,
+        `Your ${trxType} submission has been canceled with remark: ${remark}`,
+        `The ${trxType} submission from ${userdata?.name} has been canceled and will no longer need your approval.`,
+        trxType,
+        `/submission/${trxType}`,
+          { canceled_by: userNrp}
+      );
     } else {
       if (isAcc && isApp) {
         updateData = {
@@ -1566,6 +1729,20 @@ export const handleTrx = async (
           approved_remark: remark,
           approved_date: now,
         };
+        await createNotification(
+          trxData.user,
+          `Approved`, 
+          `Your ${trxType} submission has been approved by ${userdata?.name} with remark: ${remark}`,
+          `A ${trxType} submission from ${userdata?.name} is waiting for your approval.`,
+          trxType,
+          `/submission/${trxType}`,
+          {  
+            accepted_to: trxData.accept_to,
+            approved_to: trxData.approve_to,
+            accepted_by: trxData.accepted,
+            approved_by: userNrp,
+          }
+        );
       } else if (isAcc) {
         updateData = {
           ...updateData,
@@ -1574,6 +1751,19 @@ export const handleTrx = async (
           accepted_remark: remark,
           accepted_date: now,
         };
+        await createNotification(
+        trxData.user,
+        `Accepted`,
+        `Your ${trxType} submission has been accepted by ${userdata?.name} with remark: ${remark}`,
+        `A ${trxType} submission from ${userdata?.name} is waiting for your approval.`,
+        trxType,
+        `/submission/${trxType}`,
+          {  
+            accepted_to: trxData.accept_to,
+            accepted_by: userNrp,
+            approved_to: trxData.approve_to
+          }
+      );
       } else if (isApp) {
         updateData = {
           ...updateData,
@@ -1582,6 +1772,20 @@ export const handleTrx = async (
           approved_remark: remark,
           approved_date: now,
         };
+        await createNotification(
+        trxData.user,
+        `Approved`,
+        `Your ${trxType} submission has been approved by ${userdata?.name} with remark: ${remark}`,
+        `A ${trxType} submission from ${userdata?.name} is waiting for your approval.`,
+        trxType,
+        `/submission/${trxType}`,
+        {  
+            accepted_to: trxData.accept_to,
+            approved_to: trxData.approve_to,
+            accepted_by: trxData.accepted,
+            approved_by: userNrp,
+          }      
+        );
       } else if (isAppDeptHead) {
         updateData = {
           ...updateData,
@@ -1590,6 +1794,18 @@ export const handleTrx = async (
           accepted_depthead_remark: remark,
           accepted_depthead_date: now,
         };
+        await createNotification(
+        trxData.user,
+        `Accepted`,
+        `Your ${trxType} submission has been accepted by ${userdata?.name} with remark: ${remark}`,
+        `A ${trxType} submission from ${userdata?.name} is waiting for your approval.`,
+        trxType,
+        `/submission/${trxType}`,
+          {  
+            accepted_to_depthead: trxData.accept_to_depthead,
+            accepted_by_depthead:userNrp,
+          }
+      );
       } else if (isAppDivhead) {
         updateData = {
           ...updateData,
@@ -1599,6 +1815,20 @@ export const handleTrx = async (
           approved_divhead_remark: remark,
           approved_divhead_date: now,
         };
+        await createNotification(
+        trxData.user,
+        `Approved`,
+        `Your ${trxType} submission has been approved by ${userdata?.name} with remark: ${remark}`,
+        `A ${trxType} submission from ${userdata?.name} is waiting for your approval.`,
+        trxType,
+        `/submission/${trxType}`,
+          { 
+            accepted_to_depthead: trxData.accept_to_depthead,
+            accepted_by_depthead: trxData.accepted_depthead,
+            approved_to_divhead:  trxData.approve_to_divhead,
+            approved_by_divhead: userNrp
+          }
+      );
       } else if (isAppDicDiv) {
         updateData = {
           ...updateData,
@@ -1607,6 +1837,21 @@ export const handleTrx = async (
           approved_dicdiv_remark: remark,
           approved_dicdiv_date: now,
         };
+        await createNotification(
+        trxData.user,
+        `Approved`,
+        `Your ${trxType} submission has been approved by ${userdata?.name} with remark: ${remark}`,
+        `A ${trxType} submission from ${userdata?.name} is waiting for your approval.`,
+        trxType,
+        `/submission/${trxType}`,
+          { accepted_to_depthead: trxData.accept_to_depthead,
+            accepted_by_depthead: trxData.accepted_depthead,
+            approved_to_divhead:  trxData.approve_to_divhead,
+            approved_by_divhead: trxData.approved_divhead,
+            approved_to_dicdiv: trxData.approve_to_dicdiv,
+            approved_by_dicdiv: userNrp
+          }
+      );
       } else if (isAppDeptHeadHc) {
         updateData = {
           ...updateData,
@@ -1615,6 +1860,23 @@ export const handleTrx = async (
           approved_depthead_hc_remark: remark,
           approved_depthead_hc_date: now,
         };
+        await createNotification(
+        trxData.user,
+        `Approved`,
+        `Your ${trxType} submission has been approved by ${userdata?.name} with remark: ${remark}`,
+        `A ${trxType} submission from ${userdata?.name} is waiting for your approval.`,
+        trxType,
+        `/submission/${trxType}`,
+          { accepted_to_depthead: trxData.accept_to_depthead,
+            accepted_by_depthead: trxData.accepted_depthead,
+            approved_to_divhead:  trxData.approve_to_divhead,
+            approved_by_divhead: trxData.approved_divhead,
+            approved_to_dicdiv: trxData.approve_to_dicdiv,
+            approved_by_dicdiv: trxData.approved_dicdiv,
+            approved_to_deptheadhc: trxData.approve_to_divhead_hc,
+            approved_by_deptheadhc: userNrp
+          }
+      );
       } else if (isAppDivHeadHc) {
         updateData = {
           ...updateData,
@@ -1623,6 +1885,25 @@ export const handleTrx = async (
           approved_divhead_hc_remark: remark,
           approved_divhead_hc_date: now,
         };
+        await createNotification(
+        trxData.user,
+        `Approved`,
+        `Your ${trxType} submission has been approved by ${userdata?.name} with remark: ${remark}`,
+        `A ${trxType} submission from ${userdata?.name} is waiting for your approval.`,
+        trxType,
+        `/submission/${trxType}`,
+          { accepted_to_depthead: trxData.accept_to_depthead,
+            accepted_by_depthead: trxData.accepted_depthead,
+            approved_to_divhead:  trxData.approve_to_divhead,
+            approved_by_divhead: trxData.approved_divhead,
+            approved_to_dicdiv: trxData.approve_to_dicdiv,
+            approved_by_dicdiv: trxData.approved_dicdiv,
+            approved_to_deptheadhc: trxData.approve_to_divhead_hc,
+            approved_by_deptheadhc: trxData.approved_divhead_hc,
+            approved_to_divheadhc: trxData.approve_to_divhead_hc,
+            approved_by_divheadhc: userNrp
+          }
+      );
       } else if (isAppDicHc) {
         updateData = {
           ...updateData,
@@ -1631,6 +1912,27 @@ export const handleTrx = async (
           approved_dichc_remark: remark,
           approved_dichc_date: now,
         };
+        await createNotification(
+        trxData.user,
+        `Approved`,
+        `Your ${trxType} submission has been approved by ${userdata?.name} with remark: ${remark}`,
+        `A ${trxType} submission from ${userdata?.name} is waiting for your approval.`,
+        trxType,
+        `/submission/${trxType}`,
+          { accepted_to_depthead: trxData.accept_to_depthead,
+            accepted_by_depthead: trxData.accepted_depthead,
+            approved_to_divhead:  trxData.approve_to_divhead,
+            approved_by_divhead: trxData.approved_divhead,
+            approved_to_dicdiv: trxData.approve_to_dicdiv,
+            approved_by_dicdiv: trxData.approved_dicdiv,
+            approved_to_deptheadhc: trxData.approve_to_divhead_hc,
+            approved_by_deptheadhc: trxData.approved_divhead_hc,
+            approved_to_divheadhc: trxData.approve_to_divhead_hc,
+            approved_by_divheadhc: trxData.approved_divhead,
+            approved_to_dichc: trxData.approve_to_dichc,
+            approved_by_dichc: userNrp
+          }
+      );
       } else if (isAppPresdir) {
         updateData = {
           ...updateData,
@@ -1639,6 +1941,30 @@ export const handleTrx = async (
           approved_presdir_remark: remark,
           approved_presdir_date: now,
         };
+        await createNotification(
+        trxData.user,
+        `Approved`,
+        `Your ${trxType} submission has been approved by ${userdata?.name} with remark: ${remark}`,
+        ``,
+        trxType,
+        `/submission/${trxType}`,
+          { 
+            accepted_to_depthead: trxData.accept_to_depthead,
+            accepted_by_depthead: trxData.accepted_depthead,
+            approved_to_divhead:  trxData.approve_to_divhead,
+            approved_by_divhead: trxData.approved_divhead,
+            approved_to_dicdiv: trxData.approve_to_dicdiv,
+            approved_by_dicdiv: trxData.approved_dicdiv,
+            approved_to_deptheadhc: trxData.approve_to_divhead_hc,
+            approved_by_deptheadhc: trxData.approved_divhead_hc,
+            approved_to_divheadhc: trxData.approve_to_divhead_hc,
+            approved_by_divheadhc: trxData.approved_divhead,
+            approved_to_dichc: trxData.approve_to_dichc,
+            approved_by_dichc: trxData.approved_dichc,
+            approved_to_presdir: trxData.approve_to_presdir,
+            approved_by_presdir: userNrp,
+          }
+      );
       }
       else if (isApp) {
         updateData = {
@@ -1648,6 +1974,20 @@ export const handleTrx = async (
           approved_remark: remark,
           approved_date: now,
         };
+        await createNotification(
+        trxData.user,
+        `Approved`,
+        `Your ${trxType} submission has been approved by ${userdata?.name} with remark: ${remark}`,
+        ``,
+        trxType,
+        `/submission/${trxType}`,
+          { 
+            accepted_to: trxData.accept_to,
+            accepted_by: trxData.accepted_by,
+            approved_to: trxData.approve_to,
+            approved_by: userNrp,
+          }
+      );
       }
     }
 
@@ -1702,18 +2042,97 @@ export const handleTrx = async (
       }
     }
 
-    const result = await model.update({
-      where: { id: Number(id) },
-      data: updateData,
+  const result = await model.update({
+  where: { id: Number(id) },
+  data: updateData,
+});
+
+// Fake request untuk dipakai di dua fungsi
+const fakeReq = {
+  query: {
+    nrp: userNrp,
+    type: trxType,
+  },
+  user: {
+    nrp: userNrp,
+    dept_head: req.user?.dept_head || 0,
+  },
+} as unknown as Request;
+
+// Emit count update
+const handleSocketEmit = (rawData: any) => {
+  const parsed = typeof rawData === "string" ? JSON.parse(rawData) : rawData;
+  const acceptance = parsed.data?.totalNeedAcceptance || 0;
+  const approval = parsed.data?.totalNeedApproval || 0;
+  const count = acceptance + approval;
+
+  io.to(userNrp!).emit(`${trxType}-count`, count);
+};
+
+const fakeRes = {
+  send: handleSocketEmit,
+  status: () => ({
+    send: handleSocketEmit,
+  }),
+} as unknown as Response;
+
+await getAllTrxData(fakeReq, fakeRes);
+
+// Emit notification update
+const handleNotificationEmit = (rawData: any) => {
+  try {
+    const parsed = typeof rawData === "string" ? JSON.parse(rawData) : rawData;
+    const notifArray = Array.isArray(parsed?.data)
+      ? parsed.data
+      : Array.isArray(parsed?.data?.data)
+      ? parsed.data.data
+      : [];
+
+    const normalizedNrp = String(userNrp).trim();
+    const filtered = notifArray.filter((n: any) => {
+      const nrpList = [
+        n.user,
+        n.accepted_to,
+        n.approved_to,
+        n.accepted_to_depthead,
+        n.approved_to_divhead,
+        n.approved_to_dicdiv,
+        n.approved_to_deptheadhc,
+        n.approved_to_divheadhc,
+        n.approved_to_dichc,
+        n.approved_to_presdir,
+        n.rejected_by,
+      ]
+        .filter(Boolean)
+        .map((val) => String(val).trim());
+
+      return nrpList.includes(normalizedNrp);
     });
 
-    res.status(200).send(
-      JSONbig.stringify({
-        success: true,
-        message: "Transaction updated successfully",
-        data: result,
-      })
-    );
+    io.to(userNrp!).emit("notification", filtered);
+  } catch (err) {
+    io.to(userNrp!).emit("notification", []);
+  }
+};
+
+const fakeResNotif = {
+  send: handleNotificationEmit,
+  status: () => ({
+    send: handleNotificationEmit,
+  }),
+} as unknown as Response;
+
+await getAllNotification(fakeReq, fakeResNotif);
+
+
+// Tetap kirim response ke FE kalau ini route API
+res.status(200).send(
+  JSONbig.stringify({
+    success: true,
+    message: "Transaction updated successfully",
+    data: result,
+  })
+);
   } catch (err: any) {
       await Error.create({
         data: {
@@ -1859,6 +2278,19 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
             });
           }
 
+          //add notif
+          await createNotification(
+            userNrp,
+            `Opened`,
+            ``,
+            `A new leave submission from ${userData?.name} is waiting for your approval.`,
+            `leave`,
+            `/submission/leave`,
+            { accepted_to: acceptToValue,
+              approved_to: approveToValue
+            }
+          );
+
           res.status(201).send(
             JSONbig.stringify({
               success: true,
@@ -1988,6 +2420,18 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
           },
         });
 
+        //create notif
+        await createNotification(
+            userNrp,
+            `Opened`,
+            ``,
+            `A new overtime submission from ${userData?.name} is waiting for your approval.`,
+            `overtime`,
+            `/submission/overtime`,
+            { accepted_to: acceptToValue,
+              approved_to: approveToValue
+            }
+          );
         // Kirim response
         res.status(201).send(JSONbig.stringify({
           success: true,
@@ -2074,20 +2518,27 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
         const end = parse(sanitizeDateString(end_date), "dd MMM yyyy", new Date());
 
         const totalTravelDays = differenceInDays(end, start) + 1;
-        const approvalData = {
+        const baseApproval = {
           accept_to_depthead: userData?.dept_data?.depthead_nrp ?? "",
           approve_to_divhead: userData?.dept_data?.divhead_nrp ?? "",
           approve_to_depthead_hc: "P0120010",
         };
 
-        if (currencyFlag === "1") {
-          Object.assign(approvalData, {
-            approve_to_dicdiv: "P0120008",
-            approve_to_divhead_hc: "P0120014",
-            approve_to_dichc: "P0120009",
-            approve_to_presdir: "P0120011",
-          });
-        }
+        const currencyApproval =
+          currencyFlag === "1"
+            ? {
+                approve_to_dicdiv: "P0120008",
+                approve_to_divhead_hc: "P0120014",
+                approve_to_dichc: "P0120009",
+                approve_to_presdir: "P0120011",
+              }
+            : {};
+
+        const approvalData = {
+          ...baseApproval,
+          ...currencyApproval,
+        };
+
 
         const newLeave = await TrxOfficialTravel.create({
           data: {
@@ -2130,6 +2581,25 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
             },
           },
         });
+        //create notif
+        await createNotification(
+            userNrp,
+            `Opened`,
+            ``,
+            `A new official travel submission from ${userData?.name} is waiting for your approval.`,
+            `officialTravel`,
+            `/submission/officialTravel`,
+            { 
+              accepted_to_depthead: approvalData.accept_to_depthead ?? "",
+              approved_to_divhead: approvalData.approve_to_divhead ?? "",
+              approved_to_deptheadhc: approvalData.approve_to_depthead_hc ?? "",
+              approved_to_divheadhc: approvalData.approve_to_divhead_hc ?? "",
+              approved_to_dicdiv: approvalData.approve_to_dicdiv ?? "",
+              approved_to_dichc: approvalData.approve_to_dichc ?? "",
+              approved_to_presdir: approvalData.approve_to_presdir ?? "",
+            }
+          );
+
         res.status(201).send(JSONbig.stringify({
           success: true,
           message: "Official Travel added successfully",
@@ -2198,6 +2668,18 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
           },
         });
 
+        //create notif
+        await createNotification(
+            userNrp,
+            `Opened`,
+            ``,
+            `A new mutation submission from ${userData?.name} is waiting for your approval.`,
+            `mutation`,
+            `/submission/mutation`,
+            { accepted_to: acceptToValue,
+              approved_to: approveToValue
+            }
+          );
         res.status(201).send(JSONbig.stringify({
           success: true,
           message: "Mutation added successfully",
@@ -2265,7 +2747,18 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
               updated_at: getCurrentWIBDate(),
             },
           });
-
+          //create notif
+           createNotification(
+              userNrp,
+              `Opened`,
+              '',
+              `A new resign submission from ${userData?.name} is waiting for your approval.`,
+              `resign`,
+              `/submission/resign`,
+              { accepted_to: acceptToValue,
+                approved_to: approveToValue
+              }
+            );
           res.status(201).send(JSONbig.stringify({
             success: true,
             message: "Resign added successfully",
@@ -2295,6 +2788,10 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
             user,
             start_date_actual,
             end_date_actual,
+            lodging,
+            work_status,
+            travel_from,
+            travel_to,
             total_money_change,
             total_detail_cost,
             details = "[]"
@@ -2304,7 +2801,6 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
           const parsedDetails = JSON.parse(details);
 
           if (
-            !code_trx?.trim() ||
             !user?.trim() ||
             !start_date_actual ||
             !end_date_actual ||
@@ -2371,6 +2867,7 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
               user,
               start_date_actual: startDate,
               end_date_actual: endDate,
+              
               total_money_change,
               total_detail_cost,
               evidence_file: file?.filename ?? "",
@@ -2399,6 +2896,18 @@ export const createSubmittion = async (req: Request & { user?: { nrp: string, id
               },
             },
           });
+          //create notif
+          await createNotification(
+            userNrp,
+            `Opened`,
+            ``,
+            `A new declaration official travel submission for code official travel ${code_trx} from ${userData?.name} is waiting for your approval.`,
+            `declaration`,
+            `/submission/declaration`,
+            { accepted_to: acceptToValue,
+              approved_to: approveToValue
+            }
+          );
           res.status(201).send(JSONbig.stringify({
             success: true,
             message: "Declaration created successfully",
